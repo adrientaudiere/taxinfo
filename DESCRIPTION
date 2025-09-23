@@ -24,7 +24,29 @@ Depends:
     R (>= 4.1.0),
     MiscMetabar
 Imports: 
+    CoordinateCleaner,
+    digest,
+    duckdb,
+    gbif.range,
     httr,
-    jsonlite
+    jsonlite,
+    leaflet,
+    leafpop,
+    mapview,
+    MiteMapTools,
+    openalexR,
+    pixture,
+    purrr,
+    rentrez,
+    rgbif,
+    rglobi,
+    rnaturalearth,
+    sf,
+    stringr,
+    taxize,
+    terra,
+    tibble,
+    tidyr,
+    wikitaxa
 
 
