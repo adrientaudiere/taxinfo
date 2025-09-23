@@ -17,3 +17,14 @@ LazyData: true
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+URL: https://github.com/adrientaudiere/taxinfo
+BugReports: https://github.com/adrientaudiere/taxinfo/issues
+RoxygenNote: 7.3.3
+Depends:
+    R (>= 4.1.0),
+    MiscMetabar
+Imports: 
+    httr,
+    jsonlite
+
+
