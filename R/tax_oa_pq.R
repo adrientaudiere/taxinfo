@@ -108,6 +108,8 @@ tax_oa_pq <- function(physeq,
                       add_to_phyloseq = FALSE,
                       type_works = c("article", "review", "book-chapter", "book", "letter"), verbose = TRUE,
                       ...) {
+  check_package("openalexR")
+
   if (sum(list_doi, return_raw_oa, add_to_phyloseq) > 1) {
     stop("You can not set to TRUE more than one of the parameters list_doi, return_raw_oa and add_to_phyloseq.")
   }
@@ -148,6 +150,8 @@ tax_oa_pq <- function(physeq,
 
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA
+
+    check_package("purrr")
     tib_publi <- list_publi |>
       purrr::map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
       filter(type %in% type_works)

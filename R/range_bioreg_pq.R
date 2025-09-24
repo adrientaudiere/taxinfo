@@ -105,6 +105,9 @@ range_bioreg_pq <- function(physeq,
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
         message(paste("Not enough occurence to plot", tax_i))
       } else {
+        check_package("rnaturalearth")
+        check_package("terra")
+
         countries <-
           rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
         bb_bioreg <-

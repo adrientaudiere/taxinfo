@@ -112,6 +112,8 @@ tax_retroblast_pq <- function(physeq,
                               max_length = 4000,
                               refseq_only = FALSE,
                               sup_params = "NOT uncultured[Title] NOT clone[Title]") {
+  check_package("rentrez")
+
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,

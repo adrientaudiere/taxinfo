@@ -99,7 +99,7 @@
 #' # TAXREF example (with status)
 #' # --------------------
 #'
-#' taxref_status <- system.file("extdata", "bdc_18_01_wider.csv", package = "taxinfo")
+#' taxref_status <- system.file("extdata", "bdc_18_01_wider_mini.csv", package = "taxinfo")
 #' data_fungi_cleanNames_3 <- tax_info_pq(data_fungi_cleanNames_2,
 #'   taxonomic_rank = "taxref_CD_REF",
 #'   file_name = taxref_status,
@@ -158,6 +158,7 @@ tax_info_pq <- function(physeq,
   }
 
   if (use_duck_db) {
+    check_package("duckdb")
     con <- duckdb::dbConnect(duckdb::duckdb())
     # Summarize the dataset in DuckDB to avoid reading the entire CSV
     # into R's memory

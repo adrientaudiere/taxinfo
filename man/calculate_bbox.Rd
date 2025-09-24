@@ -24,11 +24,6 @@ with a specified radius in kilometers.
 The function uses an approximation where 1 degree ~= 111.32 km and
   adjusts for latitude distortion where longitude degrees get closer at the poles.
 }
-\examples{
-bbox <- calculate_bbox(2.3522, 48.8566, 50)
-bbox
-#
-}
 \author{
 Adrien Taudière
 }

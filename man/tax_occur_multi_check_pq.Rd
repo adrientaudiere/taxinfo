@@ -57,9 +57,10 @@ and latitude).
 }
 \examples{
 res_occur_check <-
-tax_occur_multi_check_pq(subset_samples(data_fungi_mini_cleanNames, Diameter==52),
- longitudes=c(8.31, 8.31, 8.64, -1.19, 7.03),
- latitudes=c(47.38, 47.38, 45.83, 43.65, 43.93))
+  tax_occur_multi_check_pq(subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
+    longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
+    latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
+  )
 }
 \author{
 Adrien Taudière

@@ -70,6 +70,9 @@ tax_globi_pq <- function(physeq,
                          verbose = FALSE,
                          strict_interaction_types = TRUE,
                          max_interactions = 1000) {
+
+  check_package("rglobi")
+
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,

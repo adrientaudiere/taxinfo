@@ -46,8 +46,9 @@ found within the radius in a data frame called "occ_data" in the resulting list.
 \item{verbose}{(Logical, default: TRUE). Whether to print progress messages.}
 
 \item{clean_coord_verbose}{(Logical, default: FALSE). Whether to print messages
-from CoordinateCleaner.
-@param n_occur Numeric (default: 1000). Maximum number of occurrences to
+from CoordinateCleaner.}
+
+\item{n_occur}{Numeric (default: 1000). Maximum number of occurrences to
 retrieve from GBIF.}
 
 \item{...}{Additional parameters passed to [rgbif::occ_search()].}

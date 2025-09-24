@@ -100,17 +100,17 @@ tax_occur_check <- function(taxa_name,
     stop("Species ", species_key, " not found")
   }
 
-  bbox <- MiteMapTools:::calculate_bbox(
+  bbox <- taxinfo:::calculate_bbox(
     longitude = longitude,
     latitude = latitude,
     radius_km = radius_km
   )
 
-  occurrences_world_with_coordinate <- occ_count(
+  occurrences_world_with_coordinate <- rgbif::occ_count(
     taxonKey = species_key,
     hasCoordinate = TRUE
   )
-  occurrences <- occ_search(
+  occurrences <- rgbif::occ_search(
     taxonKey = species_key,
     hasCoordinate = TRUE,
     hasGeospatialIssue = FALSE,
@@ -122,6 +122,7 @@ tax_occur_check <- function(taxa_name,
 
   if (occurrences$meta$count > 0) {
     if (clean_coord) {
+      check_package("CoordinateCleaner")
       n_occur_old <- nrow(occurrences$data)
       occurrences$data <-
         CoordinateCleaner::clean_coordinates(occurrences$data,

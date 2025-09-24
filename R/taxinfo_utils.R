@@ -15,9 +15,6 @@
 #'   adjusts for latitude distortion where longitude degrees get closer at the poles.
 #'
 #' @author Adrien Taudière
-#' @examples
-#' bbox <- calculate_bbox(2.3522, 48.8566, 50)
-#' bbox
 #'
 #' @keywords internal
 calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
@@ -90,4 +87,105 @@ taxa_summary_text <- function(physeq, taxonomic_rank = "currentCanonicalSimple",
   noccur <- sum(new_physeq@otu_table > 0)
 
   paste0(taxnames, ": ", nsamp, " samp., ", ntaxa, " taxa, ", nseq, " seq., ", noccur, " occ.")
+}
+
+
+#' Check package availability and propose installation instructions
+#'
+#' @description
+#' This function checks if a package is available using requireNamespace.
+#' If the package is not available, it provides helpful installation instructions.
+#'
+#' @param package (required) Character string. Name of the package to check.
+#' @param repo Character string. Repository source for installation suggestion.
+#'        Options: "CRAN" (default), "Bioconductor", "GitHub".
+#' @param github_repo Character string. GitHub repository
+#'        in format "username/repository". It overrides repo if provided.
+#'        Required if repo is "GitHub".
+#' @param stop_on_error Logical. If TRUE  (default), stops execution when package
+#'    is missing. If FALSE, returns FALSE and shows message.
+#' @param quietly Logical. If TRUE, suppresses the requireNamespace loading messages.
+#'        Default is TRUE.
+#'
+#' @return Logical. TRUE if package is available, FALSE if not available.
+#'
+#' @examples
+#' \dontrun{
+#' # Check CRAN package
+#' check_package("dplyr")
+#'
+#' # Check Bioconductor package
+#' check_package("Biostrings", repo = "Bioconductor")
+#'
+#' # Check GitHub package
+#' check_package("MiscMetabar", repo = "GitHub",
+#'   github_repo = "adrientaudiere/MiscMetabar")
+#'
+#' # Stop execution if package is missing
+#' check_package("ggplot2", stop_on_error = TRUE)
+#'}
+#' @export
+check_package <- function(package,
+                          repo = "CRAN",
+                          github_repo = NULL,
+                          stop_on_error = TRUE,
+                          quietly = TRUE) {
+
+  # Validate inputs
+  if (!is.character(package) || length(package) != 1) {
+    stop("'package' must be a single character string")
+  }
+
+  if(!is.null(github_repo)){
+    repo <- "GitHub"
+  }
+
+  if (!repo %in% c("CRAN", "Bioconductor", "GitHub") && is.null(github_repo)) {
+    if (!is.character(repo)) {
+      stop("'repo' must be one of 'CRAN', 'Bioconductor', 'GitHub'")
+    }
+  }
+
+  # Check if package is available
+  is_available <- requireNamespace(package, quietly = quietly)
+
+  if (!is_available) {
+    # Create installation message based on repository
+    install_msg <- switch(repo,
+                          "CRAN" = paste0('install.packages("', package, '")'),
+                          "Bioconductor" = paste0(
+                            'if (!requireNamespace("BiocManager")) {\n',
+                            '  install.packages("BiocManager")\n',
+                            '}\n',
+                            'BiocManager::install("', package, '")'
+                          ),
+                          "GitHub" = {
+                            if (is.null(github_repo)) {
+                              stop("For GitHub packages,
+                                   'github_repo' must be specified as 'username/repository'")
+                            }
+                            paste0(
+                              'if (!requireNamespace("devtools")) {\n',
+                              '  install.packages("devtools")\n',
+                              '}\n',
+                              'devtools::install_github("', github_repo, '")'
+                            )
+                          },
+
+    )
+
+    message_text <- paste0(
+      "Package '", package, "' is required but not installed.\n",
+      "To install it, run:\n\n",
+      install_msg
+    )
+
+    if (stop_on_error) {
+      stop(message_text, call. = FALSE)
+    } else {
+      message(message_text)
+    }
+  }
+
+  return(is_available)
 }

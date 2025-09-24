@@ -108,11 +108,13 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     if (is.null(countries)) {
       tax_gbif <- gbif.range::get_gbif(taxnames[i], ...)
     } else {
+      check_package("rnaturalearth")
       countries_sv <- rnaturalearth::ne_states(countries, returnclass = "sv")
       tax_gbif <- gbif.range::get_gbif(taxnames[i], geo = countries_sv, info_names = info_names, ...)
     }
 
     if (interactive_plot) {
+      check_package("mapview")
       tax_sf <- st_as_sf(tax_gbif, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
       p[[i]] <- mapview::mapview(tax_sf,
         zcol = zcol,
@@ -151,6 +153,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
                      background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);"
       )
+      check_package("leaflet")
       p[[i]]@map <- p[[i]]@map |>
         leaflet::addControl(html = as.character(title_p), position = "topleft")
     } else {

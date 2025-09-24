@@ -79,6 +79,8 @@ tax_get_wk_info_pq <- function(physeq,
                                summarize_function_length = "mean",
                                summarize_function_views = "sum",
                                n_days = 30) {
+  check_package("wikitaxa")
+
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,
@@ -271,7 +273,8 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
                                   start_date = NULL,
                                   end_date = NULL,
                                   verbose = FALSE) {
-  if (is.null(tib_list) & !is.null(taxon_id)) {
+
+    if (is.null(tib_list) & !is.null(taxon_id)) {
     tib_list_pages <- tax_get_wk_lang(taxon_id, languages_pages = languages_pages)
   } else if (!is.null(tib_list) & is.null(taxon_id)) {
     tib_list_pages <- tib_list

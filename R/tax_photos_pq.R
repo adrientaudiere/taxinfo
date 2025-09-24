@@ -115,6 +115,7 @@ tax_photos_pq <- function(physeq = NULL,
       distinct()
     taxnames <- gbif_taxa$canonicalName
   } else if (source == "wikitaxa") {
+    check_package("wikitaxa")
     taxnames <- taxnames_raw
   } else {
     stop("Source parameter allow only 'gbif' or 'wikitaxa' value")
@@ -163,6 +164,7 @@ tax_photos_pq <- function(physeq = NULL,
         # select only the first photo for each species
         photo_name <- photo_names[[1]]
 
+        check_package("digest")
         md5 <- digest::digest(photo_name, algo = "md5", serialize = FALSE)
         photo_url[i] <- paste0(
           "https://upload.wikimedia.org/wikipedia/commons/",
@@ -249,6 +251,7 @@ tax_photos_pq <- function(physeq = NULL,
         )
       }
     }
+    check_package("pixture")
     pixture::pixgallery(photo_url[!is.na(photo_url)], caption = captions[!is.na(photo_url)], caption_valign = caption_valign, ...)
   } else {
     if (overwrite_folder) {

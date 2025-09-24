@@ -76,8 +76,7 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 
 # FUNGAL TRAITS example
 # --------------------
-fungal_traits <- "/home/adrien/Nextcloud/IdEst/Projets/MITIS/FUNGAL_TRAITS/FUNGAL_TRAITS_DB.csv" # TODO put in package
-# fungal_traits <- system.file("extdata", "FungalTraits.csv", package = "MiscMetabar")
+fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 fg_traits <- tax_info_pq(data_fungi_cleanNames,
   taxonomic_rank = "currentCanonicalSimpleGenus",
   file_name = fungal_traits,
@@ -86,7 +85,6 @@ fg_traits <- tax_info_pq(data_fungi_cleanNames,
   sep = ";"
 )
 
-table(fg_traits$ft_Ectomycorrhiza_exploration_type_template, useNA = "ifany")
 table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>
   as.data.frame() |>
   filter(Freq > 0) |>
@@ -95,17 +93,16 @@ table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>
 
 # TAXREF example
 # --------------------
-TAXREFv18 <- "/home/adrien/Nextcloud/IdEst/Projets/MITIS/TAXREF_v18_2025/TAXREFv18.csv" # TODO put in package
-# TAXREFv18 <- system.file("extdata", "TAXREFv18.csv", package = "MiscMetabar")
+TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
 
 res_with_R <- tax_info_pq(data_fungi_cleanNames,
-  file_name = TAXREFv18,
+  file_name = TAXREFv18_fungi,
   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   col_prefix = "taxref_"
 )
 res_with_duckDB <- tax_info_pq(
   data_fungi_cleanNames,
-  file_name = TAXREFv18,
+  file_name = TAXREFv18_fungi,
   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   use_duck_db = TRUE,
   col_prefix = "taxref_",
@@ -114,7 +111,7 @@ res_with_duckDB <- tax_info_pq(
 
 data_fungi_cleanNames_2 <- tax_info_pq(
   data_fungi_cleanNames,
-  file_name = TAXREFv18,
+  file_name = TAXREFv18_fungi,
   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   use_duck_db = TRUE,
   col_prefix = "taxref_",
@@ -124,9 +121,10 @@ data_fungi_cleanNames_2 <- tax_info_pq(
 table(data_fungi_cleanNames_2@tax_table[, "taxref_FR"])
 table(data_fungi_cleanNames_2@tax_table[, "taxref_HABITAT"])
 
-# TAXREF example (continue with status)
+# TAXREF example (with status)
 # --------------------
-taxref_status <- "/home/adrien/Nextcloud/IdEst/Projets/MITIS/BDC_18/bdc_18_01_wider.csv" # TODO put in package
+
+taxref_status <- system.file("extdata", "bdc_18_01_wider_mini.csv", package = "taxinfo")
 data_fungi_cleanNames_3 <- tax_info_pq(data_fungi_cleanNames_2,
   taxonomic_rank = "taxref_CD_REF",
   file_name = taxref_status,

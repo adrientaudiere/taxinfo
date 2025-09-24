@@ -6,7 +6,7 @@ NULL
 
 if (getRversion() >= "2.15.1") {
   utils::globalVariables(c(
-    "%", "id.", "match", "%>%", ".summary", "Taxa", "name", "URLencode", "across",
+    "% id. match", "%", "id.", "match", "%>%", ".summary", "Taxa", "name", "URLencode", "across",
     "aes", "all_of", "alt_assign", "any_of", "arrange", "as_tibble", "basisOfRecord",
     "bind_rows", "blast_to_phyloseq", "canonicalName", "clean_pq", "collect",
     "content", "coord_sf", "count", "count_in_radius", "currentCanonicalSimple",
