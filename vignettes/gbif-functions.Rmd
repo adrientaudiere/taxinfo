@@ -1,0 +1,373 @@
+---
+title: "GBIF-based Functions for Occurrence Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GBIF-based Functions for Occurrence Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(taxinfo)
+library(MiscMetabar)
+library(ggplot2)
+library(dplyr)
+```
+
+## Overview
+
+The Global Biodiversity Information Facility (GBIF) is the world's largest repository of biodiversity occurrence data. The taxinfo package provides seamless integration with GBIF through specialized functions that retrieve occurrence data, create distribution maps, and analyze biogeographic patterns for taxa in your phyloseq objects.
+
+## Core GBIF Functions
+
+- `tax_gbif_occur_pq()`: Retrieve occurrence counts from GBIF
+- `plot_tax_gbif_pq()`: Create distribution maps
+- `range_bioreg_pq()`: Analyze biogeographic ranges
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
+
+## Basic Occurrence Data Retrieval
+
+### Global Occurrence Counts
+
+```{r}
+# Load and prepare example data
+data("data_fungi_mini", package = "MiscMetabar")
+
+# Clean taxonomic names first (recommended)
+data_clean <- gna_verifier_pq(data_fungi_mini, 
+                             data_sources = 210,
+                             add_to_phyloseq = TRUE)
+
+# Get global occurrence counts from GBIF
+occurrence_data <- tax_gbif_occur_pq(data_clean,
+                                    add_to_phyloseq = TRUE)
+
+# View occurrence counts in tax_table
+head(occurrence_data@tax_table[, c("currentCanonicalSimple", "Global_occurences")])
+```
+
+### Occurrence Counts by Country
+
+Analyze geographic distribution patterns:
+
+```{r eval=FALSE}
+# Get occurrence counts by country
+country_occurrences <- tax_gbif_occur_pq(data_clean,
+                                        by_country = TRUE,
+                                        add_to_phyloseq = TRUE)
+
+# View country-specific columns
+head(country_occurrences@tax_table[, c("currentCanonicalSimple", "US", "FR", "DE", "GB")])
+```
+
+### Temporal Patterns
+
+Examine occurrence trends over time:
+
+```{r eval=FALSE}
+# Get occurrence counts by year
+yearly_occurrences <- tax_gbif_occur_pq(data_clean,
+                                       by_years = TRUE)
+
+# Visualize temporal trends for a specific taxon
+example_taxon <- yearly_occurrences %>%
+  filter(currentCanonicalSimple == "Fusarium oxysporum") %>%
+  pivot_longer(cols = starts_with("20"), 
+               names_to = "year", 
+               values_to = "count") %>%
+  mutate(year = as.numeric(year))
+
+ggplot(example_taxon, aes(x = year, y = count)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "GBIF Occurrences Over Time",
+       subtitle = "Fusarium oxysporum",
+       x = "Year",
+       y = "Number of GBIF occurrences") +
+  theme_minimal()
+```
+
+## Visualization and Mapping
+
+### Basic Distribution Plots
+
+Create occurrence distribution visualizations:
+
+```{r eval=FALSE}
+# Plot global vs regional occurrences
+occurrence_comparison <- occurrence_data@tax_table %>%
+  as.data.frame() %>%
+  mutate(Global_occurences = as.numeric(Global_occurences),
+         currentCanonicalSimple = factor(currentCanonicalSimple)) %>%
+  filter(!is.na(Global_occurences))
+
+ggplot(occurrence_comparison, 
+       aes(x = reorder(currentCanonicalSimple, Global_occurences), 
+           y = Global_occurences)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  scale_y_log10() +
+  coord_flip() +
+  labs(title = "GBIF Occurrence Counts by Taxon",
+       x = "Taxon",
+       y = "Number of occurrences (log scale)") +
+  theme_minimal()
+```
+
+### Interactive Distribution Maps
+
+Create interactive maps showing species distributions:
+
+```{r eval=FALSE}
+# Create distribution maps for selected taxa
+selected_taxa <- c("Fusarium oxysporum", "Trichoderma harzianum")
+
+distribution_maps <- plot_tax_gbif_pq(data_clean,
+                                     taxa_names = selected_taxa,
+                                     n_occur = 1000,
+                                     map_type = "interactive")
+
+# Display maps
+distribution_maps
+```
+
+### Static Distribution Maps
+
+For publication-quality figures:
+
+```{r eval=FALSE}
+# Create static distribution map
+static_map <- plot_tax_gbif_pq(data_clean,
+                              taxa_names = "Fusarium oxysporum",
+                              n_occur = 500,
+                              map_type = "static",
+                              color_palette = "viridis")
+
+print(static_map)
+```
+
+## Biogeographic Analysis
+
+### Range Analysis
+
+Analyze the biogeographic ranges of your taxa:
+
+```{r eval=FALSE}
+# Analyze biogeographic ranges
+range_analysis <- range_bioreg_pq(data_clean,
+                                 add_to_phyloseq = TRUE)
+
+# View biogeographic classifications
+head(range_analysis@tax_table[, c("currentCanonicalSimple", 
+                                 "biogeo_status", 
+                                 "range_size_km2",
+                                 "n_countries")])
+```
+
+### Ecoregion Validation
+
+Check if occurrences match expected ecoregions:
+
+```{r eval=FALSE}
+# Validate occurrences against ecoregions
+ecoregion_check <- tax_check_ecoregion(data_clean,
+                                      expected_ecoregions = c("Temperate Broadleaf", 
+                                                             "Mediterranean"),
+                                      add_to_phyloseq = TRUE)
+
+# Summarize ecoregion matches
+ecoregion_summary <- ecoregion_check@tax_table %>%
+  as.data.frame() %>%
+  count(ecoregion_match, name = "n_taxa")
+
+print(ecoregion_summary)
+```
+
+## Advanced Analysis
+
+### Multi-Country Comparison
+
+Compare occurrence patterns across countries:
+
+```{r eval=FALSE}
+# Get detailed country occurrence data
+country_data <- tax_gbif_occur_pq(data_clean,
+                                 by_country = TRUE)
+
+# Create country comparison plot
+country_comparison <- country_data %>%
+  select(currentCanonicalSimple, US, FR, DE, GB, ES) %>%
+  pivot_longer(cols = c(US, FR, DE, GB, ES),
+               names_to = "country",
+               values_to = "occurrences") %>%
+  mutate(occurrences = as.numeric(occurrences)) %>%
+  filter(!is.na(occurrences), occurrences > 0)
+
+ggplot(country_comparison, aes(x = country, y = occurrences, fill = country)) +
+  geom_boxplot() +
+  scale_y_log10() +
+  labs(title = "GBIF Occurrences by Country",
+       x = "Country",
+       y = "Number of occurrences (log scale)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+### Rarity Analysis
+
+Identify rare vs common taxa based on GBIF data:
+
+```{r eval=FALSE}
+# Classify taxa by rarity
+rarity_analysis <- occurrence_data@tax_table %>%
+  as.data.frame() %>%
+  mutate(Global_occurences = as.numeric(Global_occurences)) %>%
+  mutate(rarity_class = case_when(
+    Global_occurences < 10 ~ "Very Rare",
+    Global_occurences < 100 ~ "Rare", 
+    Global_occurences < 1000 ~ "Common",
+    TRUE ~ "Very Common"
+  )) %>%
+  count(rarity_class, name = "n_taxa")
+
+# Visualize rarity distribution
+ggplot(rarity_analysis, aes(x = rarity_class, y = n_taxa, fill = rarity_class)) +
+  geom_col() +
+  scale_fill_viridis_d() +
+  labs(title = "Taxon Rarity Classification",
+       subtitle = "Based on GBIF occurrence counts",
+       x = "Rarity Class",
+       y = "Number of Taxa") +
+  theme_minimal()
+```
+
+## Integration with Sample Data
+
+### Occurrence-Abundance Relationships
+
+Explore relationships between local abundance and global occurrences:
+
+```{r eval=FALSE}
+# Calculate local abundance (e.g., mean relative abundance across samples)
+sample_data <- occurrence_data@otu_table %>%
+  as.data.frame() %>%
+  rowwise() %>%
+  mutate(mean_abundance = mean(c_across(everything()))) %>%
+  select(mean_abundance)
+
+# Combine with GBIF data
+abundance_occurrence <- bind_cols(
+  sample_data,
+  occurrence_data@tax_table %>%
+    as.data.frame() %>%
+    select(currentCanonicalSimple, Global_occurences) %>%
+    mutate(Global_occurences = as.numeric(Global_occurences))
+)
+
+# Plot relationship
+ggplot(abundance_occurrence, aes(x = log10(Global_occurences + 1), 
+                                y = log10(mean_abundance + 1))) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(title = "Local Abundance vs Global Occurrence",
+       x = "GBIF Occurrences (log10)",
+       y = "Mean Local Abundance (log10)") +
+  theme_minimal()
+```
+
+### Sample Site Validation
+
+Validate your sampling sites against known distributions:
+
+```{r eval=FALSE}
+# Define your sampling coordinates
+sample_coords <- data.frame(
+  longitude = c(2.3, 5.4, -1.6),  # Example coordinates
+  latitude = c(48.9, 50.6, 47.2)
+)
+
+# Check if sampling sites overlap with known ranges
+site_validation <- map_dfr(1:nrow(sample_coords), function(i) {
+  tax_occur_check_pq(data_clean,
+                    longitude = sample_coords$longitude[i],
+                    latitude = sample_coords$latitude[i],
+                    radius_km = 50) %>%
+    mutate(site_id = i)
+})
+
+# Summarize validation results
+validation_summary <- site_validation %>%
+  group_by(site_id) %>%
+  summarise(
+    taxa_with_occurrences = sum(count_in_radius > 0),
+    mean_occurrences = mean(count_in_radius),
+    .groups = "drop"
+  )
+
+print(validation_summary)
+```
+
+## Best Practices
+
+### API Usage
+
+1. **Rate limiting**: Use `time_to_sleep` parameter to avoid overwhelming GBIF servers
+2. **Reasonable limits**: Set appropriate `n_occur` limits based on your needs
+3. **Caching**: Cache results for large datasets to avoid repeated API calls
+
+### Data Interpretation
+
+1. **Sampling bias**: GBIF data has geographic and taxonomic biases
+2. **Data quality**: Not all GBIF records are equally reliable
+3. **Temporal factors**: Consider when data were collected
+4. **Taxonomic resolution**: Species-level data generally more reliable than higher taxa
+
+### Visualization Tips
+
+1. **Log scales**: Use log transformations for occurrence count visualizations
+2. **Color schemes**: Choose appropriate color palettes for maps
+3. **Interactive vs static**: Choose map type based on intended use
+4. **Multiple taxa**: Consider faceting or small multiples for comparing taxa
+
+## Integration Example
+
+Complete workflow combining GBIF functions:
+
+```{r eval=FALSE}
+# Comprehensive GBIF analysis workflow
+final_analysis <- data_fungi_mini %>%
+  # 1. Clean names
+  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) %>%
+  # 2. Add global occurrences
+  tax_gbif_occur_pq(add_to_phyloseq = TRUE) %>%
+  # 3. Add country-specific occurrences  
+  tax_gbif_occur_pq(by_country = TRUE, add_to_phyloseq = TRUE) %>%
+  # 4. Add biogeographic range information
+  range_bioreg_pq(add_to_phyloseq = TRUE)
+
+# Create comprehensive summary plot
+summary_data <- final_analysis@tax_table %>%
+  as.data.frame() %>%
+  mutate(Global_occurences = as.numeric(Global_occurences),
+         range_size_km2 = as.numeric(range_size_km2))
+
+ggplot(summary_data, aes(x = Global_occurences, y = range_size_km2)) +
+  geom_point(alpha = 0.6) +
+  scale_x_log10() +
+  scale_y_log10() +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(title = "GBIF Occurrences vs Range Size",
+       x = "Number of GBIF occurrences (log10)",
+       y = "Range size (km², log10)") +
+  theme_minimal()
+```
+
+This comprehensive approach to GBIF data integration provides powerful tools for understanding the biogeographic context of your taxonomic data.

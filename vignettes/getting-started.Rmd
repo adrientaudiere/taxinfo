@@ -1,0 +1,157 @@
+---
+title: "Getting Started with taxinfo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with taxinfo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(taxinfo)
+library(MiscMetabar)
+library(ggplot2)
+library(dplyr)
+```
+
+## Overview
+
+The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. This vignette provides a big picture overview of the package's capabilities and workflow.
+
+## Key Features
+
+**taxinfo** integrates with multiple authoritative data sources to enrich your taxonomic data:
+
+- **🔍 Data Verification**: Verify and standardize taxonomic names using Global Names Architecture
+- **🌍 Biodiversity Data**: Access GBIF occurrence data and species interactions from GLOBI  
+- **📚 Knowledge Integration**: Retrieve Wikipedia data and scientific literature from OpenAlex
+- **🗺️ Geographic Analysis**: Analyze biogeographic ranges and create distribution maps
+- **🔬 Advanced Tools**: Sequence-based verification and multi-source occurrence validation
+
+## Main Data Sources
+
+| Source | Description | Key Functions |
+|--------|-------------|---------------|
+| **GBIF** | Global biodiversity occurrence data | `tax_gbif_occur_pq()`, `plot_tax_gbif_pq()` |
+| **Wikipedia** | Encyclopedia data and page statistics | `tax_get_wk_info_pq()` |
+| **GLOBI** | Species interaction networks | `tax_globi_pq()` |
+| **OpenAlex** | Scientific literature database | `tax_oa_pq()` |
+| **TAXREF** | French national taxonomic reference | `tax_info_pq()` |
+| **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
+| **Custom CSV** | Any taxonomic database in CSV format | `tax_info_pq()` |
+
+## Basic Workflow
+
+### Step 1: Load Example Data
+
+```{r}
+# Load example fungal data from MiscMetabar
+data("data_fungi_mini", package = "MiscMetabar")
+
+# Check the structure
+data_fungi_mini
+```
+
+### Step 2: Verify and Clean Taxonomic Names
+
+The first step is typically to verify and standardize taxonomic names using the Global Names Architecture:
+
+```{r eval=FALSE}
+# Verify and clean taxonomic names
+data_clean <- gna_verifier_pq(data_fungi_mini, 
+                             data_sources = 210,  # TaxRef
+                             add_to_phyloseq = TRUE)
+
+# View the enhanced taxonomic table
+head(data_clean@tax_table)
+```
+
+This adds standardized columns:
+- `submittedName`: Original name submitted
+- `currentName`: Current accepted name with authorities  
+- `currentCanonicalSimple`: Clean accepted name without authorities
+
+### Step 3: Add Biodiversity Information
+
+Once names are verified, you can enrich your data with various sources:
+
+```{r eval=FALSE}
+# Add GBIF occurrence data
+data_with_gbif <- tax_gbif_occur_pq(data_clean,
+                                   add_to_phyloseq = TRUE)
+
+# Add species interaction data from GLOBI
+data_with_globi <- tax_globi_pq(data_with_gbif,
+                               interaction_types = "hasHost",
+                               add_to_phyloseq = TRUE)
+
+# Add Wikipedia information
+data_enriched <- tax_get_wk_info_pq(data_with_globi,
+                                   add_to_phyloseq = TRUE)
+```
+
+### Step 4: Add Custom Database Information
+
+You can also integrate custom databases or trait information:
+
+```{r eval=FALSE}
+# Add fungal trait information
+fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+                            package = "taxinfo")
+
+data_final <- tax_info_pq(data_enriched,
+                         taxonomic_rank = "currentCanonicalSimpleGenus",
+                         file_name = fungal_traits,
+                         csv_taxonomic_rank = "GENUS",
+                         col_prefix = "ft_",
+                         sep = ";")
+```
+
+## Function Categories
+
+### Data Verification & Quality Control
+- `gna_verifier_pq()`: Verify and standardize taxonomic names
+
+### Biodiversity Data Integration  
+- `tax_gbif_occur_pq()`: Retrieve GBIF occurrence data
+- `tax_globi_pq()`: Access species interaction data from GLOBI
+- `tax_info_pq()`: Add information from CSV files
+
+### Knowledge Base Integration
+- `tax_get_wk_info_pq()`: Get comprehensive Wikipedia data
+- `tax_oa_pq()`: Retrieve scientific literature from OpenAlex
+
+### Geographic Analysis
+- `range_bioreg_pq()`: Analyze biogeographic ranges
+- `plot_tax_gbif_pq()`: Create distribution maps
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
+
+### Advanced Analysis Tools
+- `tax_retroblast_pq()`: Sequence-based taxonomic verification
+- `tax_photos_pq()`: Access taxonomic images and media
+- `tax_occur_check_pq()`: Multi-source occurrence validation
+
+## Best Practices
+
+1. **Always start with name verification** using `gna_verifier_pq()`
+2. **Use appropriate data sources** for your taxonomic group
+3. **Set reasonable limits** for API calls to avoid timeouts
+4. **Cache results** for large datasets to avoid repeated API calls
+5. **Validate geographic occurrences** using occurrence checking functions
+
+## Next Steps
+
+- **Checking Taxa Presence**: Learn how to validate if taxa are likely present in your samples
+- **GBIF-based Functions**: Explore occurrence data and distribution mapping  
+- **Adding External Information**: Integrate Wikipedia, GLOBI, and custom databases
+
+This provides the foundation for using taxinfo effectively. Each subsequent vignette will dive deeper into specific functionality areas.
