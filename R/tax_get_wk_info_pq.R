@@ -148,14 +148,25 @@ tax_get_wk_info_pq <- function(physeq,
 #' @param languages_pages (Character vector)
 #' If not NULL, only the languages present in this vector will be queried.
 #'
-#' @returns A tibble with three columns:
+#' @returns A tibble with three columns: "title", "site" and "lang". NA values
+#'  are returned if wikipedia api return a response different from 200 or
+#'  if the taxon_id is set to NA or "". If no
+#'  wikipedia page is found in the all languages, a tibble with 0
+#'  is returned.
 #' @export
 #'
 #' @examples
 #' tax_get_wk_lang("Q10723171")
 #' tax_get_wk_lang("Q10723171") |>
 #'   nrow()
+#'
+#' tax_get_wk_lang("Q10723171")
 tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
+  if (is.na(taxon_id) | taxon_id == "") {
+    tib_links <- tibble("title" = taxon_id, "site" = NA, "lang" = NA)
+    return(tib_links)
+  }
+
   tryCatch(
     {
       url <- paste0(
@@ -164,8 +175,8 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
       )
 
       response <- httr::GET(url)
-      if (status_code(response) == 200) {
-        data <- jsonlite::fromJSON(content(response, "text", encoding = "UTF-8"))
+      if (httr::status_code(response) == 200) {
+        data <- jsonlite::fromJSON(httr::content(response, "text", encoding = "UTF-8"))
 
         if (!is.null(data$entities[[taxon_id]]$sitelinks)) {
           sitelinks <- data$entities[[taxon_id]]$sitelinks
@@ -187,14 +198,17 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
               ))
 
           if (!is.null(languages_pages)) {
-            tib_links <- tib_links %>% filter(lang %in% languages_pages)
+            tib_links <- tib_links |>
+              filter(lang %in% languages_pages)
           }
           return(tib_links)
         } else {
-          return(0)
+          tib_links <- tibble("title" = taxon_id, "site" = 0, "lang" = 0)
+          return(tib_links)
         }
       } else {
-        return(NA)
+        tib_links <- tibble("title" = taxon_id, "site" = NA, "lang" = NA)
+        return(tib_links)
       }
     },
     error = function(e) {
@@ -273,8 +287,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
                                   start_date = NULL,
                                   end_date = NULL,
                                   verbose = FALSE) {
-
-    if (is.null(tib_list) & !is.null(taxon_id)) {
+  if (is.null(tib_list) & !is.null(taxon_id)) {
     tib_list_pages <- tax_get_wk_lang(taxon_id, languages_pages = languages_pages)
   } else if (!is.null(tib_list) & is.null(taxon_id)) {
     tib_list_pages <- tib_list
@@ -283,19 +296,27 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
   }
 
   if (!is.null(languages_pages)) {
-    tib_list_pages <- tib_list_pages %>% filter(lang %in% languages_pages)
+    tib_list_pages <- tib_list_pages |>
+      filter(lang %in% languages_pages)
     if (nrow(tib_list_pages) == 0) {
       if (verbose) {
-        message("No pages found in the specified languages: ", paste(languages_pages, collapse = ", "))
+        message(
+          "No pages found for taxon_id '",
+          taxon_id, "' in the specified languages: ",
+          paste(languages_pages, collapse = ", ")
+        )
       }
-      return(NA)
+      return(tibble("page_length" = 0, "page_views" = 0))
     }
   }
 
   tryCatch(
     {
-      if (nrow(tib_list_page) == 0) {
-        return(0)
+      if (nrow(tib_list_pages) == 0 | is.na(tib_list_pages$site[1]) | tib_list_pages$site[1] == 0) {
+        if (verbose) {
+          message("No pages found for taxon_id ", taxon_id)
+        }
+        return(list("page_length" = 0, "page_views" = 0))
       }
 
       pages_len <- c()
@@ -315,8 +336,8 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         )
 
         wiki_response <- httr::GET(wiki_url)
-        if (status_code(wiki_response) == 200) {
-          wiki_data <- jsonlite::fromJSON(content(wiki_response, "text", encoding = "UTF-8"))
+        if (httr::status_code(wiki_response) == 200) {
+          wiki_data <- jsonlite::fromJSON(httr::content(wiki_response, "text", encoding = "UTF-8"))
           pages <- wiki_data$query$pages
 
           if (length(pages) > 0) {
@@ -353,8 +374,8 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         )
 
         stats_response <- httr::GET(stats_url)
-        if (status_code(stats_response) == 200) {
-          stats_data <- jsonlite::fromJSON(content(stats_response, "text", encoding = "UTF-8"))
+        if (httr::status_code(stats_response) == 200) {
+          stats_data <- jsonlite::fromJSON(httr::content(stats_response, "text", encoding = "UTF-8"))
 
           if (!is.null(stats_data$items)) {
             lang_views <- c(lang_views, sum(stats_data$items$views, na.rm = TRUE))

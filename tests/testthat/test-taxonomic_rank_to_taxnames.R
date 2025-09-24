@@ -3,7 +3,7 @@
 test_that("taxonomic_rank_to_taxnames input validation", {
   # Test with NULL phyloseq object
   expect_error(taxonomic_rank_to_taxnames(NULL))
-  
+
   # Tests that require actual phyloseq objects would go here
   # These are placeholders for when we have mock data
   skip("Requires phyloseq objects")
@@ -31,12 +31,12 @@ create_mock_tax_table <- function() {
 test_that("taxonomic_rank_to_taxnames basic functionality", {
   # Test with mock data structure
   mock_tax <- create_mock_tax_table()
-  
+
   # Test that our mock data has expected structure
   expect_true("Genus" %in% colnames(mock_tax))
   expect_true("Species" %in% colnames(mock_tax))
   expect_true("currentCanonicalSimple" %in% colnames(mock_tax))
-  
+
   # Test taxonomic name construction logic
   combined_names <- paste(mock_tax$Genus, mock_tax$Species)
   expect_equal(length(combined_names), 3)
@@ -51,10 +51,10 @@ test_that("taxonomic_rank_to_taxnames handles NA values", {
     Species = c("raduloides", NA, "oxysporum"),
     stringsAsFactors = FALSE
   )
-  
+
   combined_names <- paste(mock_tax_with_na$Genus, mock_tax_with_na$Species)
   na_patterns <- grepl("NA", combined_names)
-  
+
   expect_true(any(na_patterns))
-  expect_equal(sum(na_patterns), 2)  # Two entries should have NA
+  expect_equal(sum(na_patterns), 2) # Two entries should have NA
 })

@@ -9,6 +9,7 @@ select_taxa_pq(
   taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
   verbose = TRUE,
+  clean_pq = FALSE,
   ...
 )
 }
@@ -22,6 +23,10 @@ be a vector of two columns (e.g. c("Genus", "Species")).}
 \item{taxnames}{(A character vector of taxonomic names to select)}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
+
+\item{clean_pq}{(logical, default FALSE) If TRUE, clean the phyloseq object
+after subsetting (i.e. remove empty taxa and samples). If FALSE, only
+empty taxa are removed to take all samples.}
 
 \item{...}{Additional arguments to pass to [subset_taxa_pq()].}
 }

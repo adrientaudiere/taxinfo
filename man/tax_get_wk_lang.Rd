@@ -13,7 +13,11 @@ tax_get_wk_lang(taxon_id, languages_pages = NULL)
 If not NULL, only the languages present in this vector will be queried.}
 }
 \value{
-A tibble with three columns:
+A tibble with three columns: "title", "site" and "lang". NA values
+ are returned if wikipedia api return a response different from 200 or
+ if the taxon_id is set to NA or "". If no
+ wikipedia page is found in the all languages, a tibble with 0
+ is returned.
 }
 \description{
 Filter only wikipedia page link to a language with a two- or three-letter code
@@ -27,4 +31,6 @@ some languages: c("zh-yue", "nds-nl", "ru-sib", "bat-smg", "fiu-vro",
 tax_get_wk_lang("Q10723171")
 tax_get_wk_lang("Q10723171") |>
   nrow()
+
+tax_get_wk_lang("Q10723171")
 }

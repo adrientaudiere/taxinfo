@@ -63,7 +63,11 @@ tax_check_ecoregion <- function(taxa_name,
   if (verbose) {
     message("Download ecoregion for ", taxa_name)
   }
-  occurrences <- occ_search(scientificName = taxa_name, limit = n_occur, hasGeospatialIssue = FALSE)$data
+  occurrences <- rgbif::occ_search(
+    scientificName = taxa_name,
+    limit = n_occur,
+    hasGeospatialIssue = FALSE
+  )$data
 
   clean_occurrences <- occurrences |>
     filter(!is.na(decimalLongitude), !is.na(decimalLatitude))
@@ -78,9 +82,12 @@ tax_check_ecoregion <- function(taxa_name,
   }
   gbif.range::check_and_get_bioreg("eco_terra")
 
-  ecoregions <- gbif.range::read_bioreg(bioreg_name = "eco_terra", save_dir = NULL) |>
-    st_as_sf() |>
-    st_make_valid()
+  ecoregions <- gbif.range::read_bioreg(
+    bioreg_name = "eco_terra",
+    save_dir = NULL
+  ) |>
+    sf::st_as_sf() |>
+    sf::st_make_valid()
 
   occurrences_sf <- sf::st_as_sf(clean_occurrences,
     coords = c("decimalLongitude", "decimalLatitude"),
@@ -95,7 +102,7 @@ tax_check_ecoregion <- function(taxa_name,
   }
 
   species_ecoregions <- sf::st_intersection(occurrences_sf, ecoregions) |>
-    st_drop_geometry()
+    sf::st_drop_geometry()
 
   if (nrow(species_ecoregions) == 0) {
     warning("No ecoregions found for species occurrences")
@@ -109,8 +116,8 @@ tax_check_ecoregion <- function(taxa_name,
     message("List ecoregion for, ", length(longitudes), " GPS points.")
   }
 
-  points_ecoregion <- st_intersection(samples_point, ecoregions) |>
-    st_drop_geometry()
+  points_ecoregion <- sf::st_intersection(samples_point, ecoregions) |>
+    sf::st_drop_geometry()
 
   return(list(
     "ecoregion" = ecoregions_list,

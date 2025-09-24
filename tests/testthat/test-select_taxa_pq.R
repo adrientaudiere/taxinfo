@@ -3,7 +3,7 @@
 test_that("select_taxa_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(select_taxa_pq(NULL))
-  
+
   # Test with invalid taxonomic_rank
   # This would be tested with actual phyloseq objects
   skip("Requires phyloseq objects")
@@ -28,7 +28,7 @@ validate_taxa_selection <- function(original_physeq, selected_physeq, expected_t
   # 1. Selected phyloseq contains only expected taxa
   # 2. All samples are preserved (or filtered appropriately)
   # 3. Tax table structure is maintained
-  
+
   # Placeholder for actual validation logic
   TRUE
 }

@@ -99,6 +99,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
   }
 
   p <- vector("list", length(taxnames))
+  check_package("maps")
   world <- map_data("world")
 
   for (i in seq_along(taxnames)) {
@@ -115,18 +116,21 @@ plot_tax_gbif_pq <- function(physeq = NULL,
 
     if (interactive_plot) {
       check_package("mapview")
-      tax_sf <- st_as_sf(tax_gbif, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
+      check_package("htmltools")
+
+      tax_sf <- sf::st_as_sf(tax_gbif, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
       p[[i]] <- mapview::mapview(tax_sf,
         zcol = zcol,
         map.types = c("CartoDB.Positron", "CartoDB.DarkMatter", "Esri.WorldImagery", "OpenTopoMap", "Stadia.StamenWatercolor", "Esri.NatGeoWorldMap"), popup = leafpop::popupTable(tax_sf)
       )
 
-      title_p_text <- taxa_summary_info(physeq,
+      title_p_text <- taxa_summary_text(physeq,
         taxonomic_rank = taxonomic_rank,
         taxnames = taxnames[i], verbose = FALSE
       )
-      title_p <- tags$div(
-        tags$h3(taxnames[i],
+
+      title_p <- htmltools::tags$div(
+        htmltools::tags$h3(taxnames[i],
           style = "color: black;
                    text-align: center;
                    font-family: Arial;
@@ -135,7 +139,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
                    padding: 2px 15px;
     font-style: italic;"
         ),
-        tags$p(gsub(paste0(taxnames[i], ": "), "", title_p_text),
+        htmltools::tags$p(gsub(paste0(taxnames[i], ": "), "", title_p_text),
           style = "color: black;
                    text-align: center;
                    font-family: Arial;

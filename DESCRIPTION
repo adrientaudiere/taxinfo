@@ -1,16 +1,15 @@
 Package: taxinfo
 Type: Package
-Title: Augment phyloseq object with taxomonic-based informations
+Title: Augment Phyloseq Object with Taxomonic-Based Informations
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Adrien", "Taudiere",
+      email = "adrien.taudiere@zaclys.net",
       role = c("aut", "cre")
     )
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
+    )
+Description: Add informations to phyloseq object using different sources such as gbif, wikipedia, and globi.  
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -24,7 +23,7 @@ Depends:
 Imports: 
     httr,
     jsonlite,
-    gbif.range,
+    phyloseq,
     rgbif,
     sf,
     stringr,
@@ -34,10 +33,14 @@ Suggests:
     CoordinateCleaner,
     digest,
     duckdb,
+    gbif.range,
+    htmltools,
     leaflet,
     leafpop,
+    maps,
     mapview,
     openalexR,
+    patchwork,
     pixture,
     purrr,
     rentrez,
@@ -45,5 +48,7 @@ Suggests:
     rnaturalearth,
     terra,
     testthat (>= 3.0.0),
+    tibble,
+    tidyr,
     wikitaxa
 

@@ -50,7 +50,7 @@
 #'   return_all_occ = TRUE
 #' )
 #'
-#' occ_data_sf <- st_as_sf(res_occ$occ_data,
+#' occ_data_sf <- sf::st_as_sf(res_occ$occ_data,
 #'   coords = c("decimalLongitude", "decimalLatitude"),
 #'   crs = 4326
 #' )
@@ -100,7 +100,7 @@ tax_occur_check <- function(taxa_name,
     stop("Species ", species_key, " not found")
   }
 
-  bbox <- taxinfo:::calculate_bbox(
+  bbox <- calculate_bbox(
     longitude = longitude,
     latitude = latitude,
     radius_km = radius_km

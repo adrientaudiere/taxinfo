@@ -17,7 +17,8 @@ tax_retroblast_pq(
   min_length = 300,
   max_length = 4000,
   refseq_only = FALSE,
-  sup_params = "NOT uncultured[Title] NOT clone[Title]"
+  sup_params = "NOT uncultured[Title] NOT clone[Title]",
+  ...
 )
 }
 \arguments{
@@ -65,8 +66,11 @@ are retrieved. Note that using refseq_only = TRUE is experimental and may
 lead to no sequence retrieved for some taxon names.}
 
 \item{sup_params}{(char) Additional parameters to be added to the search term.
-By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
-uncultured and clone sequences.}
+ By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
+ uncultured and clone sequences.
+@param ... Additional parameters to be passed to
+  [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
+   `args_blastn`}
 }
 \value{
 Either a list (if add_to_phyloseq = FALSE) or a new phyloseq

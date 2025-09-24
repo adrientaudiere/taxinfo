@@ -83,7 +83,7 @@ res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
   return_all_occ = TRUE
 )
 
-occ_data_sf <- st_as_sf(res_occ$occ_data,
+occ_data_sf <- sf::st_as_sf(res_occ$occ_data,
   coords = c("decimalLongitude", "decimalLatitude"),
   crs = 4326
 )

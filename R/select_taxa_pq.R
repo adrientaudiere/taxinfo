@@ -6,6 +6,9 @@
 #'  be a vector of two columns (e.g. c("Genus", "Species")).
 #' @param taxnames (A character vector of taxonomic names to select)
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
+#' @param clean_pq (logical, default FALSE) If TRUE, clean the phyloseq object
+#' after subsetting (i.e. remove empty taxa and samples). If FALSE, only
+#' empty taxa are removed to take all samples.
 #' @param ... Additional arguments to pass to [subset_taxa_pq()].
 #'
 #' @returns A new phyloseq object containing only the selected taxa.
@@ -19,14 +22,15 @@
 #'
 #' select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot")) |>
 #'   summary_plot_pq()
-select_taxa_pq <- function(physeq, taxonomic_rank = "currentCanonicalSimple", taxnames = NULL, verbose = TRUE, ...) {
+select_taxa_pq <- function(physeq, taxonomic_rank = "currentCanonicalSimple", taxnames = NULL, verbose = TRUE, clean_pq = FALSE, ...) {
   verify_pq(physeq, verbose = verbose)
 
   taxnames_in_physeq <- apply(physeq@tax_table[, taxonomic_rank], 1, paste, collapse = " ")
 
   cond <- taxnames_in_physeq %in% taxnames
   names(cond) <- taxa_names(physeq)
-  new_physeq <- subset_taxa_pq(physeq, cond, verbose = verbose, clean_pq = FALSE, ...) |> clean_pq(silent = !verbose)
+  new_physeq <- subset_taxa_pq(physeq, cond, verbose = verbose, clean_pq = clean_pq, ...) |>
+    clean_pq(silent = !verbose, remove_empty_samples = FALSE)
 
   return(new_physeq)
 }

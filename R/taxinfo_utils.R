@@ -23,6 +23,9 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
   # Adjustment for latitude (longitude degrees get closer at the poles)
   lon_offset <- radius_km / (111.32 * cos(latitude * pi / 180))
 
+  if (is.null(longitude) | is.null(latitude) | is.null(radius_km)) {
+    stop("Parameters longitude, latitude and radius_km must be provided")
+  }
   res <- list(
     "xmin" = longitude - lon_offset,
     "xmax" = longitude + lon_offset,
@@ -118,25 +121,26 @@ taxa_summary_text <- function(physeq, taxonomic_rank = "currentCanonicalSimple",
 #' check_package("Biostrings", repo = "Bioconductor")
 #'
 #' # Check GitHub package
-#' check_package("MiscMetabar", repo = "GitHub",
-#'   github_repo = "adrientaudiere/MiscMetabar")
+#' check_package("MiscMetabar",
+#'   repo = "GitHub",
+#'   github_repo = "adrientaudiere/MiscMetabar"
+#' )
 #'
 #' # Stop execution if package is missing
 #' check_package("ggplot2", stop_on_error = TRUE)
-#'}
+#' }
 #' @export
 check_package <- function(package,
                           repo = "CRAN",
                           github_repo = NULL,
                           stop_on_error = TRUE,
                           quietly = TRUE) {
-
   # Validate inputs
   if (!is.character(package) || length(package) != 1) {
     stop("'package' must be a single character string")
   }
 
-  if(!is.null(github_repo)){
+  if (!is.null(github_repo)) {
     repo <- "GitHub"
   }
 
@@ -152,26 +156,25 @@ check_package <- function(package,
   if (!is_available) {
     # Create installation message based on repository
     install_msg <- switch(repo,
-                          "CRAN" = paste0('install.packages("', package, '")'),
-                          "Bioconductor" = paste0(
-                            'if (!requireNamespace("BiocManager")) {\n',
-                            '  install.packages("BiocManager")\n',
-                            '}\n',
-                            'BiocManager::install("', package, '")'
-                          ),
-                          "GitHub" = {
-                            if (is.null(github_repo)) {
-                              stop("For GitHub packages,
+      "CRAN" = paste0('install.packages("', package, '")'),
+      "Bioconductor" = paste0(
+        'if (!requireNamespace("BiocManager")) {\n',
+        '  install.packages("BiocManager")\n',
+        "}\n",
+        'BiocManager::install("', package, '")'
+      ),
+      "GitHub" = {
+        if (is.null(github_repo)) {
+          stop("For GitHub packages,
                                    'github_repo' must be specified as 'username/repository'")
-                            }
-                            paste0(
-                              'if (!requireNamespace("devtools")) {\n',
-                              '  install.packages("devtools")\n',
-                              '}\n',
-                              'devtools::install_github("', github_repo, '")'
-                            )
-                          },
-
+        }
+        paste0(
+          'if (!requireNamespace("devtools")) {\n',
+          '  install.packages("devtools")\n',
+          "}\n",
+          'devtools::install_github("', github_repo, '")'
+        )
+      },
     )
 
     message_text <- paste0(

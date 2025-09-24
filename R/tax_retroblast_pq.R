@@ -47,6 +47,9 @@
 #' @param sup_params (char) Additional parameters to be added to the search term.
 #'   By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
 #'   uncultured and clone sequences.
+#'  @param ... Additional parameters to be passed to
+#'    [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
+#'     `args_blastn`
 #'
 #' @returns Either a list (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new columns based on the
@@ -111,7 +114,8 @@ tax_retroblast_pq <- function(physeq,
                               min_length = 300,
                               max_length = 4000,
                               refseq_only = FALSE,
-                              sup_params = "NOT uncultured[Title] NOT clone[Title]") {
+                              sup_params = "NOT uncultured[Title] NOT clone[Title]",
+                              ...) {
   check_package("rentrez")
 
   taxnames <- taxonomic_rank_to_taxnames(
@@ -168,7 +172,7 @@ tax_retroblast_pq <- function(physeq,
     if (refseq_only) {
       search_term <- paste0(search_term, " AND refseq[Filter]")
     }
-    search_res[[i]] <- rentrez::entrez_search(
+    search_res[[tax_i]] <- rentrez::entrez_search(
       db = "nucleotide",
       term = search_term,
       retmax = retmax
@@ -176,20 +180,19 @@ tax_retroblast_pq <- function(physeq,
 
     if (verbose) {
       message(paste("Search term:", search_term))
-      message(paste("Number of results for", tax_i, ":", search_res[[i]]$count))
-      message(paste("Number of fasta retrieved:", length(search_res[[i]]$ids)))
+      message(paste("Number of results for", tax_i, ":", search_res[[tax_i]]$count))
+      message(paste("Number of fasta retrieved:", length(search_res[[tax_i]]$ids)))
     }
-    if (search_res[[i]]$count == 0) {
+    if (search_res[[tax_i]]$count == 0) {
       if (verbose) {
         message(paste("No sequence found for", tax_i))
       }
       res_tax_i <- FALSE
-      names(res_tax_i) <- taxa_pq_i
       res_tax[[tax_i]] <- res_tax_i
       next
     }
-    if (length(search_res[[i]]$ids) < 101) {
-      search_id <- search_res[[i]]$ids
+    if (length(search_res[[tax_i]]$ids) < 101) {
+      search_id <- search_res[[tax_i]]$ids
       seq_fasta <- rentrez::entrez_fetch(
         db = "nucleotide",
         id = search_id,
@@ -197,7 +200,7 @@ tax_retroblast_pq <- function(physeq,
       )
     } else {
       search_id <-
-        split(search_res[[i]]$ids, ceiling(seq_along(search_res[[i]]$ids) / 100))
+        split(search_res[[tax_i]]$ids, ceiling(seq_along(search_res[[tax_i]]$ids) / 100))
 
       seq_fasta <- lapply(search_id, function(x) {
         rentrez::entrez_fetch(
@@ -214,12 +217,11 @@ tax_retroblast_pq <- function(physeq,
     res_b_raw <- blast_to_phyloseq(physeq,
       seq2search = temp_fasta,
       unique_per_seq = FALSE,
-      id_cut = id_cut # ,
-      #  ...
+      id_cut = id_cut,
+      ...
     )
     if (is.null(res_b_raw)) {
       res_tax_i <- FALSE
-      # names(res_tax_i) <- taxa_pq_i
       res_tax[[tax_i]] <- res_tax_i
     } else {
       res_b <- res_b_raw |>

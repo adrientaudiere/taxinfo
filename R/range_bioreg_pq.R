@@ -73,7 +73,7 @@ range_bioreg_pq <- function(physeq,
     select(-verbatim_index) |> # in order to duplicate
     distinct()
 
-  eco.terra <- read_bioreg(bioreg_name = "eco_terra", save_dir = NULL)
+  eco.terra <- gbif.range::read_bioreg(bioreg_name = "eco_terra", save_dir = NULL)
 
   range_taxa_i_bioreg <- vector(mode = "list", length = length(taxnames))
   names(range_taxa_i_bioreg) <- taxnames
@@ -84,22 +84,25 @@ range_bioreg_pq <- function(physeq,
     if (verbose) {
       message("Find gbif occurence ", tax_i)
     }
-    range_taxa_i <- get_gbif(tax_i, occ_samp = occ_samp, ...)
+    range_taxa_i <- gbif.range::get_gbif(tax_i, occ_samp = occ_samp, ...)
     if (verbose) {
       message("Start the computation of range of ", tax_i)
     }
 
-    range_taxa_i_bioreg[[tax_i]] <- tryCatch(get_range(range_taxa_i,
-      bioreg = eco.terra,
-      bioreg_name = "ECO_NAME",
-      verbose = verbose_gbif_range,
-      raster = FALSE
-    ), error = function(e) {
-      if (verbose) {
-        message(paste("Not enough occurence for", tax_i))
+    range_taxa_i_bioreg[[tax_i]] <- tryCatch(
+      gbif.range::get_range(range_taxa_i,
+        bioreg = eco.terra,
+        bioreg_name = "ECO_NAME",
+        verbose = verbose_gbif_range,
+        raster = FALSE
+      ),
+      error = function(e) {
+        if (verbose) {
+          message(paste("Not enough occurence for", tax_i))
+        }
+        return(NULL)
       }
-      return(NULL)
-    })
+    )
 
     if (make_plot) {
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
@@ -114,7 +117,7 @@ range_bioreg_pq <- function(physeq,
           as.vector(terra::ext(range_taxa_i_bioreg[[tax_i]]$rangeOutput))[]
 
         range_i_bioreg <- range_taxa_i_bioreg[[tax_i]]$rangeOutput |>
-          st_as_sf()
+          sf::st_as_sf()
 
         p[[tax_i]] <- ggplot() +
           geom_sf(

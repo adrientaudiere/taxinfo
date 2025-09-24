@@ -4,7 +4,7 @@
 create_mock_phyloseq <- function() {
   # This function would create a minimal mock phyloseq object for testing
   # when phyloseq package becomes available
-  
+
   # Mock OTU table
   otu_matrix <- matrix(
     data = c(10, 5, 8, 12, 15, 3, 7, 9, 6, 11, 4, 13),
@@ -14,12 +14,12 @@ create_mock_phyloseq <- function() {
       c("Sample1", "Sample2", "Sample3")
     )
   )
-  
+
   # Mock taxonomy table
   tax_matrix <- matrix(
     data = c(
       "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Xylodon", "raduloides", "Xylodon raduloides",
-      "Fungi", "Basidiomycota", "Tremellomycetes", "Tremellales", "Tremellaceae", "Basidiodendron", "eyrei", "Basidiodendron eyrei", 
+      "Fungi", "Basidiomycota", "Tremellomycetes", "Tremellales", "Tremellaceae", "Basidiodendron", "eyrei", "Basidiodendron eyrei",
       "Fungi", "Ascomycota", "Sordariomycetes", "Hypocreales", "Nectriaceae", "Fusarium", "oxysporum", "Fusarium oxysporum",
       "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Trametes", "versicolor", "Trametes versicolor"
     ),
@@ -29,7 +29,7 @@ create_mock_phyloseq <- function() {
       c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "currentCanonicalSimple")
     )
   )
-  
+
   # Mock sample data
   sample_df <- data.frame(
     Sample_ID = c("Sample1", "Sample2", "Sample3"),
@@ -39,11 +39,11 @@ create_mock_phyloseq <- function() {
     stringsAsFactors = FALSE
   )
   rownames(sample_df) <- c("Sample1", "Sample2", "Sample3")
-  
+
   # Return mock data structure
   list(
     otu_table = otu_matrix,
-    tax_table = tax_matrix, 
+    tax_table = tax_matrix,
     sample_data = sample_df
   )
 }
@@ -52,7 +52,7 @@ create_mock_phyloseq <- function() {
 validate_phyloseq_structure <- function(physeq_mock) {
   # Validate that mock phyloseq has expected components
   expected_components <- c("otu_table", "tax_table", "sample_data")
-  
+
   has_components <- names(physeq_mock) %in% expected_components
   all(has_components)
 }
@@ -62,19 +62,19 @@ validate_coordinates <- function(longitude, latitude) {
   if (is.null(longitude) || is.null(latitude)) {
     return(FALSE)
   }
-  
+
   if (!is.numeric(longitude) || !is.numeric(latitude)) {
     return(FALSE)
   }
-  
+
   if (longitude < -180 || longitude > 180) {
     return(FALSE)
   }
-  
+
   if (latitude < -90 || latitude > 90) {
     return(FALSE)
   }
-  
+
   return(TRUE)
 }
 
@@ -83,7 +83,7 @@ validate_url <- function(url) {
   if (is.null(url) || is.na(url) || url == "") {
     return(FALSE)
   }
-  
+
   # Basic URL pattern matching
   url_pattern <- "^https?://.+"
   grepl(url_pattern, url, ignore.case = TRUE)
@@ -94,7 +94,7 @@ validate_doi <- function(doi) {
   if (is.null(doi) || is.na(doi) || doi == "") {
     return(FALSE)
   }
-  
+
   # Basic DOI pattern matching
   doi_pattern <- "^10\\.[0-9]+/.+"
   grepl(doi_pattern, doi)
@@ -105,7 +105,7 @@ create_temp_csv <- function(data, filename = NULL) {
   if (is.null(filename)) {
     filename <- tempfile(fileext = ".csv")
   }
-  
+
   write.csv(data, filename, row.names = FALSE)
   return(filename)
 }
@@ -134,7 +134,7 @@ TEST_COORDINATES <- list(
 TEST_URLS <- list(
   valid = c(
     "https://example.com/photo.jpg",
-    "http://example.com/image.png", 
+    "http://example.com/image.png",
     "https://api.gbif.org/v1/image/unsafe/photo.jpeg"
   ),
   invalid = c(
@@ -148,7 +148,7 @@ TEST_URLS <- list(
 TEST_DOIS <- list(
   valid = c(
     "10.1000/182",
-    "10.1038/nature12373", 
+    "10.1038/nature12373",
     "10.1371/journal.pone.0000000"
   ),
   invalid = c(

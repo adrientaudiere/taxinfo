@@ -3,7 +3,7 @@
 test_that("tax_info_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_info_pq(NULL))
-  
+
   # Test with missing file_name when required
   skip("Requires phyloseq objects")
 })
@@ -15,7 +15,7 @@ test_that("tax_info_pq parameter defaults", {
   # use_duck_db should default to FALSE
   # sep should default to ","
   # dec should default to "."
-  
+
   # These would be tested with actual phyloseq objects
   skip("Requires phyloseq objects")
 })
@@ -24,7 +24,7 @@ test_that("tax_info_pq file handling", {
   # Test CSV file reading and processing
   # Test that file exists before processing
   # Test sep and dec parameters for CSV parsing
-  
+
   # Create a temporary test CSV file
   temp_csv <- tempfile(fileext = ".csv")
   test_data <- data.frame(
@@ -34,15 +34,15 @@ test_that("tax_info_pq file handling", {
     stringsAsFactors = FALSE
   )
   write.csv(test_data, temp_csv, row.names = FALSE)
-  
+
   # Test that file can be read
   expect_true(file.exists(temp_csv))
-  
+
   # Test CSV reading with different separators
   read_data <- read.csv(temp_csv, sep = ",")
   expect_equal(nrow(read_data), 2)
   expect_true("GENUS" %in% colnames(read_data))
-  
+
   # Clean up
   unlink(temp_csv)
 })

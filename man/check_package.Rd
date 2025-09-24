@@ -36,17 +36,20 @@ This function checks if a package is available using requireNamespace.
 If the package is not available, it provides helpful installation instructions.
 }
 \examples{
+\dontrun{
 # Check CRAN package
 check_package("dplyr")
 
 # Check Bioconductor package
-check_package("DESeq2", repo = "Bioconductor")
+check_package("Biostrings", repo = "Bioconductor")
 
 # Check GitHub package
-check_package("MiscMetabar", repo = "GitHub",
-  github_repo = "adrientaudiere/MiscMetabar")
+check_package("MiscMetabar",
+  repo = "GitHub",
+  github_repo = "adrientaudiere/MiscMetabar"
+)
 
 # Stop execution if package is missing
 check_package("ggplot2", stop_on_error = TRUE)
-
+}
 }

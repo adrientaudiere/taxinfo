@@ -4,11 +4,11 @@ test_that("tax_occur_check input validation", {
   # Test with NULL or invalid taxa names
   expect_error(tax_occur_check(NULL, 2.3522, 48.8566, 100))
   expect_error(tax_occur_check("", 2.3522, 48.8566, 100))
-  
+
   # Test with invalid coordinates
   expect_error(tax_occur_check("Quercus robur", NULL, 48.8566, 100))
   expect_error(tax_occur_check("Quercus robur", 2.3522, NULL, 100))
-  
+
   # Test with invalid radius
   expect_error(tax_occur_check("Quercus robur", 2.3522, 48.8566, NULL))
   expect_error(tax_occur_check("Quercus robur", 2.3522, 48.8566, -10))
@@ -23,7 +23,7 @@ test_that("tax_occur_check parameter defaults", {
   # verbose should default to TRUE
   # clean_coord_verbose should default to FALSE
   # n_occur should default to 1000
-  
+
   # These would be tested with actual API calls or mocked responses
   skip("Requires GBIF API access or mocking")
 })
@@ -32,12 +32,12 @@ test_that("tax_occur_check coordinates validation", {
   # Test coordinate validation logic
   # Longitude should be between -180 and 180
   # Latitude should be between -90 and 90
-  
+
   # Invalid longitude
   expect_error(tax_occur_check("Quercus robur", 200, 48.8566, 100))
   expect_error(tax_occur_check("Quercus robur", -200, 48.8566, 100))
-  
-  # Invalid latitude  
+
+  # Invalid latitude
   expect_error(tax_occur_check("Quercus robur", 2.3522, 100, 100))
   expect_error(tax_occur_check("Quercus robur", 2.3522, -100, 100))
 })
@@ -57,7 +57,7 @@ test_that("tax_occur_check return structure", {
 
 test_that("tax_occur_check info_names parameter", {
   # Test that info_names parameter controls which columns are returned
-  # Default should include: decimalLongitude, decimalLatitude, country, year, 
+  # Default should include: decimalLongitude, decimalLatitude, country, year,
   # scientificName, recordedBy, gbifRegion
   skip("Requires GBIF API or mocking")
 })
