@@ -155,3 +155,10 @@ data_final <- tax_info_pq(data_enriched,
 - **Adding External Information**: Integrate Wikipedia, GLOBI, and custom databases
 
 This provides the foundation for using taxinfo effectively. Each subsequent vignette will dive deeper into specific functionality areas.
+
+## Example Workflow Diagram
+
+```{r echo=FALSE, fig.cap="Basic taxinfo workflow for enriching phyloseq objects", out.width="100%"}
+# This would display a workflow diagram if the figures were created
+knitr::include_graphics("figures/workflow-diagram.png")
+```

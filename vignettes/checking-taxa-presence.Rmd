@@ -72,6 +72,35 @@ occurrence_check <- tax_occur_check_pq(data_clean,
 head(occurrence_check)
 ```
 
+### Example Visualization
+
+Here's what occurrence checking results might look like:
+
+```{r echo=FALSE, fig.cap="Example occurrence pattern showing global vs local occurrences", out.width="100%"}
+# Create example data for demonstration
+set.seed(42)
+example_data <- data.frame(
+  taxa_name = c("Fusarium oxysporum", "Trichoderma harzianum", "Penicillium chrysogenum",
+                "Aspergillus niger", "Candida albicans"),
+  count_in_radius = c(45, 23, 67, 12, 8),
+  total_count_in_world = c(15420, 8930, 23450, 5670, 2340)
+)
+
+library(ggplot2)
+example_plot <- example_data %>%
+  mutate(taxa_name = forcats::fct_reorder(taxa_name, count_in_radius)) %>%
+  ggplot(aes(x = count_in_radius, y = taxa_name)) +
+  geom_col(aes(fill = log10(total_count_in_world)), alpha = 0.7) +
+  scale_fill_viridis_c(name = "Global\nOccurrences\n(log10)") +
+  labs(title = "Taxa Occurrence Check Results",
+       subtitle = "Within 100 km radius of sampling location",
+       x = "Number of occurrences in radius",
+       y = "Taxa") +
+  theme_minimal()
+
+print(example_plot)
+```
+
 The results include:
 - `taxa_name`: Taxonomic name checked
 - `count_in_radius`: Number of occurrences within the specified radius

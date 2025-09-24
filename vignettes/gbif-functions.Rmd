@@ -55,6 +55,31 @@ occurrence_data <- tax_gbif_occur_pq(data_clean,
 head(occurrence_data@tax_table[, c("currentCanonicalSimple", "Global_occurences")])
 ```
 
+### Example Visualization 
+
+Here's an example of what GBIF occurrence data visualization looks like:
+
+```{r echo=FALSE, fig.cap="Example GBIF occurrence counts by taxon", out.width="100%"}
+# Create example data for demonstration
+set.seed(123)
+example_gbif <- data.frame(
+  taxon = paste("Species", LETTERS[1:8]),
+  occurrences = c(1250, 850, 2340, 450, 3200, 150, 890, 1680)
+) %>%
+  mutate(taxon = reorder(taxon, occurrences))
+
+gbif_plot <- ggplot(example_gbif, aes(x = taxon, y = occurrences)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  scale_y_log10() +
+  coord_flip() +
+  labs(title = "GBIF Occurrence Counts by Taxon",
+       x = "Taxon",
+       y = "Number of occurrences (log scale)") +
+  theme_minimal()
+
+print(gbif_plot)
+```
+
 ### Occurrence Counts by Country
 
 Analyze geographic distribution patterns:

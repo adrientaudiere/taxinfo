@@ -240,6 +240,32 @@ head(traits_data@tax_table[, c("currentCanonicalSimpleGenus",
                               "ft_Growth_form_template")])
 ```
 
+### Example Trait Visualization
+
+Here's an example of ecological trait distribution:
+
+```{r echo=FALSE, fig.cap="Example fungal lifestyle distribution from trait database", out.width="100%"}
+# Create example lifestyle data for demonstration
+example_traits <- data.frame(
+  lifestyle = c("wood_saprotroph", "plant_pathogen", "litter_saprotroph", 
+                "soil_saprotroph", "mycorrhizal", "epiphyte"),
+  count = c(12, 8, 15, 6, 4, 3)
+) %>%
+  mutate(lifestyle = reorder(lifestyle, count))
+
+traits_plot <- ggplot(example_traits, aes(x = lifestyle, y = count, fill = lifestyle)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_viridis_d() +
+  labs(title = "Fungal Lifestyle Distribution",
+       x = "Primary Lifestyle",
+       y = "Number of Taxa") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+print(traits_plot)
+```
+
 ### Trait Analysis
 
 Analyze ecological traits:
