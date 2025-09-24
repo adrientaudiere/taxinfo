@@ -1,0 +1,178 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# taxinfo <img src="man/figures/logo.png" align="right" height="139" />
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/adrientaudiere/taxinfo/workflows/R-CMD-check/badge.svg)](https://github.com/adrientaudiere/taxinfo/actions)
+[![Codecov test coverage](https://codecov.io/gh/adrientaudiere/taxinfo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/adrientaudiere/taxinfo?branch=master)
+[![CRAN status](https://www.r-project.org/Badges/version/taxinfo)](https://CRAN.R-project.org/package=taxinfo)
+<!-- badges: end -->
+
+The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. It seamlessly integrates data from GBIF, Wikipedia, GLOBI, OpenAlex, TAXREF, and other databases to enrich your taxonomic analyses.
+
+## Overview
+
+**taxinfo** is designed to work with phyloseq objects and provides functions to:
+
+- **Verify and clean taxonomic names** using the Global Names Architecture (GNA)
+- **Retrieve occurrence data** from GBIF and other biodiversity databases
+- **Access taxonomic traits** from various databases including FungalTraits
+- **Get Wikipedia information** including page views, links, and content statistics
+- **Fetch scientific literature data** from OpenAlex
+- **Access interaction data** from GLOBI (Global Biotic Interactions)
+- **Validate geographic occurrences** against ecoregions and biogeographic regions
+- **Retrieve taxonomic photos** and media information
+
+## Installation
+
+You can install the development version of taxinfo from GitHub:
+
+```{r eval=FALSE}
+# Install from GitHub
+devtools::install_github("adrientaudiere/taxinfo")
+
+# Or using pak
+pak::pkg_install("adrientaudiere/taxinfo")
+```
+
+## Key Features
+
+### 🔍 **Data Verification & Quality Control**
+- `gna_verifier_pq()`: Verify and standardize taxonomic names using Global Names Architecture
+
+### 🌍 **Biodiversity Data Integration**
+- `tax_gbif_occur_pq()`: Retrieve GBIF occurrence data
+- `tax_globi_pq()`: Access species interaction data from GLOBI
+- `tax_info_pq()`: Add information from CSV files (TAXREF, traits databases)
+
+### 📚 **Knowledge Base Integration**
+- `tax_get_wk_info_pq()`: Get comprehensive Wikipedia data
+- `tax_oa_pq()`: Retrieve scientific literature from OpenAlex
+
+### 🗺️ **Geographic Analysis**
+- `range_bioreg_pq()`: Analyze biogeographic ranges
+- `plot_tax_gbif_pq()`: Create distribution maps
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
+
+### 🔬 **Advanced Analysis Tools**
+- `tax_retroblast_pq()`: Sequence-based taxonomic verification
+- `tax_photos_pq()`: Access taxonomic images and media
+- `tax_occur_check_pq()`: Multi-source occurrence validation
+
+## Quick Start
+
+```{r eval=FALSE}
+library(taxinfo)
+library(MiscMetabar)
+
+# Load example data (fungal phyloseq object from MiscMetabar)
+data("data_fungi_mini", package = "MiscMetabar")
+
+# Step 1: Verify and clean taxonomic names
+data_fungi_clean <- gna_verifier_pq(data_fungi_mini, 
+                                   data_sources = 210,
+                                   add_to_phyloseq = TRUE)
+
+# Step 2: Add GBIF occurrence data
+data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean,
+                                   add_to_phyloseq = TRUE,
+                                   col_prefix = "gbif_")
+
+# Step 3: Add trait information
+fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
+data_with_traits <- tax_info_pq(data_with_gbif,
+                               taxonomic_rank = "currentCanonicalSimpleGenus",
+                               file_name = fungal_traits,
+                               csv_taxonomic_rank = "GENUS",
+                               col_prefix = "ft_",
+                               sep = ";")
+
+# Step 4: Add Wikipedia information
+data_final <- tax_get_wk_info_pq(data_with_traits,
+                                add_to_phyloseq = TRUE,
+                                col_prefix = "wiki_")
+
+# View the enriched taxonomic table
+head(data_final@tax_table)
+```
+
+## Function Categories
+
+### Data Sources Integration
+Functions to connect with external databases and APIs:
+- GBIF (Global Biodiversity Information Facility)
+- Wikipedia and Wikidata
+- GLOBI (Global Biotic Interactions)
+- OpenAlex (Scientific Literature)
+- TAXREF (French taxonomic reference)
+- Custom trait databases
+
+### Analysis & Visualization
+Tools for analyzing and visualizing taxonomic data:
+- Geographic distribution analysis
+- Biogeographic range modeling
+- Occurrence validation
+- Interactive mapping
+
+### Utilities & Helpers
+Supporting functions for data manipulation:
+- Taxonomic name standardization
+- Data quality assessment
+- Phyloseq object manipulation
+- Summary statistics
+
+## Data Sources
+
+**taxinfo** integrates with multiple authoritative data sources:
+
+| Source | Description | Functions |
+|--------|-------------|-----------|
+| **GBIF** | Global biodiversity occurrence data | `tax_gbif_occur_pq()`, `plot_tax_gbif_pq()` |
+| **Wikipedia** | Encyclopedia data and page statistics | `tax_get_wk_info_pq()`, `tax_get_wk_pages_info()` |
+| **GLOBI** | Species interaction networks | `tax_globi_pq()` |
+| **OpenAlex** | Scientific literature database | `tax_oa_pq()` |
+| **TAXREF** | French national taxonomic reference | `tax_info_pq()` |
+| **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
+| **Custom CSV** | Any taxonomic database in CSV format | `tax_info_pq()` |
+
+## Performance Features
+
+- **Memory efficient**: Use DuckDB for large dataset processing
+- **Parallel processing**: Support for concurrent API calls
+- **Caching**: Smart caching to avoid redundant API requests
+- **Batch processing**: Efficient handling of multiple taxa
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## Citation
+
+If you use taxinfo in your research, please cite:
+
+```r
+citation("taxinfo")
+```
+
+## Related Packages
+
+**taxinfo** works seamlessly with:
+- [MiscMetabar](https://github.com/adrientaudiere/MiscMetabar): Miscellaneous functions for metabarcoding analysis
+- [phyloseq](https://joey711.github.io/phyloseq/): Analyze microbiome census data
+- [taxize](https://github.com/ropensci/taxize): Taxonomic information from around the web
+- [rgbif](https://github.com/ropensci/rgbif): Interface to GBIF API
+
+## License
+
+MIT © Adrien Taudière

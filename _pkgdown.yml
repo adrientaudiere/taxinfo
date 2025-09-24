@@ -1,4 +1,4 @@
-url: https://adrientaudiere.github.io/MiscMetabar/
+url: https://adrientaudiere.github.io/taxinfo/
 template:
   bootstrap: 5
   bslib:
@@ -6,5 +6,119 @@ template:
     fg: "#003f5f"
     primary: "#b96821"
     secondary: "#A5555C"
+  includes:
+    in_header: |
+      <link rel="stylesheet" href="pkgdown/extra.css">
+
+home:
+  title: "taxinfo • Augment Phyloseq Objects with Taxonomic Information"
+  description: >
+    Comprehensive tools for enriching phyloseq objects with taxonomic data
+    from GBIF, Wikipedia, GLOBI, OpenAlex, and other authoritative sources.
+
 navbar:
   bg: secondary
+  structure:
+    left:  [home, reference, articles, tutorials, news]
+    right: [search, github]
+  components:
+    articles:
+      text: Articles
+      href: articles/index.html
+
+reference:
+- title: "Data Verification & Quality Control"
+  desc: >
+    Functions for verifying, cleaning, and standardizing taxonomic names
+    using authoritative databases and verification services.
+  contents:
+  - gna_verifier_pq
+
+- title: "External Data Sources Integration"
+  desc: >
+    Core functions to retrieve and integrate taxonomic information from
+    various external databases and APIs.
+  contents:
+  - tax_info_pq
+  - tax_gbif_occur_pq
+  - tax_globi_pq
+  - tax_oa_pq
+  - tax_iucn_code_pq
+
+- title: "Wikipedia & Knowledge Base Integration"
+  desc: >
+    Functions to access Wikipedia, Wikidata, and other knowledge bases
+    for taxonomic information, page statistics, and content analysis.
+  contents:
+  - tax_get_wk_info_pq
+  - tax_get_wk_lang
+  - tax_get_wk_pages_info
+
+- title: "Geographic Analysis & Distribution"
+  desc: >
+    Tools for analyzing geographic distributions, biogeographic ranges,
+    and creating distribution maps from occurrence data.
+  contents:
+  - range_bioreg_pq
+  - plot_tax_gbif_pq
+  - tax_check_ecoregion
+  - calculate_bbox
+
+- title: "Occurrence Data Validation"
+  desc: >
+    Functions for validating, checking, and cross-referencing species
+    occurrence data across multiple sources and databases.
+  contents:
+  - tax_occur_check
+  - tax_occur_check_pq
+  - tax_occur_multi_check_pq
+
+- title: "Media & Photography"
+  desc: >
+    Functions to retrieve and manage taxonomic images, photographs,
+    and other media content.
+  contents:
+  - tax_photos_pq
+
+- title: "Advanced Analysis Tools"
+  desc: >
+    Specialized functions for sequence analysis, taxonomic verification,
+    and advanced bioinformatics workflows.
+  contents:
+  - tax_retroblast_pq
+
+- title: "Data Selection & Filtering"
+  desc: >
+    Utilities for selecting, filtering, and manipulating taxonomic data
+    within phyloseq objects.
+  contents:
+  - select_taxa_pq
+  - taxonomic_rank_to_taxnames
+
+- title: "Summary & Reporting"
+  desc: >
+    Functions for generating summaries, reports, and statistics
+    about taxonomic data and phyloseq objects.
+  contents:
+  - taxa_summary_text
+
+- title: "Utility Functions"
+  desc: >
+    Helper functions for package management, data validation,
+    and supporting operations.
+  contents:
+  - check_package
+
+- title: "Package Information"
+  desc: >
+    Package documentation and metadata.
+  contents:
+  - taxinfo-package
+
+footer:
+  structure:
+    left: [developed_by, built_with]
+    right: [pkgdown]
+  components:
+    developed_by: |
+      Developed by [Adrien Taudière](https://adrientaudiere.github.io).
