@@ -1,0 +1,282 @@
+---
+title: "Checking Taxa Presence in Samples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Checking Taxa Presence in Samples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(taxinfo)
+library(MiscMetabar)
+library(ggplot2)
+library(dplyr)
+```
+
+## Overview
+
+One of the key challenges in environmental sequencing studies is determining whether detected taxa are likely to be actually present at your sampling sites. This vignette demonstrates how to use taxinfo's occurrence checking functions to validate the likelihood of taxa presence based on known geographic distributions.
+
+## Core Functions
+
+The main functions for checking taxa presence are:
+
+- `tax_occur_check_pq()`: Check occurrence likelihood within a radius around samples
+- `tax_occur_multi_check_pq()`: Check multiple locations simultaneously
+- `tax_occur_check()`: Core occurrence checking function for individual taxa
+
+## Basic Occurrence Checking
+
+### Setting Up the Data
+
+```{r}
+# Load example data
+data("data_fungi_mini", package = "MiscMetabar")
+
+# First verify taxonomic names (recommended step)
+data_clean <- gna_verifier_pq(data_fungi_mini, 
+                             data_sources = 210,  # TaxRef
+                             add_to_phyloseq = TRUE)
+
+# Show cleaned taxonomic names
+head(data_clean@tax_table[, c("Genus", "Species", "currentCanonicalSimple")])
+```
+
+### Single Location Occurrence Check
+
+Check if taxa in your phyloseq object have been reported within a specific radius of your sampling location:
+
+```{r eval=FALSE}
+# Define sampling coordinates (example: Paris, France)
+longitude <- 2.3488
+latitude <- 48.8534
+
+# Check occurrence within 100km radius
+occurrence_check <- tax_occur_check_pq(data_clean,
+                                      longitude = longitude,
+                                      latitude = latitude,
+                                      radius_km = 100,
+                                      n_occur = 1000)
+
+# View results
+head(occurrence_check)
+```
+
+### Example Visualization
+
+Here's what occurrence checking results might look like:
+
+```{r echo=FALSE, fig.cap="Example occurrence pattern showing global vs local occurrences", out.width="100%"}
+# Create example data for demonstration
+set.seed(42)
+example_data <- data.frame(
+  taxa_name = c("Fusarium oxysporum", "Trichoderma harzianum", "Penicillium chrysogenum",
+                "Aspergillus niger", "Candida albicans"),
+  count_in_radius = c(45, 23, 67, 12, 8),
+  total_count_in_world = c(15420, 8930, 23450, 5670, 2340)
+)
+
+library(ggplot2)
+example_plot <- example_data %>%
+  mutate(taxa_name = forcats::fct_reorder(taxa_name, count_in_radius)) %>%
+  ggplot(aes(x = count_in_radius, y = taxa_name)) +
+  geom_col(aes(fill = log10(total_count_in_world)), alpha = 0.7) +
+  scale_fill_viridis_c(name = "Global\nOccurrences\n(log10)") +
+  labs(title = "Taxa Occurrence Check Results",
+       subtitle = "Within 100 km radius of sampling location",
+       x = "Number of occurrences in radius",
+       y = "Taxa") +
+  theme_minimal()
+
+print(example_plot)
+```
+
+The results include:
+- `taxa_name`: Taxonomic name checked
+- `count_in_radius`: Number of occurrences within the specified radius
+- `total_count_in_world`: Total global occurrences for this taxon
+- `radius_km`: Search radius used
+- `longitude`/`latitude`: Center coordinates
+
+### Visualizing Occurrence Results
+
+Create informative visualizations of occurrence patterns:
+
+```{r eval=FALSE}
+# Create a comprehensive occurrence plot
+occurrence_plot <- occurrence_check %>%
+  mutate(taxa_name = forcats::fct_reorder(taxa_name, count_in_radius)) %>%
+  ggplot(aes(x = count_in_radius, y = taxa_name)) +
+  geom_col(aes(fill = log10(total_count_in_world + 1)), 
+           alpha = 0.7) +
+  scale_fill_viridis_c(name = "Global\nOccurrences\n(log10)") +
+  labs(title = "Taxa Occurrence Check Results",
+       subtitle = paste("Within", unique(occurrence_check$radius_km), "km radius"),
+       x = "Number of occurrences in radius",
+       y = "Taxa") +
+  theme_minimal()
+
+print(occurrence_plot)
+```
+
+## Advanced Occurrence Checking
+
+### Multiple Radius Analysis
+
+Compare occurrence patterns at different spatial scales:
+
+```{r eval=FALSE}
+# Check multiple radii
+radii <- c(50, 100, 200, 500)
+
+occurrence_multi_radius <- map_dfr(radii, function(r) {
+  tax_occur_check_pq(data_clean,
+                    longitude = longitude,
+                    latitude = latitude,
+                    radius_km = r,
+                    n_occur = 1000) %>%
+    mutate(radius_category = paste(r, "km"))
+})
+
+# Visualize scaling patterns
+scaling_plot <- occurrence_multi_radius %>%
+  ggplot(aes(x = radius_category, y = count_in_radius, group = taxa_name)) +
+  geom_line(alpha = 0.6) +
+  geom_point(alpha = 0.8) +
+  scale_y_log10() +
+  facet_wrap(~taxa_name, scales = "free_y") +
+  labs(title = "Occurrence Scaling by Radius",
+       x = "Search Radius",
+       y = "Count in Radius (log scale)") +
+  theme_minimal()
+
+print(scaling_plot)
+```
+
+### Filtering Unlikely Taxa
+
+Use occurrence data to filter taxa that are unlikely to be present:
+
+```{r eval=FALSE}
+# Set threshold for likely presence (e.g., at least 5 occurrences within 100km)
+min_occurrences <- 5
+
+likely_present <- occurrence_check %>%
+  filter(count_in_radius >= min_occurrences) %>%
+  pull(taxa_name)
+
+# Filter phyloseq object to keep only likely present taxa
+likely_taxa_indices <- which(data_clean@tax_table[,"currentCanonicalSimple"] %in% likely_present)
+data_filtered <- prune_taxa(names(likely_taxa_indices), data_clean)
+
+cat("Original taxa count:", ntaxa(data_clean), "\n")
+cat("Filtered taxa count:", ntaxa(data_filtered), "\n")
+cat("Percentage retained:", round(100 * ntaxa(data_filtered) / ntaxa(data_clean), 1), "%\n")
+```
+
+## Multi-Location Checking
+
+For studies with multiple sampling sites:
+
+```{r eval=FALSE}
+# Define multiple sampling locations
+sample_locations <- data.frame(
+  site_id = c("Site_A", "Site_B", "Site_C"),
+  longitude = c(2.3488, 5.3698, -1.5536),  # Paris, Lille, Nantes
+  latitude = c(48.8534, 50.6292, 47.2184)
+)
+
+# Check occurrences for multiple locations
+multi_location_check <- tax_occur_multi_check_pq(
+  data_clean,
+  sample_locations = sample_locations,
+  radius_km = 100,
+  n_occur = 500
+)
+
+# Summarize by site
+site_summary <- multi_location_check %>%
+  group_by(site_id) %>%
+  summarise(
+    taxa_with_occurrences = sum(count_in_radius > 0),
+    mean_local_occurrences = mean(count_in_radius),
+    .groups = "drop"
+  )
+
+print(site_summary)
+```
+
+## Integration with Phyloseq
+
+Add occurrence information directly to your phyloseq object:
+
+```{r eval=FALSE}
+# Add occurrence data to phyloseq tax_table
+data_with_occurrence <- tax_occur_check_pq(data_clean,
+                                          longitude = longitude,
+                                          latitude = latitude,
+                                          radius_km = 100,
+                                          add_to_phyloseq = TRUE)
+
+# View enhanced tax_table with occurrence columns
+head(data_with_occurrence@tax_table)
+```
+
+## Interpreting Results
+
+### Occurrence Patterns
+
+- **High local, high global**: Cosmopolitan species, expected presence
+- **High local, low global**: Regionally endemic species
+- **Low local, high global**: Cosmopolitan but locally rare
+- **Low local, low global**: Rare species or potential errors
+
+### Quality Control Applications
+
+Use occurrence checking for:
+
+1. **Contamination detection**: Taxa with zero local occurrences may be contaminants
+2. **Sample validation**: Ensure detected communities match biogeographic expectations
+3. **Filtering decisions**: Remove unlikely taxa from downstream analyses
+4. **Hypothesis generation**: Identify interesting biogeographic patterns
+
+### Best Practices
+
+1. **Use appropriate radii** for your study system and organism dispersal capability
+2. **Consider temporal factors** - GBIF data spans many years
+3. **Account for sampling bias** in GBIF data (some regions/taxa better sampled)
+4. **Validate results** with ecological knowledge of your study system
+5. **Document thresholds** used for filtering decisions
+
+## Integration with Other Functions
+
+Occurrence checking works well with other taxinfo functions:
+
+```{r eval=FALSE}
+# Complete workflow example
+data_complete <- data_fungi_mini %>%
+  # 1. Clean names
+  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) %>%
+  # 2. Check occurrences
+  tax_occur_check_pq(longitude = 2.3, latitude = 48.8, 
+                    radius_km = 100, add_to_phyloseq = TRUE) %>%
+  # 3. Add GBIF occurrence data
+  tax_gbif_occur_pq(add_to_phyloseq = TRUE) %>%
+  # 4. Filter based on occurrence likelihood
+  filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE)  # Keep taxa in >2 samples
+
+# Final enhanced dataset
+data_complete@tax_table[1:5, ]
+```
+
+This approach provides a robust framework for validating taxa presence and improving the reliability of your microbiome or environmental DNA analyses.
