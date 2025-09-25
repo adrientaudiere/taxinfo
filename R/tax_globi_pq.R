@@ -31,8 +31,13 @@
 #'  rglobi for interaction_types = "hasHost" will also return interactions
 #'   with interaction_type = "pathogenOf" and "parasiteOf" if
 #'   strict_interaction_types is set to FALSE.
-#' @param max_interactions (numeric, default 1000) The maximum number of interactions to query for each taxon.
-#'
+#' @param max_interactions (numeric, default 1000) The maximum number of interactions
+#'  to query for each taxon.
+#' @param batch_size_gna_verifier (numeric, default 100) The number of names to
+#'  verify at once with' [taxize::gna_verifier()] function. Its a hack because
+#'  gna_verifier seems to fail when too many names are sent at once including
+#'  strange ones such as what is obtain whith rglobi. Only used if
+#'   `valid_taxo_target_taxon` is set to TRUE.
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 #' @author Adrien Taudière
@@ -69,7 +74,8 @@ tax_globi_pq <- function(physeq,
                          data_sources = c(1, 12),
                          verbose = FALSE,
                          strict_interaction_types = TRUE,
-                         max_interactions = 1000) {
+                         max_interactions = 1000,
+                         batch_size_gna_verifier = 50) {
   check_package("rglobi")
 
   taxnames <- taxonomic_rank_to_taxnames(
@@ -94,7 +100,7 @@ tax_globi_pq <- function(physeq,
       group_by(across(everything())) |>
       summarise(nb = n(), .groups = "keep")
 
-    if (strict_interaction_types) {
+    if (strict_interaction_types & !is.null(interaction_types)) {
       tib_globi <- tib_globi |>
         filter(interaction_type %in% interaction_types)
     }
@@ -117,9 +123,29 @@ tax_globi_pq <- function(physeq,
       if (valid_taxo_target_taxon) {
         nb_int_before <- nrow(tib_globi)
         # extract only letters and space to avoid issues with gna_verifier
-        target_taxon_name <- stringr::str_extract_all(pattern = "[A-Za-z ]+", unique(tib_globi$target_taxon_name))
+        target_taxon_name <- stringr::str_extract_all(pattern = "[A-Za-z ]+",
+                                                      unique(tib_globi$target_taxon_name),
+                                                      simplify = TRUE)[,1]
 
-        verif_target_taxon <- taxize::gna_verifier(target_taxon_name, data_sources = data_sources)
+        if(length(target_taxon_name)>batch_size_gna_verifier){
+          n_names <- length(target_taxon_name)
+          n_batches <- ceiling(n_names / batch_size_gna_verifier)
+
+          verif_target_taxon_list <- list()
+
+          for (i in 1:n_batches) {
+            start_idx <- (i - 1) * batch_size_gna_verifier + 1
+            end_idx <- min(i * batch_size_gna_verifier, n_names)
+            current_batch <- target_taxon_name[start_idx:end_idx]
+
+            batch_result <- taxize::gna_verifier(current_batch, data_sources = data_sources)
+            verif_target_taxon_list[[i]] <- batch_result
+          }
+          verif_target_taxon <- do.call(rbind, verif_target_taxon_list)
+        } else {
+          verif_target_taxon <- taxize::gna_verifier(target_taxon_name, data_sources = data_sources)
+        }
+
 
         tib_globi <- tib_globi |>
           filter(target_taxon_name %in% verif_target_taxon$submittedName[!is.na(verif_target_taxon$currentCanonicalSimple)])
@@ -163,6 +189,17 @@ tax_globi_pq <- function(physeq,
         tib_globi_all,
         tib_globi_i
       )
+    }
+  }
+  if(is.null(tib_globi_all)){
+    if(verbose){
+      message("No interaction found for any taxon at the specified taxonomic rank.
+              Please check the taxonomic_rank parameter and your phyloseq object.")
+    }
+    if(add_to_phyloseq){
+      return(physeq)
+    } else {
+      return(tib_globi_all)
     }
   }
   if (add_to_phyloseq) {

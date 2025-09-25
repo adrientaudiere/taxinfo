@@ -106,12 +106,13 @@ tax_oa_pq <- function(physeq,
                       list_doi = TRUE,
                       return_raw_oa = FALSE,
                       add_to_phyloseq = FALSE,
-                      type_works = c("article", "review", "book-chapter", "book", "letter"), verbose = TRUE,
+                      type_works = c("article", "review", "book-chapter", "book", "letter"),
+                      verbose = TRUE,
                       ...) {
   check_package("openalexR")
 
-  if (sum(list_doi, return_raw_oa, add_to_phyloseq) > 1) {
-    stop("You can not set to TRUE more than one of the parameters list_doi, return_raw_oa and add_to_phyloseq.")
+  if (sum(return_raw_oa, add_to_phyloseq) > 1) {
+    stop("You can not set to TRUE more than one of the parameters return_raw_oa and add_to_phyloseq.")
   }
 
   taxnames <- taxonomic_rank_to_taxnames(
@@ -182,7 +183,8 @@ tax_oa_pq <- function(physeq,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]),
+                               1, paste0, collapse = " ")
 
     new_physeq@tax_table <-
       full_join(tax_tab, tib_publi, by = join_by(taxa_name)) |>

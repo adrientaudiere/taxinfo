@@ -80,6 +80,13 @@ range_bioreg_pq <- function(physeq,
   p <- vector(mode = "list", length = length(taxnames))
   names(p) <- taxnames
 
+  if (make_plot) {
+  check_package("rnaturalearth")
+
+  countries <-
+    rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
+  }
+
   for (tax_i in taxnames) {
     if (verbose) {
       message("Find gbif occurence ", tax_i)
@@ -108,11 +115,7 @@ range_bioreg_pq <- function(physeq,
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
         message(paste("Not enough occurence to plot", tax_i))
       } else {
-        check_package("rnaturalearth")
         check_package("terra")
-
-        countries <-
-          rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
         bb_bioreg <-
           as.vector(terra::ext(range_taxa_i_bioreg[[tax_i]]$rangeOutput))[]
 

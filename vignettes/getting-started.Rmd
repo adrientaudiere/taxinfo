@@ -1,10 +1,22 @@
 ---
-title: "Getting Started with taxinfo"
-output: rmarkdown::html_vignette
+title: "Getting Started with taxinfo: Augment phyloseq Objects with Taxonomic Information"
+author: "Adrien Taudière"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    theme: united
+    highlight: tango
 vignette: >
   %\VignetteIndexEntry{Getting Started with taxinfo}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -25,7 +37,7 @@ library(dplyr)
 
 ## Overview
 
-The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. This vignette provides a big picture overview of the package's capabilities and workflow.
+The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. This vignette provides a big picture overview of the package's capabilities and workflow. A large part of ASV or OTUs, hereafter referred to as `taxa`, obtained from metabarcoding studies are often not identified at the species level. But those taxa with a genus or species level identification can still be enriched with valuable information from various databases. The **taxinfo** package allows you to easily integrate such information into your phyloseq objects. **Taxinfo** also create a body of evidence for the presence of a species in your samples by testing the likelihood of each taxon being present.
 
 ## Key Features
 
@@ -45,7 +57,6 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 | **Wikipedia** | Encyclopedia data and page statistics | `tax_get_wk_info_pq()` |
 | **GLOBI** | Species interaction networks | `tax_globi_pq()` |
 | **OpenAlex** | Scientific literature database | `tax_oa_pq()` |
-| **TAXREF** | French national taxonomic reference | `tax_info_pq()` |
 | **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
 | **Custom CSV** | Any taxonomic database in CSV format | `tax_info_pq()` |
 
@@ -65,7 +76,7 @@ data_fungi_mini
 
 The first step is typically to verify and standardize taxonomic names using the Global Names Architecture:
 
-```{r eval=FALSE}
+```{r}
 # Verify and clean taxonomic names
 data_clean <- gna_verifier_pq(data_fungi_mini, 
                              data_sources = 210,  # TaxRef
@@ -84,28 +95,69 @@ This adds standardized columns:
 
 Once names are verified, you can enrich your data with various sources:
 
-```{r eval=FALSE}
-# Add GBIF occurrence data
-data_with_gbif <- tax_gbif_occur_pq(data_clean,
-                                   add_to_phyloseq = TRUE)
+```{r}
+data_enriched <- data_clean |> 
+  # Add GBIF occurrence data
+  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
+  # Add species interaction data from GLOBI
+  tax_globi_pq(interaction_types = "hasHost",
+               add_to_phyloseq = TRUE) |> 
+  # Add Wikipedia information
+  tax_get_wk_info_pq(add_to_phyloseq = TRUE) |>
+  tax_oa_pq(add_to_phyloseq = TRUE)
 
-# Add species interaction data from GLOBI
-data_with_globi <- tax_globi_pq(data_with_gbif,
-                               interaction_types = "hasHost",
-                               add_to_phyloseq = TRUE)
+message("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table)%in%colnames(data_clean@tax_table)], collapse = ", "))
+```
 
-# Add Wikipedia information
-data_enriched <- tax_get_wk_info_pq(data_with_globi,
-                                   add_to_phyloseq = TRUE)
+
+```{r}
+#todo add a title and add openalex information on the plot
+psm <- psmelt(data_enriched) |>
+  mutate(nb_num =map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
+  mutate(Quercus_interaction =map_dbl(target_taxon_name, ~ grepl("Quercus", .x))) |>
+  filter(!is.na(taxa_name) & taxa_name != "NA") |>
+  group_by(taxa_name) |>
+  summarise(Abundance = sum(Abundance),
+            page_views = mean(as.numeric(page_views), na.rm=TRUE),
+            Guild=unique(Guild),
+            nb_num=mean(nb_num, na.rm=TRUE),
+            n_doi=as.numeric(unique(n_doi)),
+            Quercus_interaction=unique(Quercus_interaction)) |>
+  mutate(page_views = ifelse(is.na(page_views) | page_views==0, NA, page_views)) |>
+  mutate(n_doi = ifelse(is.na(n_doi), 0, n_doi)) |>
+  mutate(taxa_name_italic = map_chr(taxa_name, ~ ifelse(length(strsplit(.x, " ")[[1]]) == 2, 
+                                   paste0("italic('", .x, "')"),
+                                   .x))) 
+psm
+
+ggplot(psm, aes(y=forcats::fct_reorder(taxa_name, Abundance), 
+             x= log10(1+Abundance), 
+             size=n_doi,
+             color=Guild,
+             shape=Quercus_interaction==0)) +
+  geom_point() +
+  geom_text(aes(label=page_views), size=2.5, color="black", nudge_x=0.07) +
+  scale_size_continuous(name="Number of publications") +
+  xlab("Molecular abundance (log10 scale)") +
+  ylab("Taxa") +
+ scale_y_discrete(labels=parse(text=psm$taxa_name_italic)) +
+theme_idest(plot_title_size = 12, subtitle_size = 9, axis_text_family = "mono", axis_text_size=8) +
+theme(legend.text = element_text(size=8), 
+      legend.key.size = unit(1,"line"))+
+scale_size(range = c(2, 6)) +
+ labs(title = "Number of sequences (Abundance) for each taxa.",
+      subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112))
+
 ```
 
 ### Step 4: Add Custom Database Information
 
-You can also integrate custom databases or trait information:
+You can also integrate custom databases or trait information. Here we will 
+add fungal traits from a CSV file.
 
-```{r eval=FALSE}
-# Add fungal trait information
-fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+```{r}
+fungal_traits <- system.file("extdata",
+                             "fun_trait_mini.csv", 
                             package = "taxinfo")
 
 data_final <- tax_info_pq(data_enriched,
@@ -114,12 +166,16 @@ data_final <- tax_info_pq(data_enriched,
                          csv_taxonomic_rank = "GENUS",
                          col_prefix = "ft_",
                          sep = ";")
+
+dim(data_final)
 ```
+
 
 ## Function Categories
 
-### Data Verification & Quality Control
-- `gna_verifier_pq()`: Verify and standardize taxonomic names
+### Taxonomic Name Standardization
+- `gna_verifier_pq()`: Verify and standardize taxonomic names using Global Names 
+  Architecture through the `taxize` package. 
 
 ### Biodiversity Data Integration  
 - `tax_gbif_occur_pq()`: Retrieve GBIF occurrence data
@@ -133,9 +189,9 @@ data_final <- tax_info_pq(data_enriched,
 ### Geographic Analysis
 - `range_bioreg_pq()`: Analyze biogeographic ranges
 - `plot_tax_gbif_pq()`: Create distribution maps
-- `tax_check_ecoregion()`: Validate occurrences against ecoregions
 
-### Advanced Analysis Tools
+### Check for credibility and validity of the presence of taxonomic names (`species`) 
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
 - `tax_retroblast_pq()`: Sequence-based taxonomic verification
 - `tax_photos_pq()`: Access taxonomic images and media
 - `tax_occur_check_pq()`: Multi-source occurrence validation
@@ -155,10 +211,3 @@ data_final <- tax_info_pq(data_enriched,
 - **Adding External Information**: Integrate Wikipedia, GLOBI, and custom databases
 
 This provides the foundation for using taxinfo effectively. Each subsequent vignette will dive deeper into specific functionality areas.
-
-## Example Workflow Diagram
-
-```{r echo=FALSE, fig.cap="Basic taxinfo workflow for enriching phyloseq objects", out.width="100%"}
-# This would display a workflow diagram if the figures were created
-knitr::include_graphics("figures/workflow-diagram.png")
-```

@@ -40,13 +40,16 @@
 #'
 #' @examples
 #' # Check for Oak species near Paris
-#' Q_rob_in_Paris <- tax_occur_check("Quercus robur", 2.3522, 48.8566, 100)
+#' long=2.3522
+#' lat=48.8566
+#'
+#' Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
 #' Q_rob_in_Paris
 #'
-#' tax_occur_check("Trametopsis brasiliensis", 2.3522, 48.8566, 100)
+#' tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
 #'
 #' # Visualize occurrences around Paris for Fagus sylvatica
-#' res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
+#' res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200,
 #'   return_all_occ = TRUE
 #' )
 #'
@@ -65,10 +68,10 @@
 #'   addTiles() |>
 #'   setView(lat, long, zoom = 12) |>
 #'   fitBounds(
-#'     lat1 = as.vector(st_bbox(occ_data_sf))[2],
-#'     lng1 = as.vector(st_bbox(occ_data_sf))[1],
-#'     lat2 = as.vector(st_bbox(occ_data_sf))[4],
-#'     lng2 = as.vector(st_bbox(occ_data_sf))[3]
+#'     lat1 = as.vector(sf::st_bbox(occ_data_sf))[2],
+#'     lng1 = as.vector(sf::st_bbox(occ_data_sf))[1],
+#'     lat2 = as.vector(sf::st_bbox(occ_data_sf))[4],
+#'     lng2 = as.vector(sf::st_bbox(occ_data_sf))[3]
 #'   ) |>
 #'   leaflet::addCircles(data = occ_data_sf, color = "blue", stroke = 1, opacity = 0.8) |>
 #'   leaflet::addCircleMarkers(lat, long, color = "orange", radius = 2, opacity = 1)
@@ -95,7 +98,7 @@ tax_occur_check <- function(taxa_name,
                             clean_coord_verbose = FALSE,
                             n_occur = 1000,
                             ...) {
-  species_key <- name_backbone(taxa_name)$usageKey
+  species_key <- rgbif::name_backbone(taxa_name)$usageKey
   if (is.null(species_key)) {
     stop("Species ", species_key, " not found")
   }
@@ -152,7 +155,7 @@ tax_occur_check <- function(taxa_name,
       }
 
       # Calculate actual distances
-      test_point <- sf::st_sfc(st_point(c(longitude, latitude)), crs = 4326)
+      test_point <- sf::st_sfc(sf::st_point(c(longitude, latitude)), crs = 4326)
       occ_sf <- sf::st_as_sf(occ_data,
         coords = c("decimalLongitude", "decimalLatitude"),
         crs = 4326

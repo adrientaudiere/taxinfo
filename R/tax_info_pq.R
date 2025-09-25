@@ -24,8 +24,7 @@
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
 #' @param file_name (required) A file path to your csv file.
 #' @param csv_taxonomic_rank (required) The name of the column in your csv file
-#'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq. #' @param add_to_phyloseq (logical, default FALSE)
-#'   If TRUE, return a new phyloseq object with new columns in the tax_table slot
+#'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, add new column(s)
 #'  in the tax_table of the phyloseq object.
 #' @param col_prefix A character string to be added as a prefix to the new

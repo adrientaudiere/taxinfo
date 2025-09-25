@@ -65,7 +65,7 @@ set.seed(123)
 example_gbif <- data.frame(
   taxon = paste("Species", LETTERS[1:8]),
   occurrences = c(1250, 850, 2340, 450, 3200, 150, 890, 1680)
-) %>%
+) |>
   mutate(taxon = reorder(taxon, occurrences))
 
 gbif_plot <- ggplot(example_gbif, aes(x = taxon, y = occurrences)) +
@@ -84,7 +84,7 @@ print(gbif_plot)
 
 Analyze geographic distribution patterns:
 
-```{r eval=FALSE}
+```{r}
 # Get occurrence counts by country
 country_occurrences <- tax_gbif_occur_pq(data_clean,
                                         by_country = TRUE,
@@ -98,17 +98,17 @@ head(country_occurrences@tax_table[, c("currentCanonicalSimple", "US", "FR", "DE
 
 Examine occurrence trends over time:
 
-```{r eval=FALSE}
+```{r}
 # Get occurrence counts by year
 yearly_occurrences <- tax_gbif_occur_pq(data_clean,
                                        by_years = TRUE)
 
 # Visualize temporal trends for a specific taxon
-example_taxon <- yearly_occurrences %>%
-  filter(currentCanonicalSimple == "Fusarium oxysporum") %>%
+example_taxon <- yearly_occurrences |>
+  filter(currentCanonicalSimple == "Fusarium oxysporum") |>
   pivot_longer(cols = starts_with("20"), 
                names_to = "year", 
-               values_to = "count") %>%
+               values_to = "count") |>
   mutate(year = as.numeric(year))
 
 ggplot(example_taxon, aes(x = year, y = count)) +
@@ -127,12 +127,12 @@ ggplot(example_taxon, aes(x = year, y = count)) +
 
 Create occurrence distribution visualizations:
 
-```{r eval=FALSE}
+```{r}
 # Plot global vs regional occurrences
-occurrence_comparison <- occurrence_data@tax_table %>%
-  as.data.frame() %>%
+occurrence_comparison <- occurrence_data@tax_table |>
+  as.data.frame() |>
   mutate(Global_occurences = as.numeric(Global_occurences),
-         currentCanonicalSimple = factor(currentCanonicalSimple)) %>%
+         currentCanonicalSimple = factor(currentCanonicalSimple)) |>
   filter(!is.na(Global_occurences))
 
 ggplot(occurrence_comparison, 
@@ -151,7 +151,7 @@ ggplot(occurrence_comparison,
 
 Create interactive maps showing species distributions:
 
-```{r eval=FALSE}
+```{r}
 # Create distribution maps for selected taxa
 selected_taxa <- c("Fusarium oxysporum", "Trichoderma harzianum")
 
@@ -168,7 +168,7 @@ distribution_maps
 
 For publication-quality figures:
 
-```{r eval=FALSE}
+```{r}
 # Create static distribution map
 static_map <- plot_tax_gbif_pq(data_clean,
                               taxa_names = "Fusarium oxysporum",
@@ -185,7 +185,7 @@ print(static_map)
 
 Analyze the biogeographic ranges of your taxa:
 
-```{r eval=FALSE}
+```{r}
 # Analyze biogeographic ranges
 range_analysis <- range_bioreg_pq(data_clean,
                                  add_to_phyloseq = TRUE)
@@ -201,7 +201,7 @@ head(range_analysis@tax_table[, c("currentCanonicalSimple",
 
 Check if occurrences match expected ecoregions:
 
-```{r eval=FALSE}
+```{r}
 # Validate occurrences against ecoregions
 ecoregion_check <- tax_check_ecoregion(data_clean,
                                       expected_ecoregions = c("Temperate Broadleaf", 
@@ -209,8 +209,8 @@ ecoregion_check <- tax_check_ecoregion(data_clean,
                                       add_to_phyloseq = TRUE)
 
 # Summarize ecoregion matches
-ecoregion_summary <- ecoregion_check@tax_table %>%
-  as.data.frame() %>%
+ecoregion_summary <- ecoregion_check@tax_table |>
+  as.data.frame() |>
   count(ecoregion_match, name = "n_taxa")
 
 print(ecoregion_summary)
@@ -222,18 +222,18 @@ print(ecoregion_summary)
 
 Compare occurrence patterns across countries:
 
-```{r eval=FALSE}
+```{r}
 # Get detailed country occurrence data
 country_data <- tax_gbif_occur_pq(data_clean,
                                  by_country = TRUE)
 
 # Create country comparison plot
-country_comparison <- country_data %>%
-  select(currentCanonicalSimple, US, FR, DE, GB, ES) %>%
+country_comparison <- country_data |>
+  select(currentCanonicalSimple, US, FR, DE, GB, ES) |>
   pivot_longer(cols = c(US, FR, DE, GB, ES),
                names_to = "country",
-               values_to = "occurrences") %>%
-  mutate(occurrences = as.numeric(occurrences)) %>%
+               values_to = "occurrences") |>
+  mutate(occurrences = as.numeric(occurrences)) |>
   filter(!is.na(occurrences), occurrences > 0)
 
 ggplot(country_comparison, aes(x = country, y = occurrences, fill = country)) +
@@ -250,17 +250,17 @@ ggplot(country_comparison, aes(x = country, y = occurrences, fill = country)) +
 
 Identify rare vs common taxa based on GBIF data:
 
-```{r eval=FALSE}
+```{r}
 # Classify taxa by rarity
-rarity_analysis <- occurrence_data@tax_table %>%
-  as.data.frame() %>%
-  mutate(Global_occurences = as.numeric(Global_occurences)) %>%
+rarity_analysis <- occurrence_data@tax_table |>
+  as.data.frame() |>
+  mutate(Global_occurences = as.numeric(Global_occurences)) |>
   mutate(rarity_class = case_when(
     Global_occurences < 10 ~ "Very Rare",
     Global_occurences < 100 ~ "Rare", 
     Global_occurences < 1000 ~ "Common",
     TRUE ~ "Very Common"
-  )) %>%
+  )) |>
   count(rarity_class, name = "n_taxa")
 
 # Visualize rarity distribution
@@ -280,20 +280,20 @@ ggplot(rarity_analysis, aes(x = rarity_class, y = n_taxa, fill = rarity_class)) 
 
 Explore relationships between local abundance and global occurrences:
 
-```{r eval=FALSE}
+```{r}
 # Calculate local abundance (e.g., mean relative abundance across samples)
-sample_data <- occurrence_data@otu_table %>%
-  as.data.frame() %>%
-  rowwise() %>%
-  mutate(mean_abundance = mean(c_across(everything()))) %>%
+sample_data <- occurrence_data@otu_table |>
+  as.data.frame() |>
+  rowwise() |>
+  mutate(mean_abundance = mean(c_across(everything()))) |>
   select(mean_abundance)
 
 # Combine with GBIF data
 abundance_occurrence <- bind_cols(
   sample_data,
-  occurrence_data@tax_table %>%
-    as.data.frame() %>%
-    select(currentCanonicalSimple, Global_occurences) %>%
+  occurrence_data@tax_table |>
+    as.data.frame() |>
+    select(currentCanonicalSimple, Global_occurences) |>
     mutate(Global_occurences = as.numeric(Global_occurences))
 )
 
@@ -312,7 +312,7 @@ ggplot(abundance_occurrence, aes(x = log10(Global_occurences + 1),
 
 Validate your sampling sites against known distributions:
 
-```{r eval=FALSE}
+```{r}
 # Define your sampling coordinates
 sample_coords <- data.frame(
   longitude = c(2.3, 5.4, -1.6),  # Example coordinates
@@ -324,13 +324,13 @@ site_validation <- map_dfr(1:nrow(sample_coords), function(i) {
   tax_occur_check_pq(data_clean,
                     longitude = sample_coords$longitude[i],
                     latitude = sample_coords$latitude[i],
-                    radius_km = 50) %>%
+                    radius_km = 50) |>
     mutate(site_id = i)
 })
 
 # Summarize validation results
-validation_summary <- site_validation %>%
-  group_by(site_id) %>%
+validation_summary <- site_validation |>
+  group_by(site_id) |>
   summarise(
     taxa_with_occurrences = sum(count_in_radius > 0),
     mean_occurrences = mean(count_in_radius),
@@ -366,21 +366,21 @@ print(validation_summary)
 
 Complete workflow combining GBIF functions:
 
-```{r eval=FALSE}
+```{r}
 # Comprehensive GBIF analysis workflow
-final_analysis <- data_fungi_mini %>%
+final_analysis <- data_fungi_mini |>
   # 1. Clean names
-  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) %>%
+  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) |>
   # 2. Add global occurrences
-  tax_gbif_occur_pq(add_to_phyloseq = TRUE) %>%
+  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
   # 3. Add country-specific occurrences  
-  tax_gbif_occur_pq(by_country = TRUE, add_to_phyloseq = TRUE) %>%
+  tax_gbif_occur_pq(by_country = TRUE, add_to_phyloseq = TRUE) |>
   # 4. Add biogeographic range information
   range_bioreg_pq(add_to_phyloseq = TRUE)
 
 # Create comprehensive summary plot
-summary_data <- final_analysis@tax_table %>%
-  as.data.frame() %>%
+summary_data <- final_analysis@tax_table |>
+  as.data.frame() |>
   mutate(Global_occurences = as.numeric(Global_occurences),
          range_size_km2 = as.numeric(range_size_km2))
 

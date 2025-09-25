@@ -67,17 +67,17 @@ head(wikipedia_data@tax_table[, c("currentCanonicalSimple",
 
 Analyze Wikipedia coverage across languages:
 
-```{r eval=FALSE}
+```{r}
 # Get Wikipedia data for specific languages
 wiki_multilang <- tax_get_wk_info_pq(data_clean,
                                     languages_pages = c("en", "fr", "de", "es"),
                                     add_to_phyloseq = TRUE)
 
 # Visualize language coverage
-wiki_analysis <- wiki_multilang@tax_table %>%
-  as.data.frame() %>%
-  select(currentCanonicalSimple, wk_nb_languages, wk_mean_page_length, wk_sum_page_views) %>%
-  mutate(across(starts_with("wk_"), as.numeric)) %>%
+wiki_analysis <- wiki_multilang@tax_table |>
+  as.data.frame() |>
+  select(currentCanonicalSimple, wk_nb_languages, wk_mean_page_length, wk_sum_page_views) |>
+  mutate(across(starts_with("wk_"), as.numeric)) |>
   filter(!is.na(wk_nb_languages))
 
 ggplot(wiki_analysis, aes(x = wk_nb_languages, y = log10(wk_sum_page_views + 1),
@@ -97,7 +97,7 @@ ggplot(wiki_analysis, aes(x = wk_nb_languages, y = log10(wk_sum_page_views + 1),
 
 GLOBI (Global Biotic Interactions) provides data on species interactions including predation, parasitism, pollination, and more:
 
-```{r eval=FALSE}
+```{r}
 # Get interaction data from GLOBI
 interaction_data <- tax_globi_pq(data_clean,
                                 interaction_types = c("parasiteOf", "hasHost", "pathogenOf"),
@@ -114,7 +114,7 @@ head(interaction_data@tax_table[, c("currentCanonicalSimple",
 
 Get detailed interaction data for further analysis:
 
-```{r eval=FALSE}
+```{r}
 # Get detailed interaction tibble (not added to phyloseq)
 detailed_interactions <- tax_globi_pq(data_clean,
                                      interaction_types = c("parasiteOf", "pathogenOf"),
@@ -122,8 +122,8 @@ detailed_interactions <- tax_globi_pq(data_clean,
                                      add_to_phyloseq = FALSE)
 
 # Analyze interaction patterns
-interaction_summary <- detailed_interactions %>%
-  group_by(source_taxon_name, interaction_type) %>%
+interaction_summary <- detailed_interactions |>
+  group_by(source_taxon_name, interaction_type) |>
   summarise(n_targets = n_distinct(target_taxon_name),
            .groups = "drop")
 
@@ -143,11 +143,11 @@ ggplot(interaction_summary, aes(x = interaction_type, y = n_targets,
 
 Analyze host specificity patterns:
 
-```{r eval=FALSE}
+```{r}
 # Focus on pathogenic interactions
-pathogen_data <- detailed_interactions %>%
-  filter(interaction_type %in% c("pathogenOf", "parasiteOf")) %>%
-  group_by(source_taxon_name) %>%
+pathogen_data <- detailed_interactions |>
+  filter(interaction_type %in% c("pathogenOf", "parasiteOf")) |>
+  group_by(source_taxon_name) |>
   summarise(
     host_range = n_distinct(target_taxon_name),
     most_common_host = names(sort(table(target_taxon_name), decreasing = TRUE))[1],
@@ -155,7 +155,7 @@ pathogen_data <- detailed_interactions %>%
   )
 
 # Classify host specificity
-pathogen_data <- pathogen_data %>%
+pathogen_data <- pathogen_data |>
   mutate(specificity = case_when(
     host_range == 1 ~ "Specialist",
     host_range <= 3 ~ "Narrow range",
@@ -179,7 +179,7 @@ ggplot(pathogen_data, aes(x = specificity, fill = specificity)) +
 
 Get publication data for your taxa:
 
-```{r eval=FALSE}
+```{r}
 # Add OpenAlex literature data
 literature_data <- tax_oa_pq(data_clean,
                             add_to_phyloseq = TRUE)
@@ -195,13 +195,13 @@ head(literature_data@tax_table[, c("currentCanonicalSimple",
 
 Analyze research patterns:
 
-```{r eval=FALSE}
+```{r}
 # Analyze research interest vs Wikipedia popularity
-research_analysis <- literature_data@tax_table %>%
-  as.data.frame() %>%
+research_analysis <- literature_data@tax_table |>
+  as.data.frame() |>
   select(currentCanonicalSimple, oa_works_count, oa_cited_by_count, 
-         wk_sum_page_views) %>%
-  mutate(across(starts_with(c("oa_", "wk_")), as.numeric)) %>%
+         wk_sum_page_views) |>
+  mutate(across(starts_with(c("oa_", "wk_")), as.numeric)) |>
   filter(!is.na(oa_works_count), !is.na(wk_sum_page_views))
 
 ggplot(research_analysis, aes(x = log10(oa_works_count + 1), 
@@ -250,7 +250,7 @@ example_traits <- data.frame(
   lifestyle = c("wood_saprotroph", "plant_pathogen", "litter_saprotroph", 
                 "soil_saprotroph", "mycorrhizal", "epiphyte"),
   count = c(12, 8, 15, 6, 4, 3)
-) %>%
+) |>
   mutate(lifestyle = reorder(lifestyle, count))
 
 traits_plot <- ggplot(example_traits, aes(x = lifestyle, y = count, fill = lifestyle)) +
@@ -270,12 +270,12 @@ print(traits_plot)
 
 Analyze ecological traits:
 
-```{r eval=FALSE}
+```{r}
 # Analyze lifestyle patterns
-lifestyle_analysis <- traits_data@tax_table %>%
-  as.data.frame() %>%
-  filter(!is.na(ft_primary_lifestyle)) %>%
-  count(ft_primary_lifestyle, name = "n_taxa") %>%
+lifestyle_analysis <- traits_data@tax_table |>
+  as.data.frame() |>
+  filter(!is.na(ft_primary_lifestyle)) |>
+  count(ft_primary_lifestyle, name = "n_taxa") |>
   arrange(desc(n_taxa))
 
 # Visualize lifestyle distribution
@@ -295,7 +295,7 @@ ggplot(lifestyle_analysis, aes(x = reorder(ft_primary_lifestyle, n_taxa),
 
 For French taxonomic data, integrate TAXREF:
 
-```{r eval=FALSE}
+```{r}
 # Load TAXREF data (example file)
 taxref_file <- system.file("extdata", "TAXREFv18_fungi_mini.csv", 
                           package = "taxinfo")
@@ -319,18 +319,18 @@ head(taxref_data@tax_table[, c("currentCanonicalSimple",
 
 Combine multiple data sources for comprehensive profiles:
 
-```{r eval=FALSE}
+```{r}
 # Complete multi-source enrichment
-comprehensive_data <- data_fungi_mini %>%
+comprehensive_data <- data_fungi_mini |>
   # 1. Clean taxonomic names
-  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) %>%
+  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) |>
   # 2. Add GBIF occurrences
-  tax_gbif_occur_pq(add_to_phyloseq = TRUE) %>%
+  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
   # 3. Add Wikipedia information
-  tax_get_wk_info_pq(add_to_phyloseq = TRUE) %>%
+  tax_get_wk_info_pq(add_to_phyloseq = TRUE) |>
   # 4. Add GLOBI interactions
   tax_globi_pq(interaction_types = c("parasiteOf", "pathogenOf"),
-               max_interactions = 20, add_to_phyloseq = TRUE) %>%
+               max_interactions = 20, add_to_phyloseq = TRUE) |>
   # 5. Add trait information  
   tax_info_pq(taxonomic_rank = "currentCanonicalSimpleGenus",
               file_name = fungal_traits,
@@ -346,16 +346,16 @@ comprehensive_data@tax_table[1:3, ]
 
 Assess information completeness across sources:
 
-```{r eval=FALSE}
+```{r}
 # Calculate information completeness
-completeness_analysis <- comprehensive_data@tax_table %>%
-  as.data.frame() %>%
+completeness_analysis <- comprehensive_data@tax_table |>
+  as.data.frame() |>
   summarise(
     pct_with_gbif = 100 * mean(!is.na(Global_occurences)),
     pct_with_wikipedia = 100 * mean(!is.na(wk_nb_languages)),
     pct_with_globi = 100 * mean(!is.na(globi_nb_interactions)),
     pct_with_traits = 100 * mean(!is.na(ft_primary_lifestyle))
-  ) %>%
+  ) |>
   pivot_longer(everything(), names_to = "data_source", values_to = "completeness")
 
 # Visualize data completeness
@@ -375,15 +375,15 @@ ggplot(completeness_analysis, aes(x = reorder(data_source, completeness),
 
 Create comprehensive visualization of integrated data:
 
-```{r eval=FALSE}
+```{r}
 # Prepare data for visualization
-viz_data <- comprehensive_data@tax_table %>%
-  as.data.frame() %>%
+viz_data <- comprehensive_data@tax_table |>
+  as.data.frame() |>
   mutate(
     Global_occurences = as.numeric(Global_occurences),
     wk_sum_page_views = as.numeric(wk_sum_page_views),
     globi_nb_interactions = as.numeric(globi_nb_interactions)
-  ) %>%
+  ) |>
   filter(!is.na(Global_occurences), !is.na(wk_sum_page_views))
 
 # Multi-dimensional visualization
@@ -406,12 +406,12 @@ ggplot(viz_data, aes(x = log10(Global_occurences + 1),
 
 Use trait data to analyze functional diversity:
 
-```{r eval=FALSE}
+```{r}
 # Analyze functional diversity
-functional_analysis <- traits_data@tax_table %>%
-  as.data.frame() %>%
-  filter(!is.na(ft_primary_lifestyle)) %>%
-  group_by(ft_primary_lifestyle) %>%
+functional_analysis <- traits_data@tax_table |>
+  as.data.frame() |>
+  filter(!is.na(ft_primary_lifestyle)) |>
+  group_by(ft_primary_lifestyle) |>
   summarise(
     mean_gbif_occurrences = mean(as.numeric(Global_occurences), na.rm = TRUE),
     mean_wiki_views = mean(as.numeric(wk_sum_page_views), na.rm = TRUE),
@@ -436,21 +436,21 @@ ggplot(functional_analysis, aes(x = mean_gbif_occurrences,
 
 Identify taxa with limited information:
 
-```{r eval=FALSE}
+```{r}
 # Identify knowledge gaps
-knowledge_gaps <- comprehensive_data@tax_table %>%
-  as.data.frame() %>%
+knowledge_gaps <- comprehensive_data@tax_table |>
+  as.data.frame() |>
   mutate(
     info_score = (!is.na(Global_occurences)) + 
                  (!is.na(wk_nb_languages)) +
                  (!is.na(globi_nb_interactions)) +
                  (!is.na(ft_primary_lifestyle))
-  ) %>%
+  ) |>
   arrange(info_score)
 
 # Taxa with least information
-poorly_known <- knowledge_gaps %>%
-  filter(info_score <= 1) %>%
+poorly_known <- knowledge_gaps |>
+  filter(info_score <= 1) |>
   select(currentCanonicalSimple, info_score)
 
 cat("Taxa with limited information (score ≤ 1):\n")

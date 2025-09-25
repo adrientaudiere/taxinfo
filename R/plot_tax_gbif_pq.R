@@ -102,6 +102,11 @@ plot_tax_gbif_pq <- function(physeq = NULL,
   check_package("maps")
   world <- map_data("world")
 
+  if(!is.null(countries)){
+    check_package("rnaturalearth")
+    countries_sv <- rnaturalearth::ne_states(countries, returnclass = "sv")
+  }
+
   for (i in seq_along(taxnames)) {
     if (verbose) {
       print(paste0("Start the computation of ", taxnames[i]))
@@ -109,9 +114,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     if (is.null(countries)) {
       tax_gbif <- gbif.range::get_gbif(taxnames[i], ...)
     } else {
-      check_package("rnaturalearth")
-      countries_sv <- rnaturalearth::ne_states(countries, returnclass = "sv")
-      tax_gbif <- gbif.range::get_gbif(taxnames[i], geo = countries_sv, info_names = info_names, ...)
+       tax_gbif <- gbif.range::get_gbif(taxnames[i], geo = countries_sv, info_names = info_names, ...)
     }
 
     if (interactive_plot) {
