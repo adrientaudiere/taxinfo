@@ -8,7 +8,7 @@ test_that("example data files exist", {
   )
 
   # Check that expected data files exist in inst/extdata
-  extdata_path <- file.path("../../inst/extdata")
+  extdata_path <- file.path(paste0(system.file(package = "taxinfo"),"/extdata"))
 
   for (file in extdata_files) {
     file_path <- file.path(extdata_path, file)
@@ -17,7 +17,7 @@ test_that("example data files exist", {
 })
 
 test_that("example data files can be read", {
-  extdata_path <- file.path("../../inst/extdata")
+  extdata_path <- file.path(paste0(system.file(package = "taxinfo"),"/extdata"))
 
   # Test TAXREFv18_fungi_mini.csv
   fungi_file <- file.path(extdata_path, "TAXREFv18_fungi_mini.csv")

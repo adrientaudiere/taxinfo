@@ -35,6 +35,7 @@ Suggests:
     duckdb,
     gbif.range,
     htmltools,
+    knitr,
     leaflet,
     leafpop,
     maps,
@@ -44,11 +45,12 @@ Suggests:
     pixture,
     purrr,
     rentrez,
-    rglobi, 
+    rglobi,
+    rmarkdown,
     rnaturalearth,
     terra,
     testthat (>= 3.0.0),
     tibble,
     tidyr,
     wikitaxa
-
+VignetteBuilder: knitr
