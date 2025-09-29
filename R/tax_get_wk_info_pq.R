@@ -313,11 +313,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
       filter(lang %in% languages_pages)
     if (nrow(tib_list_pages) == 0) {
       if (verbose) {
-        message(
-          "No pages found for taxon_id '",
-          taxon_id, "' in the specified languages: ",
-          paste(languages_pages, collapse = ", ")
-        )
+        cli_warning("No pages found for taxon ID {.val {taxon_id}} in languages: {.val {paste(languages_pages, collapse = ', ')}}")
       }
       return(tibble("page_length" = 0, "page_views" = 0))
     }
@@ -327,7 +323,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
     {
       if (nrow(tib_list_pages) == 0 | is.na(tib_list_pages$site[1]) | tib_list_pages$site[1] == 0) {
         if (verbose) {
-          message("No pages found for taxon_id ", taxon_id)
+          cli_warning("No pages found for taxon ID {.val {taxon_id}}")
         }
         return(list("page_length" = 0, "page_views" = 0))
       }
@@ -340,7 +336,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         title <- tib_list_pages$title[tib_list_pages$site == site_name]
 
         if (verbose) {
-          message("Getting page length for ", title, " (", lang_code, ")")
+          cli_message("Getting page length for {.emph {title}} ({.val {lang_code}})")
         }
         wiki_url <- paste0(
           "https://", lang_code,
@@ -364,7 +360,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         Sys.sleep(time_to_sleep)
 
         if (verbose) {
-          message("Getting page views for ", title, " (", lang_code, ")")
+          cli_message("Getting page views for {.emph {title}} ({.val {lang_code}})")
         }
 
         if (is.character(start_date)) {
