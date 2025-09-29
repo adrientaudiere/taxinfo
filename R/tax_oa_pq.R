@@ -122,32 +122,54 @@ tax_oa_pq <- function(physeq,
   )
 
   if (return_raw_oa) {
-    list_publi <- lapply(taxnames, function(taxname) {
+    # Initialize progress bar if verbose
+    if (verbose) {
+      pb <- cli_progress_bar(total = length(taxnames))
+    }
+    
+    list_publi <- vector("list", length(taxnames))
+    for (i in seq_along(taxnames)) {
+      taxname <- taxnames[i]
       if (verbose) {
-        message("Fetching works for taxon: ", taxname)
+        cli::cli_progress_update(id = pb, set = i)
+        cli_message("Fetching OpenAlex works for taxon: {.emph {taxname}}")
       }
-      openalexR::oa_fetch(
+      list_publi[[i]] <- openalexR::oa_fetch(
         entity = "works",
         title_and_abstract.search = taxname,
         ...
       )
-    })
+    }
+    if (verbose) {
+      cli::cli_progress_done(id = pb)
+    }
     names(list_publi) <- taxnames
     return(list_publi)
   }
 
   if (list_doi) {
-    list_publi <- lapply(taxnames, function(taxname) {
+    # Initialize progress bar if verbose
+    if (verbose) {
+      pb <- cli_progress_bar(total = length(taxnames))
+    }
+    
+    list_publi <- vector("list", length(taxnames))
+    for (i in seq_along(taxnames)) {
+      taxname <- taxnames[i]
       if (verbose) {
-        message("Fetching works for taxon: ", taxname)
+        cli::cli_progress_update(id = pb, set = i)
+        cli_message("Fetching OpenAlex works for taxon: {.emph {taxname}}")
       }
-      openalexR::oa_fetch(
+      list_publi[[i]] <- openalexR::oa_fetch(
         entity = "works",
         title_and_abstract.search = taxname,
         options = list(select = c("id", "doi", "type")),
         ...
       )
-    })
+    }
+    if (verbose) {
+      cli::cli_progress_done(id = pb)
+    }
 
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA

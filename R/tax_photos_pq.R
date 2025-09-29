@@ -208,13 +208,16 @@ tax_photos_pq <- function(physeq = NULL,
   rownames(new_physeq@tax_table) <- taxa_names(physeq)
 
   if (verbose) {
-    message(
-      "Found and download ",
-      sum(!is.na(photo_url)), " photos, depicting ",
-      sum(!is.na(new_physeq@tax_table[, col_name_url])), " taxa (",
-      sum(is.na(photo_url)), " taxonomic names were not found and ",
-      sum(is.na(new_physeq@tax_table[, col_name_url])), " taxa have no photo url)."
-    )
+    photos_found <- sum(!is.na(photo_url))
+    taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
+    names_not_found <- sum(is.na(photo_url))
+    taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
+    
+    cli_success(c("Photo download summary:",
+                  "*" = "{.val {photos_found}} photos found and downloaded",
+                  "*" = "{.val {taxa_depicted}} taxa depicted",
+                  "*" = "{.val {names_not_found}} taxonomic names not found",
+                  "*" = "{.val {taxa_no_photo}} taxa have no photo URL"))
   }
 
   if (add_to_phyloseq) {
@@ -222,7 +225,7 @@ tax_photos_pq <- function(physeq = NULL,
   } else if (gallery) {
     tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
     if (verbose) {
-      message("Create captions")
+      cli_message("Creating captions for gallery")
     }
     for (i in seq_along(taxnames)) {
       if (simple_caption) {

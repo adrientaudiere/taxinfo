@@ -84,7 +84,8 @@ tax_occur_check_pq <- function(physeq = NULL,
 
   if (length(taxnames_raw) == 0) {
     if (verbose) {
-      message("No taxonomic names found at the specified taxonomic rank. Please check the taxonomic_rank parameter and your phyloseq object.")
+      cli_warning(c("No taxonomic names found at the specified taxonomic rank.",
+                    "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."))
     }
     if (add_to_phyloseq) {
       return(physeq)

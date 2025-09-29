@@ -58,10 +58,10 @@ tax_check_ecoregion <- function(taxa_name,
                                 min_nb_occur = 0,
                                 verbose = TRUE) {
   if (length(longitudes) != length(latitudes)) {
-    stop("longitudes and latitudes must have the same length")
+    cli_error("Parameters {.arg longitudes} and {.arg latitudes} must have the same length")
   }
   if (verbose) {
-    message("Download ecoregion for ", taxa_name)
+    cli_message("Downloading ecoregion data for {.emph {taxa_name}}")
   }
   occurrences <- rgbif::occ_search(
     scientificName = taxa_name,
@@ -98,7 +98,7 @@ tax_check_ecoregion <- function(taxa_name,
     coords = c("lon", "lat"), crs = 4326
   )
   if (verbose) {
-    message("List ecoregion for ", taxa_name)
+    cli_message("Listing ecoregions for {.emph {taxa_name}}")
   }
 
   species_ecoregions <- sf::st_intersection(occurrences_sf, ecoregions) |>
@@ -113,7 +113,7 @@ tax_check_ecoregion <- function(taxa_name,
     sort(decreasing = TRUE) |>
     (\(tab) tab[as.numeric(tab) > min_proportion * nrow(species_ecoregions)])()
   if (verbose) {
-    message("List ecoregion for, ", length(longitudes), " GPS points.")
+    cli_message("Listing ecoregions for {.val {length(longitudes)}} GPS points")
   }
 
   points_ecoregion <- sf::st_intersection(samples_point, ecoregions) |>
