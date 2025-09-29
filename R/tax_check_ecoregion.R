@@ -73,12 +73,12 @@ tax_check_ecoregion <- function(taxa_name,
     filter(!is.na(decimalLongitude), !is.na(decimalLatitude))
 
   if (nrow(clean_occurrences) == 0) {
-    warning("No valid occurrences found")
+    cli_warning("No valid occurrences found")
     return(FALSE)
   }
 
   if (verbose) {
-    message("Download and valid ecoregion")
+    cli_message("Downloading and validating ecoregion data")
   }
   gbif.range::check_and_get_bioreg("eco_terra")
 
@@ -105,7 +105,7 @@ tax_check_ecoregion <- function(taxa_name,
     sf::st_drop_geometry()
 
   if (nrow(species_ecoregions) == 0) {
-    warning("No ecoregions found for species occurrences")
+    cli_warning("No ecoregions found for species occurrences")
     return(FALSE)
   }
 

@@ -132,9 +132,16 @@ tax_retroblast_pq <- function(physeq,
   search_res <- vector("list", length = length(taxnames))
   names(search_res) <- taxnames
 
-  for (tax_i in taxnames) {
+  # Initialize progress bar if verbose
+  if (verbose) {
+    pb <- cli_progress_bar(total = length(taxnames))
+  }
+
+  for (i in seq_along(taxnames)) {
+    tax_i <- taxnames[i]
     if (verbose) {
-      message(paste("Processing taxon:", tax_i))
+      cli::cli_progress_update(id = pb, set = i)
+      cli_message("Processing taxon: {.emph {tax_i}}")
     }
 
     taxa_pq_i <- select_taxa_pq(physeq, taxnames = tax_i, taxonomic_rank = taxonomic_rank, verbose = FALSE) |>
@@ -179,13 +186,13 @@ tax_retroblast_pq <- function(physeq,
     )
 
     if (verbose) {
-      message(paste("Search term:", search_term))
-      message(paste("Number of results for", tax_i, ":", search_res[[tax_i]]$count))
-      message(paste("Number of fasta retrieved:", length(search_res[[tax_i]]$ids)))
+      cli_message("Search term: {.code {search_term}}")
+      cli_message("Number of results for {.emph {tax_i}}: {.val {search_res[[tax_i]]$count}}")
+      cli_message("Number of FASTA sequences retrieved: {.val {length(search_res[[tax_i]]$ids)}}")
     }
     if (search_res[[tax_i]]$count == 0) {
       if (verbose) {
-        message(paste("No sequence found for", tax_i))
+        cli_warning("No sequence found for {.emph {tax_i}}")
       }
       res_tax_i <- FALSE
       res_tax[[tax_i]] <- res_tax_i
@@ -238,6 +245,11 @@ tax_retroblast_pq <- function(physeq,
 
       res_tax2[[tax_i]] <- taxa_blast[!taxa_blast %in% taxa_pq_i]
     }
+  }
+  
+  # Complete progress bar
+  if (verbose) {
+    cli::cli_progress_done(id = pb)
   }
 
   no_blast_results <- lapply(res_tax2, is.null) |>

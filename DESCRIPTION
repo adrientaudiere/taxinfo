@@ -22,6 +22,7 @@ Depends:
     R (>= 4.1.0),
     MiscMetabar
 Imports: 
+    cli,
     httr,
     jsonlite,
     phyloseq,
