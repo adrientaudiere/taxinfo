@@ -165,36 +165,22 @@ gna_verifier_pq <- function(physeq,
   rownames(new_physeq@tax_table) <- taxa_names(physeq)
 
   if (verbose) {
-    message(
-      "Among the ",
-      ntaxa(physeq),
-      " taxa present in the phyloseq object, we submitted the name of ",
-      sum(taxtab_new$taxa_name != ""),
-      " taxa including ",
-      sum(!grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != ""),
-      " taxa whith only info at the Genus level. ",
-      "We found a total of ",
-      sum(
-        res_verifier$taxonomicStatus %in% c("Synonym", "Accepted")
-      ),
-      " correspondances, including ",
-      sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE),
-      " synonyms (",
-      sum(
-        res_verifier$matchedCardinality == 2 &
-          res_verifier$taxonomicStatus == "Synonym",
-        na.rm = TRUE
-      ),
-      " at the Genus level only) and ",
-      sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE),
-      " accepted names (",
-      sum(
-        res_verifier$matchedCardinality == 2 &
-          res_verifier$taxonomicStatus == "Accepted",
-        na.rm = TRUE
-      ),
-      " at the Genus level only)."
-    )
+    total_taxa <- ntaxa(physeq)
+    submitted_taxa <- sum(taxtab_new$taxa_name != "")
+    genus_only_taxa <- sum(!grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != "")
+    total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
+    synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+    genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+    accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+    genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+    
+    cli_success(c("GNA verification summary:",
+                  "*" = "Total taxa in phyloseq: {.val {total_taxa}}",
+                  "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
+                  "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
+                  "*" = "Total matches found: {.val {total_matches}}",
+                  "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
+                  "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"))
   }
 
   if (add_to_phyloseq) {

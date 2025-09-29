@@ -112,7 +112,7 @@ tax_globi_pq <- function(physeq,
 
     if (nrow(tib_globi) == 0) {
       if (verbose) {
-        message(paste0("No interaction found for ", tax_i))
+        cli_warning("No interaction found for {.emph {tax_i}}")
       }
     } else {
       tib_globi <- tib_globi |>
@@ -173,7 +173,7 @@ tax_globi_pq <- function(physeq,
         }
 
         if (verbose) {
-          message(paste0("After verification of valid target taxon scientific name, ", nrow(tib_globi), " interactions are kept for ", tax_i, " (on a total of ", nb_int_before, " interactions)."))
+          cli_message("After verification of valid target taxon names: {.val {nrow(tib_globi)}}/{.val {nb_int_before}} interactions kept for {.emph {tax_i}}")
         }
       } else {
         tib_globi_i <- tib_globi |>
@@ -193,8 +193,8 @@ tax_globi_pq <- function(physeq,
   }
   if(is.null(tib_globi_all)){
     if(verbose){
-      message("No interaction found for any taxon at the specified taxonomic rank.
-              Please check the taxonomic_rank parameter and your phyloseq object.")
+      cli_warning(c("No interaction found for any taxon at the specified taxonomic rank.",
+                    "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."))
     }
     if(add_to_phyloseq){
       return(physeq)

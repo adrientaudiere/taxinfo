@@ -61,39 +61,78 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     distinct()
 
   if (by_country && by_years) {
-    stop("You can't set by_country and by_years to TRUE")
+    cli_error("You can't set both {.arg by_country} and {.arg by_years} to TRUE")
   } else if (by_country) {
-    tib_occur <- lapply(gbif_taxa$usageKey, function(x) {
+    # Initialize progress bar if verbose
+    if (verbose) {
+      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+    }
+    
+    tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
+    for (i in seq_along(gbif_taxa$usageKey)) {
+      x <- gbif_taxa$usageKey[i]
       Sys.sleep(time_to_sleep)
       if (verbose) {
-        message("Start the computation of ", gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)])
+        cli::cli_progress_update(id = pb, set = i)
+        species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "country")$facet$country
       tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-      return(tib)
-    }) |> bind_rows()
+      tib_occur_list[[i]] <- tib
+    }
+    if (verbose) {
+      cli::cli_progress_done(id = pb)
+    }
+    tib_occur <- bind_rows(tib_occur_list)
   } else if (by_years) {
-    tib_occur <- lapply(gbif_taxa$usageKey, function(x) {
+    # Initialize progress bar if verbose
+    if (verbose) {
+      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+    }
+    
+    tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
+    for (i in seq_along(gbif_taxa$usageKey)) {
+      x <- gbif_taxa$usageKey[i]
       Sys.sleep(time_to_sleep)
       if (verbose) {
-        message("Start the computation of ", gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)])
+        cli::cli_progress_update(id = pb, set = i)
+        species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
       tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-      return(tib)
-    }) |> bind_rows()
+      tib_occur_list[[i]] <- tib
+    }
+    if (verbose) {
+      cli::cli_progress_done(id = pb)
+    }
+    tib_occur <- bind_rows(tib_occur_list)
   } else {
-    tib_occur <- lapply(gbif_taxa$usageKey, function(x) {
+    # Initialize progress bar if verbose
+    if (verbose) {
+      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+    }
+    
+    tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
+    for (i in seq_along(gbif_taxa$usageKey)) {
+      x <- gbif_taxa$usageKey[i]
       Sys.sleep(time_to_sleep)
       if (verbose) {
-        message("Start the computation of ", gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)])
+        cli::cli_progress_update(id = pb, set = i)
+        species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- tibble(
         "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,
         "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
       )
-      return(tib)
-    }) |> bind_rows()
+      tib_occur_list[[i]] <- tib
+    }
+    if (verbose) {
+      cli::cli_progress_done(id = pb)
+    }
+    tib_occur <- bind_rows(tib_occur_list)
   }
 
   if (add_to_phyloseq) {

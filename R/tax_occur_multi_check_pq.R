@@ -49,10 +49,10 @@ tax_occur_multi_check_pq <- function(
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
   } else if (is.null(longitudes) & is.null(lon_column)) {
-    stop("Either longitudes or lon_column must be provided")
+    cli_error("Either {.arg longitudes} or {.arg lon_column} must be provided")
   } else if (!is.null(longitudes)) {
     if (length(longitudes) != nsamples(physeq)) {
-      stop("The length of longitudes must be equal to the number of samples in the phyloseq object")
+      cli_error("The length of {.arg longitudes} must be equal to the number of samples in the phyloseq object")
     }
     physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), longitudes_for_multi_check = longitudes))
     lon_column <- "longitudes_for_multi_check"
@@ -61,10 +61,10 @@ tax_occur_multi_check_pq <- function(
   if (is.null(latitudes) & !is.null(lat_column)) {
     latitudes <- as.numeric(sample_data(physeq)[, lat_column])
   } else if (is.null(latitudes) & is.null(lat_column)) {
-    stop("Either longitudes or lon_column must be provided")
+    cli_error("Either {.arg latitudes} or {.arg lat_column} must be provided")
   } else if (!is.null(latitudes)) {
     if (length(latitudes) != nsamples(physeq)) {
-      stop("The length of latitudes must be equal to the number of samples in the phyloseq object")
+      cli_error("The length of {.arg latitudes} must be equal to the number of samples in the phyloseq object")
     }
     physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), latitudes_for_multi_check = latitudes))
     lat_column <- "latitudes_for_multi_check"
@@ -74,9 +74,17 @@ tax_occur_multi_check_pq <- function(
     unique()
   tax_range <- vector("list", length = length(longlat))
   names(tax_range) <- longlat
-  for (gps in longlat) {
+  
+  # Initialize progress bar if verbose
+  if (verbose) {
+    pb <- cli_progress_bar(total = length(longlat))
+  }
+  
+  for (i in seq_along(longlat)) {
+    gps <- longlat[i]
     if (verbose) {
-      message(paste("Processing GPS point", gps))
+      cli::cli_progress_update(id = pb, set = i)
+      cli_message("Processing GPS point: {.val {gps}}")
     }
     long <- stringr::str_split_i(gps, "_", 1) |>
       as.numeric()
@@ -106,6 +114,11 @@ tax_occur_multi_check_pq <- function(
         sample_name = paste(sample_names(new_physeq_i), collapse = "___")
       )
   }
+  
+  # Complete progress bar
+  if (verbose) {
+    cli::cli_progress_done(id = pb)
+  }
 
   taxtab_taxrank <- physeq@tax_table[, taxonomic_rank] |>
     as.data.frame() |>
@@ -134,7 +147,7 @@ tax_occur_multi_check_pq <- function(
   }
 
   if (sum(otu_matrix_occurence > min_occur) != nrow(tax_range_mini)) {
-    stop("Some taxa occurrences were not correctly mapped to the otu_matrix_occurence")
+    cli_error("Some taxa occurrences were not correctly mapped to the otu_matrix_occurence")
   }
 
   new_physeq <- taxa_as_rows(physeq)
@@ -143,15 +156,14 @@ tax_occur_multi_check_pq <- function(
   new_physeq <- clean_pq(new_physeq, verbose = verbose)
 
   if (verbose) {
-    message(paste0(
-      "After filtering taxa with at least ",
-      min_occur + 1, " gbif occurrences in the radius of ", radius_km, "km, ",
-      ntaxa(new_physeq), " taxa remain(s) on a total of ", ntaxa(physeq),
-      "; ", nsamples(new_physeq), " samples remain(s) on a total of ",
-      nsamples(physeq), " samples; ",
-      sum(new_physeq@otu_table > 0), " occurences remain(s) on a total of ",
-      sum(physeq@otu_table > 0), " occurences."
-    ))
+    remaining_taxa <- ntaxa(new_physeq)
+    remaining_samples <- nsamples(new_physeq)
+    remaining_occurrences <- sum(new_physeq@otu_table > 0)
+    
+    cli_message(c("After filtering taxa with at least {.val {min_occur + 1}} GBIF occurrences within {.val {radius_km}}km:",
+                  "*" = "Taxa: {.val {remaining_taxa}}/{.val {ntaxa(physeq)}} remain",
+                  "*" = "Samples: {.val {remaining_samples}}/{.val {nsamples(physeq)}} remain", 
+                  "*" = "Occurrences: {.val {remaining_occurrences}}/{.val {sum(physeq@otu_table > 0)}} remain"))
   }
   return(list(
     "tax_range_list" = tax_range,

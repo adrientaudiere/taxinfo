@@ -87,13 +87,21 @@ range_bioreg_pq <- function(physeq,
     rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
   }
 
-  for (tax_i in taxnames) {
+  # Initialize progress bar if verbose
+  if (verbose) {
+    pb <- cli_progress_bar(total = length(taxnames))
+  }
+
+  for (i in seq_along(taxnames)) {
+    tax_i <- taxnames[i]
+    
     if (verbose) {
-      message("Find gbif occurence ", tax_i)
+      cli::cli_progress_update(id = pb, set = i)
+      cli_message("Finding GBIF occurrence for {.emph {tax_i}}")
     }
     range_taxa_i <- gbif.range::get_gbif(tax_i, occ_samp = occ_samp, ...)
     if (verbose) {
-      message("Start the computation of range of ", tax_i)
+      cli_message("Starting range computation for {.emph {tax_i}}")
     }
 
     range_taxa_i_bioreg[[tax_i]] <- tryCatch(
@@ -105,7 +113,7 @@ range_bioreg_pq <- function(physeq,
       ),
       error = function(e) {
         if (verbose) {
-          message(paste("Not enough occurence for", tax_i))
+          cli_warning("Not enough occurrence data for {.emph {tax_i}}")
         }
         return(NULL)
       }
@@ -113,7 +121,9 @@ range_bioreg_pq <- function(physeq,
 
     if (make_plot) {
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
-        message(paste("Not enough occurence to plot", tax_i))
+        if (verbose) {
+          cli_warning("Not enough occurrence data to plot {.emph {tax_i}}")
+        }
       } else {
         check_package("terra")
         bb_bioreg <-
@@ -164,6 +174,11 @@ range_bioreg_pq <- function(physeq,
         }
       }
     }
+  }
+  
+  # Complete progress bar
+  if (verbose) {
+    cli::cli_progress_done(id = pb)
   }
 
   if (make_plot) {
