@@ -6,8 +6,8 @@
 \usage{
 taxa_summary_text(
   physeq,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   verbose = TRUE,
   min_nb_seq = 0,
   ...
@@ -16,11 +16,11 @@ taxa_summary_text(
 \arguments{
 \item{physeq}{A phyloseq object}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(A character vector of taxonomic names to select)}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 

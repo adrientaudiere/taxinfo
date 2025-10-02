@@ -6,8 +6,8 @@
 \usage{
 plot_tax_gbif_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   interactive_plot = FALSE,
   zcol = c("year", "taxonomicStatus"),
   hexagons = FALSE,
@@ -19,13 +19,13 @@ plot_tax_gbif_pq(
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object}
+
+\item{taxnames}{(optional) A character vector of taxonomic names.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(A character vector of taxonomic names. If provided, physeq is ignored.)}
 
 \item{interactive_plot}{(logical, default FALSE) If TRUE, an interactive map is created using the package mapview.}
 

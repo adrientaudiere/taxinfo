@@ -7,8 +7,8 @@ phyloseq object}
 \usage{
 tax_info_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   file_name = NULL,
   csv_taxonomic_rank = NULL,
   add_to_phyloseq = NULL,
@@ -22,11 +22,11 @@ tax_info_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{file_name}{(required) A file path to your csv file.}
 
@@ -86,7 +86,7 @@ fg_traits <- tax_info_pq(data_fungi_cleanNames,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
   sep = ";",
-  add_to_phyloseq=FALSE
+  add_to_phyloseq = FALSE
 )
 
 table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>

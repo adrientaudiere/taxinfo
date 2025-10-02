@@ -24,7 +24,7 @@ tax_photos_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
+\item{taxnames}{(optional) A character vector of taxonomic names.}
 
 \item{taxonomic_rank}{(Character, default = "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
@@ -87,22 +87,23 @@ There is three behavior. See the returns section. Gbif source is quicker
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
 tax_photos_pq(data_fungi_mini_cleanNames,
-                   gallery = TRUE,
-                   h="40px",
-                   w="80px",
-                   source = "wikitaxa"
-                  )
+  gallery = TRUE,
+  h = "40px",
+  w = "80px",
+  source = "wikitaxa"
+)
 
-tax_photos_pq(taxnames= c("Xylodon flaviporus", "Basidiodendron eyrei"),
-                   gallery = TRUE,
-                   layout="rhombus"
-                  )
+tax_photos_pq(
+  taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+  gallery = TRUE,
+  layout = "rhombus"
+)
 
 data_fungi_mini_cleanNames_photos <-
   tax_photos_pq(data_fungi_mini_cleanNames)
 
 # Which photo(s) depicted more than one OTU
-data_fungi_mini_cleanNames_photos@tax_table[,"photo_url"] |>
+data_fungi_mini_cleanNames_photos@tax_table[, "photo_url"] |>
   table() |>
   (\(tab) tab[as.numeric(tab) > 1])()
 

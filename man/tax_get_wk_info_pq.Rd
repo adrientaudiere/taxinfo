@@ -6,8 +6,8 @@
 \usage{
 tax_get_wk_info_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
   verbose = TRUE,
   languages_pages = NULL,
@@ -20,11 +20,11 @@ tax_get_wk_info_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default = "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 If TRUE, a new phyloseq object is returned with new columns in the tax_table.

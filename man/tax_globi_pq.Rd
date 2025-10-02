@@ -6,8 +6,8 @@
 \usage{
 tax_globi_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   discard_synonym = TRUE,
   add_to_phyloseq = NULL,
   interaction_types = NULL,
@@ -23,11 +23,11 @@ tax_globi_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{discard_synonym}{(logical, default TRUE) If TRUE, discard interactions
 where the source_taxon_name is a synonym of the taxon name used to query}

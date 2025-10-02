@@ -6,8 +6,8 @@
 \usage{
 gna_verifier_pq(
   physeq = NULL,
-  taxonomic_rank = c("Genus", "Species"),
   taxnames = NULL,
+  taxonomic_rank = c("Genus", "Species"),
   data_sources = c(1, 12),
   all_matches = FALSE,
   capitalize = FALSE,
@@ -23,11 +23,11 @@ gna_verifier_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character)
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the default c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{data_sources}{A character or integer vector.
 See [taxize::gna_verifier] documentation. For example,
@@ -57,7 +57,7 @@ documentation.}
 
  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
    Three new columns are added:
-   - submittedName: The character string sent to gna_verifier (e.g.
+   - taxa_name: The character string sent to gna_verifier (e.g.
    `Antrodiella brasiliensis`)
    - currentName: The current accepted name (resolve the synonymie) with
      autorities at the end of the binominal name (e.g.
@@ -86,12 +86,10 @@ gna_verifier_pq(data_fungi)
 gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-
-
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
 
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
-sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "submittedName"], na.rm = TRUE)
+sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
 # 1010 taxa (71\% of total) are identified using a currentName including 434
 # corrected values (correction using synonym disambiguation)
 

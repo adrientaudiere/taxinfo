@@ -6,19 +6,19 @@
 \usage{
 tax_iucn_code_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL
 )
 }
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 If TRUE, add a new column (iucn_code) in the tax_table of the phyloseq object.
@@ -40,7 +40,7 @@ This function is mainly a wrapper of the work of others.
 \examples{
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini) |>
-   tax_iucn_code_pq(data_fungi_mini_cleanNames)
+  tax_iucn_code_pq(data_fungi_mini_cleanNames)
 
 table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
 

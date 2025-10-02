@@ -6,8 +6,8 @@
 \usage{
 tax_occur_check_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   longitude = NULL,
   latitude = NULL,
   radius_km = 50,
@@ -21,12 +21,12 @@ tax_occur_check_pq(
 \item{physeq}{(optional) phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 The phyloseq object containing the taxa to check.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{Character. The taxonomic rank to use for the check.
 Default is "currentCanonicalSimple" which corresponds to the cleaned
 scientific names in the phyloseq object if [gna_verifier_pq()] was used with
 default parameter.}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{longitude}{Numeric. Longitude of the test point in decimal degrees.}
 

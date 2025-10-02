@@ -18,7 +18,7 @@ tax_gbif_occur_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
+\item{taxnames}{(optional) A character vector of taxonomic names.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can

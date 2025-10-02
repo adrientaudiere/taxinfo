@@ -6,8 +6,8 @@
 \usage{
 tax_oa_pq(
   physeq = NULL,
-  taxonomic_rank = "currentCanonicalSimple",
   taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
   count_only = FALSE,
   return_raw_oa = FALSE,
   add_to_phyloseq = NULL,
@@ -19,11 +19,11 @@ tax_oa_pq(
 \arguments{
 \item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
+\item{taxnames}{(optional) A character vector of taxonomic names.}
+
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
-
-\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{count_only}{(Logical, default FALSE) If
 TRUE, only the number of works on a given taxa is return, leading to a
@@ -66,7 +66,7 @@ This function is mainly a wrapper of the work of others.
 }
 \examples{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
- tax_oa_pq(data_fungi_mini_cleanNames)
+  tax_oa_pq(data_fungi_mini_cleanNames)
 
 ggplot(
   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
