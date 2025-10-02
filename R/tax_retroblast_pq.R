@@ -27,7 +27,7 @@
 #' as good matches.
 #' @param retmax (default: 500) maximum number of sequences to retrieve
 #' from NCBI nucleotide database for each taxon name.
-#' @param add_to_phyloseq (logical, default FALSE) If TRUE, a new phyloseq object
+#' @param add_to_phyloseq (logical, default TRUE) If TRUE, a new phyloseq object
 #' is returned with new columns in the tax_table.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param start_date The start date for the search. If NULL (default),
@@ -107,7 +107,7 @@ tax_retroblast_pq <- function(physeq,
                               marker = NULL,
                               id_cut = 99,
                               retmax = 500,
-                              add_to_phyloseq = FALSE,
+                              add_to_phyloseq = TRUE,
                               verbose = TRUE,
                               start_date = NULL,
                               end_date = NULL,

@@ -19,8 +19,10 @@
 #'   publications from Open Alex for each taxa as a list of data.frame. Can be
 #'   useful to filter works for example by topic or by number of citations (see
 #'   section examples).
-#' @param add_to_phyloseq If TRUE, return a new phyloseq
-#'   object with new columns in the tax_table slot. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#'   If TRUE, return a new phyloseq object with new columns in the tax_table slot.
+#'   Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+#'   Cannot be TRUE if `taxnames` is provided.
 #' @param type_works (A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 #' Only used if count_only is set to FALSE Default is c("article", "review",
 #'  "book-chapter", "book", "letter").
@@ -108,7 +110,7 @@ tax_oa_pq <- function(physeq = NULL,
                       taxnames = NULL,
                       count_only = FALSE,
                       return_raw_oa = FALSE,
-                      add_to_phyloseq = FALSE,
+                      add_to_phyloseq = NULL,
                       type_works = c("article", "review", "book-chapter", "book", "letter"),
                       verbose = TRUE,
                       ...) {
@@ -120,6 +122,12 @@ tax_oa_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

@@ -20,7 +20,7 @@
 #' @param main_taxon_threshold (numeric) See [taxize::gna_verifier]
 #'   documentation.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
-#' @param add_to_phyloseq (logical, default FALSE)
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'
 #'  - If FALSE, return the result of the [taxize::gna_verifier]
 #'    function + a column taxa_names_in_phyloseq depicting the name of the
@@ -93,7 +93,7 @@ gna_verifier_pq <- function(physeq = NULL,
                             stats = FALSE,
                             main_taxon_threshold = 0.5,
                             verbose = TRUE,
-                            add_to_phyloseq = FALSE,
+                            add_to_phyloseq = NULL,
                             genus_species_canonical_col = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
@@ -101,6 +101,12 @@ gna_verifier_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

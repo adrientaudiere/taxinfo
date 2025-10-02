@@ -9,8 +9,10 @@
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
 #' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
-#' @param add_to_phyloseq (logical, default FALSE) If TRUE, add new column(s)
-#'  in the tax_table of the phyloseq object. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#'  If TRUE, add new column(s) in the tax_table of the phyloseq object. 
+#'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+#'  Cannot be TRUE if `taxnames` is provided.
 #' @param by_country (logical, default FALSE) If TRUE, the number of occurences
 #'   is computed by country
 #' @param by_years (logical, default FALSE) If TRUE, the number of occurences
@@ -31,10 +33,16 @@
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini, add_to_phyloseq = TRUE)
 #'
-#' tax_gbif_occur_pq(data_fungi_mini_cleanNames)
-#' tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE)
-#' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = TRUE)
-#' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE, add_to_phyloseq = TRUE)
+#' # Using phyloseq object (add_to_phyloseq defaults to TRUE)
+#' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames)
+#' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
+#' 
+#' # Get data without adding to phyloseq
+#' tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
+#' tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
+#' 
+#' # Using taxnames vector (returns a tibble)
+#' tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 #' ggplot(
 #'   data_fungi_mini_cleanNames@tax_table,
 #'   aes(y = log10(as.numeric(Global_occurences)), x = currentCanonicalSimple)
@@ -46,7 +54,7 @@
 tax_gbif_occur_pq <- function(physeq = NULL,
                               taxonomic_rank = "currentCanonicalSimple",
                               taxnames = NULL,
-                              add_to_phyloseq = FALSE,
+                              add_to_phyloseq = NULL,
                               by_country = FALSE,
                               by_years = FALSE,
                               verbose = TRUE,
@@ -57,6 +65,12 @@ tax_gbif_occur_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

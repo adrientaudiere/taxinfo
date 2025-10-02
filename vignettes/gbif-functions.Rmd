@@ -36,6 +36,9 @@ The Global Biodiversity Information Facility (GBIF) is the world's largest repos
 - `plot_tax_gbif_pq()`: Create distribution maps
 - `range_bioreg_pq()`: Analyze biogeographic ranges
 - `tax_check_ecoregion()`: Validate occurrences against ecoregions
+- `tax_occur_check_pq()`: Check occurrences within a geographic radius
+
+**Note:** Functions like `tax_gbif_occur_pq()` and `tax_occur_check_pq()` can work with either phyloseq objects or vectors of taxonomic names (`taxnames` parameter). When using a phyloseq object, results are automatically added to the tax_table. When using `taxnames`, a tibble is returned.
 
 ## Basic Occurrence Data Retrieval
 

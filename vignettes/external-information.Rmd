@@ -38,6 +38,8 @@ Beyond occurrence data, `taxinfo` integrates multiple knowledge sources to enric
 - `tax_info_pq()`: Custom database integration (TAXREF, traits, etc.)
 - `tax_photos_pq()`: Taxonomic images and media
 
+**Note:** All these functions can work with either phyloseq objects or vectors of taxonomic names (`taxnames` parameter). When using a phyloseq object, results are automatically added to the tax_table. When using `taxnames`, a tibble is returned.
+
 ## Wikipedia Integration
 
 Wikipedia is a rich source of public interest and knowledge about species. By integrating Wikipedia data, you can have a proxy of the societal attention given to different taxa. The number of page views, the mean page length and the number of languages in which a species is covered can provide insights into its cultural significance measuring a sort of species salience in public knowledge.
@@ -54,11 +56,8 @@ data_clean <- gna_verifier_pq(data_fungi_mini,
   add_to_phyloseq = TRUE
 )
 
-# Add Wikipedia information
-data_clean_wk <- tax_get_wk_info_pq(data_clean,
-  add_to_phyloseq = TRUE,
-  n_days = 30
-)
+# Add Wikipedia information (add_to_phyloseq defaults to TRUE for phyloseq objects)
+data_clean_wk <- tax_get_wk_info_pq(data_clean, n_days = 30)
 # View Wikipedia columns
 data_clean_wk@tax_table |>
   as.data.frame() |>
