@@ -24,7 +24,7 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
   lon_offset <- radius_km / (111.32 * cos(latitude * pi / 180))
 
   if (is.null(longitude) | is.null(latitude) | is.null(radius_km)) {
-    cli_error("Parameters {.arg longitude}, {.arg latitude} and {.arg radius_km} must be provided")
+    cli::cli_abort("Parameters {.arg longitude}, {.arg latitude} and {.arg radius_km} must be provided")
   }
   res <- list(
     "xmin" = longitude - lon_offset,
@@ -59,17 +59,29 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #' @export
 #'
 #' @examples
-#' taxa_summary_text(data_fungi_cleanNames, taxnames = c("Xylodon raduloides"))
+#' taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
 #' taxa_summary_text(data_fungi_cleanNames,
-#'   taxnames = c("Xylodon raduloides"),
+#'   taxnames = "Xylodon flaviporus",
 #'   min_nb_seq = 100, verbose = FALSE
 #' )
 #' taxa_summary_text(data_fungi_cleanNames,
 #'   taxonomic_rank = "Trait",
 #'   taxnames = c("Soft Rot"), verbose = FALSE
 #' )
-taxa_summary_text <- function(physeq, taxonomic_rank = "currentCanonicalSimple", taxnames = NULL, verbose = TRUE, min_nb_seq = 0, ...) {
-  new_physeq <- select_taxa_pq(physeq = physeq, taxonomic_rank = taxonomic_rank, taxnames = taxnames, verbose = verbose, clean_pq = FALSE, ...) |> clean_pq(silent = T)
+taxa_summary_text <- function(physeq,
+                              taxonomic_rank = "currentCanonicalSimple",
+                              taxnames = NULL,
+                              verbose = TRUE,
+                              min_nb_seq = 0,
+                              ...) {
+  new_physeq <- select_taxa_pq(
+    physeq = physeq,
+    taxonomic_rank = taxonomic_rank,
+    taxnames = taxnames,
+    verbose = verbose,
+    clean_pq = FALSE, ...
+  ) |>
+    clean_pq(silent = TRUE)
 
   if (min_nb_seq > 0) {
     new_physeq@otu_table[new_physeq@otu_table < min_nb_seq] <- 0
@@ -79,12 +91,14 @@ taxa_summary_text <- function(physeq, taxonomic_rank = "currentCanonicalSimple",
       removed_taxa <- ntaxa(new_physeq) - ntaxa(new_physeq2)
       removed_sequences <- sum(new_physeq@otu_table) - sum(new_physeq2@otu_table)
       removed_occurrences <- sum(new_physeq@otu_table > 0) - sum(new_physeq2@otu_table > 0)
-      
-      cli_message(c("Filtering OTUs with less than {.val {min_nb_seq}} sequences removed:",
-                    "*" = "{.val {removed_samples}} samples",
-                    "*" = "{.val {removed_taxa}} taxa", 
-                    "*" = "{.val {removed_sequences}} sequences",
-                    "*" = "{.val {removed_occurrences}} occurrences"))
+
+      cli::cli_alert_info(c(
+        "Filtering OTUs with less than {.val {min_nb_seq}} sequences removed:/n",
+        "  • {.val {removed_samples}} samples/n",
+        "  • {.val {removed_taxa}} taxa/n",
+        "  • {.val {removed_sequences}} sequences/n",
+        "  • {.val {removed_occurrences}} occurrences/n"
+      ))
     }
     new_physeq <- new_physeq2
   }
@@ -142,7 +156,7 @@ check_package <- function(package,
                           quietly = TRUE) {
   # Validate inputs
   if (!is.character(package) || length(package) != 1) {
-    cli_error("'{.arg package}' must be a single character string")
+    cli::cli_abort("'{.arg package}' must be a single character string")
   }
 
   if (!is.null(github_repo)) {
@@ -151,7 +165,7 @@ check_package <- function(package,
 
   if (!repo %in% c("CRAN", "Bioconductor", "GitHub") && is.null(github_repo)) {
     if (!is.character(repo)) {
-      cli_error("'{.arg repo}' must be one of {.val CRAN}, {.val Bioconductor}, {.val GitHub}")
+      cli::cli_abort("'{.arg repo}' must be one of {.val CRAN}, {.val Bioconductor}, {.val GitHub}")
     }
   }
 
@@ -170,7 +184,7 @@ check_package <- function(package,
       ),
       "GitHub" = {
         if (is.null(github_repo)) {
-          cli_error("For GitHub packages, '{.arg github_repo}' must be specified as {.val username/repository}")
+          cli::cli_abort("For GitHub packages, '{.arg github_repo}' must be specified as {.val username/repository}")
         }
         paste0(
           'if (!requireNamespace("devtools")) {\n',
@@ -182,56 +196,17 @@ check_package <- function(package,
     )
 
     if (stop_on_error) {
-      cli_error(c("Package {.pkg {package}} is required but not installed.",
-                  "i" = "To install it, run:",
-                  " " = "{.code {install_msg}}"))
+      cli::cli_abort(c("Package {.pkg {package}} is required but not installed.",
+        "i" = "To install it, run:",
+        " " = "{.code {install_msg}}"
+      ))
     } else {
-      cli_message(c("Package {.pkg {package}} is required but not installed.",
-                    "i" = "To install it, run:",
-                    " " = "{.code {install_msg}}"))
+      cli::cli_alert_info(c("Package {.pkg {package}} is required but not installed.",
+        "i" = "To install it, run:",
+        " " = "{.code {install_msg}}"
+      ))
     }
   }
 
   return(is_available)
-}
-
-
-#' Enhanced CLI messaging functions
-#'
-#' @description
-#' These functions provide enhanced messaging with colors and formatting using the cli package.
-#' They replace standard message(), warning(), and stop() calls with more visually appealing output.
-#'
-#' @param msg The message text
-#' @param ... Additional arguments passed to cli functions
-#' @name cli_messages
-#' @keywords internal
-#'
-NULL
-
-#' @describeIn cli_messages Enhanced message with colors and parameter highlighting
-cli_message <- function(msg, ...) {
-  cli::cli_alert_info(msg, ...)
-}
-
-#' @describeIn cli_messages Enhanced warning with colors
-cli_warning <- function(msg, ...) {
-  cli::cli_alert_warning(msg, ...)
-}
-
-#' @describeIn cli_messages Enhanced error with colors
-cli_error <- function(msg, ...) {
-  cli::cli_abort(msg, ...)
-}
-
-#' @describeIn cli_messages Enhanced success message with colors
-cli_success <- function(msg, ...) {
-  cli::cli_alert_success(msg, ...)
-}
-
-#' @describeIn cli_messages Create a progress bar for loops
-#' @param total Total number of iterations
-#' @param format Format string for progress bar
-cli_progress_bar <- function(total, format = "Processing {pb_current}/{pb_total} {pb_name}: {pb_bar} {pb_percent} ETA: {pb_eta}") {
-  cli::cli_progress_bar(total = total, format = format)
 }

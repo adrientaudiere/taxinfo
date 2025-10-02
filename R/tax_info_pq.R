@@ -125,15 +125,15 @@ tax_info_pq <- function(physeq,
                         sep = ",",
                         dec = ".") {
   if (is.null(file_name)) {
-    cli_error("You must provide a file path to your CSV file with {.arg file_name}")
+    cli::cli_abort("You must provide a file path to your CSV file with {.arg file_name}")
   }
 
   if (!file.exists(file_name)) {
-    cli_error("The file path {.path {file_name}} does not exist")
+    cli::cli_abort("The file path {.path {file_name}} does not exist")
   }
 
   if (is.null(csv_taxonomic_rank)) {
-    cli_error("You must provide the name of the column containing taxonomic names with {.arg csv_taxonomic_rank}")
+    cli::cli_abort("You must provide the name of the column containing taxonomic names with {.arg csv_taxonomic_rank}")
   }
 
   taxnames <- taxonomic_rank_to_taxnames(
@@ -181,7 +181,7 @@ tax_info_pq <- function(physeq,
     info_df <- read.csv(file_name, sep = sep, dec = dec, colClasses = "character")
 
     if (!(csv_taxonomic_rank %in% colnames(info_df))) {
-      cli_error("The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file")
+      cli::cli_abort("The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file")
     }
 
     taxtab_new <- info_df |>

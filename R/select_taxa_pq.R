@@ -17,8 +17,8 @@
 #' @author Adrien Taudière
 #'
 #' @examples
-#' select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple", taxnames = c("Xylodon raduloides", "Basidiodendron eyrei"), verbose = FALSE, clean_pq = FALSE)
-#' select_taxa_pq(data_fungi, taxonomic_rank = c("Genus", "Species"), taxnames = c("Xylodon raduloides"), verbose = FALSE, clean_pq = FALSE)
+#' select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple", taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"), verbose = FALSE, clean_pq = FALSE)
+#' select_taxa_pq(data_fungi, taxonomic_rank = c("Genus", "Species"), taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE)
 #'
 #' select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot")) |>
 #'   summary_plot_pq()

@@ -101,7 +101,7 @@ tax_photos_pq <- function(physeq = NULL,
                           simple_caption = FALSE,
                           ...) {
   if (sum(colnames(data_fungi_mini_cleanNames@tax_table) %in% col_name_url) > 0) {
-    cli_error("There is already a column called {.val {col_name_url}} in the @tax_table")
+    cli::cli_abort("There is already a column called {.val {col_name_url}} in the @tax_table")
   }
   taxnames_raw <- taxonomic_rank_to_taxnames(
     physeq = physeq,
@@ -118,22 +118,22 @@ tax_photos_pq <- function(physeq = NULL,
     check_package("wikitaxa")
     taxnames <- taxnames_raw
   } else {
-    cli_error("Source parameter allows only {.val gbif} or {.val wikitaxa} values")
+    cli::cli_abort("Source parameter allows only {.val gbif} or {.val wikitaxa} values")
   }
 
   photo_url <- rep(NA, length(taxnames))
   captions <- rep(NA, length(taxnames))
 
-  # Initialize progress bar if verbose
+
   if (verbose) {
-    pb <- cli_progress_bar(total = length(taxnames))
+    pb <- cli::cli_progress_bar(total = length(taxnames))
   }
 
   for (i in seq_along(taxnames)) {
     if (verbose) {
       cli::cli_progress_update(id = pb, set = i)
     }
-    
+
     if (source == "gbif") {
       # select only the first photo for each species
       xs_gbif <- suppressWarnings(rgbif::name_usage(gbif_taxa$usageKey[gbif_taxa$canonicalName == taxnames[i]], data = "media")$data$identifier[[1]])
@@ -141,11 +141,11 @@ tax_photos_pq <- function(physeq = NULL,
       if (is.null(xs_gbif)) {
         photo_url[i] <- NA
         if (verbose) {
-          cli_message("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
+          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
         }
       } else {
         if (verbose) {
-          cli_message("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
+          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
         }
         photo_url[i] <- xs_gbif
       }
@@ -155,7 +155,7 @@ tax_photos_pq <- function(physeq = NULL,
       )
       if (sum(xs_wt$claims$property_value == "image") > 0) {
         if (verbose) {
-          cli_message("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
+          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
         }
 
         photo_names <- xs_wt$claims |>
@@ -180,12 +180,12 @@ tax_photos_pq <- function(physeq = NULL,
       } else {
         photo_url[i] <- NA
         if (verbose) {
-          cli_message("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
+          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
         }
       }
     }
   }
-  
+
   # Complete progress bar
   if (verbose) {
     cli::cli_progress_done(id = pb)
@@ -212,12 +212,14 @@ tax_photos_pq <- function(physeq = NULL,
     taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
     names_not_found <- sum(is.na(photo_url))
     taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
-    
-    cli_success(c("Photo download summary:",
-                  "*" = "{.val {photos_found}} photos found and downloaded",
-                  "*" = "{.val {taxa_depicted}} taxa depicted",
-                  "*" = "{.val {names_not_found}} taxonomic names not found",
-                  "*" = "{.val {taxa_no_photo}} taxa have no photo URL"))
+
+    cli::cli_bullets(c(
+      "v" = "Photo download summary:/n",
+      "  • {.val {photos_found}} photos found and downloaded/n",
+      "  • {.val {taxa_depicted}} taxa depicted/n",
+      "  • {.val {names_not_found}} taxonomic names not found/n",
+      "  • {.val {taxa_no_photo}} taxa have no photo URL"
+    ))
   }
 
   if (add_to_phyloseq) {
@@ -225,7 +227,7 @@ tax_photos_pq <- function(physeq = NULL,
   } else if (gallery) {
     tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
     if (verbose) {
-      cli_message("Creating captions for gallery")
+      cli::cli_alert_info("Creating captions for gallery")
     }
     for (i in seq_along(taxnames)) {
       if (simple_caption) {

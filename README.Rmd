@@ -80,28 +80,32 @@ library(MiscMetabar)
 data("data_fungi_mini", package = "MiscMetabar")
 
 # Step 1: Verify and clean taxonomic names
-data_fungi_clean <- gna_verifier_pq(data_fungi_mini, 
-                                   data_sources = 210,
-                                   add_to_phyloseq = TRUE)
+data_fungi_clean <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210,
+  add_to_phyloseq = TRUE
+)
 
 # Step 2: Add GBIF occurrence data
 data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean,
-                                   add_to_phyloseq = TRUE,
-                                   col_prefix = "gbif_")
+  add_to_phyloseq = TRUE,
+  col_prefix = "gbif_"
+)
 
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 data_with_traits <- tax_info_pq(data_with_gbif,
-                               taxonomic_rank = "currentCanonicalSimpleGenus",
-                               file_name = fungal_traits,
-                               csv_taxonomic_rank = "GENUS",
-                               col_prefix = "ft_",
-                               sep = ";")
+  taxonomic_rank = "currentCanonicalSimpleGenus",
+  file_name = fungal_traits,
+  csv_taxonomic_rank = "GENUS",
+  col_prefix = "ft_",
+  sep = ";"
+)
 
 # Step 4: Add Wikipedia information
 data_final <- tax_get_wk_info_pq(data_with_traits,
-                                add_to_phyloseq = TRUE,
-                                col_prefix = "wiki_")
+  add_to_phyloseq = TRUE,
+  col_prefix = "wiki_"
+)
 
 # View the enriched taxonomic table
 head(data_final@tax_table)

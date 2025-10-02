@@ -58,10 +58,10 @@ tax_check_ecoregion <- function(taxa_name,
                                 min_nb_occur = 0,
                                 verbose = TRUE) {
   if (length(longitudes) != length(latitudes)) {
-    cli_error("Parameters {.arg longitudes} and {.arg latitudes} must have the same length")
+    cli::cli_abort("Parameters {.arg longitudes} and {.arg latitudes} must have the same length")
   }
   if (verbose) {
-    cli_message("Downloading ecoregion data for {.emph {taxa_name}}")
+    cli::cli_alert_info("Downloading ecoregion data for {.emph {taxa_name}}")
   }
   occurrences <- rgbif::occ_search(
     scientificName = taxa_name,
@@ -73,12 +73,12 @@ tax_check_ecoregion <- function(taxa_name,
     filter(!is.na(decimalLongitude), !is.na(decimalLatitude))
 
   if (nrow(clean_occurrences) == 0) {
-    cli_warning("No valid occurrences found")
+    cli::cli_alert_warning("No valid occurrences found")
     return(FALSE)
   }
 
   if (verbose) {
-    cli_message("Downloading and validating ecoregion data")
+    cli::cli_alert_info("Downloading and validating ecoregion data")
   }
   gbif.range::check_and_get_bioreg("eco_terra")
 
@@ -98,14 +98,14 @@ tax_check_ecoregion <- function(taxa_name,
     coords = c("lon", "lat"), crs = 4326
   )
   if (verbose) {
-    cli_message("Listing ecoregions for {.emph {taxa_name}}")
+    cli::cli_alert_info("Listing ecoregions for {.emph {taxa_name}}")
   }
 
   species_ecoregions <- sf::st_intersection(occurrences_sf, ecoregions) |>
     sf::st_drop_geometry()
 
   if (nrow(species_ecoregions) == 0) {
-    cli_warning("No ecoregions found for species occurrences")
+    cli::cli_alert_warning("No ecoregions found for species occurrences")
     return(FALSE)
   }
 
@@ -113,7 +113,7 @@ tax_check_ecoregion <- function(taxa_name,
     sort(decreasing = TRUE) |>
     (\(tab) tab[as.numeric(tab) > min_proportion * nrow(species_ecoregions)])()
   if (verbose) {
-    cli_message("Listing ecoregions for {.val {length(longitudes)}} GPS points")
+    cli::cli_alert_info("Listing ecoregions for {.val {length(longitudes)}} GPS points")
   }
 
   points_ecoregion <- sf::st_intersection(samples_point, ecoregions) |>

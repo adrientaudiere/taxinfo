@@ -61,13 +61,12 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     distinct()
 
   if (by_country && by_years) {
-    cli_error("You can't set both {.arg by_country} and {.arg by_years} to TRUE")
+    cli::cli_abort("You can't set both {.arg by_country} and {.arg by_years} to TRUE")
   } else if (by_country) {
-    # Initialize progress bar if verbose
     if (verbose) {
-      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+      pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
     }
-    
+
     tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
     for (i in seq_along(gbif_taxa$usageKey)) {
       x <- gbif_taxa$usageKey[i]
@@ -75,7 +74,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "country")$facet$country
       tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
@@ -86,11 +85,10 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     }
     tib_occur <- bind_rows(tib_occur_list)
   } else if (by_years) {
-    # Initialize progress bar if verbose
     if (verbose) {
-      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+      pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
     }
-    
+
     tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
     for (i in seq_along(gbif_taxa$usageKey)) {
       x <- gbif_taxa$usageKey[i]
@@ -98,7 +96,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
       tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
@@ -109,11 +107,10 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     }
     tib_occur <- bind_rows(tib_occur_list)
   } else {
-    # Initialize progress bar if verbose
     if (verbose) {
-      pb <- cli_progress_bar(total = length(gbif_taxa$usageKey))
+      pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
     }
-    
+
     tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
     for (i in seq_along(gbif_taxa$usageKey)) {
       x <- gbif_taxa$usageKey[i]
@@ -121,7 +118,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli_message("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
       }
       tib <- tibble(
         "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,

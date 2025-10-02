@@ -173,14 +173,16 @@ gna_verifier_pq <- function(physeq,
     genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
     accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
     genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
-    
-    cli_success(c("GNA verification summary:",
-                  "*" = "Total taxa in phyloseq: {.val {total_taxa}}",
-                  "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
-                  "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
-                  "*" = "Total matches found: {.val {total_matches}}",
-                  "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
-                  "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"))
+
+    cli::cli_bullets(c(
+      "v" = "GNA verification summary:",
+      "*" = "Total taxa in phyloseq: {.val {total_taxa}}",
+      "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
+      "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
+      "*" = "Total matches found: {.val {total_matches}}",
+      "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
+      "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
+    ))
   }
 
   if (add_to_phyloseq) {

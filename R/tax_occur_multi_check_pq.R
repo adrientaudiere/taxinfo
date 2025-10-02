@@ -49,10 +49,10 @@ tax_occur_multi_check_pq <- function(
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
   } else if (is.null(longitudes) & is.null(lon_column)) {
-    cli_error("Either {.arg longitudes} or {.arg lon_column} must be provided")
+    cli::cli_abort("Either {.arg longitudes} or {.arg lon_column} must be provided")
   } else if (!is.null(longitudes)) {
     if (length(longitudes) != nsamples(physeq)) {
-      cli_error("The length of {.arg longitudes} must be equal to the number of samples in the phyloseq object")
+      cli::cli_abort("The length of {.arg longitudes} must be equal to the number of samples in the phyloseq object")
     }
     physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), longitudes_for_multi_check = longitudes))
     lon_column <- "longitudes_for_multi_check"
@@ -61,10 +61,10 @@ tax_occur_multi_check_pq <- function(
   if (is.null(latitudes) & !is.null(lat_column)) {
     latitudes <- as.numeric(sample_data(physeq)[, lat_column])
   } else if (is.null(latitudes) & is.null(lat_column)) {
-    cli_error("Either {.arg latitudes} or {.arg lat_column} must be provided")
+    cli::cli_abort("Either {.arg latitudes} or {.arg lat_column} must be provided")
   } else if (!is.null(latitudes)) {
     if (length(latitudes) != nsamples(physeq)) {
-      cli_error("The length of {.arg latitudes} must be equal to the number of samples in the phyloseq object")
+      cli::cli_abort("The length of {.arg latitudes} must be equal to the number of samples in the phyloseq object")
     }
     physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), latitudes_for_multi_check = latitudes))
     lat_column <- "latitudes_for_multi_check"
@@ -74,17 +74,17 @@ tax_occur_multi_check_pq <- function(
     unique()
   tax_range <- vector("list", length = length(longlat))
   names(tax_range) <- longlat
-  
-  # Initialize progress bar if verbose
+
+
   if (verbose) {
-    pb <- cli_progress_bar(total = length(longlat))
+    pb <- cli::cli_progress_bar(total = length(longlat))
   }
-  
+
   for (i in seq_along(longlat)) {
     gps <- longlat[i]
     if (verbose) {
       cli::cli_progress_update(id = pb, set = i)
-      cli_message("Processing GPS point: {.val {gps}}")
+      cli::cli_alert_info("Processing GPS point: {.val {gps}}")
     }
     long <- stringr::str_split_i(gps, "_", 1) |>
       as.numeric()
@@ -114,7 +114,7 @@ tax_occur_multi_check_pq <- function(
         sample_name = paste(sample_names(new_physeq_i), collapse = "___")
       )
   }
-  
+
   # Complete progress bar
   if (verbose) {
     cli::cli_progress_done(id = pb)
@@ -147,7 +147,7 @@ tax_occur_multi_check_pq <- function(
   }
 
   if (sum(otu_matrix_occurence > min_occur) != nrow(tax_range_mini)) {
-    cli_error("Some taxa occurrences were not correctly mapped to the otu_matrix_occurence")
+    cli::cli_abort("Some taxa occurrences were not correctly mapped to the otu_matrix_occurence")
   }
 
   new_physeq <- taxa_as_rows(physeq)
@@ -159,11 +159,13 @@ tax_occur_multi_check_pq <- function(
     remaining_taxa <- ntaxa(new_physeq)
     remaining_samples <- nsamples(new_physeq)
     remaining_occurrences <- sum(new_physeq@otu_table > 0)
-    
-    cli_message(c("After filtering taxa with at least {.val {min_occur + 1}} GBIF occurrences within {.val {radius_km}}km:",
-                  "*" = "Taxa: {.val {remaining_taxa}}/{.val {ntaxa(physeq)}} remain",
-                  "*" = "Samples: {.val {remaining_samples}}/{.val {nsamples(physeq)}} remain", 
-                  "*" = "Occurrences: {.val {remaining_occurrences}}/{.val {sum(physeq@otu_table > 0)}} remain"))
+
+    cli::cli_alert_info(c(
+      "After filtering taxa with at least {.val {min_occur + 1}} GBIF occurrences within {.val {radius_km}}km:/n",
+      "  • Taxa: {.val {remaining_taxa}}/{.val {ntaxa(physeq)}} remain/n",
+      "  • Samples: {.val {remaining_samples}}/{.val {nsamples(physeq)}} remain/n",
+      "  • Occurrences: {.val {remaining_occurrences}}/{.val {sum(physeq@otu_table > 0)}} remain"
+    ))
   }
   return(list(
     "tax_range_list" = tax_range,

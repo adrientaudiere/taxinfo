@@ -88,15 +88,15 @@ tax_get_wk_info_pq <- function(physeq,
   )
 
   if (verbose) {
-    cli_message("Getting taxonomic IDs from Wikidata...")
+    cli::cli_alert_info("Getting taxonomic IDs from Wikidata...")
   }
   taxids <- sapply(taxnames, wikitaxa::wt_data_id)
 
   wk_lang <- lapply(taxids, tax_get_wk_lang, languages_pages = languages_pages)
 
-  # Initialize progress bar if verbose
+
   if (verbose) {
-    pb <- cli_progress_bar(total = length(taxnames))
+    pb <- cli::cli_progress_bar(total = length(taxnames))
   }
 
   wk_pages_info <- Map(function(x, names_x) {
@@ -104,7 +104,7 @@ tax_get_wk_info_pq <- function(physeq,
       # Update progress bar
       idx <- which(names(wk_lang) == names_x)
       cli::cli_progress_update(id = pb, set = idx)
-      cli_message("Getting page views from Wikipedia for {.emph {names_x}}")
+      cli::cli_alert_info("Getting page views from Wikipedia for {.emph {names_x}}")
     }
     tax_get_wk_pages_info(
       tib_list = x,
@@ -115,7 +115,7 @@ tax_get_wk_info_pq <- function(physeq,
       n_days = n_days
     )
   }, wk_lang, names(wk_lang))
-  
+
   # Complete progress bar
   if (verbose) {
     cli::cli_progress_done(id = pb)
@@ -225,7 +225,7 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
       }
     },
     error = function(e) {
-      cli_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
+      cli::cli_alert_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
       return(NA)
     }
   )
@@ -313,7 +313,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
       filter(lang %in% languages_pages)
     if (nrow(tib_list_pages) == 0) {
       if (verbose) {
-        cli_warning("No pages found for taxon ID {.val {taxon_id}} in languages: {.val {paste(languages_pages, collapse = ', ')}}")
+        cli::cli_alert_warning("No pages found for taxon ID {.val {taxon_id}} in languages: {.val {paste(languages_pages, collapse = ', ')}}")
       }
       return(tibble("page_length" = 0, "page_views" = 0))
     }
@@ -323,7 +323,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
     {
       if (nrow(tib_list_pages) == 0 | is.na(tib_list_pages$site[1]) | tib_list_pages$site[1] == 0) {
         if (verbose) {
-          cli_warning("No pages found for taxon ID {.val {taxon_id}}")
+          cli::cli_alert_warning("No pages found for taxon ID {.val {taxon_id}}")
         }
         return(list("page_length" = 0, "page_views" = 0))
       }
@@ -336,7 +336,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         title <- tib_list_pages$title[tib_list_pages$site == site_name]
 
         if (verbose) {
-          cli_message("Getting page length for {.emph {title}} ({.val {lang_code}})")
+          cli::cli_alert_info("Getting page length for {.emph {title}} ({.val {lang_code}})")
         }
         wiki_url <- paste0(
           "https://", lang_code,
@@ -360,7 +360,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         Sys.sleep(time_to_sleep)
 
         if (verbose) {
-          cli_message("Getting page views for {.emph {title}} ({.val {lang_code}})")
+          cli::cli_alert_info("Getting page views for {.emph {title}} ({.val {lang_code}})")
         }
 
         if (is.character(start_date)) {
@@ -403,7 +403,7 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
       return(list("page_length" = pages_len, "page_views" = lang_views))
     },
     error = function(e) {
-      cli_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
+      cli::cli_alert_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
       return(NA)
     }
   )

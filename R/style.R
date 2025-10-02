@@ -1,7 +1,7 @@
 #' ggplot theme for IdEst
 #'
 #' @description
-#'' This theme is used by Adrien Taudière [IdEst](https://adrientaudiere.com/).
+#' This theme is used by Adrien Taudière [IdEst](https://adrientaudiere.com/).
 #'  Based on [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes/tree/master)
 #' `hrbrthemes::theme_ipsum()` by boB Rudis.
 #'
@@ -28,7 +28,7 @@
 #' @param caption_size Font size for caption (default is 9).
 #' @param caption_face Font face for caption (default is "plain").
 #' @param caption_margin Margin above caption (default is 10).
-#' @param axis_text_size Font size for axis text (default is 80% of base_size).
+#' @param axis_text_size Font size for axis text (default is 80\% of base_size).
 #' @param axis_text_family  Font family for axis text (default is sans_family).
 #' @param axis_title_family Font family for axis titles (default is mono_family).
 #' @param axis_title_size Font size for axis titles (default is 12).
@@ -46,43 +46,45 @@
 #' @author Adrien Taudière
 #' @export
 #'
-theme_idest <- function(sans_family = if (.Platform$OS.type == "windows")
-  "Roboto Condensed"
-  else
-    "Roboto Condensed Light",
-  serif_family = "Linux Libertine G",
-  mono_family = "Fira Code",
-  base_size = 11.5,
-  plot_title_family = serif_family,
-  plot_title_size = 18,
-  plot_title_face = "bold",
-  plot_title_margin = 10,
-  subtitle_family = serif_family,
-  subtitle_size = 13,
-  subtitle_face = "plain",
-  subtitle_margin = 15,
-  subtitle_color = "grey30",
-  strip_text_family = mono_family,
-  strip_text_size = 13,
-  strip_text_face = "plain",
-  strip_back_grey = FALSE,
-  caption_family = sans_family,
-  caption_size = 9,
-  caption_face = "plain",
-  caption_margin = 10,
-  axis_text_size = base_size * 0.8,
-  axis_text_family = sans_family,
-  axis_title_family = mono_family,
-  axis_title_size = 12,
-  axis_title_face = "plain",
-  axis_title_just = "c",
-  plot_margin = margin(12, 12, 12, 12),
-  panel_spacing = grid::unit(1.2, "lines"),
-  grid_col = "#cccccc",
-  grid = TRUE,
-  axis_col = "#cccccc",
-  axis = FALSE,
-  ticks = FALSE) {
+theme_idest <- function(
+    sans_family = if (.Platform$OS.type == "windows") {
+      "Roboto Condensed"
+    } else {
+      "Roboto Condensed Light"
+    },
+    serif_family = "Linux Libertine G",
+    mono_family = "Fira Code",
+    base_size = 11.5,
+    plot_title_family = serif_family,
+    plot_title_size = 18,
+    plot_title_face = "bold",
+    plot_title_margin = 10,
+    subtitle_family = serif_family,
+    subtitle_size = 13,
+    subtitle_face = "plain",
+    subtitle_margin = 15,
+    subtitle_color = "grey30",
+    strip_text_family = mono_family,
+    strip_text_size = 13,
+    strip_text_face = "plain",
+    strip_back_grey = FALSE,
+    caption_family = sans_family,
+    caption_size = 9,
+    caption_face = "plain",
+    caption_margin = 10,
+    axis_text_size = base_size * 0.8,
+    axis_text_family = sans_family,
+    axis_title_family = mono_family,
+    axis_title_size = 12,
+    axis_title_face = "plain",
+    axis_title_just = "c",
+    plot_margin = margin(12, 12, 12, 12),
+    panel_spacing = grid::unit(1.2, "lines"),
+    grid_col = "#cccccc",
+    grid = TRUE,
+    axis_col = "#cccccc",
+    axis = FALSE,
+    ticks = FALSE) {
   ret <- ggplot2::theme_minimal(base_family = sans_family, base_size = base_size)
 
   ret <- ret + theme(legend.background = element_blank())
@@ -97,23 +99,27 @@ theme_idest <- function(sans_family = if (.Platform$OS.type == "windows")
     ret <- ret + theme(panel.grid.minor = element_line(color = grid_col, linewidth = 0.15))
 
     if (inherits(grid, "character")) {
-      if (regexpr("X", grid)[1] < 0)
+      if (regexpr("X", grid)[1] < 0) {
         ret <- ret + theme(panel.grid.major.x = element_blank())
-      if (regexpr("Y", grid)[1] < 0)
+      }
+      if (regexpr("Y", grid)[1] < 0) {
         ret <- ret + theme(panel.grid.major.y = element_blank())
-      if (regexpr("x", grid)[1] < 0)
+      }
+      if (regexpr("x", grid)[1] < 0) {
         ret <- ret + theme(panel.grid.minor.x = element_blank())
-      if (regexpr("y", grid)[1] < 0)
+      }
+      if (regexpr("y", grid)[1] < 0) {
         ret <- ret + theme(panel.grid.minor.y = element_blank())
+      }
     }
   } else {
     ret <- ret + theme(panel.grid = element_blank())
-    ret <- ret + theme(panel.grid.major  = element_blank())
-    ret <- ret + theme(panel.grid.major.x  = element_blank())
-    ret <- ret + theme(panel.grid.major.y  = element_blank())
-    ret <- ret + theme(panel.grid.minor  = element_blank())
-    ret <- ret + theme(panel.grid.minor.x  = element_blank())
-    ret <- ret + theme(panel.grid.minor.y  = element_blank())
+    ret <- ret + theme(panel.grid.major = element_blank())
+    ret <- ret + theme(panel.grid.major.x = element_blank())
+    ret <- ret + theme(panel.grid.major.y = element_blank())
+    ret <- ret + theme(panel.grid.minor = element_blank())
+    ret <- ret + theme(panel.grid.minor.x = element_blank())
+    ret <- ret + theme(panel.grid.minor.y = element_blank())
   }
 
   if (inherits(axis, "character") | axis == TRUE) {
@@ -149,8 +155,7 @@ theme_idest <- function(sans_family = if (.Platform$OS.type == "windows")
     ret <- ret + theme(axis.ticks.length = grid::unit(5, "pt"))
   }
 
-  xj <- switch(
-    tolower(substr(axis_title_just, 1, 1)),
+  xj <- switch(tolower(substr(axis_title_just, 1, 1)),
     b = 0,
     l = 0,
     m = 0.5,
@@ -158,8 +163,7 @@ theme_idest <- function(sans_family = if (.Platform$OS.type == "windows")
     r = 1,
     t = 1
   )
-  yj <- switch(
-    tolower(substr(axis_title_just, 2, 2)),
+  yj <- switch(tolower(substr(axis_title_just, 2, 2)),
     b = 0,
     l = 0,
     m = 0.5,
@@ -257,7 +261,6 @@ theme_idest <- function(sans_family = if (.Platform$OS.type == "windows")
   }
 
   ret
-
 }
 
 
@@ -292,7 +295,7 @@ idest_pal <- list(
     c(1:11),
     colorblind = FALSE
   ),
-  ligth_color_idest =  list(
+  ligth_color_idest = list(
     c("#faefd1", "#a6d3e3", "#b4dfa7", "#8a9da4"),
     c(1:4),
     colorblind = FALSE
@@ -340,7 +343,7 @@ idest_pal <- list(
     c(6, 3, 4, 2, 1, 5),
     colorblind = TRUE
   ),
-  Levine2  = list(
+  Levine2 = list(
     c(
       "#E3C1CB",
       "#AD5A6B",
@@ -367,7 +370,7 @@ idest_pal <- list(
     c(1, 5, 6, 2, 3, 7, 8, 4),
     colorblind = TRUE
   ),
-   Sidhu = list(
+  Sidhu = list(
     c(
       "#af4646",
       "#762b35",
@@ -380,8 +383,8 @@ idest_pal <- list(
     c(5, 2, 6, 7, 3, 4, 1),
     colorblind = TRUE
   ),
-  Hokusai2 = list(c("#abc9c8", "#72aeb6", "#4692b0", "#2f70a1", "#134b73", "#0a3351"), c(5, 2, 4, 1, 6, 3), colorblind=TRUE), # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
-  Hokusai3 = list(c("#d8d97a", "#95c36e", "#74c8c3", "#5a97c1", "#295384", "#0a2e57"), c(4, 2, 5, 3, 1, 6), colorblind=TRUE) # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
+  Hokusai2 = list(c("#abc9c8", "#72aeb6", "#4692b0", "#2f70a1", "#134b73", "#0a3351"), c(5, 2, 4, 1, 6, 3), colorblind = TRUE), # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
+  Hokusai3 = list(c("#d8d97a", "#95c36e", "#74c8c3", "#5a97c1", "#295384", "#0a2e57"), c(4, 2, 5, 3, 1, 6), colorblind = TRUE) # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
 )
 
 
@@ -402,70 +405,76 @@ idest_pal <- list(
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudière
-scale_color_idest_c <- function(palette_name="all_color_idest", direction = 1, ...) {
+scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
     stop("Direction not valid. Please use 1 for standard palette or -1 for reversed palette.")
   }
 
-  scale_color_gradientn(colors = idest_colors(
-    palette_name = palette_name,
-    direction = direction,
-    override_order = F
-  ),
-  ...)
+  scale_color_gradientn(
+    colors = idest_colors(
+      palette_name = palette_name,
+      direction = direction,
+      override_order = F
+    ),
+    ...
+  )
 }
 
 
-scale_fill_idest_c <- function(palette_name="all_color_idest", direction = 1, ...) {
+scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
     stop("Direction not valid. Please use 1 for standard palette or -1 for reversed palette.")
   }
 
-  scale_color_gradientn(colors = idest_colors(
-    palette_name = palette_name,
-    direction = direction,
-    override_order = F
-  ),
-  ...)
+  scale_color_gradientn(
+    colors = idest_colors(
+      palette_name = palette_name,
+      direction = direction,
+      override_order = F
+    ),
+    ...
+  )
 }
 
 
-scale_color_idest_d <- function(palette_name="all_color_idest",
+scale_color_idest_d <- function(palette_name = "all_color_idest",
                                 direction = 1,
                                 override_order = FALSE,
                                 ...) {
   discrete_scale(
     aesthetics = "colour",
     scale_name = "moma_d",
-    palette = function(n)
+    palette = function(n) {
       idest_colors(
         palette_name = palette_name,
         n = n,
         direction = direction,
         override_order = override_order
-      ),
+      )
+    },
     ...
   )
 }
 
-scale_fill_idest_d <- function(palette_name="all_color_idest",
+scale_fill_idest_d <- function(palette_name = "all_color_idest",
                                direction = 1,
                                override_order = FALSE,
                                ...) {
   discrete_scale(
     aesthetics = "fill",
     scale_name = "moma_d",
-    palette = function(n)
+    palette = function(n) {
       idest_colors(
         palette_name = palette_name,
         n = n,
         direction = direction,
         override_order = override_order
-      ),
+      )
+    },
     ...
   )
 }
@@ -485,7 +494,7 @@ scale_fill_idest_d <- function(palette_name="all_color_idest",
 #' @returns A vector of colors.
 #' @author Adrien Taudière
 #' @export
-idest_colors <- function(palette_name="all_color_idest",
+idest_colors <- function(palette_name = "all_color_idest",
                          n,
                          type = c("discrete", "continuous"),
                          direction = c(1, -1),
@@ -513,8 +522,7 @@ idest_colors <- function(palette_name="all_color_idest",
   if (missing(type)) {
     if (n > length(palette[[1]])) {
       type <- "continuous"
-    }
-    else{
+    } else {
       type <- "discrete"
     }
   }
@@ -528,9 +536,9 @@ idest_colors <- function(palette_name="all_color_idest",
     )
   }
 
-  continuous <-  if (direction == 1) {
+  continuous <- if (direction == 1) {
     grDevices::colorRampPalette(palette[[1]])(n)
-  } else{
+  } else {
     grDevices::colorRampPalette(rev(palette[[1]]))(n)
   }
 
@@ -540,11 +548,13 @@ idest_colors <- function(palette_name="all_color_idest",
     rev(palette[[1]][which(palette[[2]] %in% c(1:n) == TRUE)])
   } else if (direction == 1 & override_order == TRUE) {
     palette[[1]][1:n]
-  } else{
+  } else {
     rev(palette[[1]])[1:n]
   }
 
-  out <- switch(type, continuous = continuous, discrete = discrete)
+  out <- switch(type,
+    continuous = continuous,
+    discrete = discrete
+  )
   structure(out, class = "palette", name = palette_name)
-
 }

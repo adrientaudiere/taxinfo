@@ -36,12 +36,12 @@
 #'
 #' res_range <- range_bioreg_pq(subset_taxa(
 #'   data_fungi_mini_cleanNames,
-#'   currentCanonicalSimple %in% c("Xylodon raduloides", "Basidiodendron eyrei")
+#'   currentCanonicalSimple %in% c("Xylodon flaviporus", "Basidiodendron eyrei")
 #' ), occ_samp = 100)
 #'
 #' p <- plot_range_bioreg_pq(subset_taxa(
 #'   data_fungi_mini_cleanNames,
-#'   currentCanonicalSimple %in% c("Xylodon raduloides", "Basidiodendron eyrei")
+#'   currentCanonicalSimple %in% c("Xylodon flaviporus", "Basidiodendron eyrei")
 #' ), occ_samp = 100)
 #' p[[1]] / p[[2]]
 #'
@@ -81,27 +81,27 @@ range_bioreg_pq <- function(physeq,
   names(p) <- taxnames
 
   if (make_plot) {
-  check_package("rnaturalearth")
+    check_package("rnaturalearth")
 
-  countries <-
-    rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
+    countries <-
+      rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
   }
 
-  # Initialize progress bar if verbose
+
   if (verbose) {
-    pb <- cli_progress_bar(total = length(taxnames))
+    pb <- cli::cli_progress_bar(total = length(taxnames))
   }
 
   for (i in seq_along(taxnames)) {
     tax_i <- taxnames[i]
-    
+
     if (verbose) {
       cli::cli_progress_update(id = pb, set = i)
-      cli_message("Finding GBIF occurrence for {.emph {tax_i}}")
+      cli::cli_alert_info("Finding GBIF occurrence for {.emph {tax_i}}")
     }
     range_taxa_i <- gbif.range::get_gbif(tax_i, occ_samp = occ_samp, ...)
     if (verbose) {
-      cli_message("Starting range computation for {.emph {tax_i}}")
+      cli::cli_alert_info("Starting range computation for {.emph {tax_i}}")
     }
 
     range_taxa_i_bioreg[[tax_i]] <- tryCatch(
@@ -113,7 +113,7 @@ range_bioreg_pq <- function(physeq,
       ),
       error = function(e) {
         if (verbose) {
-          cli_warning("Not enough occurrence data for {.emph {tax_i}}")
+          cli::cli_alert_warning("Not enough occurrence data for {.emph {tax_i}}")
         }
         return(NULL)
       }
@@ -122,7 +122,7 @@ range_bioreg_pq <- function(physeq,
     if (make_plot) {
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
         if (verbose) {
-          cli_warning("Not enough occurrence data to plot {.emph {tax_i}}")
+          cli::cli_alert_warning("Not enough occurrence data to plot {.emph {tax_i}}")
         }
       } else {
         check_package("terra")
@@ -175,7 +175,7 @@ range_bioreg_pq <- function(physeq,
       }
     }
   }
-  
+
   # Complete progress bar
   if (verbose) {
     cli::cli_progress_done(id = pb)

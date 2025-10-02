@@ -40,8 +40,8 @@
 #'
 #' @examples
 #' # Check for Oak species near Paris
-#' long=2.3522
-#' lat=48.8566
+#' long <- 2.3522
+#' lat <- 48.8566
 #'
 #' Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
 #' Q_rob_in_Paris
@@ -139,10 +139,12 @@ tax_occur_check <- function(taxa_name,
       if (verbose) {
         remaining_occurrences <- nrow(occurrences$data)
         percentage <- round(100 * remaining_occurrences / n_occur_old, 1)
-        cli_message(c("After cleaning with CoordinateCleaner::clean_coordinates:",
-                      "*" = "{.val {remaining_occurrences}} occurrences remain(s)",
-                      "*" = "Total original: {.val {n_occur_old}}",
-                      "*" = "Retention rate: {.val {percentage}}%"))
+        cli::cli_alert_info(c(
+          "After cleaning with CoordinateCleaner::clean_coordinates:\n",
+          "  • {.val {remaining_occurrences}} occurrences remain(s)\n",
+          "  • Total original: {.val {n_occur_old}}\n",
+          "  • Retention rate: {.val {percentage}}%"
+        ))
       }
     }
 
@@ -171,15 +173,17 @@ tax_occur_check <- function(taxa_name,
       }
 
       if (verbose) {
-        cli_success(c("Found {.val {nrow(occ_data)}} occurrences for species {.emph {taxa_name}}:",
-                      "*" = "Closest occurrence: {.val {round(min_distance_km, 2)}} km"))
+        cli::cli_bullets(c(
+          "v" = "Found {.val {nrow(occ_data)}} occurrences for species {.emph {taxa_name}}:",
+          "*" = "Closest occurrence: {.val {round(min_distance_km, 2)}} km"
+        ))
       }
       # Update statistics
       closest_distance_km <- min(min_distance_km)
       mean_distance_km <- mean(as.numeric(distances)) / 1000
     } else {
       if (verbose) {
-        cli_warning("No valid occurrences for {.emph {taxa_name}}")
+        cli::cli_alert_warning("No valid occurrences for {.emph {taxa_name}}")
       }
       return(list(
         "count_in_radius" = 0,
@@ -195,7 +199,7 @@ tax_occur_check <- function(taxa_name,
     }
   } else {
     if (verbose) {
-      cli_warning("No occurrences found for {.emph {taxa_name}}")
+      cli::cli_alert_warning("No occurrences found for {.emph {taxa_name}}")
     }
     return(list(
       "count_in_radius" = 0,

@@ -43,6 +43,8 @@
 #' @author Adrien Taudière
 #' @export
 #'
+#' @importFrom rglobi get_interactions_by_taxa
+#'
 #' @examples
 #' res_globi <- tax_globi_pq(data_fungi_mini,
 #'   taxonomic_rank = c("Genus", "Species"),
@@ -88,9 +90,6 @@ tax_globi_pq <- function(physeq,
   tib_globi_all <- NULL
 
   for (tax_i in taxnames) {
-    if (verbose) {
-      print(tax_i)
-    }
     tib_globi <- rglobi::get_interactions_by_taxa(
       interactiontype = interaction_types,
       sourcetaxon = tax_i,
@@ -112,7 +111,7 @@ tax_globi_pq <- function(physeq,
 
     if (nrow(tib_globi) == 0) {
       if (verbose) {
-        cli_warning("No interaction found for {.emph {tax_i}}")
+        cli::cli_alert_warning("No interaction found for {.emph {tax_i}}")
       }
     } else {
       tib_globi <- tib_globi |>
@@ -123,11 +122,13 @@ tax_globi_pq <- function(physeq,
       if (valid_taxo_target_taxon) {
         nb_int_before <- nrow(tib_globi)
         # extract only letters and space to avoid issues with gna_verifier
-        target_taxon_name <- stringr::str_extract_all(pattern = "[A-Za-z ]+",
-                                                      unique(tib_globi$target_taxon_name),
-                                                      simplify = TRUE)[,1]
+        target_taxon_name <- stringr::str_extract_all(
+          pattern = "[A-Za-z ]+",
+          unique(tib_globi$target_taxon_name),
+          simplify = TRUE
+        )[, 1]
 
-        if(length(target_taxon_name)>batch_size_gna_verifier){
+        if (length(target_taxon_name) > batch_size_gna_verifier) {
           n_names <- length(target_taxon_name)
           n_batches <- ceiling(n_names / batch_size_gna_verifier)
 
@@ -173,7 +174,7 @@ tax_globi_pq <- function(physeq,
         }
 
         if (verbose) {
-          cli_message("After verification of valid target taxon names: {.val {nrow(tib_globi)}}/{.val {nb_int_before}} interactions kept for {.emph {tax_i}}")
+          cli::cli_alert_info("After verification of valid target taxon names: {.val {nrow(tib_globi)}}/{.val {nb_int_before}} interactions kept for {.emph {tax_i}}")
         }
       } else {
         tib_globi_i <- tib_globi |>
@@ -191,12 +192,13 @@ tax_globi_pq <- function(physeq,
       )
     }
   }
-  if(is.null(tib_globi_all)){
-    if(verbose){
-      cli_warning(c("No interaction found for any taxon at the specified taxonomic rank.",
-                    "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."))
+  if (is.null(tib_globi_all)) {
+    if (verbose) {
+      cli::cli_alert_warning(c("No interaction found for any taxon at the specified taxonomic rank.",
+        "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."
+      ))
     }
-    if(add_to_phyloseq){
+    if (add_to_phyloseq) {
       return(physeq)
     } else {
       return(tib_globi_all)
