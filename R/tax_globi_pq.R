@@ -3,15 +3,16 @@
 #' @description
 #'  A wrapper of [rglobi::get_interactions_by_taxa()] function to get biotic
 #'  interactions for each taxa of a phyloseq object
-#' @param physeq (required) A phyloseq object
-#' @param taxonomic_rank (required) (Character, default "currentCanonicalSimple")
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param discard_synonym (logical, default TRUE) If TRUE, discard interactions
 #'   where the source_taxon_name is a synonym of the taxon name used to query
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, return a new phyloseq
 #' object with new columns in the tax_table slot. If FALSE, return a tibble
-#' with the interactions found for each taxon.
+#' with the interactions found for each taxon. Cannot be TRUE if `taxnames` is provided.
 #' @param interaction_types A character vector of interaction types to
 #'   query. See [rglobi::get_interaction_types()]. If NULL (default),
 #'   all interaction types are queried.
@@ -66,8 +67,9 @@
 #' @details
 #'  This function is mainly a wrapper of the work of others.
 #'  Please cite `rglobi` and `taxize` packages.
-tax_globi_pq <- function(physeq,
+tax_globi_pq <- function(physeq = NULL,
                          taxonomic_rank = "currentCanonicalSimple",
+                         taxnames = NULL,
                          discard_synonym = TRUE,
                          add_to_phyloseq = FALSE,
                          interaction_types = NULL,
@@ -80,12 +82,24 @@ tax_globi_pq <- function(physeq,
                          batch_size_gna_verifier = 50) {
   check_package("rglobi")
 
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE,
-    discard_NA = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE,
+      discard_NA = TRUE
+    )
+  }
 
   tib_globi_all <- NULL
 

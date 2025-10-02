@@ -10,10 +10,11 @@
 #'  Fund (WWF).
 #'
 #' @aliases plot_range_bioreg_pq
-#' @param physeq (required) A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param occ_samp (Numeric, default 5000) Number of occurrences to sample from GBIF.
 #'   See [gbif.range::get_gbif()] for more details.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
@@ -52,8 +53,9 @@
 #'
 #' requireNamespace(patchwork)
 #' p[[1]] / p[[2]]
-range_bioreg_pq <- function(physeq,
+range_bioreg_pq <- function(physeq = NULL,
                             taxonomic_rank = "currentCanonicalSimple",
+                            taxnames = NULL,
                             occ_samp = 5000,
                             verbose = TRUE,
                             verbose_gbif_range = FALSE,
@@ -61,12 +63,21 @@ range_bioreg_pq <- function(physeq,
                             crop_plot = TRUE,
                             remove_legend = TRUE,
                             ...) {
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE,
-    discard_NA = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE,
+      discard_NA = TRUE
+    )
+  }
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
@@ -150,10 +161,14 @@ range_bioreg_pq <- function(physeq,
           theme_void() +
           labs(
             title = bquote(italic(.(tax_i))),
-            subtitle = taxa_summary_text(physeq,
-              taxonomic_rank = taxonomic_rank,
-              taxnames = tax_i, verbose = FALSE
-            )
+            subtitle = if (!is.null(physeq)) {
+              taxa_summary_text(physeq,
+                taxonomic_rank = taxonomic_rank,
+                taxnames = tax_i, verbose = FALSE
+              )
+            } else {
+              NULL
+            }
           )
 
         if (remove_legend) {

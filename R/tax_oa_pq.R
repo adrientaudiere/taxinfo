@@ -5,10 +5,11 @@
 #'   scientific works (and a list of doi if list_doi is set to TRUE) for each
 #'   taxa of a phyloseq object
 #'
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param count_only (Logical, default FALSE) If
 #'   TRUE, only the number of works on a given taxa is return, leading to a
 #'   faster call to openalexR::oa_fetch(). Note that if count_only is set to FALSE
@@ -19,7 +20,7 @@
 #'   useful to filter works for example by topic or by number of citations (see
 #'   section examples).
 #' @param add_to_phyloseq If TRUE, return a new phyloseq
-#'   object with new columns in the tax_table slot.
+#'   object with new columns in the tax_table slot. Cannot be TRUE if `taxnames` is provided.
 #' @param type_works (A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 #' Only used if count_only is set to FALSE Default is c("article", "review",
 #'  "book-chapter", "book", "letter").
@@ -102,8 +103,9 @@
 #'       filter(xx, cited_by_count > 10)
 #'     }
 #'   })
-tax_oa_pq <- function(physeq,
+tax_oa_pq <- function(physeq = NULL,
                       taxonomic_rank = "currentCanonicalSimple",
+                      taxnames = NULL,
                       count_only = FALSE,
                       return_raw_oa = FALSE,
                       add_to_phyloseq = FALSE,
@@ -112,15 +114,27 @@ tax_oa_pq <- function(physeq,
                       ...) {
   check_package("openalexR")
 
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
   if (sum(return_raw_oa, add_to_phyloseq) > 1) {
     stop("You can not set to TRUE more than one of the parameters return_raw_oa and add_to_phyloseq.")
   }
 
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  }
 
   if (return_raw_oa) {
     if (verbose) {

@@ -4,12 +4,13 @@
 #' A wrapper of [rgbif::occ_search()] function to get the number of occurences.
 #' Optionally, the number of occurrences can be obtained by years or by country.
 #'
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, add new column(s)
-#'  in the tax_table of the phyloseq object.
+#'  in the tax_table of the phyloseq object. Cannot be TRUE if `taxnames` is provided.
 #' @param by_country (logical, default FALSE) If TRUE, the number of occurences
 #'   is computed by country
 #' @param by_years (logical, default FALSE) If TRUE, the number of occurences
@@ -44,16 +45,29 @@
 #'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
 tax_gbif_occur_pq <- function(physeq = NULL,
                               taxonomic_rank = "currentCanonicalSimple",
+                              taxnames = NULL,
                               add_to_phyloseq = FALSE,
                               by_country = FALSE,
                               by_years = FALSE,
                               verbose = TRUE,
                               time_to_sleep = 0.3) {
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  }
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>

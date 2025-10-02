@@ -5,12 +5,13 @@
 #'   in a phyloseq object. The result can optionally be added to the phyloseq
 #'   object's tax_table as new columns.
 #'
-#' @param physeq phyloseq object.
+#' @param physeq (optional) phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #'  The phyloseq object containing the taxa to check.
 #' @param taxonomic_rank Character. The taxonomic rank to use for the check.
 #'  Default is "currentCanonicalSimple" which corresponds to the cleaned
 #'  scientific names in the phyloseq object if [gna_verifier_pq()] was used with
 #'  default parameter.
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param longitude Numeric. Longitude of the test point in decimal degrees.
 #' @param latitude Numeric. Latitude of the test point in decimal degrees.
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
@@ -18,7 +19,7 @@
 #'  for each taxon (default: 1000).
 #' @param add_to_phyloseq  (Logical, default: FALSE). Whether to add the results
 #'  as new columns in the phyloseq object's tax_table. If TRUE, the results will be
-#'  appended to the tax_table with appropriate column names
+#'  appended to the tax_table with appropriate column names. Cannot be TRUE if `taxnames` is provided.
 #' @param verbose (Logical, default: TRUE). Whether to print progress messages.
 #' @param ... Additional parameters passed to [tax_occur_check()].
 #'
@@ -69,6 +70,7 @@
 #' @export
 tax_occur_check_pq <- function(physeq = NULL,
                                taxonomic_rank = "currentCanonicalSimple",
+                               taxnames = NULL,
                                longitude = NULL,
                                latitude = NULL,
                                radius_km = 50,
@@ -76,11 +78,25 @@ tax_occur_check_pq <- function(physeq = NULL,
                                add_to_phyloseq = FALSE,
                                verbose = TRUE,
                                ...) {
-  taxnames_raw <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
+  if (is.null(taxnames)) {
+    taxnames_raw <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  } else {
+    taxnames_raw <- taxnames
+  }
 
   if (length(taxnames_raw) == 0) {
     if (verbose) {

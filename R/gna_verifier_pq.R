@@ -3,10 +3,11 @@
 #' @description
 #'  A wrapper of [taxize::gna_verifier] apply to phyloseq object
 #'
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character)
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the default c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param data_sources A character or integer vector.
 #'   See [taxize::gna_verifier] documentation. For example,
 #'   1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
@@ -25,7 +26,7 @@
 #'    function + a column taxa_names_in_phyloseq depicting the name of the
 #'    taxa from the phyloseq object.
 #'
-#'  - If TRUE return a phyloseq object with amended slot `@taxtable`.
+#'  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
 #'    Three new columns are added:
 #'    - submittedName: The character string sent to gna_verifier (e.g.
 #'    `Antrodiella brasiliensis`)
@@ -81,8 +82,9 @@
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `taxize` package.
-gna_verifier_pq <- function(physeq,
+gna_verifier_pq <- function(physeq = NULL,
                             taxonomic_rank = c("Genus", "Species"),
+                            taxnames = NULL,
                             data_sources = c(1, 12),
                             all_matches = FALSE,
                             capitalize = FALSE,
@@ -93,20 +95,33 @@ gna_verifier_pq <- function(physeq,
                             verbose = TRUE,
                             add_to_phyloseq = FALSE,
                             genus_species_canonical_col = TRUE) {
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = FALSE,
-    discard_NA = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
 
-  if (add_to_phyloseq &&
-    "currentCanonicalSimple" %in% colnames(physeq@tax_table)) {
-    stop(
-      "The column currentCanonicalSimple is already present in the @tax_table
-      slot of your phyloseq object. You should first delete or rename the
-      superseed column before to rerun the function."
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = FALSE,
+      discard_NA = TRUE
     )
+  }
+
+  if (add_to_phyloseq) {
+    if ("currentCanonicalSimple" %in% colnames(physeq@tax_table)) {
+      stop(
+        "The column currentCanonicalSimple is already present in the @tax_table
+        slot of your phyloseq object. You should first delete or rename the
+        superseed column before to rerun the function."
+      )
+    }
   }
 
   slice_taxnames <- if (length(taxnames) > 50) {
@@ -128,17 +143,6 @@ gna_verifier_pq <- function(physeq,
     )
   }))
 
-  new_physeq <- physeq
-
-  tax_tab <- cbind(as.data.frame(new_physeq@tax_table))
-  tax_tab$taxa_name <-
-    apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1,
-      paste0,
-      collapse = " "
-    ) |>
-    gsub(pattern = "NA NA", replacement = "") |>
-    gsub(pattern = " NA", replacement = "")
-
   res_verifier_clean <-
     res_verifier |>
     distinct() |>
@@ -152,42 +156,67 @@ gna_verifier_pq <- function(physeq,
       )
   }
 
-  new_physeq@tax_table <-
-    left_join(tax_tab, res_verifier_clean,
-      by = join_by(taxa_name == submittedName)
-    ) |>
-    as.matrix() |>
-    tax_table()
-
-  taxtab_new <- new_physeq@tax_table |>
-    as.data.frame() |>
-    tibble()
-  rownames(new_physeq@tax_table) <- taxa_names(physeq)
-
-  if (verbose) {
-    total_taxa <- ntaxa(physeq)
-    submitted_taxa <- sum(taxtab_new$taxa_name != "")
-    genus_only_taxa <- sum(!grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != "")
-    total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
-    synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-    genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-    accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
-    genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
-
-    cli::cli_bullets(c(
-      "v" = "GNA verification summary:",
-      "*" = "Total taxa in phyloseq: {.val {total_taxa}}",
-      "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
-      "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
-      "*" = "Total matches found: {.val {total_matches}}",
-      "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
-      "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
-    ))
-  }
-
   if (add_to_phyloseq) {
+    new_physeq <- physeq
+
+    tax_tab <- cbind(as.data.frame(new_physeq@tax_table))
+    tax_tab$taxa_name <-
+      apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1,
+        paste0,
+        collapse = " "
+      ) |>
+      gsub(pattern = "NA NA", replacement = "") |>
+      gsub(pattern = " NA", replacement = "")
+
+    new_physeq@tax_table <-
+      left_join(tax_tab, res_verifier_clean,
+        by = join_by(taxa_name == submittedName)
+      ) |>
+      as.matrix() |>
+      tax_table()
+
+    taxtab_new <- new_physeq@tax_table |>
+      as.data.frame() |>
+      tibble()
+    rownames(new_physeq@tax_table) <- taxa_names(physeq)
+
+    if (verbose) {
+      total_taxa <- ntaxa(physeq)
+      submitted_taxa <- sum(taxtab_new$taxa_name != "")
+      genus_only_taxa <- sum(!grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != "")
+      total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
+      synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+      genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+      accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+      genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+
+      cli::cli_bullets(c(
+        "v" = "GNA verification summary:",
+        "*" = "Total taxa in phyloseq: {.val {total_taxa}}",
+        "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
+        "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
+        "*" = "Total matches found: {.val {total_matches}}",
+        "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
+        "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
+      ))
+    }
     return(new_physeq)
   } else {
+    if (verbose) {
+      total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
+      synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+      genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+      accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+      genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+
+      cli::cli_bullets(c(
+        "v" = "GNA verification summary:",
+        "*" = "Taxa submitted for verification: {.val {length(taxnames)}}",
+        "*" = "Total matches found: {.val {total_matches}}",
+        "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
+        "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
+      ))
+    }
     res_verifier$taxa_names_in_phyloseq <- names(taxnames)
     return(res_verifier)
   }

@@ -3,12 +3,13 @@
 #' @details
 #' Taxa with only genus name are discarded.
 #'
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank  (Character, default = "currentCanonicalSimple")
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. the c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param add_to_phyloseq   (logical, default FALSE) If TRUE, a new phyloseq
-#' object is returned with new columns in the tax_table.
+#' object is returned with new columns in the tax_table. Cannot be TRUE if `taxnames` is provided.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param languages_pages (Character vector or NULL, default NULL)
 #'  If not NULL, only the languages present in this vector will be queried.
@@ -70,8 +71,9 @@
 #'   xlab("Page views log-10 transformed. Number denoted the number of language in #' wikipedia.
 #'       Shape size is proportional to mean page lenght in wikipedia.") +
 #'   ylab("")
-tax_get_wk_info_pq <- function(physeq,
+tax_get_wk_info_pq <- function(physeq = NULL,
                                taxonomic_rank = "currentCanonicalSimple",
+                               taxnames = NULL,
                                add_to_phyloseq = FALSE,
                                verbose = TRUE,
                                languages_pages = NULL,
@@ -81,11 +83,23 @@ tax_get_wk_info_pq <- function(physeq,
                                n_days = 30) {
   check_package("wikitaxa")
 
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  }
 
   if (verbose) {
     cli::cli_alert_info("Getting taxonomic IDs from Wikidata...")

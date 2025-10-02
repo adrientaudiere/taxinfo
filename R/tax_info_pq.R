@@ -18,15 +18,16 @@
 #'  a new file.
 #'
 #'
-#' @param physeq (required) A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param file_name (required) A file path to your csv file.
 #' @param csv_taxonomic_rank (required) The name of the column in your csv file
 #'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, add new column(s)
-#'  in the tax_table of the phyloseq object.
+#'  in the tax_table of the phyloseq object. Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object.
 #' @param use_duck_db (logical, default FALSE) If TRUE, use duckdb to handle
@@ -114,8 +115,9 @@
 #'   table(useNA = "always")
 #' data_fungi_cleanNames_3@tax_table[, "st_BCD_TAXREF_STATUT_BIOGEO"] |>
 #'   table(useNA = "always")
-tax_info_pq <- function(physeq,
+tax_info_pq <- function(physeq = NULL,
                         taxonomic_rank = "currentCanonicalSimple",
+                        taxnames = NULL,
                         file_name = NULL,
                         csv_taxonomic_rank = NULL,
                         add_to_phyloseq = FALSE,
@@ -124,6 +126,16 @@ tax_info_pq <- function(physeq,
                         csv_cols_select = NULL,
                         sep = ",",
                         dec = ".") {
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+
   if (is.null(file_name)) {
     cli::cli_abort("You must provide a file path to your CSV file with {.arg file_name}")
   }
@@ -136,17 +148,24 @@ tax_info_pq <- function(physeq,
     cli::cli_abort("You must provide the name of the column containing taxonomic names with {.arg csv_taxonomic_rank}")
   }
 
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (is.null(taxnames)) {
+    taxnames_vec <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  } else {
+    taxnames_vec <- taxnames
+  }
 
-  new_physeq <- physeq
-
-  taxtab <- tibble(as.data.frame(new_physeq@tax_table))
-  taxtab$taxa_name <- trimws(apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " "))
-  taxtab$taxa_id_for_join <- 1:ntaxa(physeq)
+  if (!is.null(physeq)) {
+    new_physeq <- physeq
+    taxtab <- tibble(as.data.frame(new_physeq@tax_table))
+    taxtab$taxa_name <- trimws(apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " "))
+    taxtab$taxa_id_for_join <- 1:ntaxa(physeq)
+  } else {
+    taxtab <- tibble(taxa_name = taxnames_vec, taxa_id_for_join = 1:length(taxnames_vec))
+  }
 
   if (is.null(csv_cols_select)) {
     # Read the first line of the csv file to get the column names
