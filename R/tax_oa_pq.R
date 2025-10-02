@@ -23,6 +23,8 @@
 #'   If TRUE, return a new phyloseq object with new columns in the tax_table slot.
 #'   Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'   Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param type_works (A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 #' Only used if count_only is set to FALSE Default is c("article", "review",
 #'  "book-chapter", "book", "letter").
@@ -108,6 +110,7 @@ tax_oa_pq <- function(physeq = NULL,
                       count_only = FALSE,
                       return_raw_oa = FALSE,
                       add_to_phyloseq = NULL,
+                      col_prefix = NULL,
                       type_works = c("article", "review", "book-chapter", "book", "letter"),
                       verbose = TRUE,
                       ...) {
@@ -224,6 +227,33 @@ tax_oa_pq <- function(physeq = NULL,
         list_keywords = paste0(keywords, collapse = ";")
       ) |>
       arrange(desc(n_doi))
+  }
+  
+  # Determine new column names (excluding taxa_name which is used for join)
+  new_cols <- if (count_only) {
+    c("n_doi")
+  } else {
+    c("n_doi", "list_doi", "n_citation", "list_keywords")
+  }
+  
+  # Check for column name collisions and handle col_prefix
+  if (add_to_phyloseq) {
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'oa_' to avoid conflicts"
+      ))
+      col_prefix <- "oa_"
+    }
+  }
+  
+  # Apply col_prefix to new columns
+  if (!is.null(col_prefix)) {
+    tib_publi <- tib_publi |>
+      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
   }
 
   if (add_to_phyloseq) {

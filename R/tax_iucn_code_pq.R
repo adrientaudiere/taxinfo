@@ -9,6 +9,8 @@
 #'  If TRUE, add a new column (iucn_code) in the tax_table of the phyloseq object.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with 1 new column (iucn_code) in the
 #' tax_table.
@@ -30,7 +32,8 @@
 tax_iucn_code_pq <- function(physeq = NULL,
                              taxnames = NULL,
                              taxonomic_rank = "currentCanonicalSimple",
-                             add_to_phyloseq = NULL) {
+                             add_to_phyloseq = NULL,
+                             col_prefix = NULL) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -67,6 +70,29 @@ tax_iucn_code_pq <- function(physeq = NULL,
     "iucn_code" = iucn_codes,
     "taxa_name" = gbif_taxa$canonicalName
   )
+  
+  # Determine new column names (excluding taxa_name which is used for join)
+  new_cols <- c("iucn_code")
+  
+  # Check for column name collisions and handle col_prefix
+  if (add_to_phyloseq) {
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'iucn_' to avoid conflicts"
+      ))
+      col_prefix <- "iucn_"
+    }
+  }
+  
+  # Apply col_prefix to new columns
+  if (!is.null(col_prefix)) {
+    iucn_codes_df <- iucn_codes_df |>
+      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
+  }
 
   if (add_to_phyloseq) {
     new_physeq <- physeq

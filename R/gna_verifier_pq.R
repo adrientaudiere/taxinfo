@@ -35,6 +35,8 @@
 #'      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gómez-Mont. & Robledo)`.
 #'    - currentCanonicalSimple: The current accepted name whithout autorities
 #'      (e.g. `Trametopsis brasiliensis`).
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param genus_species_canonical_col (logical, default TRUE) If TRUE
 #'   two new columns are added along with "currentCanonicalSimple":
 #'   "currentCanonicalSimpleGenus" and "currentCanonicalSimpleSpecies"
@@ -91,6 +93,7 @@ gna_verifier_pq <- function(physeq = NULL,
                             main_taxon_threshold = 0.5,
                             verbose = TRUE,
                             add_to_phyloseq = NULL,
+                            col_prefix = NULL,
                             genus_species_canonical_col = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
@@ -117,13 +120,23 @@ gna_verifier_pq <- function(physeq = NULL,
     )
   }
 
+  # Determine column names that will be added
+  new_cols <- c("submittedName", "currentName", "currentCanonicalSimple")
+  if (genus_species_canonical_col) {
+    new_cols <- c(new_cols, "currentCanonicalSimpleGenus", "currentCanonicalSimpleSpecies")
+  }
+
+  # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
-    if ("currentCanonicalSimple" %in% colnames(physeq@tax_table)) {
-      stop(
-        "The column currentCanonicalSimple is already present in the @tax_table
-        slot of your phyloseq object. You should first delete or rename the
-        superseed column before to rerun the function."
-      )
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'gna_' to avoid conflicts"
+      ))
+      col_prefix <- "gna_"
     }
   }
 
@@ -171,8 +184,15 @@ gna_verifier_pq <- function(physeq = NULL,
       gsub(pattern = "NA NA", replacement = "") |>
       gsub(pattern = " NA", replacement = "")
 
+    # Apply col_prefix to new columns
+    res_verifier_to_join <- res_verifier_clean
+    if (!is.null(col_prefix)) {
+      res_verifier_to_join <- res_verifier_clean |>
+        rename_with(~ paste0(col_prefix, .), .cols = -submittedName)
+    }
+
     new_physeq@tax_table <-
-      left_join(tax_tab, res_verifier_clean,
+      left_join(tax_tab, res_verifier_to_join,
         by = join_by(taxa_name == submittedName)
       ) |>
       as.matrix() |>
@@ -221,6 +241,13 @@ gna_verifier_pq <- function(physeq = NULL,
       ))
     }
     res_verifier$taxa_names_in_phyloseq <- names(taxnames)
+    
+    # Apply col_prefix to returned tibble if specified
+    if (!is.null(col_prefix)) {
+      res_verifier <- res_verifier |>
+        rename_with(~ paste0(col_prefix, .), .cols = -taxa_names_in_phyloseq)
+    }
+    
     return(res_verifier)
   }
 }
