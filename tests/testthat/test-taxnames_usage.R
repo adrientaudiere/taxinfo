@@ -92,4 +92,3 @@ test_that("add_to_phyloseq cannot be TRUE with taxnames", {
     "cannot be TRUE when.*taxnames"
   )
 })
-

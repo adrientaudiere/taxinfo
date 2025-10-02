@@ -341,7 +341,7 @@ phyloseq object to found more informations in the mini-trait database. When
 using true database, you should find more information, even with less taxa.
 
 ```{r}
-data_clean_full <- gna_verifier_pq(data_fungi,data_sources = 210)
+data_clean_full <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 # Load fungal traits database
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv",

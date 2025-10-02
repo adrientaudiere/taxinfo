@@ -65,8 +65,7 @@ test_that("tax_iucn_code_pq input validation", {
   res1 <- tax_iucn_code_pq(data_fungi_cleanNames)
   expect_equal(dim(res1), c(254, 2))
 
-  res2 <- tax_iucn_code_pq(data_fungi_cleanNames,
-  )
+  res2 <- tax_iucn_code_pq(data_fungi_cleanNames, )
 
   expect_s4_class(res2, "phyloseq")
 })

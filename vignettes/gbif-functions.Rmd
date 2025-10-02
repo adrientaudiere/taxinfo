@@ -50,8 +50,8 @@ data("data_fungi_mini", package = "MiscMetabar")
 
 # Clean taxonomic names first (recommended)
 data_clean <- gna_verifier_pq(data_fungi_mini, data_sources = 210) |>
-# Get global occurrence counts from GBIF
- tax_gbif_occur_pq(data_clean)
+  # Get global occurrence counts from GBIF
+  tax_gbif_occur_pq(data_clean)
 ```
 
 ### Example Visualization 
@@ -224,7 +224,7 @@ distribution_maps <- plot_tax_gbif_pq(
   taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei"),
   n_occur = 1000
 )
-distribution_maps[[1]] 
+distribution_maps[[1]]
 ```
 
 

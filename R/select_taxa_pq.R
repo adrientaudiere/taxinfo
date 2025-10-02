@@ -25,7 +25,6 @@
 select_taxa_pq <- function(physeq,
                            taxnames = NULL,
                            taxonomic_rank = "currentCanonicalSimple",
-                           taxnames = NULL,
                            verbose = TRUE,
                            clean_pq = FALSE,
                            ...) {
