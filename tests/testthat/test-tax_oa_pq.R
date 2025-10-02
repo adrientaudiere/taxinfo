@@ -8,12 +8,27 @@ test_that("tax_oa_pq input validation", {
   skip("Requires phyloseq objects")
 })
 
+test_that("tax_oa_pq add_to_phyloseq default behavior", {
+  # Test that add_to_phyloseq defaults correctly based on input type
+  
+  # When taxnames is provided, add_to_phyloseq should default to FALSE
+  # and cannot be set to TRUE
+  expect_error(
+    tax_oa_pq(taxnames = c("Agaricus bisporus"), add_to_phyloseq = TRUE),
+    "cannot be TRUE when.*taxnames.*provided"
+  )
+  
+  # Note: Testing with physeq would require a real phyloseq object
+  # The default behavior (add_to_phyloseq = TRUE when physeq is provided)
+  # should be tested in integration tests with actual phyloseq objects
+  skip("Full testing requires phyloseq objects")
+})
+
 test_that("tax_oa_pq parameter defaults", {
   # Test default parameter values
   # taxonomic_rank should default to "currentCanonicalSimple"
-  # list_doi should default to TRUE
   # return_raw_oa should default to FALSE
-  # add_to_phyloseq should default to FALSE
+  # add_to_phyloseq should default to NULL (then set to TRUE for physeq, FALSE for taxnames)
   # type_works should default to c("article", "review", "book-chapter", "book", "letter")
   # verbose should default to TRUE
 

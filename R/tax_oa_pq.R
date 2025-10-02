@@ -19,8 +19,10 @@
 #'   publications from Open Alex for each taxa as a list of data.frame. Can be
 #'   useful to filter works for example by topic or by number of citations (see
 #'   section examples).
-#' @param add_to_phyloseq If TRUE, return a new phyloseq
-#'   object with new columns in the tax_table slot. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default NULL) If TRUE, return a new phyloseq
+#'   object with new columns in the tax_table slot. If NULL (default), it is set to TRUE when
+#'   `physeq` is provided and FALSE when `taxnames` is provided. Users can explicitly set it to
+#'   FALSE even when `physeq` is provided to get a tibble instead. Cannot be TRUE if `taxnames` is provided.
 #' @param type_works (A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 #' Only used if count_only is set to FALSE Default is c("article", "review",
 #'  "book-chapter", "book", "letter").
@@ -40,9 +42,8 @@
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
 #'   add_to_phyloseq = TRUE
 #' )
-#' data_fungi_mini_cleanNames <- tax_oa_pq(data_fungi_mini_cleanNames,
-#'   add_to_phyloseq = TRUE
-#' )
+#' # add_to_phyloseq defaults to TRUE when physeq is provided
+#' data_fungi_mini_cleanNames <- tax_oa_pq(data_fungi_mini_cleanNames)
 #' ggplot(
 #'   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
 #'   aes(
@@ -53,7 +54,8 @@
 #'   geom_point(aes(col = Order)) +
 #'   xlab("Number of Scientific Papers (log10 scale)")
 #'
-#' tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
+#' # Users can explicitly set add_to_phyloseq = FALSE to get a tibble
+#' tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset", add_to_phyloseq = FALSE)
 #'
 #'
 #' list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames,
@@ -108,7 +110,7 @@ tax_oa_pq <- function(physeq = NULL,
                       taxnames = NULL,
                       count_only = FALSE,
                       return_raw_oa = FALSE,
-                      add_to_phyloseq = FALSE,
+                      add_to_phyloseq = NULL,
                       type_works = c("article", "review", "book-chapter", "book", "letter"),
                       verbose = TRUE,
                       ...) {
@@ -120,6 +122,16 @@ tax_oa_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default value for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    if (!is.null(physeq)) {
+      add_to_phyloseq <- TRUE
+    } else {
+      add_to_phyloseq <- FALSE
+    }
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
