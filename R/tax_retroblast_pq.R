@@ -13,7 +13,10 @@
 #' proposed based on the BLAST results limited to species name already present
 #' in the phyloseq object.
 #'
-#' @param physeq A phyloseq object
+#' Note that this function need a physeq object and cannot works with a
+#' list of taxonomic names (taxnames is not a parameter of the function).
+#'
+#' @param physeq (required) A phyloseq object
 #' @param taxonomic_rank (required, default = "currentCanonicalSimple")
 #' The column(s) present in the @tax_table slot of the phyloseq object. Can
 #' be a vector of two columns (e.g. c("Genus", "Species")).

@@ -35,6 +35,7 @@ test_that("gna_verifier_pq data_sources validation", {
   expect_true(all(subset_sources %in% valid_sources))
 })
 
+
 test_that("gna_verifier_pq GNA integration", {
   # Test integration with Global Names Architecture
   # Test taxonomic name verification

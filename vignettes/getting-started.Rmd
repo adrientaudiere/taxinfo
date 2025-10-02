@@ -77,7 +77,6 @@ The first step is typically to verify and standardize taxonomic names using the 
 # Verify and clean taxonomic names
 data_clean <- gna_verifier_pq(data_fungi_mini,
   data_sources = 210, # TaxRef
-  add_to_phyloseq = TRUE
 )
 
 # View the enhanced taxonomic table
@@ -88,6 +87,16 @@ This adds standardized columns:
 - `submittedName`: Original name submitted
 - `currentName`: Current accepted name with authorities  
 - `currentCanonicalSimple`: Clean accepted name without authorities
+
+You can also output only the verified names with more information on the matching algorithm results as a tibble by setting `add_to_phyloseq = FALSE`.
+
+```{r}
+df <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210,
+  add_to_phyloseq = FALSE
+)
+glimpse(df)
+```
 
 ### Step 3: Add Biodiversity Information
 

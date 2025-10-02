@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -86,12 +88,11 @@ data("data_fungi_mini", package = "MiscMetabar")
 
 # Step 1: Verify and clean taxonomic names
 data_fungi_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
+  data_sources = 210
 )
 
 # Step 2: Add GBIF occurrence data (add_to_phyloseq defaults to TRUE)
-data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
+data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean, )
 
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
@@ -106,12 +107,14 @@ data_with_traits <- tax_info_pq(data_with_gbif,
 # Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
 data_final <- tax_get_wk_info_pq(data_with_traits)
 
-# Alternative: Query specific taxa without a phyloseq object
-taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
-# Returns a tibble instead of phyloseq object
-
 # View the enriched taxonomic table
 head(data_final@tax_table)
+
+# Alternative: Query specific taxa without a phyloseq object
+taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"), by_country = TRUE)
+
+# Returns a tibble instead of phyloseq object
+head(taxa_info)
 ```
 
 ## Function Categories
@@ -180,6 +183,5 @@ citation("taxinfo")
 - [taxize](https://github.com/ropensci/taxize): Taxonomic information from around the web
 - [rgbif](https://github.com/ropensci/rgbif): Interface to GBIF API
 
-## License
-
-MIT © Adrien Taudière
+## Licence
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

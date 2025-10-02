@@ -1,7 +1,7 @@
 Package: taxinfo
 Type: Package
 Title: Augment Phyloseq Object with Taxomonic-Based Informations
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
     person(
       "Adrien", "Taudiere",
