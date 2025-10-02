@@ -95,16 +95,14 @@ Once names are verified, you can enrich your data with various sources:
 
 ```{r}
 data_enriched <- data_clean |>
-  # Add GBIF occurrence data
-  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
+  # Add GBIF occurrence data (add_to_phyloseq defaults to TRUE for phyloseq objects)
+  tax_gbif_occur_pq() |>
   # Add species interaction data from GLOBI
-  tax_globi_pq(
-    interaction_types = "hasHost",
-    add_to_phyloseq = TRUE
-  ) |>
+  tax_globi_pq(interaction_types = "hasHost") |>
   # Add Wikipedia information
-  tax_get_wk_info_pq(add_to_phyloseq = TRUE) |>
-  tax_oa_pq(add_to_phyloseq = TRUE)
+  tax_get_wk_info_pq() |>
+  # Add OpenAlex publication data
+  tax_oa_pq()
 
 message("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", "))
 ```
@@ -157,6 +155,32 @@ ggplot(psm, aes(
     subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112)
   )
 ```
+
+## Using Taxnames Instead of Phyloseq Objects
+
+Most functions in **taxinfo** can work with either a phyloseq object or a vector of taxonomic names. This is useful when you want to query information for specific taxa without having a phyloseq object:
+
+```{r}
+# Using taxnames parameter - returns a tibble
+taxa_to_query <- c("Amanita muscaria", "Boletus edulis", "Cantharellus cibarius")
+
+# Get GBIF occurrence data for specific taxa
+gbif_data <- tax_gbif_occur_pq(taxnames = taxa_to_query)
+head(gbif_data)
+
+# Get Wikipedia information
+wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
+head(wiki_data)
+
+# When using taxnames, add_to_phyloseq is automatically set to FALSE
+# and the function returns a tibble instead of a phyloseq object
+```
+
+**Key Points:**
+- When using `taxnames`, the `add_to_phyloseq` parameter is automatically set to `FALSE` and functions return tibbles
+- When using a phyloseq object, `add_to_phyloseq` defaults to `TRUE` and returns an enriched phyloseq object
+- You cannot use both `physeq` and `taxnames` at the same time
+- The `add_to_phyloseq` parameter cannot be `TRUE` when using `taxnames`
 
 ### Step 4: Add Custom Database Information
 

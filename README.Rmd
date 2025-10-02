@@ -70,6 +70,11 @@ pak::pkg_install("adrientaudiere/taxinfo")
 - `tax_photos_pq()`: Access taxonomic images and media
 - `tax_occur_check_pq()`: Multi-source occurrence validation
 
+### 🎯 **Flexible Input Options**
+Most functions can work with either:
+- **Phyloseq objects**: Automatically enriches the tax_table (default behavior)
+- **Taxonomic name vectors**: Returns tibbles for standalone queries
+
 ## Quick Start
 
 ```{r}
@@ -85,11 +90,8 @@ data_fungi_clean <- gna_verifier_pq(data_fungi_mini,
   add_to_phyloseq = TRUE
 )
 
-# Step 2: Add GBIF occurrence data
-data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean,
-  add_to_phyloseq = TRUE,
-  col_prefix = "gbif_"
-)
+# Step 2: Add GBIF occurrence data (add_to_phyloseq defaults to TRUE)
+data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
@@ -101,11 +103,12 @@ data_with_traits <- tax_info_pq(data_with_gbif,
   sep = ";"
 )
 
-# Step 4: Add Wikipedia information
-data_final <- tax_get_wk_info_pq(data_with_traits,
-  add_to_phyloseq = TRUE,
-  col_prefix = "wiki_"
-)
+# Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
+data_final <- tax_get_wk_info_pq(data_with_traits)
+
+# Alternative: Query specific taxa without a phyloseq object
+taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
+# Returns a tibble instead of phyloseq object
 
 # View the enriched taxonomic table
 head(data_final@tax_table)
