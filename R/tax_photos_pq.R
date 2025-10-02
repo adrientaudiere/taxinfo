@@ -4,16 +4,17 @@
 #'  There is three behavior. See the returns section. Gbif source is quicker
 #'  than wikitaxa source. Note that for the moment the function only return
 #'  one photo per species.
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default = "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param source (Character) either "gbif" or "wikitaxa".
 #' @param folder_name (default "photos_physeq") Name of the folder where photos
 #' will be downloaded. Only used if both add_to_phyloseq and gallery are FALSE.
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, a new phyloseq
 #'  object is returned with a new column  containing the URL
-#'  (entitled with the parameter col_name_url) in the tax_table.
+#'  (entitled with the parameter col_name_url) in the tax_table. Cannot be TRUE if `taxnames` is provided.
 #' @param gallery (logical, default FALSE) If TRUE, a html gallery is
 #' created using  the function [pixture::pixgallery()].
 #' @param overwrite_folder (logical, default FALSE) If TRUE, the folder
@@ -89,6 +90,7 @@
 #'
 tax_photos_pq <- function(physeq = NULL,
                           taxonomic_rank = "currentCanonicalSimple",
+                          taxnames = NULL,
                           source = "gbif",
                           folder_name = "photos_physeq",
                           add_to_phyloseq = FALSE,
@@ -100,14 +102,31 @@ tax_photos_pq <- function(physeq = NULL,
                           caption_font_size = 12,
                           simple_caption = FALSE,
                           ...) {
-  if (sum(colnames(data_fungi_mini_cleanNames@tax_table) %in% col_name_url) > 0) {
-    cli::cli_abort("There is already a column called {.val {col_name_url}} in the @tax_table")
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
-  taxnames_raw <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+  
+  if (!is.null(physeq)) {
+    if (sum(colnames(physeq@tax_table) %in% col_name_url) > 0) {
+      cli::cli_abort("There is already a column called {.val {col_name_url}} in the @tax_table")
+    }
+  }
+  
+  if (is.null(taxnames)) {
+    taxnames_raw <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  } else {
+    taxnames_raw <- taxnames
+  }
 
   if (source == "gbif") {
     gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw) |>
@@ -196,46 +215,57 @@ tax_photos_pq <- function(physeq = NULL,
 
   colnames(photo_url_tib) <- c(col_name_url, "taxa_name")
 
-  new_physeq <- physeq
+  if (!is.null(physeq)) {
+    new_physeq <- physeq
 
-  tax_tab <- as.data.frame(new_physeq@tax_table)
-  tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
-  new_physeq@tax_table <-
-    left_join(tax_tab, photo_url_tib, by = join_by(taxa_name)) |>
-    as.matrix() |>
-    tax_table()
+    tax_tab <- as.data.frame(new_physeq@tax_table)
+    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    new_physeq@tax_table <-
+      left_join(tax_tab, photo_url_tib, by = join_by(taxa_name)) |>
+      as.matrix() |>
+      tax_table()
 
-  rownames(new_physeq@tax_table) <- taxa_names(physeq)
+    rownames(new_physeq@tax_table) <- taxa_names(physeq)
+  }
 
   if (verbose) {
     photos_found <- sum(!is.na(photo_url))
-    taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
     names_not_found <- sum(is.na(photo_url))
-    taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
+    
+    if (!is.null(physeq)) {
+      taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
+      taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
 
-    cli::cli_bullets(c(
-      "v" = "Photo download summary:/n",
-      "  • {.val {photos_found}} photos found and downloaded/n",
-      "  • {.val {taxa_depicted}} taxa depicted/n",
-      "  • {.val {names_not_found}} taxonomic names not found/n",
-      "  • {.val {taxa_no_photo}} taxa have no photo URL"
-    ))
+      cli::cli_bullets(c(
+        "v" = "Photo download summary:/n",
+        "  • {.val {photos_found}} photos found and downloaded/n",
+        "  • {.val {taxa_depicted}} taxa depicted/n",
+        "  • {.val {names_not_found}} taxonomic names not found/n",
+        "  • {.val {taxa_no_photo}} taxa have no photo URL"
+      ))
+    } else {
+      cli::cli_bullets(c(
+        "v" = "Photo download summary:/n",
+        "  • {.val {photos_found}} photos found and downloaded/n",
+        "  • {.val {names_not_found}} taxonomic names not found"
+      ))
+    }
   }
 
   if (add_to_phyloseq) {
     return(new_physeq)
   } else if (gallery) {
-    tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
     if (verbose) {
       cli::cli_alert_info("Creating captions for gallery")
     }
     for (i in seq_along(taxnames)) {
-      if (simple_caption) {
+      if (simple_caption || is.null(physeq)) {
         captions[i] <- paste(
           paste0("<p style='font-size:", caption_font_size, "px'>"),
           paste0("<b>", taxnames[i], "</b><br>"), "</p>"
         )
       } else {
+        tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
         captions[i] <- paste(
           paste0("<p style='font-size:", caption_font_size, "px'>"),
           paste0("<b>", taxnames[i], "</b><br>"),

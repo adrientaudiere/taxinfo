@@ -1,11 +1,12 @@
 #' Get iucn conservation status through gbif
 #'
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param add_to_phyloseq (logical, default FALSE) If TRUE, add a new column
-#'  (iucn_code) in the tax_table of the phyloseq object.
+#'  (iucn_code) in the tax_table of the phyloseq object. Cannot be TRUE if `taxnames` is provided.
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with 1 new column (iucn_code) in the
 #' tax_table.
@@ -23,14 +24,27 @@
 #'   add_to_phyloseq = TRUE
 #' )
 #' table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
-tax_iucn_code_pq <- function(physeq,
+tax_iucn_code_pq <- function(physeq = NULL,
                              taxonomic_rank = "currentCanonicalSimple",
+                             taxnames = NULL,
                              add_to_phyloseq = FALSE) {
-  taxnames <- taxonomic_rank_to_taxnames(
-    physeq = physeq,
-    taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE
-  )
+  if (!is.null(taxnames) && !is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+  }
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
+  }
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+  }
+  
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = TRUE
+    )
+  }
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
