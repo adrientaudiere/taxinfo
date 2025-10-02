@@ -6,8 +6,9 @@
 \title{Get and plot the range of taxa within a bioregion using gbif.range package}
 \usage{
 range_bioreg_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
+  taxnames = NULL,
   occ_samp = 5000,
   verbose = TRUE,
   verbose_gbif_range = FALSE,
@@ -20,11 +21,13 @@ range_bioreg_pq(
 plot_range_bioreg_pq(...)
 }
 \arguments{
-\item{physeq}{(required) A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{occ_samp}{(Numeric, default 5000) Number of occurrences to sample from GBIF.
 See [gbif.range::get_gbif()] for more details.}

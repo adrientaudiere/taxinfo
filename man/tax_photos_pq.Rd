@@ -6,10 +6,11 @@
 \usage{
 tax_photos_pq(
   physeq = NULL,
+  taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
   source = "gbif",
   folder_name = "photos_physeq",
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   gallery = FALSE,
   overwrite_folder = FALSE,
   col_name_url = "photo_url",
@@ -21,7 +22,9 @@ tax_photos_pq(
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{taxonomic_rank}{(Character, default = "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
@@ -32,9 +35,11 @@ be a vector of two columns (e.g. the c("Genus", "Species")).}
 \item{folder_name}{(default "photos_physeq") Name of the folder where photos
 will be downloaded. Only used if both add_to_phyloseq and gallery are FALSE.}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, a new phyloseq
-object is returned with a new column  containing the URL
-(entitled with the parameter col_name_url) in the tax_table.}
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, a new phyloseq object is returned with a new column containing the URL
+(entitled with the parameter col_name_url) in the tax_table.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{gallery}{(logical, default FALSE) If TRUE, a html gallery is
 created using  the function [pixture::pixgallery()].}
@@ -79,29 +84,8 @@ There is three behavior. See the returns section. Gbif source is quicker
 }
 \examples{
 
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-  add_to_phyloseq = TRUE
-)
- data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-   add_to_phyloseq = TRUE
- )
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
-# tax_photos_pq(data_fungi_mini_cleanNames)
-
- # tax_photos_pq(data_fungi_mini_cleanNames,
-#                    source = "wikitaxa")
-
-tax_photos_pq(data_fungi_cleanNames,
-                   gallery = TRUE,
-                   h="40px",
-                   w="80px"
-                  )
-tax_photos_pq(data_fungi_cleanNames,
-                   gallery = TRUE,
-                   h="40px",
-                   w="80px",
-                   simple_caption = TRUE
-                  )
 tax_photos_pq(data_fungi_mini_cleanNames,
                    gallery = TRUE,
                    h="40px",
@@ -109,14 +93,13 @@ tax_photos_pq(data_fungi_mini_cleanNames,
                    source = "wikitaxa"
                   )
 
-tax_photos_pq(data_fungi_mini_cleanNames,
+tax_photos_pq(taxnames= c("Xylodon flaviporus", "Basidiodendron eyrei"),
                    gallery = TRUE,
                    layout="rhombus"
                   )
 
 data_fungi_mini_cleanNames_photos <-
-  tax_photos_pq(data_fungi_mini_cleanNames,
-                     add_to_phyloseq = TRUE)
+  tax_photos_pq(data_fungi_mini_cleanNames)
 
 # Which photo(s) depicted more than one OTU
 data_fungi_mini_cleanNames_photos@tax_table[,"photo_url"] |>

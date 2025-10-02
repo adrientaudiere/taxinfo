@@ -5,20 +5,25 @@
 \title{Get iucn conservation status through gbif}
 \usage{
 tax_iucn_code_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
-  add_to_phyloseq = FALSE
+  taxnames = NULL,
+  add_to_phyloseq = NULL
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, add a new column
-(iucn_code) in the tax_table of the phyloseq object.}
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
+
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, add a new column (iucn_code) in the tax_table of the phyloseq object.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
@@ -34,12 +39,13 @@ This function is mainly a wrapper of the work of others.
 }
 \examples{
 data_fungi_mini_cleanNames <-
-  gna_verifier_pq(data_fungi_mini, add_to_phyloseq = TRUE)
-tax_iucn_code_pq(data_fungi_mini_cleanNames)
-data_fungi_mini_cleanNames <- tax_iucn_code_pq(data_fungi_mini_cleanNames,
-  add_to_phyloseq = TRUE
-)
+  gna_verifier_pq(data_fungi_mini) |>
+   tax_iucn_code_pq(data_fungi_mini_cleanNames)
+
 table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
+
+# Using taxnames vector (returns a tibble)
+tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 }
 \author{
 Adrien Taudière

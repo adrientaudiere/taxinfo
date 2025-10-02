@@ -10,7 +10,7 @@ tax_retroblast_pq(
   marker = NULL,
   id_cut = 99,
   retmax = 500,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = TRUE,
   verbose = TRUE,
   start_date = NULL,
   end_date = NULL,
@@ -22,7 +22,7 @@ tax_retroblast_pq(
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(required) A phyloseq object}
 
 \item{taxonomic_rank}{(required, default = "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
@@ -41,7 +41,7 @@ as good matches.}
 \item{retmax}{(default: 500) maximum number of sequences to retrieve
 from NCBI nucleotide database for each taxon name.}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, a new phyloseq object
+\item{add_to_phyloseq}{(logical, default TRUE) If TRUE, a new phyloseq object
 is returned with new columns in the tax_table.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
@@ -105,6 +105,9 @@ to the same taxon name as the one assigned to the ASV/OTU. Moreover, we
 can also detect some cases where a better taxonomic assignment can be
 proposed based on the BLAST results limited to species name already present
 in the phyloseq object.
+
+Note that this function need a physeq object and cannot works with a
+list of taxonomic names (taxnames is not a parameter of the function).
 }
 \examples{
 res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,

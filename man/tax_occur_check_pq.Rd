@@ -7,23 +7,26 @@
 tax_occur_check_pq(
   physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
+  taxnames = NULL,
   longitude = NULL,
   latitude = NULL,
   radius_km = 50,
   n_occur = 1000,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   verbose = TRUE,
   ...
 )
 }
 \arguments{
-\item{physeq}{phyloseq object.
+\item{physeq}{(optional) phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 The phyloseq object containing the taxa to check.}
 
 \item{taxonomic_rank}{Character. The taxonomic rank to use for the check.
 Default is "currentCanonicalSimple" which corresponds to the cleaned
 scientific names in the phyloseq object if [gna_verifier_pq()] was used with
 default parameter.}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{longitude}{Numeric. Longitude of the test point in decimal degrees.}
 
@@ -34,9 +37,11 @@ default parameter.}
 \item{n_occur}{Numeric. Maximum number of occurrences to retrieve from GBIF
 for each taxon (default: 1000).}
 
-\item{add_to_phyloseq}{(Logical, default: FALSE). Whether to add the results
-as new columns in the phyloseq object's tax_table. If TRUE, the results will be
-appended to the tax_table with appropriate column names}
+\item{add_to_phyloseq}{(Logical, default TRUE when physeq is provided, FALSE when taxnames is provided).
+Whether to add the results as new columns in the phyloseq object's tax_table. If TRUE, the results will be
+appended to the tax_table with appropriate column names.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{verbose}{(Logical, default: TRUE). Whether to print progress messages.}
 
@@ -57,7 +62,8 @@ check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   longitude = 2.3,
   latitude = 48,
   radius_km = 100,
-  n_occur = 50
+  n_occur = 50,
+  add_to_phyloseq = FALSE
 )
 
 check_res |>
@@ -70,8 +76,7 @@ data_fungi_mini_cleanNames_range_verif <-
     longitude = 2.3,
     latitude = 48,
     radius_km = 50,
-    n_occur = 10,
-    add_to_phyloseq = TRUE
+    n_occur = 10
   )
 
 df <- data_fungi_mini_cleanNames_range_verif@tax_table[, "count_in_radius"] |>

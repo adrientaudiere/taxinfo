@@ -5,22 +5,25 @@
 \title{Get scientific works about taxa present in a phyloseq object}
 \usage{
 tax_oa_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
+  taxnames = NULL,
   count_only = FALSE,
   return_raw_oa = FALSE,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
   verbose = TRUE,
   ...
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{count_only}{(Logical, default FALSE) If
 TRUE, only the number of works on a given taxa is return, leading to a
@@ -33,8 +36,10 @@ publications from Open Alex for each taxa as a list of data.frame. Can be
 useful to filter works for example by topic or by number of citations (see
 section examples).}
 
-\item{add_to_phyloseq}{If TRUE, return a new phyloseq
-object with new columns in the tax_table slot.}
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, return a new phyloseq object with new columns in the tax_table slot.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{type_works}{(A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 Only used if count_only is set to FALSE Default is c("article", "review",
@@ -60,12 +65,9 @@ This function is mainly a wrapper of the work of others.
   Please cite `openalexR` package.
 }
 \examples{
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-  add_to_phyloseq = TRUE
-)
-data_fungi_mini_cleanNames <- tax_oa_pq(data_fungi_mini_cleanNames,
-  add_to_phyloseq = TRUE
-)
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
+ tax_oa_pq(data_fungi_mini_cleanNames)
+
 ggplot(
   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
   aes(

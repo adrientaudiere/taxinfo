@@ -6,11 +6,12 @@
 phyloseq object}
 \usage{
 tax_info_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
+  taxnames = NULL,
   file_name = NULL,
   csv_taxonomic_rank = NULL,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   col_prefix = NULL,
   use_duck_db = FALSE,
   csv_cols_select = NULL,
@@ -19,19 +20,23 @@ tax_info_pq(
 )
 }
 \arguments{
-\item{physeq}{(required) A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{file_name}{(required) A file path to your csv file.}
 
 \item{csv_taxonomic_rank}{(required) The name of the column in your csv file
 containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, add new column(s)
-in the tax_table of the phyloseq object.}
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, add new column(s) in the tax_table of the phyloseq object.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
 columns names added to the tax_table slot of the phyloseq object.}
@@ -69,8 +74,7 @@ A function to add information from a custom csv file (e.g. FungalTraits,
 \examples{
 
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
+  data_sources = 210
 )
 
 # FUNGAL TRAITS example
@@ -81,7 +85,8 @@ fg_traits <- tax_info_pq(data_fungi_cleanNames,
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
-  sep = ";"
+  sep = ";",
+  add_to_phyloseq=FALSE
 )
 
 table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>
@@ -104,6 +109,7 @@ res_with_duckDB <- tax_info_pq(
   file_name = TAXREFv18_fungi,
   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   use_duck_db = TRUE,
+  add_to_phyloseq = FALSE,
   col_prefix = "taxref_",
   csv_cols_select = c("RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB", "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL")
 )
@@ -114,8 +120,7 @@ data_fungi_cleanNames_2 <- tax_info_pq(
   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   use_duck_db = TRUE,
   col_prefix = "taxref_",
-  csv_cols_select = c("RANG", "HABITAT", "FR", "URL", "CD_REF"),
-  add_to_phyloseq = TRUE
+  csv_cols_select = c("RANG", "HABITAT", "FR", "URL", "CD_REF")
 )
 table(data_fungi_cleanNames_2@tax_table[, "taxref_FR"])
 table(data_fungi_cleanNames_2@tax_table[, "taxref_HABITAT"])
@@ -129,8 +134,7 @@ data_fungi_cleanNames_3 <- tax_info_pq(data_fungi_cleanNames_2,
   file_name = taxref_status,
   csv_taxonomic_rank = "CD_REF",
   col_prefix = "st_",
-  use_duck_db = TRUE,
-  add_to_phyloseq = TRUE
+  use_duck_db = TRUE
 )
 
 data_fungi_cleanNames_3@tax_table[, "st_BCD_LRR"] |>

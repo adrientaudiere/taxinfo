@@ -5,9 +5,10 @@
 \title{Retrieve information about taxa from wikipedia}
 \usage{
 tax_get_wk_info_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
-  add_to_phyloseq = FALSE,
+  taxnames = NULL,
+  add_to_phyloseq = NULL,
   verbose = TRUE,
   languages_pages = NULL,
   time_to_sleep = 0.3,
@@ -17,14 +18,18 @@ tax_get_wk_info_pq(
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character, default = "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the c("Genus", "Species")).}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, a new phyloseq
-object is returned with new columns in the tax_table.}
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
+
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, a new phyloseq object is returned with new columns in the tax_table.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 
@@ -73,9 +78,7 @@ wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
 ))
 
 data_fungi_mini_cleanNames_wk_info <-
-  tax_get_wk_info_pq(data_fungi_mini_cleanNames,
-    add_to_phyloseq = TRUE
-  )
+  tax_get_wk_info_pq(data_fungi_mini_cleanNames)
 
 subset_taxa(data_fungi_mini_cleanNames_wk_info, !is.na(page_views)) |>
   tax_table() |>

@@ -5,10 +5,11 @@
 \title{Get biotic interactions for taxa present in a phyloseq object using rglobi}
 \usage{
 tax_globi_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = "currentCanonicalSimple",
+  taxnames = NULL,
   discard_synonym = TRUE,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   interaction_types = NULL,
   valid_taxo_target_taxon = TRUE,
   add_target_canonical = TRUE,
@@ -20,18 +21,22 @@ tax_globi_pq(
 )
 }
 \arguments{
-\item{physeq}{(required) A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
-\item{taxonomic_rank}{(required) (Character, default "currentCanonicalSimple")
+\item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{discard_synonym}{(logical, default TRUE) If TRUE, discard interactions
 where the source_taxon_name is a synonym of the taxon name used to query}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, return a new phyloseq
-object with new columns in the tax_table slot. If FALSE, return a tibble
-with the interactions found for each taxon.}
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, return a new phyloseq object with new columns in the tax_table slot. If FALSE, return a tibble
+with the interactions found for each taxon.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{interaction_types}{A character vector of interaction types to
 query. See [rglobi::get_interaction_types()]. If NULL (default),
@@ -88,14 +93,11 @@ res_globi <- tax_globi_pq(data_fungi_mini,
 )
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
+  data_sources = 210
 )
 
 data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
-  interaction_types = c("hasHost"),
-  data_sources = 210,
-  add_to_phyloseq = TRUE
+  interaction_types = c("hasHost")
 )
 }
 \author{

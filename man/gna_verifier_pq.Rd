@@ -5,8 +5,9 @@
 \title{Verify (and fix) scientific names (Genus species) of a phyloseq object.}
 \usage{
 gna_verifier_pq(
-  physeq,
+  physeq = NULL,
   taxonomic_rank = c("Genus", "Species"),
+  taxnames = NULL,
   data_sources = c(1, 12),
   all_matches = FALSE,
   capitalize = FALSE,
@@ -15,16 +16,18 @@ gna_verifier_pq(
   stats = FALSE,
   main_taxon_threshold = 0.5,
   verbose = TRUE,
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   genus_species_canonical_col = TRUE
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
 
 \item{taxonomic_rank}{(Character)
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the default c("Genus", "Species")).}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{data_sources}{A character or integer vector.
 See [taxize::gna_verifier] documentation. For example,
@@ -46,13 +49,13 @@ documentation.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 
-\item{add_to_phyloseq}{(logical, default FALSE)
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 
  - If FALSE, return the result of the [taxize::gna_verifier]
    function + a column taxa_names_in_phyloseq depicting the name of the
    taxa from the phyloseq object.
 
- - If TRUE return a phyloseq object with amended slot `@taxtable`.
+ - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
    Three new columns are added:
    - submittedName: The character string sent to gna_verifier (e.g.
    `Antrodiella brasiliensis`)
@@ -80,16 +83,13 @@ This function is mainly a wrapper of the work of others.
 \examples{
 gna_verifier_pq(data_fungi)
 
-gna_verifier_pq(data_fungi, data_sources = 210)
+gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-  add_to_phyloseq = TRUE
-)
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
 
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-  add_to_phyloseq = TRUE
-)
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
+
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
 sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "submittedName"], na.rm = TRUE)
 # 1010 taxa (71\% of total) are identified using a currentName including 434

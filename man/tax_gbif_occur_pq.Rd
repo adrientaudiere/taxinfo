@@ -6,8 +6,9 @@
 \usage{
 tax_gbif_occur_pq(
   physeq = NULL,
+  taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
-  add_to_phyloseq = FALSE,
+  add_to_phyloseq = NULL,
   by_country = FALSE,
   by_years = FALSE,
   verbose = TRUE,
@@ -15,14 +16,18 @@ tax_gbif_occur_pq(
 )
 }
 \arguments{
-\item{physeq}{A phyloseq object}
+\item{physeq}{(optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.}
+
+\item{taxnames}{(optional) A character vector of taxonomic names. If provided, `physeq` is ignored.}
 
 \item{taxonomic_rank}{(Character, default "currentCanonicalSimple")
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
 
-\item{add_to_phyloseq}{(logical, default FALSE) If TRUE, add new column(s)
-in the tax_table of the phyloseq object.}
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+If TRUE, add new column(s) in the tax_table of the phyloseq object.
+Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+Cannot be TRUE if `taxnames` is provided.}
 
 \item{by_country}{(logical, default FALSE) If TRUE, the number of occurences
 is computed by country}
@@ -50,12 +55,15 @@ This function is mainly a wrapper of the work of others.
 }
 \examples{
 data_fungi_mini_cleanNames <-
-  gna_verifier_pq(data_fungi_mini, add_to_phyloseq = TRUE)
+  gna_verifier_pq(data_fungi_mini)
+data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
 
-tax_gbif_occur_pq(data_fungi_mini_cleanNames)
-tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE)
-data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = TRUE)
-data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE, add_to_phyloseq = TRUE)
+# Get data without adding to phyloseq
+tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
+tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
+
+# Using taxnames vector (returns a tibble)
+tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 ggplot(
   data_fungi_mini_cleanNames@tax_table,
   aes(y = log10(as.numeric(Global_occurences)), x = currentCanonicalSimple)

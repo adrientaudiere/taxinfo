@@ -1,8 +1,6 @@
 # Test plot_tax_gbif_pq function
 
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-  add_to_phyloseq = TRUE
-)
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
 
 data_fungi_cleanNames_3sp <- subset_taxa_pq(data_fungi_cleanNames,
   grepl(
