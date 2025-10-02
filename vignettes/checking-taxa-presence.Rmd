@@ -87,10 +87,7 @@ leaflet() |>
 data("data_fungi_mini", package = "MiscMetabar")
 
 # First verify taxonomic names (recommended step)
-data_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210, # TaxRef
-  add_to_phyloseq = TRUE
-)
+data_clean <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 
 summary_plot_pq(data_clean)
 # Show cleaned taxonomic names
@@ -316,8 +313,7 @@ Add occurrence information directly to your phyloseq object:
 data_with_occurrence <- tax_occur_check_pq(data_clean,
   longitude = longitude,
   latitude = latitude,
-  radius_km = 100,
-  add_to_phyloseq = TRUE
+  radius_km = 100
 )
 
 # View enhanced tax_table with occurrence columns
@@ -358,14 +354,14 @@ Occurrence checking works well with other taxinfo functions:
 # Complete workflow example
 data_complete <- data_fungi_mini |>
   # 1. Clean names
-  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) |>
+  gna_verifier_pq(data_sources = 210) |>
   # 2. Check occurrences
   tax_occur_check_pq(
     longitude = 2.3, latitude = 48.8,
-    radius_km = 100, add_to_phyloseq = TRUE
+    radius_km = 100
   ) |>
   # 3. Add GBIF occurrence data
-  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
+  tax_gbif_occur_pq() |>
   # 4. Filter based on occurrence likelihood
   filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) # Keep taxa in >2 samples
 

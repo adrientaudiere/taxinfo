@@ -26,7 +26,7 @@
 #' @param file_name (required) A file path to your csv file.
 #' @param csv_taxonomic_rank (required) The name of the column in your csv file
 #'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'  If TRUE, add new column(s) in the tax_table of the phyloseq object.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
@@ -47,8 +47,7 @@
 #' @examples
 #'
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-#'   data_sources = 210,
-#'   add_to_phyloseq = TRUE
+#'   data_sources = 210
 #' )
 #'
 #' # FUNGAL TRAITS example
@@ -59,7 +58,8 @@
 #'   file_name = fungal_traits,
 #'   csv_taxonomic_rank = "GENUS",
 #'   col_prefix = "ft_",
-#'   sep = ";"
+#'   sep = ";",
+#'   add_to_phyloseq=FALSE
 #' )
 #'
 #' table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>
@@ -82,6 +82,7 @@
 #'   file_name = TAXREFv18_fungi,
 #'   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
 #'   use_duck_db = TRUE,
+#'   add_to_phyloseq = FALSE,
 #'   col_prefix = "taxref_",
 #'   csv_cols_select = c("RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB", "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL")
 #' )
@@ -92,8 +93,7 @@
 #'   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
 #'   use_duck_db = TRUE,
 #'   col_prefix = "taxref_",
-#'   csv_cols_select = c("RANG", "HABITAT", "FR", "URL", "CD_REF"),
-#'   add_to_phyloseq = TRUE
+#'   csv_cols_select = c("RANG", "HABITAT", "FR", "URL", "CD_REF")
 #' )
 #' table(data_fungi_cleanNames_2@tax_table[, "taxref_FR"])
 #' table(data_fungi_cleanNames_2@tax_table[, "taxref_HABITAT"])
@@ -107,8 +107,7 @@
 #'   file_name = taxref_status,
 #'   csv_taxonomic_rank = "CD_REF",
 #'   col_prefix = "st_",
-#'   use_duck_db = TRUE,
-#'   add_to_phyloseq = TRUE
+#'   use_duck_db = TRUE
 #' )
 #'
 #' data_fungi_cleanNames_3@tax_table[, "st_BCD_LRR"] |>
@@ -134,12 +133,12 @@ tax_info_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)
   }
-  
+
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

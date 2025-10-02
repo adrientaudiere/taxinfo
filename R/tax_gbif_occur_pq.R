@@ -5,12 +5,12 @@
 #' Optionally, the number of occurrences can be obtained by years or by country.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
-#'  If TRUE, add new column(s) in the tax_table of the phyloseq object. 
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+#'  If TRUE, add new column(s) in the tax_table of the phyloseq object.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param by_country (logical, default FALSE) If TRUE, the number of occurences
@@ -31,16 +31,13 @@
 #'  Please cite `rgbif` package.
 #' @examples
 #' data_fungi_mini_cleanNames <-
-#'   gna_verifier_pq(data_fungi_mini, add_to_phyloseq = TRUE)
-#'
-#' # Using phyloseq object (add_to_phyloseq defaults to TRUE)
-#' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames)
+#'   gna_verifier_pq(data_fungi_mini)
 #' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
-#' 
+#'
 #' # Get data without adding to phyloseq
 #' tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
 #' tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
-#' 
+#'
 #' # Using taxnames vector (returns a tibble)
 #' tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 #' ggplot(
@@ -52,8 +49,8 @@
 #'   coord_flip() +
 #'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
 tax_gbif_occur_pq <- function(physeq = NULL,
-                              taxonomic_rank = "currentCanonicalSimple",
                               taxnames = NULL,
+                              taxonomic_rank = "currentCanonicalSimple",
                               add_to_phyloseq = NULL,
                               by_country = FALSE,
                               by_years = FALSE,
@@ -65,12 +62,12 @@ tax_gbif_occur_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)
   }
-  
+
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

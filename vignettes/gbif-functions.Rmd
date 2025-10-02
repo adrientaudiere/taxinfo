@@ -49,15 +49,9 @@ The Global Biodiversity Information Facility (GBIF) is the world's largest repos
 data("data_fungi_mini", package = "MiscMetabar")
 
 # Clean taxonomic names first (recommended)
-data_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
-)
-
+data_clean <- gna_verifier_pq(data_fungi_mini, data_sources = 210) |>
 # Get global occurrence counts from GBIF
-data_clean_gbif <- tax_gbif_occur_pq(data_clean,
-  add_to_phyloseq = TRUE
-)
+ tax_gbif_occur_pq(data_clean)
 ```
 
 ### Example Visualization 
@@ -87,10 +81,7 @@ data_clean_gbif@tax_table |>
 Analyze geographic distribution patterns:
 
 ```{r}
-data_clean_gbif_country <- tax_gbif_occur_pq(data_clean,
-  by_country = TRUE,
-  add_to_phyloseq = TRUE
-)
+data_clean_gbif_country <- tax_gbif_occur_pq(data_clean, by_country = TRUE)
 
 data_clean_gbif_country@tax_table |>
   as.data.frame() |>

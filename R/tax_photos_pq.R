@@ -5,16 +5,16 @@
 #'  than wikitaxa source. Note that for the moment the function only return
 #'  one photo per species.
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param taxonomic_rank (Character, default = "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param source (Character) either "gbif" or "wikitaxa".
 #' @param folder_name (default "photos_physeq") Name of the folder where photos
 #' will be downloaded. Only used if both add_to_phyloseq and gallery are FALSE.
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'  If TRUE, a new phyloseq object is returned with a new column containing the URL
-#'  (entitled with the parameter col_name_url) in the tax_table. 
+#'  (entitled with the parameter col_name_url) in the tax_table.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param gallery (logical, default FALSE) If TRUE, a html gallery is
@@ -45,30 +45,8 @@
 #' @author Adrien Taudière
 #' @examples
 #'
-#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-#'   add_to_phyloseq = TRUE
-#' )
-
-#'  data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-#'    add_to_phyloseq = TRUE
-#'  )
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 #'
-#' # tax_photos_pq(data_fungi_mini_cleanNames)
-#'
-#'  # tax_photos_pq(data_fungi_mini_cleanNames,
-#' #                    source = "wikitaxa")
-#'
-#' tax_photos_pq(data_fungi_cleanNames,
-#'                    gallery = TRUE,
-#'                    h="40px",
-#'                    w="80px"
-#'                   )
-#' tax_photos_pq(data_fungi_cleanNames,
-#'                    gallery = TRUE,
-#'                    h="40px",
-#'                    w="80px",
-#'                    simple_caption = TRUE
-#'                   )
 #' tax_photos_pq(data_fungi_mini_cleanNames,
 #'                    gallery = TRUE,
 #'                    h="40px",
@@ -76,14 +54,13 @@
 #'                    source = "wikitaxa"
 #'                   )
 #'
-#' tax_photos_pq(data_fungi_mini_cleanNames,
+#' tax_photos_pq(taxnames= c("Xylodon flaviporus", "Basidiodendron eyrei"),
 #'                    gallery = TRUE,
 #'                    layout="rhombus"
 #'                   )
 #'
 #' data_fungi_mini_cleanNames_photos <-
-#'   tax_photos_pq(data_fungi_mini_cleanNames,
-#'                      add_to_phyloseq = TRUE)
+#'   tax_photos_pq(data_fungi_mini_cleanNames)
 #'
 #' # Which photo(s) depicted more than one OTU
 #' data_fungi_mini_cleanNames_photos@tax_table[,"photo_url"] |>
@@ -91,8 +68,8 @@
 #'   (\(tab) tab[as.numeric(tab) > 1])()
 #'
 tax_photos_pq <- function(physeq = NULL,
-                          taxonomic_rank = "currentCanonicalSimple",
                           taxnames = NULL,
+                          taxonomic_rank = "currentCanonicalSimple",
                           source = "gbif",
                           folder_name = "photos_physeq",
                           add_to_phyloseq = NULL,
@@ -110,22 +87,22 @@ tax_photos_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)
   }
-  
+
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
-  
+
   if (!is.null(physeq)) {
     if (sum(colnames(physeq@tax_table) %in% col_name_url) > 0) {
       cli::cli_abort("There is already a column called {.val {col_name_url}} in the @tax_table")
     }
   }
-  
+
   if (is.null(taxnames)) {
     taxnames_raw <- taxonomic_rank_to_taxnames(
       physeq = physeq,
@@ -239,7 +216,7 @@ tax_photos_pq <- function(physeq = NULL,
   if (verbose) {
     photos_found <- sum(!is.na(photo_url))
     names_not_found <- sum(is.na(photo_url))
-    
+
     if (!is.null(physeq)) {
       taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
       taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
@@ -260,7 +237,7 @@ tax_photos_pq <- function(physeq = NULL,
     }
   }
 
-  if (add_to_phyloseq) {
+  if (add_to_phyloseq && !gallery) {
     return(new_physeq)
   } else if (gallery) {
     if (verbose) {

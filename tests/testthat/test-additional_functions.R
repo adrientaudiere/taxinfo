@@ -52,7 +52,6 @@ test_that("tax_globi_pq input validation", {
 
   res2 <- tax_globi_pq(data_fungi_cleanNames_3sp,
     taxonomic_rank = c("Genus", "Species"),
-    add_to_phyloseq = TRUE,
     interaction_types = list("parasiteOf", "hasHost"),
     verbose = TRUE,
     max_interactions = 10
@@ -67,7 +66,6 @@ test_that("tax_iucn_code_pq input validation", {
   expect_equal(dim(res1), c(254, 2))
 
   res2 <- tax_iucn_code_pq(data_fungi_cleanNames,
-    add_to_phyloseq = TRUE
   )
 
   expect_s4_class(res2, "phyloseq")
@@ -85,7 +83,6 @@ test_that("tax_retroblast_pq input validation", {
 
   res2 <- tax_retroblast_pq(data_fungi_cleanNames_3sp,
     marker = c("ITS", "internal transcribed spacer"),
-    add_to_phyloseq = TRUE,
     retmax = 10, id_cut = 99
   )
   expect_s4_class(res2, "phyloseq")

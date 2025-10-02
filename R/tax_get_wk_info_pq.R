@@ -8,7 +8,7 @@
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. the c("Genus", "Species")).
 #' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #' If TRUE, a new phyloseq object is returned with new columns in the tax_table.
 #' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #' Cannot be TRUE if `taxnames` is provided.
@@ -49,9 +49,7 @@
 #' ))
 #'
 #' data_fungi_mini_cleanNames_wk_info <-
-#'   tax_get_wk_info_pq(data_fungi_mini_cleanNames,
-#'     add_to_phyloseq = TRUE
-#'   )
+#'   tax_get_wk_info_pq(data_fungi_mini_cleanNames)
 #'
 #' subset_taxa(data_fungi_mini_cleanNames_wk_info, !is.na(page_views)) |>
 #'   tax_table() |>
@@ -91,12 +89,12 @@ tax_get_wk_info_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)
   }
-  
+
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

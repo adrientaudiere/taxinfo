@@ -52,8 +52,7 @@ data("data_fungi_mini", package = "MiscMetabar")
 
 # Clean names first
 data_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
+  data_sources = 210
 )
 
 # Add Wikipedia information (add_to_phyloseq defaults to TRUE for phyloseq objects)
@@ -90,8 +89,7 @@ Analyze Wikipedia coverage across languages:
 ```{r}
 # Get Wikipedia data for specific languages
 data_clean_wk2 <- tax_get_wk_info_pq(data_clean,
-  languages_pages = c("en", "fr", "de", "es"),
-  add_to_phyloseq = TRUE
+  languages_pages = c("en", "fr", "de", "es")
 )
 
 # Visualize language coverage
@@ -132,8 +130,7 @@ GLOBI (Global Biotic Interactions) provides data on species interactions includi
 # Get interaction data from GLOBI
 data_clean_globi <- tax_globi_pq(data_clean,
   interaction_types = c("parasiteOf", "pathogenOf"),
-  max_interactions = 100,
-  add_to_phyloseq = TRUE
+  max_interactions = 100
 )
 
 # View interaction columns
@@ -288,9 +285,7 @@ ggraph(graph, layout = "fr") +
 Get publication data for your taxa and add it to the previous wikipedia-enhanced dataset:
 
 ```{r}
-data_clean_oa <- tax_oa_pq(data_clean_wk,
-  add_to_phyloseq = TRUE
-)
+data_clean_oa <- tax_oa_pq(data_clean_wk)
 
 head(data_clean_oa@tax_table[, c(
   "n_doi",
@@ -346,10 +341,7 @@ phyloseq object to found more informations in the mini-trait database. When
 using true database, you should find more information, even with less taxa.
 
 ```{r}
-data_clean_full <- gna_verifier_pq(data_fungi,
-  data_sources = 210,
-  add_to_phyloseq = TRUE
-)
+data_clean_full <- gna_verifier_pq(data_fungi,data_sources = 210)
 
 # Load fungal traits database
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
@@ -362,8 +354,7 @@ data_clean_ft <- tax_info_pq(data_clean_full,
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
-  sep = ";",
-  add_to_phyloseq = TRUE
+  sep = ";"
 )
 
 # View trait columns
@@ -422,8 +413,7 @@ data_clean_taxref <- tax_info_pq(data_clean,
   file_name = taxref_file,
   csv_taxonomic_rank = "LB_NOM",
   csv_cols_select = NULL,
-  col_prefix = "taxref_",
-  add_to_phyloseq = TRUE
+  col_prefix = "taxref_"
 )
 ```
 
@@ -479,20 +469,19 @@ Combine multiple data sources for comprehensive profiles:
 ```{r}
 # Complete multi-source enrichment
 data_fungi_full <- data_fungi_mini |>
-  gna_verifier_pq(data_sources = 210, add_to_phyloseq = TRUE) |>
-  tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
-  tax_get_wk_info_pq(add_to_phyloseq = TRUE) |>
-  tax_oa_pq(add_to_phyloseq = TRUE, count_only = TRUE) |>
+  gna_verifier_pq(data_sources = 210) |>
+  tax_gbif_occur_pq() |>
+  tax_get_wk_info_pq() |>
+  tax_oa_pq(count_only = TRUE) |>
   tax_globi_pq(
     interaction_types = c("parasiteOf", "pathogenOf"),
-    max_interactions = 20, add_to_phyloseq = TRUE
+    max_interactions = 20
   ) |>
   tax_info_pq(
     file_name = taxref_file,
     csv_taxonomic_rank = "LB_NOM",
     csv_cols_select = NULL,
-    col_prefix = "taxref_",
-    add_to_phyloseq = TRUE
+    col_prefix = "taxref_"
   )
 
 # View enriched tax_table

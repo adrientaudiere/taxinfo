@@ -10,9 +10,9 @@
 #' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param discard_synonym (logical, default TRUE) If TRUE, discard interactions
 #'   where the source_taxon_name is a synonym of the taxon name used to query
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #' If TRUE, return a new phyloseq object with new columns in the tax_table slot. If FALSE, return a tibble
-#' with the interactions found for each taxon. 
+#' with the interactions found for each taxon.
 #' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #' Cannot be TRUE if `taxnames` is provided.
 #' @param interaction_types A character vector of interaction types to
@@ -57,14 +57,11 @@
 #' )
 #'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-#'   data_sources = 210,
-#'   add_to_phyloseq = TRUE
+#'   data_sources = 210
 #' )
 #'
 #' data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
-#'   interaction_types = c("hasHost"),
-#'   data_sources = 210,
-#'   add_to_phyloseq = TRUE
+#'   interaction_types = c("hasHost")
 #' )
 #' @details
 #'  This function is mainly a wrapper of the work of others.
@@ -90,7 +87,7 @@ tax_globi_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)

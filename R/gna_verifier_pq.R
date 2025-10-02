@@ -47,16 +47,13 @@
 #' @examples
 #' gna_verifier_pq(data_fungi)
 #'
-#' gna_verifier_pq(data_fungi, data_sources = 210)
+#' gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 #'
-#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-#'   add_to_phyloseq = TRUE
-#' )
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 #'
 #'
-#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-#'   add_to_phyloseq = TRUE
-#' )
+#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
+#'
 #' sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
 #' sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "submittedName"], na.rm = TRUE)
 #' # 1010 taxa (71% of total) are identified using a currentName including 434
@@ -101,12 +98,12 @@ gna_verifier_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  
+
   # Set default for add_to_phyloseq based on input type
   if (is.null(add_to_phyloseq)) {
     add_to_phyloseq <- !is.null(physeq)
   }
-  
+
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
