@@ -29,7 +29,7 @@ library(dplyr)
 
 One of the key challenges in environmental sequencing studies is determining whether detected taxa are likely to be actually present at your sampling sites. This vignette demonstrates how to use `taxinfo`'s occurrence checking functions to validate the likelihood of taxa presence based on known geographic distributions.
 
-As most of `taxinfo`'s utilities, these functions need a phyloseq object as input with cleaned taxonomic names (or a list of individual taxa names). The algorithm used to assign the taxonomic names must be stringent enough to avoid false positives. Moreover, we recommend using [gna_verifier_pq()] to clean taxonomic names by disambiguating synonyms and correcting misspellings. 
+As most of `taxinfo`'s utilities, these functions can accept either a phyloseq object with cleaned taxonomic names or a vector of taxonomic names (`taxnames` parameter). The algorithm used to assign the taxonomic names must be stringent enough to avoid false positives. Moreover, we recommend using [gna_verifier_pq()] to clean taxonomic names by disambiguating synonyms and correcting misspellings. 
 
 ## Core Functions
 
