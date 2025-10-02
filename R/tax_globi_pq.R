@@ -15,6 +15,8 @@
 #' with the interactions found for each taxon.
 #' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #' Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param interaction_types A character vector of interaction types to
 #'   query. See [rglobi::get_interaction_types()]. If NULL (default),
 #'   all interaction types are queried.
@@ -71,6 +73,7 @@ tax_globi_pq <- function(physeq = NULL,
                          taxonomic_rank = "currentCanonicalSimple",
                          discard_synonym = TRUE,
                          add_to_phyloseq = NULL,
+                         col_prefix = NULL,
                          interaction_types = NULL,
                          valid_taxo_target_taxon = TRUE,
                          add_target_canonical = TRUE,
@@ -222,6 +225,30 @@ tax_globi_pq <- function(physeq = NULL,
       return(tib_globi_all)
     }
   }
+  
+  # Get new column names (excluding taxa_name which is used for join)
+  new_cols <- setdiff(colnames(tib_globi_all), "taxa_name")
+  
+  # Check for column name collisions and handle col_prefix
+  if (add_to_phyloseq && !is.null(tib_globi_all)) {
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'globi_' to avoid conflicts"
+      ))
+      col_prefix <- "globi_"
+    }
+  }
+  
+  # Apply col_prefix to new columns
+  if (!is.null(col_prefix) && !is.null(tib_globi_all)) {
+    tib_globi_all <- tib_globi_all |>
+      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
+  }
+  
   if (add_to_phyloseq) {
     new_physeq <- physeq
 

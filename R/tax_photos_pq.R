@@ -17,6 +17,8 @@
 #'  (entitled with the parameter col_name_url) in the tax_table.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param gallery (logical, default FALSE) If TRUE, a html gallery is
 #' created using  the function [pixture::pixgallery()].
 #' @param overwrite_folder (logical, default FALSE) If TRUE, the folder
@@ -74,6 +76,7 @@ tax_photos_pq <- function(physeq = NULL,
                           source = "gbif",
                           folder_name = "photos_physeq",
                           add_to_phyloseq = NULL,
+                          col_prefix = NULL,
                           gallery = FALSE,
                           overwrite_folder = FALSE,
                           col_name_url = "photo_url",
@@ -98,9 +101,15 @@ tax_photos_pq <- function(physeq = NULL,
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
 
-  if (!is.null(physeq)) {
-    if (sum(colnames(physeq@tax_table) %in% col_name_url) > 0) {
-      cli::cli_abort("There is already a column called {.val {col_name_url}} in the @tax_table")
+  # Check for column name collisions and handle col_prefix
+  if (!is.null(physeq) && add_to_phyloseq) {
+    final_col_name <- paste0(col_prefix, col_name_url)
+    if (sum(colnames(physeq@tax_table) %in% final_col_name) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column name already exists in tax_table: {.val {final_col_name}}",
+        "i" = "Adding prefix 'photo_' to avoid conflicts"
+      ))
+      col_prefix <- "photo_"
     }
   }
 
@@ -200,6 +209,14 @@ tax_photos_pq <- function(physeq = NULL,
     as_tibble()
 
   colnames(photo_url_tib) <- c(col_name_url, "taxa_name")
+  
+  # Apply col_prefix to the photo URL column
+  if (!is.null(col_prefix)) {
+    photo_url_tib <- photo_url_tib |>
+      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
+  }
+  
+  final_col_name <- paste0(col_prefix, col_name_url)
 
   if (!is.null(physeq)) {
     new_physeq <- physeq
@@ -219,8 +236,8 @@ tax_photos_pq <- function(physeq = NULL,
     names_not_found <- sum(is.na(photo_url))
 
     if (!is.null(physeq)) {
-      taxa_depicted <- sum(!is.na(new_physeq@tax_table[, col_name_url]))
-      taxa_no_photo <- sum(is.na(new_physeq@tax_table[, col_name_url]))
+      taxa_depicted <- sum(!is.na(new_physeq@tax_table[, final_col_name]))
+      taxa_no_photo <- sum(is.na(new_physeq@tax_table[, final_col_name]))
 
       cli::cli_bullets(c(
         "v" = "Photo download summary:/n",
