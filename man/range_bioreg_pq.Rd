@@ -64,12 +64,12 @@ A wrapper of [gbif.range::get_gbif()] and [gbif.range::get_range()] functions
 
 res_range <- range_bioreg_pq(subset_taxa(
   data_fungi_mini_cleanNames,
-  currentCanonicalSimple \%in\% c("Xylodon raduloides", "Basidiodendron eyrei")
+  currentCanonicalSimple \%in\% c("Xylodon flaviporus", "Basidiodendron eyrei")
 ), occ_samp = 100)
 
 p <- plot_range_bioreg_pq(subset_taxa(
   data_fungi_mini_cleanNames,
-  currentCanonicalSimple \%in\% c("Xylodon raduloides", "Basidiodendron eyrei")
+  currentCanonicalSimple \%in\% c("Xylodon flaviporus", "Basidiodendron eyrei")
 ), occ_samp = 100)
 p[[1]] / p[[2]]
 

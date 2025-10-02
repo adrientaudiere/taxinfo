@@ -15,7 +15,8 @@ tax_globi_pq(
   data_sources = c(1, 12),
   verbose = FALSE,
   strict_interaction_types = TRUE,
-  max_interactions = 1000
+  max_interactions = 1000,
+  batch_size_gna_verifier = 50
 )
 }
 \arguments{
@@ -57,7 +58,14 @@ rglobi for interaction_types = "hasHost" will also return interactions
  with interaction_type = "pathogenOf" and "parasiteOf" if
  strict_interaction_types is set to FALSE.}
 
-\item{max_interactions}{(numeric, default 1000) The maximum number of interactions to query for each taxon.}
+\item{max_interactions}{(numeric, default 1000) The maximum number of interactions
+to query for each taxon.}
+
+\item{batch_size_gna_verifier}{(numeric, default 100) The number of names to
+verify at once with' [taxize::gna_verifier()] function. Its a hack because
+gna_verifier seems to fail when too many names are sent at once including
+strange ones such as what is obtain whith rglobi. Only used if
+ `valid_taxo_target_taxon` is set to TRUE.}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

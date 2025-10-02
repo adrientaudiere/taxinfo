@@ -38,9 +38,9 @@ A character string summarizing the number of samples, taxa, sequences and occurr
 Create a text to summarize the number of samples, taxa, sequences and occurrences of selected taxa in a phyloseq object for a given value in the column of a tax_table
 }
 \examples{
-taxa_summary_text(data_fungi_cleanNames, taxnames = c("Xylodon raduloides"))
+taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
 taxa_summary_text(data_fungi_cleanNames,
-  taxnames = c("Xylodon raduloides"),
+  taxnames = "Xylodon flaviporus",
   min_nb_seq = 100, verbose = FALSE
 )
 taxa_summary_text(data_fungi_cleanNames,

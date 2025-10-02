@@ -23,7 +23,7 @@ create_mock_tax_table <- function() {
   data.frame(
     Genus = c("Xylodon", "Basidiodendron", "Fusarium"),
     Species = c("raduloides", "eyrei", "oxysporum"),
-    currentCanonicalSimple = c("Xylodon raduloides", "Basidiodendron eyrei", "Fusarium oxysporum"),
+    currentCanonicalSimple = c("Xylodon flaviporus", "Basidiodendron eyrei", "Fusarium oxysporum"),
     stringsAsFactors = FALSE
   )
 }
@@ -40,7 +40,7 @@ test_that("taxonomic_rank_to_taxnames basic functionality", {
   # Test taxonomic name construction logic
   combined_names <- paste(mock_tax$Genus, mock_tax$Species)
   expect_equal(length(combined_names), 3)
-  expect_true("Xylodon raduloides" %in% combined_names)
+  expect_true("Xylodon flaviporus" %in% combined_names)
   expect_true("Basidiodendron eyrei" %in% combined_names)
 })
 

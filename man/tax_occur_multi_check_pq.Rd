@@ -48,7 +48,6 @@ A list containing:
    for each case of the matrix.
  - A new phyloseq object with taxa filtered based on min_occur. Be careful,
  the filtering may be very stringent.
- @export
 }
 \description{
 This function performs a species range check for taxa contained in a phyloseq

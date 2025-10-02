@@ -7,7 +7,7 @@
 tax_oa_pq(
   physeq,
   taxonomic_rank = "currentCanonicalSimple",
-  list_doi = TRUE,
+  count_only = FALSE,
   return_raw_oa = FALSE,
   add_to_phyloseq = FALSE,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
@@ -22,9 +22,9 @@ tax_oa_pq(
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. c("Genus", "Species")).}
 
-\item{list_doi}{(Logical, default TRUE) Do the list of doi is returned ? If
-false, only the number of works on a given taxa is return, leading to a
-faster call to openalexR::oa_fetch(). Note that if list_doi is set to FALSE
+\item{count_only}{(Logical, default FALSE) If
+TRUE, only the number of works on a given taxa is return, leading to a
+faster call to openalexR::oa_fetch(). Note that if count_only is set to FALSE
 all works (including e.g. preprint and dataset) are count, leading to
 higher number of works than if list_doi is set to TRUE.}
 
@@ -37,7 +37,7 @@ section examples).}
 object with new columns in the tax_table slot.}
 
 \item{type_works}{(A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
-Only used if list_doi is set to TRUE. Default is c("article", "review",
+Only used if count_only is set to FALSE Default is c("article", "review",
  "book-chapter", "book", "letter").}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
@@ -46,8 +46,9 @@ Only used if list_doi is set to TRUE. Default is c("article", "review",
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
- object, if add_to_phyloseq = TRUE, with 1 (n_doi) or 2 (n_doi and list_doi
- if `list_doi` is TRUE) new column(s) in the tax_table.
+ object, if add_to_phyloseq = TRUE, with 1 (`n_doi`) or 4 (`n_doi`,
+ `list_doi`, `n_citation` and `list_keywords`
+ if `count_only` is FALSE) new column(s) in the tax_table.
 }
 \description{
 A wrapper of [openalexR::oa_fetch()] function to get the number of

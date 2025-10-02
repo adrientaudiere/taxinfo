@@ -18,7 +18,7 @@ create_mock_phyloseq <- function() {
   # Mock taxonomy table
   tax_matrix <- matrix(
     data = c(
-      "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Xylodon", "raduloides", "Xylodon raduloides",
+      "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Xylodon", "raduloides", "Xylodon flaviporus",
       "Fungi", "Basidiomycota", "Tremellomycetes", "Tremellales", "Tremellaceae", "Basidiodendron", "eyrei", "Basidiodendron eyrei",
       "Fungi", "Ascomycota", "Sordariomycetes", "Hypocreales", "Nectriaceae", "Fusarium", "oxysporum", "Fusarium oxysporum",
       "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Trametes", "versicolor", "Trametes versicolor"
