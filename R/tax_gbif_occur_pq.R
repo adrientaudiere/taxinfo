@@ -5,7 +5,7 @@
 #' Optionally, the number of occurrences can be obtained by years or by country.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).

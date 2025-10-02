@@ -11,10 +11,10 @@
 #'
 #' @aliases plot_range_bioreg_pq
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param occ_samp (Numeric, default 5000) Number of occurrences to sample from GBIF.
 #'   See [gbif.range::get_gbif()] for more details.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
@@ -54,8 +54,8 @@
 #' requireNamespace(patchwork)
 #' p[[1]] / p[[2]]
 range_bioreg_pq <- function(physeq = NULL,
-                            taxonomic_rank = "currentCanonicalSimple",
                             taxnames = NULL,
+                            taxonomic_rank = "currentCanonicalSimple",
                             occ_samp = 5000,
                             verbose = TRUE,
                             verbose_gbif_range = FALSE,

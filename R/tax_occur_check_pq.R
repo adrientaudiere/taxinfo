@@ -7,11 +7,11 @@
 #'
 #' @param physeq (optional) phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #'  The phyloseq object containing the taxa to check.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank Character. The taxonomic rank to use for the check.
 #'  Default is "currentCanonicalSimple" which corresponds to the cleaned
 #'  scientific names in the phyloseq object if [gna_verifier_pq()] was used with
 #'  default parameter.
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param longitude Numeric. Longitude of the test point in decimal degrees.
 #' @param latitude Numeric. Latitude of the test point in decimal degrees.
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
@@ -71,8 +71,8 @@
 #'   summary_plot_pq()
 #' @export
 tax_occur_check_pq <- function(physeq = NULL,
-                               taxonomic_rank = "currentCanonicalSimple",
                                taxnames = NULL,
+                               taxonomic_rank = "currentCanonicalSimple",
                                longitude = NULL,
                                latitude = NULL,
                                radius_km = 50,

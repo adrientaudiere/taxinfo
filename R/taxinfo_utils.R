@@ -43,10 +43,10 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #' Create a text to summarize the number of samples, taxa, sequences and occurrences of selected taxa in a phyloseq object for a given value in the column of a tax_table
 #'
 #' @param physeq A phyloseq object
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (A character vector of taxonomic names to select)
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param min_nb_seq minimum number of sequences by OTUs by
 #'   samples to take into count this OTUs in this sample. For example,
@@ -69,8 +69,8 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'   taxnames = c("Soft Rot"), verbose = FALSE
 #' )
 taxa_summary_text <- function(physeq,
-                              taxonomic_rank = "currentCanonicalSimple",
                               taxnames = NULL,
+                              taxonomic_rank = "currentCanonicalSimple",
                               verbose = TRUE,
                               min_nb_seq = 0,
                               ...) {

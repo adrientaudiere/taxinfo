@@ -19,10 +19,10 @@
 #'
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param file_name (required) A file path to your csv file.
 #' @param csv_taxonomic_rank (required) The name of the column in your csv file
 #'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.
@@ -59,7 +59,7 @@
 #'   csv_taxonomic_rank = "GENUS",
 #'   col_prefix = "ft_",
 #'   sep = ";",
-#'   add_to_phyloseq=FALSE
+#'   add_to_phyloseq = FALSE
 #' )
 #'
 #' table(fg_traits$ft_primary_lifestyle, fg_traits$Guild) |>
@@ -117,8 +117,8 @@
 #' data_fungi_cleanNames_3@tax_table[, "st_BCD_TAXREF_STATUT_BIOGEO"] |>
 #'   table(useNA = "always")
 tax_info_pq <- function(physeq = NULL,
-                        taxonomic_rank = "currentCanonicalSimple",
                         taxnames = NULL,
+                        taxonomic_rank = "currentCanonicalSimple",
                         file_name = NULL,
                         csv_taxonomic_rank = NULL,
                         add_to_phyloseq = NULL,

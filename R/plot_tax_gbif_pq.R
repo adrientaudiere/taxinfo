@@ -7,11 +7,11 @@
 #'   extracted from the specified taxonomic rank.
 #'   The occurrences are plotted either as points or using hexagonal binning.
 #'   The function can also filter the occurrences by country.
-#' @param physeq A phyloseq object
+#' @param physeq (optional) A phyloseq object
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (A character vector of taxonomic names. If provided, physeq is ignored.)
 #' @param interactive_plot (logical, default FALSE) If TRUE, an interactive map is created using the package mapview.
 #' @param zcol (character vector, default c("year", "taxonomicStatus")) Only used if interactive_plot is TRUE. The column(s) of the occurrences to use for coloring the points in the interactive map. See ?mapview::mapview() for more details.
 #' @param hexagons (logical, default FALSE) Only used if interactive_plot is
@@ -70,8 +70,8 @@
 #'   (p[[3]] + p[[4]]) & no_legend()
 #'
 plot_tax_gbif_pq <- function(physeq = NULL,
-                             taxonomic_rank = "currentCanonicalSimple",
                              taxnames = NULL,
+                             taxonomic_rank = "currentCanonicalSimple",
                              interactive_plot = FALSE,
                              zcol = c("year", "taxonomicStatus"),
                              hexagons = FALSE,

@@ -4,10 +4,10 @@
 #' Taxa with only genus name are discarded.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank  (Character, default = "currentCanonicalSimple")
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. the c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #' If TRUE, a new phyloseq object is returned with new columns in the tax_table.
 #' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
@@ -72,8 +72,8 @@
 #'       Shape size is proportional to mean page lenght in wikipedia.") +
 #'   ylab("")
 tax_get_wk_info_pq <- function(physeq = NULL,
-                               taxonomic_rank = "currentCanonicalSimple",
                                taxnames = NULL,
+                               taxonomic_rank = "currentCanonicalSimple",
                                add_to_phyloseq = NULL,
                                verbose = TRUE,
                                languages_pages = NULL,

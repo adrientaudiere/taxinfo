@@ -6,10 +6,10 @@
 #'   taxa of a phyloseq object
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param count_only (Logical, default FALSE) If
 #'   TRUE, only the number of works on a given taxa is return, leading to a
 #'   faster call to openalexR::oa_fetch(). Note that if count_only is set to FALSE
@@ -40,7 +40,7 @@
 #'   Please cite `openalexR` package.
 #' @examples
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
-#'  tax_oa_pq(data_fungi_mini_cleanNames)
+#'   tax_oa_pq(data_fungi_mini_cleanNames)
 #'
 #' ggplot(
 #'   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
@@ -103,8 +103,8 @@
 #'     }
 #'   })
 tax_oa_pq <- function(physeq = NULL,
-                      taxonomic_rank = "currentCanonicalSimple",
                       taxnames = NULL,
+                      taxonomic_rank = "currentCanonicalSimple",
                       count_only = FALSE,
                       return_raw_oa = FALSE,
                       add_to_phyloseq = NULL,

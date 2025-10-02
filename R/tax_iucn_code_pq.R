@@ -1,10 +1,10 @@
 #' Get iucn conservation status through gbif
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'  If TRUE, add a new column (iucn_code) in the tax_table of the phyloseq object.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
@@ -21,15 +21,15 @@
 #' @examples
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini) |>
-#'    tax_iucn_code_pq(data_fungi_mini_cleanNames)
+#'   tax_iucn_code_pq(data_fungi_mini_cleanNames)
 #'
 #' table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
 #'
 #' # Using taxnames vector (returns a tibble)
 #' tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 tax_iucn_code_pq <- function(physeq = NULL,
-                             taxonomic_rank = "currentCanonicalSimple",
                              taxnames = NULL,
+                             taxonomic_rank = "currentCanonicalSimple",
                              add_to_phyloseq = NULL) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")

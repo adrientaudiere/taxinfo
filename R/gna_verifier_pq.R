@@ -4,10 +4,10 @@
 #'  A wrapper of [taxize::gna_verifier] apply to phyloseq object
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param taxonomic_rank (Character)
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the default c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param data_sources A character or integer vector.
 #'   See [taxize::gna_verifier] documentation. For example,
 #'   1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
@@ -80,8 +80,8 @@
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `taxize` package.
 gna_verifier_pq <- function(physeq = NULL,
-                            taxonomic_rank = c("Genus", "Species"),
                             taxnames = NULL,
+                            taxonomic_rank = c("Genus", "Species"),
                             data_sources = c(1, 12),
                             all_matches = FALSE,
                             capitalize = FALSE,

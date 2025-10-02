@@ -4,10 +4,10 @@
 #'  A wrapper of [rglobi::get_interactions_by_taxa()] function to get biotic
 #'  interactions for each taxa of a phyloseq object
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
-#' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
 #' @param discard_synonym (logical, default TRUE) If TRUE, discard interactions
 #'   where the source_taxon_name is a synonym of the taxon name used to query
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
@@ -67,8 +67,8 @@
 #'  This function is mainly a wrapper of the work of others.
 #'  Please cite `rglobi` and `taxize` packages.
 tax_globi_pq <- function(physeq = NULL,
-                         taxonomic_rank = "currentCanonicalSimple",
                          taxnames = NULL,
+                         taxonomic_rank = "currentCanonicalSimple",
                          discard_synonym = TRUE,
                          add_to_phyloseq = NULL,
                          interaction_types = NULL,
