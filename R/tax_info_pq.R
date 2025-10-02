@@ -26,8 +26,10 @@
 #' @param file_name (required) A file path to your csv file.
 #' @param csv_taxonomic_rank (required) The name of the column in your csv file
 #'  containing the taxonomic names. Must match the taxonomic_rank of the phyloseq.
-#' @param add_to_phyloseq (logical, default FALSE) If TRUE, add new column(s)
-#'  in the tax_table of the phyloseq object. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default NULL) If TRUE, add new column(s)
+#'  in the tax_table of the phyloseq object. If NULL (default), it is set to TRUE when
+#'  `physeq` is provided and FALSE when `taxnames` is provided. Users can explicitly set it to
+#'  FALSE even when `physeq` is provided to get a tibble instead. Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object.
 #' @param use_duck_db (logical, default FALSE) If TRUE, use duckdb to handle
@@ -120,7 +122,7 @@ tax_info_pq <- function(physeq = NULL,
                         taxnames = NULL,
                         file_name = NULL,
                         csv_taxonomic_rank = NULL,
-                        add_to_phyloseq = FALSE,
+                        add_to_phyloseq = NULL,
                         col_prefix = NULL,
                         use_duck_db = FALSE,
                         csv_cols_select = NULL,
@@ -132,6 +134,16 @@ tax_info_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default value for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    if (!is.null(physeq)) {
+      add_to_phyloseq <- TRUE
+    } else {
+      add_to_phyloseq <- FALSE
+    }
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

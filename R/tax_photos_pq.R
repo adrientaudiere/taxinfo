@@ -12,9 +12,11 @@
 #' @param source (Character) either "gbif" or "wikitaxa".
 #' @param folder_name (default "photos_physeq") Name of the folder where photos
 #' will be downloaded. Only used if both add_to_phyloseq and gallery are FALSE.
-#' @param add_to_phyloseq (logical, default FALSE) If TRUE, a new phyloseq
-#'  object is returned with a new column  containing the URL
-#'  (entitled with the parameter col_name_url) in the tax_table. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default NULL) If TRUE, a new phyloseq
+#'  object is returned with a new column containing the URL
+#'  (entitled with the parameter col_name_url) in the tax_table. If NULL (default), it is set to TRUE when
+#'  `physeq` is provided and FALSE when `taxnames` is provided. Users can explicitly set it to
+#'  FALSE even when `physeq` is provided to get a tibble instead. Cannot be TRUE if `taxnames` is provided.
 #' @param gallery (logical, default FALSE) If TRUE, a html gallery is
 #' created using  the function [pixture::pixgallery()].
 #' @param overwrite_folder (logical, default FALSE) If TRUE, the folder
@@ -79,9 +81,9 @@
 #'                    layout="rhombus"
 #'                   )
 #'
+#' # add_to_phyloseq defaults to TRUE when physeq is provided
 #' data_fungi_mini_cleanNames_photos <-
-#'   tax_photos_pq(data_fungi_mini_cleanNames,
-#'                      add_to_phyloseq = TRUE)
+#'   tax_photos_pq(data_fungi_mini_cleanNames)
 #'
 #' # Which photo(s) depicted more than one OTU
 #' data_fungi_mini_cleanNames_photos@tax_table[,"photo_url"] |>
@@ -93,7 +95,7 @@ tax_photos_pq <- function(physeq = NULL,
                           taxnames = NULL,
                           source = "gbif",
                           folder_name = "photos_physeq",
-                          add_to_phyloseq = FALSE,
+                          add_to_phyloseq = NULL,
                           gallery = FALSE,
                           overwrite_folder = FALSE,
                           col_name_url = "photo_url",
@@ -108,6 +110,16 @@ tax_photos_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default value for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    if (!is.null(physeq)) {
+      add_to_phyloseq <- TRUE
+    } else {
+      add_to_phyloseq <- FALSE
+    }
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

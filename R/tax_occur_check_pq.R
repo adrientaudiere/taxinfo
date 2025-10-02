@@ -17,9 +17,11 @@
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
 #' @param n_occur Numeric. Maximum number of occurrences to retrieve from GBIF
 #'  for each taxon (default: 1000).
-#' @param add_to_phyloseq  (Logical, default: FALSE). Whether to add the results
-#'  as new columns in the phyloseq object's tax_table. If TRUE, the results will be
-#'  appended to the tax_table with appropriate column names. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq  (Logical, default: NULL). Whether to add the results
+#'  as new columns in the phyloseq object's tax_table. If NULL (default), it is set to TRUE when
+#'  `physeq` is provided and FALSE when `taxnames` is provided. If TRUE, the results will be
+#'  appended to the tax_table with appropriate column names. Users can explicitly set it to
+#'  FALSE even when `physeq` is provided to get a data frame instead. Cannot be TRUE if `taxnames` is provided.
 #' @param verbose (Logical, default: TRUE). Whether to print progress messages.
 #' @param ... Additional parameters passed to [tax_occur_check()].
 #'
@@ -30,11 +32,13 @@
 #'
 #' @examples
 #'
+#' # Get tibble by explicitly setting add_to_phyloseq = FALSE
 #' check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
 #'   longitude = 2.3,
 #'   latitude = 48,
 #'   radius_km = 100,
-#'   n_occur = 50
+#'   n_occur = 50,
+#'   add_to_phyloseq = FALSE
 #' )
 #'
 #' check_res |>
@@ -42,13 +46,13 @@
 #'   ggplot(aes(x = count_in_radius, y = taxa_name, fill = total_count_in_world)) +
 #'   geom_col()
 #'
+#' # add_to_phyloseq defaults to TRUE when physeq is provided
 #' data_fungi_mini_cleanNames_range_verif <-
 #'   tax_occur_check_pq(data_fungi_mini_cleanNames,
 #'     longitude = 2.3,
 #'     latitude = 48,
 #'     radius_km = 50,
-#'     n_occur = 10,
-#'     add_to_phyloseq = TRUE
+#'     n_occur = 10
 #'   )
 #'
 #' df <- data_fungi_mini_cleanNames_range_verif@tax_table[, "count_in_radius"] |>
@@ -75,7 +79,7 @@ tax_occur_check_pq <- function(physeq = NULL,
                                latitude = NULL,
                                radius_km = 50,
                                n_occur = 1000,
-                               add_to_phyloseq = FALSE,
+                               add_to_phyloseq = NULL,
                                verbose = TRUE,
                                ...) {
   if (!is.null(taxnames) && !is.null(physeq)) {
@@ -84,6 +88,16 @@ tax_occur_check_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default value for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    if (!is.null(physeq)) {
+      add_to_phyloseq <- TRUE
+    } else {
+      add_to_phyloseq <- FALSE
+    }
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
