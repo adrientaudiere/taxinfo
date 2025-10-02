@@ -13,6 +13,8 @@
 #'  If TRUE, add new column(s) in the tax_table of the phyloseq object.
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param by_country (logical, default FALSE) If TRUE, the number of occurences
 #'   is computed by country
 #' @param by_years (logical, default FALSE) If TRUE, the number of occurences
@@ -52,6 +54,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
                               taxnames = NULL,
                               taxonomic_rank = "currentCanonicalSimple",
                               add_to_phyloseq = NULL,
+                              col_prefix = NULL,
                               by_country = FALSE,
                               by_years = FALSE,
                               verbose = TRUE,
@@ -157,16 +160,40 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     tib_occur <- bind_rows(tib_occur_list)
   }
 
+  if (by_country | by_years) {
+    tib_occur <- tib_occur |>
+      group_by(canonicalName) |>
+      tidyr::pivot_wider(
+        names_from = name,
+        values_from = count
+      )
+  }
+  
+  # Get new column names (excluding canonicalName which is used for join)
+  new_cols <- setdiff(colnames(tib_occur), "canonicalName")
+  
+  # Check for column name collisions and handle col_prefix
+  if (add_to_phyloseq) {
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'gbif_' to avoid conflicts"
+      ))
+      col_prefix <- "gbif_"
+    }
+  }
+  
+  # Apply col_prefix to new columns
+  if (!is.null(col_prefix)) {
+    tib_occur <- tib_occur |>
+      rename_with(~ paste0(col_prefix, .), .cols = -canonicalName)
+  }
+  
   if (add_to_phyloseq) {
     new_physeq <- physeq
-    if (by_country | by_years) {
-      tib_occur <- tib_occur |>
-        group_by(canonicalName) |>
-        tidyr::pivot_wider(
-          names_from = name,
-          values_from = count
-        )
-    }
     tax_tab <- as.data.frame(new_physeq@tax_table)
     tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
     new_physeq@tax_table <-

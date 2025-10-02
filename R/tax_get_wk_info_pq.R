@@ -12,6 +12,8 @@
 #' If TRUE, a new phyloseq object is returned with new columns in the tax_table.
 #' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #' Cannot be TRUE if `taxnames` is provided.
+#' @param col_prefix A character string to be added as a prefix to the new
+#' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param languages_pages (Character vector or NULL, default NULL)
 #'  If not NULL, only the languages present in this vector will be queried.
@@ -75,6 +77,7 @@ tax_get_wk_info_pq <- function(physeq = NULL,
                                taxnames = NULL,
                                taxonomic_rank = "currentCanonicalSimple",
                                add_to_phyloseq = NULL,
+                               col_prefix = NULL,
                                verbose = TRUE,
                                languages_pages = NULL,
                                time_to_sleep = 0.3,
@@ -148,6 +151,29 @@ tax_get_wk_info_pq <- function(physeq = NULL,
     "taxon_id" = taxids,
     "taxa_name" = taxnames
   )
+  
+  # Determine new column names (excluding taxa_name which is used for join)
+  new_cols <- c("lang", "page_length", "page_views", "taxon_id")
+  
+  # Check for column name collisions and handle col_prefix
+  if (add_to_phyloseq) {
+    existing_cols <- colnames(physeq@tax_table)
+    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    
+    if (length(common_cols) > 0 && is.null(col_prefix)) {
+      cli::cli_warn(c(
+        "Column names already exist in tax_table: {.val {common_cols}}",
+        "i" = "Adding prefix 'wk_' to avoid conflicts"
+      ))
+      col_prefix <- "wk_"
+    }
+  }
+  
+  # Apply col_prefix to new columns
+  if (!is.null(col_prefix)) {
+    tib_info_wk <- tib_info_wk |>
+      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
+  }
 
   if (add_to_phyloseq) {
     new_physeq <- physeq
