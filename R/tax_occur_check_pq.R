@@ -17,9 +17,11 @@
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
 #' @param n_occur Numeric. Maximum number of occurrences to retrieve from GBIF
 #'  for each taxon (default: 1000).
-#' @param add_to_phyloseq  (Logical, default: FALSE). Whether to add the results
-#'  as new columns in the phyloseq object's tax_table. If TRUE, the results will be
-#'  appended to the tax_table with appropriate column names. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq  (Logical, default TRUE when physeq is provided, FALSE when taxnames is provided). 
+#'  Whether to add the results as new columns in the phyloseq object's tax_table. If TRUE, the results will be
+#'  appended to the tax_table with appropriate column names. 
+#'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+#'  Cannot be TRUE if `taxnames` is provided.
 #' @param verbose (Logical, default: TRUE). Whether to print progress messages.
 #' @param ... Additional parameters passed to [tax_occur_check()].
 #'
@@ -75,7 +77,7 @@ tax_occur_check_pq <- function(physeq = NULL,
                                latitude = NULL,
                                radius_km = 50,
                                n_occur = 1000,
-                               add_to_phyloseq = FALSE,
+                               add_to_phyloseq = NULL,
                                verbose = TRUE,
                                ...) {
   if (!is.null(taxnames) && !is.null(physeq)) {
@@ -84,6 +86,12 @@ tax_occur_check_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }

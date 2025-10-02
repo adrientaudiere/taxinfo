@@ -8,8 +8,10 @@
 #'  The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'  be a vector of two columns (e.g. the c("Genus", "Species")).
 #' @param taxnames (optional) A character vector of taxonomic names. If provided, `physeq` is ignored.
-#' @param add_to_phyloseq   (logical, default FALSE) If TRUE, a new phyloseq
-#' object is returned with new columns in the tax_table. Cannot be TRUE if `taxnames` is provided.
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided) 
+#' If TRUE, a new phyloseq object is returned with new columns in the tax_table.
+#' Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
+#' Cannot be TRUE if `taxnames` is provided.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param languages_pages (Character vector or NULL, default NULL)
 #'  If not NULL, only the languages present in this vector will be queried.
@@ -74,7 +76,7 @@
 tax_get_wk_info_pq <- function(physeq = NULL,
                                taxonomic_rank = "currentCanonicalSimple",
                                taxnames = NULL,
-                               add_to_phyloseq = FALSE,
+                               add_to_phyloseq = NULL,
                                verbose = TRUE,
                                languages_pages = NULL,
                                time_to_sleep = 0.3,
@@ -89,6 +91,12 @@ tax_get_wk_info_pq <- function(physeq = NULL,
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
+  
+  # Set default for add_to_phyloseq based on input type
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+  
   if (!is.null(taxnames) && add_to_phyloseq) {
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
