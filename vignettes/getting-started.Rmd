@@ -30,9 +30,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(taxinfo)
-library(MiscMetabar)
-library(ggplot2)
-library(dplyr)
 ```
 
 ## Overview
@@ -78,9 +75,10 @@ The first step is typically to verify and standardize taxonomic names using the 
 
 ```{r}
 # Verify and clean taxonomic names
-data_clean <- gna_verifier_pq(data_fungi_mini, 
-                             data_sources = 210,  # TaxRef
-                             add_to_phyloseq = TRUE)
+data_clean <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210, # TaxRef
+  add_to_phyloseq = TRUE
+)
 
 # View the enhanced taxonomic table
 head(data_clean@tax_table)
@@ -96,58 +94,68 @@ This adds standardized columns:
 Once names are verified, you can enrich your data with various sources:
 
 ```{r}
-data_enriched <- data_clean |> 
+data_enriched <- data_clean |>
   # Add GBIF occurrence data
   tax_gbif_occur_pq(add_to_phyloseq = TRUE) |>
   # Add species interaction data from GLOBI
-  tax_globi_pq(interaction_types = "hasHost",
-               add_to_phyloseq = TRUE) |> 
+  tax_globi_pq(
+    interaction_types = "hasHost",
+    add_to_phyloseq = TRUE
+  ) |>
   # Add Wikipedia information
   tax_get_wk_info_pq(add_to_phyloseq = TRUE) |>
   tax_oa_pq(add_to_phyloseq = TRUE)
 
-message("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table)%in%colnames(data_clean@tax_table)], collapse = ", "))
+message("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", "))
 ```
 
 
 ```{r}
-#todo add a title and add openalex information on the plot
+# todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
-  mutate(nb_num =map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
-  mutate(Quercus_interaction =map_dbl(target_taxon_name, ~ grepl("Quercus", .x))) |>
+  mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
+  mutate(Quercus_interaction = map_dbl(target_taxon_name, ~ grepl("Quercus", .x))) |>
   filter(!is.na(taxa_name) & taxa_name != "NA") |>
   group_by(taxa_name) |>
-  summarise(Abundance = sum(Abundance),
-            page_views = mean(as.numeric(page_views), na.rm=TRUE),
-            Guild=unique(Guild),
-            nb_num=mean(nb_num, na.rm=TRUE),
-            n_doi=as.numeric(unique(n_doi)),
-            Quercus_interaction=unique(Quercus_interaction)) |>
-  mutate(page_views = ifelse(is.na(page_views) | page_views==0, NA, page_views)) |>
+  summarise(
+    Abundance = sum(Abundance),
+    page_views = mean(as.numeric(page_views), na.rm = TRUE),
+    Guild = unique(Guild),
+    nb_num = mean(nb_num, na.rm = TRUE),
+    n_doi = as.numeric(unique(n_doi)),
+    Quercus_interaction = unique(Quercus_interaction)
+  ) |>
+  mutate(page_views = ifelse(is.na(page_views) | page_views == 0, NA, page_views)) |>
   mutate(n_doi = ifelse(is.na(n_doi), 0, n_doi)) |>
-  mutate(taxa_name_italic = map_chr(taxa_name, ~ ifelse(length(strsplit(.x, " ")[[1]]) == 2, 
-                                   paste0("italic('", .x, "')"),
-                                   .x))) 
+  mutate(taxa_name_italic = map_chr(taxa_name, ~ ifelse(length(strsplit(.x, " ")[[1]]) == 2,
+    paste0("italic('", .x, "')"),
+    .x
+  )))
 psm
 
-ggplot(psm, aes(y=forcats::fct_reorder(taxa_name, Abundance), 
-             x= log10(1+Abundance), 
-             size=n_doi,
-             color=Guild,
-             shape=Quercus_interaction==0)) +
+ggplot(psm, aes(
+  y = forcats::fct_reorder(taxa_name, Abundance),
+  x = log10(1 + Abundance),
+  size = n_doi,
+  color = Guild,
+  shape = Quercus_interaction == 0
+)) +
   geom_point() +
-  geom_text(aes(label=page_views), size=2.5, color="black", nudge_x=0.07) +
-  scale_size_continuous(name="Number of publications") +
+  geom_text(aes(label = page_views), size = 2.5, color = "black", nudge_x = 0.07) +
+  scale_size_continuous(name = "Number of publications") +
   xlab("Molecular abundance (log10 scale)") +
   ylab("Taxa") +
- scale_y_discrete(labels=parse(text=psm$taxa_name_italic)) +
-theme_idest(plot_title_size = 12, subtitle_size = 9, axis_text_family = "mono", axis_text_size=8) +
-theme(legend.text = element_text(size=8), 
-      legend.key.size = unit(1,"line"))+
-scale_size(range = c(2, 6)) +
- labs(title = "Number of sequences (Abundance) for each taxa.",
-      subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112))
-
+  scale_y_discrete(labels = parse(text = psm$taxa_name_italic)) +
+  theme_idest(plot_title_size = 12, subtitle_size = 9, axis_text_family = "mono", axis_text_size = 8) +
+  theme(
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(1, "line")
+  ) +
+  scale_size(range = c(2, 6)) +
+  labs(
+    title = "Number of sequences (Abundance) for each taxa.",
+    subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112)
+  )
 ```
 
 ### Step 4: Add Custom Database Information
@@ -157,15 +165,17 @@ add fungal traits from a CSV file.
 
 ```{r}
 fungal_traits <- system.file("extdata",
-                             "fun_trait_mini.csv", 
-                            package = "taxinfo")
+  "fun_trait_mini.csv",
+  package = "taxinfo"
+)
 
 data_final <- tax_info_pq(data_enriched,
-                         taxonomic_rank = "currentCanonicalSimpleGenus",
-                         file_name = fungal_traits,
-                         csv_taxonomic_rank = "GENUS",
-                         col_prefix = "ft_",
-                         sep = ";")
+  taxonomic_rank = "currentCanonicalSimpleGenus",
+  file_name = fungal_traits,
+  csv_taxonomic_rank = "GENUS",
+  col_prefix = "ft_",
+  sep = ";"
+)
 
 dim(data_final)
 ```
