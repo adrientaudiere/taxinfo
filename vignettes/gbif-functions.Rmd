@@ -128,13 +128,15 @@ sufficient.
 ```{r}
 gbif_years <- tax_gbif_occur_pq(data_clean,
                                 by_years = TRUE, 
-                                add_to_phyloseq = FALSE)
+                                add_to_phyloseq = FALSE) |>
+  tidyr::pivot_longer(cols=-canonicalName, names_to = "year", values_to = "count") |>
+  mutate(year = as.numeric(year)) 
 
 # Visualize temporal trends for the occurences of taxa
-gbif_years |>
-  mutate(year = as.numeric(name)) |>
+gbif_years|>
   ggplot(aes(x = year, y = log10(count + 1), color = canonicalName)) +
   geom_line() +
+  geom_line(data=filter(gbif_years, !is.na(count)), linetype = "dotted") +
   geom_point() +
   labs(
     title = "GBIF Occurrences Over Time",
@@ -143,8 +145,8 @@ gbif_years |>
   ) +
   theme_idest() +
   ggrepel::geom_text_repel(
-    data = summarise(group_by(arrange(gbif_years, desc(name)), canonicalName), count = first(count), name = first(name)),
-    aes(label = canonicalName, x = as.numeric(name)), hjust = 0, direction = "y", size = 3
+    data = summarise(group_by(arrange(filter(gbif_years, !is.na(count)), desc(year)), canonicalName), count = first(count), year = first(year)),
+    aes(label = canonicalName, x = as.numeric(year)), hjust = 0, direction = "y", size = 3
   ) +
   xlim(2010, 2026) +
   theme(legend.position = "none")

@@ -83,9 +83,12 @@ head(data_clean@tax_table)
 ```
 
 This adds standardized columns:
-- `submittedName`: Original name submitted
+- `taxa_name`: Original name submitted
 - `currentName`: Current accepted name with authorities  
 - `currentCanonicalSimple`: Clean accepted name without authorities
+- `currentCanonicalSimpleSpecies` : Accepted name at species level or NA
+- `currentCanonicalSimpleGenus` : Accepted name at Genus level or NA
+
 
 You can also output only the verified names with more information on the matching algorithm results as a tibble by setting `add_to_phyloseq = FALSE`.
 
