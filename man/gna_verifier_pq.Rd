@@ -17,6 +17,7 @@ gna_verifier_pq(
   main_taxon_threshold = 0.5,
   verbose = TRUE,
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   genus_species_canonical_col = TRUE
 )
 }
@@ -65,6 +66,9 @@ documentation.}
    - currentCanonicalSimple: The current accepted name whithout autorities
      (e.g. `Trametopsis brasiliensis`).}
 
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
+
 \item{genus_species_canonical_col}{(logical, default TRUE) If TRUE
 two new columns are added along with "currentCanonicalSimple":
 "currentCanonicalSimpleGenus" and "currentCanonicalSimpleSpecies"}
@@ -94,7 +98,7 @@ sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cl
 # corrected values (correction using synonym disambiguation)
 
 tr <- rotl_pq(data_fungi_cleanNames,
-  taxonomic_rank = "currentCanonicalSimple",
+  species_colnames = "currentCanonicalSimple",
   context_name = "Basidiomycetes"
 )
 

@@ -42,17 +42,24 @@ The Global Biodiversity Information Facility (GBIF) is the world's largest repos
 
 ## Basic Occurrence Data Retrieval
 
-### Global Occurrence Counts
+### Get verified taxonomic names
 
 ```{r}
 # Load and prepare example data
 data("data_fungi_mini", package = "MiscMetabar")
 
-# Clean taxonomic names first (recommended)
-data_clean <- gna_verifier_pq(data_fungi_mini, data_sources = 210) |>
-  # Get global occurrence counts from GBIF
-  tax_gbif_occur_pq(data_clean)
+# Keep only first 10 taxa for speed
+data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210) 
 ```
+
+### Find GBIF occurrence counts and add to phyloseq object
+
+```{r}
+data_clean_gbif <- tax_gbif_occur_pq(data_clean)
+```
+
+
 
 ### Example Visualization 
 
@@ -119,7 +126,9 @@ Examine occurrence trends over time. Here we don't use `add_to_phyloseq` since t
 sufficient.
 
 ```{r}
-gbif_years <- tax_gbif_occur_pq(data_clean, by_years = TRUE)
+gbif_years <- tax_gbif_occur_pq(data_clean,
+                                by_years = TRUE, 
+                                add_to_phyloseq = FALSE)
 
 # Visualize temporal trends for the occurences of taxa
 gbif_years |>

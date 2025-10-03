@@ -92,7 +92,7 @@ data_fungi_clean <- gna_verifier_pq(data_fungi_mini,
 )
 
 # Step 2: Add GBIF occurrence data (add_to_phyloseq defaults to TRUE)
-data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean, )
+data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")

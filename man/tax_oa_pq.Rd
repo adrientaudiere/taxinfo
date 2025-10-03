@@ -11,6 +11,7 @@ tax_oa_pq(
   count_only = FALSE,
   return_raw_oa = FALSE,
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
   verbose = TRUE,
   ...
@@ -40,6 +41,9 @@ section examples).}
 If TRUE, return a new phyloseq object with new columns in the tax_table slot.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{type_works}{(A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
 Only used if count_only is set to FALSE Default is c("article", "review",

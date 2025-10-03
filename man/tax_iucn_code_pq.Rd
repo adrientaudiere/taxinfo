@@ -8,7 +8,8 @@ tax_iucn_code_pq(
   physeq = NULL,
   taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
-  add_to_phyloseq = NULL
+  add_to_phyloseq = NULL,
+  col_prefix = NULL
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ be a vector of two columns (e.g. c("Genus", "Species")).}
 If TRUE, add a new column (iucn_code) in the tax_table of the phyloseq object.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

@@ -11,6 +11,7 @@ tax_photos_pq(
   source = "gbif",
   folder_name = "photos_physeq",
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   gallery = FALSE,
   overwrite_folder = FALSE,
   col_name_url = "photo_url",
@@ -40,6 +41,9 @@ If TRUE, a new phyloseq object is returned with a new column containing the URL
 (entitled with the parameter col_name_url) in the tax_table.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{gallery}{(logical, default FALSE) If TRUE, a html gallery is
 created using  the function [pixture::pixgallery()].}

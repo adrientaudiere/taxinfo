@@ -86,8 +86,9 @@ leaflet() |>
 # Load example data
 data("data_fungi_mini", package = "MiscMetabar")
 
-# First verify taxonomic names (recommended step)
-data_clean <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+# Keep only first 10 taxa for speed
+data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210) 
 
 summary_plot_pq(data_clean)
 # Show cleaned taxonomic names
@@ -105,11 +106,13 @@ longitude <- 2.3488
 latitude <- 48.8534
 
 # Check occurrence within 100km radius
-occurrence_check <- tax_occur_check_pq(data_clean,
+occurrence_check <- tax_occur_check_pq(
+  data_clean,
   longitude = longitude,
   latitude = latitude,
   radius_km = 100,
-  n_occur = 1000
+  n_occur = 1000,
+  add_to_phyloseq = FALSE
 )
 
 # View results
@@ -184,7 +187,8 @@ occurrence_multi_radius <- map_dfr(radii, function(r) {
     longitude = longitude,
     latitude = latitude,
     radius_km = r,
-    n_occur = 1000
+    n_occur = 1000,
+    add_to_phyloseq = FALSE
   ) |>
     mutate(radius_category = paste(r, "km"))
 })

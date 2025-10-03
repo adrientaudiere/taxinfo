@@ -9,6 +9,7 @@ tax_get_wk_info_pq(
   taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   verbose = TRUE,
   languages_pages = NULL,
   time_to_sleep = 0.3,
@@ -30,6 +31,9 @@ be a vector of two columns (e.g. the c("Genus", "Species")).}
 If TRUE, a new phyloseq object is returned with new columns in the tax_table.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 

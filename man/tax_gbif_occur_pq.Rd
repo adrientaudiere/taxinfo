@@ -9,6 +9,7 @@ tax_gbif_occur_pq(
   taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   by_country = FALSE,
   by_years = FALSE,
   verbose = TRUE,
@@ -28,6 +29,9 @@ be a vector of two columns (e.g. c("Genus", "Species")).}
 If TRUE, add new column(s) in the tax_table of the phyloseq object.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{by_country}{(logical, default FALSE) If TRUE, the number of occurences
 is computed by country}

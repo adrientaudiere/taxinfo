@@ -74,10 +74,9 @@ data_fungi_mini
 The first step is typically to verify and standardize taxonomic names using the Global Names Architecture:
 
 ```{r}
-# Verify and clean taxonomic names
-data_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210, # TaxRef
-)
+# Keep only first 10 taxa for speed
+data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210) 
 
 # View the enhanced taxonomic table
 head(data_clean@tax_table)

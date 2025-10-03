@@ -387,19 +387,13 @@ idest_pal <- list(
   Hokusai3 = list(c("#d8d97a", "#95c36e", "#74c8c3", "#5a97c1", "#295384", "#0a2e57"), c(4, 2, 5, 3, 1, 6), colorblind = TRUE) # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
 )
 
-
-#
-
-#' IdEst color scales for ggplot2
+#' IdEst continuous color scales for ggplot2
 #'
-#' @aliases scale_fill_idest_c scale_color_idest_d scale_fill_idest_d
 #' @param palette_name The name of the palette to use.
 #'  The available palette are c("all_color_idest", "ligth_color_idest",
 #'  "dark_color_idest", "Picabia", "Picasso", "Levine2", "Rattner", "Sidhu",
 #'  "Hokusai2", "Hokusai3"). See [idest_pal] for more details.
 #' @param direction Direction of the palette. 1 for standard, -1 for reversed.
-#' @param override_order Logical, whether to override the order of the palette.
-#'  Only used for discrete scales. Default is FALSE.
 #' @param ... Additional arguments passed to [ggplot2::scale_color_gradientn()].
 #'
 #' @returns A ggplot2 scale object.
@@ -422,7 +416,11 @@ scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1,
   )
 }
 
-
+#' IdEst continuous fill scales for ggplot2
+#' @inheritParams scale_color_idest_c
+#' @returns A ggplot2 scale object.
+#' @export
+#' @author Adrien Taudière
 scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
   `%notin%` <- Negate(`%in%`)
 
@@ -440,7 +438,19 @@ scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, 
   )
 }
 
-
+#' IdEst discrete color scales for ggplot2
+#'
+#' @param palette_name The name of the palette to use.
+#'  The available palette are c("all_color_idest", "ligth_color_idest",
+#'  "dark_color_idest", "Picabia", "Picasso", "Levine2", "Rattner", "Sidhu",
+#'  "Hokusai2", "Hokusai3"). See [idest_pal] for more details.
+#' @param direction Direction of the palette. 1 for standard, -1 for reversed.
+#' @param override_order Logical (default FALSE),
+#'   whether to override the order of the palette.
+#' @param ... Additional arguments passed to [ggplot2::scale_color_gradientn()].
+#' @export
+#' @returns A ggplot2 scale object.
+#' @author Adrien Taudière
 scale_color_idest_d <- function(palette_name = "all_color_idest",
                                 direction = 1,
                                 override_order = FALSE,
@@ -460,6 +470,11 @@ scale_color_idest_d <- function(palette_name = "all_color_idest",
   )
 }
 
+#' IdEst discrete fill scales for ggplot2
+#' @inheritParams scale_color_idest_d
+#' @returns A ggplot2 scale object.
+#' @export
+#' @author Adrien Taudière
 scale_fill_idest_d <- function(palette_name = "all_color_idest",
                                direction = 1,
                                override_order = FALSE,

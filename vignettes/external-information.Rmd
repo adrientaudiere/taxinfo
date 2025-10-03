@@ -44,17 +44,25 @@ Beyond occurrence data, `taxinfo` integrates multiple knowledge sources to enric
 
 Wikipedia is a rich source of public interest and knowledge about species. By integrating Wikipedia data, you can have a proxy of the societal attention given to different taxa. The number of page views, the mean page length and the number of languages in which a species is covered can provide insights into its cultural significance measuring a sort of species salience in public knowledge.
 
-### Basic Wikipedia Data
 
+
+##  Verify and Clean Taxonomic Names
 ```{r}
 # Load and prepare data
 data("data_fungi_mini", package = "MiscMetabar")
 
 # Clean names first
-data_clean <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210
-)
+# Keep only first 10 taxa for speed
+data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210)
+```
 
+
+## Wikipedia Integration
+
+### Basic Wikipedia Data
+
+```{r}
 # Add Wikipedia information (add_to_phyloseq defaults to TRUE for phyloseq objects)
 data_clean_wk <- tax_get_wk_info_pq(data_clean, n_days = 30)
 # View Wikipedia columns
@@ -184,7 +192,8 @@ Get detailed interaction data for further analysis:
 # Get detailed interaction tibble (not added to phyloseq)
 detailed_interactions <- tax_globi_pq(data_clean,
   interaction_types = c("parasiteOf", "hasHost", "pathogenOf"),
-  max_interactions = 100
+  max_interactions = 100,
+  add_to_phyloseq = FALSE
 )
 
 # Analyze interaction patterns
@@ -200,7 +209,7 @@ interaction_summary <- detailed_interactions |>
 
 # Visualize interaction networks
 ggplot(interaction_summary, aes(
-  x = interaction_type, y = n_targets,
+  x = interaction_type, y = nb,
   fill = interaction_type
 )) +
   geom_boxplot() +

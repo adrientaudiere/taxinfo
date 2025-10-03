@@ -10,6 +10,7 @@ tax_globi_pq(
   taxonomic_rank = "currentCanonicalSimple",
   discard_synonym = TRUE,
   add_to_phyloseq = NULL,
+  col_prefix = NULL,
   interaction_types = NULL,
   valid_taxo_target_taxon = TRUE,
   add_target_canonical = TRUE,
@@ -37,6 +38,9 @@ If TRUE, return a new phyloseq object with new columns in the tax_table slot. If
 with the interactions found for each taxon.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
+
+\item{col_prefix}{A character string to be added as a prefix to the new
+columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{interaction_types}{A character vector of interaction types to
 query. See [rglobi::get_interaction_types()]. If NULL (default),
