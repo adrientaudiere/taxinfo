@@ -228,19 +228,19 @@ tax_oa_pq <- function(physeq = NULL,
       ) |>
       arrange(desc(n_doi))
   }
-  
+
   # Determine new column names (excluding taxa_name which is used for join)
   new_cols <- if (count_only) {
     c("n_doi")
   } else {
     c("n_doi", "list_doi", "n_citation", "list_keywords")
   }
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -249,7 +249,7 @@ tax_oa_pq <- function(physeq = NULL,
       col_prefix <- "oa_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix)) {
     tib_publi <- tib_publi |>

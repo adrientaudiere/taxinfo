@@ -225,15 +225,15 @@ tax_globi_pq <- function(physeq = NULL,
       return(tib_globi_all)
     }
   }
-  
+
   # Get new column names (excluding taxa_name which is used for join)
   new_cols <- setdiff(colnames(tib_globi_all), "taxa_name")
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq && !is.null(tib_globi_all)) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -242,13 +242,13 @@ tax_globi_pq <- function(physeq = NULL,
       col_prefix <- "globi_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix) && !is.null(tib_globi_all)) {
     tib_globi_all <- tib_globi_all |>
       rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
   }
-  
+
   if (add_to_phyloseq) {
     new_physeq <- physeq
 

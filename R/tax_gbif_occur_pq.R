@@ -168,15 +168,15 @@ tax_gbif_occur_pq <- function(physeq = NULL,
         values_from = count
       )
   }
-  
+
   # Get new column names (excluding canonicalName which is used for join)
   new_cols <- setdiff(colnames(tib_occur), "canonicalName")
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -185,13 +185,13 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       col_prefix <- "gbif_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix)) {
     tib_occur <- tib_occur |>
       rename_with(~ paste0(col_prefix, .), .cols = -canonicalName)
   }
-  
+
   if (add_to_phyloseq) {
     new_physeq <- physeq
     tax_tab <- as.data.frame(new_physeq@tax_table)

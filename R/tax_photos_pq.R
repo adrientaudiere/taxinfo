@@ -209,13 +209,13 @@ tax_photos_pq <- function(physeq = NULL,
     as_tibble()
 
   colnames(photo_url_tib) <- c(col_name_url, "taxa_name")
-  
+
   # Apply col_prefix to the photo URL column
   if (!is.null(col_prefix)) {
     photo_url_tib <- photo_url_tib |>
       rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
   }
-  
+
   final_col_name <- paste0(col_prefix, col_name_url)
 
   if (!is.null(physeq)) {

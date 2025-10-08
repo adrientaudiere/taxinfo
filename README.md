@@ -636,7 +636,7 @@ data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean, )
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 data_with_traits <- tax_info_pq(data_with_gbif,
-  taxonomic_rank = "currentCanonicalSimpleGenus",
+  taxonomic_rank = "genus",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
@@ -774,14 +774,14 @@ head(data_final@tax_table)
 #> ASV18 "Stereum_ostrea"       "Stereum ostrea (Blume & T.Nees) Fr., 1838"
 #> ASV25 "Ossicaulis_lachnopus" "Ossicaulis lachnopus (Fr.) Contu, 2000"   
 #> ASV26 "Stereum_hirsutum"     "Stereum hirsutum (Willd.) Pers., 1800"    
-#>       currentCanonicalSimple currentCanonicalSimpleGenus
+#>       currentCanonicalSimple genus
 #> ASV7  NA                     NA                         
 #> ASV8  "Stereum ostrea"       "Stereum"                  
 #> ASV12 "Xylodon"              "Xylodon"                  
 #> ASV18 "Stereum ostrea"       "Stereum"                  
 #> ASV25 "Ossicaulis lachnopus" "Ossicaulis"               
 #> ASV26 "Stereum hirsutum"     "Stereum"                  
-#>       currentCanonicalSimpleSpecies Global_occurences taxa_name             
+#>       specificEpithet Global_occurences taxa_name             
 #> ASV7  NA                            NA                "NA"                  
 #> ASV8  "ostrea"                      " 10196"          "Stereum ostrea"      
 #> ASV12 NA                            NA                "Xylodon"             

@@ -70,15 +70,15 @@ tax_iucn_code_pq <- function(physeq = NULL,
     "iucn_code" = iucn_codes,
     "taxa_name" = gbif_taxa$canonicalName
   )
-  
+
   # Determine new column names (excluding taxa_name which is used for join)
   new_cols <- c("iucn_code")
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -87,7 +87,7 @@ tax_iucn_code_pq <- function(physeq = NULL,
       col_prefix <- "iucn_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix)) {
     iucn_codes_df <- iucn_codes_df |>

@@ -34,18 +34,24 @@ reference:
   contents:
   - gna_verifier_pq
 
-- title: "External Data Sources Integration"
+- title: "Add data from external sources"
   desc: >
     Core functions to retrieve and integrate taxonomic information from
     various external databases and APIs.
+
+- subtitle: "Custom csv file"
   contents:
   - tax_info_pq
+- subtitle: "GBIF occurences data"
+  contents:
   - tax_gbif_occur_pq
+- subtitle: "Globi interactions data"
+  contents:
   - tax_globi_pq
+- subtitle: "Open Alex scientific publications data"
+  contents:
   - tax_oa_pq
-  - tax_iucn_code_pq
-
-- title: "Wikipedia & Knowledge Base Integration"
+- subtitle: "Wikipedia & Knowledge Base Integration"
   desc: >
     Functions to access Wikipedia, Wikidata, and other knowledge bases
     for taxonomic information, page statistics, and content analysis.
@@ -53,6 +59,26 @@ reference:
   - tax_get_wk_info_pq
   - tax_get_wk_lang
   - tax_get_wk_pages_info
+- subtitle: "Other sources"
+  contents:
+  - tax_iucn_code_pq
+  - tax_spores_size_pq
+  - extract_spores_mycodb
+
+- title: "Data checking using external informations"
+  desc: >
+    Functions for validating, checking, and cross-referencing taxonomic
+    names.
+- subtitle: "Using taxa occurence in gbif"
+  contents:
+  - tax_occur_check
+  - tax_occur_check_pq
+  - tax_occur_multi_check_pq
+  - tax_check_ecoregion
+
+- subtitle: "Using sequences from NCBI"
+  contents:
+  - tax_retroblast_pq
 
 - title: "Geographic Analysis & Distribution"
   desc: >
@@ -61,17 +87,7 @@ reference:
   contents:
   - range_bioreg_pq
   - plot_tax_gbif_pq
-  - tax_check_ecoregion
   - calculate_bbox
-
-- title: "Occurrence Data Validation"
-  desc: >
-    Functions for validating, checking, and cross-referencing species
-    occurrence data across multiple sources and databases.
-  contents:
-  - tax_occur_check
-  - tax_occur_check_pq
-  - tax_occur_multi_check_pq
 
 - title: "Media & Photography"
   desc: >
@@ -79,13 +95,6 @@ reference:
     and other media content.
   contents:
   - tax_photos_pq
-
-- title: "Advanced Analysis Tools"
-  desc: >
-    Specialized functions for sequence analysis, taxonomic verification,
-    and advanced bioinformatics workflows.
-  contents:
-  - tax_retroblast_pq
 
 - title: "Data Selection & Filtering"
   desc: >
@@ -95,20 +104,20 @@ reference:
   - select_taxa_pq
   - taxonomic_rank_to_taxnames
 
-- title: "Summary & Reporting"
-  desc: >
-    Functions for generating summaries, reports, and statistics
-    about taxonomic data and phyloseq objects.
-  contents:
-  - taxa_summary_text
-
 - title: "Utility Functions"
   desc: >
     Helper functions for package management, data validation,
-    and supporting operations.
+    and ggplot2 themes.
   contents:
   - check_package
-
+  - taxa_summary_text
+  - idest_colors
+  - idest_pal
+  - scale_color_idest_c
+  - scale_color_idest_d
+  - scale_fill_idest_c
+  - scale_fill_idest_d
+  - theme_idest
 - title: "Package Information"
   desc: >
     Package documentation and metadata.

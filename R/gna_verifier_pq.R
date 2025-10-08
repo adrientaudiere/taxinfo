@@ -1,7 +1,7 @@
 #' Verify (and fix) scientific names (Genus species) of a phyloseq object.
 #'
 #' @description
-#'  A wrapper of [taxize::gna_verifier] apply to phyloseq object
+#'  A wrapper of [taxize::gna_verifier()] apply to phyloseq object
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxnames (optional) A character vector of taxonomic names.
@@ -9,40 +9,47 @@
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the default c("Genus", "Species")).
 #' @param data_sources A character or integer vector.
-#'   See [taxize::gna_verifier] documentation. For example,
+#'   See [taxize::gna_verifier()] documentation. For example,
 #'   1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
 #'   210=TaxRef.
-#' @param all_matches (Logical) See [taxize::gna_verifier] documentation.
-#' @param capitalize (Logical) See [taxize::gna_verifier] documentation.
-#' @param species_group (Logical) See [taxize::gna_verifier] documentation.
-#' @param fuzzy_uninomial (Logical) See [taxize::gna_verifier] documentation.
-#' @param stats (Logical) See [taxize::gna_verifier] documentation.
-#' @param main_taxon_threshold (numeric) See [taxize::gna_verifier]
+#' @param all_matches (Logical) See [taxize::gna_verifier()] documentation.
+#' @param capitalize (Logical) See [taxize::gna_verifier()] documentation.
+#' @param species_group (Logical) See [taxize::gna_verifier()] documentation.
+#' @param fuzzy_uninomial (Logical) See [taxize::gna_verifier()] documentation.
+#' @param stats (Logical) See [taxize::gna_verifier()] documentation.
+#' @param main_taxon_threshold (numeric) See [taxize::gna_verifier()]
 #'   documentation.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'
-#'  - If FALSE, return the result of the [taxize::gna_verifier]
+#'  - If FALSE, return the result of the [taxize::gna_verifier()]
 #'    function + a column taxa_names_in_phyloseq depicting the name of the
 #'    taxa from the phyloseq object.
 #'
 #'  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
-#'    Three new columns are added:
-#'    - taxa_name: The character string sent to gna_verifier (e.g.
+#'    At least three new columns are added:
+#'    - **taxa_name**: The character string sent to gna_verifier (e.g.
 #'    `Antrodiella brasiliensis`)
-#'    - currentName: The current accepted name (resolve the synonymie) with
+#'    - **currentName**: The current accepted name (resolve the synonym) with
 #'      autorities at the end of the binominal name (e.g.
 #'      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gómez-Mont. & Robledo)`.
-#'    - currentCanonicalSimple: The current accepted name whithout autorities
+#'    - **currentCanonicalSimple**: The current accepted name without autorities
 #'      (e.g. `Trametopsis brasiliensis`).
+#'
+#'      Other columns can be added depending on the parameters:
+#'       `genus_species_canonical_col`, `year_col`, `authorship`.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param genus_species_canonical_col (logical, default TRUE) If TRUE
 #'   two new columns are added along with "currentCanonicalSimple":
-#'   "currentCanonicalSimpleGenus" and "currentCanonicalSimpleSpecies"
+#'   "genus" and "specificEpithet"
+#' @param year_col (logical, default TRUE) If TRUE
+#'  a new column "namePublishedInYear" is added with the year of publication.
+#' @param authorship (logical, default TRUE) If TRUE three new columns are added:
+#'  "authorship", "bracketauthorship" and "scientificNameAuthorship".
 #' @returns
 #'   Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
-#'   with 3 new columns (see param add_to_phyloseq) in the tax_table slot.
+#'   with new columns (see param add_to_phyloseq) in the tax_table slot.
 #' @export
 #' @author Adrien Taudière
 #'
@@ -92,7 +99,9 @@ gna_verifier_pq <- function(physeq = NULL,
                             verbose = TRUE,
                             add_to_phyloseq = NULL,
                             col_prefix = NULL,
-                            genus_species_canonical_col = TRUE) {
+                            genus_species_canonical_col = TRUE,
+                            year_col = TRUE,
+                            authorship = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -121,14 +130,14 @@ gna_verifier_pq <- function(physeq = NULL,
   # Determine column names that will be added
   new_cols <- c("submittedName", "currentName", "currentCanonicalSimple")
   if (genus_species_canonical_col) {
-    new_cols <- c(new_cols, "currentCanonicalSimpleGenus", "currentCanonicalSimpleSpecies")
+    new_cols <- c(new_cols, "genus", "specificEpithet")
   }
 
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -165,10 +174,27 @@ gna_verifier_pq <- function(physeq = NULL,
   if (genus_species_canonical_col) {
     res_verifier_clean <- res_verifier_clean |>
       mutate(
-        currentCanonicalSimpleGenus = stringr::str_split_i(currentCanonicalSimple, " ", 1),
-        currentCanonicalSimpleSpecies = stringr::str_split_i(currentCanonicalSimple, " ", 2)
+        genus = stringr::str_split_i(currentCanonicalSimple, " ", 1),
+        specificEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 2)
       )
   }
+
+
+  if (year_col) {
+    res_verifier_clean <- res_verifier_clean |>
+      mutate(namePublishedInYear = rgbif::name_parse(currentName)$year) |>
+      mutate(namePublishedInYear = as.integer(namePublishedInYear))
+  }
+
+  if (authorship) {
+    res_verifier_clean <- res_verifier_clean |>
+      mutate(
+        authorship = rgbif::name_parse(currentName)$authorship,
+        bracketauthorship = rgbif::name_parse(currentName)$bracketauthorship,
+        scientificNameAuthorship = ifelse(is.na(bracketauthorship), authorship, paste0("(", bracketauthorship, ") ", authorship))
+      )
+  }
+
 
   if (add_to_phyloseq) {
     new_physeq <- physeq
@@ -239,13 +265,13 @@ gna_verifier_pq <- function(physeq = NULL,
       ))
     }
     res_verifier$taxa_names_in_phyloseq <- names(taxnames)
-    
+
     # Apply col_prefix to returned tibble if specified
     if (!is.null(col_prefix)) {
       res_verifier <- res_verifier |>
         rename_with(~ paste0(col_prefix, .), .cols = -taxa_names_in_phyloseq)
     }
-    
+
     return(res_verifier)
   }
 }

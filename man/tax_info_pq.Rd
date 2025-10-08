@@ -81,7 +81,7 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 # --------------------
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 fg_traits <- tax_info_pq(data_fungi_cleanNames,
-  taxonomic_rank = "currentCanonicalSimpleGenus",
+  taxonomic_rank = "genus",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",

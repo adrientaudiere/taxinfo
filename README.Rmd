@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/adrientaudiere/taxinfo/workflows/R-CMD-check/badge.svg)](https://github.com/adrientaudiere/taxinfo/actions)
 [![Codecov test coverage](https://codecov.io/gh/adrientaudiere/taxinfo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/adrientaudiere/taxinfo?branch=master)
-[![CRAN status](https://www.r-project.org/Badges/version/taxinfo)](https://CRAN.R-project.org/package=taxinfo)
+<!-- [![CRAN status](https://www.r-project.org/Badges/version/taxinfo)](https://CRAN.R-project.org/package=taxinfo)-->
+<!--[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/taxinfo)](https://cran.r-project.org/package=taxinfo)-->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. It seamlessly integrates data from GBIF, Wikipedia, GLOBI, OpenAlex, TAXREF, and other databases to enrich your taxonomic analyses.
@@ -40,7 +42,7 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 
 You can install the development version of taxinfo from GitHub:
 
-```{r}
+```{r, eval=FALSE}
 # Install from GitHub
 devtools::install_github("adrientaudiere/taxinfo")
 
@@ -78,6 +80,19 @@ Most functions can work with either:
 - **Taxonomic name vectors**: Returns tibbles for standalone queries
 
 ## Quick Start
+### Glossary 
+
+Following the [Darwin core standards](https://dwc.tdwg.org/terms/), here are some key terms used in taxinfo (camel case naming convention):
+- **scientificName**: The full scientific name with authorship and date information if known (e.g., "Stereum ostrea (Blume & T.Nees) Fr., 1838")
+- **genus**: Just the genus part (e.g., "Stereum")
+- **specificEpithet**: Just the species epithet part (e.g., "ostrea")
+- **namePublishedInYear**: The year the name was published (e.g., "1838")
+
+Other terms come from [verifier globalnames](https://verifier.globalnames.org/) (camel case naming convention):
+- **currentCanonicalSimple**: The simplified scientific name without authorship (e.g., "Stereum ostrea"). It correspond to concatenation of the `genus` and `specificEpithet` fields.
+
+
+### Example Workflow
 
 ```{r}
 library(taxinfo)
@@ -97,7 +112,7 @@ data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 data_with_traits <- tax_info_pq(data_with_gbif,
-  taxonomic_rank = "currentCanonicalSimpleGenus",
+  taxonomic_rank = "genus",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
@@ -111,7 +126,8 @@ data_final <- tax_get_wk_info_pq(data_with_traits)
 head(data_final@tax_table)
 
 # Alternative: Query specific taxa without a phyloseq object
-taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"), by_country = TRUE)
+taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"),
+                               by_country = TRUE)
 
 # Returns a tibble instead of phyloseq object
 head(taxa_info)

@@ -75,8 +75,8 @@ The first step is typically to verify and standardize taxonomic names using the 
 
 ```{r}
 # Keep only first 10 taxa for speed
-data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
-  gna_verifier_pq(data_sources = 210) 
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210)
 
 # View the enhanced taxonomic table
 head(data_clean@tax_table)
@@ -86,8 +86,8 @@ This adds standardized columns:
 - `taxa_name`: Original name submitted
 - `currentName`: Current accepted name with authorities  
 - `currentCanonicalSimple`: Clean accepted name without authorities
-- `currentCanonicalSimpleSpecies` : Accepted name at species level or NA
-- `currentCanonicalSimpleGenus` : Accepted name at Genus level or NA
+- `specificEpithet` : Accepted name at species level or NA
+- `genus` : Accepted name at Genus level or NA
 
 
 You can also output only the verified names with more information on the matching algorithm results as a tibble by setting `add_to_phyloseq = FALSE`.
@@ -205,7 +205,7 @@ fungal_traits <- system.file("extdata",
 )
 
 data_final <- tax_info_pq(data_enriched,
-  taxonomic_rank = "currentCanonicalSimpleGenus",
+  taxonomic_rank = "genus",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",

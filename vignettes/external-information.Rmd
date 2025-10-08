@@ -53,7 +53,7 @@ data("data_fungi_mini", package = "MiscMetabar")
 
 # Clean names first
 # Keep only first 10 taxa for speed
-data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
 ```
 
@@ -359,7 +359,7 @@ fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
 
 # Add trait information
 data_clean_ft <- tax_info_pq(data_clean_full,
-  taxonomic_rank = "currentCanonicalSimpleGenus",
+  taxonomic_rank = "genus",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",

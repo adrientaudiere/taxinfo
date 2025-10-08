@@ -18,7 +18,9 @@ gna_verifier_pq(
   verbose = TRUE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
-  genus_species_canonical_col = TRUE
+  genus_species_canonical_col = TRUE,
+  year_col = TRUE,
+  authorship = TRUE
 )
 }
 \arguments{
@@ -31,54 +33,63 @@ The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the default c("Genus", "Species")).}
 
 \item{data_sources}{A character or integer vector.
-See [taxize::gna_verifier] documentation. For example,
+See [taxize::gna_verifier()] documentation. For example,
 1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
 210=TaxRef.}
 
-\item{all_matches}{(Logical) See [taxize::gna_verifier] documentation.}
+\item{all_matches}{(Logical) See [taxize::gna_verifier()] documentation.}
 
-\item{capitalize}{(Logical) See [taxize::gna_verifier] documentation.}
+\item{capitalize}{(Logical) See [taxize::gna_verifier()] documentation.}
 
-\item{species_group}{(Logical) See [taxize::gna_verifier] documentation.}
+\item{species_group}{(Logical) See [taxize::gna_verifier()] documentation.}
 
-\item{fuzzy_uninomial}{(Logical) See [taxize::gna_verifier] documentation.}
+\item{fuzzy_uninomial}{(Logical) See [taxize::gna_verifier()] documentation.}
 
-\item{stats}{(Logical) See [taxize::gna_verifier] documentation.}
+\item{stats}{(Logical) See [taxize::gna_verifier()] documentation.}
 
-\item{main_taxon_threshold}{(numeric) See [taxize::gna_verifier]
+\item{main_taxon_threshold}{(numeric) See [taxize::gna_verifier()]
 documentation.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 
 \item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 
- - If FALSE, return the result of the [taxize::gna_verifier]
+ - If FALSE, return the result of the [taxize::gna_verifier()]
    function + a column taxa_names_in_phyloseq depicting the name of the
    taxa from the phyloseq object.
 
  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
-   Three new columns are added:
-   - taxa_name: The character string sent to gna_verifier (e.g.
+   At least three new columns are added:
+   - **taxa_name**: The character string sent to gna_verifier (e.g.
    `Antrodiella brasiliensis`)
-   - currentName: The current accepted name (resolve the synonymie) with
+   - **currentName**: The current accepted name (resolve the synonym) with
      autorities at the end of the binominal name (e.g.
      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gómez-Mont. & Robledo)`.
-   - currentCanonicalSimple: The current accepted name whithout autorities
-     (e.g. `Trametopsis brasiliensis`).}
+   - **currentCanonicalSimple**: The current accepted name without autorities
+     (e.g. `Trametopsis brasiliensis`).
+
+     Other columns can be added depending on the parameters:
+      `genus_species_canonical_col`, `year_col`, `authorship`.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{genus_species_canonical_col}{(logical, default TRUE) If TRUE
 two new columns are added along with "currentCanonicalSimple":
-"currentCanonicalSimpleGenus" and "currentCanonicalSimpleSpecies"}
+"genus" and "specificEpithet"}
+
+\item{year_col}{(logical, default TRUE) If TRUE
+a new column "namePublishedInYear" is added with the year of publication.}
+
+\item{authorship}{(logical, default TRUE) If TRUE three new columns are added:
+"authorship", "bracketauthorship" and "scientificNameAuthorship".}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
-  with 3 new columns (see param add_to_phyloseq) in the tax_table slot.
+  with new columns (see param add_to_phyloseq) in the tax_table slot.
 }
 \description{
-A wrapper of [taxize::gna_verifier] apply to phyloseq object
+A wrapper of [taxize::gna_verifier()] apply to phyloseq object
 }
 \details{
 This function is mainly a wrapper of the work of others.

@@ -87,8 +87,8 @@ leaflet() |>
 data("data_fungi_mini", package = "MiscMetabar")
 
 # Keep only first 10 taxa for speed
-data_clean <- prune_taxa(taxa=taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
-  gna_verifier_pq(data_sources = 210) 
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210)
 
 summary_plot_pq(data_clean)
 # Show cleaned taxonomic names

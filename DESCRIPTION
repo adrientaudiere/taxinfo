@@ -38,6 +38,8 @@ Suggests:
     forcats,
     gbif.range,
     ggraph,
+    ggstatsplot,
+    ggforce,
     htmltools,
     igraph,
     knitr,

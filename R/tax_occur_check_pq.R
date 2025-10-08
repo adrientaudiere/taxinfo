@@ -168,19 +168,19 @@ tax_occur_check_pq <- function(physeq = NULL,
     "sample_point_lat",
     "sample_point_lon"
   )
-  
+
   # Determine new column names (excluding taxa_name which is used for join)
   new_cols <- c(
     "count_in_radius", "closest_distance_km", "mean_distance_km",
     "total_count_in_world", "search_radius", "closest_point_lat",
     "closest_point_lon", "sample_point_lat", "sample_point_lon"
   )
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -189,13 +189,13 @@ tax_occur_check_pq <- function(physeq = NULL,
       col_prefix <- "occur_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix)) {
     tax_range <- tax_range |>
       rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
   }
-  
+
   if (add_to_phyloseq) {
     new_physeq <- physeq
 

@@ -151,15 +151,15 @@ tax_get_wk_info_pq <- function(physeq = NULL,
     "taxon_id" = taxids,
     "taxa_name" = taxnames
   )
-  
+
   # Determine new column names (excluding taxa_name which is used for join)
   new_cols <- c("lang", "page_length", "page_views", "taxon_id")
-  
+
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
     existing_cols <- colnames(physeq@tax_table)
     common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-    
+
     if (length(common_cols) > 0 && is.null(col_prefix)) {
       cli::cli_warn(c(
         "Column names already exist in tax_table: {.val {common_cols}}",
@@ -168,7 +168,7 @@ tax_get_wk_info_pq <- function(physeq = NULL,
       col_prefix <- "wk_"
     }
   }
-  
+
   # Apply col_prefix to new columns
   if (!is.null(col_prefix)) {
     tib_info_wk <- tib_info_wk |>
