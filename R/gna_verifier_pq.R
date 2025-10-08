@@ -45,7 +45,7 @@
 #'   "genus" and "specificEpithet"
 #' @param year_col (logical, default TRUE) If TRUE
 #'  a new column "namePublishedInYear" is added with the year of publication.
-#' @param authorship (logical, default TRUE) If TRUE three new columns are added:
+#' @param authorship_col (logical, default TRUE) If TRUE three new columns are added:
 #'  "authorship", "bracketauthorship" and "scientificNameAuthorship".
 #' @returns
 #'   Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
@@ -54,12 +54,10 @@
 #' @author Adrien Taudière
 #'
 #' @examples
-#' gna_verifier_pq(data_fungi)
+#' df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 #'
-#' gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
-#'
-#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 #'
 #' sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
 #' sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
@@ -83,6 +81,23 @@
 #' # data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 #' #                                        taxonomic_rank="G_s")
 #'
+#' psmelt(data_fungi_mini_cleanNames) |>
+#'   filter(Abundance >0) |>
+#'    mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+#'   pull(namePublishedInYear) |>
+#'   hist(breaks=100)
+#'
+#'
+#' # Does the fungal species discovered more recently tend to be found at
+#' # greater heights in the tree?
+#' psmelt(data_fungi_mini_cleanNames) |>
+#'   filter(Abundance >0) |>
+#'   group_by(Height) |>
+#'   mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+#'   ggstatsplot::ggbetweenstats("Height", "namePublishedInYear")
+#'
+#'  psmelt(data_fungi_mini_cleanNames) |>
+#'   filter(Abundance >0) |>
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `taxize` package.
@@ -101,7 +116,7 @@ gna_verifier_pq <- function(physeq = NULL,
                             col_prefix = NULL,
                             genus_species_canonical_col = TRUE,
                             year_col = TRUE,
-                            authorship = TRUE) {
+                            authorship_col = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -181,12 +196,10 @@ gna_verifier_pq <- function(physeq = NULL,
 
 
   if (year_col) {
-    res_verifier_clean <- res_verifier_clean |>
-      mutate(namePublishedInYear = rgbif::name_parse(currentName)$year) |>
-      mutate(namePublishedInYear = as.integer(namePublishedInYear))
+    res_verifier_clean$namePublishedInYear <- rgbif::name_parse(res_verifier_clean$currentName)$year
   }
 
-  if (authorship) {
+  if (authorship_col) {
     res_verifier_clean <- res_verifier_clean |>
       mutate(
         authorship = rgbif::name_parse(currentName)$authorship,
@@ -250,11 +263,11 @@ gna_verifier_pq <- function(physeq = NULL,
     return(new_physeq)
   } else {
     if (verbose) {
-      total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
-      synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
-      genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+      total_matches <- sum(res_verifier_clean$taxonomicStatus %in% c("Synonym", "Accepted"))
+      synonyms <- sum(res_verifier_clean$taxonomicStatus == "Synonym", na.rm = TRUE)
+      genus_synonyms <- sum(res_verifier_clean$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
+      accepted_names <- sum(res_verifier_clean$taxonomicStatus == "Accepted", na.rm = TRUE)
+      genus_accepted <- sum(res_verifier_clean$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
 
       cli::cli_bullets(c(
         "v" = "GNA verification summary:",
@@ -264,11 +277,11 @@ gna_verifier_pq <- function(physeq = NULL,
         "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
       ))
     }
-    res_verifier$taxa_names_in_phyloseq <- names(taxnames)
+    res_verifier_clean$taxa_names_in_phyloseq <- names(taxnames)
 
     # Apply col_prefix to returned tibble if specified
     if (!is.null(col_prefix)) {
-      res_verifier <- res_verifier |>
+      res_verifier_clean <- res_verifier_clean |>
         rename_with(~ paste0(col_prefix, .), .cols = -taxa_names_in_phyloseq)
     }
 

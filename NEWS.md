@@ -9,6 +9,7 @@
 - All main functions (`gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_info_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()`, `tax_photos_pq()`) now support the `taxnames` parameter, allowing users to query information for specific taxonomic names without a phyloseq object. 
 - Added comprehensive tests for `taxnames` parameter usage across all functions.
 - Add functions `extract_spores_mycodb()` and `tax_spores_size_pq()` to retrieve spore size information from MycoDB. 
+- Add params `year_col` and `authorship_col` to `gna_verifier_pq()` to output year of publication and authorship information for each taxa.
 
 ## Documentation
 
