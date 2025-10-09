@@ -57,6 +57,8 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'
 #' @returns A character string summarizing the number of samples, taxa, sequences and occurrences of the selected taxa.
 #' @export
+#' 
+#' @seealso [select_taxa_pq()]
 #'
 #' @examples
 #' taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
