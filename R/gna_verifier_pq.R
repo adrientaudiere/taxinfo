@@ -53,6 +53,7 @@
 #' @export
 #' @author Adrien Taudière
 #'
+#' @seealso [taxize::gna_verifier()]
 #' @examples
 #' df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 #'

@@ -37,7 +37,7 @@
 #'  - sample_point_lon: Longitude of the tested point
 #'  - occ_data (optional, if `return_all_occ` is TRUE): Data frame of all occurrences
 #'  found within the radius
-#'
+#' @seealso [tax_occur_check_pq()], [tax_occur_multi_check_pq()]
 #' @examples
 #' # Check for Oak species near Paris
 #' long <- 2.3522

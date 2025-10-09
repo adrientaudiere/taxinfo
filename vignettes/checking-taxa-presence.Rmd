@@ -352,7 +352,6 @@ Use occurrence checking for:
 Occurrence checking works well with other taxinfo functions:
 
 ```{r}
-# Complete workflow example
 data_complete <- data_fungi_mini |>
   # 1. Clean names
   gna_verifier_pq(data_sources = 210) |>
@@ -364,8 +363,11 @@ data_complete <- data_fungi_mini |>
   subset_taxa(as.numeric(count_in_radius)>0) |> # Keep only taxa known in a radius of 100km
   # 3. Add GBIF occurrence data
   tax_gbif_occur_pq() |>
-  # 4. Filter based on frequence in samples
-  filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) # Keep taxa in >2 samples
+  # 4. Filter based on frequency in samples
+  filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) |> # Keep taxa in >2 samples
+  # 5. Remove empty samples and taxa
+  clean_pq() 
+
 
 # Final enhanced dataset
 data_complete@tax_table[1:5, ]

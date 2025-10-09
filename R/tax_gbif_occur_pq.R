@@ -28,6 +28,7 @@
 #'  object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 #' @export
 #' @author Adrien Taudière
+#' @seealso [rgbif::occ_search()], [plot_tax_gbif_pq()], [tax_occurr_pq()]
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'  Please cite `rgbif` package.

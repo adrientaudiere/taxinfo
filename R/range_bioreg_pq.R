@@ -30,6 +30,7 @@
 #'  `range_bioreg_pq(..., make_plot = TRUE)`.
 #'
 #' @export
+#' @seealso [gbif.range::get_gbif()], [plot_tax_gbif_pq()], [gbif.range::get_range()]
 #' @return If make_plot = TRUE (default), a list of ggplot objects, one for each taxon.
 #' If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].
 #' @author Adrien Taudière

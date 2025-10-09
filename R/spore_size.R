@@ -25,7 +25,7 @@
 #' `spore_size`, `spore_length`, `spore_width`.
 #' @export
 #' @author Adrien Taudière
-#'
+#' @seealso [extract_spores_mycodb()]
 #' @examples
 #' \dontrun{
 #' data_fungi_mini_cleanNames <- data_fungi_mini |>
@@ -207,6 +207,7 @@ tax_spores_size_pq <- function(physeq = NULL,
 #' "No spore size info in mycoDB".
 #'
 #' @export
+#' @seealso [tax_spores_size_pq()]
 #' @author Adrien Taudière
 #' @examples
 #' extract_spores_mycodb("Amanita muscaria")

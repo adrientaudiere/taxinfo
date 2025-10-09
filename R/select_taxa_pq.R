@@ -13,7 +13,7 @@
 #'
 #' @returns A new phyloseq object containing only the selected taxa.
 #' @export
-#'
+#' @seealso [MiscMetabar::subset_taxa_pq()]
 #' @author Adrien Taudière
 #'
 #' @examples

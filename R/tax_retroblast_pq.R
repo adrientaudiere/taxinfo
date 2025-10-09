@@ -75,6 +75,7 @@
 #'   for each taxon name
 #' @export
 #' @author Adrien Taudière
+#' @seealso [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
 #' @examples
 #' res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
 #'   marker = c("ITS", "internal transcribed spacer"),

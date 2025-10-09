@@ -17,6 +17,8 @@
 #' @param lat_column Column name in sample_data containing latitudes.
 #' @param latitudes Vector of latitudes corresponding to samples in the phyloseq
 #' object. If provided, it overrides lat_column.
+#' @param radius_km Numeric. Search radius in kilometers (default: 50).
+#'   See ?[tax_occur_check_pq()].
 #' @param ... Additional parameters passed to [tax_occur_check()].
 #'
 #' @returns A list containing:
@@ -29,7 +31,7 @@
 #'
 #' @export
 #' @author Adrien Taudière
-#'
+#' @seealso [tax_occur_check()], [tax_occur_multi_pq()]
 #' @examples
 #' res_occur_check <-
 #'   tax_occur_multi_check_pq(subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
@@ -45,6 +47,7 @@ tax_occur_multi_check_pq <- function(
     longitudes = NULL,
     lat_column = NULL,
     latitudes = NULL,
+    radius_km = 50,
     ...) {
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
@@ -107,6 +110,7 @@ tax_occur_multi_check_pq <- function(
       verbose = verbose,
       longitude = long,
       latitude = lat,
+      radius_km = radius_km,
       ...
     ) |>
       mutate(

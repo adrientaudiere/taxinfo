@@ -20,6 +20,7 @@
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `rgbif` package.
+#' @seealso [tax_info_pq()], [rgbif::name_usage()]
 #' @examples
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini) |>

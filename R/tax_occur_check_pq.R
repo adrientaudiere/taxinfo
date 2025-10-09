@@ -30,6 +30,7 @@
 #' @return Either a data frame (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object (if add_to_phyloseq = TRUE).
 #'
+#' @seealso [tax_occur_check()], [tax_occur_multi_check_pq()]
 #' @author Adrien Taudière
 #'
 #' @examples

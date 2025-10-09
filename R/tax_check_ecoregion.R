@@ -34,6 +34,7 @@
 #' 2. Determines the ecoregion of the tested GPS point
 #' 3. Checks if this ecoregion matches those of the species
 #'
+#' @seealso [tax_occur_check()], [tax_occur_multi_check_pq()], [tax_occur_check_pq()]
 #' @examples
 #' \dontrun{
 #' # Get occurrences

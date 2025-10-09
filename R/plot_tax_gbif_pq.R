@@ -1,4 +1,4 @@
-#' Plot the taxa occurence using gbif.range package
+#' Plot the taxa occurrence using gbif.range package
 #'
 #' @description
 #' A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
@@ -27,6 +27,7 @@
 #'
 #' @returns A list of ggplot2 objects, one for each taxon.
 #' @export
+#' @seealso [gbif.range::get_gbif()], [range_bioreg_pq()], [tax_check_occur_pq()], [tax_check_ecoregion()]
 #'
 #' @author Adrien Taudière
 #'
@@ -109,7 +110,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
 
   for (i in seq_along(taxnames)) {
     if (verbose) {
-      print(paste0("Start the computation of ", taxnames[i]))
+      cli::cli_alert_info(paste0("Start the computation of ", taxnames[i]))
     }
     if (is.null(countries)) {
       tax_gbif <- gbif.range::get_gbif(taxnames[i], ...)
