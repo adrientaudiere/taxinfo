@@ -237,41 +237,38 @@ compar <- MiscMetabar::track_wkflow(
 knitr::kable(compar)
 ```
 
-<!--
 ## Multi-Location Checking
 
 For studies with multiple sampling sites:
 
 ```{r}
-# Define multiple sampling locations
+# Define random multiple sampling locations
 sample_locations <- data.frame(
-  site_id = c("Site_A", "Site_B", "Site_C"),
-  longitude = c(2.3488, 5.3698, -1.5536), # Paris, Lille, Nantes
-  latitude = c(48.8534, 50.6292, 47.2184)
+  longitude = rnorm(nsamples(data_clean), mean = 2, sd=0.2), 
+  latitude = rnorm(nsamples(data_clean), mean = 48, sd=0.2)
 )
 
 # Check occurrences for multiple locations
 multi_location_check <- tax_occur_multi_check_pq(
   data_clean,
-  sample_locations = sample_locations,
+  longitudes = sample_locations$longitude,
+  latitude = sample_locations$latitude,
   radius_km = 100,
   n_occur = 500
 )
 
 # Summarize by site
-site_summary <- multi_location_check |>
-  group_by(site_id) |>
+site_summary <- multi_location_check[[1]] |>
+  group_by(sample_name) |>
   summarise(
     taxa_with_occurrences = sum(count_in_radius > 0),
-    mean_local_occurrences = mean(count_in_radius),
+    mean_nb_occurrences = mean(count_in_radius),
     .groups = "drop"
-  )
+  ) |> 
+  arrange(desc(taxa_with_occurrences), desc(mean_local_occurrences))
 
-print(site_summary)
+site_summary
 ```
-
-
-
 
 
 
@@ -291,21 +288,21 @@ site_validation <- map_dfr(1:nrow(sample_coords), function(i) {
   tax_occur_check_pq(data_clean,
     longitude = sample_coords$longitude[i],
     latitude = sample_coords$latitude[i],
-    radius_km = 50
-  ) |>
-    mutate(site_id = i)
+    radius_km = 50,
+    add_to_phyloseq = FALSE
+  ) 
 })
 
 # Summarize validation results
 validation_summary <- site_validation |>
-  group_by(site_id) |>
+  group_by(sample_point_lon, sample_point_lat) |>
   summarise(
     taxa_with_occurrences = sum(count_in_radius > 0),
-    mean_occurrences = mean(count_in_radius),
+    mean_nb_occurrences = mean(count_in_radius),
     .groups = "drop"
   )
 
-print(validation_summary)
+validation_summary
 ```
 
 ## Integration with Phyloseq
@@ -364,9 +361,10 @@ data_complete <- data_fungi_mini |>
     longitude = 2.3, latitude = 48.8,
     radius_km = 100
   ) |>
+  subset_taxa(as.numeric(count_in_radius)>0) |> # Keep only taxa known in a radius of 100km
   # 3. Add GBIF occurrence data
   tax_gbif_occur_pq() |>
-  # 4. Filter based on occurrence likelihood
+  # 4. Filter based on frequence in samples
   filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) # Keep taxa in >2 samples
 
 # Final enhanced dataset
@@ -374,5 +372,3 @@ data_complete@tax_table[1:5, ]
 ```
 
 This approach provides a robust framework for validating taxa presence and improving the reliability of your microbiome or environmental DNA analyses.
-
--->
