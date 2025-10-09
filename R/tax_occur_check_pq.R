@@ -33,6 +33,8 @@
 #' @author Adrien Taudière
 #'
 #' @examples
+#' 
+#' @seealso [tax_occur_check()], [tax_occur_multi_check_pq()], [tax_check_ecoregion()]
 #'
 #' check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
 #'   longitude = 2.3,

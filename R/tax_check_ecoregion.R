@@ -50,6 +50,8 @@
 #' }
 #'
 #' @export
+#' 
+#' @seealso [tax_occur_check()], [range_bioreg_pq()], [tax_gbif_occur_pq()]
 tax_check_ecoregion <- function(taxa_name,
                                 longitudes = NULL,
                                 latitudes = NULL,

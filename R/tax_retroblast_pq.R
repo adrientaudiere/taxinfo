@@ -75,6 +75,9 @@
 #'   for each taxon name
 #' @export
 #' @author Adrien Taudière
+#' 
+#' @seealso [gna_verifier_pq()]
+#' 
 #' @examples
 #' res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
 #'   marker = c("ITS", "internal transcribed spacer"),

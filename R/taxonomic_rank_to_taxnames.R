@@ -18,6 +18,8 @@
 #' @returns A vector of unique taxonomic names
 #' @export
 #' @author Adrien Taudière
+#' 
+#' @seealso [gna_verifier_pq()], [select_taxa_pq()]
 #'
 #' @examples
 #' taxonomic_rank_to_taxnames(data_fungi_mini)

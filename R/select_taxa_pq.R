@@ -15,6 +15,8 @@
 #' @export
 #'
 #' @author Adrien Taudière
+#' 
+#' @seealso [taxonomic_rank_to_taxnames()]
 #'
 #' @examples
 #' select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple", taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"), verbose = FALSE, clean_pq = FALSE)

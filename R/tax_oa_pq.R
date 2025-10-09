@@ -40,6 +40,9 @@
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `openalexR` package.
+#' 
+#' @seealso [tax_get_wk_info_pq()], [tax_gbif_occur_pq()], [tax_info_pq()]
+#' 
 #' @examples
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
 #'   tax_oa_pq(data_fungi_mini_cleanNames)

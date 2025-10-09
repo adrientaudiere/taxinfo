@@ -42,6 +42,8 @@
 #'   - `taxa_name`: Taxonomic name used to query wikipedia
 #'
 #' @export
+#' 
+#' @seealso [tax_get_wk_lang()], [tax_get_wk_pages_info()], [tax_oa_pq()]
 #'
 #' @examples
 #'
@@ -213,6 +215,8 @@ tax_get_wk_info_pq <- function(physeq = NULL,
 #'  wikipedia page is found in the all languages, a tibble with 0
 #'  is returned.
 #' @export
+#' 
+#' @seealso [tax_get_wk_info_pq()], [tax_get_wk_pages_info()]
 #'
 #' @examples
 #' tax_get_wk_lang("Q10723171")
@@ -313,6 +317,8 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #'
 #' @author Adrien Taudière
 #' @export
+#' 
+#' @seealso [tax_get_wk_info_pq()], [tax_get_wk_lang()]
 #'
 #' @examples
 #' tax_get_wk_pages_info("Q10723171")

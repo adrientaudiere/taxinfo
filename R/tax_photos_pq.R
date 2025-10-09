@@ -45,6 +45,9 @@
 #'  form of a tibble.
 #' @export
 #' @author Adrien Taudière
+#' 
+#' @seealso [tax_get_wk_info_pq()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
+#' 
 #' @examples
 #'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)

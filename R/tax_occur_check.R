@@ -78,6 +78,8 @@
 #'
 #' @author Adrien Taudière
 #' @export
+#' 
+#' @seealso [tax_occur_check_pq()], [tax_gbif_occur_pq()], [tax_check_ecoregion()]
 tax_occur_check <- function(taxa_name,
                             longitude,
                             latitude,

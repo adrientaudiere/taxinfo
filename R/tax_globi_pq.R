@@ -49,6 +49,8 @@
 #' @export
 #'
 #' @importFrom rglobi get_interactions_by_taxa
+#' 
+#' @seealso [tax_gbif_occur_pq()], [tax_oa_pq()], [tax_info_pq()]
 #'
 #' @examples
 #' res_globi <- tax_globi_pq(data_fungi_mini,

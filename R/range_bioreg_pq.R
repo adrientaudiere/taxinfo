@@ -33,6 +33,8 @@
 #' @return If make_plot = TRUE (default), a list of ggplot objects, one for each taxon.
 #' If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].
 #' @author Adrien Taudière
+#' 
+#' @seealso [plot_tax_gbif_pq()], [tax_gbif_occur_pq()], [tax_check_ecoregion()]
 #' @examples
 #'
 #' res_range <- range_bioreg_pq(subset_taxa(

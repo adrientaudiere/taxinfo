@@ -25,6 +25,8 @@
 #' `spore_size`, `spore_length`, `spore_width`.
 #' @export
 #' @author Adrien Taudière
+#' 
+#' @seealso [tax_info_pq()], [tax_gbif_occur_pq()]
 #'
 #' @examples
 #' \dontrun{

@@ -43,6 +43,8 @@
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 #' @author Adrien Taudière
 #' @export
+#' 
+#' @seealso [tax_gbif_occur_pq()], [tax_oa_pq()], [tax_globi_pq()]
 #'
 #' @examples
 #'

@@ -29,6 +29,8 @@
 #' @export
 #'
 #' @author Adrien Taudière
+#' 
+#' @seealso [tax_gbif_occur_pq()], [range_bioreg_pq()], [tax_occur_check_pq()]
 #'
 #' @examples
 #'

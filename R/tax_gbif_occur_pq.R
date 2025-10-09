@@ -31,6 +31,8 @@
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'  Please cite `rgbif` package.
+#' 
+#' @seealso [plot_tax_gbif_pq()], [range_bioreg_pq()], [tax_occur_check()]
 #' @examples
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini)

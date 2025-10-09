@@ -52,6 +52,8 @@
 #'   with new columns (see param add_to_phyloseq) in the tax_table slot.
 #' @export
 #' @author Adrien Taudière
+#' 
+#' @seealso [tax_gbif_occur_pq()], [tax_oa_pq()], [tax_get_wk_info_pq()]
 #'
 #' @examples
 #' df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
