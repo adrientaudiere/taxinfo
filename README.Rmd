@@ -126,8 +126,10 @@ data_final <- tax_get_wk_info_pq(data_with_traits)
 head(data_final@tax_table)
 
 # Alternative: Query specific taxa without a phyloseq object
-taxa_info <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"),
-                               by_country = TRUE)
+taxa_info <- tax_gbif_occur_pq(
+  taxnames = c("Amanita muscaria", "Boletus edulis"),
+  by_country = TRUE
+)
 
 # Returns a tibble instead of phyloseq object
 head(taxa_info)

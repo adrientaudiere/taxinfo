@@ -20,7 +20,7 @@ gna_verifier_pq(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
-  authorship = TRUE
+  authorship_col = TRUE
 )
 }
 \arguments{
@@ -81,7 +81,7 @@ two new columns are added along with "currentCanonicalSimple":
 \item{year_col}{(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.}
 
-\item{authorship}{(logical, default TRUE) If TRUE three new columns are added:
+\item{authorship_col}{(logical, default TRUE) If TRUE three new columns are added:
 "authorship", "bracketauthorship" and "scientificNameAuthorship".}
 }
 \value{
@@ -96,12 +96,10 @@ This function is mainly a wrapper of the work of others.
   Please cite `taxize` package.
 }
 \examples{
-gna_verifier_pq(data_fungi)
+df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 
-gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
-
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
 sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
@@ -125,6 +123,23 @@ p + xlim(0, max(p$data$x) + 1)
 # data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 #                                        taxonomic_rank="G_s")
 
+psmelt(data_fungi_mini_cleanNames) |>
+  filter(Abundance >0) |>
+   mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+  pull(namePublishedInYear) |>
+  hist(breaks=100)
+
+
+# Does the fungal species discovered more recently tend to be found at
+# greater heights in the tree?
+psmelt(data_fungi_mini_cleanNames) |>
+  filter(Abundance >0) |>
+  group_by(Height) |>
+  mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+  ggstatsplot::ggbetweenstats("Height", "namePublishedInYear")
+
+ psmelt(data_fungi_mini_cleanNames) |>
+  filter(Abundance >0) |>
 }
 \author{
 Adrien Taudière
