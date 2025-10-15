@@ -77,6 +77,9 @@ ggplot(
   coord_flip() +
   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
 }
+\seealso{
+[rgbif::occ_search()], [plot_tax_gbif_pq()], [tax_occurr_pq()]
+}
 \author{
 Adrien Taudière
 }

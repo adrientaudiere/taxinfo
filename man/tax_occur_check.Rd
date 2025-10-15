@@ -110,6 +110,9 @@ leaflet() |>
   leaflet::addCircleMarkers(lat, long, color = "orange", radius = 2, opacity = 1)
 
 }
+\seealso{
+[tax_occur_check_pq()], [tax_occur_multi_check_pq()]
+}
 \author{
 Adrien Taudière
 }

@@ -34,3 +34,6 @@ tax_get_wk_lang("Q10723171") |>
 
 tax_get_wk_lang("Q10723171")
 }
+\seealso{
+[tax_get_wk_pages_info()], [tax_get_wk_info_pq()], [tax_photo_pq()]
+}

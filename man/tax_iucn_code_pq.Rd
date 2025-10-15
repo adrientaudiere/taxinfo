@@ -51,6 +51,9 @@ table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
 # Using taxnames vector (returns a tibble)
 tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 }
+\seealso{
+[tax_info_pq()], [rgbif::name_usage()]
+}
 \author{
 Adrien Taudière
 }

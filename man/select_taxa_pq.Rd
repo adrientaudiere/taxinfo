@@ -43,6 +43,9 @@ select_taxa_pq(data_fungi, taxonomic_rank = c("Genus", "Species"), taxnames = c(
 select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot")) |>
   summary_plot_pq()
 }
+\seealso{
+[MiscMetabar::subset_taxa_pq()]
+}
 \author{
 Adrien Taudière
 }

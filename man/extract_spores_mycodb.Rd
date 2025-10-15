@@ -27,6 +27,9 @@ extract_spores_mycodb("Xylobolus subpileatus")
 extract_spores_mycodb("Nonexistent species")
 extract_spores_mycodb("Amanita")
 }
+\seealso{
+[tax_spores_size_pq()]
+}
 \author{
 Adrien Taudière
 }

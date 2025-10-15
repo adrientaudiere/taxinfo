@@ -244,8 +244,8 @@ For studies with multiple sampling sites:
 ```{r}
 # Define random multiple sampling locations
 sample_locations <- data.frame(
-  longitude = rnorm(nsamples(data_clean), mean = 2, sd=0.2), 
-  latitude = rnorm(nsamples(data_clean), mean = 48, sd=0.2)
+  longitude = rnorm(nsamples(data_clean), mean = 2, sd = 0.2),
+  latitude = rnorm(nsamples(data_clean), mean = 48, sd = 0.2)
 )
 
 # Check occurrences for multiple locations
@@ -264,8 +264,8 @@ site_summary <- multi_location_check[[1]] |>
     taxa_with_occurrences = sum(count_in_radius > 0),
     mean_nb_occurrences = mean(count_in_radius),
     .groups = "drop"
-  ) |> 
-  arrange(desc(taxa_with_occurrences), desc(mean_local_occurrences))
+  ) |>
+  arrange(desc(taxa_with_occurrences), desc(mean_nb_occurrences))
 
 site_summary
 ```
@@ -290,7 +290,7 @@ site_validation <- map_dfr(1:nrow(sample_coords), function(i) {
     latitude = sample_coords$latitude[i],
     radius_km = 50,
     add_to_phyloseq = FALSE
-  ) 
+  )
 })
 
 # Summarize validation results
@@ -360,13 +360,13 @@ data_complete <- data_fungi_mini |>
     longitude = 2.3, latitude = 48.8,
     radius_km = 100
   ) |>
-  subset_taxa(as.numeric(count_in_radius)>0) |> # Keep only taxa known in a radius of 100km
+  subset_taxa(as.numeric(count_in_radius) > 0) |> # Keep only taxa known in a radius of 100km
   # 3. Add GBIF occurrence data
   tax_gbif_occur_pq() |>
   # 4. Filter based on frequency in samples
   filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) |> # Keep taxa in >2 samples
   # 5. Remove empty samples and taxa
-  clean_pq() 
+  clean_pq()
 
 
 # Final enhanced dataset

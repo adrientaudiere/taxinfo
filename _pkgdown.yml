@@ -104,6 +104,14 @@ reference:
   - select_taxa_pq
   - taxonomic_rank_to_taxnames
 
+- title: "Analyses and Cluster using taxonomic names"
+  desc: >
+    Functions for analyzing genetic distances among taxa with
+    the same taxonomic names and clustering into species bound cluster (SBC).
+  contents:
+  - intra_taxnames_dist
+  - cluster_sbc
+
 - title: "Utility Functions"
   desc: >
     Helper functions for package management, data validation,

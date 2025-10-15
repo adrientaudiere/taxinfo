@@ -83,6 +83,9 @@ tax_get_wk_pages_info(
   end_date = "2023-12-31"
 )
 }
+\seealso{
+[tax_get_wk_lang()], [tax_get_wk_info_pq()], [tax_photo_pq()]
+}
 \author{
 Adrien Taudière
 }

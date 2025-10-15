@@ -72,6 +72,9 @@ xylo_ecoregion <- tax_check_ecoregion("Xylobolus subpileatus",
 }
 
 }
+\seealso{
+[tax_occur_check()], [tax_occur_multi_check_pq()], [tax_occur_check_pq()]
+}
 \author{
 Adrien Taudière
 }

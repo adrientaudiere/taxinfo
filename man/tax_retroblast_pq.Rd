@@ -140,6 +140,9 @@ res_retro_100$tib_retroblast$alt_assign |>
   sapply(isFALSE) |>
   sum()
 }
+\seealso{
+[MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
+}
 \author{
 Adrien Taudière
 }

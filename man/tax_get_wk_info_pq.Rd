@@ -105,3 +105,6 @@ subset_taxa(data_fungi_mini_cleanNames_wk_info, !is.na(page_views)) |>
       Shape size is proportional to mean page lenght in wikipedia.") +
   ylab("")
 }
+\seealso{
+[tax_get_wk_lang()], [tax_get_wk_pages_info()], [tax_photo_pq()]
+}

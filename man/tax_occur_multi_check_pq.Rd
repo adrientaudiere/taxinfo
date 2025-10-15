@@ -13,6 +13,7 @@ tax_occur_multi_check_pq(
   longitudes = NULL,
   lat_column = NULL,
   latitudes = NULL,
+  radius_km = 50,
   ...
 )
 }
@@ -38,6 +39,9 @@ If provided, it overrides lon_column.}
 \item{latitudes}{Vector of latitudes corresponding to samples in the phyloseq
 object. If provided, it overrides lat_column.}
 
+\item{radius_km}{Numeric. Search radius in kilometers (default: 50).
+See ?[tax_occur_check_pq()].}
+
 \item{...}{Additional parameters passed to [tax_occur_check()].}
 }
 \value{
@@ -60,6 +64,9 @@ res_occur_check <-
     longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
     latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
   )
+}
+\seealso{
+[tax_occur_check()], [tax_occur_multi_pq()]
 }
 \author{
 Adrien Taudière

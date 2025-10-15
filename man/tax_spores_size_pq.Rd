@@ -122,6 +122,9 @@ psmelt(data_fungi_mini_spore_size) |>
   ggstatsplot::ggbetweenstats(Time, spore_length)
 }
 }
+\seealso{
+[extract_spores_mycodb()]
+}
 \author{
 Adrien Taudière
 }

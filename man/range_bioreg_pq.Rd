@@ -84,6 +84,9 @@ p <- plot_range_bioreg_pq(subset_taxa_pq(
 requireNamespace(patchwork)
 p[[1]] / p[[2]]
 }
+\seealso{
+[gbif.range::get_gbif()], [plot_tax_gbif_pq()], [gbif.range::get_range()]
+}
 \author{
 Adrien Taudière
 }

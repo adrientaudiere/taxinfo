@@ -117,29 +117,25 @@ p <- ggtree::ggtree(tr, layout = "roundrect") +
 
 p + xlim(0, max(p$data$x) + 1)
 
-# Return an error
-# data_fungi_cleanNames <- gna_verifier_pq(data_fungi_cleanNames,
-#                                        add_to_phyloseq=TRUE)
-# data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
-#                                        taxonomic_rank="G_s")
 
 psmelt(data_fungi_mini_cleanNames) |>
-  filter(Abundance >0) |>
-   mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+  filter(Abundance > 0) |>
+  mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
   pull(namePublishedInYear) |>
-  hist(breaks=100)
+  hist(breaks = 100)
 
 
 # Does the fungal species discovered more recently tend to be found at
 # greater heights in the tree?
 psmelt(data_fungi_mini_cleanNames) |>
-  filter(Abundance >0) |>
+  filter(Abundance > 0) |>
   group_by(Height) |>
   mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
   ggstatsplot::ggbetweenstats("Height", "namePublishedInYear")
 
- psmelt(data_fungi_mini_cleanNames) |>
-  filter(Abundance >0) |>
+}
+\seealso{
+[taxize::gna_verifier()]
 }
 \author{
 Adrien Taudière

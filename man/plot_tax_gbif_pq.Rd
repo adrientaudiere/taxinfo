@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tax_gbif_pq.R
 \name{plot_tax_gbif_pq}
 \alias{plot_tax_gbif_pq}
-\title{Plot the taxa occurence using gbif.range package}
+\title{Plot the taxa occurrence using gbif.range package}
 \usage{
 plot_tax_gbif_pq(
   physeq = NULL,
@@ -97,6 +97,9 @@ requireNamespace("patchwork")
 (p[[1]] + p[[2]]) /
   (p[[3]] + p[[4]]) & no_legend()
 
+}
+\seealso{
+[gbif.range::get_gbif()], [range_bioreg_pq()], [tax_check_occur_pq()], [tax_check_ecoregion()]
 }
 \author{
 Adrien Taudière
