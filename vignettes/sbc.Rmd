@@ -1,0 +1,118 @@
+---
+title: "Post-clustering using taxonomic names"
+author: "Adrien Taudière"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    theme: united
+    highlight: tango
+vignette: >
+  %\VignetteIndexEntry{Post-clustering using taxonomic names}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(taxinfo)
+```
+
+## Overview
+
+Riley *et al.* 2025 (<https://doi.org/10.1186/s12915-025-02284-x>) propose the concept of 
+species bound cluster (SBC) which are defined as "clusters that include all and only ESVs assigned to one species, the sequence similarity threshold can vary between these clusters".
+
+```{r}
+d_f_ab <- subset_taxa_pq(data_fungi, taxa_sums(data_fungi) > 50)
+```
+
+
+## Compute intra-taxonomic names distance
+
+```{r}
+intra_taxn_dist <- intra_taxnames_dist(d_f_ab, verbose = FALSE)
+
+intra_taxn_dist |>
+  filter(n_taxa > 1) |>
+  arrange(desc(n_taxa)) |>
+  select(-taxnames) |>
+  head(10)
+```
+
+## Cluster taxa into SBC
+
+```{r}
+sbc_clusters <- cluster_sbc(d_f_ab, verbose = FALSE)
+
+track_wkflow(list(
+  "Raw physeq" = data_fungi,
+  "Abundant taxa" = subset_taxa_pq(data_fungi, taxa_sums(data_fungi) > 500),
+  "SBC" = sbc_clusters$physeq_SBC
+)) |>
+  knitr::kable()
+
+sbc_clusters$summary
+```
+
+```{r}
+summary_plot_pq(sbc_clusters$physeq_SBC)
+```
+
+## Visualize results
+
+```{r}
+left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
+  filter(!is.na(optimal_d)) |>
+  ggplot(aes(x = optimal_d, y = mean_dist, size = n_taxa.x, label = taxnames, color = other_taxnames == "")) +
+  geom_point() +
+  ggrepel::geom_text_repel(
+    size = 2,
+    force = 4,
+    fontface = "italic"
+  ) +
+  scale_size_continuous(name = "Number of taxa", range = c(2, 4)) +
+  # geom_hline(yintercept = 0.03, linetype = "dashed") +
+  # annotate("label", label= "3%", x=5, y=0.03) +
+  scale_color_manual(values = c("TRUE" = "gray40", "FALSE" = "seagreen4")) +
+  ggrepel::geom_label_repel(aes(label = other_taxnames),
+    size = 2,
+    hjust = 1.4,
+    fontface = "italic"
+  ) +
+  labs(
+    x = "Optimal clustering swarm parameter d",
+    y = "Mean intra-taxonomic names distance",
+    color = "Other taxnames\n in the cluster",
+    title = "An increasing optimal d captures taxonomic names with higher intra-names distance",
+    subtitle = "The squared names are other taxonomic names present in a cluster"
+  ) +
+  theme_idest()
+```
+
+
+```{r}
+left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
+  mutate(is_na_optimal_d = is.na(optimal_d)) |>
+  filter(!is.na(mean_dist)) |>
+  ggplot(aes(x = mean_dist, y = is_na_optimal_d, color = optimal_d)) +
+  geom_violin() +
+  geom_jitter() +
+  geom_vline(xintercept = 0.03, color = "red") +
+  theme_idest()
+```
+

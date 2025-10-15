@@ -7,9 +7,18 @@
 ## New Features
 
 - All main functions (`gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_info_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()`, `tax_photos_pq()`) now support the `taxnames` parameter, allowing users to query information for specific taxonomic names without a phyloseq object. 
+
 - Added comprehensive tests for `taxnames` parameter usage across all functions.
+
 - Add functions `extract_spores_mycodb()` and `tax_spores_size_pq()` to retrieve spore size information from MycoDB. 
+
 - Add params `year_col` and `authorship_col` to `gna_verifier_pq()` to output year of publication and authorship information for each taxa.
+
+- Add function `intra_taxnames_dist()` to compute pairwise DNA distances among taxa with the same taxonomic names.
+
+- Add function `cluster_sbc()` to (post)cluster taxa into SBC (Species bound cluster) defined as  "clusters that include all and only ESVs assigned to one species, the sequence similarity threshold can vary between these clusters" by Riley *et al.* 2025 (<https://doi.org/10.1186/s12915-025-02284-x>). Also add a new vignette to illustrate the use of `cluster_sbc()`.
+
+
 
 ## Documentation
 
