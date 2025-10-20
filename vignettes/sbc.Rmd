@@ -69,13 +69,13 @@ track_wkflow(list(
 sbc_clusters$summary
 ```
 
-```{r}
+```{r, fig.alt="Summary visualization showing the distribution and characteristics of Species Bound Clusters (SBC) in the phyloseq object, including number of taxa, samples, and other key metrics."}
 summary_plot_pq(sbc_clusters$physeq_SBC)
 ```
 
 ## Visualize results
 
-```{r}
+```{r, fig.alt="Scatter plot showing the relationship between optimal clustering swarm parameter d (x-axis) and mean intra-taxonomic names distance (y-axis). Points are sized by number of taxa and colored by whether other taxonomic names are present in the cluster. Taxonomic names are shown as text labels with italic formatting."}
 left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   filter(!is.na(optimal_d)) |>
   ggplot(aes(x = optimal_d, y = mean_dist, size = n_taxa.x, label = taxnames, color = other_taxnames == "")) +
@@ -105,7 +105,7 @@ left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
 ```
 
 
-```{r}
+```{r, fig.alt="Violin plot with jittered points showing the distribution of mean intra-taxonomic distance (x-axis) grouped by whether optimal d is NA (y-axis). Points are colored by optimal d value. A red vertical line marks the threshold at 0.03."}
 left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   mutate(is_na_optimal_d = is.na(optimal_d)) |>
   filter(!is.na(mean_dist)) |>

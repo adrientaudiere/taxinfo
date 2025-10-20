@@ -119,7 +119,7 @@ message("The enriched taxonomic table now has the following new columns: ", past
 ```
 
 
-```{r}
+```{r, fig.alt="Scatter plot showing molecular abundance (log10 scale) on the x-axis and taxa names on the y-axis. Points are colored by ecological guild, sized by number of publications, and shaped to indicate Quercus interaction. Wikipedia page view counts are displayed as text labels next to each point."}
 # todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
   mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
