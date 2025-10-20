@@ -31,7 +31,7 @@
 #' object (if add_to_phyloseq = TRUE).
 #'
 #' @seealso [tax_occur_check()], [tax_occur_multi_check_pq()]
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #'
 #' @examples
 #'

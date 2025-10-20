@@ -105,5 +105,5 @@ data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
 )
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

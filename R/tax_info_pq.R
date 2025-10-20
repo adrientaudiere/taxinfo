@@ -14,7 +14,7 @@
 #'
 #'  Note that the csv file need to be in a wide-format, i.e. one line for each
 #'  distinct value in the `csv_taxonomic_rank` columns. You may want to transform
-#'  your data.frame using [tidyr::pivot_wider()] fonctions prior to write it in
+#'  your data.frame using [tidyr::tidyr::pivot_wider()] fonctions prior to write it in
 #'  a new file.
 #'
 #'
@@ -41,7 +41,7 @@
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 #'
 #' @examples
@@ -84,7 +84,10 @@
 #'   use_duck_db = TRUE,
 #'   add_to_phyloseq = FALSE,
 #'   col_prefix = "taxref_",
-#'   csv_cols_select = c("RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB", "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL")
+#'   csv_cols_select = c(
+#'     "RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB",
+#'     "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL"
+#'   )
 #' )
 #'
 #' data_fungi_cleanNames_2 <- tax_info_pq(

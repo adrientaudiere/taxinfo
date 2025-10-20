@@ -69,8 +69,9 @@ This function is mainly a wrapper of the work of others.
   Please cite `openalexR` package.
 }
 \examples{
+
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
-  tax_oa_pq(data_fungi_mini_cleanNames)
+  tax_oa_pq()
 
 ggplot(
   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
@@ -134,5 +135,5 @@ list_pub_at_least_ten_citations <-
   })
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

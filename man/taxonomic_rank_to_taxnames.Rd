@@ -45,5 +45,5 @@ taxonomic_rank_to_taxnames(data_fungi_mini,
 )
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

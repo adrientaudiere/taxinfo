@@ -68,7 +68,7 @@ A function to add information from a custom csv file (e.g. FungalTraits,
 
  Note that the csv file need to be in a wide-format, i.e. one line for each
  distinct value in the `csv_taxonomic_rank` columns. You may want to transform
- your data.frame using [tidyr::pivot_wider()] fonctions prior to write it in
+ your data.frame using [tidyr::tidyr::pivot_wider()] fonctions prior to write it in
  a new file.
 }
 \examples{
@@ -111,7 +111,10 @@ res_with_duckDB <- tax_info_pq(
   use_duck_db = TRUE,
   add_to_phyloseq = FALSE,
   col_prefix = "taxref_",
-  csv_cols_select = c("RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB", "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL")
+  csv_cols_select = c(
+    "RANG", "HABITAT", "FR", "GF", "MAR", "GUA", "SM", "SB",
+    "SPM", "MAY", "EPA", "REU", "SA", "TA", "TAAF", "PF", "NC", "WF", "CLI", "URL"
+  )
 )
 
 data_fungi_cleanNames_2 <- tax_info_pq(
@@ -145,5 +148,5 @@ data_fungi_cleanNames_3@tax_table[, "st_BCD_TAXREF_STATUT_BIOGEO"] |>
   table(useNA = "always")
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

@@ -65,6 +65,8 @@ A wrapper of [gbif.range::get_gbif()] and [gbif.range::get_range()] functions
 }
 \examples{
 
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+
 res_range <- range_bioreg_pq(subset_taxa(
   data_fungi_mini_cleanNames,
   currentCanonicalSimple \%in\% c("Xylodon flaviporus", "Basidiodendron eyrei")
@@ -81,12 +83,12 @@ p <- plot_range_bioreg_pq(subset_taxa_pq(
   taxa_sums(data_fungi_mini) > 20000
 ), occ_samp = 500)
 
-requireNamespace(patchwork)
+requireNamespace("patchwork")
 p[[1]] / p[[2]]
 }
 \seealso{
 [gbif.range::get_gbif()], [plot_tax_gbif_pq()], [gbif.range::get_range()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

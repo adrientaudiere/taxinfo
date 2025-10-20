@@ -1,7 +1,7 @@
 #' ggplot theme for IdEst
 #'
 #' @description
-#' This theme is used by Adrien Taudière [IdEst](https://adrientaudiere.com/).
+#' This theme is used by Adrien Taudiere [IdEst](https://adrientaudiere.com/).
 #'  Based on [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes/tree/master)
 #' `hrbrthemes::theme_ipsum()` by boB Rudis.
 #'
@@ -43,7 +43,7 @@
 #' @param ticks Logical, whether to show axis ticks (default is FALSE).
 #'
 #' @return A ggplot2 theme object.
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 #'
 theme_idest <- function(
@@ -85,7 +85,7 @@ theme_idest <- function(
     axis_col = "#cccccc",
     axis = FALSE,
     ticks = FALSE) {
-  ret <- ggplot2::theme_minimal(base_family = sans_family, base_size = base_size)
+  ret <- theme_minimal(base_family = sans_family, base_size = base_size)
 
   ret <- ret + theme(legend.background = element_blank())
   ret <- ret + theme(legend.key = element_blank())
@@ -275,7 +275,7 @@ theme_idest <- function(
 #'  "dark_color_idest", "Picabia", "Picasso", "Levine2", "Rattner", "Sidhu",
 #'  "Hokusai2", "Hokusai3")
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 idest_pal <- list(
   all_color_idest = list(
     c(
@@ -398,7 +398,7 @@ idest_pal <- list(
 #'
 #' @returns A ggplot2 scale object.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
   `%notin%` <- Negate(`%in%`)
 
@@ -420,7 +420,7 @@ scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1,
 #' @inheritParams scale_color_idest_c
 #' @returns A ggplot2 scale object.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
   `%notin%` <- Negate(`%in%`)
 
@@ -450,7 +450,7 @@ scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, 
 #' @param ... Additional arguments passed to [ggplot2::scale_color_gradientn()].
 #' @export
 #' @returns A ggplot2 scale object.
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 scale_color_idest_d <- function(palette_name = "all_color_idest",
                                 direction = 1,
                                 override_order = FALSE,
@@ -474,7 +474,7 @@ scale_color_idest_d <- function(palette_name = "all_color_idest",
 #' @inheritParams scale_color_idest_d
 #' @returns A ggplot2 scale object.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 scale_fill_idest_d <- function(palette_name = "all_color_idest",
                                direction = 1,
                                override_order = FALSE,
@@ -507,7 +507,7 @@ scale_fill_idest_d <- function(palette_name = "all_color_idest",
 #' @param override_order Logical, whether to override the order of the palette.
 #'
 #' @returns A vector of colors.
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 idest_colors <- function(palette_name = "all_color_idest",
                          n,

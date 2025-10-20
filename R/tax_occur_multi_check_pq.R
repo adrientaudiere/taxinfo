@@ -30,7 +30,7 @@
 #'  the filtering may be very stringent.
 #'
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @seealso [tax_occur_check()], [tax_occur_multi_pq()]
 #' @examples
 #' res_occur_check <-
@@ -166,9 +166,9 @@ tax_occur_multi_check_pq <- function(
 
     cli::cli_alert_info(c(
       "After filtering taxa with at least {.val {min_occur + 1}} GBIF occurrences within {.val {radius_km}}km:/n",
-      "  • Taxa: {.val {remaining_taxa}}/{.val {ntaxa(physeq)}} remain/n",
-      "  • Samples: {.val {remaining_samples}}/{.val {nsamples(physeq)}} remain/n",
-      "  • Occurrences: {.val {remaining_occurrences}}/{.val {sum(physeq@otu_table > 0)}} remain"
+      "  - Taxa: {.val {remaining_taxa}}/{.val {ntaxa(physeq)}} remain/n",
+      "  - Samples: {.val {remaining_samples}}/{.val {nsamples(physeq)}} remain/n",
+      "  - Occurrences: {.val {remaining_occurrences}}/{.val {sum(physeq@otu_table > 0)}} remain"
     ))
   }
   return(list(

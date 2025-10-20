@@ -44,7 +44,7 @@
 #'  folder (folder_name parameter) and the list of url are returned in the
 #'  form of a tibble.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @examples
 #'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
@@ -241,16 +241,16 @@ tax_photos_pq <- function(physeq = NULL,
 
       cli::cli_bullets(c(
         "v" = "Photo download summary:/n",
-        "  • {.val {photos_found}} photos found and downloaded/n",
-        "  • {.val {taxa_depicted}} taxa depicted/n",
-        "  • {.val {names_not_found}} taxonomic names not found/n",
-        "  • {.val {taxa_no_photo}} taxa have no photo URL"
+        "  - {.val {photos_found}} photos found and downloaded/n",
+        "  - {.val {taxa_depicted}} taxa depicted/n",
+        "  - {.val {names_not_found}} taxonomic names not found/n",
+        "  - {.val {taxa_no_photo}} taxa have no photo URL"
       ))
     } else {
       cli::cli_bullets(c(
         "v" = "Photo download summary:/n",
-        "  • {.val {photos_found}} photos found and downloaded/n",
-        "  • {.val {names_not_found}} taxonomic names not found"
+        "  - {.val {photos_found}} photos found and downloaded/n",
+        "  - {.val {names_not_found}} taxonomic names not found"
       ))
     }
   }

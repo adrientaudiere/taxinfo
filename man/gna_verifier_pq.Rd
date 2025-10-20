@@ -64,7 +64,7 @@ documentation.}
    `Antrodiella brasiliensis`)
    - **currentName**: The current accepted name (resolve the synonym) with
      autorities at the end of the binominal name (e.g.
-     `Trametopsis brasiliensis (Ryvarden & de Meijer) Gómez-Mont. & Robledo)`.
+     `Trametopsis brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)`.
    - **currentCanonicalSimple**: The current accepted name without autorities
      (e.g. `Trametopsis brasiliensis`).
 
@@ -102,12 +102,14 @@ data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 21
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
-sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] != data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
+sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] !=
+  data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
 # 1010 taxa (71\% of total) are identified using a currentName including 434
 # corrected values (correction using synonym disambiguation)
 
+\dontrun{
 tr <- rotl_pq(data_fungi_cleanNames,
-  species_colnames = "currentCanonicalSimple",
+  taxonomic_rank = "currentCanonicalSimple",
   context_name = "Basidiomycetes"
 )
 
@@ -132,11 +134,11 @@ psmelt(data_fungi_mini_cleanNames) |>
   group_by(Height) |>
   mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
   ggstatsplot::ggbetweenstats("Height", "namePublishedInYear")
-
+}
 }
 \seealso{
 [taxize::gna_verifier()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

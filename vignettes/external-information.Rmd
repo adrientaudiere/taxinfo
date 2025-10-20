@@ -22,8 +22,7 @@ knitr::opts_chunk$set(
 library(taxinfo)
 library(MiscMetabar)
 library(ggplot2)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 ```
 
 ## Overview
@@ -47,13 +46,11 @@ Wikipedia is a rich source of public interest and knowledge about species. By in
 
 
 ##  Verify and Clean Taxonomic Names
-```{r}
-# Load and prepare data
-data("data_fungi_mini", package = "MiscMetabar")
 
+```{r}
 # Clean names first
-# Keep only first 10 taxa for speed
-data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+# Keep only first 20 taxa for speed
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
 ```
 
@@ -198,12 +195,14 @@ detailed_interactions <- tax_globi_pq(data_clean,
 
 # Analyze interaction patterns
 interaction_summary <- detailed_interactions |>
-  tidyr::separate_rows(target_taxon_name, nb, sep = ";\\s*", convert = TRUE) |>
-  mutate(across(all_of(c("hasHost", "parasiteOf", "pathogenOf")), ~ stringr::str_detect(.x, stringr::fixed(target_taxon_name)))) |>
+  separate_rows(target_taxon_name, nb, sep = ";\\s*", convert = TRUE) |>
+  mutate(across(
+    all_of(c("hasHost", "parasiteOf")),
+    ~ stringr::str_detect(.x, stringr::fixed(target_taxon_name))
+  )) |>
   mutate(interaction_type = case_when(
     hasHost ~ "hasHost",
     parasiteOf ~ "parasiteOf",
-    pathogenOf ~ "pathogenOf",
     TRUE ~ "other"
   ))
 
@@ -212,12 +211,12 @@ ggplot(interaction_summary, aes(
   x = interaction_type, y = nb,
   fill = interaction_type
 )) +
-  geom_boxplot() +
-  scale_y_log10() +
+  geom_violin() +
+  geom_jitter(col = "grey40", alpha = 0.2) +
   labs(
     title = "Species Interaction Diversity",
     x = "Interaction Type",
-    y = "Number of Target Taxa (log scale)"
+    y = "Number of Target Taxa"
   ) +
   theme_minimal() +
   theme(legend.position = "none")
@@ -266,7 +265,7 @@ nodes <- data.frame(
   name = unique(c(edges$from, edges$to))
 ) |>
   mutate(
-    node_type = ifelse(name %in% unique(edges$from), "Plant", "Fungal")
+    node_type = ifelse(name %in% unique(edges$from), "Fungal", "Plant")
   )
 
 graph <- igraph::graph_from_data_frame(edges, directed = FALSE, vertices = nodes)

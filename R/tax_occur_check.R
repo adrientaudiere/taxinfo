@@ -76,7 +76,7 @@
 #'   leaflet::addCircles(data = occ_data_sf, color = "blue", stroke = 1, opacity = 0.8) |>
 #'   leaflet::addCircleMarkers(lat, long, color = "orange", radius = 2, opacity = 1)
 #'
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 tax_occur_check <- function(taxa_name,
                             longitude,
@@ -141,9 +141,9 @@ tax_occur_check <- function(taxa_name,
         percentage <- round(100 * remaining_occurrences / n_occur_old, 1)
         cli::cli_alert_info(c(
           "After cleaning with CoordinateCleaner::clean_coordinates:\n",
-          "  • {.val {remaining_occurrences}} occurrences remain(s)\n",
-          "  • Total original: {.val {n_occur_old}}\n",
-          "  • Retention rate: {.val {percentage}}%"
+          "  - {.val {remaining_occurrences}} occurrences remain(s)\n",
+          "  - Total original: {.val {n_occur_old}}\n",
+          "  - Retention rate: {.val {percentage}}%"
         ))
       }
     }

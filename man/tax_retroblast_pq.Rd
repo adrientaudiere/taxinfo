@@ -66,11 +66,12 @@ are retrieved. Note that using refseq_only = TRUE is experimental and may
 lead to no sequence retrieved for some taxon names.}
 
 \item{sup_params}{(char) Additional parameters to be added to the search term.
- By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
- uncultured and clone sequences.
-@param ... Additional parameters to be passed to
-  [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
-   `args_blastn`}
+By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
+uncultured and clone sequences.}
+
+\item{...}{Additional parameters to be passed to
+[MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
+ `args_blastn`}
 }
 \value{
 Either a list (if add_to_phyloseq = FALSE) or a new phyloseq
@@ -110,6 +111,8 @@ Note that this function need a physeq object and cannot works with a
 list of taxonomic names (taxnames is not a parameter of the function).
 }
 \examples{
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+
 res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
   marker = c("ITS", "internal transcribed spacer"),
   retmax = 10, id_cut = 99
@@ -144,5 +147,5 @@ res_retro_100$tib_retroblast$alt_assign |>
 [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

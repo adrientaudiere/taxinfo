@@ -16,7 +16,7 @@
 #' tax_table.
 #'
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `rgbif` package.

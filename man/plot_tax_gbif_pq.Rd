@@ -60,6 +60,8 @@ A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
 }
 \examples{
 
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+
 p <- plot_tax_gbif_pq(
   subset_taxa_pq(
     data_fungi_mini_cleanNames,
@@ -72,15 +74,21 @@ p <- plot_tax_gbif_pq(
 p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum #'  subpileatus"))
 
 p <- plot_tax_gbif_pq(taxnames = c("Stereum ostrea", "Mycena renati"))
-requireNamespace(patchwork)
+requireNamespace("patchwork")
 p[[1]] / p[[2]] & no_legend()
 
 p <- plot_tax_gbif_pq(taxnames = c("Stereum ostrea", "Mycena renati"), interactive_plot = TRUE)
 p[[1]]
 
-p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"), hexagons = TRUE, verbose = F)
+p <- plot_tax_gbif_pq(
+  taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"),
+  hexagons = TRUE, verbose = F
+)
 
-p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum #'  subpileatus"), hexagons = TRUE, verbose = F, countries = c("france", "spain"))
+p <- plot_tax_gbif_pq(
+  taxnames = c("Xylobolus subpileatus", "Stereum #'  subpileatus"),
+  hexagons = TRUE, verbose = F, countries = c("france", "spain")
+)
 
 p[[1]] + coord_fixed(ylim = c(30, 50), xlim = c(-5, 25)) + no_legend()
 
@@ -102,5 +110,5 @@ requireNamespace("patchwork")
 [gbif.range::get_gbif()], [range_bioreg_pq()], [tax_check_occur_pq()], [tax_check_ecoregion()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

@@ -32,7 +32,11 @@ test_that("tax_get_wk_pages_info input validation", {
 test_that("tax_get_wk_info_pq input validation", {
   expect_error(tax_get_wk_info_pq(NULL))
 
-  res1 <- tax_get_wk_info_pq(data_fungi_cleanNames_3sp, languages_pages = c("en"), time_to_sleep = 2)
+  res1 <- tax_get_wk_info_pq(data_fungi_cleanNames_3sp,
+    languages_pages = c("en"),
+    time_to_sleep = 2,
+    add_to_phyloseq = FALSE
+  )
   expect_equal(nrow(res1), 2)
 
   res2 <- tax_get_wk_info_pq(data_fungi_cleanNames_3sp, add_to_phyloseq = TRUE, time_to_sleep = 2)
@@ -46,7 +50,8 @@ test_that("tax_globi_pq input validation", {
     taxonomic_rank = c("Genus", "Species"),
     interaction_types = list("parasiteOf", "hasHost"),
     verbose = TRUE,
-    max_interactions = 10
+    max_interactions = 10,
+    add_to_phyloseq = FALSE
   )
   expect_equal(dim(res1), c(2, 4))
 
@@ -62,11 +67,10 @@ test_that("tax_globi_pq input validation", {
 # Test tax_iucn_code_pq function
 test_that("tax_iucn_code_pq input validation", {
   expect_error(tax_iucn_code_pq(NULL))
-  res1 <- tax_iucn_code_pq(data_fungi_cleanNames)
+  res1 <- tax_iucn_code_pq(data_fungi_cleanNames, add_to_phyloseq = FALSE)
   expect_equal(dim(res1), c(254, 2))
 
-  res2 <- tax_iucn_code_pq(data_fungi_cleanNames, )
-
+  res2 <- tax_iucn_code_pq(data_fungi_cleanNames)
   expect_s4_class(res2, "phyloseq")
 })
 
@@ -75,7 +79,8 @@ test_that("tax_retroblast_pq input validation", {
   expect_error(tax_retroblast_pq(NULL))
   res1 <- tax_retroblast_pq(data_fungi_cleanNames_3sp,
     marker = c("ITS", "internal transcribed spacer"),
-    retmax = 10, id_cut = 99
+    retmax = 10, id_cut = 99,
+    add_to_phyloseq = FALSE
   )
   expect_equal(length(res1), 2)
   expect_equal(nrow(res1$tib_retroblast), 6)

@@ -50,7 +50,7 @@
 #' @param sup_params (char) Additional parameters to be added to the search term.
 #'   By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
 #'   uncultured and clone sequences.
-#'  @param ... Additional parameters to be passed to
+#' @param ... Additional parameters to be passed to
 #'    [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
 #'     `args_blastn`
 #'
@@ -74,9 +74,11 @@
 #'   2. `entrez_search`: A list of the rentrez::entrez_search results
 #'   for each taxon name
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @seealso [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
 #' @examples
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+#'
 #' res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
 #'   marker = c("ITS", "internal transcribed spacer"),
 #'   retmax = 10, id_cut = 99

@@ -39,15 +39,15 @@
 #' @param max_d Integer. Maximum d value to test for SWARM (default: 20)
 #' @param include_unassigned Logical. Whether to cluster unassigned taxa
 #'  separately (default: TRUE)
-#'  @param allow_multiple_taxa Logical. If TRUE, allow clusters to contain
+#' @param allow_multiple_taxa Logical. If TRUE, allow clusters to contain
 #'  multiple taxnames (default: FALSE)
-#'  @param regroup_cluster Logical. If TRUE, regroup taxa in the phyloseq object
+#' @param regroup_cluster Logical. If TRUE, regroup taxa in the phyloseq object
 #'  based on their cluster_ID using [merge_taxa_vec()] (default: TRUE)
-#'  @param tax_adjust Character vector. See ?[MiscMetabar::merge_taxa_vec()]
+#' @param tax_adjust Character vector. See ?[MiscMetabar::merge_taxa_vec()]
 #'  0: no adjustment; 1: phyloseq-compatible adjustment; 2: conservative adjustment
 #' @param verbose Logical. Print progress messages (default: TRUE)
 #'
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @return A list containing:
 #'   - clusters: data.frame with taxa_id, taxnames, cluster_ID, optimal_d
 #'   - summary: data.frame with summary statistics
@@ -91,7 +91,6 @@
 #'     y = "Number of Taxa",
 #'     fill = "Optimal d"
 #'   ) +
-#'   theme_idest() +
 #'   theme(axis.text.y = element_text(size = 10, face = "italic"))
 cluster_sbc <- function(physeq,
                         taxonomic_rank = c("Genus", "Species"),
@@ -215,7 +214,7 @@ cluster_sbc <- function(physeq,
         optimal_d <- max_d
         if (verbose) {
           cli::cli_alert_warning(
-            " ⚠ Max d reached. Using d = {.val {max_d}}, output {.val {length(sbc_swarm_clusters)}} clusters for {.emph {taxn_label}} emcompassing {.val {length(taxnames_in_cluster)}} taxa"
+            "Max d reached. Using d = {.val {max_d}}, output {.val {length(sbc_swarm_clusters)}} clusters for {.emph {taxn_label}} emcompassing {.val {length(taxnames_in_cluster)}} taxa"
           )
         }
       }

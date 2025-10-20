@@ -104,5 +104,5 @@ subset_taxa_pq(data_fungi_mini_cleanNames_range_verif, cond_count_sup_0) |>
 [tax_occur_check()], [tax_occur_multi_check_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

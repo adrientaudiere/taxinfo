@@ -13,11 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-# taxinfo <img src="man/figures/logo.png" align="right" height="139" />
+# taxinfo <a href="https://adrientaudiere.github.io/taxinfo/"><img src="man/figures/logo.svg" align="right" height="139" alt="taxinfo website" /></a>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/adrientaudiere/taxinfo/workflows/R-CMD-check/badge.svg)](https://github.com/adrientaudiere/taxinfo/actions)
 [![Codecov test coverage](https://codecov.io/gh/adrientaudiere/taxinfo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/adrientaudiere/taxinfo?branch=master)
+
 <!-- [![CRAN status](https://www.r-project.org/Badges/version/taxinfo)](https://CRAN.R-project.org/package=taxinfo)-->
 <!--[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/taxinfo)](https://cran.r-project.org/package=taxinfo)-->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -135,31 +136,6 @@ taxa_info <- tax_gbif_occur_pq(
 head(taxa_info)
 ```
 
-## Function Categories
-
-### Data Sources Integration
-Functions to connect with external databases and APIs:
-- GBIF (Global Biodiversity Information Facility)
-- Wikipedia and Wikidata
-- GLOBI (Global Biotic Interactions)
-- OpenAlex (Scientific Literature)
-- TAXREF (French taxonomic reference)
-- Custom trait databases
-
-### Analysis & Visualization
-Tools for analyzing and visualizing taxonomic data:
-- Geographic distribution analysis
-- Biogeographic range modeling
-- Occurrence validation
-- Interactive mapping
-
-### Utilities & Helpers
-Supporting functions for data manipulation:
-- Taxonomic name standardization
-- Data quality assessment
-- Phyloseq object manipulation
-- Summary statistics
-
 ## Data Sources
 
 **taxinfo** integrates with multiple authoritative data sources:
@@ -173,13 +149,6 @@ Supporting functions for data manipulation:
 | **TAXREF** | French national taxonomic reference | `tax_info_pq()` |
 | **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
 | **Custom CSV** | Any taxonomic database in CSV format | `tax_info_pq()` |
-
-## Performance Features
-
-- **Memory efficient**: Use DuckDB for large dataset processing
-- **Parallel processing**: Support for concurrent API calls
-- **Caching**: Smart caching to avoid redundant API requests
-- **Batch processing**: Efficient handling of multiple taxa
 
 ## Contributing
 

@@ -113,5 +113,5 @@ data_fungi_mini_cleanNames_photos@tax_table[, "photo_url"] |>
 
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

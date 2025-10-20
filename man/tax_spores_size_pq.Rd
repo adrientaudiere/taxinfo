@@ -70,8 +70,8 @@ psmelt(data_fungi_mini_spore_size) |>
   ) +
   labs(
     title = "Spore sizes extracted from mycoDB",
-    x = "Spore length (µm)",
-    y = "Spore width (µm)",
+    x = "Spore length (\u00b5m)",
+    y = "Spore width (\u00b5m)",
     col = "Number of samples",
     size = "Number of sequences"
   ) +
@@ -96,10 +96,16 @@ psmelt(data_fungi_mini_spore_size) |>
     taxa_name_num = as.numeric(taxa_name)
   ) |>
   filter(!is.na(spore_length)) |>
-  ggplot(aes(x0 = log(Abundance), y0 = taxa_name_num / 5, a = spore_length / 2, b = spore_length / 2 / 5, fill = Order)) +
+  ggplot(aes(
+    x0 = log(Abundance), y0 = taxa_name_num / 5,
+    a = spore_length / 2, b = spore_length / 2 / 5, fill = Order
+  )) +
   coord_fixed() +
   ggforce::geom_ellipse(aes(angle = 0), alpha = 0.3) +
-  ggrepel::geom_text_repel(aes(x = log(Abundance), y = taxa_name_num / 5, label = taxa_name, color = Order), size = 2) +
+  ggrepel::geom_text_repel(aes(
+    x = log(Abundance), y = taxa_name_num / 5,
+    label = taxa_name, color = Order
+  ), size = 2) +
   theme_idest() +
   theme(axis.text.y = element_blank()) +
   labs(x = "Number of sequences (log scale)", y = "Taxa") +
@@ -126,5 +132,5 @@ psmelt(data_fungi_mini_spore_size) |>
 [extract_spores_mycodb()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

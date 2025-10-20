@@ -45,6 +45,8 @@
 #' @seealso [tax_get_wk_lang()], [tax_get_wk_pages_info()], [tax_photo_pq()]
 #' @examples
 #'
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+#'
 #' wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
 #'   data_fungi_mini_cleanNames,
 #'   taxa_sums(data_fungi_mini_cleanNames@otu_table) > 20000
@@ -311,7 +313,7 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #'  - `page_length`: Mean length of the wikipedia pages (in characters)
 #'  - `page_views`: Total number of page views over the last 'n_days' days
 #'
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 #' @seealso [tax_get_wk_lang()], [tax_get_wk_info_pq()], [tax_photo_pq()]
 #' @examples

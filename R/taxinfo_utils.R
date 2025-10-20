@@ -14,7 +14,7 @@
 #' @details The function uses an approximation where 1 degree ~= 111.32 km and
 #'   adjusts for latitude distortion where longitude degrees get closer at the poles.
 #'
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #'
 #' @keywords internal
 calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
@@ -53,7 +53,7 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'   if min_nb_seq=2,each value of 2 or less in the OTU table
 #'   will not count in the venn diagram
 #' @param ... Additional arguments to pass to [subset_taxa_pq()].
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #'
 #' @returns A character string summarizing the number of samples, taxa, sequences and occurrences of the selected taxa.
 #' @export
@@ -94,10 +94,10 @@ taxa_summary_text <- function(physeq,
 
       cli::cli_alert_info(c(
         "Filtering OTUs with less than {.val {min_nb_seq}} sequences removed:/n",
-        "  • {.val {removed_samples}} samples/n",
-        "  • {.val {removed_taxa}} taxa/n",
-        "  • {.val {removed_sequences}} sequences/n",
-        "  • {.val {removed_occurrences}} occurrences/n"
+        "  - {.val {removed_samples}} samples/n",
+        "  - {.val {removed_taxa}} taxa/n",
+        "  - {.val {removed_sequences}} sequences/n",
+        "  - {.val {removed_occurrences}} occurrences/n"
       ))
     }
     new_physeq <- new_physeq2

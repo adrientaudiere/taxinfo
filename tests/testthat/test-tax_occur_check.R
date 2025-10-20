@@ -3,7 +3,7 @@
 test_that("tax_occur_check input validation", {
   # Test with NULL or invalid taxa names
   expect_error(tax_occur_check(NULL, 2.3522, 48.8566, 100))
-  expect_error(tax_occur_check("", 2.3522, 48.8566, 100))
+  expect_error(suppressWarnings(tax_occur_check("", 2.3522, 48.8566, 100)))
 
   # Test with invalid coordinates
   expect_error(tax_occur_check("Quercus robur", NULL, 48.8566, 100))

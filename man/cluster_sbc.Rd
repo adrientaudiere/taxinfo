@@ -25,12 +25,15 @@ taxonomic assignments to build SBC. Can be a vector of two columns
 \item{max_d}{Integer. Maximum d value to test for SWARM (default: 20)}
 
 \item{include_unassigned}{Logical. Whether to cluster unassigned taxa
-separately (default: TRUE)
-@param allow_multiple_taxa Logical. If TRUE, allow clusters to contain
-multiple taxnames (default: FALSE)
-@param regroup_cluster Logical. If TRUE, regroup taxa in the phyloseq object
-based on their cluster_ID using [merge_taxa_vec()] (default: TRUE)
-@param tax_adjust Character vector. See ?[MiscMetabar::merge_taxa_vec()]
+separately (default: TRUE)}
+
+\item{allow_multiple_taxa}{Logical. If TRUE, allow clusters to contain
+multiple taxnames (default: FALSE)}
+
+\item{regroup_cluster}{Logical. If TRUE, regroup taxa in the phyloseq object
+based on their cluster_ID using [merge_taxa_vec()] (default: TRUE)}
+
+\item{tax_adjust}{Character vector. See ?[MiscMetabar::merge_taxa_vec()]
 0: no adjustment; 1: phyloseq-compatible adjustment; 2: conservative adjustment}
 
 \item{verbose}{Logical. Print progress messages (default: TRUE)}
@@ -58,6 +61,11 @@ A list containing:
 This function creates Species-Bound Clusters (SBC) from a phyloseq object
 containing taxa (ASV/OTU) sequences and taxonomy based on a proposition
 by Riley *et al.* 2025 (<https://doi.org/10.1186/s12915-025-02284-x>).
+
+ SBC (Species bound cluster) are defined as "clusters that include all and only
+  ESVs assigned to one species, the sequence similarity threshold can vary
+  between these clusters" (Riley *et al.* 2025
+  <https://doi.org/10.1186/s12915-025-02284-x>).
 
  It uses the SWARM algorithm to cluster
 taxa within each taxnames (e.g. Genus species) based on sequence similarity,
@@ -104,12 +112,11 @@ ggplot(
     y = "Number of Taxa",
     fill = "Optimal d"
   ) +
-  theme_idest() +
   theme(axis.text.y = element_text(size = 10, face = "italic"))
 }
 \seealso{
 [MiscMetabar::swarm_clustering()], [MiscMetabar::postcluster_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

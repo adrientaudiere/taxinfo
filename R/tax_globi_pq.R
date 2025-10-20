@@ -45,7 +45,7 @@
 #'   `valid_taxo_target_taxon` is set to TRUE.
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @export
 #'
 #' @importFrom rglobi get_interactions_by_taxa

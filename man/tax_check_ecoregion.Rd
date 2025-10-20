@@ -59,7 +59,7 @@ The function:
 \examples{
 \dontrun{
 # Get occurrences
-requireNamespace(rgbif)
+requireNamespace("rgbif")
 tax_check_ecoregion("Xylobolus subpileatus",
   longitudes = c(2.3522, 4.2),
   latitudes = c(48.8566, 33)
@@ -76,5 +76,5 @@ xylo_ecoregion <- tax_check_ecoregion("Xylobolus subpileatus",
 [tax_occur_check()], [tax_occur_multi_check_pq()], [tax_occur_check_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

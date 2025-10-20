@@ -20,6 +20,6 @@ Palettes of color for IdEst including also
  "Hokusai2", "Hokusai3")
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }
 \keyword{datasets}

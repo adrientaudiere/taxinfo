@@ -114,5 +114,5 @@ leaflet() |>
 [tax_occur_check_pq()], [tax_occur_multi_check_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

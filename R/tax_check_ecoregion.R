@@ -27,7 +27,7 @@
 #' GPS point
 #' - is_in_ecoregion: TRUE if at least `min_nb_occur` of the tested GPS points falls within
 #' an ecoregion where the species has occurrences, FALSE otherwise
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @details
 #' The function:
 #' 1. Extracts ecoregions from species occurrences
@@ -38,7 +38,7 @@
 #' @examples
 #' \dontrun{
 #' # Get occurrences
-#' requireNamespace(rgbif)
+#' requireNamespace("rgbif")
 #' tax_check_ecoregion("Xylobolus subpileatus",
 #'   longitudes = c(2.3522, 4.2),
 #'   latitudes = c(48.8566, 33)

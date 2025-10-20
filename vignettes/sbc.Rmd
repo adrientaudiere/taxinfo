@@ -1,6 +1,6 @@
 ---
 title: "Post-clustering using taxonomic names"
-author: "Adrien Taudière"
+author: "Adrien Taudiere"
 date: "`r Sys.Date()`"
 output: 
   html_document:

@@ -121,10 +121,10 @@ theme_idest(
 A ggplot2 theme object.
 }
 \description{
-This theme is used by Adrien Taudière [IdEst](https://adrientaudiere.com/).
+This theme is used by Adrien Taudiere [IdEst](https://adrientaudiere.com/).
  Based on [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes/tree/master)
 `hrbrthemes::theme_ipsum()` by boB Rudis.
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

@@ -87,5 +87,5 @@ tax_get_wk_pages_info(
 [tax_get_wk_lang()], [tax_get_wk_info_pq()], [tax_photo_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

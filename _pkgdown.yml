@@ -11,7 +11,7 @@ template:
       <link rel="stylesheet" href="pkgdown/extra.css">
 
 home:
-  title: "taxinfo • Augment Phyloseq Objects with Taxonomic Information"
+  title: "taxinfo - Augment Phyloseq Objects with Taxonomic Information"
   description: >
     Comprehensive tools for enriching phyloseq objects with taxonomic data
     from GBIF, Wikipedia, GLOBI, OpenAlex, and other authoritative sources.
@@ -138,4 +138,4 @@ footer:
     right: [pkgdown]
   components:
     developed_by: |
-      Developed by [Adrien Taudière](https://adrientaudiere.github.io).
+      Developed by [Adrien Taudiere](https://adrientaudiere.github.io).

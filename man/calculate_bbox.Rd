@@ -25,6 +25,6 @@ The function uses an approximation where 1 degree ~= 111.32 km and
   adjusts for latitude distortion where longitude degrees get closer at the poles.
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }
 \keyword{internal}

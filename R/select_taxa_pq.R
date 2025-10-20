@@ -14,11 +14,21 @@
 #' @returns A new phyloseq object containing only the selected taxa.
 #' @export
 #' @seealso [MiscMetabar::subset_taxa_pq()]
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #'
 #' @examples
-#' select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple", taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"), verbose = FALSE, clean_pq = FALSE)
-#' select_taxa_pq(data_fungi, taxonomic_rank = c("Genus", "Species"), taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE)
+#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+#'
+#' select_taxa_pq(data_fungi_mini_cleanNames,
+#'   taxonomic_rank = "currentCanonicalSimple",
+#'   taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+#'   verbose = FALSE,
+#'   clean_pq = FALSE
+#' )
+#' select_taxa_pq(data_fungi,
+#'   taxonomic_rank = c("Genus", "Species"),
+#'   taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE
+#' )
 #'
 #' select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot")) |>
 #'   summary_plot_pq()

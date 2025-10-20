@@ -48,8 +48,8 @@ The Global Biodiversity Information Facility (GBIF) is the world's largest repos
 # Load and prepare example data
 data("data_fungi_mini", package = "MiscMetabar")
 
-# Keep only first 10 taxa for speed
-data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:10], data_fungi_mini) |>
+# Keep only first 20 taxa for speed
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
 ```
 
@@ -147,7 +147,8 @@ gbif_years |>
   theme_idest() +
   ggrepel::geom_text_repel(
     data = summarise(group_by(arrange(filter(gbif_years, !is.na(count)), desc(year)), canonicalName), count = first(count), year = first(year)),
-    aes(label = canonicalName, x = as.numeric(year)), hjust = 0, direction = "y", size = 3
+    aes(label = canonicalName, x = as.numeric(year)), hjust = 0,
+    direction = "y", size = 3
   ) +
   xlim(2010, 2026) +
   theme(legend.position = "none")
@@ -155,13 +156,15 @@ gbif_years |>
 
 ```{r}
 gbif_years_cumsum <- gbif_years |>
-  mutate(year = as.numeric(name)) |>
+  mutate(year = as.numeric(year)) |>
   arrange(year) |>
   group_by(canonicalName) |>
-  mutate(year = as.numeric(name)) |>
-  mutate(cum_count = cumsum(count))
-
-ggplot(gbif_years_cumsum, aes(x = year, y = log10(cum_count + 1), color = canonicalName)) +
+  mutate(year = as.numeric(year)) |>
+  mutate(cum_count = cumsum(tidyr::replace_na(count, 0)))
+ggplot(gbif_years_cumsum, aes(
+  x = year, y = log10(cum_count + 1),
+  color = canonicalName
+)) +
   geom_line() +
   geom_point() +
   labs(
@@ -171,10 +174,21 @@ ggplot(gbif_years_cumsum, aes(x = year, y = log10(cum_count + 1), color = canoni
   ) +
   theme_idest() +
   ggrepel::geom_text_repel(
-    data = summarise(group_by(arrange(gbif_years_cumsum, desc(name)), canonicalName), cum_count = first(cum_count), name = first(name)),
-    aes(label = canonicalName, x = as.numeric(name)), hjust = 0, direction = "y", size = 3
+    data = summarise(
+      group_by(
+        arrange(gbif_years_cumsum, desc(year)),
+        canonicalName
+      ),
+      cum_count = first(cum_count),
+      year = first(year)
+    ),
+    aes(
+      label = canonicalName,
+      x = as.numeric(year)
+    ),
+    hjust = 0, direction = "y", size = 3
   ) +
-  xlim(2010, 2026) +
+  xlim(2008, 2026) +
   theme(legend.position = "none")
 ```
 

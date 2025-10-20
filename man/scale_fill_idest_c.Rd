@@ -23,5 +23,5 @@ A ggplot2 scale object.
 IdEst continuous fill scales for ggplot2
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

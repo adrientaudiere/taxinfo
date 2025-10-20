@@ -81,5 +81,5 @@ ggplot(
 [rgbif::occ_search()], [plot_tax_gbif_pq()], [tax_occurr_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

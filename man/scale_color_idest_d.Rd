@@ -31,5 +31,5 @@ A ggplot2 scale object.
 IdEst discrete color scales for ggplot2
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

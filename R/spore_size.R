@@ -24,7 +24,7 @@
 #' If `add_to_phyloseq` is FALSE, returns a data.frame with columns `taxa_name`,
 #' `spore_size`, `spore_length`, `spore_width`.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @seealso [extract_spores_mycodb()]
 #' @examples
 #' \dontrun{
@@ -51,8 +51,8 @@
 #'   ) +
 #'   labs(
 #'     title = "Spore sizes extracted from mycoDB",
-#'     x = "Spore length (µm)",
-#'     y = "Spore width (µm)",
+#'     x = "Spore length (\u00b5m)",
+#'     y = "Spore width (\u00b5m)",
 #'     col = "Number of samples",
 #'     size = "Number of sequences"
 #'   ) +
@@ -77,10 +77,16 @@
 #'     taxa_name_num = as.numeric(taxa_name)
 #'   ) |>
 #'   filter(!is.na(spore_length)) |>
-#'   ggplot(aes(x0 = log(Abundance), y0 = taxa_name_num / 5, a = spore_length / 2, b = spore_length / 2 / 5, fill = Order)) +
+#'   ggplot(aes(
+#'     x0 = log(Abundance), y0 = taxa_name_num / 5,
+#'     a = spore_length / 2, b = spore_length / 2 / 5, fill = Order
+#'   )) +
 #'   coord_fixed() +
 #'   ggforce::geom_ellipse(aes(angle = 0), alpha = 0.3) +
-#'   ggrepel::geom_text_repel(aes(x = log(Abundance), y = taxa_name_num / 5, label = taxa_name, color = Order), size = 2) +
+#'   ggrepel::geom_text_repel(aes(
+#'     x = log(Abundance), y = taxa_name_num / 5,
+#'     label = taxa_name, color = Order
+#'   ), size = 2) +
 #'   theme_idest() +
 #'   theme(axis.text.y = element_blank()) +
 #'   labs(x = "Number of sequences (log scale)", y = "Taxa") +
@@ -135,10 +141,10 @@ tax_spores_size_pq <- function(physeq = NULL,
 
   spore_sizes_df <- data.frame(
     "spore_size" = spore_sizes,
-    "min_left" = as.numeric(str_extract(spore_sizes, "^[0-9]+(\\.[0-9]+)?")),
-    "max_left" = as.numeric(str_extract(spore_sizes, "(?<=-)[0-9]+(\\.[0-9]+)?(?=\\s*[×x])")),
-    "min_right" = as.numeric(str_extract(spore_sizes, "(?<=×|x)\\s*[0-9]+(\\.[0-9]+)?")),
-    "max_right" = as.numeric(str_extract(spore_sizes, "\\d+(?:\\.\\d+)?(?=\\s*µ?m?$)")),
+    "min_left" = as.numeric(stringr::str_extract(spore_sizes, "^[0-9]+(\\.[0-9]+)?")),
+    "max_left" = as.numeric(stringr::str_extract(spore_sizes, "(?<=-)[0-9]+(\\.[0-9]+)?(?=\\s*[\\u00d7x])")),
+    "min_right" = as.numeric(stringr::str_extract(spore_sizes, "(?<=\\u00d7|x)\\s*[0-9]+(\\.[0-9]+)?")),
+    "max_right" = as.numeric(stringr::str_extract(spore_sizes, "\\d+(?:\\.\\d+)?(?=\\s*\\u00b5?m?$)")),
     "taxa_name" = names(spore_sizes)
   ) |>
     mutate(
@@ -201,14 +207,14 @@ tax_spores_size_pq <- function(physeq = NULL,
 #' @param species_name Character. Species name, e.g. "Amanita muscaria"
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #'
-#' @returns A character string with the spore size, e.g. "8-10 x 6-8 µm".
+#' @returns A character string with the spore size, e.g. "8-10 x 6-8 \\u00b5m".
 #' If the species is not found in mycoDB, returns "Not in mycoDB", if
 #' the species is found but no spore size info is available, returns
 #' "No spore size info in mycoDB".
 #'
 #' @export
 #' @seealso [tax_spores_size_pq()]
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @examples
 #' extract_spores_mycodb("Amanita muscaria")
 #' extract_spores_mycodb("Boletus edulis")
@@ -231,7 +237,7 @@ extract_spores_mycodb <- function(species_name, verbose = TRUE) {
         xpath = "//*[contains(text(), 'Spores')]/following::p"
       ) |>
       rvest::html_text() |>
-      stringr::str_extract_all("\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[×x]\\s*\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[μµ]?m?") |>
+      stringr::str_extract_all("\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00d7x]\\s*\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00b5\\u00b5]?m?") |>
       unlist()
     if (length(spore_size) > 1) {
       if (verbose) {

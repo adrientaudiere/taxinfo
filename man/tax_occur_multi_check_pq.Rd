@@ -69,5 +69,5 @@ res_occur_check <-
 [tax_occur_check()], [tax_occur_multi_pq()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

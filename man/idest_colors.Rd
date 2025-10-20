@@ -33,5 +33,5 @@ A vector of colors.
 IdEst colors for ggplot theme_idest
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

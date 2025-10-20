@@ -23,5 +23,5 @@ A ggplot2 scale object.
 IdEst continuous color scales for ggplot2
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

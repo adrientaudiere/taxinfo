@@ -55,5 +55,5 @@ tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 [tax_info_pq()], [rgbif::name_usage()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

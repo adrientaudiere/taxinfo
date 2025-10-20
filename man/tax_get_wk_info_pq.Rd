@@ -76,6 +76,8 @@ Taxa with only genus name are discarded.
 }
 \examples{
 
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+
 wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
   data_fungi_mini_cleanNames,
   taxa_sums(data_fungi_mini_cleanNames@otu_table) > 20000

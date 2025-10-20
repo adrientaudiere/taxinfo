@@ -23,7 +23,7 @@
 #' - max_dist: maximum intra-taxanames distance
 #'
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @seealso [DECIPHER::AlignSeqs()], [DECIPHER::DistanceMatrix()]
 #' @examples
 #' intra_taxn_dist <- intra_taxnames_dist(data_fungi_mini)

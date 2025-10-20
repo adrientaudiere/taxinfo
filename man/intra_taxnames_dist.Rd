@@ -50,5 +50,5 @@ plot(intra_taxn_dist$max_dist, intra_taxn_dist$n_taxa)
 [DECIPHER::AlignSeqs()], [DECIPHER::DistanceMatrix()]
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

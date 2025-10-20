@@ -49,5 +49,5 @@ taxa_summary_text(data_fungi_cleanNames,
 )
 }
 \author{
-Adrien Taudière
+Adrien Taudiere
 }

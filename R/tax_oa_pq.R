@@ -36,13 +36,14 @@
 #'  `list_doi`, `n_citation` and `list_keywords`
 #'  if `count_only` is FALSE) new column(s) in the tax_table.
 #' @export
-#' @author Adrien Taudière
+#' @author Adrien Taudiere
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `openalexR` package.
 #' @examples
+#'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
-#'   tax_oa_pq(data_fungi_mini_cleanNames)
+#'   tax_oa_pq()
 #'
 #' ggplot(
 #'   subset_taxa(data_fungi_mini_cleanNames, !is.na(n_doi))@tax_table,
@@ -182,40 +183,29 @@ tax_oa_pq <- function(physeq = NULL,
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA
     tib_publi <- list_publi |>
-      purrr::map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
+      map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
       select(taxa_name, count) |>
       rename(n_doi = count)
   } else {
-    if (verbose) {
-      pb <- cli::cli_progress_bar(total = length(taxnames))
-    }
-
     list_publi <- vector("list", length(taxnames))
-    for (i in seq_along(taxnames)) {
-      taxname <- taxnames[i]
+    list_publi <- map(taxnames, ~ {
       if (verbose) {
-        cli::cli_progress_update(id = pb, set = i)
-        cli::cli_alert_info("Fetching OpenAlex works for taxon: {.emph {taxname}}")
+        cli::cli_alert_info("Fetching OpenAlex works for taxon: {.emph {.x}}")
       }
-      list_publi[[i]] <- openalexR::oa_fetch(
+      possibly(openalexR::oa_fetch, otherwise = NULL)(
         entity = "works",
-        title_and_abstract.search = taxname,
-        options = list(select = c("id", "doi", "type", "cited_by_count", "keywords")),
-        ...
+        title_and_abstract.search = .x
       )
-    }
-    if (verbose) {
-      cli::cli_progress_done(id = pb)
-    }
+    }, .progress = ifelse(verbose, "Fetching OpenAlex", FALSE))
 
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA
 
-    check_package("purrr")
     tib_publi <- list_publi |>
-      purrr::map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
+      map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
       filter(type %in% type_works) |>
-      mutate(keywords = map(keywords, ~ paste(as.vector(.x["display_name"][[1]]), collapse = ";")))
+      mutate(keywords = map(keywords, ~
+        paste(as.vector(.x["display_name"][[1]]), collapse = ";")))
 
     tib_publi <- tib_publi |>
       group_by(taxa_name) |>
