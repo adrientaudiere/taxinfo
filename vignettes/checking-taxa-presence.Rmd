@@ -48,7 +48,7 @@ Q_rob_in_Paris <- tax_occur_check("Quercus robur", 2.3522, 48.8566, 100)
 Q_rob_in_Paris$count_in_radius
 ```
 
-```{r}
+```{r, fig.alt="Interactive leaflet map centered on Paris showing GBIF occurrence points for Fagus sylvatica. Blue circles represent occurrence locations within a 200km radius, and an orange marker shows the center point at Paris coordinates (2.3522E, 48.8566N)."}
 # Visualize occurrences around Paris for Fagus sylvatica
 res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
   return_all_occ = TRUE
@@ -91,6 +91,9 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
   gna_verifier_pq(data_sources = 210)
 
 summary_plot_pq(data_clean)
+```
+
+```{r, fig.alt="Summary visualization showing the characteristics of the cleaned phyloseq object, including the number of taxa, samples, and key taxonomic distributions."}
 # Show cleaned taxonomic names
 
 head(data_clean@tax_table[, c("Genus", "Species", "currentCanonicalSimple")])
@@ -123,7 +126,7 @@ head(occurrence_check)
 
 Here's what occurrence checking results might look like:
 
-```{r echo=FALSE, fig.cap="Example occurrence pattern showing global vs local occurrences", out.width="100%"}
+```{r echo=FALSE, fig.cap="Example occurrence pattern showing global vs local occurrences", fig.alt="Horizontal bar chart showing GBIF occurrence counts for taxa within a specified radius around a sampling location. Bars are colored by genus and show the ratio of local occurrences (within radius) to total global occurrences. Taxa names are ordered by count in radius from lowest to highest.", out.width="100%"}
 library(ggplot2)
 occurrence_check |>
   mutate(Genus = stringr::word(taxa_name, 1)) |>
@@ -149,7 +152,7 @@ occurrence_check |>
 
 We can also explore the minimum and mean distance to sampling location.
 
-```{r}
+```{r, fig.alt="Horizontal bar chart showing mean distance to sampling location for each taxon. Bars are colored by genus and ordered by mean distance. Text labels show the closest distance in kilometers and the count of occurrences for each taxon."}
 occurrence_check |>
   mutate(Genus = stringr::word(taxa_name, 1)) |>
   filter(!is.na(mean_distance_km)) |>
@@ -196,7 +199,9 @@ occurrence_multi_radius <- map_dfr(radii, function(r) {
 occurrence_multi_radius$radius_category <- factor(occurrence_multi_radius$radius_category,
   levels = paste(radii, "km")
 )
+```
 
+```{r, fig.alt="Small multiples faceted plot showing occurrence scaling patterns across different search radii (50, 100, 200, 500 km) for each taxon. Each panel represents one taxon with lines and points showing how occurrence counts increase with larger search radii."}
 # Visualize scaling patterns
 occurrence_multi_radius |>
   ggplot(aes(x = radius_category, y = count_in_radius, group = taxa_name)) +
