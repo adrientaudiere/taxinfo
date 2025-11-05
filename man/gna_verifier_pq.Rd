@@ -99,6 +99,8 @@ This function is mainly a wrapper of the work of others.
 df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+
+\dontrun{
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
@@ -107,7 +109,7 @@ sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] !=
 # 1010 taxa (71\% of total) are identified using a currentName including 434
 # corrected values (correction using synonym disambiguation)
 
-\dontrun{
+
 tr <- rotl_pq(data_fungi_cleanNames,
   taxonomic_rank = "currentCanonicalSimple",
   context_name = "Basidiomycetes"

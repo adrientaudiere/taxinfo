@@ -32,7 +32,7 @@
 #' @author Adrien Taudiere
 #'
 #' @examples
-#' \dontest{
+#' \donttest{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 #'
 #' p <- plot_tax_gbif_pq(

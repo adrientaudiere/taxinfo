@@ -74,14 +74,14 @@ data_clean_wk@tax_table |>
     y = forcats::fct_reorder(currentCanonicalSimple, page_views),
     x = page_views, size = page_length, col = Order
   )) +
-  geom_segment(aes(xend = 0, yend = currentCanonicalSimple), size = 1) +
+  geom_segment(aes(xend = 0, yend = currentCanonicalSimple), linewidth = 1) +
   geom_point() +
   geom_text(aes(label = lang), size = 3, color = "black") +
   scale_x_log10() +
   labs(
     title = "Species salience in public knowledge",
     x = "Number of page views during a month (log10 scale)",
-    y = "Taxa (color=order)",
+    y = "Taxa (color=Order)",
     size = "Mean page length"
   ) +
   theme_idest()
@@ -91,8 +91,7 @@ data_clean_wk@tax_table |>
 
 Analyze Wikipedia coverage across languages:
 
-```{r, fig.alt="Scatter plot showing Wikipedia page views (log scale) versus number of Wikipedia language versions for taxa across four languages (en, fr, de, es). Points are sized by mean page length and labeled with taxonomic names in italic font."}
-# Get Wikipedia data for specific languages
+```{r, fig.alt="Scatter plot showing Wikipedia page views (log scale) versus number of Wikipedia language versions for taxa across four languages (en, fr, de, es). Points are sized by mean page length and labeled with taxonomic names."}
 data_clean_wk2 <- tax_get_wk_info_pq(data_clean,
   languages_pages = c("en", "fr", "de", "es")
 )
@@ -113,14 +112,14 @@ ggplot(wiki_analysis, aes(
   labs(
     title = "Species salience in public knowledge",
     subtitle = "Page views in 4 different countries : en, fr, de and es",
-    x = "Number of Wikipedia languages/countries",
+    x = "Number of Wikipedia languages",
     y = "Page views (log10 scale)",
     size = "Mean page length"
   ) +
   theme_idest() +
   ggrepel::geom_text_repel(aes(label = currentCanonicalSimple),
     size = 3,
-    max.overlaps = 10
+    max.overlaps = 10,
   )
 ```
 
@@ -155,7 +154,7 @@ psmelt(data_clean_globi) |>
     nb_inter = mean(map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE)), na.rm = TRUE),
     n_host_pathog = mean(map_dbl(pathogenOf, ~ stringr::str_count(.x, ";")), na.rm = TRUE),
     n_host_parasit = mean(map_dbl(parasiteOf, ~ stringr::str_count(.x, ";")), na.rm = TRUE),
-    Guild = unique(Guild)
+    Guild = Guild[1]
   ) |>
   mutate(n_host_parasit = ifelse(is.na(n_host_parasit), 0, n_host_parasit)) |>
   mutate(n_host_pathog = ifelse(is.na(n_host_pathog), 0, n_host_pathog)) |>
@@ -173,7 +172,7 @@ psmelt(data_clean_globi) |>
   theme_idest() +
   labs(
     title = "Interactions in GLOBI",
-    subtitle = "First and second number indicate respectively the number\nof verified taxonomic entity whose the taxa are pathogen or parasite.",
+    subtitle = "First and second number indicate the number of verified taxonomic\nentity whose the taxa are respectively pathogen or parasite.",
     x = "Number of interactions",
     y = "Taxa",
     color = "Guild following FunGuild",
@@ -201,9 +200,9 @@ interaction_summary <- detailed_interactions |>
     ~ stringr::str_detect(.x, stringr::fixed(target_taxon_name))
   )) |>
   mutate(interaction_type = case_when(
+        parasiteOf ~ "parasiteOf",
     hasHost ~ "hasHost",
-    parasiteOf ~ "parasiteOf",
-    TRUE ~ "other"
+    .default = "other"
   ))
 
 # Visualize interaction networks
@@ -212,13 +211,13 @@ ggplot(interaction_summary, aes(
   fill = interaction_type
 )) +
   geom_violin() +
-  geom_jitter(col = "grey40", alpha = 0.2) +
+  geom_jitter(col = "grey40", alpha = 0.2, height = 0) +
   labs(
     title = "Species Interaction Diversity",
     x = "Interaction Type",
     y = "Number of Target Taxa"
   ) +
-  theme_minimal() +
+  theme_idest() +
   theme(legend.position = "none")
 ```
 
@@ -306,7 +305,7 @@ head(data_clean_oa@tax_table[, c(
 
 Analyze research patterns:
 
-```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled in italic font."}
+```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled."}
 data_clean_oa@tax_table |>
   as.data.frame() |>
   select(
@@ -377,7 +376,7 @@ data_clean_ft@tax_table |>
 
 Here's an example of fungal livestyle distribution
 
-```{r echo=FALSE, fig.alt="Horizontal bar chart showing fungal lifestyle distribution. Bars are colored by primary lifestyle category (e.g., saprotroph, pathogen) and ordered by occurrence (number of samples). Text labels show total sequence abundance for each taxon. Taxon names are displayed in italic font.", out.width="100%"}
+```{r echo=FALSE, fig.alt="Horizontal bar chart showing fungal lifestyle distribution. Bars are colored by Guild (e.g., saprotroph, plant pathogen) and ordered by occurrence (number of samples). Text labels show molecular abundance for each taxon.", out.width="100%"}
 psmelt(data_clean_ft) |>
   group_by(currentCanonicalSimple) |>
   summarise(
@@ -400,7 +399,7 @@ psmelt(data_clean_ft) |>
     title = "Fungal Lifestyle",
     subtitle = "Number in black indicates the total number of sequences for each taxa.",
     x = "Primary Lifestyle",
-    y = "Number of presences (samples)"
+    y = "Number of occurrence (samples)"
   ) +
   theme_idest() +
   theme(axis.text.y = element_text(face = "italic"))
@@ -425,7 +424,7 @@ data_clean_taxref <- tax_info_pq(data_clean,
 )
 ```
 
-```{r, fig.alt="Horizontal bar chart showing frequency of taxa with French common names from TAXREF database. Bars are colored by Order and show number of sample presences. Taxa known in France (present in TAXREF) are shown in bold italic while others are in regular italic. French vernacular names are shown as text labels."}
+```{r, fig.alt="Horizontal bar chart showing number of sample of taxa. Bars are colored by Order. Taxa known in France (i.e. present in TAXREF) are shown in bold. French vernacular names are shown as text labels."}
 psm <- psmelt(data_clean_taxref) |>
   group_by(currentCanonicalSimple) |>
   mutate(across(everything(), ~ replace(., . == "" | . == "NA", NA))) |>
@@ -446,7 +445,8 @@ ggplot(psm, aes(
   fill = Order
 )) +
   geom_col() +
-  geom_text(aes(label = currentCanonicalSimple, fontface = ifelse(is.na(taxref_FR), "italic", "bold.italic")),
+  geom_text(aes(label = currentCanonicalSimple,
+                fontface = ifelse(is.na(taxref_FR), "italic", "bold.italic")),
     y = -1, hjust = 1, size = 2.5
   ) +
   geom_text(aes(label = taxref_NOM_VERN, y = 2 + occurence), size = 3, color = "black", hjust = 0) +
@@ -456,10 +456,9 @@ ggplot(psm, aes(
     title = "Frequences of Taxa with French common names",
     subtitle = "Bold taxa are already known in France (TAXREF).",
     x = "Taxa",
-    y = "Number of presences (samples)"
+    y = "Number of occurences (samples)"
   ) +
   theme_idest() +
-  theme_minimal() +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
@@ -505,11 +504,11 @@ Assess information completeness across sources:
 completeness_analysis <- data_fungi_full@tax_table |>
   as.data.frame() |>
   summarise(
-    pct_with_gbif = 100 * mean(!is.na(Global_occurences)),
-    pct_with_wikipedia = 100 * mean(!is.na(lang)),
-    pct_with_globi = 100 * mean(!is.na(nb)),
-    pct_with_taxref = 100 * mean(!is.na(taxref_CD_NOM)),
-    pct_with_openalex = 100 * mean(!is.na(n_doi))
+    gbif = 100 * mean(!is.na(Global_occurences)),
+    wikipedia = 100 * mean(!is.na(lang)),
+    globi = 100 * mean(!is.na(nb)),
+    taxref = 100 * mean(!is.na(taxref_CD_NOM)),
+    openalex = 100 * mean(!is.na(n_doi))
   ) |>
   tidyr::pivot_longer(everything(), names_to = "data_source", values_to = "completeness")
 ```
@@ -539,7 +538,7 @@ ggplot(completeness_analysis, aes(
 
 Create comprehensive visualization of integrated data:
 
-```{r, fig.alt="Scatter plot showing integrated taxonomic information with GBIF occurrences (x-axis, log scale) versus Wikipedia page views (y-axis, log scale). Points are colored by Order, shaped by presence in France (TAXREF), and sized by number of publications (log scale). Taxonomic names are labeled in italic font."}
+```{r, fig.alt="Scatter plot showing GBIF occurrences (x-axis, log scale) versus Wikipedia page views (y-axis, log scale). Points are colored by Order, shaped by presence in France (TAXREF), and sized by number of publications (log scale)."}
 # Prepare data for visualization
 viz_data <- data_fungi_full@tax_table |>
   as.data.frame() |>
@@ -630,8 +629,14 @@ knowledge_gaps |>
   filter(!is.na(currentCanonicalSimple)) |>
   ComplexUpset::upset(
     intersect = c("gbif_info", "wk_info", "oa_info", "taxref_info", "globi_info"),
-    keep_empty_groups = TRUE
-  )
+    keep_empty_groups = TRUE,
+    wrap=TRUE,set_sizes = F
+      
+  ) + 
+  labs(
+    title = "Knowledge Gaps Across Data Sources",
+    subtitle = "Number of taxa names with available data from each source and their intersections"
+  ) + theme_idest()
 ```
 
 

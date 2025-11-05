@@ -65,7 +65,7 @@ data_clean_gbif <- tax_gbif_occur_pq(data_clean)
 
 Here's an example of what GBIF occurrence data visualization can look like:
  
-```{r echo=FALSE, fig.cap="GBIF occurrence counts by taxon", fig.alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed in italic font on the y-axis.", out.width="100%"}
+```{r echo=FALSE, fig.cap="GBIF occurrence counts by taxon", fig.alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis.", out.width="100%"}
 data_clean_gbif@tax_table |>
   as.data.frame() |>
   mutate(occurrences = as.numeric(Global_occurences)) |>
@@ -87,7 +87,7 @@ data_clean_gbif@tax_table |>
 
 Analyze geographic distribution patterns:
 
-```{r, fig.alt="Violin plot with overlaid jittered points showing the distribution of GBIF occurrence counts (log scale) by country. Each violin represents a different country (US, FR, DE, GB, ES, MX) with sample sizes shown above each violin. Points are colored by country."}
+```{r, fig.alt="Violin plot with overlaid jittered points showing the distribution of GBIF occurrence counts (log scale) by country. Each violin represents a different country (US, FR, DE, GB, ES, MX) with sample sizes shown above each violin. Violins are colored by country."}
 data_clean_gbif_country <- tax_gbif_occur_pq(data_clean, by_country = TRUE)
 
 data_clean_gbif_country@tax_table |>
@@ -102,7 +102,7 @@ data_clean_gbif_country@tax_table |>
   filter(!is.na(occurrences), occurrences > 0) |>
   ggplot(aes(x = country, y = occurrences, fill = country)) +
   geom_violin() +
-  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.5, height = 0) +
   scale_y_log10() +
   stat_summary(
     fun.data = function(x) {
@@ -116,7 +116,7 @@ data_clean_gbif_country@tax_table |>
     x = "Country",
     y = "Number of occurrences (log scale)"
   ) +
-  theme_minimal() +
+  theme_idest() +
   theme(legend.position = "none")
 ```
 
@@ -125,7 +125,7 @@ data_clean_gbif_country@tax_table |>
 Examine occurrence trends over time. Here we don't use `add_to_phyloseq` since the data frame output is 
 sufficient.
 
-```{r, fig.alt="Line plot showing GBIF occurrence counts over time (2010-2026) for multiple taxa. Each taxon is represented by a colored line with points. Taxon names are shown as text labels on the right side of the plot. The y-axis shows occurrence counts on a log scale."}
+```{r, fig.alt="Line plot showing GBIF occurrence counts over time for multiple taxa. Each taxon is represented by a colored line with points. Dotted lines link points with NA in the temporal timeline. Taxon names are shown as text labels on the right side of the plot. The y-axis shows occurrence counts on a log scale."}
 gbif_years <- tax_gbif_occur_pq(data_clean,
   by_years = TRUE,
   add_to_phyloseq = FALSE
@@ -199,7 +199,7 @@ ggplot(gbif_years_cumsum, aes(
 
 Create occurrence distribution visualizations:
 
-```{r, fig.alt="Scatter plot comparing the number of sequences (x-axis, log scale) to GBIF occurrence counts (y-axis, log scale) for each taxon. Points are semi-transparent and taxon names are shown in italic font near each point. Axes are flipped so sequences are shown vertically."}
+```{r, fig.alt="Scatter plot comparing the number of sequences (x-axis, log scale) to GBIF occurrence counts (y-axis, log scale) for each taxon. Taxon names are shown in italic font near each point."}
 # Plot global vs regional occurrences
 psmelt(data_clean_gbif) |>
   as.data.frame() |>
@@ -224,7 +224,7 @@ psmelt(data_clean_gbif) |>
   ) +
   coord_flip() +
   labs(
-    title = "GBIF Occurrence Counts by Taxon",
+    title = "GBIF Occurrence Counts vs molecular abundance",
     x = "Number of sequences (log scale)",
     y = "Number of GBIF occurrences (log scale)"
   ) +
@@ -235,7 +235,7 @@ psmelt(data_clean_gbif) |>
 
 Create interactive maps showing species distributions:
 
-```{r, fig.alt="Interactive map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus. Points on the map represent individual occurrence locations."}
+```{r, fig.alt="Interactive map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus. Points on the map represent individual occurrence locations. Color indicates the year of the occurrence record."}
 plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
   interactive_plot = TRUE
 )
@@ -245,12 +245,13 @@ plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
 ### Static Distribution Maps
 
 
-```{r, fig.alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species."}
+```{r, fig.alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)."}
 distribution_maps <- plot_tax_gbif_pq(
   taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei"),
   n_occur = 1000
 )
 distribution_maps[[1]]
+distribution_maps[[2]]
 ```
 
 
@@ -259,7 +260,7 @@ distribution_maps[[1]]
 
 ### Range Analysis
 
-```{r, fig.alt="Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Ossicaulis lachnopus and Basidiodendron eyrei."}
+```{r}
 data_clean_range <- range_bioreg_pq(
   select_taxa_pq(data_clean,
     taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei")
@@ -268,7 +269,7 @@ data_clean_range <- range_bioreg_pq(
 )
 ```
 
-```{r, fig.alt="Second biogeographic range plot from the range_bioreg_pq analysis showing additional visualizations of spatial patterns for the selected taxa."}
+```{r, fig.alt=""Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Basidiodendron eyrei."}
 data_clean_range[[2]]
 ```
 

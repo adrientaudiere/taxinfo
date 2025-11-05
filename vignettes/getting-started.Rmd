@@ -119,7 +119,7 @@ message("The enriched taxonomic table now has the following new columns: ", past
 ```
 
 
-```{r, fig.alt="Scatter plot showing molecular abundance (log10 scale) on the x-axis and taxa names on the y-axis. Points are colored by ecological guild, sized by number of publications, and shaped to indicate Quercus interaction. Wikipedia page view counts are displayed as text labels next to each point."}
+```{r, fig.alt="Scatter plot showing molecular abundance (log10 scale) on the x-axis and taxa names on the y-axis. Points are colored by ecological guild, sized by number of publications, and shaped indicate the interaction with Quercus species. Wikipedia page view counts are displayed as text labels next to each point."}
 # todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
   mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
@@ -162,7 +162,7 @@ ggplot(psm, aes(
   ) +
   scale_size(range = c(2, 6)) +
   labs(
-    title = "Number of sequences (Abundance) for each taxa.",
+    title = "Number of sequences for each taxa.",
     subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112)
   )
 ```

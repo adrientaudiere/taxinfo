@@ -59,7 +59,7 @@ A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
   The function can also filter the occurrences by country.
 }
 \examples{
-
+\dontest{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 
 p <- plot_tax_gbif_pq(
@@ -71,23 +71,21 @@ p <- plot_tax_gbif_pq(
   verbose = TRUE, bins = 50, occ_samp = 100, grain = 10000
 )
 
-p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum #'  subpileatus"))
+p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"))
 
 p <- plot_tax_gbif_pq(taxnames = c("Stereum ostrea", "Mycena renati"))
 requireNamespace("patchwork")
 p[[1]] / p[[2]] & no_legend()
 
-p <- plot_tax_gbif_pq(taxnames = c("Stereum ostrea", "Mycena renati"), interactive_plot = TRUE)
-p[[1]]
 
 p <- plot_tax_gbif_pq(
   taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"),
-  hexagons = TRUE, verbose = F
+  hexagons = TRUE, verbose = FALSE
 )
 
 p <- plot_tax_gbif_pq(
-  taxnames = c("Xylobolus subpileatus", "Stereum #'  subpileatus"),
-  hexagons = TRUE, verbose = F, countries = c("france", "spain")
+  taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+  hexagons = TRUE, verbose = FALSE, countries = c("france", "spain")
 )
 
 p[[1]] + coord_fixed(ylim = c(30, 50), xlim = c(-5, 25)) + no_legend()
@@ -95,7 +93,9 @@ p[[1]] + coord_fixed(ylim = c(30, 50), xlim = c(-5, 25)) + no_legend()
 p <- plot_tax_gbif_pq(
   taxnames = c(
     "Ossicaulis lachnopus",
-    "Antrodiella brasiliensis", "Stereum ostrea", "Xylobolus subpileatus"
+    "Antrodiella brasiliensis",
+     "Stereum ostrea",
+     "Xylobolus subpileatus"
   ),
   hexagons = TRUE,
   verbose = F, bins = 50, occ_samp = 100, grain = 10000
@@ -104,7 +104,7 @@ p <- plot_tax_gbif_pq(
 requireNamespace("patchwork")
 (p[[1]] + p[[2]]) /
   (p[[3]] + p[[4]]) & no_legend()
-
+}
 }
 \seealso{
 [gbif.range::get_gbif()], [range_bioreg_pq()], [tax_check_occur_pq()], [tax_check_ecoregion()]

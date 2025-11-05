@@ -75,7 +75,7 @@ summary_plot_pq(sbc_clusters$physeq_SBC)
 
 ## Visualize results
 
-```{r, fig.alt="Scatter plot showing the relationship between optimal clustering swarm parameter d (x-axis) and mean intra-taxonomic names distance (y-axis). Points are sized by number of taxa and colored by whether other taxonomic names are present in the cluster. Taxonomic names are shown as text labels with italic formatting."}
+```{r, fig.alt="Scatter plot showing the relationship between optimal clustering swarm parameter d (x-axis) and mean intra-taxonomic names distance (y-axis). Points are sized by number of taxa and colored by whether other taxonomic names are present in the cluster."}
 left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   filter(!is.na(optimal_d)) |>
   ggplot(aes(x = optimal_d, y = mean_dist, size = n_taxa.x, label = taxnames, color = other_taxnames == "")) +
@@ -98,7 +98,7 @@ left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
     x = "Optimal clustering swarm parameter d",
     y = "Mean intra-taxonomic names distance",
     color = "Other taxnames\n in the cluster",
-    title = "An increasing optimal d captures taxonomic names with higher intra-names distance",
+    title = "An increasing optimal d captures taxonomic names\nwith higher intra-names distance",
     subtitle = "The squared names are other taxonomic names present in a cluster"
   ) +
   theme_idest()

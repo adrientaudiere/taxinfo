@@ -2,19 +2,21 @@
 #'
 #' @description
 #'   A wrapper of [openalexR::oa_fetch()] function to get the number of
-#'   scientific works (and a list of doi if list_doi is set to TRUE) for each
+#'   scientific works (and a list of doi if count_only is set to FALSE) for each
 #'   taxa of a phyloseq object
 #'
-#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
+#' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames`
+#'  must be provided, but not both.
 #' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. c("Genus", "Species")).
 #' @param count_only (Logical, default FALSE) If
 #'   TRUE, only the number of works on a given taxa is return, leading to a
-#'   faster call to openalexR::oa_fetch(). Note that if count_only is set to FALSE
-#'   all works (including e.g. preprint and dataset) are count, leading to
-#'   higher number of works than if list_doi is set to TRUE.
+#'   faster call to `openalexR::oa_fetch()`. Note that if count_only is set to TRUE
+#'   all works (including e.g. preprint and dataset)
+#'   are count, leading to higher number of works than if count_only is set to
+#'   FALSE (see parameter `type_works`).
 #' @param return_raw_oa (Logical, default FALSE) If TRUE, return the raw list of
 #'   publications from Open Alex for each taxa as a list of data.frame. Can be
 #'   useful to filter works for example by topic or by number of citations (see
@@ -25,8 +27,9 @@
 #'   Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
-#' @param type_works (A list of type to select) See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
-#' Only used if count_only is set to FALSE Default is c("article", "review",
+#' @param type_works (A list of type to select)
+#'  See Open Alex [documentation](https://docs.openalex.org/api-entities/works/work-object#type).
+#'  Only used if count_only is set to FALSE Default is c("article", "review",
 #'  "book-chapter", "book", "letter").
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param ... Other params to passed on [openalexR::oa_fetch()]
@@ -182,10 +185,10 @@ tax_oa_pq <- function(physeq = NULL,
 
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA
-    tib_publi <- list_publi |>
-      map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
-      select(taxa_name, count) |>
-      rename(n_doi = count)
+    tib_publi <- tibble(
+      taxa_name = names(list_publi),
+      n_doi = map_int(list_publi, ~.x$count)
+    )
   } else {
     list_publi <- vector("list", length(taxnames))
     list_publi <- map(taxnames, ~ {
