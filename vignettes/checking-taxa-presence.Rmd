@@ -27,12 +27,12 @@ knitr::knit_hooks$set(
         "Click to see output"
       }
       paste0(
-        '<details><summary>', summary_text, '</summary>\n\n',
-        '```\n', x, '```\n',
-        '</details>\n'
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
       )
     } else {
-      paste0('```\n', x, '```\n')
+      paste0("```\n", x, "```\n")
     }
   },
   message = function(x, options) {
@@ -43,12 +43,12 @@ knitr::knit_hooks$set(
         "Click to see messages"
       }
       paste0(
-        '<details><summary>', summary_text, '</summary>\n\n',
-        '```\n', x, '```\n',
-        '</details>\n'
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
       )
     } else {
-      paste0('```\n', x, '```\n')
+      paste0("```\n", x, "```\n")
     }
   },
   warning = function(x, options) {
@@ -59,12 +59,12 @@ knitr::knit_hooks$set(
         "Click to see warnings"
       }
       paste0(
-        '<details><summary>', summary_text, '</summary>\n\n',
-        '```\n', x, '```\n',
-        '</details>\n'
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
       )
     } else {
-      paste0('```\n', x, '```\n')
+      paste0("```\n", x, "```\n")
     }
   }
 )

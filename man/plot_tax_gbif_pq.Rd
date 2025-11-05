@@ -59,7 +59,7 @@ A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
   The function can also filter the occurrences by country.
 }
 \examples{
-\dontest{
+\donttest{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 
 p <- plot_tax_gbif_pq(
@@ -94,8 +94,8 @@ p <- plot_tax_gbif_pq(
   taxnames = c(
     "Ossicaulis lachnopus",
     "Antrodiella brasiliensis",
-     "Stereum ostrea",
-     "Xylobolus subpileatus"
+    "Stereum ostrea",
+    "Xylobolus subpileatus"
   ),
   hexagons = TRUE,
   verbose = F, bins = 50, occ_samp = 100, grain = 10000

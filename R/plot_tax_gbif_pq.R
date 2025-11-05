@@ -67,8 +67,8 @@
 #'   taxnames = c(
 #'     "Ossicaulis lachnopus",
 #'     "Antrodiella brasiliensis",
-#'      "Stereum ostrea",
-#'      "Xylobolus subpileatus"
+#'     "Stereum ostrea",
+#'     "Xylobolus subpileatus"
 #'   ),
 #'   hexagons = TRUE,
 #'   verbose = F, bins = 50, occ_samp = 100, grain = 10000
@@ -127,7 +127,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     }
 
     if (interactive_plot) {
-      if(is.null(physeq)) {
+      if (is.null(physeq)) {
         stop("Interactive plot with taxnames only is not fully supported. Please use physeq parameter.")
       }
 

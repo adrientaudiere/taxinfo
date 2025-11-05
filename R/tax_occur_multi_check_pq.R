@@ -39,16 +39,17 @@
 #'     latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
 #'   )
 tax_occur_multi_check_pq <- function(
-    physeq = NULL,
-    taxonomic_rank = "currentCanonicalSimple",
-    min_occur = 0,
-    verbose = TRUE,
-    lon_column = NULL,
-    longitudes = NULL,
-    lat_column = NULL,
-    latitudes = NULL,
-    radius_km = 50,
-    ...) {
+  physeq = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  min_occur = 0,
+  verbose = TRUE,
+  lon_column = NULL,
+  longitudes = NULL,
+  lat_column = NULL,
+  latitudes = NULL,
+  radius_km = 50,
+  ...
+) {
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
   } else if (is.null(longitudes) & is.null(lon_column)) {

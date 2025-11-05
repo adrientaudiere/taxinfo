@@ -47,44 +47,45 @@
 #' @export
 #'
 theme_idest <- function(
-    sans_family = if (.Platform$OS.type == "windows") {
-      "Roboto Condensed"
-    } else {
-      "Roboto Condensed Light"
-    },
-    serif_family = "Linux Libertine G",
-    mono_family = "Fira Code",
-    base_size = 11.5,
-    plot_title_family = serif_family,
-    plot_title_size = 18,
-    plot_title_face = "bold",
-    plot_title_margin = 10,
-    subtitle_family = serif_family,
-    subtitle_size = 13,
-    subtitle_face = "plain",
-    subtitle_margin = 15,
-    subtitle_color = "grey30",
-    strip_text_family = mono_family,
-    strip_text_size = 13,
-    strip_text_face = "plain",
-    strip_back_grey = FALSE,
-    caption_family = sans_family,
-    caption_size = 9,
-    caption_face = "plain",
-    caption_margin = 10,
-    axis_text_size = base_size * 0.8,
-    axis_text_family = sans_family,
-    axis_title_family = mono_family,
-    axis_title_size = 12,
-    axis_title_face = "plain",
-    axis_title_just = "c",
-    plot_margin = margin(12, 12, 12, 12),
-    panel_spacing = grid::unit(1.2, "lines"),
-    grid_col = "#cccccc",
-    grid = TRUE,
-    axis_col = "#cccccc",
-    axis = FALSE,
-    ticks = FALSE) {
+  sans_family = if (.Platform$OS.type == "windows") {
+    "Roboto Condensed"
+  } else {
+    "Roboto Condensed Light"
+  },
+  serif_family = "Linux Libertine G",
+  mono_family = "Fira Code",
+  base_size = 11.5,
+  plot_title_family = serif_family,
+  plot_title_size = 18,
+  plot_title_face = "bold",
+  plot_title_margin = 10,
+  subtitle_family = serif_family,
+  subtitle_size = 13,
+  subtitle_face = "plain",
+  subtitle_margin = 15,
+  subtitle_color = "grey30",
+  strip_text_family = mono_family,
+  strip_text_size = 13,
+  strip_text_face = "plain",
+  strip_back_grey = FALSE,
+  caption_family = sans_family,
+  caption_size = 9,
+  caption_face = "plain",
+  caption_margin = 10,
+  axis_text_size = base_size * 0.8,
+  axis_text_family = sans_family,
+  axis_title_family = mono_family,
+  axis_title_size = 12,
+  axis_title_face = "plain",
+  axis_title_just = "c",
+  plot_margin = margin(12, 12, 12, 12),
+  panel_spacing = grid::unit(1.2, "lines"),
+  grid_col = "#cccccc",
+  grid = TRUE,
+  axis_col = "#cccccc",
+  axis = FALSE,
+  ticks = FALSE
+) {
   ret <- theme_minimal(base_family = sans_family, base_size = base_size)
 
   ret <- ret + theme(legend.background = element_blank())

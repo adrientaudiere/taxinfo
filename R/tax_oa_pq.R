@@ -187,7 +187,7 @@ tax_oa_pq <- function(physeq = NULL,
     list_publi[is.null(list_publi)] <- NA
     tib_publi <- tibble(
       taxa_name = names(list_publi),
-      n_doi = map_int(list_publi, ~.x$count)
+      n_doi = map_int(list_publi, ~ .x$count)
     )
   } else {
     list_publi <- vector("list", length(taxnames))

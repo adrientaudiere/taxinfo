@@ -200,7 +200,7 @@ interaction_summary <- detailed_interactions |>
     ~ stringr::str_detect(.x, stringr::fixed(target_taxon_name))
   )) |>
   mutate(interaction_type = case_when(
-        parasiteOf ~ "parasiteOf",
+    parasiteOf ~ "parasiteOf",
     hasHost ~ "hasHost",
     .default = "other"
   ))
@@ -445,8 +445,11 @@ ggplot(psm, aes(
   fill = Order
 )) +
   geom_col() +
-  geom_text(aes(label = currentCanonicalSimple,
-                fontface = ifelse(is.na(taxref_FR), "italic", "bold.italic")),
+  geom_text(
+    aes(
+      label = currentCanonicalSimple,
+      fontface = ifelse(is.na(taxref_FR), "italic", "bold.italic")
+    ),
     y = -1, hjust = 1, size = 2.5
   ) +
   geom_text(aes(label = taxref_NOM_VERN, y = 2 + occurence), size = 3, color = "black", hjust = 0) +
@@ -630,9 +633,8 @@ knowledge_gaps |>
   ComplexUpset::upset(
     intersect = c("gbif_info", "wk_info", "oa_info", "taxref_info", "globi_info"),
     keep_empty_groups = TRUE,
-    wrap=TRUE,set_sizes = F
-      
-  ) + 
+    wrap = TRUE, set_sizes = F
+  ) +
   labs(
     title = "Knowledge Gaps Across Data Sources",
     subtitle = "Number of taxa names with available data from each source and their intersections"
