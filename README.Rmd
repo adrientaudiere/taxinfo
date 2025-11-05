@@ -165,10 +165,12 @@ citation("taxinfo")
 ## Related Packages
 
 **taxinfo** works seamlessly with:
+
 - [MiscMetabar](https://github.com/adrientaudiere/MiscMetabar): Miscellaneous functions for metabarcoding analysis
 - [phyloseq](https://joey711.github.io/phyloseq/): Analyze microbiome census data
 - [taxize](https://github.com/ropensci/taxize): Taxonomic information from around the web
 - [rgbif](https://github.com/ropensci/rgbif): Interface to GBIF API
 
 ## Licence
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
