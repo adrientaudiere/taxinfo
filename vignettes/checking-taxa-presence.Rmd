@@ -430,3 +430,10 @@ data_complete@tax_table[1:5, ]
 ```
 
 This approach provides a robust framework for validating taxa presence and improving the reliability of your microbiome or environmental DNA analyses.
+
+## Session information
+
+```{r}
+sessionInfo()
+```
+

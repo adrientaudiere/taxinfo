@@ -256,3 +256,10 @@ dim(data_final)
 - **Adding External Information**: Integrate Wikipedia, GLOBI, and custom databases
 
 This provides the foundation for using taxinfo effectively. Each subsequent vignette will dive deeper into specific functionality areas.
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```

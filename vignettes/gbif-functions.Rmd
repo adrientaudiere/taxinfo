@@ -283,3 +283,11 @@ tax_check_ecoregion("Xylobolus subpileatus",
   latitudes = c(48.8566, 33)
 )
 ```
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```
+

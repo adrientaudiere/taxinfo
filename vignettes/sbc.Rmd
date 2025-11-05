@@ -116,3 +116,10 @@ left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   theme_idest()
 ```
 
+
+## Session information
+
+```{r}
+sessionInfo()
+```
+

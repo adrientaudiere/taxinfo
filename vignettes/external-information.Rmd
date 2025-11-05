@@ -652,3 +652,9 @@ When integrating external data, consider the following best practices:
 
 This comprehensive approach to external data integration transforms basic taxonomic lists into rich, multi-dimensional datasets suitable for advanced ecological analyses.
 
+## Session information
+
+```{r}
+sessionInfo()
+```
+
