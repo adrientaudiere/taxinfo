@@ -269,7 +269,7 @@ data_clean_range <- range_bioreg_pq(
 )
 ```
 
-```{r, fig.alt=""Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Basidiodendron eyrei."}
+```{r, fig.alt="Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Basidiodendron eyrei."}
 data_clean_range[[2]]
 ```
 

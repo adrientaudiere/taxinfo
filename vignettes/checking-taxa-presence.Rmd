@@ -16,6 +16,58 @@ knitr::opts_chunk$set(
   fig.path = "figures/",
   out.width = "100%"
 )
+
+# Hook to wrap output in collapsible details
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see output"
+      }
+      paste0(
+        '<details><summary>', summary_text, '</summary>\n\n',
+        '```\n', x, '```\n',
+        '</details>\n'
+      )
+    } else {
+      paste0('```\n', x, '```\n')
+    }
+  },
+  message = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see messages"
+      }
+      paste0(
+        '<details><summary>', summary_text, '</summary>\n\n',
+        '```\n', x, '```\n',
+        '</details>\n'
+      )
+    } else {
+      paste0('```\n', x, '```\n')
+    }
+  },
+  warning = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see warnings"
+      }
+      paste0(
+        '<details><summary>', summary_text, '</summary>\n\n',
+        '```\n', x, '```\n',
+        '</details>\n'
+      )
+    } else {
+      paste0('```\n', x, '```\n')
+    }
+  }
+)
 ```
 
 ```{r setup}
@@ -164,6 +216,7 @@ occurrence_check |>
 
 
 The results include:
+
 - `taxa_name`: Taxonomic name checked
 - `count_in_radius`: Number of occurrences within the specified radius
 - `total_count_in_world`: Total global occurrences for this taxon
