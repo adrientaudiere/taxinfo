@@ -24,7 +24,18 @@ navbar:
   components:
     articles:
       text: Articles
-      href: articles/index.html
+      menu:
+      - text: Tutorials
+      - text: Getting started
+        href: articles/getting-started.html
+      - text: GBIF functions
+        href: articles/gbif-functions.html
+      - text: Checking taxa presence
+        href: articles/checking-taxa-presence.html
+      - text: Adding information using external sources
+        href: articles/external-information.html
+      - text: Species Bound Cluster (SBC)
+        href: articles/sbc.html
 
 reference:
 - title: "Data Verification & Quality Control"

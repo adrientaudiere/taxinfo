@@ -47,6 +47,8 @@
 #'   data_fungi_mini_cleanNames,
 #'   currentCanonicalSimple %in% c("Xylodon flaviporus", "Basidiodendron eyrei")
 #' ), occ_samp = 100)
+#'
+#' requireNamespace("patchwork")
 #' p[[1]] / p[[2]]
 #'
 #' p <- plot_range_bioreg_pq(subset_taxa_pq(
@@ -54,7 +56,6 @@
 #'   taxa_sums(data_fungi_mini) > 20000
 #' ), occ_samp = 500)
 #'
-#' requireNamespace("patchwork")
 #' p[[1]] / p[[2]]
 range_bioreg_pq <- function(physeq = NULL,
                             taxnames = NULL,

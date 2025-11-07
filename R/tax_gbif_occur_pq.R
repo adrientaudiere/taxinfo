@@ -35,6 +35,8 @@
 #' @examples
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini)
+#'
+#' \donttest{
 #' data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
 #'
 #' # Get data without adding to phyloseq
@@ -51,6 +53,7 @@
 #'   geom_col(aes(y = -log10(as.numeric(FR))), fill = "blue") +
 #'   coord_flip() +
 #'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
+#'  }
 tax_gbif_occur_pq <- function(physeq = NULL,
                               taxnames = NULL,
                               taxonomic_rank = "currentCanonicalSimple",

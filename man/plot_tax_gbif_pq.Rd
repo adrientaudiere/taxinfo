@@ -104,6 +104,7 @@ p <- plot_tax_gbif_pq(
 requireNamespace("patchwork")
 (p[[1]] + p[[2]]) /
   (p[[3]] + p[[4]]) & no_legend()
+
 }
 }
 \seealso{
