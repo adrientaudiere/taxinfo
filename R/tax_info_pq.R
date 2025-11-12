@@ -38,6 +38,7 @@
 #' @param csv_cols_select A character vector of the column names to select in the csv file.
 #' @param sep the field separator character. See [utils::read.csv()].
 #' @param dec the field separator character. See [utils::read.csv()].
+#' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -45,7 +46,7 @@
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 #'   data_sources = 210
 #' )
@@ -54,7 +55,7 @@
 #' # --------------------
 #' fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 #' fg_traits <- tax_info_pq(data_fungi_cleanNames,
-#'   taxonomic_rank = "genus",
+#'   taxonomic_rank = "genusEpithet",
 #'   file_name = fungal_traits,
 #'   csv_taxonomic_rank = "GENUS",
 #'   col_prefix = "ft_",
@@ -119,6 +120,21 @@
 #'   table(useNA = "always")
 #' data_fungi_cleanNames_3@tax_table[, "st_BCD_TAXREF_STATUT_BIOGEO"] |>
 #'   table(useNA = "always")
+#'
+#' #' # EPPO (Pest species) example (https://gd.eppo.int/)
+#' # --------------------
+#' # You can visit https://gd.eppo.int/ to download database for other countries
+#' # than France
+#' EPPO_FR <- system.file("extdata", "EPPO_regulated_FR.csv", package = "taxinfo")
+#'
+#' res_with_EPPO_FR <- tax_info_pq(data_fungi_cleanNames,
+#'   file_name = EPPO_FR,
+#'   csv_taxonomic_rank = "organism_prefname",
+#'   col_prefix = "EPPO_"
+#' )
+#'
+#' res_with_EPPO_FR@tax_table  |> as.data.frame() |> filter(!is.na(EPPO_qlistlabel))
+#' }
 tax_info_pq <- function(physeq = NULL,
                         taxnames = NULL,
                         taxonomic_rank = "currentCanonicalSimple",
@@ -129,7 +145,8 @@ tax_info_pq <- function(physeq = NULL,
                         use_duck_db = FALSE,
                         csv_cols_select = NULL,
                         sep = ",",
-                        dec = ".") {
+                        dec = ".",
+                        verbose = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -230,6 +247,15 @@ tax_info_pq <- function(physeq = NULL,
       tax_table()
     rownames(new_physeq@tax_table) <- taxa_names(physeq)
 
+    if (verbose) {
+      n_col_added <- ncol(taxtab_new) - ncol(taxtab)
+      if (use_duck_db) {
+        cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} in the tax_table slot of the phyloseq object")
+      } else {
+        n_row_added <- sum(dplyr::pull(taxtab, taxonomic_rank) %in% dplyr::pull(info_df, csv_taxonomic_rank))
+        cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} with information for {.val {n_row_added}} taxa in the tax_table slot of the phyloseq object")
+      }
+    }
     return(new_physeq)
   } else {
     return(taxtab_new)

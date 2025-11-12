@@ -1,5 +1,6 @@
 ---
 output: github_document
+  toc: true
 editor_options: 
   chunk_output_type: console
 ---
@@ -174,3 +175,12 @@ citation("taxinfo")
 ## Licence
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+## Acknowledgments
+
+- All the members of the DEFIS MITI project, especially Mélanie Roy and Benoît Perez-Lamarque who lead the project.
+
+- The CNRS funding MITI that made this work possible.
+
+- The developers of the R packages used in this project. A special thanks to Joey McMurdie (`phyloseq`), John Waller (`rgbif`), and Zachary Foster (`taxize`) for maintaining those useful tools.

@@ -7,6 +7,11 @@ Authors@R: c(
       "Adrien", "Taudiere",
       email = "adrien.taudiere@zaclys.net",
       role = c("aut", "cre")
+    ),
+    person(
+      "CNRS",
+      email = "adrien.taudiere@zaclys.net",
+      role = c("fnd")
     )
     )
 Description: Add informations to phyloseq object using different sources such as gbif, wikipedia, and globi.  

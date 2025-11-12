@@ -18,7 +18,11 @@
 
 - Add function `cluster_sbc()` to (post)cluster taxa into SBC (Species bound cluster) defined as  "clusters that include all and only ESVs assigned to one species, the sequence similarity threshold can vary between these clusters" by Riley *et al.* 2025 (<https://doi.org/10.1186/s12915-025-02284-x>). Also add a new vignette to illustrate the use of `cluster_sbc()`.
 
+- Print information when using `tax_info_pq()` with `add_to_phyloseq = TRUE` to inform users that the phyloseq object is being updated.
 
+- Add an example in `tax_info_pq()` manual with the EPPO database to determine if pest species regulated in France are found in the example phyloseq object. 
+
+- Change the result column `genus` into `genusEpithet` from the `gna_verifier_pq()` function to avoid confusion between "Genus" and "genus" columns and to debug the use of duckdb in `taxinfo_pq()`.
 
 ## Documentation
 

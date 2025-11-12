@@ -1,0 +1,793 @@
+qlist,qlistlabel,eppocode,organism_prefname,yr_add,main_category
+E,Emergency measures,ANOLGL,Anoplophora glabripennis,2015,Insecta
+E,Emergency measures,AROMBU,Aromia bungii,2018,Insecta
+E,Emergency measures,BURSXY,Bursaphelenchus xylophilus,2012,Nematoda
+E,Emergency measures,HELIVI,Chloridea virescens,2022,Insecta
+E,Emergency measures,EPIXCU,Epitrix cucumeris,2012,Insecta
+E,Emergency measures,EPIXPP,Epitrix papa,2016,Insecta
+E,Emergency measures,EPIXSU,Epitrix subcrinita,2012,Insecta
+E,Emergency measures,EPIXTU,Epitrix tuberis,2012,Insecta
+E,Emergency measures,GIBBCI,Fusarium circinatum,2007,Fungi
+E,Emergency measures,HOMOMA,Homona magnanima,2024,Insecta
+E,Emergency measures,MELGGC,Meloidogyne graminicola,2022,Nematoda
+E,Emergency measures,GUIGCI,Phyllosticta citricarpa,2016,Fungi
+E,Emergency measures,POCZSH,Pochazia shantungensis,2022,Insecta
+E,Emergency measures,1POMAG,Pomacea,2012,Gastropoda
+E,Emergency measures,POMACA,Pomacea canaliculata,2012,Gastropoda
+E,Emergency measures,POMALI,Pomacea lineata,2012,Gastropoda
+E,Emergency measures,POMAIN,Pomacea maculata,2012,Gastropoda
+E,Emergency measures,POMASP,Pomacea sp.,2012,Gastropoda
+E,Emergency measures,RESSCI,Resseliella citrifrugis,2022,Insecta
+E,Emergency measures,LAPHFR,Spodoptera frugiperda,2018,Insecta
+E,Emergency measures,PRODOR,Spodoptera ornithogalli,2022,Insecta
+E,Emergency measures,TOUMPA,Toumeyella parvicornis,2022,Insecta
+E,Emergency measures,XYLEFA,Xylella fastidiosa,2015,Bacteria
+E,Emergency measures,XYLEFF,Xylella fastidiosa subsp. fastidiosa,2015,Bacteria
+E,Emergency measures,XYLEFM,Xylella fastidiosa subsp. multiplex,2015,Bacteria
+E,Emergency measures,XYLEFP,Xylella fastidiosa subsp. pauca,2015,Bacteria
+E,Emergency measures,XYLEFS,Xylella fastidiosa subsp. sandyi,2015,Bacteria
+E,Emergency measures,XYLEFT,Xylella fastidiosa subsp. tashke,2020,Bacteria
+E,Emergency measures,XYLOCH,Xylotrechus chinensis,2022,Insecta
+F,Emergency measures (formerly),AGRLPL,Agrilus planipennis,2021,Insecta
+F,Emergency measures (formerly),ANOLCN,Anoplophora chinensis,2022,Insecta
+F,Emergency measures (formerly),DIABVI,Diabrotica virgifera virgifera,2003,Insecta
+F,Emergency measures (formerly),DRYCKU,Dryocosmus kuriphilus,2006,Insecta
+F,Emergency measures (formerly),RRV000,Emaravirus rosae,2024,Viruses and viroids
+F,Emergency measures (formerly),LEUIOR,Leucinodes orbonalis,2024,Insecta
+F,Emergency measures (formerly),LEUIPS,Leucinodes pseudorbonalis,2025,Insecta
+F,Emergency measures (formerly),PHYCFR,Phyllocoptes fructiphilus,2019,Acari
+F,Emergency measures (formerly),PHYTRA,Phytophthora ramorum,2021,Chromista
+F,Emergency measures (formerly),PSTVD0,Pospiviroid fusituberis,2007,Viruses and viroids
+F,Emergency measures (formerly),PEPMV0,Potexvirus pepini,2004,Viruses and viroids
+F,Emergency measures (formerly),PSDMAK,Pseudomonas syringae pv. actinidiae,2021,Bacteria
+F,Emergency measures (formerly),RHYCFE,Rhynchophorus ferrugineus,2007,Insecta
+F,Emergency measures (formerly),TOBRFV,Tobamovirus fructirugosum,2019,Viruses and viroids
+K,Regulated Invasive Alien Plant,LUDUR,Ludwigia grandiflora,2008,Plantae
+K,Regulated Invasive Alien Plant,LUDPE,Ludwigia peploides,2007,Plantae
+K,Regulated Invasive Alien Plant,ACAKA,Vachellia karroo,1999,Plantae
+L,IAS of Union concern,ACAMR,Acacia mearnsii,2025,Plantae
+L,IAS of Union concern,ACASA,Acacia saligna,2019,Plantae
+L,IAS of Union concern,ACRHTR,Acridotheres tristis,2019,Animalia
+L,IAS of Union concern,AILAL,Ailanthus altissima,2019,Plantae
+L,IAS of Union concern,ALPCAE,Alopochen aegyptiacus,2017,Animalia
+L,IAS of Union concern,ALRPH,Alternanthera philoxeroides,2017,Plantae
+L,IAS of Union concern,ICTAME,Ameiurus melas,2022,Animalia
+L,IAS of Union concern,ANOVI,Andropogon virginicus,2019,Plantae
+L,IAS of Union concern,ARDDTR,Arthurdendyus triangulatus,2019,Platyhelminthes
+L,IAS of Union concern,ASCSY,Asclepias syriaca,2017,Plantae
+L,IAS of Union concern,AXISAX,Axis axis,2022,Animalia
+L,IAS of Union concern,BACHA,Baccharis halimifolia,2016,Plantae
+L,IAS of Union concern,BRNPA,Broussonetia papyrifera,2025,Plantae
+L,IAS of Union concern,CABCA,Cabomba caroliniana,2016,Plantae
+L,IAS of Union concern,CLLCER,Callosciurus erythraeus,2016,Rodentia
+L,IAS of Union concern,CLLCFI,Callosciurus finlaysonii,2022,Rodentia
+L,IAS of Union concern,CRIGR,Cardiospermum grandiflorum,2019,Plantae
+L,IAS of Union concern,PESSA,Cenchrus setaceus,2017,Plantae
+L,IAS of Union concern,CHNNAR,Channa argus,2022,Animalia
+L,IAS of Union concern,CDTJU,Cortaderia jubata,2019,Plantae
+L,IAS of Union concern,CORVSL,Corvus splendens,2016,Animalia
+L,IAS of Union concern,CSBHE,Crassula helmsii,2025,Plantae
+L,IAS of Union concern,SENMI,Delairea odorata,2025,Plantae
+L,IAS of Union concern,EHRCA,Ehrharta calycina,2019,Plantae
+L,IAS of Union concern,ELDNU,Elodea nuttallii,2017,Plantae
+L,IAS of Union concern,ERCHSI,Eriocheir sinensis,2016,Animalia
+L,IAS of Union concern,ORCOLI,Faxonius limosus,2016,Animalia
+L,IAS of Union concern,ORCORU,Faxonius rusticus,2022,Animalia
+L,IAS of Union concern,ORCOVI,Faxonius virilis,2016,Animalia
+L,IAS of Union concern,FUNUHE,Fundulus heteroclitus,2022,Animalia
+L,IAS of Union concern,GAMBAF,Gambusia affinis,2022,Animalia
+L,IAS of Union concern,GAMBHO,Gambusia holbrooki,2022,Animalia
+L,IAS of Union concern,GUATI,Gunnera tinctoria,2017,Plantae
+L,IAS of Union concern,GYNSP,Gymnocoronis spilanthoides,2019,Plantae
+L,IAS of Union concern,HKASE,Hakea sericea,2022,Plantae
+L,IAS of Union concern,HERMZ,Heracleum mantegazzianum,2017,Plantae
+L,IAS of Union concern,HERPE,Heracleum persicum,2016,Plantae
+L,IAS of Union concern,HERSO,Heracleum sosnowskyi,2016,Plantae
+L,IAS of Union concern,HRPSJA,Herpestes javanicus,2016,Animalia
+L,IAS of Union concern,HUMJA,Humulus scandens,2019,Plantae
+L,IAS of Union concern,HYDRA,Hydrocotyle ranunculoides,2016,Plantae
+L,IAS of Union concern,IPAGL,Impatiens glandulifera,2017,Plantae
+L,IAS of Union concern,POLPS,Koenigia polystachya,2022,Plantae
+L,IAS of Union concern,LGAMA,Lagarosiphon major,2016,Plantae
+L,IAS of Union concern,LMPPGE,Lampropeltis getula,2022,Animalia
+L,IAS of Union concern,LEPMGI,Lepomis gibbosus,2019,Animalia
+L,IAS of Union concern,LESCU,Lespedeza cuneata,2019,Plantae
+L,IAS of Union concern,LPRNFO,Limnoperna fortunei,2022,Animalia
+L,IAS of Union concern,LUDUR,Ludwigia grandiflora,2016,Plantae
+L,IAS of Union concern,LUDPE,Ludwigia peploides,2016,Plantae
+L,IAS of Union concern,LYFJA,Lygodium japonicum,2019,Plantae
+L,IAS of Union concern,LSYAM,Lysichiton americanus,2016,Plantae
+L,IAS of Union concern,MCGVI,Microstegium vimineum,2017,Plantae
+L,IAS of Union concern,MOROAM,Morone americana,2022,Animalia
+L,IAS of Union concern,MUNTRE,Muntiacus reevesi,2016,Animalia
+L,IAS of Union concern,MYOCCO,Myocastor coypus,2016,Rodentia
+L,IAS of Union concern,MYPBR,Myriophyllum aquaticum,2016,Plantae
+L,IAS of Union concern,MYPHE,Myriophyllum heterophyllum,2017,Plantae
+L,IAS of Union concern,NASANA,Nasua nasua,2016,Animalia
+L,IAS of Union concern,PRCJU,Neltuma juliflora,2019,Plantae
+L,IAS of Union concern,NYKRPR,Nyctereutes procyonoides,2017,Animalia
+L,IAS of Union concern,ONDAZI,Ondatra zibethicus,2017,Rodentia
+L,IAS of Union concern,OXURJA,Oxyura jamaicensis,2016,Animalia
+L,IAS of Union concern,PACILE,Pacifastacus leniusculus,2016,Animalia
+L,IAS of Union concern,PTNHY,Parthenium hysterophorus,2016,Plantae
+L,IAS of Union concern,PCCTSP,Perccottus glenii,2016,Animalia
+L,IAS of Union concern,POLPF,Persicaria perfoliata,2016,Plantae
+L,IAS of Union concern,PIIST,Pistia stratiotes,2022,Plantae
+L,IAS of Union concern,PLOTLI,Plotosus lineatus,2019,Animalia
+L,IAS of Union concern,EICCR,Pontederia crassipes,2016,Plantae
+L,IAS of Union concern,PROMCL,Procambarus clarkii,2016,Animalia
+L,IAS of Union concern,PROMVI,Procambarus virginalis,2016,Animalia
+L,IAS of Union concern,PROYLO,Procyon lotor,2016,Animalia
+L,IAS of Union concern,QRASPA,Pseudorasbora parva,2016,Animalia
+L,IAS of Union concern,PUELO,Pueraria montana var. lobata,2016,Plantae
+L,IAS of Union concern,PYKNCA,Pycnonotus cafer,2022,Animalia
+L,IAS of Union concern,RANSCA,Rana catesbeiana,2016,Animalia
+L,IAS of Union concern,POLCU,Reynoutria japonica,2025,Plantae
+L,IAS of Union concern,REYSA,Reynoutria sachalinensis,2025,Plantae
+L,IAS of Union concern,REYBO,Reynoutria x bohemica,,Plantae
+L,IAS of Union concern,RUGUOK,Rugulopteryx okamurae,2022,Protozoa
+L,IAS of Union concern,SAVMO,Salvinia molesta,2019,Plantae
+L,IAS of Union concern,SCIUCA,Sciurus carolinensis,2016,Rodentia
+L,IAS of Union concern,SCIUNI,Sciurus niger,2016,Rodentia
+L,IAS of Union concern,SOLEGE,Solenopsis geminata,2022,Insecta
+L,IAS of Union concern,SOLEIN,Solenopsis invicta,2022,Insecta
+L,IAS of Union concern,SOLERI,Solenopsis richteri,2022,Insecta
+L,IAS of Union concern,EUTASI,Tamias sibiricus,2016,Rodentia
+L,IAS of Union concern,THRKAE,Threskiornis aethiopicus,2016,Animalia
+L,IAS of Union concern,TRKMSC,Trachemys scripta,2016,Animalia
+L,IAS of Union concern,SAQSE,Triadica sebifera,2019,Plantae
+L,IAS of Union concern,VESPVE,Vespa velutina,2016,Insecta
+L,IAS of Union concern,WASMAU,Wasmannia auropunctata,2022,Insecta
+L,IAS of Union concern,XNOPLA,Xenopus laevis,2022,Animalia
+N,A1 Quarantine pest (Annex II A),ACNVDU,Acanthonevra dunlopi,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACIEKA,Acidiella kagoshimensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACIXBO,Acidoxantha bombacis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRGL,Acleris gloverana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRIS,Acleris issikii,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRMI,Acleris minuta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRNI,Acleris nishidai,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRNV,Acleris nivisellana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRRO,Acleris robinsoniana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CROISE,Acleris semipurpurana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRSE,Acleris senescens,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACLRVA,Acleris variana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NUMOPI,Acrobasis pirivorella,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ACRSDI,Acroceratitis distincta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACRGCI,Acrogonia citrina,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ACRGVI,Acrogonia virescens,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1ADRAG,Adrama,2021,Insecta
+N,A1 Quarantine pest (Annex II A),AGRLAX,Agrilus anxius,2019,Insecta
+N,A1 Quarantine pest (Annex II A),AGRLPL,Agrilus planipennis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ALECCT,Aleurocanthus citriperdus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ALECWO,Aleurocanthus woglumi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PYDV00,Alphanucleorhabdovirus tuberosum,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1ANSTG,Anastrepha,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TOXTCU,Anastrepha curvicauda,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ANSTFR,Anastrepha fraterculus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANSTLU,Anastrepha ludens,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANSTOB,Anastrepha obliqua,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANSTRE,Anastrepha recurcauda,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ANSTSU,Anastrepha suspensa,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CRSPAN,Anisogramma anomala,2019,Fungi
+N,A1 Quarantine pest (Annex II A),ANTHBI,Anthonomus bisignifer,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANTHEU,Anthonomus eugenii,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANTHGR,Anthonomus grandis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),TACYQU,Anthonomus quadrigibbus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ANTHSI,Anthonomus signatus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),APHRAN,Aphrophora angulata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),APHRPE,Aphrophora permutata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DIBOMO,Apiosporina morbosa,2019,Fungi
+N,A1 Quarantine pest (Annex II A),AFCVD0,Apple fruit crinkle viroid,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),APRICI,Apriona cinerea,2021,Insecta
+N,A1 Quarantine pest (Annex II A),APRIGE,Apriona germari,2021,Insecta
+N,A1 Quarantine pest (Annex II A),APRIJA,Apriona rugicollis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1AREG,Arceuthobium,2019,Plantae
+N,A1 Quarantine pest (Annex II A),ARRHMI,Arrhenodes minutus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ASIMPA,Asimoneura pantomelas,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1ATRPG,Atropellis,2019,Fungi
+N,A1 Quarantine pest (Annex II A),AUSHPR,Austrotephritis protrusa,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PARZCO,Bactericera cockerelli,2019,Insecta
+N,A1 Quarantine pest (Annex II A),1BCTRG,Bactrocera,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DACUDO,Bactrocera dorsalis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DACULA,Bactrocera latifrons,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DACUTR,Bactrocera tryoni,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DACUTS,Bactrocera tsuneonis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DACUZO,Bactrocera zonata,2019,Insecta
+N,A1 Quarantine pest (Annex II A),GVCV00,Badnavirus venavitis,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1BEGOG,Begomovirus,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CHILCU,Begomovirus chillicapsici,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOYVSV,Begomovirus solanumflavusvenae,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),THV000,Begomovirus solanumhavanaense,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOSRV0,Begomovirus solanumseverugosi,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOMOTV,Begomovirus solanumtainoense,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PYMV00,Begomovirus tuberosi,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),BEMITA,Bemisia tabaci,2019,Insecta
+N,A1 Quarantine pest (Annex II A),BISRFO,Bistrispinaria fortis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),BISRMA,Bistrispinaria magniceps,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TETTFE,Bothrogonia ferruginea,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHYOPI,Botryosphaeria kuwatsukai,2019,Fungi
+N,A1 Quarantine pest (Annex II A),CERAFA,Bretziella fagacearum,2019,Fungi
+N,A1 Quarantine pest (Annex II A),BUCLXA,Bucephalogonia xanthophis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHYP77,Buckland valley grapevine yellows phytoplasma,2021,Bacteria
+N,A1 Quarantine pest (Annex II A),ASCXEP,Byakushincecis eppoi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CLMYFL,Callistomyia flavilabris,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CAMGAL,Campiglossa albiceps,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CAMGCA,Campiglossa californica,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CAMGDU,Campiglossa duplex,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CAMGRE,Campiglossa reticulata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CAMGSN,Campiglossa snowi,2021,Insecta
+N,A1 Quarantine pest (Annex II A),LIBEAF,'Candidatus Liberibacter africanus',2019,Bacteria
+N,A1 Quarantine pest (Annex II A),LIBEAM,'Candidatus Liberibacter americanus',2019,Bacteria
+N,A1 Quarantine pest (Annex II A),LIBEAS,'Candidatus Liberibacter asiaticus',2019,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPAE,'Candidatus Phytoplasma americanum',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPAF,'Candidatus Phytoplasma aurantifolia',2019,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPAU,'Candidatus Phytoplasma australiense',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPFR,'Candidatus Phytoplasma fraxini',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYP07,'Candidatus Phytoplasma hispanicum',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPNO,'Candidatus Phytoplasma noviguineense',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPPA,‘Candidatus Phytoplasma palmae',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPPL,‘Candidatus Phytoplasma palmicola’,2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPPH,'Candidatus Phytoplasma phoenicium',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PHYPZI,'Candidatus Phytoplasma ziziphi',2021,Bacteria
+N,A1 Quarantine pest (Annex II A),PVH000,Carlavirus chisolani,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),MYAV00,Carlavirus melonis,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PVP000,Carlavirus pisolani,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PVS000,Carlavirus sigmasolani,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CPMMV0,Carlavirus vignae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CARYIN,Carpomya incompleta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CARSSA,Carposina sasakii,2019,Insecta
+N,A1 Quarantine pest (Annex II A),1CERTG,Ceratitis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CERTQU,Ceratitis quinaria,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CERTRO,Ceratitis rosa,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CRTZCL,Ceratothripoides claratris,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CRLV00,Cheravirus avii,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CRV000,Cherry rosette virus,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CHONCA,Choristoneura carnana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ARCHCO,Choristoneura conflictana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONFU,Choristoneura fumiferana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TORTLA,Choristoneura lambertiana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONBI,Choristoneura occidentalis biennis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ARCHOC,Choristoneura occidentalis occidentalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONOR,Choristoneura orae,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONPA,Choristoneura parallela,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONPI,Choristoneura pinus pinus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONRE,Choristoneura retiniana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHONRO,Choristoneura rosaceana,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CHMYAR,Chrysomyxa arctostaphyli,2019,Fungi
+N,A1 Quarantine pest (Annex II A),1CICDF,Cicadellidae,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CILVC2,Cilevirus colombiaense,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CILVC0,Cilevirus leprosis,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CILV00,Citrus leprosis disease,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CLASAC,Clastoptera achatina,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CLASBR,Clastoptera brunnea,2021,Insecta
+N,A1 Quarantine pest (Annex II A),SCFAV0,Closterovirus fragariae,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CTV000,Closterovirus tristezae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PHYP19,Clover yellow edge phytoplasma,2021,Bacteria
+N,A1 Quarantine pest (Annex II A),CCCVD0,Cocadviroid cadangi,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),APMOV0,Comovirus andesense,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PHELSU,Coniferiporia sulphurascens,2019,Fungi
+N,A1 Quarantine pest (Annex II A),INONWE,Coniferiporia weirii,2019,Fungi
+N,A1 Quarantine pest (Annex II A),CONHNE,Conotrachelus nenuphar,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CRSXMA,Craspedoxantha marginalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PYVV00,Crinivirus flavisolani,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),LIYV00,Crinivirus lactucaflavi,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1CRONG,Cronartium,2019,Fungi
+N,A1 Quarantine pest (Annex II A),CUERCO,Cuerna costalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CUEROC,Cuerna occidentalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CORBFL,Curtobacterium flaccumfaciens pv. flaccumfaciens,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),BCTV00,Curtovirus betae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CYPACG,Cyphonia clavigera,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1DACUG,Dacus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DACUCI,Dacus ciliatus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CERAVI,Davidsoniella virescens,2019,Fungi
+N,A1 Quarantine pest (Annex II A),ONCMMI,Dechacona missionum,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DENDSI,Dendrolimus sibiricus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DIABLO,Diabrotica barberi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DIABUH,Diabrotica undecimpunctata howardi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DIABUN,Diabrotica undecimpunctata undecimpunctata,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DIABVZ,Diabrotica virgifera zeae,2019,Insecta
+N,A1 Quarantine pest (Annex II A),DIAACI,Diaphorina citri,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CICSV0,Dichorhavirus citri,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CILVN0,Dichorhavirus leprosis,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),OFV000,Dichorhavirus orchidaceae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),DLBPCO,Dilobopterus costalimai,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MARGME,Dimargarodes meridionalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DIOXCH,Dioxyna chilensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRYEMU,Dirioxa pornia,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1DRAEG,Draeculacephala,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ELSIAU,Elsinoë australis,2019,Fungi
+N,A1 Quarantine pest (Annex II A),ELSICI,Elsinoë citricola,2019,Fungi
+N,A1 Quarantine pest (Annex II A),ELSIFA,Elsinoë fawcettii,2019,Fungi
+N,A1 Quarantine pest (Annex II A),RRV000,Emaravirus rosae,2024,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),EOTELE,Eotetranychus lewisi,2019,Acari
+N,A1 Quarantine pest (Annex II A),EULISE,Euleia separata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EUMGLA,Eumargarodes laingi,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EPHNCA,Euphranta camelliae,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EPOCCA,Euphranta canadensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHACCA,Euphranta cassiae,2021,Insecta
+N,A1 Quarantine pest (Annex II A),RHACJA,Euphranta japonica,2019,Insecta
+N,A1 Quarantine pest (Annex II A),EPHNOS,Euphranta oshimensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EURHBR,Eurhizococcus brasiliensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EURHCO,Eurhizococcus colombianus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),EUOSSO,Eurosta solidaginis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1EUTTG,Eutreta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),XYLBFO,Euwallacea fornicatus sensu lato,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ANMLOR,Exomala orientalis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),FRRATR,Ferrariana trivittata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),FINGDU,Fingeriana dubia,2021,Insecta
+N,A1 Quarantine pest (Annex II A),FRISFR,Friscanus friscanus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),FUSAAM,Fusarium ambrosium,2021,Fungi
+N,A1 Quarantine pest (Annex II A),FUSAEW,Fusarium euwallaceae,2021,Fungi
+N,A1 Quarantine pest (Annex II A),FUSAAL,Fusarium oxysporum f. sp. albedinis,2019,Fungi
+N,A1 Quarantine pest (Annex II A),GASZNI,Gastrozona nigrifemur,2021,Insecta
+N,A1 Quarantine pest (Annex II A),GOEDST,Goedenia stenoparia,2021,Insecta
+N,A1 Quarantine pest (Annex II A),GRBAV0,Grablovirus vitis,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),GRCPAT,Graphocephala atropunctata,2019,Insecta
+N,A1 Quarantine pest (Annex II A),GRCPCF,Graphocephala confluens,2021,Insecta
+N,A1 Quarantine pest (Annex II A),GRCPVE,Graphocephala versuta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CYDIIN,Grapholita inopinata,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LASPPA,Grapholita packardi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LASPPR,Grapholita prunivora,2019,Insecta
+N,A1 Quarantine pest (Annex II A),1GYMRG,Gymnocarena,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1GYMNG,Gymnosporangium,2019,Fungi
+N,A1 Quarantine pest (Annex II A),MYNDCR,Haplaxius crudus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),HELIZE,Helicoverpa zea,2019,Insecta
+N,A1 Quarantine pest (Annex II A),HELHDE,Helochara delta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),HGSV20,Higrevirus waimanalo,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1HIRSG,Hirschmanniella,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),HISHPH,Hishimonus phycitis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),HOMLIG,Homalodisca ignorata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),HOMLIN,Homalodisca insolita,2021,Insecta
+N,A1 Quarantine pest (Annex II A),HOMLTR,Homalodisca vitripennis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),APLPV0,Ilarvirus APLPV,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),APNMV0,Ilarvirus ApNMV,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),SNSV00,Ilarvirus SNSV,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),INZWOB,Insizwa oblita,2021,Insecta
+N,A1 Quarantine pest (Annex II A),SQVYVX,Ipomovirus cucurbitavenaflavi,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOMMOV,Ipomovirus lycopersici,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),GNORLY,Keiferia lycopersicella,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LEPOQU,Lepyronia quadrangularis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),LIRISA,Liriomyza sativae,2019,Insecta
+N,A1 Quarantine pest (Annex II A),HYROBO,Listronotus bonariensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LONGDI,Longidorus diadecturus,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),LOPLJA,Lopholeucaspis japonica,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LYCMDE,Lycorma delicatula,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MAGOCA,Macugonalia cavifrons,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MAGOLE,Macugonalia leucomelas,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MARGCA,Margarodes capensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MARGGR,Margarodes greeni,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MARGPR,Margarodes prieskaensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),MARGTR,Margarodes trimeni,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MARGVI,Margarodes vitis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),MARGVR,Margarodes vredendalensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),MARREX,Marriottella exquisita,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MELMFA,Melampsora farlowii,2019,Fungi
+N,A1 Quarantine pest (Annex II A),MELGMY,Meloidogyne enterolobii,2021,Nematoda
+N,A1 Quarantine pest (Annex II A),MOLMCO,Molomea consolida,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MNAHCI,Monacrostichus citricola,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1MONCG,Monochamus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),MYCOLL,Mycodiella laricis-leptolepidis,2019,Fungi
+N,A1 Quarantine pest (Annex II A),CARYPA,Myiopardalis pardalina,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NACOBA,Nacobbus aberrans sensu lato,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),GRAGLE,Naupactus leucoloma,2019,Insecta
+N,A1 Quarantine pest (Annex II A),NEAIAL,Neaspilota alba,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NEAIRE,Neaspilota reticulata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),AMAZMA,Nemorimyza maculosa,2019,Insecta
+N,A1 Quarantine pest (Annex II A),MALLRA,Neocerambyx raddei,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NCERAS,Neoceratitis asiatica,2024,Insecta
+N,A1 Quarantine pest (Annex II A),CERTCY,Neoceratitis cyanescens,2024,Insecta
+N,A1 Quarantine pest (Annex II A),GUIGLA,Neofusicoccum laricinum,2019,Fungi
+N,A1 Quarantine pest (Annex II A),GRCPHI,Neokolla hieroglyphica,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NKOLSE,Neokolla severini,2021,Insecta
+N,A1 Quarantine pest (Annex II A),NEOLEL,Neoleucinodes elegantalis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),NTPRFI,Neotephritis finalis,2024,Insecta
+N,A1 Quarantine pest (Annex II A),PVB000,Nepovirus betasolani,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),BLMOV0,Nepovirus myrtilli,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PRMV00,Nepovirus persicae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PBRSV0,Nepovirus solani,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),OEMOHI,Oemona hirta,2019,Insecta
+N,A1 Quarantine pest (Annex II A),OLIGPD,Oligonychus perditus,2019,Acari
+N,A1 Quarantine pest (Annex II A),ONCMFA,Oncometopia facialis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ONCMNI,Oncometopia nigricans,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ONCMUN,Oncometopia orbona,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ORAGDI,Oragua discoidula,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CSNV00,Orthotospovirus chrysanthinecrocaulis,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PGARCO,Pagaronia confusa,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PGARFU,Pagaronia furcata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PGARTR,Pagaronia tredecimpunctata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PGARTN,Pagaronia triunata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHYP56,Palm lethal yellowing type syndromes,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),ERWIST,Pantoea stewartii subsp. stewartii,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),PCANTR,Paracantha trinotata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PSTELI,Parastenopa limata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PTEPFU,Paratephritis fukaii,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PTEPTA,Paratephritis takeuchii,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PTLLVA,Paraterellia varipennis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PTHOGR,Parathona gratiosa,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHIPFO,Philophylla fossata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHYCFR,Phyllocoptes fructiphilus,2024,Acari
+N,A1 Quarantine pest (Annex II A),GUIGCI,Phyllosticta citricarpa,2019,Fungi
+N,A1 Quarantine pest (Annex II A),PHYSSL,Phyllosticta solitaria,2019,Fungi
+N,A1 Quarantine pest (Annex II A),PHMPOM,Phymatotrichopsis omnivora,2019,Fungi
+N,A1 Quarantine pest (Annex II A),PHRDMU,Phyrdenus muriceus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PHYTRA,Phytophthora ramorum,2019,Chromista
+N,A1 Quarantine pest (Annex II A),PISOCI,Pissodes cibriani,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOFA,Pissodes fasciatus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISONE,Pissodes nemorensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISONI,Pissodes nitidus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOPU,Pissodes punctatus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOST,Pissodes strobi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOTE,Pissodes terminalis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOYU,Pissodes yunnanensis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PISOZI,Pissodes zitacuarense,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PLSOCO,Plesiommata corniculata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PLSOMO,Plesiommata mollicella,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PLRV00,Polerovirus PLRV,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),POLGPR,Polygraphus proximus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),POOPCO,Poophilus costalis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PORPTR,Porphyrophora tritici,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PYV000,Potato yellowing virus,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PVX000,Potexvirus ecspotati,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1PREMG,Premnotrypes,2019,Insecta
+N,A1 Quarantine pest (Annex II A),1PROIG,Procecidochares,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PRDILO,Prodiplosis longifila,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CERCAN,Pseudocercospora angolensis,2019,Fungi
+N,A1 Quarantine pest (Annex II A),CERSPD,Pseudocercospora pini-densiflorae,2019,Fungi
+N,A1 Quarantine pest (Annex II A),PSDPMI,Pseudopityophthorus minutissimus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PSDPPR,Pseudopityophthorus pruinosus,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PTIOCO,Ptilona confinis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PTIOPE,Ptilona persimilis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PUCCPT,Puccinia pittieriana,2019,Fungi
+N,A1 Quarantine pest (Annex II A),RALSPS,Ralstonia pseudosolanacearum,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),RALSSC,Ralstonia syzygii subsp. celebesensis,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),RALSSI,Ralstonia syzygii subsp. indonesiensis,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),RPLV00,Raspberry latent virus,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),RLCV00,Raspberry leaf curl virus,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),1RHAGG,Rhagoletis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),RHAGFA,Rhagoletis fausta,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHAGIN,Rhagoletis indifferens,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHAGME,Rhagoletis mendax,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHAGPO,Rhagoletis pomonella,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHAGRI,Rhagoletis ribicola,2019,Insecta
+N,A1 Quarantine pest (Annex II A),RHGPTU,Rhigopsidius tucumanus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),RHYCPA,Rhynchophorus palmarum,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CRMAV0,Robigovirus robigomaculae,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),CTLAV0,Robigovirus tortifoliae,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),SDV000,Sadwavirus citri,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),SAPECN,Saperda candida,2019,Insecta
+N,A1 Quarantine pest (Annex II A),SCITAU,Scirtothrips aurantii,2019,Insecta
+N,A1 Quarantine pest (Annex II A),SCITCI,Scirtothrips citri,2019,Insecta
+N,A1 Quarantine pest (Annex II A),SCITDO,Scirtothrips dorsalis,2019,Insecta
+N,A1 Quarantine pest (Annex II A),1SCOLS,Scolytinae,2021,Insecta
+N,A1 Quarantine pest (Annex II A),SEPTLM,Septoria malagutii,2019,Fungi
+N,A1 Quarantine pest (Annex II A),SIBOSA,Sibovia sagata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),SONEGR,Sonesimia grossa,2021,Insecta
+N,A1 Quarantine pest (Annex II A),SFANBI,Sphaeniscus binoculatus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),MYCOPP,Sphaerulina musiva,2019,Fungi
+N,A1 Quarantine pest (Annex II A),SFENNI,Sphenella nigricornis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PRODER,Spodoptera eridania,2019,Insecta
+N,A1 Quarantine pest (Annex II A),LAPHFR,Spodoptera frugiperda,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PRODLI,Spodoptera litura,2019,Insecta
+N,A1 Quarantine pest (Annex II A),PHOMAN,Stagonosporopsis andigena,2019,Fungi
+N,A1 Quarantine pest (Annex II A),GNOMUL,Stegophora ulmea,2019,Fungi
+N,A1 Quarantine pest (Annex II A),1STRAG,Strauzia,2021,Insecta
+N,A1 Quarantine pest (Annex II A),STWLCV,Strawberry leaf curl virus,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PHYP39,Sweet potato little leaf phytoplasma,2021,Bacteria
+N,A1 Quarantine pest (Annex II A),TAOMMA,Taomyia marshalli,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TAPARU,Tapajosa rubromarginata,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TECASO,Tecia solanivora,2019,Insecta
+N,A1 Quarantine pest (Annex II A),TFDAV0,Temfrudevirus temperatum,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TEPRLE,Tephritis leavittensis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TEPRLU,Tephritis luteipes,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TEPROV,Tephritis ovatipennis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TEPRPU,Tephritis pura,2021,Insecta
+N,A1 Quarantine pest (Annex II A),PVT000,Tepovirus tafsolani,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),ARGPLE,Thaumatotibia leucotreta,2019,Insecta
+N,A1 Quarantine pest (Annex II A),THPHSO,Thecaphora solani,2019,Fungi
+N,A1 Quarantine pest (Annex II A),THRIPL,Thrips palmi,2019,Insecta
+N,A1 Quarantine pest (Annex II A),NEOVIN,Tilletia indica,2019,Fungi
+N,A1 Quarantine pest (Annex II A),TSVBL0,Tobacco streak virus black raspberry latent strain,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOCHV0,Tomato chocolàte virus,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),TOANV0,Torradovirus marchitezum,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),GINV00,Trichovirus necroacini,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),PCMV00,Trichovirus persicae,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),AELSSA,Trirachys sartus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRUPBI,Trupanea bisetosa,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRUPFE,Trupanea femoralis,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRUPWH,Trupanea wheeleri,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRYNNI,Trypanocentra nigrithorax,2021,Insecta
+N,A1 Quarantine pest (Annex II A),TRYEFL,Trypeta flaveola,2021,Insecta
+N,A1 Quarantine pest (Annex II A),APLV00,Tymovirus latandigenum,2019,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),APMMV0,Tymovirus mosandigenum,2021,Viruses and viroids
+N,A1 Quarantine pest (Annex II A),UNASCI,Unaspis citri,2019,Insecta
+N,A1 Quarantine pest (Annex II A),URORCH,Urophora christophi,2021,Insecta
+N,A1 Quarantine pest (Annex II A),VENTNA,Venturia nashicola,2019,Fungi
+N,A1 Quarantine pest (Annex II A),XANRIN,Xanthaciura insecta,2021,Insecta
+N,A1 Quarantine pest (Annex II A),XANTAU,Xanthomonas citri pv. aurantifolii,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),XANTCI,Xanthomonas citri pv. citri,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),XANTOR,Xanthomonas oryzae pv. oryzae,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),XANTTO,Xanthomonas oryzae pv. oryzicola,2019,Bacteria
+N,A1 Quarantine pest (Annex II A),XIPHAA,Xiphinema americanum sensu stricto,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHBC,Xiphinema bricolense,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHCA,Xiphinema californicum,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHIM,Xiphinema intermedium,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHNA,Xiphinema neoamericanum,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHRI,Xiphinema rivesi,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),XIPHTA,Xiphinema tarjanense,2019,Nematoda
+N,A1 Quarantine pest (Annex II A),CARNFL,Xyphon flaviceps,2021,Insecta
+N,A1 Quarantine pest (Annex II A),CARNFU,Xyphon fulgidum,2019,Insecta
+N,A1 Quarantine pest (Annex II A),CARNTR,Xyphon triguttatum,2021,Insecta
+N,A1 Quarantine pest (Annex II A),ZACEAS,Zacerata asparagi,2021,Insecta
+N,A1 Quarantine pest (Annex II A),1ZEUDG,Zeugodacus,2021,Insecta
+N,A1 Quarantine pest (Annex II A),DACUCU,Zeugodacus cucurbitae,2019,Insecta
+N,A1 Quarantine pest (Annex II A),ZONOEL,Zonosemata electa,2021,Insecta
+O,A2 Quarantine pest (Annex II B),ALECSN,Aleurocanthus spiniferus,2019,Insecta
+O,A2 Quarantine pest (Annex II B),ANOLCN,Anoplophora chinensis,2019,Insecta
+O,A2 Quarantine pest (Annex II B),ANOLGL,Anoplophora glabripennis,2022,Insecta
+O,A2 Quarantine pest (Annex II B),TOXOCI,Aphis citricidus,2019,Insecta
+O,A2 Quarantine pest (Annex II B),AROMBU,Aromia bungii,2019,Insecta
+O,A2 Quarantine pest (Annex II B),TOLCND,Begomovirus solanumdelhiense,2019,Viruses and viroids
+O,A2 Quarantine pest (Annex II B),BURSXY,Bursaphelenchus xylophilus,2019,Nematoda
+O,A2 Quarantine pest (Annex II B),CERAFP,Ceratocystis platani,2019,Fungi
+O,A2 Quarantine pest (Annex II B),CORBSE,Clavibacter sepedonicus,2019,Bacteria
+O,A2 Quarantine pest (Annex II B),GIBBCI,Fusarium circinatum,2019,Fungi
+O,A2 Quarantine pest (Annex II B),GEOHMO,Geosmithia morbida,2019,Fungi
+O,A2 Quarantine pest (Annex II B),HETDPA,Globodera pallida,2019,Nematoda
+O,A2 Quarantine pest (Annex II B),HETDRO,Globodera rostochiensis,2019,Nematoda
+O,A2 Quarantine pest (Annex II B),PHYP64,Grapevine flavescence dorée phytoplasma,2019,Bacteria
+O,A2 Quarantine pest (Annex II B),MELGCH,Meloidogyne chitwoodi,2019,Nematoda
+O,A2 Quarantine pest (Annex II B),MELGFA,Meloidogyne fallax,2019,Nematoda
+O,A2 Quarantine pest (Annex II B),PITOJU,Pityophthorus juglandis,2019,Insecta
+O,A2 Quarantine pest (Annex II B),1POMAG,Pomacea,2019,Gastropoda
+O,A2 Quarantine pest (Annex II B),POPIJA,Popillia japonica,2019,Insecta
+O,A2 Quarantine pest (Annex II B),RALSSL,Ralstonia solanacearum,2019,Bacteria
+O,A2 Quarantine pest (Annex II B),SYNCEN,Synchytrium endobioticum,2019,Fungi
+O,A2 Quarantine pest (Annex II B),TRIZER,Trioza erytreae,2019,Insecta
+O,A2 Quarantine pest (Annex II B),XYLEFA,Xylella fastidiosa,2019,Bacteria
+P,PZ Quarantine pest (Annex III),BEMITA,Bemisia tabaci,2019,Insecta
+P,PZ Quarantine pest (Annex III),BNYVV0,Benyvirus necrobetae,2019,Viruses and viroids
+P,PZ Quarantine pest (Annex III),PHYPUL,'Candidatus Phytoplasma ulmi',2019,Bacteria
+P,PZ Quarantine pest (Annex III),CEPCAL,Cephalcia lariciphila,2019,Insecta
+P,PZ Quarantine pest (Annex III),CTV000,Closterovirus tristezae,2019,Viruses and viroids
+P,PZ Quarantine pest (Annex III),GLOMGO,Colletotrichum gossypii,2019,Fungi
+P,PZ Quarantine pest (Annex III),ENDOPA,Cryphonectria parasitica,2019,Fungi
+P,PZ Quarantine pest (Annex III),VITEVI,Daktulosphaira vitifoliae,2019,Insecta
+P,PZ Quarantine pest (Annex III),DENCMI,Dendroctonus micans,2019,Insecta
+P,PZ Quarantine pest (Annex III),DRYCKU,Dryocosmus kuriphilus,2019,Insecta
+P,PZ Quarantine pest (Annex III),HYPOMA,Entoleuca mammata,2019,Fungi
+P,PZ Quarantine pest (Annex III),ERWIAM,Erwinia amylovora,2019,Bacteria
+P,PZ Quarantine pest (Annex III),GILPPO,Gilpinia hercyniae,2019,Insecta
+P,PZ Quarantine pest (Annex III),GONPSC,Gonipterus scutellatus species complex,2019,Insecta
+P,PZ Quarantine pest (Annex III),GREMAB,Gremmeniella abietina,2019,Fungi
+P,PZ Quarantine pest (Annex III),IPSXAM,Ips amitinus,2019,Insecta
+P,PZ Quarantine pest (Annex III),IPSXCE,Ips cembrae,2019,Insecta
+P,PZ Quarantine pest (Annex III),IPSXDU,Ips duplicatus,2019,Insecta
+P,PZ Quarantine pest (Annex III),IPSXSE,Ips sexdentatus,2019,Insecta
+P,PZ Quarantine pest (Annex III),IPSXTY,Ips typographus,2019,Insecta
+P,PZ Quarantine pest (Annex III),LPTNDE,Leptinotarsa decemlineata,2019,Insecta
+P,PZ Quarantine pest (Annex III),LIRIBO,Liriomyza bryoniae,2019,Insecta
+P,PZ Quarantine pest (Annex III),LIRIHU,Liriomyza huidobrensis,2019,Insecta
+P,PZ Quarantine pest (Annex III),LIRITR,Liriomyza trifolii,2019,Insecta
+P,PZ Quarantine pest (Annex III),PAYSAR,Paysandisia archon,2019,Insecta
+P,PZ Quarantine pest (Annex III),RHYCFE,Rhynchophorus ferrugineus,2019,Insecta
+P,PZ Quarantine pest (Annex III),CRYPMA,Sternochetus mangiferae,2019,Insecta
+P,PZ Quarantine pest (Annex III),THAUPI,Thaumetopoea pityocampa,2019,Insecta
+P,PZ Quarantine pest (Annex III),THAUPR,Thaumetopoea processionea,2019,Insecta
+P,PZ Quarantine pest (Annex III),XANTPR,Xanthomonas arboricola pv. pruni,2019,Bacteria
+Q,RNQP (Annex IV),ACANOB,Acanthoscelides obtectus,2019,Insecta
+Q,RNQP (Annex IV),ACUPFU,Aculops fuchsiae,2019,Acari
+Q,RNQP (Annex IV),1AGRBG,Agrobacterium,2019,Bacteria
+Q,RNQP (Annex IV),AGRBTU,Agrobacterium tumefaciens,2019,Bacteria
+Q,RNQP (Annex IV),ALTHFL,Aleurothrixus floccosus,2019,Insecta
+Q,RNQP (Annex IV),ALTELI,Alternaria linicola,2019,Fungi
+Q,RNQP (Annex IV),LCHV20,Ampelovirus nanoavii,2019,Viruses and viroids
+Q,RNQP (Annex IV),GLRAV3,Ampelovirus trivitis,2019,Viruses and viroids
+Q,RNQP (Annex IV),GLRAV1,Ampelovirus univitis,2019,Viruses and viroids
+Q,RNQP (Annex IV),APLOBE,Aphelenchoides besseyi,2019,Nematoda
+Q,RNQP (Annex IV),APLOBL,Aphelenchoides blastophthorus,2019,Nematoda
+Q,RNQP (Annex IV),APLOFR,Aphelenchoides fragariae,2019,Nematoda
+Q,RNQP (Annex IV),APLORI,Aphelenchoides ritzemabosi,2019,Nematoda
+Q,RNQP (Annex IV),APCF00,Apple chat fruit agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),AFL000,Apple flat limb agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),APRSK0,Apple rough skin agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),ARW000,Apple rubbery wood agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),ASSVD0,Apscaviroid cicatricimali,2019,Viruses and viroids
+Q,RNQP (Annex IV),ADFVD0,Apscaviroid fossulamali,2019,Viruses and viroids
+Q,RNQP (Annex IV),PBCVD0,Apscaviroid pustulapyri,2019,Viruses and viroids
+Q,RNQP (Annex IV),ARMIME,Armillaria mellea,2019,Fungi
+Q,RNQP (Annex IV),RYNV00,Badnavirus reterubi,2019,Viruses and viroids
+Q,RNQP (Annex IV),CHNMV0,Badnavirus tessellocastaneae,2019,Viruses and viroids
+Q,RNQP (Annex IV),GOVB00,Badnavirus venaribis,2019,Viruses and viroids
+Q,RNQP (Annex IV),TYLCV0,Begomovirus coheni,2019,Viruses and viroids
+Q,RNQP (Annex IV),BKY000,Blackcurrant yellows agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),PHOMEL,Boeremia linicola,2019,Fungi
+Q,RNQP (Annex IV),BOTRCI,Botrytis cinerea,2019,Fungi
+Q,RNQP (Annex IV),BRCHPI,Bruchus pisorum,2019,Insecta
+Q,RNQP (Annex IV),BRCHRU,Bruchus rufimanus,2019,Insecta
+Q,RNQP (Annex IV),LIBEPS,'Candidatus Liberibacter solanacearum',2019,Bacteria
+Q,RNQP (Annex IV),PHMBFR,'Candidatus Phlomobacter fragariae',2019,Bacteria
+Q,RNQP (Annex IV),PHYPAS,'Candidatus Phytoplasma asteris',2019,Bacteria
+Q,RNQP (Annex IV),PHYPFG,'Candidatus Phytoplasma fragariae',2019,Bacteria
+Q,RNQP (Annex IV),PHYPMA,'Candidatus Phytoplasma mali',2019,Bacteria
+Q,RNQP (Annex IV),PHYPPN,'Candidatus Phytoplasma pruni',2019,Bacteria
+Q,RNQP (Annex IV),PHYPPR,'Candidatus Phytoplasma prunorum',2019,Bacteria
+Q,RNQP (Annex IV),PHYPPY,'Candidatus Phytoplasma pyri',2019,Bacteria
+Q,RNQP (Annex IV),PHYPRU,'Candidatus Phytoplasma rubi',2019,Bacteria
+Q,RNQP (Annex IV),PHYPSO,'Candidatus Phytoplasma solani',2019,Bacteria
+Q,RNQP (Annex IV),ASGV00,Capillovirus mali,2019,Viruses and viroids
+Q,RNQP (Annex IV),PVM000,Carlavirus misolani,2019,Viruses and viroids
+Q,RNQP (Annex IV),PVS000,Carlavirus sigmasolani,2019,Viruses and viroids
+Q,RNQP (Annex IV),BLSCV0,Carlavirus vaccinii,2019,Viruses and viroids
+Q,RNQP (Annex IV),SVBV00,Caulimovirus venafragariae,2019,Viruses and viroids
+Q,RNQP (Annex IV),ERPHRI,Cecidophyopsis ribis,2019,Acari
+Q,RNQP (Annex IV),CERPRU,Ceroplastes rusci,2019,Insecta
+Q,RNQP (Annex IV),CHTSFR,Chaetosiphon fragaefolii,2019,Insecta
+Q,RNQP (Annex IV),STERPU,Chondrostereum purpureum,2019,Fungi
+Q,RNQP (Annex IV),CLBV00,Citrivirus citri,2019,Viruses and viroids
+Q,RNQP (Annex IV),CSCC00,Citrus cristacortis agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),CSI000,Citrus impietratura agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),CORBIN,Clavibacter insidiosus,2019,Bacteria
+Q,RNQP (Annex IV),CORBMI,Clavibacter michiganensis,2019,Bacteria
+Q,RNQP (Annex IV),RLMV00,Closterovirus macularubi,2019,Viruses and viroids
+Q,RNQP (Annex IV),CTV000,Closterovirus tristezae,2019,Viruses and viroids
+Q,RNQP (Annex IV),PHYP03,Clover phyllody phytoplasma,2019,Bacteria
+Q,RNQP (Annex IV),CBCVD0,Cocadviroid rimocitri,2021,Viruses and viroids
+Q,RNQP (Annex IV),COLLAC,Colletotrichum acutatum sensu lato,2019,Fungi
+Q,RNQP (Annex IV),COLLGL,Colletotrichum gloeosporioides sensu lato,2019,Fungi
+Q,RNQP (Annex IV),COLLLI,Colletotrichum lini,2019,Fungi
+Q,RNQP (Annex IV),QUADPE,Comstockaspis perniciosa,2019,Insecta
+Q,RNQP (Annex IV),PHYPFB,Cranberry false blossom phytoplasma,2019,Bacteria
+Q,RNQP (Annex IV),ENDOPA,Cryphonectria parasitica,2019,Fungi
+Q,RNQP (Annex IV),CMV000,Cucumovirus CMV,2019,Viruses and viroids
+Q,RNQP (Annex IV),SCRV00,Cytorhabdovirus fragariarugosus,2019,Viruses and viroids
+Q,RNQP (Annex IV),VITEVI,Daktulosphaira vitifoliae,2019,Insecta
+Q,RNQP (Annex IV),DASYTE,Dasineura tetensi,2019,Insecta
+Q,RNQP (Annex IV),ROSLNE,Dematophora necatrix,2019,Fungi
+Q,RNQP (Annex IV),DIAPPC,Diaporthe caulivora,2019,Fungi
+Q,RNQP (Annex IV),DIAPPS,Diaporthe sojae,2019,Fungi
+Q,RNQP (Annex IV),DIAPST,Diaporthe strumella,2019,Fungi
+Q,RNQP (Annex IV),DIAPVA,Diaporthe vaccinii,2019,Fungi
+Q,RNQP (Annex IV),1DICKG,Dickeya,2019,Bacteria
+Q,RNQP (Annex IV),ERWICD,Dickeya dianthicola,2019,Bacteria
+Q,RNQP (Annex IV),DITYDE,Ditylenchus destructor,2019,Nematoda
+Q,RNQP (Annex IV),DITYDI,Ditylenchus dipsaci,2019,Nematoda
+Q,RNQP (Annex IV),DOTSPI,Dothistroma pini,2019,Fungi
+Q,RNQP (Annex IV),SCIRPI,Dothistroma septosporum,2019,Fungi
+Q,RNQP (Annex IV),EPIDBE,Epidiaspis leperii,2019,Insecta
+Q,RNQP (Annex IV),ERISLA,Eriosoma lanigerum,2019,Insecta
+Q,RNQP (Annex IV),ERWIAM,Erwinia amylovora,2019,Bacteria
+Q,RNQP (Annex IV),MCRSGR,Erysiphe grossulariae,2019,Fungi
+Q,RNQP (Annex IV),EXOBVA,Exobasidium vaccinii,2019,Fungi
+Q,RNQP (Annex IV),ALV000,Foveavirus latensarmeniacae,2019,Viruses and viroids
+Q,RNQP (Annex IV),ASPV00,Foveavirus mali,2019,Viruses and viroids
+Q,RNQP (Annex IV),1FUSAG,Fusarium,2019,Fungi
+Q,RNQP (Annex IV),GIBBFU,Fusarium fujikuroi,2019,Fungi
+Q,RNQP (Annex IV),GODRCA,Godronia cassandrae,2019,Fungi
+Q,RNQP (Annex IV),HLCBBR,Helicobasidium brebissonii,2019,Fungi
+Q,RNQP (Annex IV),HETDFI,Heterodera fici,2019,Nematoda
+Q,RNQP (Annex IV),HSVD00,Hostuviroid impedihumuli,2019,Viruses and viroids
+Q,RNQP (Annex IV),RBDV00,Idaeovirus rubi,2019,Viruses and viroids
+Q,RNQP (Annex IV),APMV00,Ilarvirus ApMV,2019,Viruses and viroids
+Q,RNQP (Annex IV),BLSHV0,Ilarvirus BSV,2019,Viruses and viroids
+Q,RNQP (Annex IV),CVV000,Ilarvirus CVV,2019,Viruses and viroids
+Q,RNQP (Annex IV),PDV000,Ilarvirus PDV,2019,Viruses and viroids
+Q,RNQP (Annex IV),PNRSV0,Ilarvirus PNRSV,2019,Viruses and viroids
+Q,RNQP (Annex IV),SCIRAC,Lecanosticta acicola,2019,Fungi
+Q,RNQP (Annex IV),LONGAT,Longidorus attenuatus,2019,Nematoda
+Q,RNQP (Annex IV),LONGEL,Longidorus elongatus,2019,Nematoda
+Q,RNQP (Annex IV),LONGMA,Longidorus macrosoma,2019,Nematoda
+Q,RNQP (Annex IV),GFKV00,Maculavirus vitis,2019,Viruses and viroids
+Q,RNQP (Annex IV),MELGAR,Meloidogyne arenaria,2019,Nematoda
+Q,RNQP (Annex IV),MELGHA,Meloidogyne hapla,2019,Nematoda
+Q,RNQP (Annex IV),MELGIN,Meloidogyne incognita,2019,Nematoda
+Q,RNQP (Annex IV),MELGJA,Meloidogyne javanica,2019,Nematoda
+Q,RNQP (Annex IV),PEZIMA,Neofabraea malicorticis,2019,Fungi
+Q,RNQP (Annex IV),PEZIAL,Neofabraea vagabunda,2019,Fungi
+Q,RNQP (Annex IV),NECTGA,Neonectria ditissima,2019,Fungi
+Q,RNQP (Annex IV),ARMV00,Nepovirus arabis,2019,Viruses and viroids
+Q,RNQP (Annex IV),CLRV00,Nepovirus avii,2019,Viruses and viroids
+Q,RNQP (Annex IV),MLRSV0,Nepovirus cerasiferae,2019,Viruses and viroids
+Q,RNQP (Annex IV),GFLV00,Nepovirus foliumflabelli,2019,Viruses and viroids
+Q,RNQP (Annex IV),TORSV0,Nepovirus lycopersici,2024,Viruses and viroids
+Q,RNQP (Annex IV),TRSV00,Nepovirus nicotianae,2024,Viruses and viroids
+Q,RNQP (Annex IV),TBRV00,Nepovirus nigranuli,2019,Viruses and viroids
+Q,RNQP (Annex IV),BRAV00,Nepovirus ribis,2019,Viruses and viroids
+Q,RNQP (Annex IV),RPRSV0,Nepovirus rubi,2019,Viruses and viroids
+Q,RNQP (Annex IV),OLYAV0,Olivavirus flavioleae,2019,Viruses and viroids
+Q,RNQP (Annex IV),OVYAV0,Olive vein yellowing associated virus,2019,Viruses and viroids
+Q,RNQP (Annex IV),OYMDAV,Olive yellow mottling and decline associated virus,2019,Viruses and viroids
+Q,RNQP (Annex IV),CPSV00,Ophiovirus citri,2019,Viruses and viroids
+Q,RNQP (Annex IV),BLMAV0,Ophiovirus vaccinii,2019,Viruses and viroids
+Q,RNQP (Annex IV),OPOGSC,Opogona sacchari,2019,Insecta
+Q,RNQP (Annex IV),INSV00,Orthotospovirus impatiensnecromaculae,2019,Viruses and viroids
+Q,RNQP (Annex IV),TSWV00,Orthotospovirus tomatomaculae,2019,Viruses and viroids
+Q,RNQP (Annex IV),PRABMY,Parabemisia myricae,2019,Insecta
+Q,RNQP (Annex IV),PRBN00,Pear bark necrosis agent,2019,Viruses and viroids
+Q,RNQP (Annex IV),1PECBG,Pectobacterium,2019,Bacteria
+Q,RNQP (Annex IV),PLMVD0,Pelamoviroid latenspruni,2019,Viruses and viroids
+Q,RNQP (Annex IV),PSPESR,Peronospora sparsa,2019,Chromista
+Q,RNQP (Annex IV),TARSPA,Phytonemus pallidus,2019,Acari
+Q,RNQP (Annex IV),1PHYTG,Phytophthora,2019,Chromista
+Q,RNQP (Annex IV),PHYTCC,Phytophthora cactorum,2019,Chromista
+Q,RNQP (Annex IV),PHYTCM,Phytophthora cambivora,2019,Chromista
+Q,RNQP (Annex IV),PHYTCN,Phytophthora cinnamomi,2019,Chromista
+Q,RNQP (Annex IV),PHYTCO,Phytophthora citrophthora,2019,Chromista
+Q,RNQP (Annex IV),PHYTCR,Phytophthora cryptogea,2019,Chromista
+Q,RNQP (Annex IV),PHYTFR,Phytophthora fragariae,2019,Chromista
+Q,RNQP (Annex IV),PHYTNP,Phytophthora nicotianae var. parasitica,2019,Chromista
+Q,RNQP (Annex IV),PHYTRA,Phytophthora ramorum,2021,Chromista
+Q,RNQP (Annex IV),ERPHAV,Phytoptus avellanae,2019,Acari
+Q,RNQP (Annex IV),PLASHA,Plasmopara halstedii,2019,Chromista
+Q,RNQP (Annex IV),DEUTTR,Plenodomus tracheiphilus,2019,Fungi
+Q,RNQP (Annex IV),PODOAP,Podosphaera aphanis,2019,Fungi
+Q,RNQP (Annex IV),SPHRMU,Podosphaera mors-uvae,2019,Fungi
+Q,RNQP (Annex IV),PLRV00,Polerovirus PLRV,2019,Viruses and viroids
+Q,RNQP (Annex IV),CEVD00,Pospiviroid exocortiscitri,2019,Viruses and viroids
+Q,RNQP (Annex IV),PSTVD0,Pospiviroid fusituberis,2019,Viruses and viroids
+Q,RNQP (Annex IV),CSVD00,Pospiviroid impedichrysanthemi,2019,Viruses and viroids
+Q,RNQP (Annex IV),PVX000,Potexvirus ecspotati,2019,Viruses and viroids
+Q,RNQP (Annex IV),SMYEV0,Potexvirus fragariae,2019,Viruses and viroids
+Q,RNQP (Annex IV),PEPMV0,Potexvirus pepini,2019,Viruses and viroids
+Q,RNQP (Annex IV),LYSV00,Potyvirus ampeloprasi,2019,Viruses and viroids
+Q,RNQP (Annex IV),PVA000,Potyvirus atuberosi,2019,Viruses and viroids
+Q,RNQP (Annex IV),OYDV00,Potyvirus cepae,2019,Viruses and viroids
+Q,RNQP (Annex IV),PPV000,Potyvirus plumpoxi,2019,Viruses and viroids
+Q,RNQP (Annex IV),PVY000,Potyvirus yituberosi,2019,Viruses and viroids
+Q,RNQP (Annex IV),PRATPE,Pratylenchus penetrans,2019,Nematoda
+Q,RNQP (Annex IV),PRATVU,Pratylenchus vulnus,2019,Nematoda
+Q,RNQP (Annex IV),PSEAPE,Pseudaulacaspis pentagona,2019,Insecta
+Q,RNQP (Annex IV),PSDMAL,Pseudomonas avellanae,2019,Bacteria
+Q,RNQP (Annex IV),PSDMSA,Pseudomonas savastanoi pv. savastanoi,2019,Bacteria
+Q,RNQP (Annex IV),PSDMAK,Pseudomonas syringae pv. actinidiae,2021,Bacteria
+Q,RNQP (Annex IV),PSDMMP,Pseudomonas syringae pv. morsprunorum,2019,Bacteria
+Q,RNQP (Annex IV),PSDMPE,Pseudomonas syringae pv. persicae,2019,Bacteria
+Q,RNQP (Annex IV),PSDMSY,Pseudomonas syringae pv. syringae,2019,Bacteria
+Q,RNQP (Annex IV),PSDMVF,Pseudomonas viridiflava,2019,Bacteria
+Q,RNQP (Annex IV),1PSYLG,Psylla,2019,Insecta
+Q,RNQP (Annex IV),PUCCHN,Puccinia horiana,2019,Fungi
+Q,RNQP (Annex IV),THEKMI,Pucciniastrum minimum,2024,Fungi
+Q,RNQP (Annex IV),RAMUEN,Ramularia endophylla,2019,Fungi
+Q,RNQP (Annex IV),RVCV00,Raspberry vein chlorosis virus,2019,Viruses and viroids
+Q,RNQP (Annex IV),THOMTE,Resseliella theobaldi,2019,Insecta
+Q,RNQP (Annex IV),RHIZFR,Rhizoctonia fragariae,2019,Fungi
+Q,RNQP (Annex IV),RHIZSO,Rhizoctonia solani,2019,Fungi
+Q,RNQP (Annex IV),CORBFA,Rhodococcus fascians,2019,Bacteria
+Q,RNQP (Annex IV),RHYCFE,Rhynchophorus ferrugineus,2019,Insecta
+Q,RNQP (Annex IV),CRNRM0,Robigovirus necroavii,2019,Viruses and viroids
+Q,RNQP (Annex IV),CGRMV0,Robigovirus viridiavii,2019,Viruses and viroids
+Q,RNQP (Annex IV),SMOV00,Sadwavirus fragariae,2019,Viruses and viroids
+Q,RNQP (Annex IV),BRNV00,Sadwavirus rubi,2019,Viruses and viroids
+Q,RNQP (Annex IV),SKLPPA,Sclerophora pallida,2019,Fungi
+Q,RNQP (Annex IV),SCLESC,Sclerotinia sclerotiorum,2019,Fungi
+Q,RNQP (Annex IV),BSSV00,Sobemovirus BSSV,2019,Viruses and viroids
+Q,RNQP (Annex IV),BRRV00,Soymovirus maculavaccinii,2019,Viruses and viroids
+Q,RNQP (Annex IV),SPIRCI,Spiroplasma citri,2019,Bacteria
+Q,RNQP (Annex IV),SPONSU,Spongospora subterranea,2019,Protozoa
+Q,RNQP (Annex IV),SLRSV0,Stralarivirus fragariae,2019,Viruses and viroids
+Q,RNQP (Annex IV),PHYP75,Strawberry multiplier disease phytoplasma,2019,Bacteria
+Q,RNQP (Annex IV),SCLOCE,Stromatinia cepivora,2019,Fungi
+Q,RNQP (Annex IV),TETRUR,Tetranychus urticae,2019,Acari
+Q,RNQP (Annex IV),TOBRFV,Tobamovirus fructirugosum,2025,Viruses and viroids
+Q,RNQP (Annex IV),CMLV00,Trichovirus maculavii,2019,Viruses and viroids
+Q,RNQP (Annex IV),ACLSV0,Trichovirus mali,2019,Viruses and viroids
+Q,RNQP (Annex IV),TYLESE,Tylenchulus semipenetrans,2019,Nematoda
+Q,RNQP (Annex IV),LCHV10,Velarivirus nanoavii,2019,Viruses and viroids
+Q,RNQP (Annex IV),VERTAA,Verticillium alboatrum sensu lato,2019,Fungi
+Q,RNQP (Annex IV),VERTDA,Verticillium dahliae,2019,Fungi
+Q,RNQP (Annex IV),VERTDH,Verticillium dahliae hop strains,2019,Fungi
+Q,RNQP (Annex IV),VERTNO,Verticillium nonalfalfae,2019,Fungi
+Q,RNQP (Annex IV),VERTAH,Verticillium nonalfalfae hop strains,2019,Fungi
+Q,RNQP (Annex IV),XANTCY,Xanthomonas arboricola pv. corylina,2019,Bacteria
+Q,RNQP (Annex IV),XANTJU,Xanthomonas arboricola pv. juglandis,2019,Bacteria
+Q,RNQP (Annex IV),XANTPR,Xanthomonas arboricola pv. pruni,2019,Bacteria
+Q,RNQP (Annex IV),XANTFI,Xanthomonas campestris pv. fici,2019,Bacteria
+Q,RNQP (Annex IV),XANTFF,Xanthomonas citri pv. fuscans,2019,Bacteria
+Q,RNQP (Annex IV),XANTEU,Xanthomonas euvesicatoria pv. euvesicatoria,2019,Bacteria
+Q,RNQP (Annex IV),XANTPF,Xanthomonas euvesicatoria pv. perforans,2019,Bacteria
+Q,RNQP (Annex IV),XANTFR,Xanthomonas fragariae,2019,Bacteria
+Q,RNQP (Annex IV),XANTGA,Xanthomonas hortorum pv. gardneri,2019,Bacteria
+Q,RNQP (Annex IV),XANTPH,Xanthomonas phaseoli pv. phaseoli,2019,Bacteria
+Q,RNQP (Annex IV),XANTVE,Xanthomonas vesicatoria,2019,Bacteria
+Q,RNQP (Annex IV),XIPHDI,Xiphinema diversicaudatum,2019,Nematoda
+Q,RNQP (Annex IV),XIPHIN,Xiphinema index,2019,Nematoda
+Q,RNQP (Annex IV),XANTAM,Xylophilus ampelinus,2019,Bacteria

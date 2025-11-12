@@ -42,7 +42,7 @@
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param genus_species_canonical_col (logical, default TRUE) If TRUE
 #'   two new columns are added along with "currentCanonicalSimple":
-#'   "genus" and "specificEpithet"
+#'   "genusEpithet" and "specificEpithet"
 #' @param year_col (logical, default TRUE) If TRUE
 #'  a new column "namePublishedInYear" is added with the year of publication.
 #' @param authorship_col (logical, default TRUE) If TRUE three new columns are added:
@@ -143,7 +143,7 @@ gna_verifier_pq <- function(physeq = NULL,
   # Determine column names that will be added
   new_cols <- c("submittedName", "currentName", "currentCanonicalSimple")
   if (genus_species_canonical_col) {
-    new_cols <- c(new_cols, "genus", "specificEpithet")
+    new_cols <- c(new_cols, "genusEpithet", "specificEpithet")
   }
 
   # Check for column name collisions and handle col_prefix
@@ -187,7 +187,7 @@ gna_verifier_pq <- function(physeq = NULL,
   if (genus_species_canonical_col) {
     res_verifier_clean <- res_verifier_clean |>
       mutate(
-        genus = stringr::str_split_i(currentCanonicalSimple, " ", 1),
+        genusEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 1),
         specificEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 2)
       )
   }
