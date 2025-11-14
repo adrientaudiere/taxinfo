@@ -37,14 +37,14 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"></button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-">
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
-    <li><a class="dropdown-item" href="../articles/getting_started.html">Getting started</a></li>
-    <li><a class="dropdown-item" href="../articles/gbif_functions.html">GBIF functions</a></li>
-    <li><a class="dropdown-item" href="../articles/checking_taxa_presence.html">Checking taxa presence</a></li>
-    <li><a class="dropdown-item" href="../articles/external_information.html">Adding information using external sources</a></li>
+    <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started</a></li>
+    <li><a class="dropdown-item" href="../articles/gbif-functions.html">GBIF functions</a></li>
+    <li><a class="dropdown-item" href="../articles/checking-taxa-presence.html">Checking taxa presence</a></li>
+    <li><a class="dropdown-item" href="../articles/external-information.html">Adding information using external sources</a></li>
     <li><a class="dropdown-item" href="../articles/sbc.html">Species Bound Cluster (SBC)</a></li>
   </ul>
 </li>
@@ -71,7 +71,7 @@
                         <h4 data-toc-skip class="author">Adrien
 Taudiere</h4>
             
-            <h4 data-toc-skip class="date">2025-11-07</h4>
+            <h4 data-toc-skip class="date">2025-11-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/adrientaudiere/taxinfo/blob/HEAD/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="d-none name"><code>getting-started.Rmd</code></div>
@@ -300,7 +300,7 @@ Click to see output
 <span><span class="co">#&gt; ASV18 "Stereum ostrea (Blume &amp; T.Nees) Fr., 1838" "Stereum ostrea"      </span></span>
 <span><span class="co">#&gt; ASV25 "Ossicaulis lachnopus (Fr.) Contu, 2000"    "Ossicaulis lachnopus"</span></span>
 <span><span class="co">#&gt; ASV26 "Stereum hirsutum (Willd.) Pers., 1800"     "Stereum hirsutum"    </span></span>
-<span><span class="co">#&gt;       genus        specificEpithet namePublishedInYear authorship</span></span>
+<span><span class="co">#&gt;       genusEpithet specificEpithet namePublishedInYear authorship</span></span>
 <span><span class="co">#&gt; ASV7  NA           NA              NA                  NA        </span></span>
 <span><span class="co">#&gt; ASV8  "Stereum"    "ostrea"        "1838"              "Fr."     </span></span>
 <span><span class="co">#&gt; ASV12 "Xylodon"    NA              "1821"              "Gray"    </span></span>
@@ -424,41 +424,43 @@ Click to see messages
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Stereum hirsutum</span></span></span></code></pre>
 </details><details><summary>
 Click to see messages
-</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  2s<span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Basidiodendron eyrei</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Fomes fomentarius</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Cerocorticium molare</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Aporpium canescens</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■                  </span>  44% | ETA:  2s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
+</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Basidiodendron eyrei</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  2s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  2s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  1s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Fomes fomentarius</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  1s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Cerocorticium molare</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  1s<span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Aporpium canescens</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  1s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Processing GBIF occurrences for <span style="font-style: italic;">Hypochnicium analogum</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting taxonomic IDs from Wikidata...</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Stereum ostrea</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■                         </span>  20% | ETA: 21s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■                         </span>  20% | ETA: 23s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Ossicaulis lachnopus</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■                         </span>  20% | ETA: 21s<span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 18s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■                         </span>  20% | ETA: 23s<span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 20s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Stereum hirsutum</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 18s<span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% | ETA: 31s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 20s<span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% | ETA: 35s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Basidiodendron eyrei</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% | ETA: 31s<span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% | ETA: 31s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% | ETA: 17s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% | ETA: 35s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA: 25s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA: 25s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% | ETA: 19s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Fomes fomentarius</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% | ETA: 17s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 21s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% | ETA: 19s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 24s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Mycena renatii</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 21s<span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Cerocorticium molare</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 21s<span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Aporpium canescens</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 21s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 24s<span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Cerocorticium molare</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 24s<span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Aporpium canescens</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 24s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Hypochnicium analogum</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum ostrea</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>  10% |  ETA: 16s</span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>  10% |  ETA: 21s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Ossicaulis lachnopus</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>  10% |  ETA: 16s<span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum hirsutum</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>  10% |  ETA: 16sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA: 20s</span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>  10% |  ETA: 21sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■                         </span>  20% |  ETA: 13s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum hirsutum</span></span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■                         </span>  20% |  ETA: 13sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA: 20s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Basidiodendron eyrei</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA: 20s<span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA: 20sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% |  ETA: 11s</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Fomes fomentarius</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% |  ETA: 11sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14s</span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA: 20sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% |  ETA: 15s</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Sistotrema oblongisporum</span></span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% |  ETA: 15s<span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Fomes fomentarius</span></span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  40% |  ETA: 15sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Mycena renatii</span></span></span>
 <span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14s</span></span></code></pre>
 </details><details><summary>
@@ -476,9 +478,8 @@ Click to see warnings
 </details><details><summary>
 Click to see messages
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Aporpium canescens</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14sFetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  90% |  ETA:  3s</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hypochnicium analogum</span></span></span>
-<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  90% |  ETA:  3s</span></span></code></pre>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14s<span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hypochnicium analogum</span></span></span>
+<span><span class="co">#&gt; Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA: 14s</span></span></code></pre>
 </details><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"The enriched taxonomic table now has the following new columns: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">data_enriched</span><span class="op">@</span><span class="va">tax_table</span><span class="op">)</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">data_enriched</span><span class="op">@</span><span class="va">tax_table</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">data_clean</span><span class="op">@</span><span class="va">tax_table</span><span class="op">)</span><span class="op">]</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -515,17 +516,17 @@ Click to see output
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Antrodiella           <span style="text-decoration: underline;">20</span>584         <span style="color: #BB0000;">NA</span> Wood…      0     0                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Aporpium canesce…     <span style="text-decoration: underline;">10</span>784         <span style="color: #BB0000;">NA</span> Unde…      0     1                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Auricularia            <span style="text-decoration: underline;">9</span>895         <span style="color: #BB0000;">NA</span> Unde…      0     0                   0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Basidiodendron e…     <span style="text-decoration: underline;">19</span>661         36 Unde…     92     7                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Basidiodendron e…     <span style="text-decoration: underline;">19</span>661         37 Unde…     92     7                   1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Cerocorticium mo…     <span style="text-decoration: underline;">10</span>878         <span style="color: #BB0000;">NA</span> Unde…      0     0                   0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Fomes fomentarius     <span style="text-decoration: underline;">25</span>336      <span style="text-decoration: underline;">33</span>956 Wood…    462   474                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Fomes fomentarius     <span style="text-decoration: underline;">25</span>336      <span style="text-decoration: underline;">33</span>300 Wood…    462   475                   1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Helicogloea           <span style="text-decoration: underline;">11</span>053         <span style="color: #BB0000;">NA</span> Unde…      0     0                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Hypochnicium ana…     <span style="text-decoration: underline;">10</span>178         <span style="color: #BB0000;">NA</span> Unde…      0     1                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Mycena renatii        <span style="text-decoration: underline;">12</span>922         <span style="color: #BB0000;">NA</span> Leaf…      0     0                   0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Ossicaulis lachn…     <span style="text-decoration: underline;">33</span>792         49 Wood…      0     3                   0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Ossicaulis lachn…     <span style="text-decoration: underline;">33</span>792         41 Wood…      0     4                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Phanerochaete         <span style="text-decoration: underline;">10</span>215         <span style="color: #BB0000;">NA</span> Wood…      0     0                   0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Sistotrema oblon…     <span style="text-decoration: underline;">16</span>933         32 Ecto…     14     3                   1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Stereum hirsutum      <span style="text-decoration: underline;">20</span>660       <span style="text-decoration: underline;">2</span>876 Unde…    758   242                   1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Stereum ostrea        <span style="text-decoration: underline;">74</span>225       <span style="text-decoration: underline;">1</span>792 Unde…    466    35                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Sistotrema oblon…     <span style="text-decoration: underline;">16</span>933         33 Ecto…     14     3                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Stereum hirsutum      <span style="text-decoration: underline;">20</span>660       <span style="text-decoration: underline;">3</span>009 Unde…    758   244                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Stereum ostrea        <span style="text-decoration: underline;">74</span>225       <span style="text-decoration: underline;">1</span>762 Unde…    466    35                   1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Xylodon               <span style="text-decoration: underline;">38</span>237         <span style="color: #BB0000;">NA</span> Unde…      0     0                   0</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: taxa_name_italic &lt;chr&gt;</span></span></span></code></pre>
 </details><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
@@ -593,9 +594,9 @@ Click to see output
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   Global_occurences canonicalName        </span></span>
 <span><span class="co">#&gt;               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>            <span style="text-decoration: underline;">267</span>592 Amanita muscaria     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>             <span style="text-decoration: underline;">68</span>313 Boletus edulis       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>             <span style="text-decoration: underline;">66</span>039 Cantharellus cibarius</span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>            <span style="text-decoration: underline;">270</span>184 Amanita muscaria     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>             <span style="text-decoration: underline;">68</span>866 Boletus edulis       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>             <span style="text-decoration: underline;">66</span>181 Cantharellus cibarius</span></span></code></pre>
 </details><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Get Wikipedia information</span></span>
@@ -608,13 +609,13 @@ Click to see messages
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Amanita muscaria</span></span></span></code></pre>
 </details><details><summary>
 Click to see messages
-</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA: 29s</span></span></code></pre>
+</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA: 31s</span></span></code></pre>
 </details><details><summary>
 Click to see messages
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Boletus edulis</span></span></span></code></pre>
 </details><details><summary>
 Click to see messages
-</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA: 29s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
+</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA: 31s<span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Getting page views from Wikipedia for <span style="font-style: italic;">Cantharellus cibarius</span></span></span></code></pre>
 </details><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wiki_data</span><span class="op">)</span></span></code></pre></div>
@@ -623,9 +624,9 @@ Click to see output
 </summary><pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span></span>
 <span><span class="co">#&gt;    lang page_length page_views taxon_id taxa_name            </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    82      <span style="text-decoration: underline;">13</span>867.     <span style="text-decoration: underline;">343</span>399 Q131227  Amanita muscaria     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    81      <span style="text-decoration: underline;">13</span>898.     <span style="text-decoration: underline;">139</span>211 Q19740   Boletus edulis       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    66       <span style="text-decoration: underline;">6</span>448.      <span style="text-decoration: underline;">85</span>111 Q188749  Cantharellus cibarius</span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    82      <span style="text-decoration: underline;">13</span>868.     <span style="text-decoration: underline;">322</span>063 Q131227  Amanita muscaria     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    81      <span style="text-decoration: underline;">13</span>903.     <span style="text-decoration: underline;">120</span>485 Q19740   Boletus edulis       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    66       <span style="text-decoration: underline;">6</span>457.      <span style="text-decoration: underline;">76</span>159 Q188749  Cantharellus cibarius</span></span></code></pre>
 </details><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># When using taxnames, add_to_phyloseq is automatically set to FALSE</span></span>
@@ -650,13 +651,17 @@ will add fungal traits from a CSV file.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tax_info_pq.html">tax_info_pq</a></span><span class="op">(</span><span class="va">data_enriched</span>,</span>
-<span>  taxonomic_rank <span class="op">=</span> <span class="st">"genus"</span>,</span>
+<span>  taxonomic_rank <span class="op">=</span> <span class="st">"genusEpithet"</span>,</span>
 <span>  file_name <span class="op">=</span> <span class="va">fungal_traits</span>,</span>
 <span>  csv_taxonomic_rank <span class="op">=</span> <span class="st">"GENUS"</span>,</span>
 <span>  col_prefix <span class="op">=</span> <span class="st">"ft_"</span>,</span>
 <span>  sep <span class="op">=</span> <span class="st">";"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<details><summary>
+Click to see messages
+</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Added <span style="color: #0000BB;">18</span> columns from <span style="color: #0000BB;">/tmp/RtmpzSs0xf/temp_libpath12cc623bc558e/taxinfo/extdata/fun_trait_mini.csv</span> with information for <span style="color: #0000BB;">0</span> taxa in the tax_table slot of the phyloseq object</span></span></code></pre>
+</details><div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">data_final</span><span class="op">)</span></span></code></pre></div>
 <details><summary>
 Click to see output
@@ -775,7 +780,7 @@ areas.</p>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <details><summary>
 Click to see output
@@ -888,7 +893,7 @@ Click to see output
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>NULL</p>
+  <p>Funded by MITI (CNRS).</p>
 </div>
 
     </footer>

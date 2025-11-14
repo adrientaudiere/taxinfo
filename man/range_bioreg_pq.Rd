@@ -64,6 +64,7 @@ A wrapper of [gbif.range::get_gbif()] and [gbif.range::get_range()] functions
  `range_bioreg_pq(..., make_plot = TRUE)`.
 }
 \examples{
+\dontrun{
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
 
@@ -86,6 +87,7 @@ p <- plot_range_bioreg_pq(subset_taxa_pq(
 ), occ_samp = 500)
 
 p[[1]] / p[[2]]
+}
 }
 \seealso{
 [gbif.range::get_gbif()], [plot_tax_gbif_pq()], [gbif.range::get_range()]

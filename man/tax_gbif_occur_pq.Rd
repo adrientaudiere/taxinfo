@@ -78,7 +78,7 @@ ggplot(
   geom_col(aes(y = -log10(as.numeric(FR))), fill = "blue") +
   coord_flip() +
   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
- }
+}
 }
 \seealso{
 [rgbif::occ_search()], [plot_tax_gbif_pq()], [tax_occurr_pq()]

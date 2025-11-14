@@ -17,12 +17,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"></button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
-    <li><a class="dropdown-item" href="../articles/getting_started.html">Getting started</a></li>
-    <li><a class="dropdown-item" href="../articles/gbif_functions.html">GBIF functions</a></li>
-    <li><a class="dropdown-item" href="../articles/checking_taxa_presence.html">Checking taxa presence</a></li>
-    <li><a class="dropdown-item" href="../articles/external_information.html">Adding information using external sources</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started</a></li>
+    <li><a class="dropdown-item" href="../articles/gbif-functions.html">GBIF functions</a></li>
+    <li><a class="dropdown-item" href="../articles/checking-taxa-presence.html">Checking taxa presence</a></li>
+    <li><a class="dropdown-item" href="../articles/external-information.html">Adding information using external sources</a></li>
     <li><a class="dropdown-item" href="../articles/sbc.html">Species Bound Cluster (SBC)</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -55,6 +55,9 @@
 <li><p>Add params <code>year_col</code> and <code>authorship_col</code> to <code><a href="../reference/gna_verifier_pq.html">gna_verifier_pq()</a></code> to output year of publication and authorship information for each taxa.</p></li>
 <li><p>Add function <code><a href="../reference/intra_taxnames_dist.html">intra_taxnames_dist()</a></code> to compute pairwise DNA distances among taxa with the same taxonomic names.</p></li>
 <li><p>Add function <code><a href="../reference/cluster_sbc.html">cluster_sbc()</a></code> to (post)cluster taxa into SBC (Species bound cluster) defined as “clusters that include all and only ESVs assigned to one species, the sequence similarity threshold can vary between these clusters” by Riley <em>et al.</em> 2025 (<a href="https://doi.org/10.1186/s12915-025-02284-x" class="external-link uri">https://doi.org/10.1186/s12915-025-02284-x</a>). Also add a new vignette to illustrate the use of <code><a href="../reference/cluster_sbc.html">cluster_sbc()</a></code>.</p></li>
+<li><p>Print information when using <code><a href="../reference/tax_info_pq.html">tax_info_pq()</a></code> with <code>add_to_phyloseq = TRUE</code> to inform users that the phyloseq object is being updated.</p></li>
+<li><p>Add an example in <code><a href="../reference/tax_info_pq.html">tax_info_pq()</a></code> manual with the EPPO database to determine if pest species regulated in France are found in the example phyloseq object.</p></li>
+<li><p>Change the result column <code>genus</code> into <code>genusEpithet</code> from the <code><a href="../reference/gna_verifier_pq.html">gna_verifier_pq()</a></code> function to avoid confusion between “Genus” and “genus” columns and to debug the use of duckdb in <code>taxinfo_pq()</code>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-0-1-2">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-2"></a></h3>
@@ -81,7 +84,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>NULL</p>
+  <p>Funded by MITI (CNRS).</p>
 </div>
 
     </footer></div>

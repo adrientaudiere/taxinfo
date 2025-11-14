@@ -42,9 +42,10 @@ This function is mainly a wrapper of the work of others.
   Please cite `rgbif` package.
 }
 \examples{
+
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini) |>
-  tax_iucn_code_pq(data_fungi_mini_cleanNames)
+  tax_iucn_code_pq()
 
 table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
 

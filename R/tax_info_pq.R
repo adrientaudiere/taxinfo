@@ -133,7 +133,9 @@
 #'   col_prefix = "EPPO_"
 #' )
 #'
-#' res_with_EPPO_FR@tax_table  |> as.data.frame() |> filter(!is.na(EPPO_qlistlabel))
+#' res_with_EPPO_FR@tax_table |>
+#'   as.data.frame() |>
+#'   filter(!is.na(EPPO_qlistlabel))
 #' }
 tax_info_pq <- function(physeq = NULL,
                         taxnames = NULL,
@@ -252,7 +254,7 @@ tax_info_pq <- function(physeq = NULL,
       if (use_duck_db) {
         cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} in the tax_table slot of the phyloseq object")
       } else {
-        n_row_added <- sum(dplyr::pull(taxtab, taxonomic_rank) %in% dplyr::pull(info_df, csv_taxonomic_rank))
+        n_row_added <- sum(pull(taxtab, taxonomic_rank) %in% pull(info_df, csv_taxonomic_rank))
         cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} with information for {.val {n_row_added}} taxa in the tax_table slot of the phyloseq object")
       }
     }

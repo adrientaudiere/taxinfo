@@ -76,7 +76,7 @@ columns names added to the tax_table slot of the phyloseq object (default: NULL)
 
 \item{genus_species_canonical_col}{(logical, default TRUE) If TRUE
 two new columns are added along with "currentCanonicalSimple":
-"genus" and "specificEpithet"}
+"genusEpithet" and "specificEpithet"}
 
 \item{year_col}{(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.}

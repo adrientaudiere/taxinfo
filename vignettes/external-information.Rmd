@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "figures/",
   out.width = "100%",
-  collapse_output = TRUE 
+  collapse_output = TRUE
 )
 
 # Hook to wrap output in collapsible details
@@ -410,7 +410,7 @@ fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
 
 # Add trait information
 data_clean_ft <- tax_info_pq(data_clean_full,
-  taxonomic_rank = "genus",
+  taxonomic_rank = "genusEpithet",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",

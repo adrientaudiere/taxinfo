@@ -16,7 +16,8 @@ tax_info_pq(
   use_duck_db = FALSE,
   csv_cols_select = NULL,
   sep = ",",
-  dec = "."
+  dec = ".",
+  verbose = TRUE
 )
 }
 \arguments{
@@ -50,6 +51,8 @@ Useful for large csv files.}
 \item{sep}{the field separator character. See [utils::read.csv()].}
 
 \item{dec}{the field separator character. See [utils::read.csv()].}
+
+\item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
@@ -72,7 +75,7 @@ A function to add information from a custom csv file (e.g. FungalTraits,
  a new file.
 }
 \examples{
-
+\dontrun{
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
   data_sources = 210
 )
@@ -81,7 +84,7 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 # --------------------
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 fg_traits <- tax_info_pq(data_fungi_cleanNames,
-  taxonomic_rank = "genus",
+  taxonomic_rank = "genusEpithet",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
@@ -146,6 +149,23 @@ data_fungi_cleanNames_3@tax_table[, "st_BCD_ZDET"] |>
   table(useNA = "always")
 data_fungi_cleanNames_3@tax_table[, "st_BCD_TAXREF_STATUT_BIOGEO"] |>
   table(useNA = "always")
+
+#' # EPPO (Pest species) example (https://gd.eppo.int/)
+# --------------------
+# You can visit https://gd.eppo.int/ to download database for other countries
+# than France
+EPPO_FR <- system.file("extdata", "EPPO_regulated_FR.csv", package = "taxinfo")
+
+res_with_EPPO_FR <- tax_info_pq(data_fungi_cleanNames,
+  file_name = EPPO_FR,
+  csv_taxonomic_rank = "organism_prefname",
+  col_prefix = "EPPO_"
+)
+
+res_with_EPPO_FR@tax_table |>
+  as.data.frame() |>
+  filter(!is.na(EPPO_qlistlabel))
+}
 }
 \author{
 Adrien Taudiere

@@ -75,7 +75,7 @@ Retrieve information about taxa from wikipedia
 Taxa with only genus name are discarded.
 }
 \examples{
-
+\dontrun{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
 
 wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
@@ -106,6 +106,7 @@ subset_taxa(data_fungi_mini_cleanNames_wk_info, !is.na(page_views)) |>
   xlab("Page views log-10 transformed. Number denoted the number of language in #' wikipedia.
       Shape size is proportional to mean page lenght in wikipedia.") +
   ylab("")
+}
 }
 \seealso{
 [tax_get_wk_lang()], [tax_get_wk_pages_info()], [tax_photo_pq()]

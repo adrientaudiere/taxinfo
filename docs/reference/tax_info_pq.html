@@ -41,12 +41,12 @@ Note that the csv file need to be in a wide-format, i.e. one line for each
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"></button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
-    <li><a class="dropdown-item" href="../articles/getting_started.html">Getting started</a></li>
-    <li><a class="dropdown-item" href="../articles/gbif_functions.html">GBIF functions</a></li>
-    <li><a class="dropdown-item" href="../articles/checking_taxa_presence.html">Checking taxa presence</a></li>
-    <li><a class="dropdown-item" href="../articles/external_information.html">Adding information using external sources</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started</a></li>
+    <li><a class="dropdown-item" href="../articles/gbif-functions.html">GBIF functions</a></li>
+    <li><a class="dropdown-item" href="../articles/checking-taxa-presence.html">Checking taxa presence</a></li>
+    <li><a class="dropdown-item" href="../articles/external-information.html">Adding information using external sources</a></li>
     <li><a class="dropdown-item" href="../articles/sbc.html">Species Bound Cluster (SBC)</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -94,7 +94,8 @@ Note that the csv file need to be in a wide-format, i.e. one line for each
 <span>  use_duck_db <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  csv_cols_select <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sep <span class="op">=</span> <span class="st">","</span>,</span>
-<span>  dec <span class="op">=</span> <span class="st">"."</span></span>
+<span>  dec <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -154,6 +155,10 @@ Useful for large csv files.</p></dd>
 <dt id="arg-dec">dec<a class="anchor" aria-label="anchor" href="#arg-dec"></a></dt>
 <dd><p>the field separator character. See [utils::read.csv()].</p></dd>
 
+
+<dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
+<dd><p>(logical, default TRUE) If TRUE, prompt some messages.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -167,23 +172,16 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_cleanNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi</span>,</span></span>
 <span class="r-in"><span>  data_sources <span class="op">=</span> <span class="fl">210</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">1420</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">1010</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">359</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">300</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">16</span> (including <span style="color: #0000BB;">15</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">284</span> (including <span style="color: #0000BB;">136</span> at genus level)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># FUNGAL TRAITS example</span></span></span>
 <span class="r-in"><span><span class="co"># --------------------</span></span></span>
 <span class="r-in"><span><span class="va">fungal_traits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"fun_trait_mini.csv"</span>, package <span class="op">=</span> <span class="st">"taxinfo"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fg_traits</span> <span class="op">&lt;-</span> <span class="fu">tax_info_pq</span><span class="op">(</span><span class="va">data_fungi_cleanNames</span>,</span></span>
-<span class="r-in"><span>  taxonomic_rank <span class="op">=</span> <span class="st">"genus"</span>,</span></span>
+<span class="r-in"><span>  taxonomic_rank <span class="op">=</span> <span class="st">"genusEpithet"</span>,</span></span>
 <span class="r-in"><span>  file_name <span class="op">=</span> <span class="va">fungal_traits</span>,</span></span>
 <span class="r-in"><span>  csv_taxonomic_rank <span class="op">=</span> <span class="st">"GENUS"</span>,</span></span>
 <span class="r-in"><span>  col_prefix <span class="op">=</span> <span class="st">"ft_"</span>,</span></span>
@@ -196,20 +194,6 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Freq</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Freq</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                Var1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   wood_saprotroph</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 litter_saprotroph</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   wood_saprotroph</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        lichenized</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 litter_saprotroph</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    plant_pathogen</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                       Var2 Freq</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                          Wood Saprotroph   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Animal Pathogen-Endophyte-Lichen Parasite-Plant Pathogen-Wood Saprotroph   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                     Undefined Saprotroph    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                               Lichenized    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                           Plant Pathogen    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                           Plant Pathogen    5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># TAXREF example</span></span></span>
 <span class="r-in"><span><span class="co"># --------------------</span></span></span>
@@ -232,12 +216,6 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 <span class="r-in"><span>    <span class="st">"SPM"</span>, <span class="st">"MAY"</span>, <span class="st">"EPA"</span>, <span class="st">"REU"</span>, <span class="st">"SA"</span>, <span class="st">"TA"</span>, <span class="st">"TAAF"</span>, <span class="st">"PF"</span>, <span class="st">"NC"</span>, <span class="st">"WF"</span>, <span class="st">"CLI"</span>, <span class="st">"URL"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in db_copy_to(dest$con, name, df, overwrite = overwrite, types = types,     temporary = temporary, unique_indexes = unique_indexes, indexes = indexes,     analyze = analyze, in_transaction = in_transaction, ...):</span> Can't copy data to table <span style="color: #00BB00;">dbplyr_7vCBRVGSuE</span>.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `dplyr::db_write_table()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't write table table <span style="color: #00BB00;">dbplyr_7vCBRVGSuE</span>.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `.local()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> {"exception_type":"Binder","exception_message":"table \"r_dataframe_scan\" has duplicate column name \"genus\""}</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Context: rapi_register_df</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_cleanNames_2</span> <span class="op">&lt;-</span> <span class="fu">tax_info_pq</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">data_fungi_cleanNames</span>,</span></span>
@@ -247,16 +225,8 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 <span class="r-in"><span>  col_prefix <span class="op">=</span> <span class="st">"taxref_"</span>,</span></span>
 <span class="r-in"><span>  csv_cols_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RANG"</span>, <span class="st">"HABITAT"</span>, <span class="st">"FR"</span>, <span class="st">"URL"</span>, <span class="st">"CD_REF"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in db_copy_to(dest$con, name, df, overwrite = overwrite, types = types,     temporary = temporary, unique_indexes = unique_indexes, indexes = indexes,     analyze = analyze, in_transaction = in_transaction, ...):</span> Can't copy data to table <span style="color: #00BB00;">dbplyr_QDPFM7YCHj</span>.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `dplyr::db_write_table()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't write table table <span style="color: #00BB00;">dbplyr_QDPFM7YCHj</span>.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `.local()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> {"exception_type":"Binder","exception_message":"table \"r_dataframe_scan\" has duplicate column name \"genus\""}</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Context: rapi_register_df</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">data_fungi_cleanNames_2</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"taxref_FR"</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_2' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">data_fungi_cleanNames_2</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"taxref_HABITAT"</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_2' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># TAXREF example (with status)</span></span></span>
 <span class="r-in"><span><span class="co"># --------------------</span></span></span>
@@ -269,17 +239,30 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 <span class="r-in"><span>  col_prefix <span class="op">=</span> <span class="st">"st_"</span>,</span></span>
 <span class="r-in"><span>  use_duck_db <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_2' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_cleanNames_3</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"st_BCD_LRR"</span><span class="op">]</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span>useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_3' not found</span>
 <span class="r-in"><span><span class="va">data_fungi_cleanNames_3</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"st_BCD_ZDET"</span><span class="op">]</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span>useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_3' not found</span>
 <span class="r-in"><span><span class="va">data_fungi_cleanNames_3</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"st_BCD_TAXREF_STATUT_BIOGEO"</span><span class="op">]</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span>useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'data_fungi_cleanNames_3' not found</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#' # EPPO (Pest species) example (https://gd.eppo.int/)</span></span></span>
+<span class="r-in"><span><span class="co"># --------------------</span></span></span>
+<span class="r-in"><span><span class="co"># You can visit https://gd.eppo.int/ to download database for other countries</span></span></span>
+<span class="r-in"><span><span class="co"># than France</span></span></span>
+<span class="r-in"><span><span class="va">EPPO_FR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"EPPO_regulated_FR.csv"</span>, package <span class="op">=</span> <span class="st">"taxinfo"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">res_with_EPPO_FR</span> <span class="op">&lt;-</span> <span class="fu">tax_info_pq</span><span class="op">(</span><span class="va">data_fungi_cleanNames</span>,</span></span>
+<span class="r-in"><span>  file_name <span class="op">=</span> <span class="va">EPPO_FR</span>,</span></span>
+<span class="r-in"><span>  csv_taxonomic_rank <span class="op">=</span> <span class="st">"organism_prefname"</span>,</span></span>
+<span class="r-in"><span>  col_prefix <span class="op">=</span> <span class="st">"EPPO_"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">res_with_EPPO_FR</span><span class="op">@</span><span class="va">tax_table</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">EPPO_qlistlabel</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -291,7 +274,7 @@ object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>NULL</p>
+  <p>Funded by MITI (CNRS).</p>
 </div>
 
     </footer></div>

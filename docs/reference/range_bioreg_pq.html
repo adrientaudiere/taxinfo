@@ -31,12 +31,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"></button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
-    <li><a class="dropdown-item" href="../articles/getting_started.html">Getting started</a></li>
-    <li><a class="dropdown-item" href="../articles/gbif_functions.html">GBIF functions</a></li>
-    <li><a class="dropdown-item" href="../articles/checking_taxa_presence.html">Checking taxa presence</a></li>
-    <li><a class="dropdown-item" href="../articles/external_information.html">Adding information using external sources</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><h6 class="dropdown-header" data-toc-skip>Tutorials</h6></li>
+    <li><a class="dropdown-item" href="../articles/getting-started.html">Getting started</a></li>
+    <li><a class="dropdown-item" href="../articles/gbif-functions.html">GBIF functions</a></li>
+    <li><a class="dropdown-item" href="../articles/checking-taxa-presence.html">Checking taxa presence</a></li>
+    <li><a class="dropdown-item" href="../articles/external-information.html">Adding information using external sources</a></li>
     <li><a class="dropdown-item" href="../articles/sbc.html">Species Bound Cluster (SBC)</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -153,217 +153,30 @@ If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].</p
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_mini_cleanNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span>, data_source <span class="op">=</span> <span class="fl">210</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">45</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">37</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">2</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">25</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">4</span> (including <span style="color: #0000BB;">4</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">21</span> (including <span style="color: #0000BB;">15</span> at genus level)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">res_range</span> <span class="op">&lt;-</span> <span class="fu">range_bioreg_pq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_taxa-methods.html" class="external-link">subset_taxa</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">data_fungi_mini_cleanNames</span>,</span></span>
 <span class="r-in"><span>  <span class="va">currentCanonicalSimple</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xylodon flaviporus"</span>, <span class="st">"Basidiodendron eyrei"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span>, occ_samp <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 815 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Basidiodendron eyrei : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 34 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Xylodon flaviporus</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 2724 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylodon flaviporus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 10 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Xylodon flaviporus</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_range_bioreg_pq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_taxa-methods.html" class="external-link">subset_taxa</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">data_fungi_mini_cleanNames</span>,</span></span>
 <span class="r-in"><span>  <span class="va">currentCanonicalSimple</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xylodon flaviporus"</span>, <span class="st">"Basidiodendron eyrei"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span>, occ_samp <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 815 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Basidiodendron eyrei : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 28 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 34 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Xylodon flaviporus</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 2724 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylodon flaviporus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 10 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Xylodon flaviporus</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">/</span> <span class="va">p</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-plt img"><img src="range_bioreg_pq-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_range_bioreg_pq</span><span class="op">(</span><span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/subset_taxa_pq.html" class="external-link">subset_taxa_pq</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">data_fungi_mini_cleanNames</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/taxa_sums.html" class="external-link">taxa_sums</a></span><span class="op">(</span><span class="va">data_fungi_mini</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">20000</span></span></span>
 <span class="r-in"><span><span class="op">)</span>, occ_samp <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 0 taxa (  ) and 27 sample(s) ( AD26-005-B_S9_MERGED.fastq.gz / AD26-005-H_S10_MERGED.fastq.gz / ADABM30X-M_S16_MERGED.fastq.gz / B18-006-B_S19_MERGED.fastq.gz / BG7-010-H_S31_MERGED.fastq.gz / BQ4-018-M_S51_MERGED.fastq.gz / BV11-002-M_S59_MERGED.fastq.gz / CB8-019-H_S70_MERGED.fastq.gz / DJ2-008-H_S88_MERGED.fastq.gz / DS1-ABM002-B_S91_MERGED.fastq.gz / DY5-004-B_S96_MERGED.fastq.gz / DY5-004-H_S97_MERGED.fastq.gz / F6-ABM-001_S105_MERGED.fastq.gz / F7-015-M_S106_MERGED.fastq.gz / FOMES19-M_S109_MERGED.fastq.gz / J18-004-M_S116_MERGED.fastq.gz / N23-002-B_S130_MERGED.fastq.gz / NVABM-0163-H_S135_MERGED.fastq.gz / NVABM0216_S136_MERGED.fastq.gz / NVABM0244-M_S137_MERGED.fastq.gz / T28-ABM602-B_S162_MERGED.fastq.gz / W26-001-B_S165_MERGED.fastq.gz / W9-025-M_S169_MERGED.fastq.gz / X24-009-B_S170_MERGED.fastq.gz / X29-004-B_S174_MERGED.fastq.gz / Y28-002-B_S178_MERGED.fastq.gz / Z29-001-H_S185_MERGED.fastq.gz ).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of non-matching ASV 0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of matching ASV 45</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of filtered-out ASV 38</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept ASV 7</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept samples 110</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 6726 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum ostrea : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  33% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Ossicaulis lachnopus</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  9s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Ossicaulis lachnopus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 71 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 45 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Ossicaulis lachnopus</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Finding GBIF occurrence for <span style="font-style: italic;">Stereum hirsutum</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 85081 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Too many records: Retrieving relevant geographic tiles... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum hirsutum : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 3.33 %... ----------------- 6.67 %... ----------------- 10 %... ----------------- 13.33 %... ----------------- 16.67 %... ----------------- 20 %... ----------------- 23.33 %... ----------------- 26.67 %... ----------------- 30 %... ----------------- 33.33 %... ----------------- 36.67 %... ----------------- 40 %... ----------------- 43.33 %... ----------------- 46.67 %... ----------------- 50 %... ----------------- 53.33 %... ----------------- 56.67 %... ----------------- 60 %... ----------------- 63.33 %... ----------------- 66.67 %... ----------------- 70 %... ----------------- 73.33 %... ----------------- 76.67 %... ----------------- 80 %... ----------------- 83.33 %... ----------------- 86.67 %... ----------------- 90 %... ----------------- 93.33 %... ----------------- 96.67 %... ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 42 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1709 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 664 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1919 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Starting range computation for <span style="font-style: italic;">Stereum hirsutum</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">/</span> <span class="va">p</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-plt img"><img src="range_bioreg_pq-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -375,7 +188,7 @@ If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].</p
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>NULL</p>
+  <p>Funded by MITI (CNRS).</p>
 </div>
 
     </footer></div>

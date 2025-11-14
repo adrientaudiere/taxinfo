@@ -53,7 +53,7 @@
 #'   geom_col(aes(y = -log10(as.numeric(FR))), fill = "blue") +
 #'   coord_flip() +
 #'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
-#'  }
+#' }
 tax_gbif_occur_pq <- function(physeq = NULL,
                               taxnames = NULL,
                               taxonomic_rank = "currentCanonicalSimple",

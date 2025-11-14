@@ -61,6 +61,7 @@ Input can be either a taxon_id (Wikidata taxon identifier) or a tibble as
 returned by [tax_get_wk_lang()].
 }
 \examples{
+\dontrun{
 tax_get_wk_pages_info("Q10723171")
 tax_get_wk_pages_info("Q10723171", languages_pages = c("fr", "en"))
 tax_get_wk_pages_info("Q10723171", languages_pages = c("fr"))
@@ -82,6 +83,7 @@ tax_get_wk_pages_info(
   start_date = "2023-01-01",
   end_date = "2023-12-31"
 )
+}
 }
 \seealso{
 [tax_get_wk_lang()], [tax_get_wk_info_pq()], [tax_photo_pq()]

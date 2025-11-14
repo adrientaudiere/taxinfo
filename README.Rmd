@@ -1,6 +1,7 @@
 ---
-output: github_document
-  toc: true
+output:
+  github_document:
+    toc: true
 editor_options: 
   chunk_output_type: console
 ---
@@ -114,7 +115,7 @@ data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 # Step 3: Add trait information
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
 data_with_traits <- tax_info_pq(data_with_gbif,
-  taxonomic_rank = "genus",
+  taxonomic_rank = "genusEpithet",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",

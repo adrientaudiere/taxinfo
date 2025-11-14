@@ -44,7 +44,7 @@
 #' @export
 #' @seealso [tax_get_wk_lang()], [tax_get_wk_pages_info()], [tax_photo_pq()]
 #' @examples
-#'
+#' \dontrun{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
 #'
 #' wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
@@ -75,6 +75,7 @@
 #'   xlab("Page views log-10 transformed. Number denoted the number of language in #' wikipedia.
 #'       Shape size is proportional to mean page lenght in wikipedia.") +
 #'   ylab("")
+#' }
 tax_get_wk_info_pq <- function(physeq = NULL,
                                taxnames = NULL,
                                taxonomic_rank = "currentCanonicalSimple",
@@ -317,6 +318,7 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #' @export
 #' @seealso [tax_get_wk_lang()], [tax_get_wk_info_pq()], [tax_photo_pq()]
 #' @examples
+#' \dontrun{
 #' tax_get_wk_pages_info("Q10723171")
 #' tax_get_wk_pages_info("Q10723171", languages_pages = c("fr", "en"))
 #' tax_get_wk_pages_info("Q10723171", languages_pages = c("fr"))
@@ -338,6 +340,7 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #'   start_date = "2023-01-01",
 #'   end_date = "2023-12-31"
 #' )
+#' }
 tax_get_wk_pages_info <- function(taxon_id = NULL,
                                   tib_list = NULL,
                                   languages_pages = NULL,

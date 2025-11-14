@@ -35,6 +35,7 @@
 #' If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].
 #' @author Adrien Taudiere
 #' @examples
+#' \dontrun{
 #'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
 #'
@@ -57,6 +58,7 @@
 #' ), occ_samp = 500)
 #'
 #' p[[1]] / p[[2]]
+#' }
 range_bioreg_pq <- function(physeq = NULL,
                             taxnames = NULL,
                             taxonomic_rank = "currentCanonicalSimple",
