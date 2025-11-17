@@ -89,7 +89,6 @@ tax_gbif_occur_pq <- function(physeq = NULL,
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    select(-verbatim_index) |> # in order to duplicate
     distinct()
 
   if (by_country && by_years) {

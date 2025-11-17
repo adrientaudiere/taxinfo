@@ -25,7 +25,7 @@ if (getRversion() >= "2.15.1") {
       "spore_width_max", "spore_width_mean", "spore_width_min", "str_extract",
       "submittedName", "summarise", "sym", "target_taxon_Canonical", "taxa_id_for_join",
       "taxa_name", "taxa_names_in_phyloseq", "taxnames_species", "tbl", "theme",
-      "theme_void", "tibble", "type", "ungroup", "value", "verbatim_index",
+      "theme_void", "tibble", "type", "ungroup", "value",
       "% id. match", "Taxa name", "theme_minimal", "map_dfr", "map_int"
     )
   )

@@ -24,6 +24,12 @@
 
 - Change the result column `genus` into `genusEpithet` from the `gna_verifier_pq()` function to avoid confusion between "Genus" and "genus" columns and to debug the use of duckdb in `taxinfo_pq()`.
 
+
+## Bug fix
+
+- Fixed issue in functions `tax_gbif_occur_pq()` and `range_bioreg_pq()` due to the loss of the column verbatim_index in `rgbif::name_backbone_checklist()` (commit [c74602b](https://github.com/ropensci/rgbif/commit/c74602b1c50e9c5d1a1fd6251dcad23595a94345)).
+
+
 ## Documentation
 
 - Updated documentation for all functions to clarify the new default behavior of `add_to_phyloseq`.

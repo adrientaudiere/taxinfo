@@ -87,7 +87,6 @@ range_bioreg_pq <- function(physeq = NULL,
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    select(-verbatim_index) |> # in order to duplicate
     distinct()
 
   eco.terra <- gbif.range::read_bioreg(bioreg_name = "eco_terra", save_dir = NULL)
