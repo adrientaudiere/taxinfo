@@ -34,6 +34,8 @@ navbar:
         href: articles/checking-taxa-presence.html
       - text: Adding information using external sources
         href: articles/external-information.html
+      - text: Bayesian surprise
+        href: articles/surprise.html
       - text: Species Bound Cluster (SBC)
         href: articles/sbc.html
 

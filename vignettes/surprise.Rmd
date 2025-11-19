@@ -1,0 +1,89 @@
+---
+title: "Surprise"
+author: "Adrien Taudiere"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    theme: united
+    highlight: tango
+vignette: >
+  %\VignetteIndexEntry{Surprise}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%",
+  collapse_output = TRUE
+)
+
+# Hook to wrap output in collapsible details
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see output"
+      }
+      paste0(
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
+      )
+    } else {
+      paste0("```\n", x, "```\n")
+    }
+  },
+  message = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see messages"
+      }
+      paste0(
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
+      )
+    } else {
+      paste0("```\n", x, "```\n")
+    }
+  },
+  warning = function(x, options) {
+    if (!is.null(options$collapse_output)) {
+      summary_text <- if (is.character(options$collapse_output)) {
+        options$collapse_output
+      } else {
+        "Click to see warnings"
+      }
+      paste0(
+        "<details><summary>", summary_text, "</summary>\n\n",
+        "```\n", x, "```\n",
+        "</details>\n"
+      )
+    } else {
+      paste0("```\n", x, "```\n")
+    }
+  }
+)
+```
+
+/!\ Work in progress /!\
+
+In this vignette we will explore the notion of "Bayesian surprise" applied to the 
+presence of a given taxa in our sample(s). The idea is to quantify how surprising,
+(the ratio between prior and posterior probabilities) it is to find a given taxa
+in a given location.

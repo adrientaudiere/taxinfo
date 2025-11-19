@@ -168,7 +168,7 @@ data_enriched <- data_clean |>
   # Add OpenAlex publication data
   tax_oa_pq()
 
-message("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", "))
+print("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", "))
 ```
 
 
@@ -296,11 +296,10 @@ dim(data_final)
 
 ## Best Practices
 
-1. **Always start with name verification** using `gna_verifier_pq()`
-2. **Use appropriate data sources** for your taxonomic group
-3. **Set reasonable limits** for API calls to avoid timeouts
-4. **Cache results** for large datasets to avoid repeated API calls
-5. **Validate geographic occurrences** using occurrence checking functions
+1. **Use conservative way to identify taxa at the species level**, most taxinfo
+function rely directly on species-level identification
+2. **Always start with name verification** using `gna_verifier_pq()`
+3. **Use appropriate data sources** for your taxonomic group of interest
 
 ## Next Steps
 

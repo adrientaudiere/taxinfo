@@ -1,0 +1,272 @@
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figures/",
+  out.width = "100%"
+)
+
+# store warnings/messages per chunk
+.knitr_warnings <- list()
+.knitr_messages <- list()
+
+# simple escape for text to include safely in HTML (avoid htmltools dependency)
+html_escape <- function(x) {
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  x <- gsub(">", "&gt;", x, fixed = TRUE)
+  x <- gsub("\u00A0", " ", x, fixed = TRUE)
+  x
+}
+
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    paste0("```\n", x, "```\n")
+  },
+  message = function(x, options) {
+    label <- options$label %||% "unnamed"
+    if (is.null(.knitr_messages[[label]])) .knitr_messages[[label]] <<- character()
+    .knitr_messages[[label]] <<- c(.knitr_messages[[label]], x)
+    "" # suppress immediate output
+  },
+  warning = function(x, options) {
+    label <- options$label %||% "unnamed"
+    if (is.null(.knitr_warnings[[label]])) .knitr_warnings[[label]] <<- character()
+    .knitr_warnings[[label]] <<- c(.knitr_warnings[[label]], x)
+    "" # suppress immediate output
+  },
+  chunk = function(x, options) {
+    label <- options$label %||% paste0("chunk", as.integer(runif(1, 1, 1e6)))
+    result <- x
+
+    icons_html <- ""
+    popups_html <- ""
+
+    # messages popup
+    if (!is.null(.knitr_messages[[label]]) && length(.knitr_messages[[label]]) > 0) {
+      all_messages <- paste(.knitr_messages[[label]], collapse = "")
+      esc_messages <- html_escape(all_messages)
+      popups_html <- paste0(popups_html,
+        "<div id='msg-popup-", label, "' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'>",
+        "<button class='popup-close' aria-label='Close'>&times;</button>",
+        "<div class='popup-header'><strong>Messages</strong></div>",
+        "<pre class='popup-pre'>", esc_messages, "</pre>",
+        "</div>\n"
+      )
+      icons_html <- paste0(icons_html,
+        "<span class='popup-toggle' data-target='msg-popup-", label, "' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span>"
+      )
+      .knitr_messages[[label]] <<- NULL
+    }
+
+    # warnings popup
+    if (!is.null(.knitr_warnings[[label]]) && length(.knitr_warnings[[label]]) > 0) {
+      all_warnings <- paste(.knitr_warnings[[label]], collapse = "")
+      esc_warnings <- html_escape(all_warnings)
+      popups_html <- paste0(popups_html,
+        "<div id='warn-popup-", label, "' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'>",
+        "<button class='popup-close' aria-label='Close'>&times;</button>",
+        "<div class='popup-header'><strong>Warnings</strong></div>",
+        "<pre class='popup-pre'>", esc_warnings, "</pre>",
+        "</div>\n"
+      )
+      icons_html <- paste0(icons_html,
+        "<span class='popup-toggle' data-target='warn-popup-", label, "' title='Warnings' aria-haspopup='true' aria-expanded='false'>⚠</span>"
+      )
+      .knitr_warnings[[label]] <<- NULL
+    }
+
+    if (icons_html != "") {
+      result <- paste0(
+        "<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>\n",
+        "<div class='popup-icons' style='position: absolute; top: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'>",
+        icons_html,
+        "</div>\n",
+        popups_html,
+        result,
+        "</div>\n"
+      )
+    }
+
+    result
+  }
+)
+```
+
+```{css, echo=FALSE}
+.popup-icons .popup-toggle {
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.popup-toggle[data-target^="msg-popup-"] {
+  color: #2e7891;           
+}
+
+/* Warning color */
+.popup-toggle[data-target^="warn-popup-"] {
+  color: #aa4c26;          
+  font-weight: bold;
+}
+
+/* Tint pop-up borders to match icon color */
+div[id^="msg-popup-"] {
+  border-color: #2e7891;
+}
+div[id^="warn-popup-"] {
+  border-color: #aa4c26;
+}
+
+/* optional: colored header text */
+div[id^="msg-popup-"] .popup-header strong { color: #2e7891; }
+div[id^="warn-popup-"] .popup-header strong { color: #aa4c26; }
+
+/* popup base */
+.popup {
+  display: none; /* toggled by JS */
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  z-index: 1000;
+  max-width: 520px;
+  max-height: 420px;
+  overflow: auto;
+  width: auto;
+  box-sizing: border-box;
+}
+
+/* popup close button */
+.popup-close {
+  float: right;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: #666;
+  padding: 0 4px;
+}
+
+/* header and content */
+.popup-header {
+  margin-bottom: 6px;
+}
+.popup-pre {
+  margin: 0;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  line-height: 1.25;
+  overflow-x: auto;
+}
+
+  .sourceCode pre {
+    margin: 0 !important;
+    padding: 0.1em !important;
+    line-height: 1.2 !important;
+  }
+
+.sourceCode code {
+  line-height: 1.2 !important;
+}
+
+div.sourceCode {
+  margin: 0.2em 0 !important;
+}
+
+/* Ensure proper spacing in wrapped divs */
+  div[style*="position: relative"] > div.sourceCode,
+div[style*="position: relative"] > pre {
+  margin-top: 0 !important;
+  margin-bottom: 0.2em !important;
+}
+
+/* Fix spacing in pop-up pre elements */
+  div[id*="-popup-"] pre {
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+```
+
+```{js, echo=FALSE}
+// v10 JS: reliable toggle + close when clicking outside + Escape to close
+(function () {
+  function onReady(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  onReady(function () {
+    // delegate: handle toggle clicks
+    document.querySelectorAll('.popup-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var id = btn.getAttribute('data-target');
+        if (!id) return;
+        var popup = document.getElementById(id);
+        if (!popup) return;
+        var isVisible = popup.style.display === 'block';
+        // close any other popups first
+        document.querySelectorAll('.popup').forEach(function (p) {
+          p.style.display = 'none';
+          p.setAttribute('aria-hidden', 'true');
+        });
+        if (!isVisible) {
+          popup.style.display = 'block';
+          popup.setAttribute('aria-hidden', 'false');
+        } else {
+          popup.style.display = 'none';
+          popup.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    // stop clicks inside popup from bubbling to document
+    document.querySelectorAll('.popup').forEach(function (popup) {
+      popup.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+      });
+      // close button inside popup
+      var btn = popup.querySelector('.popup-close');
+      if (btn) {
+        btn.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          popup.style.display = 'none';
+          popup.setAttribute('aria-hidden', 'true');
+        });
+      }
+    });
+
+    // close on click outside any popup
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.popup').forEach(function (p) {
+        if (p.style.display && p.style.display !== 'none') {
+          p.style.display = 'none';
+          p.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' || ev.key === 'Esc') {
+        document.querySelectorAll('.popup').forEach(function (p) {
+          if (p.style.display && p.style.display !== 'none') {
+            p.style.display = 'none';
+            p.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+    });
+  });
+})();
+```

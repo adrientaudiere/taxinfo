@@ -1,7 +1,6 @@
 ---
 output:
-  github_document:
-    toc: true
+  github_document
 editor_options: 
   chunk_output_type: console
 ---
@@ -182,6 +181,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - All the members of the DEFIS MITI project, especially Mélanie Roy and Benoît Perez-Lamarque who lead the project.
 
-- The CNRS funding MITI that made this work possible.
+- This project has received financial support from the **CNRS** (*Centre National de la Recherche Scientifique*) through the MITI interdisciplinary programs (Project ***DEFIS*** - Exploration of Evolutionary Diversity of Fungi and its Indicators through High-Throughput Sequencing : from multi-actors challenges to long-term monitoring).
 
 - The developers of the R packages used in this project. A special thanks to Joey McMurdie (`phyloseq`), John Waller (`rgbif`), and Zachary Foster (`taxize`) for maintaining those useful tools.
