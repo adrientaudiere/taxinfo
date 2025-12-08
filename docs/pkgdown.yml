@@ -1,5 +1,5 @@
 pandoc: 3.6.3
-pkgdown: 2.1.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   checking-taxa-presence: checking-taxa-presence.html
@@ -7,7 +7,8 @@ articles:
   gbif-functions: gbif-functions.html
   getting-started: getting-started.html
   sbc: sbc.html
-last_built: 2025-11-13T19:12Z
+  surprise: surprise.html
+last_built: 2025-11-20T09:28Z
 urls:
   reference: https://adrientaudiere.github.io/taxinfo/reference
   article: https://adrientaudiere.github.io/taxinfo/articles

@@ -1,0 +1,74 @@
+# Text summary for a taxonomic rank
+
+Create a text to summarize the number of samples, taxa, sequences and
+occurrences of selected taxa in a phyloseq object for a given value in
+the column of a tax_table
+
+## Usage
+
+``` r
+taxa_summary_text(
+  physeq,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  verbose = TRUE,
+  min_nb_seq = 0,
+  ...
+)
+```
+
+## Arguments
+
+- physeq:
+
+  A phyloseq object
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (Character, default "currentCanonicalSimple") The column(s) present in
+  the @tax_table slot of the phyloseq object. Can be a vector of two
+  columns (e.g. c("Genus", "Species")).
+
+- verbose:
+
+  (logical, default TRUE) If TRUE, prompt some messages.
+
+- min_nb_seq:
+
+  minimum number of sequences by OTUs by samples to take into count this
+  OTUs in this sample. For example, if min_nb_seq=2,each value of 2 or
+  less in the OTU table will not count in the venn diagram
+
+- ...:
+
+  Additional arguments to pass to \[subset_taxa_pq()\].
+
+## Value
+
+A character string summarizing the number of samples, taxa, sequences
+and occurrences of the selected taxa.
+
+## Author
+
+Adrien Taudiere
+
+## Examples
+
+``` r
+taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
+#> Error: object 'data_fungi_cleanNames' not found
+taxa_summary_text(data_fungi_cleanNames,
+  taxnames = "Xylodon flaviporus",
+  min_nb_seq = 100, verbose = FALSE
+)
+#> Error: object 'data_fungi_cleanNames' not found
+taxa_summary_text(data_fungi_cleanNames,
+  taxonomic_rank = "Trait",
+  taxnames = c("Soft Rot"), verbose = FALSE
+)
+#> Error: object 'data_fungi_cleanNames' not found
+```

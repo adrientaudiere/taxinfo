@@ -1,0 +1,142 @@
+# Retrieve information about taxa from wikipedia
+
+Retrieve information about taxa from wikipedia
+
+## Usage
+
+``` r
+tax_get_wk_info_pq(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  verbose = TRUE,
+  languages_pages = NULL,
+  time_to_sleep = 0.3,
+  summarize_function_length = "mean",
+  summarize_function_views = "sum",
+  n_days = 30
+)
+```
+
+## Arguments
+
+- physeq:
+
+  (optional) A phyloseq object. Either \`physeq\` or \`taxnames\` must
+  be provided, but not both.
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (Character, default = "currentCanonicalSimple") The column(s) present
+  in the @tax_table slot of the phyloseq object. Can be a vector of two
+  columns (e.g. the c("Genus", "Species")).
+
+- add_to_phyloseq:
+
+  (logical, default TRUE when physeq is provided, FALSE when taxnames is
+  provided) If TRUE, a new phyloseq object is returned with new columns
+  in the tax_table. Automatically set to TRUE when a phyloseq object is
+  provided and FALSE when taxnames is provided. Cannot be TRUE if
+  \`taxnames\` is provided.
+
+- col_prefix:
+
+  A character string to be added as a prefix to the new columns names
+  added to the tax_table slot of the phyloseq object (default: NULL).
+
+- verbose:
+
+  (logical, default TRUE) If TRUE, prompt some messages.
+
+- languages_pages:
+
+  (Character vector or NULL, default NULL) If not NULL, only the
+  languages present in this vector will be queried. The language codes
+  are the two- or three-letter codes defined by ISO 639-1. For example,
+  c("en", "fr", "de") will query only the English, French and German
+  Wikipedia pages. If NULL (default), all languages will be queried. See
+  https://en.wikipedia.org/wiki/List_of_Wikipedias for the list of
+  language codes. Note that some taxa may not have pages in the
+  specified languages. In this case, the function will return NA for
+  these taxa.
+
+- time_to_sleep:
+
+  (numeric, default 0.3) Time to sleep between two calls to wikipedia
+  API.
+
+- summarize_function_length:
+
+  A function to summarize the page length across languages. Default is
+  "mean".
+
+- summarize_function_views:
+
+  A function to summarize the page views across languages. Default is
+  "sum".
+
+- n_days:
+
+  (numeric, default 30) Number of days to consider for the page views.
+
+## Value
+
+Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
+if add_to_phyloseq = TRUE, with new column(s) in the tax_table. The
+tibble contains the following columns: - \`lang\`: Number of languages
+in which the taxon has a wikipedia page - \`page_length\`: Mean length
+of the wikipedia pages (in characters) - \`page_views\`: Total number of
+page views over the last 'n_days' days - \`taxon_id\`: Wikidata taxon
+identifier (e.g. "Q10723171" for Stereum ostrea) - \`taxa_name\`:
+Taxonomic name used to query wikipedia
+
+## Details
+
+Taxa with only genus name are discarded.
+
+## See also
+
+\[tax_get_wk_lang()\], \[tax_get_wk_pages_info()\], \[tax_photo_pq()\]
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+
+wk_info <- tax_get_wk_info_pq(subset_taxa_pq(
+  data_fungi_mini_cleanNames,
+  taxa_sums(data_fungi_mini_cleanNames@otu_table) > 20000
+))
+
+data_fungi_mini_cleanNames_wk_info <-
+  tax_get_wk_info_pq(data_fungi_mini_cleanNames)
+
+subset_taxa(data_fungi_mini_cleanNames_wk_info, !is.na(page_views)) |>
+  tax_table() |>
+  as.data.frame() |>
+  distinct(currentCanonicalSimple, .keep_all = TRUE) |>
+  ggplot(
+    aes(
+      x = log10(as.numeric(page_views) + 1),
+      y = forcats::fct_reorder(currentCanonicalSimple, as.numeric(page_views)),
+      col = Order
+    )
+  ) +
+  geom_segment(aes(
+    x = 0, xend = log10(as.numeric(page_views) + 1),
+    y = currentCanonicalSimple, yend = currentCanonicalSimple
+  ), linewidth = 0.4) +
+  geom_point(aes(size = as.numeric(page_length)), shape = 15) +
+  geom_text(aes(label = lang), size = 2, color = "black") +
+  xlab("Page views log-10 transformed. Number denoted the number of language in #' wikipedia.
+      Shape size is proportional to mean page lenght in wikipedia.") +
+  ylab("")
+} # }
+```

@@ -19,66 +19,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "figures/",
-  out.width = "100%",
-  collapse_output = TRUE
-)
-
-# Hook to wrap output in collapsible details
-knitr::knit_hooks$set(
-  output = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see output"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  message = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see messages"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  warning = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see warnings"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  }
-)
+```{r child="includes/_styles.Rmd"}
 ```
 
 /!\ Work in progress /!\

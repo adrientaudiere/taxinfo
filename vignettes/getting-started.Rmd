@@ -19,66 +19,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "figures/",
-  out.width = "100%",
-  collapse_output = TRUE
-)
-
-# Hook to wrap output in collapsible details
-knitr::knit_hooks$set(
-  output = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see output"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  message = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see messages"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  warning = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see warnings"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  }
-)
+```{r child="includes/_styles.Rmd"}
 ```
 
 ```{r setup}
@@ -93,11 +34,10 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 
 **taxinfo** integrates with multiple authoritative data sources to enrich your taxonomic data:
 
-- **🔍 Data Verification**: Verify and standardize taxonomic names using Global Names Architecture
+- **🔍 Scientific Names Verification**: Verify and standardize taxonomic names using Global Names Architecture
 - **🌍 Biodiversity Data**: Access GBIF occurrence data and species interactions from GLOBI  
 - **📚 Knowledge Integration**: Retrieve Wikipedia data and scientific literature from OpenAlex
 - **🗺️ Geographic Analysis**: Analyze biogeographic ranges and create distribution maps
-- **🔬 Advanced Tools**: Sequence-based verification and multi-source occurrence validation
 
 ## Main Data Sources
 
@@ -108,7 +48,7 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 | **GLOBI** | Species interaction networks | `tax_globi_pq()` |
 | **OpenAlex** | Scientific literature database | `tax_oa_pq()` |
 | **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
-| **Custom CSV** | Any taxonomic database in CSV format | `tax_info_pq()` |
+| **Custom CSV** | Any database in CSV format with a column documenting Taxonomic information | `tax_info_pq()` |
 
 ## Basic Workflow
 
@@ -168,7 +108,7 @@ data_enriched <- data_clean |>
   # Add OpenAlex publication data
   tax_oa_pq()
 
-print("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", "))
+print(paste("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", ")))
 ```
 
 

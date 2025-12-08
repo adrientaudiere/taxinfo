@@ -9,66 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "figures/",
-  out.width = "100%",
-  collapse_output = TRUE
-)
-
-# Hook to wrap output in collapsible details
-knitr::knit_hooks$set(
-  output = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see output"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  message = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see messages"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  warning = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see warnings"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  }
-)
+```{r child="includes/_styles.Rmd"}
 ```
 
 ```{r setup}
@@ -135,7 +76,7 @@ leaflet() |>
 
 ### Setting Up the Data
 
-```{r}
+```{r, fig.alt="Summary of a phyloseq object"}
 # Load example data
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -146,7 +87,7 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 summary_plot_pq(data_clean)
 ```
 
-```{r"}
+```{r}
 head(data_clean@tax_table[, c("Genus", "Species", "currentCanonicalSimple")])
 ```
 
@@ -177,7 +118,7 @@ head(occurrence_check)
 
 Here's what occurrence checking results might look like:
 
-```{r echo=FALSE, fig.cap="Example occurrence pattern showing global vs local occurrences", fig.alt="Horizontal bar chart showing GBIF occurrence counts for taxa within a 100km radius around a sampling location. Bars are colored by genus and show the ratio of local occurrences (within radius) to total global occurrences. Taxa names are ordered by count in radius from lowest to highest.", out.width="100%"}
+```{r echo=FALSE, fig.alt="Horizontal bar chart showing GBIF occurrence counts for taxa within a 100km radius around a sampling location. Bars are colored by genus and show the ratio of local occurrences (within radius) to total global occurrences. Taxa names are ordered by count in radius from lowest to highest.", out.width="100%"}
 library(ggplot2)
 occurrence_check |>
   mutate(Genus = stringr::word(taxa_name, 1)) |>
@@ -299,7 +240,6 @@ knitr::kable(compar)
 For studies with multiple sampling sites:
 
 ```{r}
-# Define random multiple sampling locations
 sample_locations <- data.frame(
   longitude = rnorm(nsamples(data_clean), mean = 2, sd = 0.2),
   latitude = rnorm(nsamples(data_clean), mean = 48, sd = 0.2)
@@ -420,13 +360,13 @@ data_complete <- data_fungi_mini |>
   subset_taxa(as.numeric(count_in_radius) > 0) |> # Keep only taxa known in a radius of 100km
   # 3. Add GBIF occurrence data
   tax_gbif_occur_pq() |>
-  # 4. Filter based on frequency in samples
-  filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) |> # Keep taxa in >2 samples
+  # 4. Filter based on frequency in samples (Keep taxa in >2 samples)
+  filter_taxa(function(x) sum(x > 0) > 2, prune = TRUE) |>
   # 5. Remove empty samples and taxa
   clean_pq()
+```
 
-
-# Final enhanced dataset
+```{r}
 data_complete@tax_table[1:5, ]
 ```
 

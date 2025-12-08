@@ -9,66 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "figures/",
-  out.width = "100%",
-  collapse_output = TRUE
-)
-
-# Hook to wrap output in collapsible details
-knitr::knit_hooks$set(
-  output = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see output"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  message = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see messages"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  },
-  warning = function(x, options) {
-    if (!is.null(options$collapse_output)) {
-      summary_text <- if (is.character(options$collapse_output)) {
-        options$collapse_output
-      } else {
-        "Click to see warnings"
-      }
-      paste0(
-        "<details><summary>", summary_text, "</summary>\n\n",
-        "```\n", x, "```\n",
-        "</details>\n"
-      )
-    } else {
-      paste0("```\n", x, "```\n")
-    }
-  }
-)
+```{r child="includes/_styles.Rmd"}
 ```
 
 ```{r setup}
@@ -118,7 +59,7 @@ data_clean_gbif <- tax_gbif_occur_pq(data_clean)
 
 Here's an example of what GBIF occurrence data visualization can look like:
  
-```{r echo=FALSE, fig.cap="GBIF occurrence counts by taxon", fig.alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis.", out.width="100%"}
+```{r echo=FALSE, fig.alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis.", out.width="100%"}
 data_clean_gbif@tax_table |>
   as.data.frame() |>
   mutate(occurrences = as.numeric(Global_occurences)) |>

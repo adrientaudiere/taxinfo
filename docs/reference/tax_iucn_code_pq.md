@@ -1,0 +1,91 @@
+# Get iucn conservation status through gbif
+
+Get iucn conservation status through gbif
+
+## Usage
+
+``` r
+tax_iucn_code_pq(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL
+)
+```
+
+## Arguments
+
+- physeq:
+
+  (optional) A phyloseq object. Either \`physeq\` or \`taxnames\` must
+  be provided, but not both.
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (Character, default "currentCanonicalSimple") The column(s) present in
+  the @tax_table slot of the phyloseq object. Can be a vector of two
+  columns (e.g. c("Genus", "Species")).
+
+- add_to_phyloseq:
+
+  (logical, default TRUE when physeq is provided, FALSE when taxnames is
+  provided) If TRUE, add a new column (iucn_code) in the tax_table of
+  the phyloseq object. Automatically set to TRUE when a phyloseq object
+  is provided and FALSE when taxnames is provided. Cannot be TRUE if
+  \`taxnames\` is provided.
+
+- col_prefix:
+
+  A character string to be added as a prefix to the new columns names
+  added to the tax_table slot of the phyloseq object (default: NULL).
+
+## Value
+
+Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
+if add_to_phyloseq = TRUE, with 1 new column (iucn_code) in the
+tax_table.
+
+## Details
+
+This function is mainly a wrapper of the work of others. Please cite
+\`rgbif\` package.
+
+## See also
+
+\[tax_info_pq()\], \[rgbif::name_usage()\]
+
+## Author
+
+Adrien Taudiere
+
+## Examples
+
+``` r
+data_fungi_mini_cleanNames <-
+  gna_verifier_pq(data_fungi_mini) |>
+  tax_iucn_code_pq()
+#> ✔ GNA verification summary:
+#> • Total taxa in phyloseq: 45
+#> • Taxa submitted for verification: 37
+#> • Genus-level only taxa: 2
+#> • Total matches found: 25
+#> • Synonyms: 2 (including 2 at genus level)
+#> • Accepted names: 23 (including 21 at genus level)
+#> Joining with `by = join_by(taxa_name)`
+
+table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
+#> 
+#> NE VU 
+#> 30  1 
+
+# Using taxnames vector (returns a tibble)
+tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
+#>   iucn_code        taxa_name
+#> 1        NE Amanita muscaria
+#> 2        LC   Boletus edulis
+```

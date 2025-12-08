@@ -1,0 +1,200 @@
+# Verify (and fix) scientific names (Genus species) of a phyloseq object.
+
+A wrapper of \[taxize::gna_verifier()\] apply to phyloseq object
+
+## Usage
+
+``` r
+gna_verifier_pq(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = c("Genus", "Species"),
+  data_sources = c(1, 12),
+  all_matches = FALSE,
+  capitalize = FALSE,
+  species_group = FALSE,
+  fuzzy_uninomial = FALSE,
+  stats = FALSE,
+  main_taxon_threshold = 0.5,
+  verbose = TRUE,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  genus_species_canonical_col = TRUE,
+  year_col = TRUE,
+  authorship_col = TRUE
+)
+```
+
+## Arguments
+
+- physeq:
+
+  (optional) A phyloseq object. Either \`physeq\` or \`taxnames\` must
+  be provided, but not both.
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (Character) The column(s) present in the @tax_table slot of the
+  phyloseq object. Can be a vector of two columns (e.g. the default
+  c("Genus", "Species")).
+
+- data_sources:
+
+  A character or integer vector. See \[taxize::gna_verifier()\]
+  documentation. For example, 1=Catalogue of Life, 3=ITIS, 5=Index
+  Fungarum, 11=GBIF backbone and 210=TaxRef.
+
+- all_matches:
+
+  (Logical) See \[taxize::gna_verifier()\] documentation.
+
+- capitalize:
+
+  (Logical) See \[taxize::gna_verifier()\] documentation.
+
+- species_group:
+
+  (Logical) See \[taxize::gna_verifier()\] documentation.
+
+- fuzzy_uninomial:
+
+  (Logical) See \[taxize::gna_verifier()\] documentation.
+
+- stats:
+
+  (Logical) See \[taxize::gna_verifier()\] documentation.
+
+- main_taxon_threshold:
+
+  (numeric) See \[taxize::gna_verifier()\] documentation.
+
+- verbose:
+
+  (logical, default TRUE) If TRUE, prompt some messages.
+
+- add_to_phyloseq:
+
+  (logical, default TRUE when physeq is provided, FALSE when taxnames is
+  provided)
+
+  \- If FALSE, return the result of the \[taxize::gna_verifier()\]
+  function + a column taxa_names_in_phyloseq depicting the name of the
+  taxa from the phyloseq object.
+
+  \- If TRUE return a phyloseq object with amended slot \`@taxtable\`.
+  Cannot be TRUE if \`taxnames\` is provided. At least three new columns
+  are added: - \*\*taxa_name\*\*: The character string sent to
+  gna_verifier (e.g. \`Antrodiella brasiliensis\`) -
+  \*\*currentName\*\*: The current accepted name (resolve the synonym)
+  with autorities at the end of the binominal name (e.g. \`Trametopsis
+  brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)\`. -
+  \*\*currentCanonicalSimple\*\*: The current accepted name without
+  autorities (e.g. \`Trametopsis brasiliensis\`).
+
+  Other columns can be added depending on the parameters:
+  \`genus_species_canonical_col\`, \`year_col\`, \`authorship\`.
+
+- col_prefix:
+
+  A character string to be added as a prefix to the new columns names
+  added to the tax_table slot of the phyloseq object (default: NULL).
+
+- genus_species_canonical_col:
+
+  (logical, default TRUE) If TRUE two new columns are added along with
+  "currentCanonicalSimple": "genusEpithet" and "specificEpithet"
+
+- year_col:
+
+  (logical, default TRUE) If TRUE a new column "namePublishedInYear" is
+  added with the year of publication.
+
+- authorship_col:
+
+  (logical, default TRUE) If TRUE three new columns are added:
+  "authorship", "bracketauthorship" and "scientificNameAuthorship".
+
+## Value
+
+Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
+with new columns (see param add_to_phyloseq) in the tax_table slot.
+
+## Details
+
+This function is mainly a wrapper of the work of others. Please cite
+\`taxize\` package.
+
+## See also
+
+\[taxize::gna_verifier()\]
+
+## Author
+
+Adrien Taudiere
+
+## Examples
+
+``` r
+df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
+#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
+#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
+#> Warning: Unknown or uninitialised column: `matchedCardinality`.
+#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
+#> Warning: Unknown or uninitialised column: `matchedCardinality`.
+#> ✔ GNA verification summary:
+#> • Taxa submitted for verification: 373
+#> • Total matches found: 0
+#> • Synonyms: 0 (including 0 at genus level)
+#> • Accepted names: 0 (including 0 at genus level)
+
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+#> ✔ GNA verification summary:
+#> • Total taxa in phyloseq: 45
+#> • Taxa submitted for verification: 37
+#> • Genus-level only taxa: 2
+#> • Total matches found: 25
+#> • Synonyms: 4 (including 4 at genus level)
+#> • Accepted names: 21 (including 15 at genus level)
+
+if (FALSE) { # \dontrun{
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+
+sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))
+sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] !=
+  data_fungi_cleanNames@tax_table[, "taxa_name"], na.rm = TRUE)
+# 1010 taxa (71% of total) are identified using a currentName including 434
+# corrected values (correction using synonym disambiguation)
+
+
+tr <- rotl_pq(data_fungi_cleanNames,
+  taxonomic_rank = "currentCanonicalSimple",
+  context_name = "Basidiomycetes"
+)
+
+p <- ggtree::ggtree(tr, layout = "roundrect") +
+  ggtree::geom_nodelab(hjust = 1, vjust = -1.2, size = 2) +
+  ggtree::geom_tiplab(size = 2)
+
+p + xlim(0, max(p$data$x) + 1)
+
+
+psmelt(data_fungi_mini_cleanNames) |>
+  filter(Abundance > 0) |>
+  mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+  pull(namePublishedInYear) |>
+  hist(breaks = 100)
+
+
+# Does the fungal species discovered more recently tend to be found at
+# greater heights in the tree?
+psmelt(data_fungi_mini_cleanNames) |>
+  filter(Abundance > 0) |>
+  group_by(Height) |>
+  mutate(namePublishedInYear = as.numeric(namePublishedInYear)) |>
+  ggstatsplot::ggbetweenstats("Height", "namePublishedInYear")
+} # }
+```

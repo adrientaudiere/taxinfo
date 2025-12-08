@@ -61,11 +61,17 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
  object, if add_to_phyloseq = TRUE, with 1 (`n_doi`) or 4 (`n_doi`,
  `list_doi`, `n_citation` and `list_keywords`
  if `count_only` is FALSE) new column(s) in the tax_table.
+
+ - n_doi: number of publications citing this taxa in title or abstract
+ - list_doi: list of DOIs separate by ";"
+ - n_citation: total number of citations for all publications citing this taxa
+ - list_keywords: list of keywords from all publications citing this taxa
 }
 \description{
 A wrapper of [openalexR::oa_fetch()] function to get the number of
   scientific works (and a list of doi if count_only is set to FALSE) for each
-  taxa of a phyloseq object
+  taxa of a phyloseq object. Each taxa name is searched in the title and abstract
+  of the works present in Open Alex database.
 }
 \details{
 This function is mainly a wrapper of the work of others.
