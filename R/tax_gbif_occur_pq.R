@@ -2,8 +2,7 @@
 #'
 #' @description
 #' A wrapper of [rgbif::occ_search()] function to get the number of occurences.
-#' Optionally, the number of occurrences can be obtained by years, by country, or
-#' altitude range statistics can be retrieved.
+#' Optionally, the number of occurrences can be obtained by years or by country.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxnames (optional) A character vector of taxonomic names.
@@ -20,11 +19,6 @@
 #'   is computed by country
 #' @param by_years (logical, default FALSE) If TRUE, the number of occurences
 #'   is computed by years
-#' @param get_altitude (logical, default FALSE) If TRUE, retrieve altitude range
-#'   statistics (minimum, maximum, 5%, 50%, 95% quantiles, mean and standard deviation)
-#'   from GBIF occurrence data with elevation information.
-#' @param n_occur_altitude (numeric, default 5000) Maximum number of occurrences to
-#'   retrieve from GBIF when get_altitude is TRUE. Used to calculate altitude statistics.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param time_to_sleep (numeric, default 0.3) Time to sleep between two calls to
 #'  rgbif::occ_search(). Useful to avoid to be blocked by GBIF. Try to increase
@@ -49,15 +43,8 @@
 #' tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
 #' tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
 #'
-#' # Get altitude range statistics
-#' tax_gbif_occur_pq(data_fungi_mini_cleanNames, get_altitude = TRUE, add_to_phyloseq = FALSE)
-#'
 #' # Using taxnames vector (returns a tibble)
 #' tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
-#' 
-#' # Get altitude statistics for specific taxa
-#' tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"), get_altitude = TRUE)
-#' 
 #' ggplot(
 #'   data_fungi_mini_cleanNames@tax_table,
 #'   aes(y = log10(as.numeric(Global_occurences)), x = currentCanonicalSimple)
@@ -74,8 +61,6 @@ tax_gbif_occur_pq <- function(physeq = NULL,
                               col_prefix = NULL,
                               by_country = FALSE,
                               by_years = FALSE,
-                              get_altitude = FALSE,
-                              n_occur_altitude = 5000,
                               verbose = TRUE,
                               time_to_sleep = 0.3) {
   if (!is.null(taxnames) && !is.null(physeq)) {
@@ -108,13 +93,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
 
   if (by_country && by_years) {
     cli::cli_abort("You can't set both {.arg by_country} and {.arg by_years} to TRUE")
-  }
-  
-  if (get_altitude && (by_country || by_years)) {
-    cli::cli_abort("You can't set {.arg get_altitude} to TRUE together with {.arg by_country} or {.arg by_years}")
-  }
-  
-  if (by_country) {
+  } else if (by_country) {
     if (verbose) {
       pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
     }
@@ -152,75 +131,6 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
       tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-      tib_occur_list[[i]] <- tib
-    }
-    if (verbose) {
-      cli::cli_progress_done(id = pb)
-    }
-    tib_occur <- bind_rows(tib_occur_list)
-  } else if (get_altitude) {
-    if (verbose) {
-      pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
-    }
-
-    tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
-    for (i in seq_along(gbif_taxa$usageKey)) {
-      x <- gbif_taxa$usageKey[i]
-      Sys.sleep(time_to_sleep)
-      if (verbose) {
-        cli::cli_progress_update(id = pb, set = i)
-        species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
-      }
-      
-      # Retrieve occurrences with elevation data
-      occ_result <- rgbif::occ_search(
-        x, 
-        limit = n_occur_altitude, 
-        fields = c("elevation"),
-        hasCoordinate = TRUE
-      )
-      
-      # Get global occurrence count (make this call once)
-      global_count <- rgbif::occ_search(x, limit = 0)$meta$count
-      
-      # Extract elevation data
-      elevation_data <- NULL
-      if (!is.null(occ_result$data) && nrow(occ_result$data) > 0) {
-        elevation_data <- occ_result$data$elevation
-        # Remove NA values
-        elevation_data <- elevation_data[!is.na(elevation_data)]
-      }
-      
-      # Calculate statistics
-      if (!is.null(elevation_data) && length(elevation_data) > 0) {
-        tib <- tibble(
-          "altitude_min" = min(elevation_data, na.rm = TRUE),
-          "altitude_max" = max(elevation_data, na.rm = TRUE),
-          "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
-          "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
-          "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
-          "altitude_mean" = mean(elevation_data, na.rm = TRUE),
-          "altitude_sd" = sd(elevation_data, na.rm = TRUE),
-          "altitude_n_records" = length(elevation_data),
-          "Global_occurences" = global_count,
-          "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        )
-      } else {
-        # No elevation data available
-        tib <- tibble(
-          "altitude_min" = NA_real_,
-          "altitude_max" = NA_real_,
-          "altitude_q05" = NA_real_,
-          "altitude_q50" = NA_real_,
-          "altitude_q95" = NA_real_,
-          "altitude_mean" = NA_real_,
-          "altitude_sd" = NA_real_,
-          "altitude_n_records" = 0,
-          "Global_occurences" = global_count,
-          "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        )
-      }
       tib_occur_list[[i]] <- tib
     }
     if (verbose) {
