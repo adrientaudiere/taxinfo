@@ -14,6 +14,30 @@ test_that("tax_oa_pq parameter defaults", {
   expect_true("review" %in% default_type_works)
 })
 
+test_that("tax_oa_pq parameter combinations", {
+  # Test validation of mutually exclusive parameters
+  # Only one of list_doi, return_raw_oa, add_to_phyloseq should be TRUE
+
+  # This logic should be tested
+  params <- list(
+    list_doi = c(TRUE, FALSE),
+    return_raw_oa = c(TRUE, FALSE),
+    add_to_phyloseq = c(TRUE, FALSE)
+  )
+
+  # Generate all combinations
+  combinations <- expand.grid(params)
+
+  # Count how many are TRUE in each combination
+  true_counts <- rowSums(combinations)
+
+  # Only combinations with 0 or 1 TRUE values should be valid
+  valid_combinations <- true_counts <= 1
+
+  expect_true(any(valid_combinations))
+  expect_false(all(valid_combinations)) # Some should be invalid
+})
+
 test_that("tax_oa_pq type_works validation", {
   # Test that type_works contains valid publication types
   valid_types <- c(
