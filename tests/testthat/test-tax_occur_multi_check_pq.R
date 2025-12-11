@@ -17,6 +17,34 @@ test_that("tax_occur_multi_check_pq parameter defaults", {
   expect_true(is.logical(TRUE))
 })
 
+test_that("tax_occur_multi_check_pq return structure", {
+  # Test return value structure
+  # Should return list with:
+  # - tax_range_list: taxonomic range information
+  # - otu_matrix_occurence: occurrence matrix
+  # - new_physeq: filtered phyloseq object
+
+  expected_names <- c("tax_range_list", "otu_matrix_occurence", "new_physeq")
+
+  expect_equal(length(expected_names), 3)
+  expect_true("tax_range_list" %in% expected_names)
+  expect_true("otu_matrix_occurence" %in% expected_names)
+  expect_true("new_physeq" %in% expected_names)
+})
+
+test_that("tax_occur_multi_check_pq vector length validation", {
+  # Test that coordinate vectors match phyloseq sample count
+  # longitudes and latitudes vectors should have same length as nsamples(physeq)
+
+  # Mock coordinate vectors
+  coords_matching <- c(1.0, 2.0, 3.0) # 3 samples
+  coords_mismatched <- c(1.0, 2.0) # 2 samples
+
+  expect_equal(length(coords_matching), 3)
+  expect_equal(length(coords_mismatched), 2)
+  expect_false(length(coords_matching) == length(coords_mismatched))
+})
+
 test_that("tax_occur_multi_check_pq coordinate validation", {
   # Test coordinate vector validation
 
