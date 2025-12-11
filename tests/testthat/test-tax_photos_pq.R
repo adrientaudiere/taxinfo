@@ -1,35 +1,9 @@
 # Test tax_photos_pq function
+# Examples from man page: tax_photos_pq.Rd
 
 test_that("tax_photos_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_photos_pq(NULL))
-
-  # Test mutually exclusive parameters
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_photos_pq parameter defaults", {
-  # Test default parameter values
-  # taxonomic_rank should default to "currentCanonicalSimple"
-  # source should default to "gbif"
-  # folder_name should default to "photos_physeq"
-  # add_to_phyloseq should default to FALSE
-  # gallery should default to FALSE
-  # overwrite_folder should default to FALSE
-  # col_name_url should default to "photo_url"
-  # verbose should default to TRUE
-  # caption_valign should default to "bottom"
-  # caption_font_size should default to 12
-  # simple_caption should default to FALSE
-
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_photos_pq source parameter validation", {
-  # Test valid source values
-  # Should accept "gbif" and "wikitaxa"
-  # Should reject invalid source values
-  skip("Requires phyloseq objects")
 })
 
 test_that("tax_photos_pq folder operations", {
@@ -100,10 +74,37 @@ test_that("tax_photos_pq caption settings", {
   expect_true(12 > 0)
 })
 
-test_that("tax_photos_pq return behavior", {
-  # Test different return modes
-  # gallery = TRUE: should create HTML gallery
-  # add_to_phyloseq = TRUE: should return phyloseq with photo_url column
-  # Both FALSE: should return tibble with URLs
-  skip("Requires phyloseq objects")
+# Examples from man page: tax_photos_pq.Rd (lines 89-113)
+test_that("tax_photos_pq with phyloseq returns phyloseq with photo_url", {
+  # Example: data_fungi_mini_cleanNames_photos <- tax_photos_pq(data_fungi_mini_cleanNames)
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+  data_fungi_mini_cleanNames_photos <- tax_photos_pq(data_fungi_mini_cleanNames)
+
+  expect_s4_class(data_fungi_mini_cleanNames_photos, "phyloseq")
+  expect_true("photo_url" %in% colnames(data_fungi_mini_cleanNames_photos@tax_table))
+})
+
+test_that("tax_photos_pq with taxnames and gallery = TRUE returns htmlwidget", {
+  # Example: tax_photos_pq(taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+  #   gallery = TRUE, layout = "rhombus")
+  result <- tax_photos_pq(
+    taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+    gallery = TRUE,
+    layout = "rhombus"
+  )
+  # gallery=TRUE returns htmlwidget from pixture::pixgallery()
+  expect_true(inherits(result, "htmlwidget") || inherits(result, "pixgallery"))
+})
+
+test_that("tax_photos_pq with wikitaxa source and gallery = TRUE", {
+  # Example: tax_photos_pq(data_fungi_mini_cleanNames, gallery = TRUE, h = "40px",
+  #   w = "80px", source = "wikitaxa")
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+  result <- tax_photos_pq(data_fungi_mini_cleanNames,
+    gallery = TRUE,
+    h = "40px",
+    w = "80px",
+    source = "wikitaxa"
+  )
+  expect_true(inherits(result, "htmlwidget") || inherits(result, "pixgallery"))
 })
