@@ -181,6 +181,9 @@ tax_gbif_occur_pq <- function(physeq = NULL,
         hasCoordinate = TRUE
       )
       
+      # Get global occurrence count (make this call once)
+      global_count <- rgbif::occ_search(x, limit = 0)$meta$count
+      
       # Extract elevation data
       elevation_data <- NULL
       if (!is.null(occ_result$data) && nrow(occ_result$data) > 0) {
@@ -200,7 +203,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
           "altitude_mean" = mean(elevation_data, na.rm = TRUE),
           "altitude_sd" = sd(elevation_data, na.rm = TRUE),
           "altitude_n_records" = length(elevation_data),
-          "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,
+          "Global_occurences" = global_count,
           "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
         )
       } else {
@@ -214,7 +217,7 @@ tax_gbif_occur_pq <- function(physeq = NULL,
           "altitude_mean" = NA_real_,
           "altitude_sd" = NA_real_,
           "altitude_n_records" = 0,
-          "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,
+          "Global_occurences" = global_count,
           "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
         )
       }
