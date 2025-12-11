@@ -16,14 +16,12 @@ test_that("tax_gbif_alt parameter defaults", {
   expect_true(is.numeric(5000))
 })
 
-test_that("tax_gbif_alt GBIF integration", {
-  # Test GBIF altitude data retrieval using GPS coordinates and elevatr
+test_that("tax_gbif_alt GBIF method (default)", {
+  # Test GBIF altitude data retrieval using native GBIF elevation field
   skip_if_offline()
   skip_on_cran()
-  skip_if_not_installed("elevatr")
-  skip_if_not_installed("rnaturalearth")
   
-  # Basic test with a common species
+  # Basic test with a common species using default method (gbif)
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
     verbose = FALSE
@@ -34,10 +32,43 @@ test_that("tax_gbif_alt GBIF integration", {
   
   # Check that we got a result
   expect_equal(nrow(result), 1)
+  
+  # GBIF method should NOT have altitude_n_ocean column
+  expect_false("altitude_n_ocean" %in% colnames(result))
 })
 
-test_that("tax_gbif_alt altitude statistics structure", {
-  # Test that altitude statistics returns expected columns
+test_that("tax_gbif_alt altitude statistics structure (gbif method)", {
+  # Test that altitude statistics returns expected columns for GBIF method
+  skip_if_offline()
+  skip_on_cran()
+  
+  result <- tax_gbif_alt(
+    taxnames = c("Amanita muscaria"),
+    method = "gbif",
+    verbose = FALSE
+  )
+  
+  # Check that result is a tibble
+  expect_s3_class(result, "tbl_df")
+  
+  # Check that expected columns are present (no altitude_n_ocean for gbif method)
+  expected_cols <- c(
+    "altitude_min", "altitude_max", "altitude_q05", "altitude_q50",
+    "altitude_q95", "altitude_mean", "altitude_sd", "altitude_n_records",
+    "canonicalName"
+  )
+  expect_true(all(expected_cols %in% colnames(result)))
+  
+  # Check that numeric columns are numeric
+  expect_true(is.numeric(result$altitude_min))
+  expect_true(is.numeric(result$altitude_max))
+  expect_true(is.numeric(result$altitude_mean))
+  expect_true(is.numeric(result$altitude_sd))
+  expect_true(is.numeric(result$altitude_n_records))
+})
+
+test_that("tax_gbif_alt elevatr method", {
+  # Test altitude data retrieval using elevatr method
   skip_if_offline()
   skip_on_cran()
   skip_if_not_installed("elevatr")
@@ -45,13 +76,14 @@ test_that("tax_gbif_alt altitude statistics structure", {
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
+    method = "elevatr",
     verbose = FALSE
   )
   
   # Check that result is a tibble
   expect_s3_class(result, "tbl_df")
   
-  # Check that expected columns are present (including new altitude_n_ocean)
+  # Check that expected columns are present (including altitude_n_ocean for elevatr method)
   expected_cols <- c(
     "altitude_min", "altitude_max", "altitude_q05", "altitude_q50",
     "altitude_q95", "altitude_mean", "altitude_sd", "altitude_n_records",
@@ -72,8 +104,6 @@ test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
   skip_if_offline()
   skip_on_cran()
-  skip_if_not_installed("elevatr")
-  skip_if_not_installed("rnaturalearth")
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria", "Boletus edulis"),
@@ -100,8 +130,6 @@ test_that("tax_gbif_alt n_occur parameter", {
   # Test that n_occur controls sample size
   skip_if_offline()
   skip_on_cran()
-  skip_if_not_installed("elevatr")
-  skip_if_not_installed("rnaturalearth")
   
   # Request smaller sample
   result_small <- tax_gbif_alt(
@@ -116,8 +144,8 @@ test_that("tax_gbif_alt n_occur parameter", {
   }
 })
 
-test_that("tax_gbif_alt elev_zoom parameter", {
-  # Test that elev_zoom parameter is accepted
+test_that("tax_gbif_alt elev_zoom parameter with elevatr method", {
+  # Test that elev_zoom parameter is accepted with elevatr method
   skip_if_offline()
   skip_on_cran()
   skip_if_not_installed("elevatr")
@@ -126,6 +154,7 @@ test_that("tax_gbif_alt elev_zoom parameter", {
   # Request with different zoom level
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
+    method = "elevatr",
     n_occur = 50,
     elev_zoom = 3,
     verbose = FALSE
@@ -134,4 +163,12 @@ test_that("tax_gbif_alt elev_zoom parameter", {
   # Check that result is a tibble
   expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 1)
+})
+
+test_that("tax_gbif_alt method parameter validation", {
+  # Test that invalid method triggers an error
+  expect_error(
+    tax_gbif_alt(taxnames = "Amanita muscaria", method = "invalid"),
+    "'arg' should be one of"
+  )
 })
