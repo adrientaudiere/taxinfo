@@ -13,13 +13,17 @@ test_that("tax_gbif_alt parameter defaults", {
   expect_true(is.character("currentCanonicalSimple"))
   expect_true(is.logical(FALSE))
   expect_true(is.logical(TRUE))
-  expect_true(is.numeric(5000))
 })
 
 test_that("tax_gbif_alt GBIF method (default)", {
-  # Test GBIF altitude data retrieval using native GBIF elevation field
+  # Test GBIF altitude data retrieval using GBIF Download API
+  # Note: This test requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
   skip_if_offline()
   skip_on_cran()
+  skip_if(
+    Sys.getenv("GBIF_USER") == "" || Sys.getenv("GBIF_PWD") == "" || Sys.getenv("GBIF_EMAIL") == "",
+    "GBIF credentials not available (GBIF_USER, GBIF_PWD, GBIF_EMAIL)"
+  )
   
   # Basic test with a common species using default method (gbif)
   result <- tax_gbif_alt(
@@ -41,6 +45,10 @@ test_that("tax_gbif_alt altitude statistics structure (gbif method)", {
   # Test that altitude statistics returns expected columns for GBIF method
   skip_if_offline()
   skip_on_cran()
+  skip_if(
+    Sys.getenv("GBIF_USER") == "" || Sys.getenv("GBIF_PWD") == "" || Sys.getenv("GBIF_EMAIL") == "",
+    "GBIF credentials not available (GBIF_USER, GBIF_PWD, GBIF_EMAIL)"
+  )
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
@@ -73,6 +81,10 @@ test_that("tax_gbif_alt elevatr method", {
   skip_on_cran()
   skip_if_not_installed("elevatr")
   skip_if_not_installed("rnaturalearth")
+  skip_if(
+    Sys.getenv("GBIF_USER") == "" || Sys.getenv("GBIF_PWD") == "" || Sys.getenv("GBIF_EMAIL") == "",
+    "GBIF credentials not available (GBIF_USER, GBIF_PWD, GBIF_EMAIL)"
+  )
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
@@ -104,6 +116,10 @@ test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
   skip_if_offline()
   skip_on_cran()
+  skip_if(
+    Sys.getenv("GBIF_USER") == "" || Sys.getenv("GBIF_PWD") == "" || Sys.getenv("GBIF_EMAIL") == "",
+    "GBIF credentials not available (GBIF_USER, GBIF_PWD, GBIF_EMAIL)"
+  )
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria", "Boletus edulis"),
@@ -126,36 +142,21 @@ test_that("tax_gbif_alt handles taxa without altitude data", {
   # will or won't have data
 })
 
-test_that("tax_gbif_alt n_occur parameter", {
-  # Test that n_occur controls sample size
-  skip_if_offline()
-  skip_on_cran()
-  
-  # Request smaller sample
-  result_small <- tax_gbif_alt(
-    taxnames = c("Amanita muscaria"),
-    n_occur = 100,
-    verbose = FALSE
-  )
-  
-  # Should have at most 100 records (or fewer if not enough data available)
-  if (!is.na(result_small$altitude_n_records[1])) {
-    expect_true(result_small$altitude_n_records[1] <= 100)
-  }
-})
-
 test_that("tax_gbif_alt elev_zoom parameter with elevatr method", {
   # Test that elev_zoom parameter is accepted with elevatr method
   skip_if_offline()
   skip_on_cran()
   skip_if_not_installed("elevatr")
   skip_if_not_installed("rnaturalearth")
+  skip_if(
+    Sys.getenv("GBIF_USER") == "" || Sys.getenv("GBIF_PWD") == "" || Sys.getenv("GBIF_EMAIL") == "",
+    "GBIF credentials not available (GBIF_USER, GBIF_PWD, GBIF_EMAIL)"
+  )
   
   # Request with different zoom level
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
     method = "elevatr",
-    n_occur = 50,
     elev_zoom = 3,
     verbose = FALSE
   )
@@ -170,5 +171,21 @@ test_that("tax_gbif_alt method parameter validation", {
   expect_error(
     tax_gbif_alt(taxnames = "Amanita muscaria", method = "invalid"),
     "'arg' should be one of"
+  )
+})
+
+test_that("tax_gbif_alt requires GBIF credentials", {
+  # Test that function provides helpful error when credentials are missing
+  skip_if_offline()
+  skip_on_cran()
+  skip_if(
+    Sys.getenv("GBIF_USER") != "" && Sys.getenv("GBIF_PWD") != "" && Sys.getenv("GBIF_EMAIL") != "",
+    "GBIF credentials are available - skipping credentials error test"
+  )
+  
+  # Should error with helpful message about credentials
+  expect_error(
+    tax_gbif_alt(taxnames = "Amanita muscaria", verbose = FALSE),
+    "GBIF credentials"
   )
 })

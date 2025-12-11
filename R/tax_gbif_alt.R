@@ -5,9 +5,9 @@
 #' mean and standard deviation) for taxa from GBIF occurrence data.
 #'
 #' Two methods are available:
-#' - **"gbif"** (default): Uses GBIF's native elevation field directly from occurrence
-#'   records that have elevation data. This method doesn't require external packages
-#'   but depends on the availability of elevation data in GBIF records.
+#' - **"gbif"** (default): Uses GBIF's Download API (`occ_download()`) to retrieve
+#'   occurrence records with non-null elevation values. This is the recommended
+#'   approach by GBIF for research purposes. **Requires GBIF credentials.**
 #' - **"elevatr"**: Computes elevation from GPS coordinates using AWS Terrain Tiles
 #'   via the `elevatr` package. This provides more complete coverage for occurrences
 #'   that lack elevation data but requires the `elevatr` and `rnaturalearth` packages.
@@ -24,19 +24,15 @@
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param method (character, default "gbif") Method to retrieve elevation data:
-#'   - "gbif": Use GBIF's native elevation field (default). Only records with
-#'     non-null elevation values are retrieved.
+#'   - "gbif": Use GBIF's Download API with `pred_notnull("elevation")` to retrieve
+#'     only records with elevation data. This is the recommended approach by GBIF
+#'     for research. **Requires GBIF credentials** (see Details).
 #'   - "elevatr": Compute elevation from GPS coordinates using AWS Terrain Tiles.
 #'     Requires the `elevatr` and `rnaturalearth` packages.
-#' @param n_occur (numeric, default 5000) Maximum number of occurrences to retrieve
-#'   from GBIF for elevation computation.
 #' @param elev_zoom (numeric, default 5) Zoom level for AWS Terrain Tiles.
 #'   Only used when `method = "elevatr"`. Higher values give finer resolution
 #'   but are slower. Range: 1-14. See [elevatr::get_elev_point()] for details.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
-#' @param time_to_sleep (numeric, default 0.3) Time to sleep between two calls to
-#'  rgbif::occ_search(). Useful to avoid being blocked by GBIF. Try to increase
-#'  this value if you encounter rate limiting errors.
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #'  object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -46,17 +42,29 @@
 #'  (number of points detected in ocean).
 #' @export
 #' @author Adrien Taudiere
-#' @seealso [rgbif::occ_search()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
+#' @seealso [rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
 #' @details
 #' ## Method "gbif" (default)
 #' 
-#' This method retrieves occurrence records from GBIF that have non-null elevation
-#' values using `rgbif::occ_search()`. It filters records with `hasCoordinate=TRUE`,
-#' `hasGeospatialIssue=FALSE`, and only returns records where the elevation field
-#' is not null. This is the simplest approach and doesn't require additional packages.
+#' This method uses GBIF's Download API via `rgbif::occ_download()` with the
+#' following predicates:
+#' - `pred_in("taxonKey", gbif_taxon_keys)` - Filter by taxon keys
+#' - `pred("hasCoordinate", TRUE)` - Only records with coordinates
+#' - `pred("hasGeospatialIssue", FALSE)` - Exclude records with geospatial issues
+#' - `pred_notnull("elevation")` - Only records with elevation data
 #' 
-#' Note: Many GBIF records lack elevation data, so the number of records with
-#' elevation may be limited for some taxa.
+#' This is the recommended approach by GBIF for research purposes as it provides
+#' citable downloads with DOIs.
+#' 
+#' **GBIF credentials are required.** You must:
+#' 1. Register at <https://www.gbif.org/user/register>
+#' 2. Store credentials in your `.Renviron` file:
+#'    - `GBIF_USER=your_username`
+#'    - `GBIF_PWD=your_password`
+#'    - `GBIF_EMAIL=your_email`
+#' 3. See <https://docs.ropensci.org/rgbif/reference/occ_download.html> for more details.
+#' 
+#' Note: Downloads are asynchronous and may take some time to complete.
 #' 
 #' ## Method "elevatr"
 #' 
@@ -68,14 +76,6 @@
 #' are reported in the `altitude_n_ocean` column. A warning is issued if
 #' ocean points are detected for a taxon.
 #' 
-#' ## GBIF Download API (Advanced)
-#' 
-#' For large-scale downloads, consider using `rgbif::occ_download()` directly with
-#' `pred_notnull("elevation")` to filter records. This requires GBIF credentials:
-#' - Register at <https://www.gbif.org/user/register>
-#' - Store credentials in `.Renviron`: `GBIF_USER`, `GBIF_PWD`, `GBIF_EMAIL`
-#' - See <https://docs.ropensci.org/rgbif/reference/occ_download.html> for details.
-#' 
 #' Please cite `rgbif` package. When using method "elevatr", also cite `elevatr`
 #' and `rnaturalearth` packages.
 #' 
@@ -84,7 +84,9 @@
 #'   gna_verifier_pq(data_fungi_mini)
 #'
 #' \donttest{
-#' # Get altitude range statistics using GBIF elevation data (default)
+#' # Get altitude range statistics using GBIF Download API (default)
+#' # Note: Requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
+#' # Register at https://www.gbif.org/user/register
 #' data_fungi_mini_alt <- tax_gbif_alt(data_fungi_mini_cleanNames, 
 #'                                      add_to_phyloseq = FALSE)
 #'
@@ -92,7 +94,7 @@
 #' tax_gbif_alt(taxnames = c("Amanita muscaria", "Boletus edulis"))
 #'
 #' # Use elevatr method to compute elevation from GPS coordinates
-#' # (provides more coverage but requires elevatr and rnaturalearth packages)
+#' # (provides more coverage, no GBIF credentials needed)
 #' altitude_elevatr <- tax_gbif_alt(
 #'   taxnames = c("Amanita muscaria"),
 #'   method = "elevatr",
@@ -122,10 +124,8 @@ tax_gbif_alt <- function(physeq = NULL,
                         add_to_phyloseq = NULL,
                         col_prefix = NULL,
                         method = c("gbif", "elevatr"),
-                        n_occur = 5000,
                         elev_zoom = 5,
-                        verbose = TRUE,
-                        time_to_sleep = 0.3) {
+                        verbose = TRUE) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -171,53 +171,171 @@ tax_gbif_alt <- function(physeq = NULL,
   }
 
   if (verbose) {
-    pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
     cli::cli_alert_info("Using method: {.val {method}}")
   }
 
-  tib_occur_list <- vector("list", length(gbif_taxa$usageKey))
-  for (i in seq_along(gbif_taxa$usageKey)) {
-    x <- gbif_taxa$usageKey[i]
-    Sys.sleep(time_to_sleep)
-    species_name <- gbif_taxa$canonicalName[i]
+  tib_occur_list <- vector("list", nrow(gbif_taxa))
+  
+  if (method == "gbif") {
+    # Method 1: Use GBIF Download API with occ_download()
+    # This is the recommended approach by GBIF for research
+    
+    gbif_taxon_keys <- gbif_taxa$usageKey
+    
     if (verbose) {
-      cli::cli_progress_update(id = pb, set = i)
-      cli::cli_alert_info("Processing GBIF altitude data for {.emph {species_name}}")
+      cli::cli_alert_info("Submitting download request to GBIF for {.val {length(gbif_taxon_keys)}} taxa...")
+      cli::cli_alert_info("Using predicates: pred_in('taxonKey'), pred('hasCoordinate', TRUE), pred('hasGeospatialIssue', FALSE), pred_notnull('elevation')")
     }
     
-    elevation_data <- NULL
-    n_ocean <- NA_integer_  # Only set for elevatr method
-    
-    if (method == "gbif") {
-      # Method 1: Use GBIF's native elevation field
-      # Retrieve records that have non-null elevation values
-      occ_result <- rgbif::occ_search(
-        x, 
-        limit = n_occur, 
-        fields = c("elevation"),
-        hasCoordinate = TRUE,
-        hasGeospatialIssue = FALSE
+    # Submit download request using GBIF Download API
+    download_key <- tryCatch({
+      rgbif::occ_download(
+        rgbif::pred_in("taxonKey", gbif_taxon_keys),
+        rgbif::pred("hasCoordinate", TRUE),
+        rgbif::pred("hasGeospatialIssue", FALSE),
+        rgbif::pred_notnull("elevation"),
+        format = "SIMPLE_CSV"
       )
+    }, error = function(e) {
+      cli::cli_abort(c(
+        "Failed to submit GBIF download request.",
+        "i" = "GBIF credentials are required. Please ensure you have set:",
+        " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
+        "i" = "Register at: {.url https://www.gbif.org/user/register}",
+        "i" = "See: {.url https://docs.ropensci.org/rgbif/reference/occ_download.html}",
+        "x" = "Error: {e$message}"
+      ))
+    })
+    
+    if (verbose) {
+      cli::cli_alert_info("Download key: {.val {download_key}}")
+      cli::cli_alert_info("Waiting for download to complete (this may take a few minutes)...")
+    }
+    
+    # Wait for download to complete
+    rgbif::occ_download_wait(download_key, quiet = !verbose)
+    
+    if (verbose) {
+      cli::cli_alert_success("Download complete. Importing data...")
+    }
+    
+    # Get and import the download
+    download_path <- rgbif::occ_download_get(download_key, overwrite = TRUE)
+    occ_data <- rgbif::occ_download_import(download_path)
+    
+    # Process elevation data for each taxon
+    for (i in seq_len(nrow(gbif_taxa))) {
+      taxon_key <- gbif_taxa$usageKey[i]
+      species_name <- gbif_taxa$canonicalName[i]
       
-      if (!is.null(occ_result$data) && nrow(occ_result$data) > 0) {
-        elevation_data <- occ_result$data$elevation
+      if (verbose) {
+        cli::cli_alert_info("Processing elevation data for {.emph {species_name}}")
+      }
+      
+      # Filter data for this taxon
+      taxon_data <- occ_data |>
+        filter(taxonKey == taxon_key | acceptedTaxonKey == taxon_key)
+      
+      elevation_data <- NULL
+      if (nrow(taxon_data) > 0) {
+        elevation_data <- taxon_data$elevation
         elevation_data <- elevation_data[!is.na(elevation_data)]
       }
       
-    } else if (method == "elevatr") {
-      # Method 2: Compute elevation from GPS coordinates using elevatr
-      occ_result <- rgbif::occ_search(
-        x, 
-        limit = n_occur, 
-        fields = c("decimalLatitude", "decimalLongitude"),
-        hasCoordinate = TRUE,
-        hasGeospatialIssue = FALSE
+      # Calculate statistics
+      if (!is.null(elevation_data) && length(elevation_data) > 0) {
+        tib <- tibble(
+          "altitude_min" = min(elevation_data, na.rm = TRUE),
+          "altitude_max" = max(elevation_data, na.rm = TRUE),
+          "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
+          "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
+          "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
+          "altitude_mean" = mean(elevation_data, na.rm = TRUE),
+          "altitude_sd" = sd(elevation_data, na.rm = TRUE),
+          "altitude_n_records" = length(elevation_data),
+          "canonicalName" = species_name
+        )
+      } else {
+        # No elevation data available
+        tib <- tibble(
+          "altitude_min" = NA_real_,
+          "altitude_max" = NA_real_,
+          "altitude_q05" = NA_real_,
+          "altitude_q50" = NA_real_,
+          "altitude_q95" = NA_real_,
+          "altitude_mean" = NA_real_,
+          "altitude_sd" = NA_real_,
+          "altitude_n_records" = 0,
+          "canonicalName" = species_name
+        )
+      }
+      tib_occur_list[[i]] <- tib
+    }
+    
+  } else if (method == "elevatr") {
+    # Method 2: Compute elevation from GPS coordinates using elevatr
+    # Use occ_download to get coordinates, then compute elevation
+    
+    gbif_taxon_keys <- gbif_taxa$usageKey
+    
+    if (verbose) {
+      cli::cli_alert_info("Submitting download request to GBIF for {.val {length(gbif_taxon_keys)}} taxa...")
+      cli::cli_alert_info("Using predicates: pred_in('taxonKey'), pred('hasCoordinate', TRUE), pred('hasGeospatialIssue', FALSE)")
+    }
+    
+    # Submit download request
+    download_key <- tryCatch({
+      rgbif::occ_download(
+        rgbif::pred_in("taxonKey", gbif_taxon_keys),
+        rgbif::pred("hasCoordinate", TRUE),
+        rgbif::pred("hasGeospatialIssue", FALSE),
+        format = "SIMPLE_CSV"
       )
+    }, error = function(e) {
+      cli::cli_abort(c(
+        "Failed to submit GBIF download request.",
+        "i" = "GBIF credentials are required. Please ensure you have set:",
+        " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
+        "i" = "Register at: {.url https://www.gbif.org/user/register}",
+        "i" = "See: {.url https://docs.ropensci.org/rgbif/reference/occ_download.html}",
+        "x" = "Error: {e$message}"
+      ))
+    })
+    
+    if (verbose) {
+      cli::cli_alert_info("Download key: {.val {download_key}}")
+      cli::cli_alert_info("Waiting for download to complete (this may take a few minutes)...")
+    }
+    
+    # Wait for download to complete
+    rgbif::occ_download_wait(download_key, quiet = !verbose)
+    
+    if (verbose) {
+      cli::cli_alert_success("Download complete. Importing data...")
+    }
+    
+    # Get and import the download
+    download_path <- rgbif::occ_download_get(download_key, overwrite = TRUE)
+    occ_data <- rgbif::occ_download_import(download_path)
+    
+    # Process elevation data for each taxon
+    for (i in seq_len(nrow(gbif_taxa))) {
+      taxon_key <- gbif_taxa$usageKey[i]
+      species_name <- gbif_taxa$canonicalName[i]
       
+      if (verbose) {
+        cli::cli_alert_info("Processing elevation data for {.emph {species_name}}")
+      }
+      
+      # Filter data for this taxon
+      taxon_data <- occ_data |>
+        filter(taxonKey == taxon_key | acceptedTaxonKey == taxon_key)
+      
+      elevation_data <- NULL
       n_ocean <- 0
       
-      if (!is.null(occ_result$data) && nrow(occ_result$data) > 0) {
-        coords_df <- occ_result$data |>
+      if (nrow(taxon_data) > 0) {
+        coords_df <- taxon_data |>
           filter(!is.na(decimalLatitude) & !is.na(decimalLongitude))
         
         if (nrow(coords_df) > 0) {
@@ -263,48 +381,40 @@ tax_gbif_alt <- function(physeq = NULL,
           }
         }
       }
-    }
-    
-    # Calculate statistics
-    if (!is.null(elevation_data) && length(elevation_data) > 0) {
-      tib <- tibble(
-        "altitude_min" = min(elevation_data, na.rm = TRUE),
-        "altitude_max" = max(elevation_data, na.rm = TRUE),
-        "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
-        "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
-        "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
-        "altitude_mean" = mean(elevation_data, na.rm = TRUE),
-        "altitude_sd" = sd(elevation_data, na.rm = TRUE),
-        "altitude_n_records" = length(elevation_data),
-        "canonicalName" = species_name
-      )
-      # Add ocean count only for elevatr method
-      if (method == "elevatr") {
-        tib$altitude_n_ocean <- n_ocean
+      
+      # Calculate statistics
+      if (!is.null(elevation_data) && length(elevation_data) > 0) {
+        tib <- tibble(
+          "altitude_min" = min(elevation_data, na.rm = TRUE),
+          "altitude_max" = max(elevation_data, na.rm = TRUE),
+          "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
+          "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
+          "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
+          "altitude_mean" = mean(elevation_data, na.rm = TRUE),
+          "altitude_sd" = sd(elevation_data, na.rm = TRUE),
+          "altitude_n_records" = length(elevation_data),
+          "altitude_n_ocean" = n_ocean,
+          "canonicalName" = species_name
+        )
+      } else {
+        # No elevation data available
+        tib <- tibble(
+          "altitude_min" = NA_real_,
+          "altitude_max" = NA_real_,
+          "altitude_q05" = NA_real_,
+          "altitude_q50" = NA_real_,
+          "altitude_q95" = NA_real_,
+          "altitude_mean" = NA_real_,
+          "altitude_sd" = NA_real_,
+          "altitude_n_records" = 0,
+          "altitude_n_ocean" = n_ocean,
+          "canonicalName" = species_name
+        )
       }
-    } else {
-      # No elevation data available
-      tib <- tibble(
-        "altitude_min" = NA_real_,
-        "altitude_max" = NA_real_,
-        "altitude_q05" = NA_real_,
-        "altitude_q50" = NA_real_,
-        "altitude_q95" = NA_real_,
-        "altitude_mean" = NA_real_,
-        "altitude_sd" = NA_real_,
-        "altitude_n_records" = 0,
-        "canonicalName" = species_name
-      )
-      # Add ocean count only for elevatr method
-      if (method == "elevatr") {
-        tib$altitude_n_ocean <- n_ocean
-      }
+      tib_occur_list[[i]] <- tib
     }
-    tib_occur_list[[i]] <- tib
   }
-  if (verbose) {
-    cli::cli_progress_done(id = pb)
-  }
+  
   tib_occur <- bind_rows(tib_occur_list)
 
   # Get new column names (excluding canonicalName which is used for join)
