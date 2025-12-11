@@ -1,35 +1,9 @@
 # Test tax_photos_pq function
+# Examples from man page: tax_photos_pq.Rd
 
 test_that("tax_photos_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_photos_pq(NULL))
-
-  # Test mutually exclusive parameters
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_photos_pq parameter defaults", {
-  # Test default parameter values
-  # taxonomic_rank should default to "currentCanonicalSimple"
-  # source should default to "gbif"
-  # folder_name should default to "photos_physeq"
-  # add_to_phyloseq should default to FALSE
-  # gallery should default to FALSE
-  # overwrite_folder should default to FALSE
-  # col_name_url should default to "photo_url"
-  # verbose should default to TRUE
-  # caption_valign should default to "bottom"
-  # caption_font_size should default to 12
-  # simple_caption should default to FALSE
-
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_photos_pq source parameter validation", {
-  # Test valid source values
-  # Should accept "gbif" and "wikitaxa"
-  # Should reject invalid source values
-  skip("Requires phyloseq objects")
 })
 
 test_that("tax_photos_pq folder operations", {
@@ -56,54 +30,37 @@ test_that("tax_photos_pq folder operations", {
   unlink(test_folder, recursive = TRUE)
 })
 
-test_that("tax_photos_pq URL validation", {
-  # Test URL format validation
-  # Should validate that photo URLs are properly formatted
+# Examples from man page: tax_photos_pq.Rd (lines 89-113)
+test_that("tax_photos_pq with phyloseq returns phyloseq with photo_url", {
+  # Example: data_fungi_mini_cleanNames_photos <- tax_photos_pq(data_fungi_mini_cleanNames)
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+  data_fungi_mini_cleanNames_photos <- tax_photos_pq(data_fungi_mini_cleanNames)
 
-  # Test URL patterns
-  valid_urls <- c(
-    "https://example.com/photo.jpg",
-    "http://example.com/image.png",
-    "https://api.gbif.org/v1/image/unsafe/photo.jpeg"
+  expect_s4_class(data_fungi_mini_cleanNames_photos, "phyloseq")
+  expect_true("photo_url" %in% colnames(data_fungi_mini_cleanNames_photos@tax_table))
+})
+
+test_that("tax_photos_pq with taxnames and gallery = TRUE returns htmlwidget", {
+  # Example: tax_photos_pq(taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+  #   gallery = TRUE, layout = "rhombus")
+  result <- tax_photos_pq(
+    taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+    gallery = TRUE,
+    layout = "rhombus"
   )
+  # gallery=TRUE returns htmlwidget from pixture::pixgallery()
+  expect_true(inherits(result, "htmlwidget") || inherits(result, "pixgallery"))
+})
 
-  invalid_urls <- c(
-    "not_a_url",
-    "ftp://example.com/photo.jpg",
-    ""
+test_that("tax_photos_pq with wikitaxa source and gallery = TRUE", {
+  # Example: tax_photos_pq(data_fungi_mini_cleanNames, gallery = TRUE, h = "40px",
+  #   w = "80px", source = "wikitaxa")
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+  result <- tax_photos_pq(data_fungi_mini_cleanNames,
+    gallery = TRUE,
+    h = "40px",
+    w = "80px",
+    source = "wikitaxa"
   )
-
-  # URL validation logic (simplified)
-  url_pattern <- "^https?://.+\\.(jpg|jpeg|png|gif)$"
-
-  expect_true(all(grepl(url_pattern, valid_urls, ignore.case = TRUE)))
-  expect_false(any(grepl(url_pattern, invalid_urls, ignore.case = TRUE)))
-})
-
-test_that("tax_photos_pq gallery parameter", {
-  # Test gallery creation functionality
-  # When gallery = TRUE, should create HTML gallery using pixture::pixgallery()
-  skip("Requires phyloseq objects and pixture package")
-})
-
-test_that("tax_photos_pq caption settings", {
-  # Test caption parameters for gallery
-  # caption_valign should control vertical alignment
-  # caption_font_size should control font size
-  # simple_caption should control caption content
-
-  valid_valign_values <- c("top", "middle", "bottom")
-  expect_true("bottom" %in% valid_valign_values) # default value
-
-  # Font size should be positive integer
-  expect_true(is.numeric(12)) # default value
-  expect_true(12 > 0)
-})
-
-test_that("tax_photos_pq return behavior", {
-  # Test different return modes
-  # gallery = TRUE: should create HTML gallery
-  # add_to_phyloseq = TRUE: should return phyloseq with photo_url column
-  # Both FALSE: should return tibble with URLs
-  skip("Requires phyloseq objects")
+  expect_true(inherits(result, "htmlwidget") || inherits(result, "pixgallery"))
 })
