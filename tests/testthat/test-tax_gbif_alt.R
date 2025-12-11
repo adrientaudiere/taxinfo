@@ -17,9 +17,11 @@ test_that("tax_gbif_alt parameter defaults", {
 })
 
 test_that("tax_gbif_alt GBIF integration", {
-  # Test GBIF altitude data retrieval
+  # Test GBIF altitude data retrieval using GPS coordinates and elevatr
   skip_if_offline()
   skip_on_cran()
+  skip_if_not_installed("elevatr")
+  skip_if_not_installed("rnaturalearth")
   
   # Basic test with a common species
   result <- tax_gbif_alt(
@@ -38,6 +40,8 @@ test_that("tax_gbif_alt altitude statistics structure", {
   # Test that altitude statistics returns expected columns
   skip_if_offline()
   skip_on_cran()
+  skip_if_not_installed("elevatr")
+  skip_if_not_installed("rnaturalearth")
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
@@ -47,11 +51,11 @@ test_that("tax_gbif_alt altitude statistics structure", {
   # Check that result is a tibble
   expect_s3_class(result, "tbl_df")
   
-  # Check that expected columns are present
+  # Check that expected columns are present (including new altitude_n_ocean)
   expected_cols <- c(
     "altitude_min", "altitude_max", "altitude_q05", "altitude_q50",
     "altitude_q95", "altitude_mean", "altitude_sd", "altitude_n_records",
-    "canonicalName"
+    "altitude_n_ocean", "canonicalName"
   )
   expect_true(all(expected_cols %in% colnames(result)))
   
@@ -61,12 +65,15 @@ test_that("tax_gbif_alt altitude statistics structure", {
   expect_true(is.numeric(result$altitude_mean))
   expect_true(is.numeric(result$altitude_sd))
   expect_true(is.numeric(result$altitude_n_records))
+  expect_true(is.numeric(result$altitude_n_ocean))
 })
 
 test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
   skip_if_offline()
   skip_on_cran()
+  skip_if_not_installed("elevatr")
+  skip_if_not_installed("rnaturalearth")
   
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria", "Boletus edulis"),
@@ -89,15 +96,17 @@ test_that("tax_gbif_alt handles taxa without altitude data", {
   # will or won't have data
 })
 
-test_that("tax_gbif_alt n_occur_altitude parameter", {
-  # Test that n_occur_altitude controls sample size
+test_that("tax_gbif_alt n_occur parameter", {
+  # Test that n_occur controls sample size
   skip_if_offline()
   skip_on_cran()
+  skip_if_not_installed("elevatr")
+  skip_if_not_installed("rnaturalearth")
   
   # Request smaller sample
   result_small <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
-    n_occur_altitude = 100,
+    n_occur = 100,
     verbose = FALSE
   )
   
@@ -105,4 +114,24 @@ test_that("tax_gbif_alt n_occur_altitude parameter", {
   if (!is.na(result_small$altitude_n_records[1])) {
     expect_true(result_small$altitude_n_records[1] <= 100)
   }
+})
+
+test_that("tax_gbif_alt elev_zoom parameter", {
+  # Test that elev_zoom parameter is accepted
+  skip_if_offline()
+  skip_on_cran()
+  skip_if_not_installed("elevatr")
+  skip_if_not_installed("rnaturalearth")
+  
+  # Request with different zoom level
+  result <- tax_gbif_alt(
+    taxnames = c("Amanita muscaria"),
+    n_occur = 50,
+    elev_zoom = 3,
+    verbose = FALSE
+  )
+  
+  # Check that result is a tibble
+  expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), 1)
 })
