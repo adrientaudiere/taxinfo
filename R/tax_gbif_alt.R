@@ -130,7 +130,7 @@ tax_gbif_alt <- function(physeq = NULL,
   for (i in seq_along(gbif_taxa$usageKey)) {
     x <- gbif_taxa$usageKey[i]
     Sys.sleep(time_to_sleep)
-    species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+    species_name <- gbif_taxa$canonicalName[i]
     if (verbose) {
       cli::cli_progress_update(id = pb, set = i)
       cli::cli_alert_info("Processing GBIF altitude data for {.emph {species_name}}")
@@ -185,7 +185,9 @@ tax_gbif_alt <- function(physeq = NULL,
           )
         }, error = function(e) {
           if (verbose) {
-            cli::cli_alert_warning("Failed to retrieve elevation data: {e$message}")
+            cli::cli_alert_warning(
+              "Failed to retrieve elevation data for {.emph {species_name}}: {e$message}. You may want to try a different {.arg elev_zoom} level."
+            )
           }
           return(NULL)
         })
