@@ -58,6 +58,7 @@ reference:
 - subtitle: "GBIF occurences data"
   contents:
   - tax_gbif_occur_pq
+  - tax_gbif_alt
 - subtitle: "Globi interactions data"
   contents:
   - tax_globi_pq

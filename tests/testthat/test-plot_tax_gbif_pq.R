@@ -1,4 +1,5 @@
 # Test plot_tax_gbif_pq function
+# Examples from man page: plot_tax_gbif_pq.Rd
 
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
 
@@ -32,4 +33,38 @@ test_that("plot_tax_gbif_pq plotting functionality", {
   )
   expect_equal(length(p2), 2)
   expect_s4_class(p2[[1]], "mapview")
+})
+
+# Examples from man page: plot_tax_gbif_pq.Rd (lines 62-106)
+test_that("plot_tax_gbif_pq with taxnames parameter returns list of ggplots", {
+  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"))
+  p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"))
+
+  expect_type(p, "list")
+  expect_true(length(p) >= 1)
+})
+
+test_that("plot_tax_gbif_pq with hexagons = TRUE and taxnames", {
+  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"),
+  #   hexagons = TRUE, verbose = FALSE)
+  p <- plot_tax_gbif_pq(
+    taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+    hexagons = TRUE,
+    verbose = FALSE
+  )
+
+  expect_type(p, "list")
+})
+
+test_that("plot_tax_gbif_pq with countries filter", {
+  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+  #   hexagons = TRUE, verbose = FALSE, countries = c("france", "spain"))
+  p <- plot_tax_gbif_pq(
+    taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+    hexagons = TRUE,
+    verbose = FALSE,
+    countries = c("france", "spain")
+  )
+
+  expect_type(p, "list")
 })

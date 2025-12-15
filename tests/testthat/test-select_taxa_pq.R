@@ -1,34 +1,44 @@
 # Test select_taxa_pq function
+# Examples from man page: select_taxa_pq.Rd
 
 test_that("select_taxa_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(select_taxa_pq(NULL))
-
-  # Test with invalid taxonomic_rank
-  # This would be tested with actual phyloseq objects
-  skip("Requires phyloseq objects")
 })
 
-test_that("select_taxa_pq parameter defaults", {
-  # Test default parameter values
-  # taxonomic_rank should default to "currentCanonicalSimple"
-  # verbose should default to TRUE
-  skip("Requires phyloseq objects")
+# Examples from man page: select_taxa_pq.Rd (lines 40-54)
+test_that("select_taxa_pq selects taxa by currentCanonicalSimple", {
+  # Example: select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple",
+  #   taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"), verbose = FALSE, clean_pq = FALSE)
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+  result <- select_taxa_pq(data_fungi_mini_cleanNames,
+    taxonomic_rank = "currentCanonicalSimple",
+    taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+    verbose = FALSE,
+    clean_pq = FALSE
+  )
+  expect_s4_class(result, "phyloseq")
+  # Result should have fewer taxa than original
+  expect_true(ntaxa(result) <= ntaxa(data_fungi_mini_cleanNames))
 })
 
-test_that("select_taxa_pq taxa selection logic", {
-  # Test the core selection logic
-  # This would test how taxa are filtered based on taxnames
-  skip("Requires phyloseq objects")
+test_that("select_taxa_pq selects taxa by multiple columns", {
+  # Example: select_taxa_pq(data_fungi, taxonomic_rank = c("Genus", "Species"),
+  #   taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE)
+  result <- select_taxa_pq(data_fungi,
+    taxonomic_rank = c("Genus", "Species"),
+    taxnames = c("Xylodon flaviporus"),
+    verbose = FALSE,
+    clean_pq = FALSE
+  )
+  expect_s4_class(result, "phyloseq")
 })
 
-# Helper function to validate taxa selection behavior
-validate_taxa_selection <- function(original_physeq, selected_physeq, expected_taxa) {
-  # This function would validate that:
-  # 1. Selected phyloseq contains only expected taxa
-  # 2. All samples are preserved (or filtered appropriately)
-  # 3. Tax table structure is maintained
-
-  # Placeholder for actual validation logic
-  TRUE
-}
+test_that("select_taxa_pq selects taxa by Trait column", {
+  # Example: select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot"))
+  result <- select_taxa_pq(data_fungi,
+    taxonomic_rank = "Trait",
+    taxnames = c("Soft Rot")
+  )
+  expect_s4_class(result, "phyloseq")
+})

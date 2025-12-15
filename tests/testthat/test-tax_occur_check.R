@@ -1,4 +1,5 @@
 # Test tax_occur_check function
+# Examples from man page: tax_occur_check.Rd
 
 test_that("tax_occur_check input validation", {
   # Test with NULL or invalid taxa names
@@ -12,20 +13,6 @@ test_that("tax_occur_check input validation", {
   # Test with invalid radius
   expect_error(tax_occur_check("Quercus robur", 2.3522, 48.8566, NULL))
   expect_error(tax_occur_check("Quercus robur", 2.3522, 48.8566, -10))
-})
-
-test_that("tax_occur_check parameter defaults", {
-  # Test default parameter values
-  # radius_km should default to 50
-  # circle_form should default to TRUE
-  # clean_coord should default to TRUE
-  # return_all_occ should default to FALSE
-  # verbose should default to TRUE
-  # clean_coord_verbose should default to FALSE
-  # n_occur should default to 1000
-
-  # These would be tested with actual API calls or mocked responses
-  skip("Requires GBIF API access or mocking")
 })
 
 test_that("tax_occur_check coordinates validation", {
@@ -42,27 +29,44 @@ test_that("tax_occur_check coordinates validation", {
   expect_error(tax_occur_check("Quercus robur", 2.3522, -100, 100))
 })
 
-test_that("tax_occur_check bbox calculation integration", {
-  # Test that bounding box calculation is used correctly
-  # This would verify the integration with calculate_bbox function
-  skip("Requires GBIF API or mocking")
+# Examples from man page: tax_occur_check.Rd (lines 74-82)
+test_that("tax_occur_check returns correct structure", {
+  # Example: Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
+  long <- 2.3522
+  lat <- 48.8566
+  Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
+
+  # Test return structure is a list
+  expect_type(Q_rob_in_Paris, "list")
+
+  # Test expected elements in the list
+  expect_true("count_in_radius" %in% names(Q_rob_in_Paris))
+  expect_true("closest_distance_km" %in% names(Q_rob_in_Paris))
+  expect_true("mean_distance_km" %in% names(Q_rob_in_Paris))
+  expect_true("total_count_in_world" %in% names(Q_rob_in_Paris))
+  expect_true("search_radius" %in% names(Q_rob_in_Paris))
+
+  # Values should be numeric
+  expect_true(is.numeric(Q_rob_in_Paris$count_in_radius))
 })
 
-test_that("tax_occur_check return structure", {
-  # Test the structure of returned data
-  # Should return a list with specific named elements when return_all_occ = TRUE
-  # Should return simpler structure when return_all_occ = FALSE
-  skip("Requires GBIF API or mocking")
+test_that("tax_occur_check with Trametopsis brasiliensis", {
+  # Example: tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+  long <- 2.3522
+  lat <- 48.8566
+  result <- tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+  expect_type(result, "list")
+  expect_true("count_in_radius" %in% names(result))
 })
 
-test_that("tax_occur_check info_names parameter", {
-  # Test that info_names parameter controls which columns are returned
-  # Default should include: decimalLongitude, decimalLatitude, country, year,
-  # scientificName, recordedBy, gbifRegion
-  skip("Requires GBIF API or mocking")
-})
+test_that("tax_occur_check with return_all_occ = TRUE", {
+  # Example: res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
+  long <- 2.3522
+  lat <- 48.8566
+  res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
 
-test_that("tax_occur_check verbose output", {
-  # Test that verbose parameter controls message output
-  skip("Requires GBIF API or mocking")
+  # Should include occ_data element
+  expect_type(res_occ, "list")
+  expect_true("occ_data" %in% names(res_occ))
+  expect_s3_class(res_occ$occ_data, "data.frame")
 })

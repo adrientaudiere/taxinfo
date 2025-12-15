@@ -1,23 +1,9 @@
 # Test tax_info_pq function
+# Examples from man page: tax_info_pq.Rd
 
 test_that("tax_info_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_info_pq(NULL))
-
-  # Test with missing file_name when required
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_info_pq parameter defaults", {
-  # Test default parameter values
-  # taxonomic_rank should default to "currentCanonicalSimple"
-  # add_to_phyloseq should default to FALSE
-  # use_duck_db should default to FALSE
-  # sep should default to ","
-  # dec should default to "."
-
-  # These would be tested with actual phyloseq objects
-  skip("Requires phyloseq objects")
 })
 
 test_that("tax_info_pq file handling", {
@@ -47,34 +33,40 @@ test_that("tax_info_pq file handling", {
   unlink(temp_csv)
 })
 
-test_that("tax_info_pq duck_db parameter", {
-  # Test use_duck_db parameter functionality
-  # When TRUE, should use DuckDB for processing large files
-  # When FALSE, should use standard R data.frame operations
-  skip("Requires phyloseq objects and potentially DuckDB")
+# Examples from man page: tax_info_pq.Rd (lines 77-168)
+test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = FALSE", {
+  # Example: fg_traits <- tax_info_pq(data_fungi_cleanNames,
+  #   taxonomic_rank = "genusEpithet", file_name = fungal_traits,
+  #   csv_taxonomic_rank = "GENUS", col_prefix = "ft_", sep = ";",
+  #   add_to_phyloseq = FALSE)
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
+
+  fg_traits <- tax_info_pq(data_fungi_cleanNames,
+    taxonomic_rank = "genusEpithet",
+    file_name = fungal_traits,
+    csv_taxonomic_rank = "GENUS",
+    col_prefix = "ft_",
+    sep = ";",
+    add_to_phyloseq = FALSE
+  )
+
+  expect_s3_class(fg_traits, "tbl_df")
 })
 
-test_that("tax_info_pq column prefix", {
-  # Test col_prefix parameter
-  # Should prefix all new columns with the specified string
-  skip("Requires phyloseq objects")
-})
+test_that("tax_info_pq returns phyloseq with TAXREF data", {
+  # Example: res_with_R <- tax_info_pq(data_fungi_cleanNames,
+  #   file_name = TAXREFv18_fungi,
+  #   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
+  #   col_prefix = "taxref_")
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
 
-test_that("tax_info_pq taxonomic rank matching", {
-  # Test taxonomic_rank and csv_taxonomic_rank parameter matching
-  # Should correctly match taxa between phyloseq and CSV file
-  skip("Requires phyloseq objects")
-})
+  res_with_R <- tax_info_pq(data_fungi_cleanNames,
+    file_name = TAXREFv18_fungi,
+    csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
+    col_prefix = "taxref_"
+  )
 
-test_that("tax_info_pq csv_cols_select parameter", {
-  # Test selective column reading from CSV
-  # Should only read specified columns when csv_cols_select is provided
-  skip("Requires phyloseq objects")
-})
-
-test_that("tax_info_pq return types", {
-  # Test return behavior
-  # When add_to_phyloseq = TRUE, should return phyloseq object
-  # When add_to_phyloseq = FALSE, should return tibble
-  skip("Requires phyloseq objects")
+  expect_s4_class(res_with_R, "phyloseq")
 })
