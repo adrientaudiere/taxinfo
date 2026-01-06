@@ -58,3 +58,40 @@ test_that("gna_verifier_pq name verification logic", {
 
   skip("Requires phyloseq objects and GNA API")
 })
+
+test_that("gna_verifier_pq with taxnames and physeq both provided errors", {
+  expect_error(
+    gna_verifier_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("gna_verifier_pq with taxnames only works", {
+  # Test with taxnames parameter only
+  result <- gna_verifier_pq(
+    taxnames = c("Amanita muscaria"),
+    add_to_phyloseq = FALSE,
+    verbose = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})
+
+test_that("gna_verifier_pq add_to_phyloseq cannot be TRUE with taxnames", {
+  expect_error(
+    gna_verifier_pq(taxnames = c("Amanita muscaria"), add_to_phyloseq = TRUE),
+    "cannot be TRUE when.*taxnames"
+  )
+})
+
+test_that("gna_verifier_pq col_prefix parameter works", {
+  # Test with col_prefix parameter
+  result <- gna_verifier_pq(
+    taxnames = c("Boletus edulis"),
+    add_to_phyloseq = FALSE,
+    col_prefix = "test_",
+    verbose = FALSE
+  )
+
+  expect_s3_class(result, "data.frame")
+})

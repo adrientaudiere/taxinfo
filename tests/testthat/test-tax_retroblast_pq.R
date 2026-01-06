@@ -39,3 +39,32 @@ test_that("tax_retroblast_pq returns phyloseq with add_to_phyloseq = TRUE", {
 
   expect_s4_class(res_retro, "phyloseq")
 })
+
+test_that("tax_retroblast_pq tib_retroblast has expected columns", {
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+  res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
+    marker = c("ITS", "internal transcribed spacer"),
+    retmax = 10, id_cut = 99,
+    add_to_phyloseq = FALSE
+  )
+
+  # Check for expected columns in tib_retroblast
+  expected_cols <- c("taxa_name", "taxnames_species", "blast_queried", "blast_result", "good_assign")
+  for (col in expected_cols) {
+    expect_true(col %in% colnames(res_retro$tib_retroblast),
+      info = paste("Missing column:", col)
+    )
+  }
+})
+
+test_that("tax_retroblast_pq verbose parameter works", {
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+
+  # Should work with verbose = FALSE
+  expect_no_error(tax_retroblast_pq(data_fungi_mini_cleanNames,
+    marker = c("ITS"),
+    retmax = 5, id_cut = 99,
+    add_to_phyloseq = FALSE,
+    verbose = FALSE
+  ))
+})

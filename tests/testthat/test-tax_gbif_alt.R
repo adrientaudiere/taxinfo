@@ -93,16 +93,37 @@ test_that("tax_gbif_alt n_occur_altitude parameter", {
   # Test that n_occur_altitude controls sample size
   skip_if_offline()
   skip_on_cran()
-  
+
   # Request smaller sample
   result_small <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
     n_occur_altitude = 100,
     verbose = FALSE
   )
-  
+
   # Should have at most 100 records (or fewer if not enough data available)
   if (!is.na(result_small$altitude_n_records[1])) {
     expect_true(result_small$altitude_n_records[1] <= 100)
   }
+})
+
+test_that("tax_gbif_alt both physeq and taxnames errors", {
+  expect_error(
+    tax_gbif_alt(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("tax_gbif_alt neither physeq nor taxnames errors", {
+  expect_error(
+    tax_gbif_alt(physeq = NULL, taxnames = NULL),
+    "You must specify either"
+  )
+})
+
+test_that("tax_gbif_alt add_to_phyloseq cannot be TRUE with taxnames", {
+  expect_error(
+    tax_gbif_alt(taxnames = c("Amanita muscaria"), add_to_phyloseq = TRUE),
+    "cannot be TRUE when.*taxnames"
+  )
 })

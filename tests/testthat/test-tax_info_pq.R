@@ -70,3 +70,93 @@ test_that("tax_info_pq returns phyloseq with TAXREF data", {
 
   expect_s4_class(res_with_R, "phyloseq")
 })
+
+test_that("tax_info_pq both physeq and taxnames errors", {
+  expect_error(
+    tax_info_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("tax_info_pq neither physeq nor taxnames errors", {
+  expect_error(
+    tax_info_pq(physeq = NULL, taxnames = NULL),
+    "You must specify either"
+  )
+})
+
+test_that("tax_info_pq file_name is required", {
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  expect_error(
+    tax_info_pq(data_fungi_cleanNames,
+      csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
+    ),
+    "file_name"
+  )
+})
+
+test_that("tax_info_pq file_name must exist", {
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  expect_error(
+    tax_info_pq(data_fungi_cleanNames,
+      file_name = "/nonexistent/path/file.csv",
+      csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
+    ),
+    "does not exist"
+  )
+})
+
+test_that("tax_info_pq csv_taxonomic_rank is required", {
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+
+  expect_error(
+    tax_info_pq(data_fungi_cleanNames,
+      file_name = TAXREFv18_fungi
+    ),
+    "csv_taxonomic_rank"
+  )
+})
+
+test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
+  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+
+  expect_error(
+    tax_info_pq(
+      taxnames = c("Amanita muscaria"),
+      file_name = TAXREFv18_fungi,
+      csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
+      add_to_phyloseq = TRUE
+    ),
+    "cannot be TRUE when.*taxnames"
+  )
+})
+
+test_that("tax_info_pq with taxnames returns tibble", {
+  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+
+  result <- tax_info_pq(
+    taxnames = c("Amanita muscaria"),
+    file_name = TAXREFv18_fungi,
+    csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
+    add_to_phyloseq = FALSE
+  )
+
+  expect_s3_class(result, "tbl_df")
+})
+
+test_that("tax_info_pq use_duck_db parameter works", {
+  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+
+  result <- tax_info_pq(data_fungi_cleanNames,
+    file_name = TAXREFv18_fungi,
+    csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
+    col_prefix = "taxref_",
+    use_duck_db = TRUE,
+    csv_cols_select = c("RANG", "HABITAT"),
+    add_to_phyloseq = FALSE
+  )
+
+  expect_s3_class(result, "tbl_df")
+})
