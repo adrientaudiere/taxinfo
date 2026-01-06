@@ -128,7 +128,6 @@ test_that("tax_occur_multi_check_pq neither physeq nor taxnames errors", {
 
 test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  sample_data <- sample_data(data_fungi_mini_cleanNames)
 
   # Create valid coordinates for the subset
   n_samples <- nrow(subset_samples(data_fungi_mini_cleanNames, Diameter == 52)@sam_data)

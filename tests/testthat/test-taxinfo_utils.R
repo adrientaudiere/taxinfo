@@ -108,9 +108,10 @@ test_that("calculate_bbox with large radius", {
   bbox_large <- calculate_bbox(0, 0, 500)
 
   expect_type(bbox_large, "list")
-  # Should have significant span
-  expect_true((bbox_large$xmax - bbox_large$xmin) > 8) # ~9 degrees
-  expect_true((bbox_large$ymax - bbox_large$ymin) > 8) # ~9 degrees
+  # At equator, 500 km ≈ 4.5 degrees (500/111.32), so span is ~9 degrees
+  # Using 8 degrees as a conservative threshold
+  expect_true((bbox_large$xmax - bbox_large$xmin) > 8)
+  expect_true((bbox_large$ymax - bbox_large$ymin) > 8)
 })
 
 # Note: taxa_summary_text requires phyloseq objects and MiscMetabar package
