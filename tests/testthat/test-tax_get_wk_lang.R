@@ -21,3 +21,42 @@ test_that("tax_get_wk_lang returns data for valid taxon_id", {
   # Should return at least some rows for a known taxon
   expect_true(nrow(result) > 0)
 })
+
+test_that("tax_get_wk_lang handles NA taxon_id", {
+  result <- tax_get_wk_lang(NA)
+
+  expect_s3_class(result, "tbl_df")
+  # Should have site as NA
+  expect_true(is.na(result$site[1]))
+})
+
+test_that("tax_get_wk_lang handles empty string taxon_id", {
+  result <- tax_get_wk_lang("")
+
+  expect_s3_class(result, "tbl_df")
+  # Should have site as NA
+  expect_true(is.na(result$site[1]))
+})
+
+test_that("tax_get_wk_lang languages_pages parameter works", {
+  # Test with specific language filter
+  result_all <- tax_get_wk_lang("Q10723171")
+  result_en <- tax_get_wk_lang("Q10723171", languages_pages = c("en"))
+
+  expect_s3_class(result_en, "tbl_df")
+
+  # Filtered result should have fewer or equal rows
+  expect_true(nrow(result_en) <= nrow(result_all))
+
+  # If result has rows, all should be in English
+  if (nrow(result_en) > 0 && !is.na(result_en$lang[1])) {
+    expect_true(all(result_en$lang == "en"))
+  }
+})
+
+test_that("tax_get_wk_lang handles non-existent taxon_id", {
+  # Test with a non-existent taxon ID
+  result <- tax_get_wk_lang("Q999999999999")
+
+  expect_true(inherits(result, "tbl_df") || is.na(result))
+})

@@ -33,3 +33,57 @@ test_that("tax_globi_pq returns phyloseq with add_to_phyloseq = TRUE", {
 
   expect_s4_class(result, "phyloseq")
 })
+
+test_that("tax_globi_pq add_to_phyloseq cannot be TRUE with taxnames", {
+  # Test that add_to_phyloseq = TRUE with taxnames causes error
+  expect_error(
+    tax_globi_pq(taxnames = c("Amanita muscaria"), add_to_phyloseq = TRUE),
+    "cannot be TRUE when.*taxnames"
+  )
+})
+
+test_that("tax_globi_pq both physeq and taxnames causes error", {
+  expect_error(
+    tax_globi_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("tax_globi_pq verbose parameter works", {
+  # Should work with verbose = FALSE
+  result <- tax_globi_pq(data_fungi_mini,
+    taxonomic_rank = c("Genus", "Species"),
+    interaction_types = c("hasHost"),
+    max_interactions = 10,
+    add_to_phyloseq = FALSE,
+    verbose = FALSE
+  )
+
+  expect_s3_class(result, "tbl_df")
+})
+
+test_that("tax_globi_pq discard_synonym parameter works", {
+  # Test with discard_synonym = TRUE (default)
+  result_discard <- tax_globi_pq(data_fungi_mini,
+    taxonomic_rank = c("Genus", "Species"),
+    interaction_types = c("hasHost"),
+    max_interactions = 10,
+    discard_synonym = TRUE,
+    add_to_phyloseq = FALSE,
+    verbose = FALSE
+  )
+
+  expect_s3_class(result_discard, "tbl_df")
+
+  # Test with discard_synonym = FALSE
+  result_keep <- tax_globi_pq(data_fungi_mini,
+    taxonomic_rank = c("Genus", "Species"),
+    interaction_types = c("hasHost"),
+    max_interactions = 10,
+    discard_synonym = FALSE,
+    add_to_phyloseq = FALSE,
+    verbose = FALSE
+  )
+
+  expect_s3_class(result_keep, "tbl_df")
+})

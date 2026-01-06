@@ -111,3 +111,33 @@ test_that("tax_occur_multi_check_pq returns expected structure", {
   # Should have 3 elements
   expect_equal(length(res_occur_check), 3)
 })
+
+test_that("tax_occur_multi_check_pq both physeq and taxnames errors", {
+  expect_error(
+    tax_occur_multi_check_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("tax_occur_multi_check_pq neither physeq nor taxnames errors", {
+  expect_error(
+    tax_occur_multi_check_pq(physeq = NULL, taxnames = NULL),
+    "You must specify either"
+  )
+})
+
+test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
+  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+
+  # Create valid coordinates for the subset
+  n_samples <- nrow(subset_samples(data_fungi_mini_cleanNames, Diameter == 52)@sam_data)
+
+  expect_error(
+    tax_occur_multi_check_pq(
+      subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
+      longitudes = rep(2.3, n_samples - 1), # Wrong length
+      latitudes = rep(48.8, n_samples)
+    ),
+    "must have the same length"
+  )
+})

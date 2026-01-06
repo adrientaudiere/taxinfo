@@ -68,3 +68,28 @@ test_that("plot_tax_gbif_pq with countries filter", {
 
   expect_type(p, "list")
 })
+
+test_that("plot_tax_gbif_pq both physeq and taxnames errors", {
+  expect_error(
+    plot_tax_gbif_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    "You must specify either"
+  )
+})
+
+test_that("plot_tax_gbif_pq neither physeq nor taxnames errors", {
+  expect_error(
+    plot_tax_gbif_pq(physeq = NULL, taxnames = NULL),
+    "You must specify either"
+  )
+})
+
+test_that("plot_tax_gbif_pq verbose parameter works", {
+  # Should work with verbose = FALSE
+  expect_no_error(
+    plot_tax_gbif_pq(
+      taxnames = c("Amanita muscaria"),
+      verbose = FALSE,
+      occ_samp = 10
+    )
+  )
+})
