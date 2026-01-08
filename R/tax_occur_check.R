@@ -39,6 +39,7 @@
 #'  found within the radius
 #' @seealso [tax_occur_check_pq()], [tax_occur_multi_check_pq()]
 #' @examples
+#' \donttest{
 #' # Check for Oak species near Paris
 #' long <- 2.3522
 #' lat <- 48.8566
@@ -47,6 +48,7 @@
 #' Q_rob_in_Paris
 #'
 #' tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+#'
 #'
 #' # Visualize occurrences around Paris for Fagus sylvatica
 #' res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200,
@@ -75,6 +77,7 @@
 #'   ) |>
 #'   leaflet::addCircles(data = occ_data_sf, color = "blue", stroke = 1, opacity = 0.8) |>
 #'   leaflet::addCircleMarkers(lat, long, color = "orange", radius = 2, opacity = 1)
+#' }
 #'
 #' @author Adrien Taudiere
 #' @export

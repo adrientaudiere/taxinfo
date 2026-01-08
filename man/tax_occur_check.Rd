@@ -72,6 +72,7 @@ Performs a species occurrence check within a fixed radius around a GPS point usi
   GBIF occurrence data.
 }
 \examples{
+\donttest{
 # Check for Oak species near Paris
 long <- 2.3522
 lat <- 48.8566
@@ -80,6 +81,7 @@ Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
 Q_rob_in_Paris
 
 tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+
 
 # Visualize occurrences around Paris for Fagus sylvatica
 res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200,
@@ -108,6 +110,7 @@ leaflet() |>
   ) |>
   leaflet::addCircles(data = occ_data_sf, color = "blue", stroke = 1, opacity = 0.8) |>
   leaflet::addCircleMarkers(lat, long, color = "orange", radius = 2, opacity = 1)
+}
 
 }
 \seealso{

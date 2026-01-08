@@ -46,7 +46,6 @@
 #'  and canonicalName. When `method = "elevatr"`, also includes altitude_n_ocean
 #'  (number of points detected in ocean).
 #' @export
-#' @importFrom elevatr get_elev_point
 #' @author Adrien Taudiere
 #' @seealso [rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
 #' @details
@@ -89,7 +88,7 @@
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini)
 #'
-#' \donttest{
+#' \dontrun{
 #' # Get altitude range statistics using GBIF Download API (default)
 #' # Note: Requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
 #' # Register at https://www.gbif.org/user/register

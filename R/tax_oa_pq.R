@@ -52,7 +52,7 @@
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `openalexR` package.
 #' @examples
-#'
+#' \donttest{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
 #'   tax_oa_pq()
 #'
@@ -117,6 +117,7 @@
 #'       filter(xx, cited_by_count > 10)
 #'     }
 #'   })
+#' }
 tax_oa_pq <- function(physeq = NULL,
                       taxnames = NULL,
                       taxonomic_rank = "currentCanonicalSimple",

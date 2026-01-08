@@ -62,6 +62,8 @@ This function performs a species range check for taxa contained
 }
 \examples{
 
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+
 check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   longitude = 2.3,
   latitude = 48,

@@ -37,9 +37,10 @@ FALSE (see parameter `type_works`).}
 \item{return_raw_oa}{(Logical, default FALSE) If TRUE, return the raw list of
 publications from Open Alex for each taxa as a list of data.frame. Can be
 useful to filter works for example by topic or by number of citations (see
-section examples).}
+section examples). If TRUE, add_to_phyloseq is set to FALSE automatically.}
 
-\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+\item{add_to_phyloseq}{(logical, default TRUE when physeq is provided,
+FALSE when taxnames is provided and FALSE if return_raw_oa is set to TRUE).
 If TRUE, return a new phyloseq object with new columns in the tax_table slot.
 Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 Cannot be TRUE if `taxnames` is provided.}
@@ -78,7 +79,7 @@ This function is mainly a wrapper of the work of others.
   Please cite `openalexR` package.
 }
 \examples{
-
+\donttest{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
   tax_oa_pq()
 
@@ -96,6 +97,7 @@ tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
 
 
 list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames,
+  col_prefix = "oa_",
   return_raw_oa = TRUE
 )
 
@@ -142,6 +144,7 @@ list_pub_at_least_ten_citations <-
       filter(xx, cited_by_count > 10)
     }
   })
+}
 }
 \author{
 Adrien Taudiere

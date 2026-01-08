@@ -77,11 +77,16 @@
 #' @author Adrien Taudiere
 #' @seealso [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
 #' @examples
-#' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+#' \donttest{
+#' data_fungi_mini_cleanNames <-
+#'   gna_verifier_pq(data_fungi_mini,
+#'     data_source = 210)
 #'
 #' res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
 #'   marker = c("ITS", "internal transcribed spacer"),
-#'   retmax = 10, id_cut = 99
+#'   retmax = 10,
+#'    id_cut = 99,
+#'    add_to_phyloseq = FALSE
 #' )
 #'
 #' res_retro$tib_retroblast |>
@@ -108,6 +113,8 @@
 #'   is.na() |>
 #'   sapply(isFALSE) |>
 #'   sum()
+#'
+#' }
 tax_retroblast_pq <- function(physeq,
                               taxonomic_rank = "currentCanonicalSimple",
                               marker = NULL,

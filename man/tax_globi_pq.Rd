@@ -89,13 +89,6 @@ This function is mainly a wrapper of the work of others.
  Please cite `rglobi` and `taxize` packages.
 }
 \examples{
-res_globi <- tax_globi_pq(data_fungi_mini,
-  taxonomic_rank = c("Genus", "Species"),
-  interaction_types = list("parasiteOf", "hasHost"),
-  verbose = TRUE,
-  max_interactions = 10
-)
-
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
   data_sources = 210
 )
@@ -103,6 +96,16 @@ data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
 data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
   interaction_types = c("hasHost")
 )
+
+\donttest{
+res_globi <- tax_globi_pq(data_fungi_mini,
+  taxonomic_rank = c("Genus", "Species"),
+  interaction_types = list("parasiteOf", "hasHost"),
+  verbose = TRUE,
+  max_interactions = 10
+)
+}
+
 }
 \author{
 Adrien Taudiere

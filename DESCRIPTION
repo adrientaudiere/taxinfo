@@ -36,6 +36,7 @@ Suggests:
     DECIPHER,
     digest,
     duckdb,
+    elevatr,
     forcats,
     gbif.range,
     ggraph,
