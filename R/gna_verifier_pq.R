@@ -201,11 +201,10 @@ gna_verifier_pq <- function(physeq = NULL,
     res_verifier_clean <- res_verifier_clean |>
       mutate(
         authorship = rgbif::name_parse(currentName)$authorship,
-        bracketauthorship = rgbif::name_parse(currentName)$bracketauthorship,
+        bracketauthorship = rgbif::name_parse(currentName)$bracketauthorship %||% NA,
         scientificNameAuthorship = ifelse(is.na(bracketauthorship), authorship, paste0("(", bracketauthorship, ") ", authorship))
       )
   }
-
 
   if (add_to_phyloseq) {
     new_physeq <- physeq
