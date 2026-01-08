@@ -21,8 +21,9 @@
 #' @param return_raw_oa (Logical, default FALSE) If TRUE, return the raw list of
 #'   publications from Open Alex for each taxa as a list of data.frame. Can be
 #'   useful to filter works for example by topic or by number of citations (see
-#'   section examples).
-#' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
+#'   section examples). If TRUE, add_to_phyloseq is set to FALSE automatically.
+#' @param add_to_phyloseq (logical, default TRUE when physeq is provided,
+#'   FALSE when taxnames is provided and FALSE if return_raw_oa is set to TRUE).
 #'   If TRUE, return a new phyloseq object with new columns in the tax_table slot.
 #'   Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'   Cannot be TRUE if `taxnames` is provided.
@@ -69,6 +70,7 @@
 #'
 #'
 #' list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames,
+#'   col_prefix = "oa_",
 #'   return_raw_oa = TRUE
 #' )
 #'
@@ -143,8 +145,9 @@ tax_oa_pq <- function(physeq = NULL,
     cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
   }
 
-  if (sum(return_raw_oa, add_to_phyloseq) > 1) {
-    stop("You can not set to TRUE more than one of the parameters return_raw_oa and add_to_phyloseq.")
+  if (return_raw_oa) {
+    add_to_phyloseq <- FALSE
+    cli::cli_alert_info("{.arg add_to_phyloseq} is set to FALSE when {.arg return_raw_oa} is TRUE")
   }
 
   if (is.null(taxnames)) {

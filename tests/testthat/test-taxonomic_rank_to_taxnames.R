@@ -43,47 +43,47 @@ test_that("taxonomic_rank_to_taxnames with combined parameters", {
 
 
   # Mock data creation helper for future use
-create_mock_tax_table <- function() {
-  # This would create a mock tax_table for testing
-  # when phyloseq package is available
-  data.frame(
-    Genus = c("Xylodon", "Basidiodendron", "Fusarium"),
-    Species = c("raduloides", "eyrei", "oxysporum"),
-    currentCanonicalSimple = c("Xylodon flaviporus", "Basidiodendron eyrei", "Fusarium oxysporum"),
-    stringsAsFactors = FALSE
-  )
-}
+  create_mock_tax_table <- function() {
+    # This would create a mock tax_table for testing
+    # when phyloseq package is available
+    data.frame(
+      Genus = c("Xylodon", "Basidiodendron", "Fusarium"),
+      Species = c("raduloides", "eyrei", "oxysporum"),
+      currentCanonicalSimple = c("Xylodon flaviporus", "Basidiodendron eyrei", "Fusarium oxysporum"),
+      stringsAsFactors = FALSE
+    )
+  }
 
-test_that("taxonomic_rank_to_taxnames basic functionality", {
-  # Test with mock data structure
-  mock_tax <- create_mock_tax_table()
+  test_that("taxonomic_rank_to_taxnames basic functionality", {
+    # Test with mock data structure
+    mock_tax <- create_mock_tax_table()
 
-  # Test that our mock data has expected structure
-  expect_true("Genus" %in% colnames(mock_tax))
-  expect_true("Species" %in% colnames(mock_tax))
-  expect_true("currentCanonicalSimple" %in% colnames(mock_tax))
+    # Test that our mock data has expected structure
+    expect_true("Genus" %in% colnames(mock_tax))
+    expect_true("Species" %in% colnames(mock_tax))
+    expect_true("currentCanonicalSimple" %in% colnames(mock_tax))
 
-  # Test taxonomic name construction logic
-  combined_names <- paste(mock_tax$Genus, mock_tax$Species)
-  expect_equal(length(combined_names), 3)
-  expect_true("Xylodon raduloides" %in% combined_names)
-  expect_true("Basidiodendron eyrei" %in% combined_names)
-})
+    # Test taxonomic name construction logic
+    combined_names <- paste(mock_tax$Genus, mock_tax$Species)
+    expect_equal(length(combined_names), 3)
+    expect_true("Xylodon raduloides" %in% combined_names)
+    expect_true("Basidiodendron eyrei" %in% combined_names)
+  })
 
-test_that("taxonomic_rank_to_taxnames handles NA values", {
-  # Test NA handling logic
-  mock_tax_with_na <- data.frame(
-    Genus = c("Xylodon", "Basidiodendron", NA),
-    Species = c("raduloides", NA, "oxysporum"),
-    stringsAsFactors = FALSE
-  )
+  test_that("taxonomic_rank_to_taxnames handles NA values", {
+    # Test NA handling logic
+    mock_tax_with_na <- data.frame(
+      Genus = c("Xylodon", "Basidiodendron", NA),
+      Species = c("raduloides", NA, "oxysporum"),
+      stringsAsFactors = FALSE
+    )
 
-  combined_names <- paste(mock_tax_with_na$Genus, mock_tax_with_na$Species)
-  na_patterns <- grepl("NA", combined_names)
+    combined_names <- paste(mock_tax_with_na$Genus, mock_tax_with_na$Species)
+    na_patterns <- grepl("NA", combined_names)
 
-  expect_true(any(na_patterns))
-  expect_equal(sum(na_patterns), 2) # Two entries should have NA
-})
+    expect_true(any(na_patterns))
+    expect_equal(sum(na_patterns), 2) # Two entries should have NA
+  })
 
   expect_type(result, "character")
   expect_false(any(is.na(result)))

@@ -64,8 +64,7 @@ test_that("tax_spores_size_pq with taxnames returns dataframe", {
   expect_true("taxa_name" %in% colnames(result))
 })
 
-test_that("extract_spores_mycodb verbose parameter works",
-{
+test_that("extract_spores_mycodb verbose parameter works", {
   # Test with verbose = TRUE (should not error)
   expect_no_error(extract_spores_mycodb("Boletus edulis", verbose = TRUE))
 

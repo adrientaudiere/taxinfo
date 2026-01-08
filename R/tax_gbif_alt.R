@@ -46,6 +46,7 @@
 #'  and canonicalName. When `method = "elevatr"`, also includes altitude_n_ocean
 #'  (number of points detected in ocean).
 #' @export
+#' @importFrom elevatr get_elev_point
 #' @author Adrien Taudiere
 #' @seealso [rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
 #' @details
@@ -93,7 +94,8 @@
 #' # Note: Requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
 #' # Register at https://www.gbif.org/user/register
 #' data_fungi_mini_alt <- tax_gbif_alt(data_fungi_mini_cleanNames,
-#'                                      add_to_phyloseq = FALSE)
+#'   add_to_phyloseq = FALSE
+#' )
 #'
 #' # Using taxnames vector (returns a tibble)
 #' altitude_gbif <- tax_gbif_alt(
@@ -113,26 +115,27 @@
 #' data_fungi_mini_with_alt <- tax_gbif_alt(data_fungi_mini_cleanNames)
 #'
 #' data_fungi_mini_with_alt@tax_table |>
-#'  as.data.frame() |>
-#'  tibble() |>
-#'  filter(as.numeric(altitude_n_records)>100) |>
-#'  distinct(taxa_name, .keep_all=TRUE)|>
-#'  ggplot(aes(y=as.numeric(altitude_mean), x=taxa_name, fill = Guild))  +
+#'   as.data.frame() |>
+#'   tibble() |>
+#'   filter(as.numeric(altitude_n_records) > 100) |>
+#'   distinct(taxa_name, .keep_all = TRUE) |>
+#'   ggplot(aes(y = as.numeric(altitude_mean), x = taxa_name, fill = Guild)) +
 #'   geom_col() +
 #'   coord_flip() +
 #'   geom_errorbar(
-#'     aes(ymin=as.numeric(altitude_q05), ymax=as.numeric(altitude_q95)),
-#'     width = 0.2) +
-#'   geom_label(aes(label=paste0("n=",altitude_n_records)), size=2) +
+#'     aes(ymin = as.numeric(altitude_q05), ymax = as.numeric(altitude_q95)),
+#'     width = 0.2
+#'   ) +
+#'   geom_label(aes(label = paste0("n=", altitude_n_records)), size = 2) +
 #'   labs(
 #'     title = "Mean altitude with 5%-95% quantiles (only taxa with >100 records)",
 #'     subtitle = "Labels depict the number of gbif records with altitude data, \n
 #'     color depict ecological Guild",
 #'     x = "Taxa names",
 #'     fill = "Guild"
-#'   ) + theme(legend.position = "bottom")
+#'   ) +
+#'   theme(legend.position = "bottom")
 #' }
-
 tax_gbif_alt <- function(physeq = NULL,
                          taxnames = NULL,
                          taxonomic_rank = "currentCanonicalSimple",
@@ -178,7 +181,7 @@ tax_gbif_alt <- function(physeq = NULL,
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    dplyr::distinct()
+    distinct()
 
   if (verbose) {
     cli::cli_alert_info("Using method: {.val {method}}")
@@ -195,24 +198,27 @@ tax_gbif_alt <- function(physeq = NULL,
 
   if (method == "gbif") {
     # Method 1: Use GBIF Download API to get elevation data directly
-    download_key <- tryCatch({
-      rgbif::occ_download(
-        rgbif::pred_in("taxonKey", gbif_taxon_keys),
-        rgbif::pred("hasCoordinate", TRUE),
-        rgbif::pred("hasGeospatialIssue", FALSE),
-        rgbif::pred_notnull("elevation"),
-        format = "SIMPLE_CSV"
-      )
-    }, error = function(e) {
-      cli::cli_abort(c(
-        "Failed to submit GBIF download request.",
-        "i" = "GBIF credentials are required. Please ensure you have set:",
-        " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
-        "i" = "Register at: {.url https://www.gbif.org/user/register}",
-        "i" = "See: {.url https://docs.ropensci.org/rgbif/articles/gbif_credentials.html}",
-        "x" = "Error: {e$message}"
-      ))
-    })
+    download_key <- tryCatch(
+      {
+        rgbif::occ_download(
+          rgbif::pred_in("taxonKey", gbif_taxon_keys),
+          rgbif::pred("hasCoordinate", TRUE),
+          rgbif::pred("hasGeospatialIssue", FALSE),
+          rgbif::pred_notnull("elevation"),
+          format = "SIMPLE_CSV"
+        )
+      },
+      error = function(e) {
+        cli::cli_abort(c(
+          "Failed to submit GBIF download request.",
+          "i" = "GBIF credentials are required. Please ensure you have set:",
+          " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
+          "i" = "Register at: {.url https://www.gbif.org/user/register}",
+          "i" = "See: {.url https://docs.ropensci.org/rgbif/articles/gbif_credentials.html}",
+          "x" = "Error: {e$message}"
+        ))
+      }
+    )
 
     if (verbose) {
       cli::cli_alert_info("Download key: {.val {download_key}}")
@@ -241,10 +247,10 @@ tax_gbif_alt <- function(physeq = NULL,
       taxon_data <- occ_data |>
         filter(taxonKey == taxon_key)
 
-      if(!is.null(n_coor_alt)){
+      if (!is.null(n_coor_alt)) {
         taxon_data <-
           taxon_data |>
-          dplyr::slice_sample(n = n_coor_alt)
+          slice_sample(n = n_coor_alt)
       }
 
 
@@ -284,7 +290,6 @@ tax_gbif_alt <- function(physeq = NULL,
       }
       tib_occur_list[[i]] <- tib
     }
-
   } else if (method == "elevatr") {
     # Method 2: Compute elevation from GPS coordinates using elevatr
     # Use occ_download to get coordinates, then compute elevation
@@ -293,24 +298,27 @@ tax_gbif_alt <- function(physeq = NULL,
     world_land <- NULL
     world_land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
 
-   # Submit download request
-    download_key <- tryCatch({
-      rgbif::occ_download(
-        rgbif::pred_in("taxonKey", gbif_taxon_keys),
-        rgbif::pred("hasCoordinate", TRUE),
-        rgbif::pred("hasGeospatialIssue", FALSE),
-        format = "SIMPLE_CSV"
-      )
-    }, error = function(e) {
-      cli::cli_abort(c(
-        "Failed to submit GBIF download request.",
-        "i" = "GBIF credentials are required. Please ensure you have set:",
-        " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
-        "i" = "Register at: {.url https://www.gbif.org/user/register}",
-        "i" = "See: {.url https://docs.ropensci.org/rgbif/reference/occ_download.html}",
-        "x" = "Error: {e$message}"
-      ))
-    })
+    # Submit download request
+    download_key <- tryCatch(
+      {
+        rgbif::occ_download(
+          rgbif::pred_in("taxonKey", gbif_taxon_keys),
+          rgbif::pred("hasCoordinate", TRUE),
+          rgbif::pred("hasGeospatialIssue", FALSE),
+          format = "SIMPLE_CSV"
+        )
+      },
+      error = function(e) {
+        cli::cli_abort(c(
+          "Failed to submit GBIF download request.",
+          "i" = "GBIF credentials are required. Please ensure you have set:",
+          " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
+          "i" = "Register at: {.url https://www.gbif.org/user/register}",
+          "i" = "See: {.url https://docs.ropensci.org/rgbif/reference/occ_download.html}",
+          "x" = "Error: {e$message}"
+        ))
+      }
+    )
 
     if (verbose) {
       cli::cli_alert_info("Download key: {.val {download_key}}")
@@ -356,10 +364,10 @@ tax_gbif_alt <- function(physeq = NULL,
             crs = 4326
           )
 
-          if(!is.null(n_coor_alt)){
+          if (!is.null(n_coor_alt)) {
             coords_sf <-
               coords_sf |>
-              dplyr::slice_sample(n = n_coor_alt)
+              slice_sample(n = n_coor_alt)
           }
           # Detect ocean points (points NOT intersecting land)
           on_land <- lengths(sf::st_intersects(coords_sf, world_land)) > 0
@@ -377,18 +385,21 @@ tax_gbif_alt <- function(physeq = NULL,
             cli::cli_alert_info("Computing elevation from GPS coordinates using AWS Terrain Tiles...")
           }
 
-          coords_with_elev <- tryCatch({
-            suppressMessages(
-              elevatr::get_elev_point(coords_sf, src = "aws", z = elev_zoom,overwrite = TRUE)
-            )
-          }, error = function(e) {
-            if (verbose) {
-              cli::cli_alert_warning(
-                "Failed to retrieve elevation data for {.emph {species_name}}: {e$message}. You may want to try a different {.arg elev_zoom} level."
+          coords_with_elev <- tryCatch(
+            {
+              suppressMessages(
+                elevatr::get_elev_point(coords_sf, src = "aws", z = elev_zoom, overwrite = TRUE)
               )
+            },
+            error = function(e) {
+              if (verbose) {
+                cli::cli_alert_warning(
+                  "Failed to retrieve elevation data for {.emph {species_name}}: {e$message}. You may want to try a different {.arg elev_zoom} level."
+                )
+              }
+              return(NULL)
             }
-            return(NULL)
-          })
+          )
 
           if (!is.null(coords_with_elev)) {
             elevation_data <- coords_with_elev$elevation

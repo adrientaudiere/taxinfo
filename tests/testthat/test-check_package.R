@@ -35,8 +35,7 @@ test_that("check_package handles repo parameter correctly", {
   expect_false(check_package(nonexistent_pkg, repo = "Bioconductor", stop_on_error = FALSE))
 })
 
-test_that("check_package github_repo parameter overrides repo",
-{
+test_that("check_package github_repo parameter overrides repo", {
   nonexistent_pkg <- "nonexistent_test_package_xyz"
 
   # Test that github_repo overrides repo to "GitHub"
