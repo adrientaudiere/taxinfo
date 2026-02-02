@@ -1,7 +1,9 @@
 #' Retrieve information about taxa from wikipedia
 #'
 #' @details
-#' Taxa with only genus name are discarded.
+#' This is a very brut/raw approach of the notion of cultural keystone species 
+#' (see Mattalia et al. 2025, https://doi.org/10.1002/pan3.10653 for a review of the concept).
+#'  Taxa with only genus name are discarded.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
 #' @param taxnames (optional) A character vector of taxonomic names.

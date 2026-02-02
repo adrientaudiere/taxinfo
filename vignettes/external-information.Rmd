@@ -53,6 +53,8 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 
 ## Wikipedia Integration
 
+The idea behind the wikipedia integration is a very brut/raw approach of the notion of cultural keystone species (see Mattalia et al. 2025, https://doi.org/10.1002/pan3.10653 for a review of the concept). The general idea is that species with more page view, page length and language are more important in the human culture. Note that the original notion of the cultural keystone species (CKS) is based on an "indissoluble combination of a non-human species and one or more sociocultural group". Wikipedia is a very approximative and biaised way to measure this combination, in particular due to the lack of information on sociocultural groups. 
+
 ### Basic Wikipedia Data
 
 ```{r, fig.alt="Lollipop chart showing Wikipedia page views for different taxa on a log scale. Taxa are ordered by page views on the y-axis. Points are sized by page length and colored by Order. Text labels show the number of languages in which each species has a Wikipedia page."}
