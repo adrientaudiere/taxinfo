@@ -57,11 +57,17 @@ test_that("tax_occur_multi_check_pq coordinate validation", {
 
   # Longitude validation
   expect_true(all(valid_longitudes >= -180 & valid_longitudes <= 180))
-  expect_false(all(invalid_longitudes >= -180 & invalid_longitudes <= 180, na.rm = TRUE))
+  expect_false(all(
+    invalid_longitudes >= -180 & invalid_longitudes <= 180,
+    na.rm = TRUE
+  ))
 
   # Latitude validation
   expect_true(all(valid_latitudes >= -90 & valid_latitudes <= 90))
-  expect_false(all(invalid_latitudes >= -90 & invalid_latitudes <= 90, na.rm = TRUE))
+  expect_false(all(
+    invalid_latitudes >= -90 & invalid_latitudes <= 90,
+    na.rm = TRUE
+  ))
 })
 
 test_that("tax_occur_multi_check_pq unique coordinate processing", {
@@ -87,7 +93,9 @@ test_that("tax_occur_multi_check_pq min_occur filtering", {
   min_occur_threshold <- 10
 
   # Filter based on min_occur
-  filtered_occurrences <- mock_occurrences[mock_occurrences >= min_occur_threshold]
+  filtered_occurrences <- mock_occurrences[
+    mock_occurrences >= min_occur_threshold
+  ]
 
   expect_true(all(filtered_occurrences >= min_occur_threshold))
   expect_equal(length(filtered_occurrences), 3) # 10, 15, 20
@@ -114,7 +122,10 @@ test_that("tax_occur_multi_check_pq returns expected structure", {
 
 test_that("tax_occur_multi_check_pq both physeq and taxnames errors", {
   expect_error(
-    tax_occur_multi_check_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    tax_occur_multi_check_pq(
+      physeq = "dummy",
+      taxnames = c("Amanita muscaria")
+    ),
     "You must specify either"
   )
 })
@@ -130,7 +141,9 @@ test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
   # Create valid coordinates for the subset
-  n_samples <- nrow(subset_samples(data_fungi_mini_cleanNames, Diameter == 52)@sam_data)
+  n_samples <- nrow(
+    subset_samples(data_fungi_mini_cleanNames, Diameter == 52)@sam_data
+  )
 
   expect_error(
     tax_occur_multi_check_pq(

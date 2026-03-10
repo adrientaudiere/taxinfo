@@ -83,7 +83,10 @@ test_that("add_to_phyloseq cannot be TRUE with taxnames", {
   )
 
   expect_error(
-    tax_get_wk_info_pq(taxnames = c("Amanita muscaria"), add_to_phyloseq = TRUE),
+    tax_get_wk_info_pq(
+      taxnames = c("Amanita muscaria"),
+      add_to_phyloseq = TRUE
+    ),
     "cannot be TRUE when.*taxnames"
   )
 

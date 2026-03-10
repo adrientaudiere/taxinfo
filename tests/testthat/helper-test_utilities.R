@@ -8,7 +8,8 @@ create_mock_phyloseq <- function() {
   # Mock OTU table
   otu_matrix <- matrix(
     data = c(10, 5, 8, 12, 15, 3, 7, 9, 6, 11, 4, 13),
-    nrow = 4, ncol = 3,
+    nrow = 4,
+    ncol = 3,
     dimnames = list(
       c("OTU1", "OTU2", "OTU3", "OTU4"),
       c("Sample1", "Sample2", "Sample3")
@@ -18,15 +19,53 @@ create_mock_phyloseq <- function() {
   # Mock taxonomy table
   tax_matrix <- matrix(
     data = c(
-      "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Xylodon", "raduloides", "Xylodon flaviporus",
-      "Fungi", "Basidiomycota", "Tremellomycetes", "Tremellales", "Tremellaceae", "Basidiodendron", "eyrei", "Basidiodendron eyrei",
-      "Fungi", "Ascomycota", "Sordariomycetes", "Hypocreales", "Nectriaceae", "Fusarium", "oxysporum", "Fusarium oxysporum",
-      "Fungi", "Basidiomycota", "Agaricomycetes", "Polyporales", "Polyporaceae", "Trametes", "versicolor", "Trametes versicolor"
+      "Fungi",
+      "Basidiomycota",
+      "Agaricomycetes",
+      "Polyporales",
+      "Polyporaceae",
+      "Xylodon",
+      "raduloides",
+      "Xylodon flaviporus",
+      "Fungi",
+      "Basidiomycota",
+      "Tremellomycetes",
+      "Tremellales",
+      "Tremellaceae",
+      "Basidiodendron",
+      "eyrei",
+      "Basidiodendron eyrei",
+      "Fungi",
+      "Ascomycota",
+      "Sordariomycetes",
+      "Hypocreales",
+      "Nectriaceae",
+      "Fusarium",
+      "oxysporum",
+      "Fusarium oxysporum",
+      "Fungi",
+      "Basidiomycota",
+      "Agaricomycetes",
+      "Polyporales",
+      "Polyporaceae",
+      "Trametes",
+      "versicolor",
+      "Trametes versicolor"
     ),
-    nrow = 4, ncol = 8,
+    nrow = 4,
+    ncol = 8,
     dimnames = list(
       c("OTU1", "OTU2", "OTU3", "OTU4"),
-      c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "currentCanonicalSimple")
+      c(
+        "Kingdom",
+        "Phylum",
+        "Class",
+        "Order",
+        "Family",
+        "Genus",
+        "Species",
+        "currentCanonicalSimple"
+      )
     )
   )
 

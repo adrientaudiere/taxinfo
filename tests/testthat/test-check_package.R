@@ -5,7 +5,10 @@ test_that("check_package validates input parameter types", {
   # Test that package must be a single character string
   expect_error(check_package(NULL), "must be a single character string")
   expect_error(check_package(123), "must be a single character string")
-  expect_error(check_package(c("pkg1", "pkg2")), "must be a single character string")
+  expect_error(
+    check_package(c("pkg1", "pkg2")),
+    "must be a single character string"
+  )
 })
 
 test_that("check_package returns TRUE for installed packages", {
@@ -29,17 +32,26 @@ test_that("check_package handles repo parameter correctly", {
   nonexistent_pkg <- "nonexistent_test_package_xyz"
 
   # Test CRAN repo
-  expect_false(check_package(nonexistent_pkg, repo = "CRAN", stop_on_error = FALSE))
+  expect_false(check_package(
+    nonexistent_pkg,
+    repo = "CRAN",
+    stop_on_error = FALSE
+  ))
 
   # Test Bioconductor repo
-  expect_false(check_package(nonexistent_pkg, repo = "Bioconductor", stop_on_error = FALSE))
+  expect_false(check_package(
+    nonexistent_pkg,
+    repo = "Bioconductor",
+    stop_on_error = FALSE
+  ))
 })
 
 test_that("check_package github_repo parameter overrides repo", {
   nonexistent_pkg <- "nonexistent_test_package_xyz"
 
   # Test that github_repo overrides repo to "GitHub"
-  expect_false(check_package(nonexistent_pkg,
+  expect_false(check_package(
+    nonexistent_pkg,
     repo = "CRAN",
     github_repo = "user/repo",
     stop_on_error = FALSE

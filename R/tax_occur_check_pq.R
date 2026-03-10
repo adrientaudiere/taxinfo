@@ -75,20 +75,25 @@
 #' subset_taxa_pq(data_fungi_mini_cleanNames_range_verif, cond_count_sup_0) |>
 #'   summary_plot_pq()
 #' @export
-tax_occur_check_pq <- function(physeq = NULL,
-                               taxnames = NULL,
-                               taxonomic_rank = "currentCanonicalSimple",
-                               longitude = NULL,
-                               latitude = NULL,
-                               radius_km = 50,
-                               n_occur = 1000,
-                               add_to_phyloseq = NULL,
-                               col_prefix = NULL,
-                               verbose = TRUE,
-                               discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
-                               ...) {
+tax_occur_check_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  longitude = NULL,
+  latitude = NULL,
+  radius_km = 50,
+  n_occur = 1000,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -100,14 +105,17 @@ tax_occur_check_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames_raw <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   } else {
     taxnames_raw <- taxnames
@@ -115,7 +123,8 @@ tax_occur_check_pq <- function(physeq = NULL,
 
   if (length(taxnames_raw) == 0) {
     if (verbose) {
-      cli::cli_alert_warning(c("No taxonomic names found at the specified taxonomic rank.",
+      cli::cli_alert_warning(c(
+        "No taxonomic names found at the specified taxonomic rank.",
         "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."
       ))
     }
@@ -142,12 +151,14 @@ tax_occur_check_pq <- function(physeq = NULL,
   taxnames <- gbif_taxa$canonicalName
 
   tax_range <- lapply(taxnames, function(name) {
-    tax_occur_check(name,
+    tax_occur_check(
+      name,
       verbose = verbose,
       longitude = longitude,
       latitude = latitude,
       n_occur = n_occur,
-      radius_km = radius_km, ...
+      radius_km = radius_km,
+      ...
     )
   }) |>
     setNames(paste(taxnames)) |>
@@ -175,9 +186,15 @@ tax_occur_check_pq <- function(physeq = NULL,
 
   # Determine new column names (excluding taxa_name which is used for join)
   new_cols <- c(
-    "count_in_radius", "closest_distance_km", "mean_distance_km",
-    "total_count_in_world", "search_radius", "closest_point_lat",
-    "closest_point_lon", "sample_point_lat", "sample_point_lon"
+    "count_in_radius",
+    "closest_distance_km",
+    "mean_distance_km",
+    "total_count_in_world",
+    "search_radius",
+    "closest_point_lat",
+    "closest_point_lon",
+    "sample_point_lat",
+    "sample_point_lon"
   )
 
   # Check for column name collisions and handle col_prefix
@@ -204,7 +221,12 @@ tax_occur_check_pq <- function(physeq = NULL,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
 
     new_physeq@tax_table <-
       left_join(tax_tab, tax_range, by = join_by(taxa_name)) |>

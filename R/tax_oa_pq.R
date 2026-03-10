@@ -118,21 +118,26 @@
 #'     }
 #'   })
 #' }
-tax_oa_pq <- function(physeq = NULL,
-                      taxnames = NULL,
-                      taxonomic_rank = "currentCanonicalSimple",
-                      count_only = FALSE,
-                      return_raw_oa = FALSE,
-                      add_to_phyloseq = NULL,
-                      col_prefix = NULL,
-                      type_works = c("article", "review", "book-chapter", "book", "letter"),
-                      verbose = TRUE,
-                      discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
-                      ...) {
+tax_oa_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  count_only = FALSE,
+  return_raw_oa = FALSE,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  type_works = c("article", "review", "book-chapter", "book", "letter"),
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   check_package("openalexR")
 
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -144,24 +149,31 @@ tax_oa_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (return_raw_oa) {
     add_to_phyloseq <- FALSE
-    cli::cli_alert_info("{.arg add_to_phyloseq} is set to FALSE when {.arg return_raw_oa} is TRUE")
+    cli::cli_alert_info(
+      "{.arg add_to_phyloseq} is set to FALSE when {.arg return_raw_oa} is TRUE"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
-  if(length(taxnames) == 0) {
-    cli::cli_warn("No taxonomic names found for the specified taxonomic rank(s). Returning NULL.")
+  if (length(taxnames) == 0) {
+    cli::cli_warn(
+      "No taxonomic names found for the specified taxonomic rank(s). Returning NULL."
+    )
     return(NULL)
   }
 
@@ -175,7 +187,9 @@ tax_oa_pq <- function(physeq = NULL,
       taxname <- taxnames[i]
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
-        cli::cli_alert_info("Fetching OpenAlex works for taxon: {.emph {taxname}}")
+        cli::cli_alert_info(
+          "Fetching OpenAlex works for taxon: {.emph {taxname}}"
+        )
       }
       list_publi[[i]] <- openalexR::oa_fetch(
         entity = "works",
@@ -208,15 +222,19 @@ tax_oa_pq <- function(physeq = NULL,
     )
   } else {
     list_publi <- vector("list", length(taxnames))
-    list_publi <- map(taxnames, ~ {
-      if (verbose) {
-        cli::cli_alert_info("Fetching OpenAlex works for taxon: {.emph {.x}}")
-      }
-      possibly(openalexR::oa_fetch, otherwise = NULL)(
-        entity = "works",
-        title_and_abstract.search = .x
-      )
-    }, .progress = ifelse(verbose, "Fetching OpenAlex", FALSE))
+    list_publi <- map(
+      taxnames,
+      ~ {
+        if (verbose) {
+          cli::cli_alert_info("Fetching OpenAlex works for taxon: {.emph {.x}}")
+        }
+        possibly(openalexR::oa_fetch, otherwise = NULL)(
+          entity = "works",
+          title_and_abstract.search = .x
+        )
+      },
+      .progress = ifelse(verbose, "Fetching OpenAlex", FALSE)
+    )
 
     names(list_publi) <- taxnames
     list_publi[is.null(list_publi)] <- NA
@@ -224,8 +242,12 @@ tax_oa_pq <- function(physeq = NULL,
     tib_publi <- list_publi |>
       map_dfr(~ .x |> as_tibble(), .id = "taxa_name") |>
       filter(type %in% type_works) |>
-      mutate(keywords = map(keywords, ~
-        paste(as.vector(.x["display_name"][[1]]), collapse = ";")))
+      mutate(
+        keywords = map(
+          keywords,
+          ~ paste(as.vector(.x["display_name"][[1]]), collapse = ";")
+        )
+      )
 
     tib_publi <- tib_publi |>
       group_by(taxa_name) |>
@@ -270,8 +292,10 @@ tax_oa_pq <- function(physeq = NULL,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]),
-      1, paste0,
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
       collapse = " "
     )
 

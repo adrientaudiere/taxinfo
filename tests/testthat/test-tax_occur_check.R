@@ -63,7 +63,13 @@ test_that("tax_occur_check with return_all_occ = TRUE", {
   # Example: res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
   long <- 2.3522
   lat <- 48.8566
-  res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
+  res_occ <- tax_occur_check(
+    "Fagus sylvatica",
+    long,
+    lat,
+    200,
+    return_all_occ = TRUE
+  )
 
   # Should include occ_data element
   expect_type(res_occ, "list")

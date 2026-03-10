@@ -72,25 +72,30 @@
 #'
 #'  This function is mainly a wrapper of the work of others.
 #'  Please cite `rglobi` and `taxize` packages.
-tax_globi_pq <- function(physeq = NULL,
-                         taxnames = NULL,
-                         taxonomic_rank = "currentCanonicalSimple",
-                         discard_synonym = TRUE,
-                         add_to_phyloseq = NULL,
-                         col_prefix = NULL,
-                         interaction_types = NULL,
-                         valid_taxo_target_taxon = TRUE,
-                         add_target_canonical = TRUE,
-                         data_sources = c(1, 12),
-                         verbose = FALSE,
-                         strict_interaction_types = TRUE,
-                         max_interactions = 1000,
-                         batch_size_gna_verifier = 50,
-                        discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_globi_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  discard_synonym = TRUE,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  interaction_types = NULL,
+  valid_taxo_target_taxon = TRUE,
+  add_target_canonical = TRUE,
+  data_sources = c(1, 12),
+  verbose = FALSE,
+  strict_interaction_types = TRUE,
+  max_interactions = 1000,
+  batch_size_gna_verifier = 50,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   check_package("rglobi")
 
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -101,7 +106,9 @@ tax_globi_pq <- function(physeq = NULL,
     add_to_phyloseq <- !is.null(physeq)
   }
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
@@ -109,7 +116,7 @@ tax_globi_pq <- function(physeq = NULL,
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
       discard_genus_alone = discard_genus_alone,
-      discard_NA = TRUE
+      discard_NA = discard_NA
     )
   }
 
@@ -119,7 +126,11 @@ tax_globi_pq <- function(physeq = NULL,
     tib_globi <- rglobi::get_interactions_by_taxa(
       interactiontype = interaction_types,
       sourcetaxon = tax_i,
-      showfield = c("source_taxon_name", "interaction_type", "target_taxon_name"),
+      showfield = c(
+        "source_taxon_name",
+        "interaction_type",
+        "target_taxon_name"
+      ),
       otherkeys = list(limit = max_interactions)
     ) |>
       group_by(across(everything())) |>
@@ -165,20 +176,34 @@ tax_globi_pq <- function(physeq = NULL,
             end_idx <- min(i * batch_size_gna_verifier, n_names)
             current_batch <- target_taxon_name[start_idx:end_idx]
 
-            batch_result <- taxize::gna_verifier(current_batch, data_sources = data_sources)
+            batch_result <- taxize::gna_verifier(
+              current_batch,
+              data_sources = data_sources
+            )
             verif_target_taxon_list[[i]] <- batch_result
           }
           verif_target_taxon <- do.call(rbind, verif_target_taxon_list)
         } else {
-          verif_target_taxon <- taxize::gna_verifier(target_taxon_name, data_sources = data_sources)
+          verif_target_taxon <- taxize::gna_verifier(
+            target_taxon_name,
+            data_sources = data_sources
+          )
         }
 
+        tib_globi <- tib_globi |>
+          filter(
+            target_taxon_name %in%
+              verif_target_taxon$submittedName[
+                !is.na(verif_target_taxon$currentCanonicalSimple)
+              ]
+          )
 
         tib_globi <- tib_globi |>
-          filter(target_taxon_name %in% verif_target_taxon$submittedName[!is.na(verif_target_taxon$currentCanonicalSimple)])
-
-        tib_globi <- tib_globi |>
-          right_join(distinct(data.frame("target_taxon_name" = verif_target_taxon$submittedName, "target_taxon_Canonical" = verif_target_taxon$currentCanonicalSimple)),
+          right_join(
+            distinct(data.frame(
+              "target_taxon_name" = verif_target_taxon$submittedName,
+              "target_taxon_Canonical" = verif_target_taxon$currentCanonicalSimple
+            )),
             by = join_by(target_taxon_name)
           ) |>
           filter(!is.na(interaction_type))
@@ -200,11 +225,16 @@ tax_globi_pq <- function(physeq = NULL,
         }
 
         if (verbose) {
-          cli::cli_alert_info("After verification of valid target taxon names: {.val {nrow(tib_globi)}}/{.val {nb_int_before}} interactions kept for {.emph {tax_i}}")
+          cli::cli_alert_info(
+            "After verification of valid target taxon names: {.val {nrow(tib_globi)}}/{.val {nb_int_before}} interactions kept for {.emph {tax_i}}"
+          )
         }
       } else {
         tib_globi_i <- tib_globi |>
-          tidyr::pivot_wider(names_from = interaction_type, values_from = target_taxon_name) |>
+          tidyr::pivot_wider(
+            names_from = interaction_type,
+            values_from = target_taxon_name
+          ) |>
           mutate(across(everything(), function(x) {
             paste0(na.omit(x), collapse = "; ")
           })) |>
@@ -220,7 +250,8 @@ tax_globi_pq <- function(physeq = NULL,
   }
   if (is.null(tib_globi_all)) {
     if (verbose) {
-      cli::cli_alert_warning(c("No interaction found for any taxon at the specified taxonomic rank.",
+      cli::cli_alert_warning(c(
+        "No interaction found for any taxon at the specified taxonomic rank.",
         "i" = "Please check the {.arg taxonomic_rank} parameter and your phyloseq object."
       ))
     }
@@ -258,7 +289,12 @@ tax_globi_pq <- function(physeq = NULL,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
 
     new_physeq@tax_table <-
       left_join(tax_tab, tib_globi_all, by = join_by(taxa_name)) |>

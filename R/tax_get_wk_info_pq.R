@@ -1,7 +1,7 @@
 #' Retrieve information about taxa from wikipedia
 #'
 #' @details
-#' This is a very brut/raw approach of the notion of cultural keystone species 
+#' This is a very brut/raw approach of the notion of cultural keystone species
 #' (see Mattalia et al. 2025, https://doi.org/10.1002/pan3.10653 for a review of the concept).
 #'  Taxa with only genus name are discarded.
 #'
@@ -78,22 +78,27 @@
 #'       Shape size is proportional to mean page lenght in wikipedia.") +
 #'   ylab("")
 #' }
-tax_get_wk_info_pq <- function(physeq = NULL,
-                               taxnames = NULL,
-                               taxonomic_rank = "currentCanonicalSimple",
-                               add_to_phyloseq = NULL,
-                               col_prefix = NULL,
-                               verbose = TRUE,
-                               languages_pages = NULL,
-                               time_to_sleep = 0.3,
-                               summarize_function_length = "mean",
-                               summarize_function_views = "sum",
-                               n_days = 30,
-                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_get_wk_info_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  verbose = TRUE,
+  languages_pages = NULL,
+  time_to_sleep = 0.3,
+  summarize_function_length = "mean",
+  summarize_function_views = "sum",
+  n_days = 30,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   check_package("wikitaxa")
 
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -105,14 +110,17 @@ tax_get_wk_info_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
@@ -123,27 +131,32 @@ tax_get_wk_info_pq <- function(physeq = NULL,
 
   wk_lang <- lapply(taxids, tax_get_wk_lang, languages_pages = languages_pages)
 
-
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(taxnames))
   }
 
-  wk_pages_info <- Map(function(x, names_x) {
-    if (verbose) {
-      # Update progress bar
-      idx <- which(names(wk_lang) == names_x)
-      cli::cli_progress_update(id = pb, set = idx)
-      cli::cli_alert_info("Getting page views from Wikipedia for {.emph {names_x}}")
-    }
-    tax_get_wk_pages_info(
-      tib_list = x,
-      languages_pages = languages_pages,
-      time_to_sleep = time_to_sleep,
-      summarize_function_length = summarize_function_length,
-      summarize_function_views = summarize_function_views,
-      n_days = n_days
-    )
-  }, wk_lang, names(wk_lang))
+  wk_pages_info <- Map(
+    function(x, names_x) {
+      if (verbose) {
+        # Update progress bar
+        idx <- which(names(wk_lang) == names_x)
+        cli::cli_progress_update(id = pb, set = idx)
+        cli::cli_alert_info(
+          "Getting page views from Wikipedia for {.emph {names_x}}"
+        )
+      }
+      tax_get_wk_pages_info(
+        tib_list = x,
+        languages_pages = languages_pages,
+        time_to_sleep = time_to_sleep,
+        summarize_function_length = summarize_function_length,
+        summarize_function_views = summarize_function_views,
+        n_days = n_days
+      )
+    },
+    wk_lang,
+    names(wk_lang)
+  )
 
   # Complete progress bar
   if (verbose) {
@@ -185,7 +198,12 @@ tax_get_wk_info_pq <- function(physeq = NULL,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
 
     new_physeq@tax_table <-
       full_join(tax_tab, tib_info_wk, by = join_by(taxa_name)) |>
@@ -236,12 +254,17 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
     {
       url <- paste0(
         "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=",
-        taxon_id, "&format=json&props=sitelinks"
+        taxon_id,
+        "&format=json&props=sitelinks"
       )
 
       response <- httr::GET(url)
       if (httr::status_code(response) == 200) {
-        data <- jsonlite::fromJSON(httr::content(response, "text", encoding = "UTF-8"))
+        data <- jsonlite::fromJSON(httr::content(
+          response,
+          "text",
+          encoding = "UTF-8"
+        ))
 
         if (!is.null(data$entities[[taxon_id]]$sitelinks)) {
           sitelinks <- data$entities[[taxon_id]]$sitelinks
@@ -254,13 +277,26 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
             filter(grepl("wiki$", site)) |>
             mutate(lang = gsub("wiki$", "", site)) |>
             # filter out commonswiki, specieswiki, etc.
-            filter(stringr::str_length(lang) %in% c(2, 3) |
-              lang %in% c(
-                "zh-yue", "nds-nl", "ru-sib", "bat-smg",
-                "fiu-vro", "roa-rup", "map-bms", "cbk-zam",
-                "roa-tara", "tokipona", "be-tarask",
-                "zh-min-nan", "zh-classical"
-              ))
+            filter(
+              stringr::str_length(lang) %in%
+                c(2, 3) |
+                lang %in%
+                  c(
+                    "zh-yue",
+                    "nds-nl",
+                    "ru-sib",
+                    "bat-smg",
+                    "fiu-vro",
+                    "roa-rup",
+                    "map-bms",
+                    "cbk-zam",
+                    "roa-tara",
+                    "tokipona",
+                    "be-tarask",
+                    "zh-min-nan",
+                    "zh-classical"
+                  )
+            )
 
           if (!is.null(languages_pages)) {
             tib_links <- tib_links |>
@@ -277,7 +313,9 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
       }
     },
     error = function(e) {
-      cli::cli_alert_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
+      cli::cli_alert_warning(
+        "Error for taxon {.val {taxon_id}}: {.emph {e$message}}"
+      )
       return(NA)
     }
   )
@@ -344,18 +382,23 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #'   end_date = "2023-12-31"
 #' )
 #' }
-tax_get_wk_pages_info <- function(taxon_id = NULL,
-                                  tib_list = NULL,
-                                  languages_pages = NULL,
-                                  time_to_sleep = 0.3,
-                                  summarize_function_length = "mean",
-                                  summarize_function_views = "sum",
-                                  n_days = 30,
-                                  start_date = NULL,
-                                  end_date = NULL,
-                                  verbose = FALSE) {
+tax_get_wk_pages_info <- function(
+  taxon_id = NULL,
+  tib_list = NULL,
+  languages_pages = NULL,
+  time_to_sleep = 0.3,
+  summarize_function_length = "mean",
+  summarize_function_views = "sum",
+  n_days = 30,
+  start_date = NULL,
+  end_date = NULL,
+  verbose = FALSE
+) {
   if (is.null(tib_list) & !is.null(taxon_id)) {
-    tib_list_pages <- tax_get_wk_lang(taxon_id, languages_pages = languages_pages)
+    tib_list_pages <- tax_get_wk_lang(
+      taxon_id,
+      languages_pages = languages_pages
+    )
   } else if (!is.null(tib_list) & is.null(taxon_id)) {
     tib_list_pages <- tib_list
   } else {
@@ -367,7 +410,9 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
       filter(lang %in% languages_pages)
     if (nrow(tib_list_pages) == 0) {
       if (verbose) {
-        cli::cli_alert_warning("No pages found for taxon ID {.val {taxon_id}} in languages: {.val {paste(languages_pages, collapse = ', ')}}")
+        cli::cli_alert_warning(
+          "No pages found for taxon ID {.val {taxon_id}} in languages: {.val {paste(languages_pages, collapse = ', ')}}"
+        )
       }
       return(tibble("page_length" = 0, "page_views" = 0))
     }
@@ -375,9 +420,15 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
 
   tryCatch(
     {
-      if (nrow(tib_list_pages) == 0 | is.na(tib_list_pages$site[1]) | tib_list_pages$site[1] == 0) {
+      if (
+        nrow(tib_list_pages) == 0 |
+          is.na(tib_list_pages$site[1]) |
+          tib_list_pages$site[1] == 0
+      ) {
         if (verbose) {
-          cli::cli_alert_warning("No pages found for taxon ID {.val {taxon_id}}")
+          cli::cli_alert_warning(
+            "No pages found for taxon ID {.val {taxon_id}}"
+          )
         }
         return(list("page_length" = 0, "page_views" = 0))
       }
@@ -390,17 +441,24 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         title <- tib_list_pages$title[tib_list_pages$site == site_name]
 
         if (verbose) {
-          cli::cli_alert_info("Getting page length for {.emph {title}} ({.val {lang_code}})")
+          cli::cli_alert_info(
+            "Getting page length for {.emph {title}} ({.val {lang_code}})"
+          )
         }
         wiki_url <- paste0(
-          "https://", lang_code,
+          "https://",
+          lang_code,
           ".wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=",
           URLencode(title)
         )
 
         wiki_response <- httr::GET(wiki_url)
         if (httr::status_code(wiki_response) == 200) {
-          wiki_data <- jsonlite::fromJSON(httr::content(wiki_response, "text", encoding = "UTF-8"))
+          wiki_data <- jsonlite::fromJSON(httr::content(
+            wiki_response,
+            "text",
+            encoding = "UTF-8"
+          ))
           pages <- wiki_data$query$pages
 
           if (length(pages) > 0) {
@@ -414,7 +472,9 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
         Sys.sleep(time_to_sleep)
 
         if (verbose) {
-          cli::cli_alert_info("Getting page views for {.emph {title}} ({.val {lang_code}})")
+          cli::cli_alert_info(
+            "Getting page views for {.emph {title}} ({.val {lang_code}})"
+          )
         }
 
         if (is.character(start_date)) {
@@ -432,16 +492,28 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
 
         stats_url <- paste0(
           "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/",
-          lang_code, ".wikipedia/all-access/all-agents/",
-          URLencode(title, reserved = TRUE), "/daily/", start_str, "/", end_str
+          lang_code,
+          ".wikipedia/all-access/all-agents/",
+          URLencode(title, reserved = TRUE),
+          "/daily/",
+          start_str,
+          "/",
+          end_str
         )
 
         stats_response <- httr::GET(stats_url)
         if (httr::status_code(stats_response) == 200) {
-          stats_data <- jsonlite::fromJSON(httr::content(stats_response, "text", encoding = "UTF-8"))
+          stats_data <- jsonlite::fromJSON(httr::content(
+            stats_response,
+            "text",
+            encoding = "UTF-8"
+          ))
 
           if (!is.null(stats_data$items)) {
-            lang_views <- c(lang_views, sum(stats_data$items$views, na.rm = TRUE))
+            lang_views <- c(
+              lang_views,
+              sum(stats_data$items$views, na.rm = TRUE)
+            )
           }
         }
       }
@@ -457,7 +529,9 @@ tax_get_wk_pages_info <- function(taxon_id = NULL,
       return(list("page_length" = pages_len, "page_views" = lang_views))
     },
     error = function(e) {
-      cli::cli_alert_warning("Error for taxon {.val {taxon_id}}: {.emph {e$message}}")
+      cli::cli_alert_warning(
+        "Error for taxon {.val {taxon_id}}: {.emph {e$message}}"
+      )
       return(NA)
     }
   )

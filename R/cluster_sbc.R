@@ -92,15 +92,22 @@
 #'     fill = "Optimal d"
 #'   ) +
 #'   theme(axis.text.y = element_text(size = 10, face = "italic"))
-cluster_sbc <- function(physeq,
-                        taxonomic_rank = c("Genus", "Species"),
-                        max_d = 20,
-                        include_unassigned = TRUE,
-                        allow_multiple_taxa = FALSE,
-                        regroup_cluster = TRUE,
-                        tax_adjust = 1L,
-                        verbose = TRUE) {
-  taxnames <- apply(physeq@tax_table[, taxonomic_rank], 1, paste, collapse = " ")
+cluster_sbc <- function(
+  physeq,
+  taxonomic_rank = c("Genus", "Species"),
+  max_d = 20,
+  include_unassigned = TRUE,
+  allow_multiple_taxa = FALSE,
+  regroup_cluster = TRUE,
+  tax_adjust = 1L,
+  verbose = TRUE
+) {
+  taxnames <- apply(
+    physeq@tax_table[, taxonomic_rank],
+    1,
+    paste,
+    collapse = " "
+  )
   taxnames[grepl("NA", taxnames)] <- "unassigned"
 
   taxtab <- as.data.frame(tax_table(physeq))
@@ -135,7 +142,9 @@ cluster_sbc <- function(physeq,
 
   # Pre-compute SWARM clustering for all d values
   if (verbose) {
-    cli::cli_alert_info("Computing SWARM clustering for d = 1 to {.val {max_d}} ...")
+    cli::cli_alert_info(
+      "Computing SWARM clustering for d = 1 to {.val {max_d}} ..."
+    )
     cli::cli_progress_bar("Computing SWARM", total = max_d)
     options(cli.progress_show_after = 0)
     options(cli.progress_clear = FALSE)
@@ -170,7 +179,9 @@ cluster_sbc <- function(physeq,
 
     if (n_taxn_id == 1) {
       if (verbose) {
-        cli::cli_alert_success(" {.emph {taxn_label}} is already represented by only one taxa")
+        cli::cli_alert_success(
+          " {.emph {taxn_label}} is already represented by only one taxa"
+        )
       }
       cluster_results$cluster_ID[cluster_results$taxa_id %in% taxn_id] <-
         swarm_results_list[[d]] |>
@@ -184,7 +195,9 @@ cluster_sbc <- function(physeq,
     }
 
     if (verbose) {
-      cli::cli_alert_info("Processing {.emph {taxn_label}} - {.val {n_taxn_id}} taxa")
+      cli::cli_alert_info(
+        "Processing {.emph {taxn_label}} - {.val {n_taxn_id}} taxa"
+      )
     }
 
     optimal_d <- NA_integer_
@@ -205,7 +218,9 @@ cluster_sbc <- function(physeq,
       taxnames_with_unassigned <- unique(taxnames[taxa_in_cluster])
 
       if (include_unassigned) {
-        taxnames_in_cluster <- taxnames_with_unassigned[taxnames_with_unassigned != "unassigned"]
+        taxnames_in_cluster <- taxnames_with_unassigned[
+          taxnames_with_unassigned != "unassigned"
+        ]
       } else {
         taxnames_in_cluster <- taxnames_with_unassigned
       }
@@ -225,14 +240,18 @@ cluster_sbc <- function(physeq,
         if (length(taxnames_in_cluster) > 1) {
           optimal_d <- d
           if (verbose) {
-            cli::cli_alert_warning("Multiple taxa clustered into a single group at optimal d = {.val {d}} for {.emph {taxn_label}} with {.val {taxnames_in_cluster}} taxnames inside")
+            cli::cli_alert_warning(
+              "Multiple taxa clustered into a single group at optimal d = {.val {d}} for {.emph {taxn_label}} with {.val {taxnames_in_cluster}} taxnames inside"
+            )
           }
           break
         } else {
           optimal_d <- d
 
           if (verbose) {
-            cli::cli_alert_success("Found optimal d = {.val {d}} for {.emph {taxn_label}}.")
+            cli::cli_alert_success(
+              "Found optimal d = {.val {d}} for {.emph {taxn_label}}."
+            )
           }
           break
         }
@@ -246,7 +265,11 @@ cluster_sbc <- function(physeq,
           filter(type != "C") |>
           filter(cluster %in% sbc_swarm_clusters)
 
-        cluster_results$cluster_ID[cl_id] <- paste(final_tax$cluster, optimal_d, sep = "_")
+        cluster_results$cluster_ID[cl_id] <- paste(
+          final_tax$cluster,
+          optimal_d,
+          sep = "_"
+        )
         cluster_results$optimal_d[cl_id] <- optimal_d
         cluster_results$other_taxnames_in_cluster[cl_id] <- FALSE
         cluster_results$unassigned_taxa_in_cluster[cl_id] <-
@@ -256,7 +279,11 @@ cluster_sbc <- function(physeq,
           filter(type != "C") |>
           filter(cluster %in% sbc_swarm_clusters)
 
-        cluster_results$cluster_ID[cl_id] <- paste(final_tax$cluster, optimal_d, sep = "_")
+        cluster_results$cluster_ID[cl_id] <- paste(
+          final_tax$cluster,
+          optimal_d,
+          sep = "_"
+        )
         cluster_results$optimal_d[cl_id] <- optimal_d
         cluster_results$other_taxnames_in_cluster[cl_id] <- TRUE
         cluster_results$unassigned_taxa_in_cluster[cl_id] <-
@@ -269,7 +296,12 @@ cluster_sbc <- function(physeq,
           n_taxa = n_taxn_id,
           optimal_d = optimal_d,
           n_clusters = length(unique(final_tax$cluster)),
-          other_taxnames = paste(taxnames_in_cluster[!taxnames_in_cluster %in% c(taxn, "unassigned")], collapse = ";"),
+          other_taxnames = paste(
+            taxnames_in_cluster[
+              !taxnames_in_cluster %in% c(taxn, "unassigned")
+            ],
+            collapse = ";"
+          ),
           unassigned_taxa = "unassigned" %in% taxnames_with_unassigned,
           stringsAsFactors = FALSE
         )
@@ -298,19 +330,21 @@ cluster_sbc <- function(physeq,
     clusters <- as.character(new_physeq_sbc@tax_table[, "cluster_ID"])
     names(clusters) <- taxa_names(new_physeq_sbc)
     new_physeq_sbc_clust <-
-      merge_taxa_vec(new_physeq_sbc,
+      merge_taxa_vec(
+        new_physeq_sbc,
         clusters,
         tax_adjust = tax_adjust,
         rank_propagation = FALSE
       ) |>
       clean_pq(silent = TRUE)
     if (verbose) {
-      cli::cli_alert_success("Taxa merged into {.val {ntaxa(new_physeq_sbc_clust)}} SBC clusters")
+      cli::cli_alert_success(
+        "Taxa merged into {.val {ntaxa(new_physeq_sbc_clust)}} SBC clusters"
+      )
     }
   } else {
     new_physeq_sbc_clust <- new_physeq_sbc
   }
-
 
   # Summary statistics
   n_new_sbc_clusters <- sum(!is.na(unique(cluster_tax$cluster_ID)))
@@ -330,8 +364,12 @@ cluster_sbc <- function(physeq,
     median_d = median(d_per_taxnames$optimal_d, na.rm = TRUE)
   ) |>
     mutate(
-      avg_cluster_size = (n_taxa - n_unassigned) / (n_new_sbc_clusters + n_already_SBC),
-      avg_cluster_size_excluding_singleton = (n_taxa - n_unassigned - n_already_SBC) / (n_new_sbc_clusters),
+      avg_cluster_size = (n_taxa - n_unassigned) /
+        (n_new_sbc_clusters + n_already_SBC),
+      avg_cluster_size_excluding_singleton = (n_taxa -
+        n_unassigned -
+        n_already_SBC) /
+        (n_new_sbc_clusters),
       .before = n_new_SBC
     )
 
@@ -346,11 +384,21 @@ cluster_sbc <- function(physeq,
   if (verbose) {
     cli::cli_alert_success("\n=== Clustering complete ===")
     cli::cli_alert_info("Total taxa: {.val {final_res$summary$n_taxa}}")
-    cli::cli_alert_info("Unassigned taxa: {.val {final_res$summary$n_unassigned}}")
-    cli::cli_alert_info("Unique taxonomic names: {.val {final_res$summary$n_taxa}}")
-    cli::cli_alert_info("Already single-taxa taxnames: {.val {final_res$summary$n_already_SBC}}")
-    cli::cli_alert_info("Multiple-taxa taxnames clustered: {.val {final_res$summary$n_taxa_to_cluster}}")
-    cli::cli_alert_info("Mean swarm d: {.val {round(final_res$summary$mean_d, 2)}}")
+    cli::cli_alert_info(
+      "Unassigned taxa: {.val {final_res$summary$n_unassigned}}"
+    )
+    cli::cli_alert_info(
+      "Unique taxonomic names: {.val {final_res$summary$n_taxa}}"
+    )
+    cli::cli_alert_info(
+      "Already single-taxa taxnames: {.val {final_res$summary$n_already_SBC}}"
+    )
+    cli::cli_alert_info(
+      "Multiple-taxa taxnames clustered: {.val {final_res$summary$n_taxa_to_cluster}}"
+    )
+    cli::cli_alert_info(
+      "Mean swarm d: {.val {round(final_res$summary$mean_d, 2)}}"
+    )
     cli::cli_alert_info("Total SBC clusters: {.val {final_res$summary$n_SBC}}")
     cli::cli_alert_info(
       "Average taxa per SBC cluster {.val {round(final_res$summary$avg_cluster_size, 2)}}"

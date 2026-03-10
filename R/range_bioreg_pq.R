@@ -59,19 +59,24 @@
 #'
 #' p[[1]] / p[[2]]
 #' }
-range_bioreg_pq <- function(physeq = NULL,
-                            taxnames = NULL,
-                            taxonomic_rank = "currentCanonicalSimple",
-                            occ_samp = 5000,
-                            verbose = TRUE,
-                            verbose_gbif_range = FALSE,
-                            make_plot = FALSE,
-                            crop_plot = TRUE,
-                            remove_legend = TRUE,
-                            discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
-                            ...) {
+range_bioreg_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  occ_samp = 5000,
+  verbose = TRUE,
+  verbose_gbif_range = FALSE,
+  make_plot = FALSE,
+  crop_plot = TRUE,
+  remove_legend = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -82,7 +87,7 @@ range_bioreg_pq <- function(physeq = NULL,
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
       discard_genus_alone = discard_genus_alone,
-      discard_NA = TRUE
+      discard_NA = discard_NA
     )
   }
 
@@ -90,7 +95,10 @@ range_bioreg_pq <- function(physeq = NULL,
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
     distinct()
 
-  eco.terra <- gbif.range::read_bioreg(bioreg_name = "eco_terra", save_dir = NULL)
+  eco.terra <- gbif.range::read_bioreg(
+    bioreg_name = "eco_terra",
+    save_dir = NULL
+  )
 
   range_taxa_i_bioreg <- vector(mode = "list", length = length(taxnames))
   names(range_taxa_i_bioreg) <- taxnames
@@ -103,7 +111,6 @@ range_bioreg_pq <- function(physeq = NULL,
     countries <-
       rnaturalearth::ne_countries(type = "countries", returnclass = "sf")
   }
-
 
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(taxnames))
@@ -122,7 +129,8 @@ range_bioreg_pq <- function(physeq = NULL,
     }
 
     range_taxa_i_bioreg[[tax_i]] <- tryCatch(
-      gbif.range::get_range(range_taxa_i,
+      gbif.range::get_range(
+        range_taxa_i,
         bioreg = eco.terra,
         bioreg_name = "ECO_NAME",
         verbose = verbose_gbif_range,
@@ -130,7 +138,9 @@ range_bioreg_pq <- function(physeq = NULL,
       ),
       error = function(e) {
         if (verbose) {
-          cli::cli_alert_warning("Not enough occurrence data for {.emph {tax_i}}")
+          cli::cli_alert_warning(
+            "Not enough occurrence data for {.emph {tax_i}}"
+          )
         }
         return(NULL)
       }
@@ -139,7 +149,9 @@ range_bioreg_pq <- function(physeq = NULL,
     if (make_plot) {
       if (is.null(range_taxa_i_bioreg[[tax_i]])) {
         if (verbose) {
-          cli::cli_alert_warning("Not enough occurrence data to plot {.emph {tax_i}}")
+          cli::cli_alert_warning(
+            "Not enough occurrence data to plot {.emph {tax_i}}"
+          )
         }
       } else {
         check_package("terra")
@@ -168,9 +180,11 @@ range_bioreg_pq <- function(physeq = NULL,
           labs(
             title = bquote(italic(.(tax_i))),
             subtitle = if (!is.null(physeq)) {
-              taxa_summary_text(physeq,
+              taxa_summary_text(
+                physeq,
                 taxonomic_rank = taxonomic_rank,
-                taxnames = tax_i, verbose = FALSE
+                taxnames = tax_i,
+                verbose = FALSE
               )
             } else {
               NULL
@@ -189,7 +203,8 @@ range_bioreg_pq <- function(physeq = NULL,
             p[[tax_i]] <- p[[tax_i]] +
               coord_sf(
                 xlim = c(bb_bioreg[1], bb_bioreg[2]),
-                ylim = c(bb_bioreg[3], bb_bioreg[4]), expand = FALSE
+                ylim = c(bb_bioreg[3], bb_bioreg[4]),
+                expand = FALSE
               )
           }
         }

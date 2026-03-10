@@ -57,24 +57,38 @@ tax_occur_multi_check_pq <- function(
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
   } else if (is.null(longitudes) & is.null(lon_column)) {
-    cli::cli_abort("Either {.arg longitudes} or {.arg lon_column} must be provided")
+    cli::cli_abort(
+      "Either {.arg longitudes} or {.arg lon_column} must be provided"
+    )
   } else if (!is.null(longitudes)) {
     if (length(longitudes) != nsamples(physeq)) {
-      cli::cli_abort("The length of {.arg longitudes} must be equal to the number of samples in the phyloseq object")
+      cli::cli_abort(
+        "The length of {.arg longitudes} must be equal to the number of samples in the phyloseq object"
+      )
     }
-    physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), longitudes_for_multi_check = longitudes))
+    physeq@sam_data <- sample_data(cbind(
+      as.data.frame(physeq@sam_data),
+      longitudes_for_multi_check = longitudes
+    ))
     lon_column <- "longitudes_for_multi_check"
   }
 
   if (is.null(latitudes) & !is.null(lat_column)) {
     latitudes <- as.numeric(sample_data(physeq)[, lat_column])
   } else if (is.null(latitudes) & is.null(lat_column)) {
-    cli::cli_abort("Either {.arg latitudes} or {.arg lat_column} must be provided")
+    cli::cli_abort(
+      "Either {.arg latitudes} or {.arg lat_column} must be provided"
+    )
   } else if (!is.null(latitudes)) {
     if (length(latitudes) != nsamples(physeq)) {
-      cli::cli_abort("The length of {.arg latitudes} must be equal to the number of samples in the phyloseq object")
+      cli::cli_abort(
+        "The length of {.arg latitudes} must be equal to the number of samples in the phyloseq object"
+      )
     }
-    physeq@sam_data <- sample_data(cbind(as.data.frame(physeq@sam_data), latitudes_for_multi_check = latitudes))
+    physeq@sam_data <- sample_data(cbind(
+      as.data.frame(physeq@sam_data),
+      latitudes_for_multi_check = latitudes
+    ))
     lat_column <- "latitudes_for_multi_check"
   }
 
@@ -82,7 +96,6 @@ tax_occur_multi_check_pq <- function(
     unique()
   tax_range <- vector("list", length = length(longlat))
   names(tax_range) <- longlat
-
 
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(longlat))
@@ -102,9 +115,9 @@ tax_occur_multi_check_pq <- function(
       sapply(as.vector(unlist(sample_data(physeq)[, lon_column])), function(x) {
         isTRUE(all.equal(x, long))
       }) &
-        sapply(as.vector(unlist(sample_data(physeq)[, lat_column])), function(x) {
-          isTRUE(all.equal(x, lat))
-        })
+      sapply(as.vector(unlist(sample_data(physeq)[, lat_column])), function(x) {
+        isTRUE(all.equal(x, lat))
+      })
     names(cond_sample) <- sample_names(physeq)
     new_physeq_i <- subset_samples_pq(physeq, cond_sample) |>
       clean_pq()
@@ -119,7 +132,9 @@ tax_occur_multi_check_pq <- function(
       ...
     ) |>
       mutate(
-        gps_point = gps, latitude = lat, longitude = long,
+        gps_point = gps,
+        latitude = lat,
+        longitude = long,
         sample_name = paste(sample_names(new_physeq_i), collapse = "___")
       )
   }
@@ -141,12 +156,17 @@ tax_occur_multi_check_pq <- function(
   tax_range_mini <- tax_range |>
     filter(count_in_radius > min_occur) |>
     select(sample_name, taxa_name, count_in_radius) |>
-    left_join(taxtab_taxrank,
-      by = join_by("taxa_name" == !!sym(taxonomic_rank)), relationship = "many-to-many"
+    left_join(
+      taxtab_taxrank,
+      by = join_by("taxa_name" == !!sym(taxonomic_rank)),
+      relationship = "many-to-many"
     )
 
-
-  otu_matrix_occurence <- matrix(0, nrow = ntaxa(physeq), ncol = nsamples(physeq))
+  otu_matrix_occurence <- matrix(
+    0,
+    nrow = ntaxa(physeq),
+    ncol = nsamples(physeq)
+  )
 
   for (i in 1:nrow(tax_range_mini)) {
     otu_matrix_occurence[
@@ -156,7 +176,9 @@ tax_occur_multi_check_pq <- function(
   }
 
   if (sum(otu_matrix_occurence > min_occur) != nrow(tax_range_mini)) {
-    cli::cli_abort("Some taxa occurrences were not correctly mapped to the otu_matrix_occurence")
+    cli::cli_abort(
+      "Some taxa occurrences were not correctly mapped to the otu_matrix_occurence"
+    )
   }
 
   new_physeq <- taxa_as_rows(physeq)

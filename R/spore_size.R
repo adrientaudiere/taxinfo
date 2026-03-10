@@ -108,16 +108,21 @@
 #'   ) |>
 #'   ggstatsplot::ggbetweenstats(Time, spore_length)
 #' }
-tax_spores_size_pq <- function(physeq = NULL,
-                               taxnames = NULL,
-                               taxonomic_rank = "currentCanonicalSimple",
-                               verbose = TRUE,
-                               time_to_sleep = 0.5,
-                               add_to_phyloseq = NULL,
-                               col_prefix = NULL,
-                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_spores_size_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  verbose = TRUE,
+  time_to_sleep = 0.5,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -127,7 +132,8 @@ tax_spores_size_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
@@ -142,10 +148,22 @@ tax_spores_size_pq <- function(physeq = NULL,
 
   spore_sizes_df <- data.frame(
     "spore_size" = spore_sizes,
-    "min_left" = as.numeric(stringr::str_extract(spore_sizes, "^[0-9]+(\\.[0-9]+)?")),
-    "max_left" = as.numeric(stringr::str_extract(spore_sizes, "(?<=-)[0-9]+(\\.[0-9]+)?(?=\\s*[\\u00d7x])")),
-    "min_right" = as.numeric(stringr::str_extract(spore_sizes, "(?<=\\u00d7|x)\\s*[0-9]+(\\.[0-9]+)?")),
-    "max_right" = as.numeric(stringr::str_extract(spore_sizes, "\\d+(?:\\.\\d+)?(?=\\s*\\u00b5?m?$)")),
+    "min_left" = as.numeric(stringr::str_extract(
+      spore_sizes,
+      "^[0-9]+(\\.[0-9]+)?"
+    )),
+    "max_left" = as.numeric(stringr::str_extract(
+      spore_sizes,
+      "(?<=-)[0-9]+(\\.[0-9]+)?(?=\\s*[\\u00d7x])"
+    )),
+    "min_right" = as.numeric(stringr::str_extract(
+      spore_sizes,
+      "(?<=\\u00d7|x)\\s*[0-9]+(\\.[0-9]+)?"
+    )),
+    "max_right" = as.numeric(stringr::str_extract(
+      spore_sizes,
+      "\\d+(?:\\.\\d+)?(?=\\s*\\u00b5?m?$)"
+    )),
     "taxa_name" = names(spore_sizes)
   ) |>
     mutate(
@@ -153,19 +171,23 @@ tax_spores_size_pq <- function(physeq = NULL,
       left_is_length = (max_left + min_left) >= (max_right + min_right),
 
       # Assign dimensions
-      "spore_length_max" = ifelse(left_is_length,
+      "spore_length_max" = ifelse(
+        left_is_length,
         pmax(max_left, min_left),
         pmax(max_right, min_right)
       ),
-      "spore_length_min" = ifelse(left_is_length,
+      "spore_length_min" = ifelse(
+        left_is_length,
         pmin(max_left, min_left),
         pmin(max_right, min_right)
       ),
-      "spore_width_max" = ifelse(left_is_length,
+      "spore_width_max" = ifelse(
+        left_is_length,
         pmax(max_right, min_right),
         pmax(max_left, min_left)
       ),
-      "spore_width_min" = ifelse(left_is_length,
+      "spore_width_min" = ifelse(
+        left_is_length,
         pmin(max_right, min_right),
         pmin(max_left, min_left)
       )
@@ -175,10 +197,14 @@ tax_spores_size_pq <- function(physeq = NULL,
       "spore_width_mean" = (spore_width_max + spore_width_min) / 2
     ) |>
     select(
-      spore_size, spore_length_max,
-      spore_length_min, spore_width_max,
-      spore_width_min, spore_length_mean,
-      spore_width_mean, taxa_name
+      spore_size,
+      spore_length_max,
+      spore_length_min,
+      spore_width_max,
+      spore_width_min,
+      spore_length_mean,
+      spore_width_mean,
+      taxa_name
     )
 
   if (add_to_phyloseq) {
@@ -189,7 +215,12 @@ tax_spores_size_pq <- function(physeq = NULL,
 
     new_physeq <- physeq
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
     new_physeq@tax_table <-
       left_join(tax_tab, spore_sizes_df, by = join_by(taxa_name)) |>
       as.matrix() |>
@@ -225,11 +256,17 @@ tax_spores_size_pq <- function(physeq = NULL,
 extract_spores_mycodb <- function(species_name, verbose = TRUE) {
   base_url <- "https://www.mycodb.fr/fiche.php?"
   search_params <- paste0(
-    "genre=", stringr::word(species_name, 1),
-    "&espece=", stringr::word(species_name, 2)
+    "genre=",
+    stringr::word(species_name, 1),
+    "&espece=",
+    stringr::word(species_name, 2)
   )
   page_html <- rvest::read_html(paste0(base_url, search_params))
-  if (grepl(pattern = "https://www.mycodb.fr/quicksearch.php", rvest::html_text(page_html))
+  if (
+    grepl(
+      pattern = "https://www.mycodb.fr/quicksearch.php",
+      rvest::html_text(page_html)
+    )
   ) {
     return("Not in mycoDB")
   } else {
@@ -238,11 +275,15 @@ extract_spores_mycodb <- function(species_name, verbose = TRUE) {
         xpath = "//*[contains(text(), 'Spores')]/following::p"
       ) |>
       rvest::html_text() |>
-      stringr::str_extract_all("\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00d7x]\\s*\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00b5\\u00b5]?m?") |>
+      stringr::str_extract_all(
+        "\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00d7x]\\s*\\d+(?:[,.]\\d+)?(?:-\\d+(?:[,.]\\d+)?)?\\s*[\\u00b5\\u00b5]?m?"
+      ) |>
       unlist()
     if (length(spore_size) > 1) {
       if (verbose) {
-        cli::cli_alert_warning("Multiple spore size entries found for {.emph {species_name}}. Using the first one.")
+        cli::cli_alert_warning(
+          "Multiple spore size entries found for {.emph {species_name}}. Using the first one."
+        )
       }
       spore_size <- spore_size[1]
     }

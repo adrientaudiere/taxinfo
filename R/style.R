@@ -95,9 +95,12 @@ theme_idest <- function(
   ret <- ret + theme(panel.spacing = panel_spacing)
 
   if (inherits(grid, "character") | grid == TRUE) {
-    ret <- ret + theme(panel.grid = element_line(color = grid_col, linewidth = 0.2))
-    ret <- ret + theme(panel.grid.major = element_line(color = grid_col, linewidth = 0.2))
-    ret <- ret + theme(panel.grid.minor = element_line(color = grid_col, linewidth = 0.15))
+    ret <- ret +
+      theme(panel.grid = element_line(color = grid_col, linewidth = 0.2))
+    ret <- ret +
+      theme(panel.grid.major = element_line(color = grid_col, linewidth = 0.2))
+    ret <- ret +
+      theme(panel.grid.minor = element_line(color = grid_col, linewidth = 0.15))
 
     if (inherits(grid, "character")) {
       if (regexpr("X", grid)[1] < 0) {
@@ -124,22 +127,27 @@ theme_idest <- function(
   }
 
   if (inherits(axis, "character") | axis == TRUE) {
-    ret <- ret + theme(axis.line = element_line(color = axis_col, linewidth = 0.15))
+    ret <- ret +
+      theme(axis.line = element_line(color = axis_col, linewidth = 0.15))
     if (inherits(axis, "character")) {
       axis <- tolower(axis)
       if (regexpr("x", axis)[1] < 0) {
         ret <- ret + theme(axis.line.x = element_blank())
       } else {
-        ret <- ret + theme(axis.line.x = element_line(color = axis_col, linewidth = 0.15))
+        ret <- ret +
+          theme(axis.line.x = element_line(color = axis_col, linewidth = 0.15))
       }
       if (regexpr("y", axis)[1] < 0) {
         ret <- ret + theme(axis.line.y = element_blank())
       } else {
-        ret <- ret + theme(axis.line.y = element_line(color = axis_col, linewidth = 0.15))
+        ret <- ret +
+          theme(axis.line.y = element_line(color = axis_col, linewidth = 0.15))
       }
     } else {
-      ret <- ret + theme(axis.line.x = element_line(color = axis_col, linewidth = 0.15))
-      ret <- ret + theme(axis.line.y = element_line(color = axis_col, linewidth = 0.15))
+      ret <- ret +
+        theme(axis.line.x = element_line(color = axis_col, linewidth = 0.15))
+      ret <- ret +
+        theme(axis.line.y = element_line(color = axis_col, linewidth = 0.15))
     }
   } else {
     ret <- ret + theme(axis.line = element_blank())
@@ -156,7 +164,8 @@ theme_idest <- function(
     ret <- ret + theme(axis.ticks.length = grid::unit(5, "pt"))
   }
 
-  xj <- switch(tolower(substr(axis_title_just, 1, 1)),
+  xj <- switch(
+    tolower(substr(axis_title_just, 1, 1)),
     b = 0,
     l = 0,
     m = 0.5,
@@ -164,7 +173,8 @@ theme_idest <- function(
     r = 1,
     t = 1
   )
-  yj <- switch(tolower(substr(axis_title_just, 2, 2)),
+  yj <- switch(
+    tolower(substr(axis_title_just, 2, 2)),
     b = 0,
     l = 0,
     m = 0.5,
@@ -173,92 +183,115 @@ theme_idest <- function(
     t = 1
   )
 
-  ret <- ret + theme(axis.text = element_text(
-    size = axis_text_size,
-    family = axis_text_family,
-    margin = margin(t = 0, r = 0)
-  ))
-  ret <- ret + theme(axis.text.x = element_text(
-    size = axis_text_size,
-    family = axis_text_family,
-    margin = margin(t = 0)
-  ))
-  ret <- ret + theme(axis.text.y = element_text(
-    size = axis_text_size,
-    family = axis_text_family,
-    margin = margin(r = 0)
-  ))
+  ret <- ret +
+    theme(
+      axis.text = element_text(
+        size = axis_text_size,
+        family = axis_text_family,
+        margin = margin(t = 0, r = 0)
+      )
+    )
+  ret <- ret +
+    theme(
+      axis.text.x = element_text(
+        size = axis_text_size,
+        family = axis_text_family,
+        margin = margin(t = 0)
+      )
+    )
+  ret <- ret +
+    theme(
+      axis.text.y = element_text(
+        size = axis_text_size,
+        family = axis_text_family,
+        margin = margin(r = 0)
+      )
+    )
 
-  ret <- ret + theme(axis.title = element_text(size = axis_title_size, family = axis_title_family))
-  ret <- ret + theme(
-    axis.title.x = element_text(
-      hjust = xj,
-      size = axis_title_size,
-      family = axis_title_family,
-      face = axis_title_face
+  ret <- ret +
+    theme(
+      axis.title = element_text(
+        size = axis_title_size,
+        family = axis_title_family
+      )
     )
-  )
-  ret <- ret + theme(
-    axis.title.y = element_text(
-      hjust = yj,
-      size = axis_title_size,
-      family = axis_title_family,
-      face = axis_title_face
+  ret <- ret +
+    theme(
+      axis.title.x = element_text(
+        hjust = xj,
+        size = axis_title_size,
+        family = axis_title_family,
+        face = axis_title_face
+      )
     )
-  )
-  ret <- ret + theme(
-    axis.title.y.right = element_text(
-      hjust = yj,
-      size = axis_title_size,
-      angle = 90,
-      family = axis_title_family,
-      face = axis_title_face
+  ret <- ret +
+    theme(
+      axis.title.y = element_text(
+        hjust = yj,
+        size = axis_title_size,
+        family = axis_title_family,
+        face = axis_title_face
+      )
     )
-  )
+  ret <- ret +
+    theme(
+      axis.title.y.right = element_text(
+        hjust = yj,
+        size = axis_title_size,
+        angle = 90,
+        family = axis_title_family,
+        face = axis_title_face
+      )
+    )
 
-  ret <- ret + theme(
-    strip.text = element_text(
-      hjust = 0,
-      size = strip_text_size,
-      face = strip_text_face,
-      family = strip_text_family
+  ret <- ret +
+    theme(
+      strip.text = element_text(
+        hjust = 0,
+        size = strip_text_size,
+        face = strip_text_face,
+        family = strip_text_family
+      )
     )
-  )
 
-  ret <- ret + theme(
-    plot.title = element_text(
-      hjust = 0,
-      size = plot_title_size,
-      margin = margin(b = plot_title_margin),
-      family = plot_title_family,
-      face = plot_title_face
+  ret <- ret +
+    theme(
+      plot.title = element_text(
+        hjust = 0,
+        size = plot_title_size,
+        margin = margin(b = plot_title_margin),
+        family = plot_title_family,
+        face = plot_title_face
+      )
     )
-  )
-  ret <- ret + theme(
-    plot.subtitle = element_text(
-      hjust = 0,
-      size = subtitle_size,
-      margin = margin(b = subtitle_margin),
-      family = subtitle_family,
-      face = subtitle_face,
-      color = subtitle_color
+  ret <- ret +
+    theme(
+      plot.subtitle = element_text(
+        hjust = 0,
+        size = subtitle_size,
+        margin = margin(b = subtitle_margin),
+        family = subtitle_family,
+        face = subtitle_face,
+        color = subtitle_color
+      )
     )
-  )
-  ret <- ret + theme(
-    plot.caption = element_text(
-      hjust = 1,
-      size = caption_size,
-      margin = margin(t = caption_margin),
-      family = caption_family,
-      face = caption_face
+  ret <- ret +
+    theme(
+      plot.caption = element_text(
+        hjust = 1,
+        size = caption_size,
+        margin = margin(t = caption_margin),
+        family = caption_family,
+        face = caption_face
+      )
     )
-  )
 
   if (strip_back_grey) {
-    ret <- ret + theme(
-      strip.background = element_rect(fill = "grey90", color = NA),
-      panel.border = element_rect(color = "grey90", fill = NA)
-    )
+    ret <- ret +
+      theme(
+        strip.background = element_rect(fill = "grey90", color = NA),
+        panel.border = element_rect(color = "grey90", fill = NA)
+      )
   }
 
   ret
@@ -384,8 +417,16 @@ idest_pal <- list(
     c(5, 2, 6, 7, 3, 4, 1),
     colorblind = TRUE
   ),
-  Hokusai2 = list(c("#abc9c8", "#72aeb6", "#4692b0", "#2f70a1", "#134b73", "#0a3351"), c(5, 2, 4, 1, 6, 3), colorblind = TRUE), # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
-  Hokusai3 = list(c("#d8d97a", "#95c36e", "#74c8c3", "#5a97c1", "#295384", "#0a2e57"), c(4, 2, 5, 3, 1, 6), colorblind = TRUE) # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
+  Hokusai2 = list(
+    c("#abc9c8", "#72aeb6", "#4692b0", "#2f70a1", "#134b73", "#0a3351"),
+    c(5, 2, 4, 1, 6, 3),
+    colorblind = TRUE
+  ), # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
+  Hokusai3 = list(
+    c("#d8d97a", "#95c36e", "#74c8c3", "#5a97c1", "#295384", "#0a2e57"),
+    c(4, 2, 5, 3, 1, 6),
+    colorblind = TRUE
+  ) # copy from https://github.com/BlakeRMills/MetBrewer/blob/main/R/PaletteCode.R
 )
 
 #' IdEst continuous color scales for ggplot2
@@ -400,11 +441,17 @@ idest_pal <- list(
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
-scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
+scale_color_idest_c <- function(
+  palette_name = "all_color_idest",
+  direction = 1,
+  ...
+) {
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
-    stop("Direction not valid. Please use 1 for standard palette or -1 for reversed palette.")
+    stop(
+      "Direction not valid. Please use 1 for standard palette or -1 for reversed palette."
+    )
   }
 
   scale_color_gradientn(
@@ -422,11 +469,17 @@ scale_color_idest_c <- function(palette_name = "all_color_idest", direction = 1,
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
-scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, ...) {
+scale_fill_idest_c <- function(
+  palette_name = "all_color_idest",
+  direction = 1,
+  ...
+) {
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
-    stop("Direction not valid. Please use 1 for standard palette or -1 for reversed palette.")
+    stop(
+      "Direction not valid. Please use 1 for standard palette or -1 for reversed palette."
+    )
   }
 
   scale_color_gradientn(
@@ -452,10 +505,12 @@ scale_fill_idest_c <- function(palette_name = "all_color_idest", direction = 1, 
 #' @export
 #' @returns A ggplot2 scale object.
 #' @author Adrien Taudiere
-scale_color_idest_d <- function(palette_name = "all_color_idest",
-                                direction = 1,
-                                override_order = FALSE,
-                                ...) {
+scale_color_idest_d <- function(
+  palette_name = "all_color_idest",
+  direction = 1,
+  override_order = FALSE,
+  ...
+) {
   discrete_scale(
     aesthetics = "colour",
     scale_name = "moma_d",
@@ -476,10 +531,12 @@ scale_color_idest_d <- function(palette_name = "all_color_idest",
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
-scale_fill_idest_d <- function(palette_name = "all_color_idest",
-                               direction = 1,
-                               override_order = FALSE,
-                               ...) {
+scale_fill_idest_d <- function(
+  palette_name = "all_color_idest",
+  direction = 1,
+  override_order = FALSE,
+  ...
+) {
   discrete_scale(
     aesthetics = "fill",
     scale_name = "moma_d",
@@ -510,11 +567,13 @@ scale_fill_idest_d <- function(palette_name = "all_color_idest",
 #' @returns A vector of colors.
 #' @author Adrien Taudiere
 #' @export
-idest_colors <- function(palette_name = "all_color_idest",
-                         n,
-                         type = c("discrete", "continuous"),
-                         direction = c(1, -1),
-                         override_order = FALSE) {
+idest_colors <- function(
+  palette_name = "all_color_idest",
+  n,
+  type = c("discrete", "continuous"),
+  direction = c(1, -1),
+  override_order = FALSE
+) {
   `%notin%` <- Negate(`%in%`)
 
   palette <- idest_pal[[palette_name]]
@@ -532,7 +591,9 @@ idest_colors <- function(palette_name = "all_color_idest",
   }
 
   if (direction %notin% c(1, -1)) {
-    stop("Direction not valid. Please use 1 for standard palette or -1 for reversed palette.")
+    stop(
+      "Direction not valid. Please use 1 for standard palette or -1 for reversed palette."
+    )
   }
 
   if (missing(type)) {
@@ -544,7 +605,6 @@ idest_colors <- function(palette_name = "all_color_idest",
   }
 
   type <- match.arg(type)
-
 
   if (type == "discrete" && n > length(palette[[1]])) {
     stop(
@@ -568,9 +628,6 @@ idest_colors <- function(palette_name = "all_color_idest",
     rev(palette[[1]])[1:n]
   }
 
-  out <- switch(type,
-    continuous = continuous,
-    discrete = discrete
-  )
+  out <- switch(type, continuous = continuous, discrete = discrete)
   structure(out, class = "palette", name = palette_name)
 }

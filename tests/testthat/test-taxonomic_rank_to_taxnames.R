@@ -17,11 +17,17 @@ test_that("taxonomic_rank_to_taxnames basic usage", {
 
 test_that("taxonomic_rank_to_taxnames with discard_genus_alone = TRUE", {
   # Example: taxonomic_rank_to_taxnames(data_fungi_mini, discard_genus_alone = TRUE)
-  result <- taxonomic_rank_to_taxnames(data_fungi_mini, discard_genus_alone = TRUE)
+  result <- taxonomic_rank_to_taxnames(
+    data_fungi_mini,
+    discard_genus_alone = TRUE
+  )
 
   expect_type(result, "character")
   # Should have fewer results when discarding genus alone
-  result_all <- taxonomic_rank_to_taxnames(data_fungi_mini, discard_genus_alone = FALSE)
+  result_all <- taxonomic_rank_to_taxnames(
+    data_fungi_mini,
+    discard_genus_alone = FALSE
+  )
   expect_true(length(result) <= length(result_all))
 })
 
@@ -36,11 +42,11 @@ test_that("taxonomic_rank_to_taxnames with discard_NA = TRUE", {
 
 test_that("taxonomic_rank_to_taxnames with combined parameters", {
   # Example: taxonomic_rank_to_taxnames(data_fungi_mini, discard_NA = TRUE, discard_genus_alone = TRUE)
-  result <- taxonomic_rank_to_taxnames(data_fungi_mini,
+  result <- taxonomic_rank_to_taxnames(
+    data_fungi_mini,
     discard_NA = TRUE,
     discard_genus_alone = TRUE
   )
-
 
   # Mock data creation helper for future use
   create_mock_tax_table <- function() {
@@ -49,7 +55,11 @@ test_that("taxonomic_rank_to_taxnames with combined parameters", {
     data.frame(
       Genus = c("Xylodon", "Basidiodendron", "Fusarium"),
       Species = c("raduloides", "eyrei", "oxysporum"),
-      currentCanonicalSimple = c("Xylodon flaviporus", "Basidiodendron eyrei", "Fusarium oxysporum"),
+      currentCanonicalSimple = c(
+        "Xylodon flaviporus",
+        "Basidiodendron eyrei",
+        "Fusarium oxysporum"
+      ),
       stringsAsFactors = FALSE
     )
   }

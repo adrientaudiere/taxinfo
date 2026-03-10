@@ -32,19 +32,32 @@
 #'
 #' select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot")) |>
 #'   summary_plot_pq()
-select_taxa_pq <- function(physeq,
-                           taxnames = NULL,
-                           taxonomic_rank = "currentCanonicalSimple",
-                           verbose = TRUE,
-                           clean_pq = FALSE,
-                           ...) {
+select_taxa_pq <- function(
+  physeq,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  verbose = TRUE,
+  clean_pq = FALSE,
+  ...
+) {
   verify_pq(physeq, verbose = verbose)
 
-  taxnames_in_physeq <- apply(physeq@tax_table[, taxonomic_rank], 1, paste, collapse = " ")
+  taxnames_in_physeq <- apply(
+    physeq@tax_table[, taxonomic_rank],
+    1,
+    paste,
+    collapse = " "
+  )
 
   cond <- taxnames_in_physeq %in% taxnames
   names(cond) <- taxa_names(physeq)
-  new_physeq <- subset_taxa_pq(physeq, cond, verbose = verbose, clean_pq = clean_pq, ...) |>
+  new_physeq <- subset_taxa_pq(
+    physeq,
+    cond,
+    verbose = verbose,
+    clean_pq = clean_pq,
+    ...
+  ) |>
     clean_pq(silent = !verbose, remove_empty_samples = FALSE)
 
   return(new_physeq)

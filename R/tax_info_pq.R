@@ -137,21 +137,26 @@
 #'   as.data.frame() |>
 #'   filter(!is.na(EPPO_qlistlabel))
 #' }
-tax_info_pq <- function(physeq = NULL,
-                        taxnames = NULL,
-                        taxonomic_rank = "currentCanonicalSimple",
-                        file_name = NULL,
-                        csv_taxonomic_rank = NULL,
-                        add_to_phyloseq = NULL,
-                        col_prefix = NULL,
-                        use_duck_db = FALSE,
-                        csv_cols_select = NULL,
-                        sep = ",",
-                        dec = ".",
-                        verbose = TRUE,
-                      discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_info_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  file_name = NULL,
+  csv_taxonomic_rank = NULL,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  use_duck_db = FALSE,
+  csv_cols_select = NULL,
+  sep = ",",
+  dec = ".",
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -163,11 +168,15 @@ tax_info_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(file_name)) {
-    cli::cli_abort("You must provide a file path to your CSV file with {.arg file_name}")
+    cli::cli_abort(
+      "You must provide a file path to your CSV file with {.arg file_name}"
+    )
   }
 
   if (!file.exists(file_name)) {
@@ -175,14 +184,17 @@ tax_info_pq <- function(physeq = NULL,
   }
 
   if (is.null(csv_taxonomic_rank)) {
-    cli::cli_abort("You must provide the name of the column containing taxonomic names with {.arg csv_taxonomic_rank}")
+    cli::cli_abort(
+      "You must provide the name of the column containing taxonomic names with {.arg csv_taxonomic_rank}"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames_vec <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   } else {
     taxnames_vec <- taxnames
@@ -191,10 +203,18 @@ tax_info_pq <- function(physeq = NULL,
   if (!is.null(physeq)) {
     new_physeq <- physeq
     taxtab <- tibble(as.data.frame(new_physeq@tax_table))
-    taxtab$taxa_name <- trimws(apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " "))
+    taxtab$taxa_name <- trimws(apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    ))
     taxtab$taxa_id_for_join <- 1:ntaxa(physeq)
   } else {
-    taxtab <- tibble(taxa_name = taxnames_vec, taxa_id_for_join = 1:length(taxnames_vec))
+    taxtab <- tibble(
+      taxa_name = taxnames_vec,
+      taxa_id_for_join = 1:length(taxnames_vec)
+    )
   }
 
   if (is.null(csv_cols_select)) {
@@ -213,9 +233,13 @@ tax_info_pq <- function(physeq = NULL,
     taxtab_new <-
       tbl(con, file_name) |>
       select(all_of(unique(c(csv_taxonomic_rank, csv_cols_select)))) |>
-      mutate(across(all_of(csv_taxonomic_rank), ~ sql(paste0(cur_column(), "::TEXT")))) |>
+      mutate(across(
+        all_of(csv_taxonomic_rank),
+        ~ sql(paste0(cur_column(), "::TEXT"))
+      )) |>
       distinct(!!sym(csv_taxonomic_rank), .keep_all = TRUE) |>
-      right_join(taxtab,
+      right_join(
+        taxtab,
         by = join_by(!!sym(csv_taxonomic_rank) == taxa_name),
         copy = TRUE,
         suffix = c("", ".physeq")
@@ -223,25 +247,39 @@ tax_info_pq <- function(physeq = NULL,
       arrange(taxa_id_for_join) |>
       collect() |>
       select(-taxa_id_for_join) |>
-      rename_with(.cols = all_of(c(csv_taxonomic_rank, csv_cols_select)), ~ paste0(col_prefix, .))
+      rename_with(
+        .cols = all_of(c(csv_taxonomic_rank, csv_cols_select)),
+        ~ paste0(col_prefix, .)
+      )
 
     duckdb::dbDisconnect(con)
   } else {
-    info_df <- read.csv(file_name, sep = sep, dec = dec, colClasses = "character")
+    info_df <- read.csv(
+      file_name,
+      sep = sep,
+      dec = dec,
+      colClasses = "character"
+    )
 
     if (!(csv_taxonomic_rank %in% colnames(info_df))) {
-      cli::cli_abort("The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file")
+      cli::cli_abort(
+        "The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file"
+      )
     }
 
     taxtab_new <- info_df |>
       select(all_of(c(csv_taxonomic_rank, csv_cols_select))) |>
       distinct(!!sym(csv_taxonomic_rank), .keep_all = TRUE) |>
-      right_join(taxtab,
+      right_join(
+        taxtab,
         by = join_by(!!sym(csv_taxonomic_rank) == taxa_name)
       ) |>
       arrange(taxa_id_for_join) |>
       select(-taxa_id_for_join) |>
-      rename_with(.cols = all_of(c(csv_taxonomic_rank, csv_cols_select)), ~ paste0(col_prefix, .))
+      rename_with(
+        .cols = all_of(c(csv_taxonomic_rank, csv_cols_select)),
+        ~ paste0(col_prefix, .)
+      )
   }
   if (add_to_phyloseq) {
     new_physeq@tax_table <-
@@ -253,10 +291,16 @@ tax_info_pq <- function(physeq = NULL,
     if (verbose) {
       n_col_added <- ncol(taxtab_new) - ncol(taxtab)
       if (use_duck_db) {
-        cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} in the tax_table slot of the phyloseq object")
+        cli::cli_alert_success(
+          "Added {.val {n_col_added}} columns from {.path {file_name}} in the tax_table slot of the phyloseq object"
+        )
       } else {
-        n_row_added <- sum(pull(taxtab, taxonomic_rank) %in% pull(info_df, csv_taxonomic_rank))
-        cli::cli_alert_success("Added {.val {n_col_added}} columns from {.path {file_name}} with information for {.val {n_row_added}} taxa in the tax_table slot of the phyloseq object")
+        n_row_added <- sum(
+          pull(taxtab, taxonomic_rank) %in% pull(info_df, csv_taxonomic_rank)
+        )
+        cli::cli_alert_success(
+          "Added {.val {n_col_added}} columns from {.path {file_name}} with information for {.val {n_row_added}} taxa in the tax_table slot of the phyloseq object"
+        )
       }
     }
     return(new_physeq)

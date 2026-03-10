@@ -54,18 +54,23 @@
 #'   coord_flip() +
 #'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
 #' }
-tax_gbif_occur_pq <- function(physeq = NULL,
-                              taxnames = NULL,
-                              taxonomic_rank = "currentCanonicalSimple",
-                              add_to_phyloseq = NULL,
-                              col_prefix = NULL,
-                              by_country = FALSE,
-                              by_years = FALSE,
-                              verbose = TRUE,
-                              time_to_sleep = 0.3,
-                            discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_gbif_occur_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  by_country = FALSE,
+  by_years = FALSE,
+  verbose = TRUE,
+  time_to_sleep = 0.3,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -77,14 +82,17 @@ tax_gbif_occur_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
@@ -93,7 +101,9 @@ tax_gbif_occur_pq <- function(physeq = NULL,
     distinct()
 
   if (by_country && by_years) {
-    cli::cli_abort("You can't set both {.arg by_country} and {.arg by_years} to TRUE")
+    cli::cli_abort(
+      "You can't set both {.arg by_country} and {.arg by_years} to TRUE"
+    )
   } else if (by_country) {
     if (verbose) {
       pb <- cli::cli_progress_bar(total = length(gbif_taxa$usageKey))
@@ -106,10 +116,14 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info(
+          "Processing GBIF occurrences for {.emph {species_name}}"
+        )
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "country")$facet$country
-      tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+      tib$canonicalName <- gbif_taxa$canonicalName[which(
+        gbif_taxa$usageKey == x
+      )]
       tib_occur_list[[i]] <- tib
     }
     if (verbose) {
@@ -128,10 +142,14 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info(
+          "Processing GBIF occurrences for {.emph {species_name}}"
+        )
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
-      tib$canonicalName <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+      tib$canonicalName <- gbif_taxa$canonicalName[which(
+        gbif_taxa$usageKey == x
+      )]
       tib_occur_list[[i]] <- tib
     }
     if (verbose) {
@@ -150,11 +168,15 @@ tax_gbif_occur_pq <- function(physeq = NULL,
       if (verbose) {
         cli::cli_progress_update(id = pb, set = i)
         species_name <- gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
-        cli::cli_alert_info("Processing GBIF occurrences for {.emph {species_name}}")
+        cli::cli_alert_info(
+          "Processing GBIF occurrences for {.emph {species_name}}"
+        )
       }
       tib <- tibble(
         "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,
-        "canonicalName" = gbif_taxa$canonicalName[which(gbif_taxa$usageKey == x)]
+        "canonicalName" = gbif_taxa$canonicalName[which(
+          gbif_taxa$usageKey == x
+        )]
       )
       tib_occur_list[[i]] <- tib
     }
@@ -199,7 +221,12 @@ tax_gbif_occur_pq <- function(physeq = NULL,
   if (add_to_phyloseq) {
     new_physeq <- physeq
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
     new_physeq@tax_table <-
       left_join(tax_tab, tib_occur, by = join_by(taxa_name == canonicalName)) |>
       as.matrix() |>

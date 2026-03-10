@@ -10,7 +10,10 @@ test_that("taxa_summary_text input validation", {
 test_that("taxa_summary_text returns character string", {
   # Example: taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
-  result <- taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
+  result <- taxa_summary_text(
+    data_fungi_cleanNames,
+    taxnames = "Xylodon flaviporus"
+  )
 
   expect_type(result, "character")
   expect_true(length(result) > 0)
@@ -20,7 +23,8 @@ test_that("taxa_summary_text with min_nb_seq parameter", {
   # Example: taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus",
   #   min_nb_seq = 100, verbose = FALSE)
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
-  result <- taxa_summary_text(data_fungi_cleanNames,
+  result <- taxa_summary_text(
+    data_fungi_cleanNames,
     taxnames = "Xylodon flaviporus",
     min_nb_seq = 100,
     verbose = FALSE
@@ -33,7 +37,8 @@ test_that("taxa_summary_text with different taxonomic_rank", {
   # Example: taxa_summary_text(data_fungi_cleanNames, taxonomic_rank = "Trait",
   #   taxnames = c("Soft Rot"), verbose = FALSE)
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
-  result <- taxa_summary_text(data_fungi_cleanNames,
+  result <- taxa_summary_text(
+    data_fungi_cleanNames,
     taxonomic_rank = "Trait",
     taxnames = c("Soft Rot"),
     verbose = FALSE

@@ -135,18 +135,23 @@
 #'   ) +
 #'   theme(legend.position = "bottom")
 #' }
-tax_gbif_alt <- function(physeq = NULL,
-                         taxnames = NULL,
-                         taxonomic_rank = "currentCanonicalSimple",
-                         add_to_phyloseq = NULL,
-                         col_prefix = NULL,
-                         method = c("gbif", "elevatr"),
-                         elev_zoom = 5,
-                         n_coor_alt = NULL,
-                         verbose = TRUE,
-                        discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
+tax_gbif_alt <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  method = c("gbif", "elevatr"),
+  elev_zoom = 5,
+  n_coor_alt = NULL,
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -168,14 +173,17 @@ tax_gbif_alt <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
@@ -192,8 +200,12 @@ tax_gbif_alt <- function(physeq = NULL,
   gbif_taxon_keys <- gbif_taxa$usageKey
 
   if (verbose) {
-    cli::cli_alert_info("Submitting download request to GBIF for {.val {length(gbif_taxon_keys)}} taxa...")
-    cli::cli_alert_info("Using predicates: pred_in('taxonKey'), pred('hasCoordinate', TRUE), pred('hasGeospatialIssue', FALSE)")
+    cli::cli_alert_info(
+      "Submitting download request to GBIF for {.val {length(gbif_taxon_keys)}} taxa..."
+    )
+    cli::cli_alert_info(
+      "Using predicates: pred_in('taxonKey'), pred('hasCoordinate', TRUE), pred('hasGeospatialIssue', FALSE)"
+    )
   }
 
   if (method == "gbif") {
@@ -222,7 +234,9 @@ tax_gbif_alt <- function(physeq = NULL,
 
     if (verbose) {
       cli::cli_alert_info("Download key: {.val {download_key}}")
-      cli::cli_alert_info("Waiting for download to complete (this may take a few minutes)...")
+      cli::cli_alert_info(
+        "Waiting for download to complete (this may take a few minutes)..."
+      )
     }
 
     rgbif::occ_download_wait(download_key, quiet = !verbose)
@@ -241,7 +255,9 @@ tax_gbif_alt <- function(physeq = NULL,
       species_name <- gbif_taxa$canonicalName[i]
 
       if (verbose) {
-        cli::cli_alert_info("Processing elevation data for {.emph {species_name}}")
+        cli::cli_alert_info(
+          "Processing elevation data for {.emph {species_name}}"
+        )
       }
 
       taxon_data <- occ_data |>
@@ -253,22 +269,35 @@ tax_gbif_alt <- function(physeq = NULL,
           slice_sample(n = n_coor_alt)
       }
 
-
       elevation_data <- NULL
       if (nrow(taxon_data) > 0) {
         elevation_data <- taxon_data$elevation
         elevation_data <- elevation_data[!is.na(elevation_data)]
       }
 
-
       # Calculate statistics
       if (!is.null(elevation_data) && length(elevation_data) > 0) {
         tib <- tibble(
           "altitude_min" = min(elevation_data, na.rm = TRUE),
           "altitude_max" = max(elevation_data, na.rm = TRUE),
-          "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
-          "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
-          "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
+          "altitude_q05" = quantile(
+            elevation_data,
+            0.05,
+            na.rm = TRUE,
+            names = FALSE
+          ),
+          "altitude_q50" = quantile(
+            elevation_data,
+            0.50,
+            na.rm = TRUE,
+            names = FALSE
+          ),
+          "altitude_q95" = quantile(
+            elevation_data,
+            0.95,
+            na.rm = TRUE,
+            names = FALSE
+          ),
           "altitude_mean" = mean(elevation_data, na.rm = TRUE),
           "altitude_sd" = sd(elevation_data, na.rm = TRUE),
           "altitude_n_records" = length(elevation_data),
@@ -296,7 +325,10 @@ tax_gbif_alt <- function(physeq = NULL,
 
     # Load world land boundaries for ocean detection
     world_land <- NULL
-    world_land <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+    world_land <- rnaturalearth::ne_countries(
+      scale = "medium",
+      returnclass = "sf"
+    )
 
     # Submit download request
     download_key <- tryCatch(
@@ -322,7 +354,9 @@ tax_gbif_alt <- function(physeq = NULL,
 
     if (verbose) {
       cli::cli_alert_info("Download key: {.val {download_key}}")
-      cli::cli_alert_info("Waiting for download to complete (this may take a few minutes)...")
+      cli::cli_alert_info(
+        "Waiting for download to complete (this may take a few minutes)..."
+      )
     }
 
     # Wait for download to complete
@@ -342,7 +376,9 @@ tax_gbif_alt <- function(physeq = NULL,
       species_name <- gbif_taxa$canonicalName[i]
 
       if (verbose) {
-        cli::cli_alert_info("Processing elevation data for {.emph {species_name}}")
+        cli::cli_alert_info(
+          "Processing elevation data for {.emph {species_name}}"
+        )
       }
 
       # Filter data for this taxon
@@ -382,13 +418,20 @@ tax_gbif_alt <- function(physeq = NULL,
 
           # Get elevation for all points using elevatr (AWS Terrain Tiles)
           if (verbose) {
-            cli::cli_alert_info("Computing elevation from GPS coordinates using AWS Terrain Tiles...")
+            cli::cli_alert_info(
+              "Computing elevation from GPS coordinates using AWS Terrain Tiles..."
+            )
           }
 
           coords_with_elev <- tryCatch(
             {
               suppressMessages(
-                elevatr::get_elev_point(coords_sf, src = "aws", z = elev_zoom, overwrite = TRUE)
+                elevatr::get_elev_point(
+                  coords_sf,
+                  src = "aws",
+                  z = elev_zoom,
+                  overwrite = TRUE
+                )
               )
             },
             error = function(e) {
@@ -413,9 +456,24 @@ tax_gbif_alt <- function(physeq = NULL,
         tib <- tibble(
           "altitude_min" = min(elevation_data, na.rm = TRUE),
           "altitude_max" = max(elevation_data, na.rm = TRUE),
-          "altitude_q05" = quantile(elevation_data, 0.05, na.rm = TRUE, names = FALSE),
-          "altitude_q50" = quantile(elevation_data, 0.50, na.rm = TRUE, names = FALSE),
-          "altitude_q95" = quantile(elevation_data, 0.95, na.rm = TRUE, names = FALSE),
+          "altitude_q05" = quantile(
+            elevation_data,
+            0.05,
+            na.rm = TRUE,
+            names = FALSE
+          ),
+          "altitude_q50" = quantile(
+            elevation_data,
+            0.50,
+            na.rm = TRUE,
+            names = FALSE
+          ),
+          "altitude_q95" = quantile(
+            elevation_data,
+            0.95,
+            na.rm = TRUE,
+            names = FALSE
+          ),
           "altitude_mean" = mean(elevation_data, na.rm = TRUE),
           "altitude_sd" = sd(elevation_data, na.rm = TRUE),
           "altitude_n_records" = length(elevation_data),
@@ -469,7 +527,12 @@ tax_gbif_alt <- function(physeq = NULL,
   if (add_to_phyloseq) {
     new_physeq <- physeq
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
     new_physeq@tax_table <-
       left_join(tax_tab, tib_occur, by = join_by(taxa_name == canonicalName)) |>
       as.matrix() |>

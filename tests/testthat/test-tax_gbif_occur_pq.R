@@ -19,7 +19,9 @@ test_that("tax_gbif_occur_pq parameter defaults", {
 # Examples from man page: tax_gbif_occur_pq.Rd (lines 61-72)
 test_that("tax_gbif_occur_pq with taxnames returns tibble", {
   # Example: tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
-  result <- tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
+  result <- tax_gbif_occur_pq(
+    taxnames = c("Amanita muscaria", "Boletus edulis")
+  )
   expect_s3_class(result, "tbl_df")
   expect_equal(nrow(result), 2)
   expect_true("Global_occurences" %in% colnames(result))
@@ -28,7 +30,10 @@ test_that("tax_gbif_occur_pq with taxnames returns tibble", {
 test_that("tax_gbif_occur_pq with phyloseq add_to_phyloseq = FALSE returns tibble", {
   # Example: tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
+  result <- tax_gbif_occur_pq(
+    data_fungi_mini_cleanNames,
+    add_to_phyloseq = FALSE
+  )
   expect_s3_class(result, "tbl_df")
   expect_true("Global_occurences" %in% colnames(result))
 })
@@ -36,7 +41,8 @@ test_that("tax_gbif_occur_pq with phyloseq add_to_phyloseq = FALSE returns tibbl
 test_that("tax_gbif_occur_pq with by_years parameter", {
   # Example: tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_gbif_occur_pq(data_fungi_mini_cleanNames,
+  result <- tax_gbif_occur_pq(
+    data_fungi_mini_cleanNames,
     by_years = TRUE,
     add_to_phyloseq = FALSE
   )

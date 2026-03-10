@@ -41,8 +41,15 @@ test_that("tax_oa_pq parameter combinations", {
 test_that("tax_oa_pq type_works validation", {
   # Test that type_works contains valid publication types
   valid_types <- c(
-    "article", "review", "book-chapter", "book", "letter",
-    "preprint", "dataset", "thesis", "proceeding"
+    "article",
+    "review",
+    "book-chapter",
+    "book",
+    "letter",
+    "preprint",
+    "dataset",
+    "thesis",
+    "proceeding"
   )
 
   default_types <- c("article", "review", "book-chapter", "book", "letter")

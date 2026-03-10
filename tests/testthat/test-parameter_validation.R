@@ -5,8 +5,15 @@ test_that("parameter type validation", {
 
   # Test taxonomic_rank parameter validation
   valid_taxonomic_ranks <- c(
-    "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species",
-    "currentCanonicalSimple", "scientificName"
+    "Kingdom",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species",
+    "currentCanonicalSimple",
+    "scientificName"
   )
 
   for (rank in valid_taxonomic_ranks) {
@@ -103,8 +110,15 @@ test_that("work type parameter validation", {
   # Test type_works parameter (used in tax_oa_pq)
 
   valid_work_types <- c(
-    "article", "review", "book-chapter", "book", "letter",
-    "preprint", "dataset", "thesis", "proceeding"
+    "article",
+    "review",
+    "book-chapter",
+    "book",
+    "letter",
+    "preprint",
+    "dataset",
+    "thesis",
+    "proceeding"
   )
 
   # Default types
@@ -179,7 +193,9 @@ test_that("occurrence parameter validation", {
   for (min_val in invalid_min_occur) {
     if (!is.null(min_val) && !is.na(min_val)) {
       if (is.numeric(min_val)) {
-        expect_false(min_val >= 0 && min_val == round(min_val) && is.finite(min_val))
+        expect_false(
+          min_val >= 0 && min_val == round(min_val) && is.finite(min_val)
+        )
       } else {
         expect_false(is.numeric(min_val))
       }
@@ -202,7 +218,13 @@ test_that("column name parameter validation", {
   }
 
   # Test column names
-  valid_col_names <- c("photo_url", "n_doi", "list_doi", "occurrence_count", "trait_value")
+  valid_col_names <- c(
+    "photo_url",
+    "n_doi",
+    "list_doi",
+    "occurrence_count",
+    "trait_value"
+  )
 
   for (col_name in valid_col_names) {
     expect_true(is.character(col_name))

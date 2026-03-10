@@ -115,28 +115,31 @@
 #'   sum()
 #'
 #' }
-tax_retroblast_pq <- function(physeq,
-                              taxonomic_rank = "currentCanonicalSimple",
-                              marker = NULL,
-                              id_cut = 99,
-                              retmax = 500,
-                              add_to_phyloseq = TRUE,
-                              verbose = TRUE,
-                              start_date = NULL,
-                              end_date = NULL,
-                              min_length = 300,
-                              max_length = 4000,
-                              refseq_only = FALSE,
-                              sup_params = "NOT uncultured[Title] NOT clone[Title]",
-                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
-                              ...) {
+tax_retroblast_pq <- function(
+  physeq,
+  taxonomic_rank = "currentCanonicalSimple",
+  marker = NULL,
+  id_cut = 99,
+  retmax = 500,
+  add_to_phyloseq = TRUE,
+  verbose = TRUE,
+  start_date = NULL,
+  end_date = NULL,
+  min_length = 300,
+  max_length = 4000,
+  refseq_only = FALSE,
+  sup_params = "NOT uncultured[Title] NOT clone[Title]",
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   check_package("rentrez")
 
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,
     discard_genus_alone = discard_genus_alone,
-    discard_NA = TRUE
+    discard_NA = discard_NA
   )
 
   res_tax <- vector("list", length = length(taxnames))
@@ -145,7 +148,6 @@ tax_retroblast_pq <- function(physeq,
   names(res_tax2) <- taxnames
   search_res <- vector("list", length = length(taxnames))
   names(search_res) <- taxnames
-
 
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(taxnames))
@@ -158,10 +160,14 @@ tax_retroblast_pq <- function(physeq,
       cli::cli_alert_info("Processing taxon: {.emph {tax_i}}")
     }
 
-    taxa_pq_i <- select_taxa_pq(physeq, taxnames = tax_i, taxonomic_rank = taxonomic_rank, verbose = FALSE) |>
+    taxa_pq_i <- select_taxa_pq(
+      physeq,
+      taxnames = tax_i,
+      taxonomic_rank = taxonomic_rank,
+      verbose = FALSE
+    ) |>
       clean_pq(silent = TRUE) |>
       taxa_names()
-
 
     if (!is.null(start_date)) {
       if (is.null(end_date)) {
@@ -169,23 +175,44 @@ tax_retroblast_pq <- function(physeq,
       }
       search_term <-
         paste0(
-          tax_i, "[Organism]",
+          tax_i,
+          "[Organism]",
           # " AND ", marker, "[Title] ",
-          paste0(" AND (", paste(paste0(marker, "[Title]"), collapse = " OR "), ")"),
-          start_date, ":", end_date, "[PDAT]",
-          " AND ", min_length, ":", max_length, "[SLEN] ",
+          paste0(
+            " AND (",
+            paste(paste0(marker, "[Title]"), collapse = " OR "),
+            ")"
+          ),
+          start_date,
+          ":",
+          end_date,
+          "[PDAT]",
+          " AND ",
+          min_length,
+          ":",
+          max_length,
+          "[SLEN] ",
           sup_params
         )
     } else {
       search_term <-
         paste0(
-          tax_i, "[Organism]",
-          ifelse(length(marker) == 1, paste0(" AND ", marker, "[Title]"),
-            paste0(" AND (", paste(paste0(marker, "[Title]"),
-              collapse = " OR "
-            ), ")")
+          tax_i,
+          "[Organism]",
+          ifelse(
+            length(marker) == 1,
+            paste0(" AND ", marker, "[Title]"),
+            paste0(
+              " AND (",
+              paste(paste0(marker, "[Title]"), collapse = " OR "),
+              ")"
+            )
           ),
-          " AND ", min_length, ":", max_length, "[SLEN] ",
+          " AND ",
+          min_length,
+          ":",
+          max_length,
+          "[SLEN] ",
           sup_params
         )
     }
@@ -201,8 +228,12 @@ tax_retroblast_pq <- function(physeq,
 
     if (verbose) {
       cli::cli_alert_info("Search term: {.code {search_term}}")
-      cli::cli_alert_info("Number of results for {.emph {tax_i}}: {.val {search_res[[tax_i]]$count}}")
-      cli::cli_alert_info("Number of FASTA sequences retrieved: {.val {length(search_res[[tax_i]]$ids)}}")
+      cli::cli_alert_info(
+        "Number of results for {.emph {tax_i}}: {.val {search_res[[tax_i]]$count}}"
+      )
+      cli::cli_alert_info(
+        "Number of FASTA sequences retrieved: {.val {length(search_res[[tax_i]]$ids)}}"
+      )
     }
     if (search_res[[tax_i]]$count == 0) {
       if (verbose) {
@@ -221,7 +252,10 @@ tax_retroblast_pq <- function(physeq,
       )
     } else {
       search_id <-
-        split(search_res[[tax_i]]$ids, ceiling(seq_along(search_res[[tax_i]]$ids) / 100))
+        split(
+          search_res[[tax_i]]$ids,
+          ceiling(seq_along(search_res[[tax_i]]$ids) / 100)
+        )
 
       seq_fasta <- lapply(search_id, function(x) {
         rentrez::entrez_fetch(
@@ -235,7 +269,8 @@ tax_retroblast_pq <- function(physeq,
     temp_fasta <- tempfile()
     write(seq_fasta, file = temp_fasta)
 
-    res_b_raw <- blast_to_phyloseq(physeq,
+    res_b_raw <- blast_to_phyloseq(
+      physeq,
       seq2search = temp_fasta,
       unique_per_seq = FALSE,
       id_cut = id_cut,
@@ -285,18 +320,23 @@ tax_retroblast_pq <- function(physeq,
   tib_retroblast <-
     tibble(
       "taxa_name" = taxa_names(physeq),
-      "taxnames_species" =
-        taxonomic_rank_to_taxnames(physeq,
-          taxonomic_rank = taxonomic_rank,
-          discard_genus_alone = FALSE,
-          discard_NA = FALSE,
-          distinct_names = FALSE
-        ),
+      "taxnames_species" = taxonomic_rank_to_taxnames(
+        physeq,
+        taxonomic_rank = taxonomic_rank,
+        discard_genus_alone = FALSE,
+        discard_NA = FALSE,
+        distinct_names = FALSE
+      ),
     ) |>
     mutate("blast_queried" = taxnames_species %in% taxnames) |>
-    mutate("blast_result" = taxnames_species %in%
-      names(no_blast_results)[!no_blast_results]) |>
-    mutate("good_assign" = taxa_name %in% good_assignation$taxa_name[good_assignation$good_assign])
+    mutate(
+      "blast_result" = taxnames_species %in%
+        names(no_blast_results)[!no_blast_results]
+    ) |>
+    mutate(
+      "good_assign" = taxa_name %in%
+        good_assignation$taxa_name[good_assignation$good_assign]
+    )
 
   if (nrow(alternative_assignation) > 0) {
     tib_retroblast <- tib_retroblast |>

@@ -30,18 +30,39 @@
 #' plot(intra_taxn_dist$mean_dist, intra_taxn_dist$n_taxa)
 #' plot(intra_taxn_dist$min_dist, intra_taxn_dist$n_taxa)
 #' plot(intra_taxn_dist$max_dist, intra_taxn_dist$n_taxa)
-intra_taxnames_dist <- function(physeq,
-                                taxonomic_rank = c("Genus", "Species"),
-                                verbose = TRUE,
-                                verbose_DECIPHER = FALSE,
-                                ...) {
-  taxnames <- taxonomic_rank_to_taxnames(physeq, taxonomic_rank, discard_genus_alone = TRUE)
-  taxnames_all <- apply(physeq@tax_table[, taxonomic_rank], 1, paste, collapse = " ")
+intra_taxnames_dist <- function(
+  physeq,
+  taxonomic_rank = c("Genus", "Species"),
+  verbose = TRUE,
+  verbose_DECIPHER = FALSE,
+  discard_NA = TRUE,
+  ...
+) {
+  taxnames <- taxonomic_rank_to_taxnames(
+    physeq,
+    taxonomic_rank,
+    discard_genus_alone = TRUE,
+    discard_NA = discard_NA
+  )
+  taxnames_all <- apply(
+    physeq@tax_table[, taxonomic_rank],
+    1,
+    paste,
+    collapse = " "
+  )
 
   results <- data.frame(
     taxnames = taxnames,
     n_taxa = sapply(taxnames, function(x) {
-      sum(taxonomic_rank_to_taxnames(physeq, taxonomic_rank, distinct_names = FALSE) == x)
+      sum(
+        taxonomic_rank_to_taxnames(
+          physeq,
+          taxonomic_rank,
+          distinct_names = FALSE,
+          discard_NA = discard_NA
+        ) ==
+          x
+      )
     }),
     mean_dist = NA_real_,
     min_dist = NA_real_,
@@ -56,12 +77,16 @@ intra_taxnames_dist <- function(physeq,
       next
     } else {
       if (verbose) {
-        cli::cli_alert_success("Processing {.emph {taxn}} - {.val {length(selected_taxa)}} taxa")
+        cli::cli_alert_success(
+          "Processing {.emph {taxn}} - {.val {length(selected_taxa)}} taxa"
+        )
       }
     }
 
-    dist_matrix <- DECIPHER::AlignSeqs(physeq@refseq[selected_taxa],
-      verbose = verbose_DECIPHER, ...
+    dist_matrix <- DECIPHER::AlignSeqs(
+      physeq@refseq[selected_taxa],
+      verbose = verbose_DECIPHER,
+      ...
     ) |>
       DECIPHER::DistanceMatrix(verbose = verbose_DECIPHER)
     half_mat <- dist_matrix[upper.tri(dist_matrix)]
@@ -73,11 +98,21 @@ intra_taxnames_dist <- function(physeq,
   if (verbose) {
     cli::cli_alert_success("Intra-taxnames distance computation complete")
     cli::cli_alert_info("Total taxnames: {.val {nrow(results)}}")
-    cli::cli_alert_info("Taxnames with only one taxa (no distance computation):  {.val {sum(results$n_taxa==1)}}")
-    cli::cli_alert_info("Taxnames with multiple taxa: {.val {sum(results$n_taxa>1)}}")
-    cli::cli_alert_info("Mean intra-taxnames mean distance: {.val {round(mean(results$mean_dist, na.rm=TRUE),4)}}")
-    cli::cli_alert_info("Mean intra-taxnames maximum distance: {.val {round(mean(results$max_dist, na.rm=TRUE),4)}}")
-    cli::cli_alert_info("Mean intra-taxnames minimum distance: {.val {round(mean(results$min_dist, na.rm=TRUE),4)}}")
+    cli::cli_alert_info(
+      "Taxnames with only one taxa (no distance computation):  {.val {sum(results$n_taxa==1)}}"
+    )
+    cli::cli_alert_info(
+      "Taxnames with multiple taxa: {.val {sum(results$n_taxa>1)}}"
+    )
+    cli::cli_alert_info(
+      "Mean intra-taxnames mean distance: {.val {round(mean(results$mean_dist, na.rm=TRUE),4)}}"
+    )
+    cli::cli_alert_info(
+      "Mean intra-taxnames maximum distance: {.val {round(mean(results$max_dist, na.rm=TRUE),4)}}"
+    )
+    cli::cli_alert_info(
+      "Mean intra-taxnames minimum distance: {.val {round(mean(results$min_dist, na.rm=TRUE),4)}}"
+    )
   }
   return(results)
 }

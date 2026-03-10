@@ -24,7 +24,9 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
   lon_offset <- radius_km / (111.32 * cos(latitude * pi / 180))
 
   if (is.null(longitude) | is.null(latitude) | is.null(radius_km)) {
-    cli::cli_abort("Parameters {.arg longitude}, {.arg latitude} and {.arg radius_km} must be provided")
+    cli::cli_abort(
+      "Parameters {.arg longitude}, {.arg latitude} and {.arg radius_km} must be provided"
+    )
   }
   res <- list(
     "xmin" = longitude - lon_offset,
@@ -68,18 +70,21 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'   taxonomic_rank = "Trait",
 #'   taxnames = c("Soft Rot"), verbose = FALSE
 #' )
-taxa_summary_text <- function(physeq,
-                              taxnames = NULL,
-                              taxonomic_rank = "currentCanonicalSimple",
-                              verbose = TRUE,
-                              min_nb_seq = 0,
-                              ...) {
+taxa_summary_text <- function(
+  physeq,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  verbose = TRUE,
+  min_nb_seq = 0,
+  ...
+) {
   new_physeq <- select_taxa_pq(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,
     taxnames = taxnames,
     verbose = verbose,
-    clean_pq = FALSE, ...
+    clean_pq = FALSE,
+    ...
   ) |>
     clean_pq(silent = TRUE)
 
@@ -89,8 +94,10 @@ taxa_summary_text <- function(physeq,
     if (verbose) {
       removed_samples <- nsamples(new_physeq) - nsamples(new_physeq2)
       removed_taxa <- ntaxa(new_physeq) - ntaxa(new_physeq2)
-      removed_sequences <- sum(new_physeq@otu_table) - sum(new_physeq2@otu_table)
-      removed_occurrences <- sum(new_physeq@otu_table > 0) - sum(new_physeq2@otu_table > 0)
+      removed_sequences <- sum(new_physeq@otu_table) -
+        sum(new_physeq2@otu_table)
+      removed_occurrences <- sum(new_physeq@otu_table > 0) -
+        sum(new_physeq2@otu_table > 0)
 
       cli::cli_alert_info(c(
         "Filtering OTUs with less than {.val {min_nb_seq}} sequences removed:/n",
@@ -108,7 +115,18 @@ taxa_summary_text <- function(physeq,
   nseq <- sum(new_physeq@otu_table)
   noccur <- sum(new_physeq@otu_table > 0)
 
-  paste0(taxnames, ": ", nsamp, " samp., ", ntaxa, " taxa, ", nseq, " seq., ", noccur, " occ.")
+  paste0(
+    taxnames,
+    ": ",
+    nsamp,
+    " samp., ",
+    ntaxa,
+    " taxa, ",
+    nseq,
+    " seq., ",
+    noccur,
+    " occ."
+  )
 }
 
 
@@ -149,11 +167,13 @@ taxa_summary_text <- function(physeq,
 #' check_package("ggplot2", stop_on_error = TRUE)
 #' }
 #' @export
-check_package <- function(package,
-                          repo = "CRAN",
-                          github_repo = NULL,
-                          stop_on_error = TRUE,
-                          quietly = TRUE) {
+check_package <- function(
+  package,
+  repo = "CRAN",
+  github_repo = NULL,
+  stop_on_error = TRUE,
+  quietly = TRUE
+) {
   # Validate inputs
   if (!is.character(package) || length(package) != 1) {
     cli::cli_abort("'{.arg package}' must be a single character string")
@@ -165,7 +185,9 @@ check_package <- function(package,
 
   if (!repo %in% c("CRAN", "Bioconductor", "GitHub") && is.null(github_repo)) {
     if (!is.character(repo)) {
-      cli::cli_abort("'{.arg repo}' must be one of {.val CRAN}, {.val Bioconductor}, {.val GitHub}")
+      cli::cli_abort(
+        "'{.arg repo}' must be one of {.val CRAN}, {.val Bioconductor}, {.val GitHub}"
+      )
     }
   }
 
@@ -174,34 +196,43 @@ check_package <- function(package,
 
   if (!is_available) {
     # Create installation message based on repository
-    install_msg <- switch(repo,
+    install_msg <- switch(
+      repo,
       "CRAN" = paste0('install.packages("', package, '")'),
       "Bioconductor" = paste0(
         'if (!requireNamespace("BiocManager")) {\n',
         '  install.packages("BiocManager")\n',
         "}\n",
-        'BiocManager::install("', package, '")'
+        'BiocManager::install("',
+        package,
+        '")'
       ),
       "GitHub" = {
         if (is.null(github_repo)) {
-          cli::cli_abort("For GitHub packages, '{.arg github_repo}' must be specified as {.val username/repository}")
+          cli::cli_abort(
+            "For GitHub packages, '{.arg github_repo}' must be specified as {.val username/repository}"
+          )
         }
         paste0(
           'if (!requireNamespace("devtools")) {\n',
           '  install.packages("devtools")\n',
           "}\n",
-          'devtools::install_github("', github_repo, '")'
+          'devtools::install_github("',
+          github_repo,
+          '")'
         )
       },
     )
 
     if (stop_on_error) {
-      cli::cli_abort(c("Package {.pkg {package}} is required but not installed.",
+      cli::cli_abort(c(
+        "Package {.pkg {package}} is required but not installed.",
         "i" = "To install it, run:",
         " " = "{.code {install_msg}}"
       ))
     } else {
-      cli::cli_alert_info(c("Package {.pkg {package}} is required but not installed.",
+      cli::cli_alert_info(c(
+        "Package {.pkg {package}} is required but not installed.",
         "i" = "To install it, run:",
         " " = "{.code {install_msg}}"
       ))

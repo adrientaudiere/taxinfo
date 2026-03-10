@@ -43,7 +43,10 @@ test_that("tax_spores_size_pq input validation", {
 test_that("tax_spores_size_pq add_to_phyloseq validation", {
   # Test that add_to_phyloseq = TRUE with taxnames causes error
   expect_error(
-    tax_spores_size_pq(taxnames = c("Amanita muscaria"), add_to_phyloseq = TRUE),
+    tax_spores_size_pq(
+      taxnames = c("Amanita muscaria"),
+      add_to_phyloseq = TRUE
+    ),
     "cannot be TRUE when.*taxnames"
   )
 })

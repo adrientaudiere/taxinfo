@@ -99,24 +99,29 @@
 #' @details
 #' This function is mainly a wrapper of the work of others.
 #'   Please cite `taxize` package.
-gna_verifier_pq <- function(physeq = NULL,
-                            taxnames = NULL,
-                            taxonomic_rank = c("Genus", "Species"),
-                            data_sources = c(1, 12),
-                            all_matches = FALSE,
-                            capitalize = FALSE,
-                            species_group = FALSE,
-                            fuzzy_uninomial = FALSE,
-                            stats = FALSE,
-                            main_taxon_threshold = 0.5,
-                            verbose = TRUE,
-                            add_to_phyloseq = NULL,
-                            col_prefix = NULL,
-                            genus_species_canonical_col = TRUE,
-                            year_col = TRUE,
-                            authorship_col = TRUE) {
+gna_verifier_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = c("Genus", "Species"),
+  data_sources = c(1, 12),
+  all_matches = FALSE,
+  capitalize = FALSE,
+  species_group = FALSE,
+  fuzzy_uninomial = FALSE,
+  stats = FALSE,
+  main_taxon_threshold = 0.5,
+  verbose = TRUE,
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  genus_species_canonical_col = TRUE,
+  year_col = TRUE,
+  authorship_col = TRUE,
+  discard_NA = TRUE
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -128,7 +133,9 @@ gna_verifier_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   if (is.null(taxnames)) {
@@ -136,7 +143,7 @@ gna_verifier_pq <- function(physeq = NULL,
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
       discard_genus_alone = FALSE,
-      discard_NA = TRUE
+      discard_NA = discard_NA
     )
   }
 
@@ -167,7 +174,8 @@ gna_verifier_pq <- function(physeq = NULL,
     list(taxnames)
   }
   res_verifier <- bind_rows(lapply(slice_taxnames, function(x) {
-    taxize::gna_verifier(x,
+    taxize::gna_verifier(
+      x,
       data_sources = data_sources,
       all_matches = all_matches,
       capitalize = capitalize,
@@ -192,17 +200,25 @@ gna_verifier_pq <- function(physeq = NULL,
       )
   }
 
-
   if (year_col) {
-    res_verifier_clean$namePublishedInYear <- rgbif::name_parse(res_verifier_clean$currentName)$year
+    res_verifier_clean$namePublishedInYear <- rgbif::name_parse(
+      res_verifier_clean$currentName
+    )$year
   }
 
   if (authorship_col) {
     res_verifier_clean <- res_verifier_clean |>
       mutate(
         authorship = rgbif::name_parse(currentName)$authorship,
-        bracketauthorship = rgbif::name_parse(currentName)$bracketauthorship %||% NA,
-        scientificNameAuthorship = ifelse(is.na(bracketauthorship), authorship, paste0("(", bracketauthorship, ") ", authorship))
+        bracketauthorship = rgbif::name_parse(
+          currentName
+        )$bracketauthorship %||%
+          NA,
+        scientificNameAuthorship = ifelse(
+          is.na(bracketauthorship),
+          authorship,
+          paste0("(", bracketauthorship, ") ", authorship)
+        )
       )
   }
 
@@ -211,7 +227,9 @@ gna_verifier_pq <- function(physeq = NULL,
 
     tax_tab <- cbind(as.data.frame(new_physeq@tax_table))
     tax_tab$taxa_name <-
-      apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1,
+      apply(
+        unclass(new_physeq@tax_table[, taxonomic_rank]),
+        1,
         paste0,
         collapse = " "
       ) |>
@@ -226,7 +244,9 @@ gna_verifier_pq <- function(physeq = NULL,
     }
 
     new_physeq@tax_table <-
-      left_join(tax_tab, res_verifier_to_join,
+      left_join(
+        tax_tab,
+        res_verifier_to_join,
         by = join_by(taxa_name == submittedName)
       ) |>
       as.matrix() |>
@@ -240,12 +260,27 @@ gna_verifier_pq <- function(physeq = NULL,
     if (verbose) {
       total_taxa <- ntaxa(physeq)
       submitted_taxa <- sum(taxtab_new$taxa_name != "")
-      genus_only_taxa <- sum(!grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != "")
-      total_matches <- sum(res_verifier$taxonomicStatus %in% c("Synonym", "Accepted"))
+      genus_only_taxa <- sum(
+        !grepl(" ", taxtab_new$taxa_name) & taxtab_new$taxa_name != ""
+      )
+      total_matches <- sum(
+        res_verifier$taxonomicStatus %in% c("Synonym", "Accepted")
+      )
       synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      genus_synonyms <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      accepted_names <- sum(res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
-      genus_accepted <- sum(res_verifier$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+      genus_synonyms <- sum(
+        res_verifier$matchedCardinality == 2 &
+          res_verifier$taxonomicStatus == "Synonym",
+        na.rm = TRUE
+      )
+      accepted_names <- sum(
+        res_verifier$taxonomicStatus == "Accepted",
+        na.rm = TRUE
+      )
+      genus_accepted <- sum(
+        res_verifier$matchedCardinality == 2 &
+          res_verifier$taxonomicStatus == "Accepted",
+        na.rm = TRUE
+      )
 
       cli::cli_bullets(c(
         "v" = "GNA verification summary:",
@@ -260,11 +295,27 @@ gna_verifier_pq <- function(physeq = NULL,
     return(new_physeq)
   } else {
     if (verbose) {
-      total_matches <- sum(res_verifier_clean$taxonomicStatus %in% c("Synonym", "Accepted"))
-      synonyms <- sum(res_verifier_clean$taxonomicStatus == "Synonym", na.rm = TRUE)
-      genus_synonyms <- sum(res_verifier_clean$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      accepted_names <- sum(res_verifier_clean$taxonomicStatus == "Accepted", na.rm = TRUE)
-      genus_accepted <- sum(res_verifier_clean$matchedCardinality == 2 & res_verifier$taxonomicStatus == "Accepted", na.rm = TRUE)
+      total_matches <- sum(
+        res_verifier_clean$taxonomicStatus %in% c("Synonym", "Accepted")
+      )
+      synonyms <- sum(
+        res_verifier_clean$taxonomicStatus == "Synonym",
+        na.rm = TRUE
+      )
+      genus_synonyms <- sum(
+        res_verifier_clean$matchedCardinality == 2 &
+          res_verifier$taxonomicStatus == "Synonym",
+        na.rm = TRUE
+      )
+      accepted_names <- sum(
+        res_verifier_clean$taxonomicStatus == "Accepted",
+        na.rm = TRUE
+      )
+      genus_accepted <- sum(
+        res_verifier_clean$matchedCardinality == 2 &
+          res_verifier$taxonomicStatus == "Accepted",
+        na.rm = TRUE
+      )
 
       cli::cli_bullets(c(
         "v" = "GNA verification summary:",

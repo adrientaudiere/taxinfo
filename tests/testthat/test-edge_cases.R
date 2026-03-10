@@ -32,7 +32,12 @@ test_that("file operations edge cases", {
   expect_true(file.exists(temp_file))
 
   # Read with correct separator
-  read_data <- read.table(temp_file, sep = ";", header = TRUE, stringsAsFactors = FALSE)
+  read_data <- read.table(
+    temp_file,
+    sep = ";",
+    header = TRUE,
+    stringsAsFactors = FALSE
+  )
   expect_equal(nrow(read_data), 2)
 
   # Clean up
@@ -58,7 +63,10 @@ test_that("taxonomic name processing edge cases", {
   )
 
   # Test name combination
-  combined_names <- paste(mock_tax_edge_cases$Genus, mock_tax_edge_cases$Species)
+  combined_names <- paste(
+    mock_tax_edge_cases$Genus,
+    mock_tax_edge_cases$Species
+  )
 
   expect_equal(length(combined_names), 5)
 
@@ -91,7 +99,13 @@ test_that("parameter validation patterns", {
   }
 
   # Test character parameter validation
-  valid_character <- c("string", "", "with spaces", "with-hyphens", "with_underscores")
+  valid_character <- c(
+    "string",
+    "",
+    "with spaces",
+    "with-hyphens",
+    "with_underscores"
+  )
   invalid_character <- c(NA, NULL, 123, TRUE)
 
   for (val in valid_character) {

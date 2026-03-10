@@ -81,7 +81,9 @@ test_that("tax_photos_pq with phyloseq returns phyloseq with photo_url", {
   data_fungi_mini_cleanNames_photos <- tax_photos_pq(data_fungi_mini_cleanNames)
 
   expect_s4_class(data_fungi_mini_cleanNames_photos, "phyloseq")
-  expect_true("photo_url" %in% colnames(data_fungi_mini_cleanNames_photos@tax_table))
+  expect_true(
+    "photo_url" %in% colnames(data_fungi_mini_cleanNames_photos@tax_table)
+  )
 })
 
 test_that("tax_photos_pq with taxnames and gallery = TRUE returns htmlwidget", {
@@ -100,7 +102,8 @@ test_that("tax_photos_pq with wikitaxa source and gallery = TRUE", {
   # Example: tax_photos_pq(data_fungi_mini_cleanNames, gallery = TRUE, h = "40px",
   #   w = "80px", source = "wikitaxa")
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_photos_pq(data_fungi_mini_cleanNames,
+  result <- tax_photos_pq(
+    data_fungi_mini_cleanNames,
     gallery = TRUE,
     h = "40px",
     w = "80px",

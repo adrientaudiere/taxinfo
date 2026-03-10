@@ -21,8 +21,12 @@ test_that("calculate_bbox works correctly", {
   bbox_large <- calculate_bbox(2.3522, 48.8566, 100)
 
   # Larger radius should create larger bbox
-  expect_true((bbox_large$xmax - bbox_large$xmin) > (bbox_small$xmax - bbox_small$xmin))
-  expect_true((bbox_large$ymax - bbox_large$ymin) > (bbox_small$ymax - bbox_small$ymin))
+  expect_true(
+    (bbox_large$xmax - bbox_large$xmin) > (bbox_small$xmax - bbox_small$xmin)
+  )
+  expect_true(
+    (bbox_large$ymax - bbox_large$ymin) > (bbox_small$ymax - bbox_small$ymin)
+  )
 
   # Test edge cases
   expect_error(calculate_bbox(NULL, 48.8566, 50))

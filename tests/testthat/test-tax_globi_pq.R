@@ -12,7 +12,8 @@ test_that("tax_globi_pq returns tibble with add_to_phyloseq = FALSE", {
   #   taxonomic_rank = c("Genus", "Species"),
   #   interaction_types = list("parasiteOf", "hasHost"),
   #   verbose = TRUE, max_interactions = 10)
-  res_globi <- tax_globi_pq(data_fungi_mini,
+  res_globi <- tax_globi_pq(
+    data_fungi_mini,
     taxonomic_rank = c("Genus", "Species"),
     interaction_types = list("parasiteOf", "hasHost"),
     verbose = TRUE,
@@ -26,8 +27,12 @@ test_that("tax_globi_pq returns tibble with add_to_phyloseq = FALSE", {
 test_that("tax_globi_pq returns phyloseq with add_to_phyloseq = TRUE", {
   # Example: data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
   #   interaction_types = c("hasHost"))
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
-  result <- tax_globi_pq(data_fungi_mini_cleanNames,
+  data_fungi_mini_cleanNames <- gna_verifier_pq(
+    data_fungi_mini,
+    data_sources = 210
+  )
+  result <- tax_globi_pq(
+    data_fungi_mini_cleanNames,
     interaction_types = c("hasHost")
   )
 
@@ -51,7 +56,8 @@ test_that("tax_globi_pq both physeq and taxnames causes error", {
 
 test_that("tax_globi_pq verbose parameter works", {
   # Should work with verbose = FALSE
-  result <- tax_globi_pq(data_fungi_mini,
+  result <- tax_globi_pq(
+    data_fungi_mini,
     taxonomic_rank = c("Genus", "Species"),
     interaction_types = c("hasHost"),
     max_interactions = 10,
@@ -64,7 +70,8 @@ test_that("tax_globi_pq verbose parameter works", {
 
 test_that("tax_globi_pq discard_synonym parameter works", {
   # Test with discard_synonym = TRUE (default)
-  result_discard <- tax_globi_pq(data_fungi_mini,
+  result_discard <- tax_globi_pq(
+    data_fungi_mini,
     taxonomic_rank = c("Genus", "Species"),
     interaction_types = c("hasHost"),
     max_interactions = 10,
@@ -76,7 +83,8 @@ test_that("tax_globi_pq discard_synonym parameter works", {
   expect_s3_class(result_discard, "tbl_df")
 
   # Test with discard_synonym = FALSE
-  result_keep <- tax_globi_pq(data_fungi_mini,
+  result_keep <- tax_globi_pq(
+    data_fungi_mini,
     taxonomic_rank = c("Genus", "Species"),
     interaction_types = c("hasHost"),
     max_interactions = 10,

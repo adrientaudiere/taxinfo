@@ -51,15 +51,19 @@
 #' }
 #'
 #' @export
-tax_check_ecoregion <- function(taxa_name,
-                                longitudes = NULL,
-                                latitudes = NULL,
-                                n_occur = 500,
-                                min_proportion = 0,
-                                min_nb_occur = 0,
-                                verbose = TRUE) {
+tax_check_ecoregion <- function(
+  taxa_name,
+  longitudes = NULL,
+  latitudes = NULL,
+  n_occur = 500,
+  min_proportion = 0,
+  min_nb_occur = 0,
+  verbose = TRUE
+) {
   if (length(longitudes) != length(latitudes)) {
-    cli::cli_abort("Parameters {.arg longitudes} and {.arg latitudes} must have the same length")
+    cli::cli_abort(
+      "Parameters {.arg longitudes} and {.arg latitudes} must have the same length"
+    )
   }
   if (verbose) {
     cli::cli_alert_info("Downloading ecoregion data for {.emph {taxa_name}}")
@@ -90,13 +94,16 @@ tax_check_ecoregion <- function(taxa_name,
     sf::st_as_sf() |>
     sf::st_make_valid()
 
-  occurrences_sf <- sf::st_as_sf(clean_occurrences,
+  occurrences_sf <- sf::st_as_sf(
+    clean_occurrences,
     coords = c("decimalLongitude", "decimalLatitude"),
     crs = 4326
   )
 
-  samples_point <- sf::st_as_sf(data.frame(lon = longitudes, lat = latitudes),
-    coords = c("lon", "lat"), crs = 4326
+  samples_point <- sf::st_as_sf(
+    data.frame(lon = longitudes, lat = latitudes),
+    coords = c("lon", "lat"),
+    crs = 4326
   )
   if (verbose) {
     cli::cli_alert_info("Listing ecoregions for {.emph {taxa_name}}")
@@ -114,7 +121,9 @@ tax_check_ecoregion <- function(taxa_name,
     sort(decreasing = TRUE) |>
     (\(tab) tab[as.numeric(tab) > min_proportion * nrow(species_ecoregions)])()
   if (verbose) {
-    cli::cli_alert_info("Listing ecoregions for {.val {length(longitudes)}} GPS points")
+    cli::cli_alert_info(
+      "Listing ecoregions for {.val {length(longitudes)}} GPS points"
+    )
   }
 
   points_ecoregion <- sf::st_intersection(samples_point, ecoregions) |>
@@ -123,6 +132,7 @@ tax_check_ecoregion <- function(taxa_name,
   return(list(
     "ecoregion" = ecoregions_list,
     "points_ecoregion" = points_ecoregion,
-    "is_in_ecoregion" = sum(points_ecoregion$ECO_NAME %in% ecoregions_list) > min_nb_occur
+    "is_in_ecoregion" = sum(points_ecoregion$ECO_NAME %in% ecoregions_list) >
+      min_nb_occur
   ))
 }

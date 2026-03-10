@@ -11,7 +11,8 @@ test_that("tax_occur_check_pq returns data frame with add_to_phyloseq = FALSE", 
   # Example: check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   #   longitude = 2.3, latitude = 48, radius_km = 100, n_occur = 50, add_to_phyloseq = FALSE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
+  check_res <- tax_occur_check_pq(
+    data_fungi_mini_cleanNames,
     longitude = 2.3,
     latitude = 48,
     radius_km = 100,
@@ -29,7 +30,8 @@ test_that("tax_occur_check_pq returns phyloseq with add_to_phyloseq = TRUE", {
   # Example: data_fungi_mini_cleanNames_range_verif <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   #   longitude = 2.3, latitude = 48, radius_km = 50, n_occur = 10)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  data_fungi_mini_cleanNames_range_verif <- tax_occur_check_pq(data_fungi_mini_cleanNames,
+  data_fungi_mini_cleanNames_range_verif <- tax_occur_check_pq(
+    data_fungi_mini_cleanNames,
     longitude = 2.3,
     latitude = 48,
     radius_km = 50,
@@ -37,7 +39,10 @@ test_that("tax_occur_check_pq returns phyloseq with add_to_phyloseq = TRUE", {
   )
 
   expect_s4_class(data_fungi_mini_cleanNames_range_verif, "phyloseq")
-  expect_true("count_in_radius" %in% colnames(data_fungi_mini_cleanNames_range_verif@tax_table))
+  expect_true(
+    "count_in_radius" %in%
+      colnames(data_fungi_mini_cleanNames_range_verif@tax_table)
+  )
 })
 
 test_that("tax_occur_check_pq both physeq and taxnames errors", {
@@ -70,14 +75,16 @@ test_that("tax_occur_check_pq requires longitude and latitude", {
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
   expect_error(
-    tax_occur_check_pq(data_fungi_mini_cleanNames,
+    tax_occur_check_pq(
+      data_fungi_mini_cleanNames,
       longitude = NULL,
       latitude = 48
     )
   )
 
   expect_error(
-    tax_occur_check_pq(data_fungi_mini_cleanNames,
+    tax_occur_check_pq(
+      data_fungi_mini_cleanNames,
       longitude = 2.3,
       latitude = NULL
     )
@@ -86,7 +93,8 @@ test_that("tax_occur_check_pq requires longitude and latitude", {
 
 test_that("tax_occur_check_pq col_prefix parameter works", {
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_occur_check_pq(data_fungi_mini_cleanNames,
+  result <- tax_occur_check_pq(
+    data_fungi_mini_cleanNames,
     longitude = 2.3,
     latitude = 48,
     radius_km = 50,

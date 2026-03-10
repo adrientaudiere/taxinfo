@@ -40,9 +40,14 @@ test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = 
   #   csv_taxonomic_rank = "GENUS", col_prefix = "ft_", sep = ";",
   #   add_to_phyloseq = FALSE)
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
+  fungal_traits <- system.file(
+    "extdata",
+    "fun_trait_mini.csv",
+    package = "taxinfo"
+  )
 
-  fg_traits <- tax_info_pq(data_fungi_cleanNames,
+  fg_traits <- tax_info_pq(
+    data_fungi_cleanNames,
     taxonomic_rank = "genusEpithet",
     file_name = fungal_traits,
     csv_taxonomic_rank = "GENUS",
@@ -60,9 +65,14 @@ test_that("tax_info_pq returns phyloseq with TAXREF data", {
   #   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
   #   col_prefix = "taxref_")
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+  TAXREFv18_fungi <- system.file(
+    "extdata",
+    "TAXREFv18_fungi.csv",
+    package = "taxinfo"
+  )
 
-  res_with_R <- tax_info_pq(data_fungi_cleanNames,
+  res_with_R <- tax_info_pq(
+    data_fungi_cleanNames,
     file_name = TAXREFv18_fungi,
     csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
     col_prefix = "taxref_"
@@ -88,7 +98,8 @@ test_that("tax_info_pq neither physeq nor taxnames errors", {
 test_that("tax_info_pq file_name is required", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   expect_error(
-    tax_info_pq(data_fungi_cleanNames,
+    tax_info_pq(
+      data_fungi_cleanNames,
       csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
     ),
     "file_name"
@@ -98,7 +109,8 @@ test_that("tax_info_pq file_name is required", {
 test_that("tax_info_pq file_name must exist", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   expect_error(
-    tax_info_pq(data_fungi_cleanNames,
+    tax_info_pq(
+      data_fungi_cleanNames,
       file_name = "/nonexistent/path/file.csv",
       csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
     ),
@@ -108,18 +120,24 @@ test_that("tax_info_pq file_name must exist", {
 
 test_that("tax_info_pq csv_taxonomic_rank is required", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+  TAXREFv18_fungi <- system.file(
+    "extdata",
+    "TAXREFv18_fungi.csv",
+    package = "taxinfo"
+  )
 
   expect_error(
-    tax_info_pq(data_fungi_cleanNames,
-      file_name = TAXREFv18_fungi
-    ),
+    tax_info_pq(data_fungi_cleanNames, file_name = TAXREFv18_fungi),
     "csv_taxonomic_rank"
   )
 })
 
 test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
-  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+  TAXREFv18_fungi <- system.file(
+    "extdata",
+    "TAXREFv18_fungi.csv",
+    package = "taxinfo"
+  )
 
   expect_error(
     tax_info_pq(
@@ -133,7 +151,11 @@ test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
 })
 
 test_that("tax_info_pq with taxnames returns tibble", {
-  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+  TAXREFv18_fungi <- system.file(
+    "extdata",
+    "TAXREFv18_fungi.csv",
+    package = "taxinfo"
+  )
 
   result <- tax_info_pq(
     taxnames = c("Amanita muscaria"),
@@ -147,9 +169,14 @@ test_that("tax_info_pq with taxnames returns tibble", {
 
 test_that("tax_info_pq use_duck_db parameter works", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file("extdata", "TAXREFv18_fungi.csv", package = "taxinfo")
+  TAXREFv18_fungi <- system.file(
+    "extdata",
+    "TAXREFv18_fungi.csv",
+    package = "taxinfo"
+  )
 
-  result <- tax_info_pq(data_fungi_cleanNames,
+  result <- tax_info_pq(
+    data_fungi_cleanNames,
     file_name = TAXREFv18_fungi,
     csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
     col_prefix = "taxref_",

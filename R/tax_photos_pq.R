@@ -70,24 +70,29 @@
 #'   table() |>
 #'   (\(tab) tab[as.numeric(tab) > 1])()
 #'
-tax_photos_pq <- function(physeq = NULL,
-                          taxnames = NULL,
-                          taxonomic_rank = "currentCanonicalSimple",
-                          source = "gbif",
-                          folder_name = "photos_physeq",
-                          add_to_phyloseq = NULL,
-                          col_prefix = NULL,
-                          gallery = FALSE,
-                          overwrite_folder = FALSE,
-                          col_name_url = "photo_url",
-                          verbose = TRUE,
-                          caption_valign = "bottom",
-                          caption_font_size = 12,
-                          simple_caption = FALSE,
-                          discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
-                          ...) {
+tax_photos_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  source = "gbif",
+  folder_name = "photos_physeq",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  gallery = FALSE,
+  overwrite_folder = FALSE,
+  col_name_url = "photo_url",
+  verbose = TRUE,
+  caption_valign = "bottom",
+  caption_font_size = 12,
+  simple_caption = FALSE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
+    cli::cli_abort(
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
+    )
   }
   if (is.null(taxnames) && is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
@@ -99,13 +104,18 @@ tax_photos_pq <- function(physeq = NULL,
   }
 
   if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort("{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided")
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
   }
 
   # Check for column name collisions and handle col_prefix
   if (!is.null(physeq) && add_to_phyloseq) {
     final_col_name <- paste0(col_prefix, col_name_url)
-    if (sum(colnames(physeq@tax_table) %in% final_col_name) > 0 && is.null(col_prefix)) {
+    if (
+      sum(colnames(physeq@tax_table) %in% final_col_name) > 0 &&
+        is.null(col_prefix)
+    ) {
       cli::cli_warn(c(
         "Column name already exists in tax_table: {.val {final_col_name}}",
         "i" = "Adding prefix 'photo_' to avoid conflicts"
@@ -118,7 +128,8 @@ tax_photos_pq <- function(physeq = NULL,
     taxnames_raw <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone 
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   } else {
     taxnames_raw <- taxnames
@@ -133,12 +144,13 @@ tax_photos_pq <- function(physeq = NULL,
     check_package("wikitaxa")
     taxnames <- taxnames_raw
   } else {
-    cli::cli_abort("Source parameter allows only {.val gbif} or {.val wikitaxa} values")
+    cli::cli_abort(
+      "Source parameter allows only {.val gbif} or {.val wikitaxa} values"
+    )
   }
 
   photo_url <- rep(NA, length(taxnames))
   captions <- rep(NA, length(taxnames))
-
 
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(taxnames))
@@ -151,26 +163,36 @@ tax_photos_pq <- function(physeq = NULL,
 
     if (source == "gbif") {
       # select only the first photo for each species
-      xs_gbif <- suppressWarnings(rgbif::name_usage(gbif_taxa$usageKey[gbif_taxa$canonicalName == taxnames[i]], data = "media")$data$identifier[[1]])
+      xs_gbif <- suppressWarnings(rgbif::name_usage(
+        gbif_taxa$usageKey[gbif_taxa$canonicalName == taxnames[i]],
+        data = "media"
+      )$data$identifier[[1]])
 
       if (is.null(xs_gbif)) {
         photo_url[i] <- NA
         if (verbose) {
-          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
+          cli::cli_alert_info(
+            "{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}"
+          )
         }
       } else {
         if (verbose) {
-          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
+          cli::cli_alert_info(
+            "{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}"
+          )
         }
         photo_url[i] <- xs_gbif
       }
     } else if (source == "wikitaxa") {
-      xs_wt <- tryCatch(wikitaxa::wt_data(taxnames[i], property = c("P225", "P18")),
+      xs_wt <- tryCatch(
+        wikitaxa::wt_data(taxnames[i], property = c("P225", "P18")),
         error = function(e) NULL
       )
       if (sum(xs_wt$claims$property_value == "image") > 0) {
         if (verbose) {
-          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}")
+          cli::cli_alert_info(
+            "{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}"
+          )
         }
 
         photo_names <- xs_wt$claims |>
@@ -195,7 +217,9 @@ tax_photos_pq <- function(physeq = NULL,
       } else {
         photo_url[i] <- NA
         if (verbose) {
-          cli::cli_alert_info("{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}")
+          cli::cli_alert_info(
+            "{.val {i}}/{.val {length(taxnames)}} - No photo available for {.emph {taxnames[i]}}"
+          )
         }
       }
     }
@@ -223,7 +247,12 @@ tax_photos_pq <- function(physeq = NULL,
     new_physeq <- physeq
 
     tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(unclass(new_physeq@tax_table[, taxonomic_rank]), 1, paste0, collapse = " ")
+    tax_tab$taxa_name <- apply(
+      unclass(new_physeq@tax_table[, taxonomic_rank]),
+      1,
+      paste0,
+      collapse = " "
+    )
     new_physeq@tax_table <-
       left_join(tax_tab, photo_url_tib, by = join_by(taxa_name)) |>
       as.matrix() |>
@@ -266,7 +295,8 @@ tax_photos_pq <- function(physeq = NULL,
       if (simple_caption || is.null(physeq)) {
         captions[i] <- paste(
           paste0("<p style='font-size:", caption_font_size, "px'>"),
-          paste0("<b>", taxnames[i], "</b><br>"), "</p>"
+          paste0("<b>", taxnames[i], "</b><br>"),
+          "</p>"
         )
       } else {
         tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
@@ -282,24 +312,41 @@ tax_photos_pq <- function(physeq = NULL,
           ),
           paste0(
             "<b>Taxa</b>: ",
-            sum(tax_tab_gallery[, "taxa_name"] %in%
-              taxnames[i])
+            sum(
+              tax_tab_gallery[, "taxa_name"] %in%
+                taxnames[i]
+            )
           ),
           paste0(
             ", <b>Seq</b>: ",
-            sum(taxa_sums(new_physeq)[tax_tab_gallery[, "taxa_name"] %in%
-              taxnames[i]])
+            sum(taxa_sums(new_physeq)[
+              tax_tab_gallery[, "taxa_name"] %in%
+                taxnames[i]
+            ])
           ),
           paste0(
             "<b>, Sam</b>: ",
-            sum(sample_sums(subset_taxa_pq(new_physeq, new_physeq@tax_table[, "taxa_name"] == taxnames[i], verbose = FALSE, clean_pq = FALSE)) > 0),
+            sum(
+              sample_sums(subset_taxa_pq(
+                new_physeq,
+                new_physeq@tax_table[, "taxa_name"] == taxnames[i],
+                verbose = FALSE,
+                clean_pq = FALSE
+              )) >
+                0
+            ),
             "</p>"
           )
         )
       }
     }
     check_package("pixture")
-    pixture::pixgallery(photo_url[!is.na(photo_url)], caption = captions[!is.na(photo_url)], caption_valign = caption_valign, ...)
+    pixture::pixgallery(
+      photo_url[!is.na(photo_url)],
+      caption = captions[!is.na(photo_url)],
+      caption_valign = caption_valign,
+      ...
+    )
   } else {
     if (overwrite_folder) {
       unlink(folder_name, recursive = TRUE)
@@ -315,7 +362,11 @@ tax_photos_pq <- function(physeq = NULL,
     }
 
     dir.create(folder_name)
-    download.file(photo_url[!is.na(photo_url)], paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"), quiet = TRUE)
+    download.file(
+      photo_url[!is.na(photo_url)],
+      paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"),
+      quiet = TRUE
+    )
     return(invisible(photo_url))
   }
 }

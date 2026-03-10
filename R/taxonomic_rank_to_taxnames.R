@@ -26,19 +26,21 @@
 #' taxonomic_rank_to_taxnames(data_fungi_mini,
 #'   discard_NA = TRUE, discard_genus_alone = TRUE
 #' )
-#' 
+#'
 #' taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="currentCanonicalSimple")
 #' taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="genusEpithet")
 #' taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class")
 #' taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class",
-#'  distinct_names = FALSE, 
+#'  distinct_names = FALSE,
 #'  discard_NA = TRUE
 #' )
-taxonomic_rank_to_taxnames <- function(physeq,
-                                       taxonomic_rank = c("Genus", "Species"),
-                                       discard_genus_alone = FALSE,
-                                       discard_NA = TRUE,
-                                       distinct_names = TRUE) {
+taxonomic_rank_to_taxnames <- function(
+  physeq,
+  taxonomic_rank = c("Genus", "Species"),
+  discard_genus_alone = FALSE,
+  discard_NA = TRUE,
+  distinct_names = TRUE
+) {
   verify_pq(physeq)
 
   if (sum(!taxonomic_rank %in% colnames(physeq@tax_table)) != 0) {
@@ -47,7 +49,12 @@ taxonomic_rank_to_taxnames <- function(physeq,
     )
   }
 
-  taxnames <- apply(physeq@tax_table[, taxonomic_rank], 1, paste, collapse = " ")
+  taxnames <- apply(
+    physeq@tax_table[, taxonomic_rank],
+    1,
+    paste,
+    collapse = " "
+  )
   if (discard_genus_alone) {
     taxnames <- taxnames[grepl(pattern = " ", taxnames)]
   }

@@ -49,8 +49,14 @@ test_that("tax_gbif_alt altitude statistics structure", {
 
   # Check that expected columns are present
   expected_cols <- c(
-    "altitude_min", "altitude_max", "altitude_q05", "altitude_q50",
-    "altitude_q95", "altitude_mean", "altitude_sd", "altitude_n_records",
+    "altitude_min",
+    "altitude_max",
+    "altitude_q05",
+    "altitude_q50",
+    "altitude_q95",
+    "altitude_mean",
+    "altitude_sd",
+    "altitude_n_records",
     "canonicalName"
   )
   expect_true(all(expected_cols %in% colnames(result)))

@@ -81,26 +81,28 @@
 #'
 #' @author Adrien Taudiere
 #' @export
-tax_occur_check <- function(taxa_name,
-                            longitude,
-                            latitude,
-                            radius_km = 50,
-                            circle_form = TRUE,
-                            clean_coord = TRUE,
-                            info_names = c(
-                              "decimalLongitude",
-                              "decimalLatitude",
-                              "country",
-                              "year",
-                              "scientificName",
-                              "recordedBy",
-                              "gbifRegion"
-                            ),
-                            return_all_occ = FALSE,
-                            verbose = TRUE,
-                            clean_coord_verbose = FALSE,
-                            n_occur = 1000,
-                            ...) {
+tax_occur_check <- function(
+  taxa_name,
+  longitude,
+  latitude,
+  radius_km = 50,
+  circle_form = TRUE,
+  clean_coord = TRUE,
+  info_names = c(
+    "decimalLongitude",
+    "decimalLatitude",
+    "country",
+    "year",
+    "scientificName",
+    "recordedBy",
+    "gbifRegion"
+  ),
+  return_all_occ = FALSE,
+  verbose = TRUE,
+  clean_coord_verbose = FALSE,
+  n_occur = 1000,
+  ...
+) {
   species_key <- rgbif::name_backbone(taxa_name)$usageKey
   if (is.null(species_key)) {
     stop("Species ", species_key, " not found")
@@ -131,7 +133,8 @@ tax_occur_check <- function(taxa_name,
       check_package("CoordinateCleaner")
       n_occur_old <- nrow(occurrences$data)
       occurrences$data <-
-        CoordinateCleaner::clean_coordinates(occurrences$data,
+        CoordinateCleaner::clean_coordinates(
+          occurrences$data,
           lon = "decimalLongitude",
           lat = "decimalLatitude",
           verbose = clean_coord_verbose,
@@ -161,7 +164,8 @@ tax_occur_check <- function(taxa_name,
 
       # Calculate actual distances
       test_point <- sf::st_sfc(sf::st_point(c(longitude, latitude)), crs = 4326)
-      occ_sf <- sf::st_as_sf(occ_data,
+      occ_sf <- sf::st_as_sf(
+        occ_data,
         coords = c("decimalLongitude", "decimalLatitude"),
         crs = 4326
       )
@@ -221,24 +225,48 @@ tax_occur_check <- function(taxa_name,
     return(list(
       "occ_data" = occ_data,
       "count_in_radius" = nrow(occ_data),
-      "closest_distance_km" = ifelse(nrow(occ_data) > 0, round(closest_distance_km, 2), NA),
-      "mean_distance_km" = ifelse(nrow(occ_data) > 0, round(mean_distance_km, 2), NA),
+      "closest_distance_km" = ifelse(
+        nrow(occ_data) > 0,
+        round(closest_distance_km, 2),
+        NA
+      ),
+      "mean_distance_km" = ifelse(
+        nrow(occ_data) > 0,
+        round(mean_distance_km, 2),
+        NA
+      ),
       "total_count_in_world" = occurrences_world_with_coordinate,
       "search_radius" = radius_km,
-      "closest_point_lat" = occ_data$decimalLatitude[which.min(occ_data$distance_km)],
-      "closest_point_lon" = occ_data$decimalLongitude[which.min(occ_data$distance_km)],
+      "closest_point_lat" = occ_data$decimalLatitude[which.min(
+        occ_data$distance_km
+      )],
+      "closest_point_lon" = occ_data$decimalLongitude[which.min(
+        occ_data$distance_km
+      )],
       "sample_point_lat" = latitude,
       "sample_point_lon" = longitude
     ))
   } else {
     return(list(
       "count_in_radius" = nrow(occ_data),
-      "closest_distance_km" = ifelse(nrow(occ_data) > 0, round(closest_distance_km, 2), NA),
-      "mean_distance_km" = ifelse(nrow(occ_data) > 0, round(mean_distance_km, 2), NA),
+      "closest_distance_km" = ifelse(
+        nrow(occ_data) > 0,
+        round(closest_distance_km, 2),
+        NA
+      ),
+      "mean_distance_km" = ifelse(
+        nrow(occ_data) > 0,
+        round(mean_distance_km, 2),
+        NA
+      ),
       "total_count_in_world" = occurrences_world_with_coordinate,
       "search_radius" = radius_km,
-      "closest_point_lat" = occ_data$decimalLatitude[which.min(occ_data$distance_km)],
-      "closest_point_lon" = occ_data$decimalLongitude[which.min(occ_data$distance_km)],
+      "closest_point_lat" = occ_data$decimalLatitude[which.min(
+        occ_data$distance_km
+      )],
+      "closest_point_lon" = occ_data$decimalLongitude[which.min(
+        occ_data$distance_km
+      )],
       "sample_point_lat" = latitude,
       "sample_point_lon" = longitude
     ))

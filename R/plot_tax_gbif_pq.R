@@ -78,20 +78,26 @@
 #' (p[[1]] + p[[2]]) /
 #'   (p[[3]] + p[[4]]) & no_legend()
 #' }
-plot_tax_gbif_pq <- function(physeq = NULL,
-                             taxnames = NULL,
-                             taxonomic_rank = "currentCanonicalSimple",
-                             interactive_plot = FALSE,
-                             zcol = c("year", "taxonomicStatus"),
-                             hexagons = FALSE,
-                             bins = 100,
-                             verbose = TRUE,
-                             countries = NULL,
-                             info_names = c(
-                               "country", "country code",
-                               "acceptedScientificName",
-                               "ScientificName"
-                             ), discard_genus_alone = taxonomic_rank=="currentCanonicalSimple", ...) {   
+plot_tax_gbif_pq <- function(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  interactive_plot = FALSE,
+  zcol = c("year", "taxonomicStatus"),
+  hexagons = FALSE,
+  bins = 100,
+  verbose = TRUE,
+  countries = NULL,
+  info_names = c(
+    "country",
+    "country code",
+    "acceptedScientificName",
+    "ScientificName"
+  ),
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
+  ...
+) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     stop("You must specify either physeq or taxnames, not both")
   }
@@ -103,7 +109,8 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
     )
   }
 
@@ -123,30 +130,53 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     if (is.null(countries)) {
       tax_gbif <- gbif.range::get_gbif(taxnames[i], ...)
     } else {
-      tax_gbif <- gbif.range::get_gbif(taxnames[i], geo = countries_sv, info_names = info_names, ...)
+      tax_gbif <- gbif.range::get_gbif(
+        taxnames[i],
+        geo = countries_sv,
+        info_names = info_names,
+        ...
+      )
     }
 
     if (interactive_plot) {
       if (is.null(physeq)) {
-        stop("Interactive plot with taxnames only is not fully supported. Please use physeq parameter.")
+        stop(
+          "Interactive plot with taxnames only is not fully supported. Please use physeq parameter."
+        )
       }
 
       check_package("mapview")
       check_package("htmltools")
 
-      tax_sf <- sf::st_as_sf(tax_gbif, coords = c("decimalLongitude", "decimalLatitude"), crs = 4326)
-      p[[i]] <- mapview::mapview(tax_sf,
+      tax_sf <- sf::st_as_sf(
+        tax_gbif,
+        coords = c("decimalLongitude", "decimalLatitude"),
+        crs = 4326
+      )
+      p[[i]] <- mapview::mapview(
+        tax_sf,
         zcol = zcol,
-        map.types = c("CartoDB.Positron", "CartoDB.DarkMatter", "Esri.WorldImagery", "OpenTopoMap", "Stadia.StamenWatercolor", "Esri.NatGeoWorldMap"), popup = leafpop::popupTable(tax_sf)
+        map.types = c(
+          "CartoDB.Positron",
+          "CartoDB.DarkMatter",
+          "Esri.WorldImagery",
+          "OpenTopoMap",
+          "Stadia.StamenWatercolor",
+          "Esri.NatGeoWorldMap"
+        ),
+        popup = leafpop::popupTable(tax_sf)
       )
 
-      title_p_text <- taxa_summary_text(physeq,
+      title_p_text <- taxa_summary_text(
+        physeq,
         taxonomic_rank = taxonomic_rank,
-        taxnames = taxnames[i], verbose = FALSE
+        taxnames = taxnames[i],
+        verbose = FALSE
       )
 
       title_p <- htmltools::tags$div(
-        htmltools::tags$h3(taxnames[i],
+        htmltools::tags$h3(
+          taxnames[i],
           style = "color: black;
                    text-align: center;
                    font-family: Arial;
@@ -155,7 +185,8 @@ plot_tax_gbif_pq <- function(physeq = NULL,
                    padding: 2px 15px;
     font-style: italic;"
         ),
-        htmltools::tags$p(gsub(paste0(taxnames[i], ": "), "", title_p_text),
+        htmltools::tags$p(
+          gsub(paste0(taxnames[i], ": "), "", title_p_text),
           style = "color: black;
                    text-align: center;
                    font-family: Arial;
@@ -186,9 +217,13 @@ plot_tax_gbif_pq <- function(physeq = NULL,
         ) +
         labs(
           title = bquote(italic(.(taxnames[i]))),
-          subtitle = bquote("Accepted name:" * " " * italic(.(
-            unique(tax_gbif$acceptedScientificName)
-          )))
+          subtitle = bquote(
+            "Accepted name:" *
+              " " *
+              italic(.(
+                unique(tax_gbif$acceptedScientificName)
+              ))
+          )
         )
 
       if (hexagons) {
@@ -196,16 +231,25 @@ plot_tax_gbif_pq <- function(physeq = NULL,
           geom_hex(
             data = tax_gbif,
             bins = bins,
-            aes(x = decimalLongitude, y = decimalLatitude, color = basisOfRecord),
+            aes(
+              x = decimalLongitude,
+              y = decimalLatitude,
+              color = basisOfRecord
+            ),
             alpha = 0.8,
             linewidth = 0.4
           )
       } else {
-        p[[i]] <- p[[i]] + geom_point(
-          data = tax_gbif,
-          aes(x = decimalLongitude, y = decimalLatitude, color = basisOfRecord),
-          alpha = 0.8
-        )
+        p[[i]] <- p[[i]] +
+          geom_point(
+            data = tax_gbif,
+            aes(
+              x = decimalLongitude,
+              y = decimalLatitude,
+              color = basisOfRecord
+            ),
+            alpha = 0.8
+          )
       }
     }
   }
