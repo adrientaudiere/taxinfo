@@ -127,6 +127,7 @@ tax_oa_pq <- function(physeq = NULL,
                       col_prefix = NULL,
                       type_works = c("article", "review", "book-chapter", "book", "letter"),
                       verbose = TRUE,
+                      discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
                       ...) {
   check_package("openalexR")
 
@@ -155,8 +156,13 @@ tax_oa_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone
     )
+  }
+
+  if(length(taxnames) == 0) {
+    cli::cli_warn("No taxonomic names found for the specified taxonomic rank(s). Returning NULL.")
+    return(NULL)
   }
 
   if (return_raw_oa) {

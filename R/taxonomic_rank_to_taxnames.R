@@ -26,6 +26,14 @@
 #' taxonomic_rank_to_taxnames(data_fungi_mini,
 #'   discard_NA = TRUE, discard_genus_alone = TRUE
 #' )
+#' 
+#' taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="currentCanonicalSimple")
+#' taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="genusEpithet")
+#' taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class")
+#' taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class",
+#'  distinct_names = FALSE, 
+#'  discard_NA = TRUE
+#' )
 taxonomic_rank_to_taxnames <- function(physeq,
                                        taxonomic_rank = c("Genus", "Species"),
                                        discard_genus_alone = FALSE,

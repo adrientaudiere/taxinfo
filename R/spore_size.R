@@ -114,7 +114,8 @@ tax_spores_size_pq <- function(physeq = NULL,
                                verbose = TRUE,
                                time_to_sleep = 0.5,
                                add_to_phyloseq = NULL,
-                               col_prefix = NULL) {
+                               col_prefix = NULL,
+                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -126,7 +127,7 @@ tax_spores_size_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone
     )
   }
 

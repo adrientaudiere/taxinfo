@@ -148,7 +148,8 @@ tax_info_pq <- function(physeq = NULL,
                         csv_cols_select = NULL,
                         sep = ",",
                         dec = ".",
-                        verbose = TRUE) {
+                        verbose = TRUE,
+                      discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
   }
@@ -181,7 +182,7 @@ tax_info_pq <- function(physeq = NULL,
     taxnames_vec <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone
     )
   } else {
     taxnames_vec <- taxnames

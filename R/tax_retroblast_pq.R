@@ -128,13 +128,14 @@ tax_retroblast_pq <- function(physeq,
                               max_length = 4000,
                               refseq_only = FALSE,
                               sup_params = "NOT uncultured[Title] NOT clone[Title]",
+                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
                               ...) {
   check_package("rentrez")
 
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,
     taxonomic_rank = taxonomic_rank,
-    discard_genus_alone = TRUE,
+    discard_genus_alone = discard_genus_alone,
     discard_NA = TRUE
   )
 

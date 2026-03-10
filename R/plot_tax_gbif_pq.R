@@ -91,7 +91,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
                                "country", "country code",
                                "acceptedScientificName",
                                "ScientificName"
-                             ), ...) {
+                             ), discard_genus_alone = taxonomic_rank=="currentCanonicalSimple", ...) {   
   if (!is.null(taxnames) && !is.null(physeq)) {
     stop("You must specify either physeq or taxnames, not both")
   }
@@ -103,7 +103,7 @@ plot_tax_gbif_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone
     )
   }
 

@@ -88,7 +88,8 @@ tax_get_wk_info_pq <- function(physeq = NULL,
                                time_to_sleep = 0.3,
                                summarize_function_length = "mean",
                                summarize_function_views = "sum",
-                               n_days = 30) {
+                               n_days = 30,
+                              discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
   check_package("wikitaxa")
 
   if (!is.null(taxnames) && !is.null(physeq)) {
@@ -111,7 +112,7 @@ tax_get_wk_info_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone
     )
   }
 

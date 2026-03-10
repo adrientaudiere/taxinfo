@@ -85,7 +85,8 @@ tax_globi_pq <- function(physeq = NULL,
                          verbose = FALSE,
                          strict_interaction_types = TRUE,
                          max_interactions = 1000,
-                         batch_size_gna_verifier = 50) {
+                         batch_size_gna_verifier = 50,
+                        discard_genus_alone = taxonomic_rank=="currentCanonicalSimple") {
   check_package("rglobi")
 
   if (!is.null(taxnames) && !is.null(physeq)) {
@@ -107,7 +108,7 @@ tax_globi_pq <- function(physeq = NULL,
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE,
+      discard_genus_alone = discard_genus_alone,
       discard_NA = TRUE
     )
   }

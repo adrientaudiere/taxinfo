@@ -84,6 +84,7 @@ tax_photos_pq <- function(physeq = NULL,
                           caption_valign = "bottom",
                           caption_font_size = 12,
                           simple_caption = FALSE,
+                          discard_genus_alone = taxonomic_rank=="currentCanonicalSimple",
                           ...) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}, not both")
@@ -117,7 +118,7 @@ tax_photos_pq <- function(physeq = NULL,
     taxnames_raw <- taxonomic_rank_to_taxnames(
       physeq = physeq,
       taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = TRUE
+      discard_genus_alone = discard_genus_alone 
     )
   } else {
     taxnames_raw <- taxnames
