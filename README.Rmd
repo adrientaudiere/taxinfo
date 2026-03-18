@@ -42,7 +42,13 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 
 ## Installation
 
-You can install the development version of taxinfo from GitHub:
+You can install the stable version of taxinfo from CRAN:
+
+```{r, eval=FALSE}
+install.packages("taxinfo")
+```
+
+Or the development version from GitHub:
 
 ```{r, eval=FALSE}
 # Install from GitHub
@@ -153,7 +159,7 @@ head(taxa_info)
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please open an issue or pull request on [GitHub](https://github.com/adrientaudiere/taxinfo).
 
 ## Citation
 

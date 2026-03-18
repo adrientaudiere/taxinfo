@@ -1,7 +1,7 @@
 #' \code{taxinfo} package
 #'
 #' @name taxinfo-package
-#' @import MiscMetabar phyloseq tidyverse
+#' @import MiscMetabar phyloseq dplyr ggplot2 purrr tibble tidyr
 NULL
 
 if (getRversion() >= "2.15.1") {

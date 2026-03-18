@@ -1,36 +1,39 @@
-Package: taxinfo
 Type: Package
-Title: Augment Phyloseq Object with Taxomonic-Based Informations
+Package: taxinfo
+Title: Augment 'Phyloseq' Objects with Taxonomy-Based Information
 Version: 0.1.2
-Authors@R: c(
-    person(
-      "Adrien", "Taudiere",
-      email = "adrien.taudiere@zaclys.net",
-      role = c("aut", "cre")
-    ))
-Description: Add informations to phyloseq object using different sources such as gbif, wikipedia, and globi.  
+Authors@R: 
+    person("Adrien", "Taudiere", , "adrien.taudiere@zaclys.net", role = c("aut", "cre", "cph"))
+Description: Augments 'phyloseq' objects with taxonomy-based information
+    retrieved from multiple external data sources. Provides functions to
+    query 'GBIF' (Global Biodiversity Information Facility), 'Wikipedia',
+    'GLOBI' (Global Biotic Interactions), 'OpenAlex', and other databases
+    to verify taxonomic names, retrieve occurrence data, access species
+    interaction networks, and fetch scientific literature metadata.
+    Designed to work with the 'phyloseq' data structure common in
+    metabarcoding analyses. Most functions support both 'phyloseq' objects
+    and plain taxonomic name vectors as input.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-Config/testthat/edition: 3
 URL: https://adrientaudiere.github.io/taxinfo
 BugReports: https://github.com/adrientaudiere/taxinfo/issues
-RoxygenNote: 7.3.3
-VignetteBuilder: knitr
 Depends:
-    R (>= 4.1.0),
-    MiscMetabar
-Imports: 
+    MiscMetabar,
+    R (>= 4.1.0)
+Imports:
     cli,
+    dplyr,
+    ggplot2,
     httr,
     jsonlite,
     phyloseq,
+    purrr,
     rgbif,
     rglobi,
     sf,
     stringr,
     taxize,
-    tidyverse
+    tibble,
+    tidyr
 Suggests:
     CoordinateCleaner,
     DECIPHER,
@@ -39,10 +42,10 @@ Suggests:
     elevatr,
     forcats,
     gbif.range,
-    ggraph,
-    ggtree,
-    ggstatsplot,
     ggforce,
+    ggraph,
+    ggstatsplot,
+    ggtree,
     htmltools,
     igraph,
     knitr,
@@ -57,8 +60,12 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     rvest,
-    tidyr,
-    tibble,
     terra,
     testthat (>= 3.0.0),
     wikitaxa
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.3

@@ -1,29 +1,4 @@
 
-- [taxinfo
-  <a href="https://adrientaudiere.github.io/taxinfo/"><img src="man/figures/logo.svg" align="right" height="139" alt="taxinfo website" /></a>](#taxinfo-)
-  - [Overview](#overview)
-  - [Installation](#installation)
-  - [Key Features](#key-features)
-    - [🔍 **Data Verification & Quality
-      Control**](#mag-data-verification--quality-control)
-    - [🌍 **Biodiversity Data
-      Integration**](#earth_africa-biodiversity-data-integration)
-    - [📚 **Knowledge Base
-      Integration**](#books-knowledge-base-integration)
-    - [🗺️ **Geographic Analysis**](#world_map-geographic-analysis)
-    - [🔬 **Advanced Analysis
-      Tools**](#microscope-advanced-analysis-tools)
-    - [🎯 **Flexible Input Options**](#dart-flexible-input-options)
-  - [Quick Start](#quick-start)
-    - [Glossary](#glossary)
-    - [Example Workflow](#example-workflow)
-  - [Data Sources](#data-sources)
-  - [Contributing](#contributing)
-  - [Citation](#citation)
-  - [Related Packages](#related-packages)
-  - [Licence](#licence)
-  - [Acknowledgments](#acknowledgments)
-
 # taxinfo <a href="https://adrientaudiere.github.io/taxinfo/"><img src="man/figures/logo.svg" align="right" height="139" alt="taxinfo website" /></a>
 
 <!-- badges: start -->
@@ -66,15 +41,29 @@ functions to:
 
 ## Installation
 
-You can install the development version of taxinfo from GitHub:
+**taxinfo** is not available on CRAN yet. You can install the
+stable development version from GitHub with:
 
 ``` r
-# Install from GitHub
+# Install from GitHub (development version)
+if (!require("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
 devtools::install_github("adrientaudiere/taxinfo")
-
 # Or using pak
-pak::pkg_install("adrientaudiere/taxinfo")
+# pak::pkg_install("adrientaudiere/taxinfo")
 ```
+
+You can install the unstable development version from
+[GitHub](https://github.com/) with:
+
+``` r
+if (!require("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+devtools::install_github("adrientaudiere/taxinfo", ref = "dev")
+```
+
 
 ## Key Features
 
@@ -135,21 +124,21 @@ concatenation of the `genus` and `specificEpithet` fields.
 
 ``` r
 library(taxinfo)
-#> Le chargement a nécessité le package : MiscMetabar
-#> Le chargement a nécessité le package : phyloseq
-#> Le chargement a nécessité le package : ggplot2
-#> Le chargement a nécessité le package : dada2
-#> Le chargement a nécessité le package : Rcpp
-#> Le chargement a nécessité le package : dplyr
+#> Loading required package: MiscMetabar
+#> Loading required package: phyloseq
+#> Loading required package: ggplot2
+#> Loading required package: dada2
+#> Loading required package: Rcpp
+#> Loading required package: dplyr
 #> 
-#> Attachement du package : 'dplyr'
-#> Les objets suivants sont masqués depuis 'package:stats':
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
 #> 
 #>     filter, lag
-#> Les objets suivants sont masqués depuis 'package:base':
+#> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
-#> Le chargement a nécessité le package : purrr
+#> Loading required package: purrr
 library(MiscMetabar)
 
 # Load example data (fungal phyloseq object from MiscMetabar)
@@ -175,15 +164,15 @@ data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 #> ℹ Processing GBIF occurrences for Stereum hirsutum
 #> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Basidiodendron eyrei
 #> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Fomes fomentarius
-#> ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■■■                     39% | ETA:  5s
-#> ℹ Processing GBIF occurrences for Cerocorticium molare
-#> ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Aporpium canescens
-#> ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hypochnicium analogum
-#> ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma setigerum
-#> ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Trametes versicolor
-#> ■■■■■■■■■■■■■                     39% | ETA:  5s■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2s
+#> ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■                       33% | ETA:  5s
+#> ℹ Processing GBIF occurrences for Fomes fomentarius
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Cerocorticium molare
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Aporpium canescens
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Hypochnicium analogum
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma roseocremeum
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma setigerum
+#> ■■■■■■■■■■■                       33% | ETA:  5sℹ Processing GBIF occurrences for Trametes versicolor
+#> ■■■■■■■■■■■                       33% | ETA:  5s■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2s
 #> ℹ Processing GBIF occurrences for Peniophora versiformis
 #> ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Exidia glandulosa
 #> ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Peniophorella pubera
@@ -201,19 +190,19 @@ data_with_traits <- tax_info_pq(data_with_gbif,
   col_prefix = "ft_",
   sep = ";"
 )
-#> ✔ Added 18 columns from '/tmp/RtmpzSs0xf/temp_libpath12cc63e81ab5b/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
+#> ✔ Added 18 columns from '/tmp/RtmppZUkob/temp_libpath52a0cc8474d/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
 
 # Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
 data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ℹ Getting taxonomic IDs from Wikidata...
 #> ℹ Getting page views from Wikipedia for Stereum ostrea
-#> ■■■■                              11% | ETA: 50s
+#> ■■■■                              11% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#> ■■■■                              11% | ETA: 50s■■■■■■                            16% | ETA: 45s
+#> ■■■■                              11% | ETA:  1m■■■■■■                            16% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Stereum hirsutum
-#> ■■■■■■                            16% | ETA: 45s■■■■■■■                           21% | ETA:  1m
+#> ■■■■■■                            16% | ETA:  1m■■■■■■■                           21% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  1m■■■■■■■■■                         26% | ETA:  1m
+#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Sistotrema oblongisporum
 #> ■■■■■■■■■                         26% | ETA:  1m■■■■■■■■■■                        32% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Fomes fomentarius
@@ -223,21 +212,21 @@ data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Aporpium canescens
 #> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hypochnicium analogum
 #> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 34s
+#> ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 42s
 #> ℹ Getting page views from Wikipedia for Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 34s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 29s
+#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 42s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 35s
 #> ℹ Getting page views from Wikipedia for Trametes versicolor
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 29s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 31s
+#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 35s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 38s
 #> ℹ Getting page views from Wikipedia for Peniophora versiformis
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 31s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 24s
+#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 38s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 29s
 #> ℹ Getting page views from Wikipedia for Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 24s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 19s
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 29s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 23s
 #> ℹ Getting page views from Wikipedia for Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 19s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 12s
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 23s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 15s
 #> ℹ Getting page views from Wikipedia for Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 12s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  6s
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 15s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s
 #> ℹ Getting page views from Wikipedia for Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  6s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
 #> ℹ Getting page views from Wikipedia for Xylodon flaviporus
 
 # View the enriched taxonomic table
@@ -343,18 +332,18 @@ head(data_final@tax_table)
 #> ASV26 "Stereum hirsutum"     "Stereum"    "hirsutum"      "1800"             
 #>       authorship bracketauthorship scientificNameAuthorship Global_occurences
 #> ASV7  NA         NA                NA                       NA               
-#> ASV8  "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10259"         
+#> ASV8  "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10690"         
 #> ASV12 "Gray"     "Pers."           "(Pers.) Gray"           NA               
-#> ASV18 "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10259"         
-#> ASV25 "Contu"    "Fr."             "(Fr.) Contu"            "   211"         
-#> ASV26 "Pers."    "Willd."          "(Willd.) Pers."         " 92035"         
+#> ASV18 "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10690"         
+#> ASV25 "Contu"    "Fr."             "(Fr.) Contu"            "   221"         
+#> ASV26 "Pers."    "Willd."          "(Willd.) Pers."         "121047"         
 #>       taxa_name              lang page_length page_views taxon_id   
 #> ASV7  "NA"                   NA   NA          NA         NA         
-#> ASV8  "Stereum ostrea"       " 9" "4383.111"  " 1762"    "Q2710042" 
+#> ASV8  "Stereum ostrea"       " 9" "4396.667"  " 1362"    "Q2710042" 
 #> ASV12 "Xylodon"              NA   NA          NA         NA         
-#> ASV18 "Stereum ostrea"       " 9" "4383.111"  " 1762"    "Q2710042" 
-#> ASV25 "Ossicaulis lachnopus" " 4" "2223.250"  "   41"    "Q10613125"
-#> ASV26 "Stereum hirsutum"     "24" "5476.500"  " 3009"    "Q557377"
+#> ASV18 "Stereum ostrea"       " 9" "4396.667"  " 1362"    "Q2710042" 
+#> ASV25 "Ossicaulis lachnopus" " 4" "2223.250"  "   37"    "Q10613125"
+#> ASV26 "Stereum hirsutum"     "25" "5458.240"  " 2262"    "Q557377"
 
 # Alternative: Query specific taxa without a phyloseq object
 taxa_info <- tax_gbif_occur_pq(
@@ -368,10 +357,10 @@ taxa_info <- tax_gbif_occur_pq(
 head(taxa_info)
 #> # A tibble: 2 × 13
 #> # Groups:   canonicalName [2]
-#>   canonicalName        NL    US    DE    GB    SE    CA    DK    RU    AT    AU
+#>   canonicalName        NL    US    GB    DE    CA    SE    DK    RU    AT    AU
 #>   <chr>             <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-#> 1 Amanita muscaria 109204 26679 22986 18017  8950  8914  8601  8231  7005  6061
-#> 2 Boletus edulis     5670  4768  4610  5667 12838    NA  5643  3876  3785    NA
+#> 1 Amanita muscaria 125440 30018 26148 24369  9768  9116  8982  8699  7090  6395
+#> 2 Boletus edulis     5807  5148 10628  4754    NA 12937  5964  4034  3801    NA
 #> # ℹ 2 more variables: NO <int>, CH <int>
 ```
 
@@ -391,8 +380,8 @@ head(taxa_info)
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing
-Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please open an issue or pull request on
+[GitHub](https://github.com/adrientaudiere/taxinfo).
 
 ## Citation
 
@@ -424,7 +413,12 @@ This project is licensed under the MIT License - see the
 - All the members of the DEFIS MITI project, especially Mélanie Roy and
   Benoît Perez-Lamarque who lead the project.
 
-- The CNRS funding MITI that made this work possible.
+- This project has received financial support from the **CNRS** (*Centre
+  National de la Recherche Scientifique*) through the MITI
+  interdisciplinary programs (Project ***DEFIS*** - Exploration of
+  Evolutionary Diversity of Fungi and its Indicators through
+  High-Throughput Sequencing : from multi-actors challenges to long-term
+  monitoring).
 
 - The developers of the R packages used in this project. A special
   thanks to Joey McMurdie (`phyloseq`), John Waller (`rgbif`), and
