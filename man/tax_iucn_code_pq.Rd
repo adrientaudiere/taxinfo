@@ -9,7 +9,9 @@ tax_iucn_code_pq(
   taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
-  col_prefix = NULL
+  col_prefix = NULL,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

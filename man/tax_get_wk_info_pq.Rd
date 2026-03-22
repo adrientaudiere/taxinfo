@@ -15,7 +15,9 @@ tax_get_wk_info_pq(
   time_to_sleep = 0.3,
   summarize_function_length = "mean",
   summarize_function_views = "sum",
-  n_days = 30
+  n_days = 30,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{
@@ -72,7 +74,9 @@ The tibble contains the following columns:
 Retrieve information about taxa from wikipedia
 }
 \details{
-Taxa with only genus name are discarded.
+This is a very brut/raw approach of the notion of cultural keystone species
+(see Mattalia et al. 2025, https://doi.org/10.1002/pan3.10653 for a review of the concept).
+ Taxa with only genus name are discarded.
 }
 \examples{
 \dontrun{

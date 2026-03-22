@@ -19,6 +19,8 @@ tax_photos_pq(
   caption_valign = "bottom",
   caption_font_size = 12,
   simple_caption = FALSE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 }

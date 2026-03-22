@@ -15,6 +15,8 @@ tax_occur_check_pq(
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 }

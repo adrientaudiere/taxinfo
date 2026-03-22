@@ -6,6 +6,8 @@
 
 ## New Features
 
+- Add `fungal_traits_guilds()` to enrich a phyloseq `tax_table` with guild and trait information from both the FungalTraits and FUNGuild databases in a single call. The function automatically calls [gna_verifier_pq()] when `currentCanonicalSimple` is absent, and optionally produces consensus columns (`cons_trophicMode`, `cons_trophicMode_agreement`) comparing the two sources.
+
 - All main functions (`gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_info_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()`, `tax_photos_pq()`) now support the `taxnames` parameter, allowing users to query information for specific taxonomic names without a phyloseq object. 
 
 - Added comprehensive tests for `taxnames` parameter usage across all functions.

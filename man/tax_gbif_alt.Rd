@@ -13,7 +13,9 @@ tax_gbif_alt(
   method = c("gbif", "elevatr"),
   elev_zoom = 5,
   n_coor_alt = NULL,
-  verbose = TRUE
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

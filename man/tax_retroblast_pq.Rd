@@ -18,6 +18,8 @@ tax_retroblast_pq(
   max_length = 4000,
   refseq_only = FALSE,
   sup_params = "NOT uncultured[Title] NOT clone[Title]",
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 }
@@ -111,11 +113,16 @@ Note that this function need a physeq object and cannot works with a
 list of taxonomic names (taxnames is not a parameter of the function).
 }
 \examples{
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
+\donttest{
+data_fungi_mini_cleanNames <-
+  gna_verifier_pq(data_fungi_mini,
+    data_source = 210)
 
 res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
   marker = c("ITS", "internal transcribed spacer"),
-  retmax = 10, id_cut = 99
+  retmax = 10,
+   id_cut = 99,
+   add_to_phyloseq = FALSE
 )
 
 res_retro$tib_retroblast |>
@@ -142,6 +149,8 @@ res_retro_100$tib_retroblast$alt_assign |>
   is.na() |>
   sapply(isFALSE) |>
   sum()
+
+}
 }
 \seealso{
 [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]

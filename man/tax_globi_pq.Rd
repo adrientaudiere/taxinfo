@@ -18,7 +18,9 @@ tax_globi_pq(
   verbose = FALSE,
   strict_interaction_types = TRUE,
   max_interactions = 1000,
-  batch_size_gna_verifier = 50
+  batch_size_gna_verifier = 50,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

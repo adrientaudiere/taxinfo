@@ -127,7 +127,11 @@ if (getRversion() >= "2.15.1") {
       "theme_minimal",
       "map_dfr",
       "map_int",
-      "slice_sample"
+      "slice_sample",
+      "ft_norm",
+      "ft_norm2",
+      "fg_norm",
+      "fg_norm2"
     )
   )
 }

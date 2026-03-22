@@ -14,6 +14,8 @@ tax_oa_pq(
   col_prefix = NULL,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
   verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 }

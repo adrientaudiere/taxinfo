@@ -15,6 +15,8 @@ range_bioreg_pq(
   make_plot = FALSE,
   crop_plot = TRUE,
   remove_legend = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 

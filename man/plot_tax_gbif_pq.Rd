@@ -15,6 +15,8 @@ plot_tax_gbif_pq(
   verbose = TRUE,
   countries = NULL,
   info_names = c("country", "country code", "acceptedScientificName", "ScientificName"),
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE,
   ...
 )
 }

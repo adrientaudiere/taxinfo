@@ -13,7 +13,9 @@ tax_gbif_occur_pq(
   by_country = FALSE,
   by_years = FALSE,
   verbose = TRUE,
-  time_to_sleep = 0.3
+  time_to_sleep = 0.3,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

@@ -17,7 +17,9 @@ tax_info_pq(
   csv_cols_select = NULL,
   sep = ",",
   dec = ".",
-  verbose = TRUE
+  verbose = TRUE,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

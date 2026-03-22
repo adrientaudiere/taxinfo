@@ -20,7 +20,8 @@ gna_verifier_pq(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
-  authorship_col = TRUE
+  authorship_col = TRUE,
+  discard_NA = TRUE
 )
 }
 \arguments{

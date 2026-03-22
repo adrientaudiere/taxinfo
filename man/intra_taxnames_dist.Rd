@@ -9,6 +9,7 @@ intra_taxnames_dist(
   taxonomic_rank = c("Genus", "Species"),
   verbose = TRUE,
   verbose_DECIPHER = FALSE,
+  discard_NA = TRUE,
   ...
 )
 }

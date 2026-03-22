@@ -11,7 +11,9 @@ tax_spores_size_pq(
   verbose = TRUE,
   time_to_sleep = 0.5,
   add_to_phyloseq = NULL,
-  col_prefix = NULL
+  col_prefix = NULL,
+  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_NA = TRUE
 )
 }
 \arguments{

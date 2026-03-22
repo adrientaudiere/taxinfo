@@ -73,6 +73,9 @@ reference:
   - tax_get_wk_info_pq
   - tax_get_wk_lang
   - tax_get_wk_pages_info
+- subtitle: "Fungal guilds and traits (FungalTraits + FUNGuild)"
+  contents:
+  - fungal_traits_guilds
 - subtitle: "Other sources"
   contents:
   - tax_iucn_code_pq
