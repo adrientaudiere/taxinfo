@@ -20,46 +20,49 @@
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param gallery (logical, default FALSE) If TRUE, a html gallery is
-#' created using  the function [pixture::pixgallery()].
+#' created using [htmltools::browsable()].
 #' @param overwrite_folder (logical, default FALSE) If TRUE, the folder
 #'  specified in the parameter folder_name will be deleted if it already exists.
 #' @param col_name_url (default "photo_url") Name of the new column in the
 #'  tax_table
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param caption_valign (character, default "bottom")
-#'   Vertical alignment of the caption in the gallery.
+#'   Vertical alignment of the caption in the gallery. Either `"bottom"` or
+#'   `"top"`.
 #' @param caption_font_size (int) Size of the caption font in the gallery.
 #' @param simple_caption (logical, default FALSE) If TRUE, the caption of
 #' the gallery photo will be only the taxonomic name. If FALSE, the caption
 #' include information from the phyloseq object (number of sequences, taxa
 #' and samples).
-#' @param ... Other parameters to be passed to pixture::pixgallery() function.
+#' @param img_height (character, default "150px") Height of images in the gallery.
+#' @param img_width (character, default "200px") Width of images in the gallery.
+#' @param ... Unused, kept for backward compatibility.
 #'
-#' @returns There is three behavior.(i) If gallery = TRUE, a html gallery is
-#'  created using  the function [pixture::pixgallery()].
-#'  (ii) If add_to_phyloseq = TRUE, a new phyloseq object is returned
-#'  with a new column (called with the parameter
-#'  col_name_url) in the tax_table containing the URL. (iii) If both
-#'  gallery = FALSE and add_to_phyloseq = FALSE, photos are downloaded in a
-#'  folder (folder_name parameter) and the list of url are returned in the
-#'  form of a tibble.
+#' @returns There is three behavior.(i) If add_to_phyloseq = TRUE, a new
+#'  phyloseq object is returned with a new column (called with the parameter
+#'  col_name_url) in the tax_table containing the URL; the gallery is printed
+#'  as a side-effect if `gallery = TRUE`. (ii) If add_to_phyloseq = FALSE and
+#'  gallery = TRUE, the HTML gallery is returned. (iii) If both gallery = FALSE
+#'  and add_to_phyloseq = FALSE, photos are downloaded in a folder
+#'  (folder_name parameter) and the list of url are returned in the form of
+#'  a tibble.
+#' @importFrom dplyr filter distinct pull rename_with left_join as_tibble join_by
 #' @export
 #' @author Adrien Taudiere
 #' @examples
-#'
+#' \dontrun{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 #'
 #' tax_photos_pq(data_fungi_mini_cleanNames,
 #'   gallery = TRUE,
-#'   h = "40px",
-#'   w = "80px",
+#'   img_height = "40px",
+#'   img_width = "80px",
 #'   source = "wikitaxa"
 #' )
 #'
 #' tax_photos_pq(
 #'   taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
-#'   gallery = TRUE,
-#'   layout = "rhombus"
+#'   gallery = TRUE
 #' )
 #'
 #' data_fungi_mini_cleanNames_photos <-
@@ -69,6 +72,7 @@
 #' data_fungi_mini_cleanNames_photos@tax_table[, "photo_url"] |>
 #'   table() |>
 #'   (\(tab) tab[as.numeric(tab) > 1])()
+#' }
 #'
 tax_photos_pq <- function(
   physeq = NULL,
@@ -85,6 +89,8 @@ tax_photos_pq <- function(
   caption_valign = "bottom",
   caption_font_size = 12,
   simple_caption = FALSE,
+  img_height = "150px",
+  img_width = "200px",
   discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
   discard_NA = TRUE,
   ...
@@ -136,9 +142,11 @@ tax_photos_pq <- function(
   }
 
   if (source == "gbif") {
-    gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw) |>
-      filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-      distinct()
+    gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw)
+    gbif_taxa$query_name <- taxnames_raw
+    gbif_taxa <- gbif_taxa |>
+      dplyr::filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
+      dplyr::distinct()
     taxnames <- gbif_taxa$canonicalName
   } else if (source == "wikitaxa") {
     check_package("wikitaxa")
@@ -188,7 +196,7 @@ tax_photos_pq <- function(
         wikitaxa::wt_data(taxnames[i], property = c("P225", "P18")),
         error = function(e) NULL
       )
-      if (sum(xs_wt$claims$property_value == "image") > 0) {
+      if (!is.null(xs_wt) && sum(xs_wt$claims$property_value == "image") > 0) {
         if (verbose) {
           cli::cli_alert_info(
             "{.val {i}}/{.val {length(taxnames)}} - Downloading photo of {.emph {taxnames[i]}}"
@@ -196,8 +204,8 @@ tax_photos_pq <- function(
         }
 
         photo_names <- xs_wt$claims |>
-          filter(property_value == "image") |>
-          pull(value) |>
+          dplyr::filter(property_value == "image") |>
+          dplyr::pull(value) |>
           gsub(pattern = " ", replacement = "_") |>
           stringr::str_split_1(",")
 
@@ -230,15 +238,23 @@ tax_photos_pq <- function(
     cli::cli_progress_done(id = pb)
   }
 
-  photo_url_tib <- cbind(photo_url, taxnames) |>
-    as_tibble()
+  # For GBIF use the original query name as join key so it matches tax_table
+  # entries built from raw column values; for wikitaxa taxnames == taxnames_raw.
+  join_taxa_names <- if (source == "gbif") gbif_taxa$query_name else taxnames
+
+  photo_url_tib <- data.frame(
+    photo_url,
+    join_taxa_names,
+    stringsAsFactors = FALSE
+  ) |>
+    dplyr::as_tibble()
 
   colnames(photo_url_tib) <- c(col_name_url, "taxa_name")
 
   # Apply col_prefix to the photo URL column
   if (!is.null(col_prefix)) {
     photo_url_tib <- photo_url_tib |>
-      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
+      dplyr::rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
   }
 
   final_col_name <- paste0(col_prefix, col_name_url)
@@ -254,7 +270,11 @@ tax_photos_pq <- function(
       collapse = " "
     )
     new_physeq@tax_table <-
-      left_join(tax_tab, photo_url_tib, by = join_by(taxa_name)) |>
+      dplyr::left_join(
+        tax_tab,
+        photo_url_tib,
+        by = dplyr::join_by(taxa_name)
+      ) |>
       as.matrix() |>
       tax_table()
 
@@ -262,111 +282,188 @@ tax_photos_pq <- function(
   }
 
   if (verbose) {
-    photos_found <- sum(!is.na(photo_url))
-    names_not_found <- sum(is.na(photo_url))
-
     if (!is.null(physeq)) {
-      taxa_depicted <- sum(!is.na(new_physeq@tax_table[, final_col_name]))
-      taxa_no_photo <- sum(is.na(new_physeq@tax_table[, final_col_name]))
-
       cli::cli_bullets(c(
-        "v" = "Photo download summary:/n",
-        "  - {.val {photos_found}} photos found and downloaded/n",
-        "  - {.val {taxa_depicted}} taxa depicted/n",
-        "  - {.val {names_not_found}} taxonomic names not found/n",
-        "  - {.val {taxa_no_photo}} taxa have no photo URL"
+        "v" = "Photo download summary:",
+        " " = "{.val {sum(!is.na(photo_url))}} photos found",
+        " " = "{.val {sum(!is.na(new_physeq@tax_table[, final_col_name]))}} taxa depicted",
+        " " = "{.val {sum(is.na(photo_url))}} taxonomic names not found",
+        " " = "{.val {sum(is.na(new_physeq@tax_table[, final_col_name]))}} taxa have no photo URL"
       ))
     } else {
       cli::cli_bullets(c(
-        "v" = "Photo download summary:/n",
-        "  - {.val {photos_found}} photos found and downloaded/n",
-        "  - {.val {names_not_found}} taxonomic names not found"
+        "v" = "Photo download summary:",
+        " " = "{.val {sum(!is.na(photo_url))}} photos found",
+        " " = "{.val {sum(is.na(photo_url))}} taxonomic names not found"
       ))
     }
   }
 
-  if (add_to_phyloseq && !gallery) {
-    return(new_physeq)
-  } else if (gallery) {
+  # Build gallery if requested
+  if (gallery) {
     if (verbose) {
       cli::cli_alert_info("Creating captions for gallery")
     }
     for (i in seq_along(taxnames)) {
       if (simple_caption || is.null(physeq)) {
-        captions[i] <- paste(
-          paste0("<p style='font-size:", caption_font_size, "px'>"),
-          paste0("<b>", taxnames[i], "</b><br>"),
+        captions[i] <- paste0(
+          "<p style='font-size:",
+          caption_font_size,
+          "px'>",
+          "<b>",
+          taxnames[i],
+          "</b>",
           "</p>"
         )
       } else {
         tax_tab_gallery <- as.data.frame(new_physeq@tax_table)
-        captions[i] <- paste(
-          paste0("<p style='font-size:", caption_font_size, "px'>"),
-          paste0("<b>", taxnames[i], "</b><br>"),
-          paste0(
-            "<b>Source</b>: <a href='",
-            photo_url[i],
-            "'>",
-            "Wikimedia",
-            "</a><br>"
+        taxa_match <- setNames(
+          tax_tab_gallery[, "taxa_name"] %in% taxnames[i],
+          taxa_names(new_physeq)
+        )
+        captions[i] <- paste0(
+          "<p style='font-size:",
+          caption_font_size,
+          "px'>",
+          "<b>",
+          taxnames[i],
+          "</b><br>",
+          "<b>Source</b>: <a href='",
+          photo_url[i],
+          "'>Wikimedia</a><br>",
+          "<b>Taxa</b>: ",
+          sum(taxa_match),
+          ", <b>Seq</b>: ",
+          sum(taxa_sums(new_physeq)[taxa_match]),
+          ", <b>Sam</b>: ",
+          sum(
+            sample_sums(subset_taxa_pq(
+              new_physeq,
+              taxa_match,
+              verbose = FALSE,
+              clean_pq = FALSE
+            )) >
+              0
           ),
-          paste0(
-            "<b>Taxa</b>: ",
-            sum(
-              tax_tab_gallery[, "taxa_name"] %in%
-                taxnames[i]
-            )
-          ),
-          paste0(
-            ", <b>Seq</b>: ",
-            sum(taxa_sums(new_physeq)[
-              tax_tab_gallery[, "taxa_name"] %in%
-                taxnames[i]
-            ])
-          ),
-          paste0(
-            "<b>, Sam</b>: ",
-            sum(
-              sample_sums(subset_taxa_pq(
-                new_physeq,
-                new_physeq@tax_table[, "taxa_name"] == taxnames[i],
-                verbose = FALSE,
-                clean_pq = FALSE
-              )) >
-                0
-            ),
-            "</p>"
-          )
+          "</p>"
         )
       }
     }
-    check_package("pixture")
-    pixture::pixgallery(
-      photo_url[!is.na(photo_url)],
-      caption = captions[!is.na(photo_url)],
+
+    valid <- !is.na(photo_url)
+    gallery_out <- .make_photo_gallery(
+      urls = photo_url[valid],
+      captions = captions[valid],
       caption_valign = caption_valign,
-      ...
+      img_height = img_height,
+      img_width = img_width
     )
-  } else {
-    if (overwrite_folder) {
-      unlink(folder_name, recursive = TRUE)
-    }
 
-    if (dir.exists(folder_name)) {
-      stop(
-        "The folder ",
-        folder_name,
-        " already exist. You may want to use an
-           other folder_name or set overwrite_folder to TRUE."
-      )
+    if (add_to_phyloseq) {
+      print(gallery_out)
+      return(invisible(new_physeq))
+    } else {
+      return(gallery_out)
     }
-
-    dir.create(folder_name)
-    download.file(
-      photo_url[!is.na(photo_url)],
-      paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"),
-      quiet = TRUE
-    )
-    return(invisible(photo_url))
   }
+
+  if (add_to_phyloseq) {
+    return(new_physeq)
+  }
+
+  # Download photos to folder
+  if (overwrite_folder) {
+    unlink(folder_name, recursive = TRUE)
+  }
+
+  if (dir.exists(folder_name)) {
+    cli::cli_abort(c(
+      "The folder {.path {folder_name}} already exists.",
+      "i" = "Use a different {.arg folder_name} or set {.arg overwrite_folder = TRUE}."
+    ))
+  }
+
+  dir.create(folder_name)
+  download.file(
+    photo_url[!is.na(photo_url)],
+    paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"),
+    quiet = TRUE
+  )
+  invisible(photo_url_tib)
+}
+
+
+#' Build a simple HTML photo gallery
+#'
+#' Internal helper replacing `pixture::pixgallery()`.
+#'
+#' @param urls Character vector of image URLs (no NAs).
+#' @param captions Character vector of HTML captions (same length as urls),
+#'   or NULL.
+#' @param caption_valign Either `"top"` or `"bottom"`.
+#' @param img_height CSS height string (e.g. `"150px"`).
+#' @param img_width CSS width string (e.g. `"200px"`).
+#' @noRd
+.make_photo_gallery <- function(
+  urls,
+  captions = NULL,
+  caption_valign = "bottom",
+  img_height = "150px",
+  img_width = "200px"
+) {
+  check_package("htmltools")
+
+  items <- lapply(seq_along(urls), function(i) {
+    cap_html <- if (!is.null(captions)) {
+      htmltools::div(
+        style = "font-size:small; word-wrap:break-word;",
+        htmltools::HTML(captions[i])
+      )
+    } else {
+      NULL
+    }
+
+    img_tag <- htmltools::tags$img(
+      src = urls[i],
+      style = paste0(
+        "width:",
+        img_width,
+        ";",
+        "height:",
+        img_height,
+        ";",
+        "object-fit:cover;",
+        "display:block;"
+      ),
+      loading = "lazy"
+    )
+
+    children <- if (caption_valign == "top") {
+      list(cap_html, img_tag)
+    } else {
+      list(img_tag, cap_html)
+    }
+
+    htmltools::div(
+      style = paste0(
+        "display:inline-block;",
+        "margin:6px;",
+        "vertical-align:top;",
+        "width:",
+        img_width,
+        ";",
+        "border:1px solid #ddd;",
+        "border-radius:4px;",
+        "overflow:hidden;"
+      ),
+      children
+    )
+  })
+
+  htmltools::browsable(
+    htmltools::div(
+      style = "display:flex; flex-wrap:wrap; gap:4px;",
+      items
+    )
+  )
 }

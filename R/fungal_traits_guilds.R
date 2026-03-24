@@ -54,7 +54,7 @@
 #'
 #' table(res_guild@tax_table[, "cons_trophicMode"], useNA = "always")
 #' table(res_guild@tax_table[, "cons_trophicMode_agreement"], useNA = "always")
-#' 
+#'
 #' # physeq object WITHOUT verified names: gna_verifier_pq is called internally
 #' res2 <- fungal_traits_guilds(data_fungi, gna_data_sources = 210)
 #' table(res2@tax_table[, "ft_primary_lifestyle"])

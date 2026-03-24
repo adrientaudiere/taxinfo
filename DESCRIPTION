@@ -55,7 +55,6 @@ Suggests:
     mapview,
     openalexR,
     patchwork,
-    pixture,
     rentrez,
     rmarkdown,
     rnaturalearth,

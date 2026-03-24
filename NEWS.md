@@ -6,6 +6,8 @@
 
 ## New Features
 
+- `tax_photos_pq()` now works correctly with `gallery = TRUE` regardless of the `add_to_phyloseq` value: when `add_to_phyloseq = TRUE` the gallery is printed as a side-effect and the updated phyloseq object is returned invisibly. The `pixture` package dependency has been removed; the gallery is now built with `htmltools` (available on CRAN). Two new parameters `img_height` and `img_width` replace the previous `h`/`w` arguments passed via `...` to `pixture::pixgallery()`.
+
 - Add `fungal_traits_guilds()` to enrich a phyloseq `tax_table` with guild and trait information from both the FungalTraits and FUNGuild databases in a single call. The function automatically calls [gna_verifier_pq()] when `currentCanonicalSimple` is absent, and optionally produces consensus columns (`cons_trophicMode`, `cons_trophicMode_agreement`) comparing the two sources.
 
 - All main functions (`gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_info_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()`, `tax_photos_pq()`) now support the `taxnames` parameter, allowing users to query information for specific taxonomic names without a phyloseq object. 
