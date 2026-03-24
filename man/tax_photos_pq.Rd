@@ -19,6 +19,8 @@ tax_photos_pq(
   caption_valign = "bottom",
   caption_font_size = 12,
   simple_caption = FALSE,
+  img_height = "150px",
+  img_width = "200px",
   discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
   discard_NA = TRUE,
   ...
@@ -48,7 +50,7 @@ Cannot be TRUE if `taxnames` is provided.}
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{gallery}{(logical, default FALSE) If TRUE, a html gallery is
-created using  the function [pixture::pixgallery()].}
+created using [htmltools::browsable()].}
 
 \item{overwrite_folder}{(logical, default FALSE) If TRUE, the folder
 specified in the parameter folder_name will be deleted if it already exists.}
@@ -59,7 +61,8 @@ tax_table}
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 
 \item{caption_valign}{(character, default "bottom")
-Vertical alignment of the caption in the gallery.}
+Vertical alignment of the caption in the gallery. Either `"bottom"` or
+`"top"`.}
 
 \item{caption_font_size}{(int) Size of the caption font in the gallery.}
 
@@ -68,17 +71,21 @@ the gallery photo will be only the taxonomic name. If FALSE, the caption
 include information from the phyloseq object (number of sequences, taxa
 and samples).}
 
-\item{...}{Other parameters to be passed to pixture::pixgallery() function.}
+\item{img_height}{(character, default "150px") Height of images in the gallery.}
+
+\item{img_width}{(character, default "200px") Width of images in the gallery.}
+
+\item{...}{Unused, kept for backward compatibility.}
 }
 \value{
-There is three behavior.(i) If gallery = TRUE, a html gallery is
- created using  the function [pixture::pixgallery()].
- (ii) If add_to_phyloseq = TRUE, a new phyloseq object is returned
- with a new column (called with the parameter
- col_name_url) in the tax_table containing the URL. (iii) If both
- gallery = FALSE and add_to_phyloseq = FALSE, photos are downloaded in a
- folder (folder_name parameter) and the list of url are returned in the
- form of a tibble.
+There is three behavior.(i) If add_to_phyloseq = TRUE, a new
+ phyloseq object is returned with a new column (called with the parameter
+ col_name_url) in the tax_table containing the URL; the gallery is printed
+ as a side-effect if `gallery = TRUE`. (ii) If add_to_phyloseq = FALSE and
+ gallery = TRUE, the HTML gallery is returned. (iii) If both gallery = FALSE
+ and add_to_phyloseq = FALSE, photos are downloaded in a folder
+ (folder_name parameter) and the list of url are returned in the form of
+ a tibble.
 }
 \description{
 Find photos of taxa from GBIF or Wikitaxa
@@ -89,20 +96,19 @@ There is three behavior. See the returns section. Gbif source is quicker
  one photo per species.
 }
 \examples{
-
+\dontrun{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
 tax_photos_pq(data_fungi_mini_cleanNames,
   gallery = TRUE,
-  h = "40px",
-  w = "80px",
+  img_height = "40px",
+  img_width = "80px",
   source = "wikitaxa"
 )
 
 tax_photos_pq(
   taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
-  gallery = TRUE,
-  layout = "rhombus"
+  gallery = TRUE
 )
 
 data_fungi_mini_cleanNames_photos <-
@@ -112,6 +118,7 @@ data_fungi_mini_cleanNames_photos <-
 data_fungi_mini_cleanNames_photos@tax_table[, "photo_url"] |>
   table() |>
   (\(tab) tab[as.numeric(tab) > 1])()
+}
 
 }
 \author{

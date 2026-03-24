@@ -6,7 +6,7 @@
 \usage{
 fungal_traits_guilds(
   physeq,
-  fungal_traits_file = system.file("extdata", "fun_trait_mini.csv", package = "taxinfo"),
+  fungal_traits_file = system.file("extdata", "fungal_trait.csv", package = "taxinfo"),
   ft_taxonomic_rank = "genusEpithet",
   ft_csv_rank = "GENUS",
   ft_sep = ";",
@@ -78,11 +78,13 @@ If `currentCanonicalSimple` is not already present in the `tax_table`,
 names before querying the databases.
 }
 \examples{
-\dontrun{
 # physeq object with already-verified names
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-res <- fungal_traits_guilds(data_fungi_cleanNames)
-table(res@tax_table[, "cons_trophicMode"], useNA = "always")
+res_guild <- data_fungi |>
+ gna_verifier_pq(data_sources = 210) |>
+   fungal_traits_guilds()
+
+table(res_guild@tax_table[, "cons_trophicMode"], useNA = "always")
+table(res_guild@tax_table[, "cons_trophicMode_agreement"], useNA = "always")
 
 # physeq object WITHOUT verified names: gna_verifier_pq is called internally
 res2 <- fungal_traits_guilds(data_fungi, gna_data_sources = 210)
@@ -92,7 +94,6 @@ table(res2@tax_table[, "cons_trophicMode"])
 
 # Return a tibble instead of a phyloseq
 tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-}
 }
 \seealso{
 [tax_info_pq()], [gna_verifier_pq()],
