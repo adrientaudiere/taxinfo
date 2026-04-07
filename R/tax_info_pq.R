@@ -53,13 +53,15 @@
 #'
 #' # FUNGAL TRAITS example
 #' # --------------------
-#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
+#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+#'   package = "taxinfo") # minidataset for testing
+#' # fungal_traits <- system.file("extdata", "fungal_traits.csv", package = "taxinfo")
 #' fg_traits <- tax_info_pq(data_fungi_cleanNames,
 #'   taxonomic_rank = "genusEpithet",
 #'   file_name = fungal_traits,
 #'   csv_taxonomic_rank = "GENUS",
 #'   col_prefix = "ft_",
-#'   sep = ";",
+#'   sep = "\t",
 #'   add_to_phyloseq = FALSE
 #' )
 #'
@@ -241,8 +243,7 @@ tax_info_pq <- function(
       right_join(
         taxtab,
         by = join_by(!!sym(csv_taxonomic_rank) == taxa_name),
-        copy = TRUE,
-        suffix = c("", ".physeq")
+        copy = TRUE
       ) |>
       arrange(taxa_id_for_join) |>
       collect() |>
