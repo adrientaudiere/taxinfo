@@ -37,7 +37,7 @@ test_that("taxonomic_rank_to_taxnames with discard_NA = TRUE", {
 
   expect_type(result, "character")
   # Should not contain NA values in results
-  expect_false(any(is.na(result)))
+  expect_false(anyNA(result))
 })
 
 test_that("taxonomic_rank_to_taxnames with combined parameters", {
@@ -96,5 +96,5 @@ test_that("taxonomic_rank_to_taxnames with combined parameters", {
   })
 
   expect_type(result, "character")
-  expect_false(any(is.na(result)))
+  expect_false(anyNA(result))
 })

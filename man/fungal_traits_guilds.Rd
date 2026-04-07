@@ -6,13 +6,22 @@
 \usage{
 fungal_traits_guilds(
   physeq,
-  fungal_traits_file = system.file("extdata", "fungal_trait.csv", package = "taxinfo"),
+  fungal_traits_file = system.file("extdata", "fungal_traits.csv", package = "taxinfo"),
   ft_taxonomic_rank = "genusEpithet",
   ft_csv_rank = "GENUS",
-  ft_sep = ";",
+  ft_sep = "\\t",
   ft_col_prefix = "ft_",
   fg_tax_levels = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
   fg_col_prefix = "fg_",
+  ft_csv_cols_select = c("GENUS", "COMMENT.on.genus", "primary_lifestyle",
+    "Secondary_lifestyle", "Comment_on_lifestyle_template",
+    "Endophytic_interaction_capability_template", "Plant_pathogenic_capacity_template",
+    "Decay_substrate_template", "Decay_type_template", "Aquatic_habitat_template",
+    "Animal_biotrophic_capacity_template", "Specific_hosts", "Growth_form_template",
+    "Fruitbody_type_template", "Hymenium_type_template",
+    "Ectomycorrhiza_exploration_type_template", "Ectomycorrhiza_lineage_template",
+    "primary_photobiont", 
+     "secondary_photobiont"),
   db_url = "http://www.stbates.org/funguild_db_2.php",
   add_consensus = TRUE,
   consensus_col_prefix = "cons_",
@@ -87,13 +96,25 @@ table(res_guild@tax_table[, "cons_trophicMode"], useNA = "always")
 table(res_guild@tax_table[, "cons_trophicMode_agreement"], useNA = "always")
 
 # physeq object WITHOUT verified names: gna_verifier_pq is called internally
-res2 <- fungal_traits_guilds(data_fungi, gna_data_sources = 210)
-table(res2@tax_table[, "ft_primary_lifestyle"])
-table(res2@tax_table[, "fg_trophicMode"])
-table(res2@tax_table[, "cons_trophicMode"])
+res_guild_2 <- fungal_traits_guilds(data_fungi, gna_data_sources = 210)
+table(res_guild_2@tax_table[, "ft_primary_lifestyle"])
+table(res_guild_2@tax_table[, "fg_trophicMode"])
+table(res_guild_2@tax_table[, "cons_trophicMode"])
 
 # Return a tibble instead of a phyloseq
 tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
+
+\donttest{
+res_guild_2 |> psmelt() |>
+ filter(Abundance > 0) |>
+ ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +
+ geom_col() +
+ theme_bw() +
+ labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
+ theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE) 
+}
 }
 \seealso{
 [tax_info_pq()], [gna_verifier_pq()],

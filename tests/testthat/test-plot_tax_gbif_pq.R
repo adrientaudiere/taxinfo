@@ -9,7 +9,7 @@ data_fungi_cleanNames_3sp <- subset_taxa_pq(
     "Sistotrema raduloides|Stypella subgelatinosa|Rhamphoria piriformis",
     data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"]
   ),
-  taxa_names_from_physeq = T
+  taxa_names_from_physeq = TRUE
 )
 
 test_that("plot_tax_gbif_pq input validation", {

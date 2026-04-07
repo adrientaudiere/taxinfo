@@ -215,7 +215,7 @@ tax_info_pq <- function(
   } else {
     taxtab <- tibble(
       taxa_name = taxnames_vec,
-      taxa_id_for_join = 1:length(taxnames_vec)
+      taxa_id_for_join = seq_along(taxnames_vec)
     )
   }
 
