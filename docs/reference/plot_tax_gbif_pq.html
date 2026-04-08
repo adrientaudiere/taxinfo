@@ -33,6 +33,7 @@
     <li><a class="dropdown-item" href="../articles/gbif-functions.html">GBIF functions</a></li>
     <li><a class="dropdown-item" href="../articles/checking-taxa-presence.html">Checking taxa presence</a></li>
     <li><a class="dropdown-item" href="../articles/external-information.html">Adding information using external sources</a></li>
+    <li><a class="dropdown-item" href="../articles/surprise.html">Bayesian surprise</a></li>
     <li><a class="dropdown-item" href="../articles/sbc.html">Species Bound Cluster (SBC)</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -73,6 +74,8 @@
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  countries <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  info_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"country code"</span>, <span class="st">"acceptedScientificName"</span>, <span class="st">"ScientificName"</span><span class="op">)</span>,</span>
+<span>  discard_genus_alone <span class="op">=</span> <span class="va">taxonomic_rank</span> <span class="op">==</span> <span class="st">"currentCanonicalSimple"</span>,</span>
+<span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -171,259 +174,49 @@ The information to retrieve from GBIF for each occurrence. See
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept ASV 7</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept samples 110</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Stereum ostrea</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 6731 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum ostrea : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Ossicaulis lachnopus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Ossicaulis lachnopus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 39 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Stereum hirsutum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 85274 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Too many records: Retrieving relevant geographic tiles... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum hirsutum : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 3.33 %... ----------------- 6.67 %... ----------------- 10 %... ----------------- 13.33 %... ----------------- 16.67 %... ----------------- 20 %... ----------------- 23.33 %... ----------------- 26.67 %... ----------------- 30 %... ----------------- 33.33 %... ----------------- 36.67 %... ----------------- 40 %... ----------------- 43.33 %... ----------------- 46.67 %... ----------------- 50 %... ----------------- 53.33 %... ----------------- 56.67 %... ----------------- 60 %... ----------------- 63.33 %... ----------------- 66.67 %... ----------------- 70 %... ----------------- 73.33 %... ----------------- 76.67 %... ----------------- 80 %... ----------------- 83.33 %... ----------------- 86.67 %... ----------------- 90 %... ----------------- 93.33 %... ----------------- 96.67 %... ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 189 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 131 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gbif.range’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_tax_gbif_pq</span><span class="op">(</span>taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xylobolus subpileatus"</span>, <span class="st">"Stereum subpileatus"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Xylobolus subpileatus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylobolus subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 327 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Stereum subpileatus</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 327 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gbif.range’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_tax_gbif_pq</span><span class="op">(</span>taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Stereum ostrea"</span>, <span class="st">"Mycena renati"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Stereum ostrea</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 6731 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum ostrea : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 41 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1596 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1888 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Start the computation of Mycena renati</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 5314 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Mycena renati : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 34 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1477 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 323 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 633 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gbif.range’</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">/</span> <span class="va">p</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&amp;</span> <span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/no_legend.html" class="external-link">no_legend</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_tax_gbif_pq-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'p' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_tax_gbif_pq</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xylobolus subpileatus"</span>, <span class="st">"Stereum  subpileatus"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  hexagons <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylobolus subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 327 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum  subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 16 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 327 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Testing for rasterized collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gbif.range’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_tax_gbif_pq</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xylobolus subpileatus"</span>, <span class="st">"Stereum subpileatus"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  hexagons <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"france"</span>, <span class="st">"spain"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 135 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylobolus subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 35 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 40 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 135 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum subpileatus : download of all records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 35 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 40 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The <span style="color: #0000BB;">rnaturalearthhires</span> package needs to be installed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Installing the <span style="color: #0000BB;">rnaturalearthhires</span> package.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → Will <span style="font-style: italic;">install</span> 1 package.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → The package (0 B) is cached.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">+ </span><span style="color: #0000BB;">rnaturalearthhires</span>   1.0.0.9000 [bld][cmp] (GitHub: e4736f6)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> No downloads are needed, 1 pkg is cached</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Got <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000 (source) (21.38 MB)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Packaging <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Packaged <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000 <span style="color: #9E9E9E;">(2.3s)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Building <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Built <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000 <span style="color: #9E9E9E;">(35.3s)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Installed <span style="color: #0000BB;">rnaturalearthhires</span> 1.0.0.9000 (github::ropensci/rnaturalearthhires@e4736f6) <span style="color: #9E9E9E;">(1.1s)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> 1 pkg: added 1, dld 1 (NA B) <span style="color: #B2B2B2;">[53.6s]</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> [as,sf] the geometry column is not valid (perhaps first load the sf package)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">50</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/no_legend.html" class="external-link">no_legend</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_tax_gbif_pq-2.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'p' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_tax_gbif_pq</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
@@ -435,84 +228,12 @@ The information to retrieve from GBIF for each occurrence. See
 <span class="r-in"><span>  hexagons <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">F</span>, bins <span class="op">=</span> <span class="fl">50</span>, occ_samp <span class="op">=</span> <span class="fl">100</span>, grain <span class="op">=</span> <span class="fl">10000</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Ossicaulis lachnopus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 39 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Antrodiella brasiliensis : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No records left after selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 6731 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Stereum ostrea : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 1122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...GBIF records of Xylobolus subpileatus : download of sample of records starting... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ----------------- 100 %...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Grain filtering...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of duplicated records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of absence records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Basis of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Establishment of records selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Time period selection... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of identical xy records... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; Removal of raster centroids... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Records removed: 0 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gbif.range’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">p</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span></span></span>
 <span class="r-in"><span>  <span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">p</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/no_legend.html" class="external-link">no_legend</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_tax_gbif_pq-3.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'p' not found</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
@@ -521,7 +242,7 @@ The information to retrieve from GBIF for each occurrence. See
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
 <div class="pkgdown-footer-right">

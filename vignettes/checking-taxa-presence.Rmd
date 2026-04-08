@@ -12,7 +12,12 @@ editor_options:
 ```{r child="includes/_styles.Rmd"}
 ```
 
-```{r setup}
+```{r setup, include=FALSE}
+has_cc <- requireNamespace("CoordinateCleaner", quietly = TRUE)
+knitr::opts_chunk$set(eval = has_cc)
+```
+
+```{r libs}
 library(taxinfo)
 library(MiscMetabar)
 library(ggplot2)
@@ -42,7 +47,7 @@ Q_rob_in_Paris <- tax_occur_check("Quercus robur", 2.3522, 48.8566, 100)
 Q_rob_in_Paris$count_in_radius
 ```
 
-```{r, fig.alt="Interactive leaflet map centered on Paris showing GBIF occurrence points for Fagus sylvatica. Blue circles represent occurrence locations within a 50km radius, and an orange marker shows the center point at Paris coordinates (2.3522E, 48.8566N)."}
+```{r, eval=requireNamespace("leaflet", quietly=TRUE) && requireNamespace("leafpop", quietly=TRUE), fig.alt="Interactive leaflet map centered on Paris showing GBIF occurrence points for Fagus sylvatica. Blue circles represent occurrence locations within a 50km radius, and an orange marker shows the center point at Paris coordinates (2.3522E, 48.8566N)."}
 # Visualize occurrences around Paris for Fagus sylvatica
 res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
   return_all_occ = TRUE

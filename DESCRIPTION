@@ -43,6 +43,8 @@ Suggests:
     forcats,
     gbif.range,
     ggforce,
+    ggpmisc,
+    ggrepel,
     ggraph,
     ggstatsplot,
     ggtree,

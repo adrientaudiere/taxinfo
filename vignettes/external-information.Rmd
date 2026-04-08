@@ -190,6 +190,13 @@ detailed_interactions <- tax_globi_pq(data_clean,
   add_to_phyloseq = FALSE
 )
 
+# Ensure all requested interaction types have a column (API may not return all)
+for (.icol in c("hasHost", "parasiteOf")) {
+  if (!.icol %in% names(detailed_interactions)) {
+    detailed_interactions[[.icol]] <- NA_character_
+  }
+}
+
 # Analyze interaction patterns
 interaction_summary <- detailed_interactions |>
   separate_rows(target_taxon_name, nb, sep = ";\\s*", convert = TRUE) |>
@@ -249,7 +256,7 @@ ggplot(
   labs(title = "Fungal-Plant Interaction Network")
 ```
 
-```{r, fig.alt="Network graph using Fruchterman-Reingold layout showing fungal-plant interaction network. Fungal nodes are shown in orange and plant nodes in light green. Edges are colored by interaction type and sized by number of interactions. Only fungal taxa names are labeled."}
+```{r, eval=requireNamespace("ggraph", quietly=TRUE) && requireNamespace("igraph", quietly=TRUE), fig.alt="Network graph using Fruchterman-Reingold layout showing fungal-plant interaction network. Fungal nodes are shown in orange and plant nodes in light green. Edges are colored by interaction type and sized by number of interactions. Only fungal taxa names are labeled."}
 library(ggraph)
 
 edges <- interaction_summary |>
@@ -303,7 +310,7 @@ head(data_clean_oa@tax_table[, c(
 
 Analyze research patterns:
 
-```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled."}
+```{r, eval=requireNamespace("ggpmisc", quietly=TRUE), fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled."}
 data_clean_oa@tax_table |>
   as.data.frame() |>
   select(
