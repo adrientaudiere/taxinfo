@@ -326,7 +326,7 @@ head(data_final@tax_table)
 
 # Alternative: Query specific taxa without a phyloseq object
 taxa_info <- tax_gbif_occur_pq(
-  taxnames = c("Amanita muscaria", "Boletus edulis"),
+  ("Amanita muscaria", "Boletus edulis"),
   by_country = TRUE
 )
 #> ℹ Processing GBIF occurrences for Amanita muscaria

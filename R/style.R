@@ -41,11 +41,37 @@
 #' @param axis_col Color for axis lines (default is "#cccccc").
 #' @param axis Logical or character, whether to show axis lines (default is FALSE).
 #' @param ticks Logical, whether to show axis ticks (default is FALSE).
+#' @param x_is_species_name Logical (default FALSE). If TRUE, render x-axis
+#'   tick labels as markdown (so binomial names appear in italic) **and**
+#'   automatically apply `scale_x_discrete(labels = label_italic_species)` to
+#'   wrap species names in `*...*`.  When this flag is set the function returns
+#'   a list (theme + scale) rather than a bare theme, so use it exactly as you
+#'   would [scale_x_italic_species()]: do **not** add
+#'   [scale_x_italic_species()] on top of it.
+#' @param y_is_species_name Logical (default FALSE). Same as
+#'   `x_is_species_name` but for the y-axis.
 #'
-#' @return A ggplot2 theme object.
+#' @return When both `x_is_species_name` and `y_is_species_name` are `FALSE`
+#'   (the default), a ggplot2 theme object.  When either flag is `TRUE`, a
+#'   list containing the theme object and one or two
+#'   `scale_*_discrete(labels = label_italic_species)` objects, which ggplot2
+#'   automatically unpacks when added with `+`.
 #' @author Adrien Taudiere
 #' @export
+#' @examples
+#' library(ggplot2)
+#' ggplot(mtcars, aes(wt, mpg)) +
+#'   geom_point() +
+#'   theme_idest()
 #'
+#' # Italic species names on y-axis (e.g. after coord_flip())
+#' df <- data.frame(
+#'   sp = c("Russula nigricans", "Amanita", "Boletus edulis"),
+#'   n  = c(10, 5, 8)
+#' )
+#' ggplot(df, aes(x = n, y = reorder(sp, n))) +
+#'   geom_col() +
+#'   theme_idest(y_is_species_name = TRUE)
 theme_idest <- function(
   sans_family = if (.Platform$OS.type == "windows") {
     "Roboto Condensed"
@@ -84,7 +110,9 @@ theme_idest <- function(
   grid = TRUE,
   axis_col = "#cccccc",
   axis = FALSE,
-  ticks = FALSE
+  ticks = FALSE,
+  x_is_species_name = FALSE,
+  y_is_species_name = FALSE
 ) {
   ret <- theme_minimal(base_family = sans_family, base_size = base_size)
 
@@ -208,6 +236,27 @@ theme_idest <- function(
       )
     )
 
+  if (x_is_species_name) {
+    ret <- ret %+replace%
+      theme(
+        axis.text.x = ggtext::element_markdown(
+          size = axis_text_size,
+          family = axis_text_family,
+          margin = margin(t = 0)
+        )
+      )
+  }
+  if (y_is_species_name) {
+    ret <- ret %+replace%
+      theme(
+        axis.text.y = ggtext::element_markdown(
+          size = axis_text_size,
+          family = axis_text_family,
+          margin = margin(r = 0)
+        )
+      )
+  }
+
   ret <- ret +
     theme(
       axis.title = element_text(
@@ -294,7 +343,23 @@ theme_idest <- function(
       )
   }
 
-  ret
+  if (!x_is_species_name && !y_is_species_name) {
+    return(ret)
+  }
+  scales <- list()
+  if (x_is_species_name) {
+    scales <- c(
+      scales,
+      list(ggplot2::scale_x_discrete(labels = label_italic_species))
+    )
+  }
+  if (y_is_species_name) {
+    scales <- c(
+      scales,
+      list(ggplot2::scale_y_discrete(labels = label_italic_species))
+    )
+  }
+  c(list(ret), scales)
 }
 
 
@@ -441,6 +506,11 @@ idest_pal <- list(
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
+#' @examples
+#' library(ggplot2)
+#' ggplot(mtcars, aes(wt, mpg, color = disp)) +
+#'   geom_point() +
+#'   scale_color_idest_c()
 scale_color_idest_c <- function(
   palette_name = "all_color_idest",
   direction = 1,
@@ -469,6 +539,11 @@ scale_color_idest_c <- function(
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
+#' @examples
+#' library(ggplot2)
+#' ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
+#'   geom_tile() +
+#'   scale_fill_idest_c("Picasso")
 scale_fill_idest_c <- function(
   palette_name = "all_color_idest",
   direction = 1,
@@ -486,7 +561,7 @@ scale_fill_idest_c <- function(
     colors = idest_colors(
       palette_name = palette_name,
       direction = direction,
-      override_order = F
+      override_order = FALSE
     ),
     ...
   )
@@ -505,6 +580,11 @@ scale_fill_idest_c <- function(
 #' @export
 #' @returns A ggplot2 scale object.
 #' @author Adrien Taudiere
+#' @examples
+#' library(ggplot2)
+#' ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
+#'   geom_point() +
+#'   scale_color_idest_d("dark_color_idest")
 scale_color_idest_d <- function(
   palette_name = "all_color_idest",
   direction = 1,
@@ -531,6 +611,11 @@ scale_color_idest_d <- function(
 #' @returns A ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
+#' @examples
+#' library(ggplot2)
+#' ggplot(mpg, aes(class, fill = drv)) +
+#'   geom_bar() +
+#'   scale_fill_idest_d()
 scale_fill_idest_d <- function(
   palette_name = "all_color_idest",
   direction = 1,
@@ -567,6 +652,9 @@ scale_fill_idest_d <- function(
 #' @returns A vector of colors.
 #' @author Adrien Taudiere
 #' @export
+#' @examples
+#' idest_colors("Picasso", n = 3)
+#' barplot(rep(1, 6), col = idest_colors("Hokusai2"), border = NA)
 idest_colors <- function(
   palette_name = "all_color_idest",
   n,
@@ -578,7 +666,7 @@ idest_colors <- function(
 
   palette <- idest_pal[[palette_name]]
 
-  if (is.null(palette) | is.numeric(palette_name)) {
+  if (is.null(palette) || is.numeric(palette_name)) {
     stop("Palette does not exist.")
   }
 
@@ -618,11 +706,11 @@ idest_colors <- function(
     grDevices::colorRampPalette(rev(palette[[1]]))(n)
   }
 
-  discrete <- if (direction == 1 & override_order == FALSE) {
-    palette[[1]][which(palette[[2]] %in% c(1:n) == TRUE)]
-  } else if (direction == -1 & override_order == FALSE) {
-    rev(palette[[1]][which(palette[[2]] %in% c(1:n) == TRUE)])
-  } else if (direction == 1 & override_order == TRUE) {
+  discrete <- if (direction == 1 && !override_order) {
+    palette[[1]][which(palette[[2]] %in% c(1:n))]
+  } else if (direction == -1 && !override_order) {
+    rev(palette[[1]][which(palette[[2]] %in% c(1:n))])
+  } else if (direction == 1 && override_order) {
     palette[[1]][1:n]
   } else {
     rev(palette[[1]])[1:n]
@@ -630,4 +718,111 @@ idest_colors <- function(
 
   out <- switch(type, continuous = continuous, discrete = discrete)
   structure(out, class = "palette", name = palette_name)
+}
+
+
+#' Format taxon labels with species names in italic
+#'
+#' @description
+#' Wraps labels that contain at least one space (i.e. binomial or trinomial
+#' species names) in markdown italic syntax (`*...*`), leaving single-word
+#' labels (genus, family, etc.) unchanged.  Intended as a `labels` formatter
+#' for discrete ggplot2 scales, or as a standalone helper.
+#'
+#' @param x A character vector of taxon labels.
+#'
+#' @returns A character vector of the same length as `x`, with species names
+#'   wrapped in `*...*`.
+#' @export
+#' @author Adrien Taudiere
+#' @seealso [scale_x_italic_species()], [scale_y_italic_species()]
+#' @examples
+#' label_italic_species(c("Russula nigricans", "Amanita", "Boletus edulis"))
+label_italic_species <- function(x) {
+  ifelse(grepl(" ", x), paste0("*", x, "*"), x)
+}
+
+
+#' Discrete x-axis scale with species names in italic
+#'
+#' @description
+#' A drop-in replacement for [ggplot2::scale_x_discrete()] that automatically
+#' renders binomial species names (labels containing a space) in italic via
+#' `ggtext::element_markdown()`, while leaving single-word labels unchanged.
+#'
+#' **Important:** add this scale **after** any theme call (e.g. `theme_minimal()`)
+#' so that `element_markdown()` is not overridden by the theme's `element_text()`.
+#' Works correctly with `coord_flip()`.
+#'
+#' When using [theme_idest()], prefer its `x_is_species_name = TRUE` parameter
+#' instead of this function: it sets the correct font size and family alongside
+#' the markdown renderer and avoids element-merging conflicts.
+#'
+#' @param ... Arguments passed to [ggplot2::scale_x_discrete()].
+#'
+#' @returns A list containing a `scale_x_discrete` object and a `theme`
+#'   element, both of which are applied when added to a ggplot with `+`.
+#' @export
+#' @author Adrien Taudiere
+#' @seealso [scale_y_italic_species()], [label_italic_species()]
+#' @examples
+#' library(ggplot2)
+#' df <- data.frame(
+#'   sp = c("Russula nigricans", "Amanita", "Boletus edulis"),
+#'   n  = c(10, 5, 8)
+#' )
+#' ggplot(df, aes(x = sp, y = n)) +
+#'   geom_col() +
+#'   theme_minimal() +
+#'   scale_x_italic_species()
+scale_x_italic_species <- function(...) {
+  list(
+    ggplot2::scale_x_discrete(labels = label_italic_species, ...),
+    ggplot2::theme(
+      axis.text.x = ggtext::element_markdown(),
+      axis.text.y = ggtext::element_markdown()
+    )
+  )
+}
+
+
+#' Discrete y-axis scale with species names in italic
+#'
+#' @description
+#' A drop-in replacement for [ggplot2::scale_y_discrete()] that automatically
+#' renders binomial species names (labels containing a space) in italic via
+#' `ggtext::element_markdown()`, while leaving single-word labels unchanged.
+#'
+#' **Important:** add this scale **after** any theme call (e.g. `theme_minimal()`)
+#' so that `element_markdown()` is not overridden by the theme's `element_text()`.
+#'
+#' When using [theme_idest()], prefer its `y_is_species_name = TRUE` parameter
+#' instead of this function: it sets the correct font size and family alongside
+#' the markdown renderer and avoids element-merging conflicts.
+#'
+#' @param ... Arguments passed to [ggplot2::scale_y_discrete()].
+#'
+#' @returns A list containing a `scale_y_discrete` object and a `theme`
+#'   element, both of which are applied when added to a ggplot with `+`.
+#' @export
+#' @author Adrien Taudiere
+#' @seealso [scale_x_italic_species()], [label_italic_species()]
+#' @examples
+#' library(ggplot2)
+#' df <- data.frame(
+#'   sp = c("Russula nigricans", "Amanita", "Boletus edulis"),
+#'   n  = c(10, 5, 8)
+#' )
+#' ggplot(df, aes(y = sp, x = n)) +
+#'   geom_col() +
+#'   theme_minimal() +
+#'   scale_y_italic_species()
+scale_y_italic_species <- function(...) {
+  list(
+    ggplot2::scale_y_discrete(labels = label_italic_species, ...),
+    ggplot2::theme(
+      axis.text.x = ggtext::element_markdown(),
+      axis.text.y = ggtext::element_markdown()
+    )
+  )
 }
