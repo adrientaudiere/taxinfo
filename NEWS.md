@@ -1,4 +1,10 @@
 # taxinfo 0.1.2
+
+## Bug Fixes
+
+- `theme_idest()`: when `x_is_species_name = TRUE` or `y_is_species_name = TRUE` is set, a message now indicates which axis will receive italic labels. This helps users catch the common mistake of passing `x_is_species_name = TRUE` when species names are on the y-axis (e.g. horizontal bar charts with `aes(x = n, y = sp)`), which previously caused ggplot2 to silently misinterpret the continuous x-axis as discrete and break the chart.
+
+
 ## Major Changes
 
 - **Changed default behavior**: The `add_to_phyloseq` parameter now defaults to `TRUE` when a phyloseq object is provided, and `FALSE` when using the `taxnames` parameter. This makes the workflow more intuitive - when working with phyloseq objects, the enriched object is returned by default.

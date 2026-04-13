@@ -41,13 +41,11 @@
 #' @param axis_col Color for axis lines (default is "#cccccc").
 #' @param axis Logical or character, whether to show axis lines (default is FALSE).
 #' @param ticks Logical, whether to show axis ticks (default is FALSE).
-#' @param x_is_species_name Logical (default FALSE). If TRUE, render x-axis
-#'   tick labels as markdown (so binomial names appear in italic) **and**
-#'   automatically apply `scale_x_discrete(labels = label_italic_species)` to
-#'   wrap species names in `*...*`.  When this flag is set the function returns
-#'   a list (theme + scale) rather than a bare theme, so use it exactly as you
-#'   would [scale_x_italic_species()]: do **not** add
-#'   [scale_x_italic_species()] on top of it.
+#' @param x_is_species_name Logical (default FALSE). If TRUE, automatically
+#'   apply [scale_x_italic_species()] so that binomial species names on the
+#'   x-axis are rendered in italic.  When set, the function returns a list
+#'   (theme + scale) rather than a bare theme; ggplot2 unpacks the list
+#'   automatically when added with `+`.
 #' @param y_is_species_name Logical (default FALSE). Same as
 #'   `x_is_species_name` but for the y-axis.
 #'
@@ -122,7 +120,7 @@ theme_idest <- function(
   ret <- ret + theme(plot.margin = plot_margin)
   ret <- ret + theme(panel.spacing = panel_spacing)
 
-  if (inherits(grid, "character") | grid == TRUE) {
+  if (inherits(grid, "character") || grid) {
     ret <- ret +
       theme(panel.grid = element_line(color = grid_col, linewidth = 0.2))
     ret <- ret +
@@ -154,7 +152,7 @@ theme_idest <- function(
     ret <- ret + theme(panel.grid.minor.y = element_blank())
   }
 
-  if (inherits(axis, "character") | axis == TRUE) {
+  if (inherits(axis, "character") || axis) {
     ret <- ret +
       theme(axis.line = element_line(color = axis_col, linewidth = 0.15))
     if (inherits(axis, "character")) {
@@ -219,43 +217,6 @@ theme_idest <- function(
         margin = margin(t = 0, r = 0)
       )
     )
-  ret <- ret +
-    theme(
-      axis.text.x = element_text(
-        size = axis_text_size,
-        family = axis_text_family,
-        margin = margin(t = 0)
-      )
-    )
-  ret <- ret +
-    theme(
-      axis.text.y = element_text(
-        size = axis_text_size,
-        family = axis_text_family,
-        margin = margin(r = 0)
-      )
-    )
-
-  if (x_is_species_name) {
-    ret <- ret %+replace%
-      theme(
-        axis.text.x = ggtext::element_markdown(
-          size = axis_text_size,
-          family = axis_text_family,
-          margin = margin(t = 0)
-        )
-      )
-  }
-  if (y_is_species_name) {
-    ret <- ret %+replace%
-      theme(
-        axis.text.y = ggtext::element_markdown(
-          size = axis_text_size,
-          family = axis_text_family,
-          margin = margin(r = 0)
-        )
-      )
-  }
 
   ret <- ret +
     theme(
@@ -348,16 +309,19 @@ theme_idest <- function(
   }
   scales <- list()
   if (x_is_species_name) {
-    scales <- c(
-      scales,
-      list(ggplot2::scale_x_discrete(labels = label_italic_species))
+    message(
+      "theme_idest: applying italic species labels to the x-axis. ",
+      "If species names are on the y-axis (e.g. horizontal bar charts), ",
+      "use `y_is_species_name = TRUE` instead."
     )
+    scales <- c(scales, list(scale_x_italic_species()))
   }
   if (y_is_species_name) {
-    scales <- c(
-      scales,
-      list(ggplot2::scale_y_discrete(labels = label_italic_species))
+    message(
+      "theme_idest: applying italic species labels to the y-axis. ",
+      "If species names are on the x-axis, use `x_is_species_name = TRUE` instead."
     )
+    scales <- c(scales, list(scale_y_italic_species()))
   }
   c(list(ret), scales)
 }
@@ -528,7 +492,7 @@ scale_color_idest_c <- function(
     colors = idest_colors(
       palette_name = palette_name,
       direction = direction,
-      override_order = F
+      override_order = FALSE
     ),
     ...
   )
@@ -724,22 +688,34 @@ idest_colors <- function(
 #' Format taxon labels with species names in italic
 #'
 #' @description
-#' Wraps labels that contain at least one space (i.e. binomial or trinomial
-#' species names) in markdown italic syntax (`*...*`), leaving single-word
-#' labels (genus, family, etc.) unchanged.  Intended as a `labels` formatter
-#' for discrete ggplot2 scales, or as a standalone helper.
+#' Returns plotmath expressions that render binomial or trinomial species names
+#' (labels containing a space) in italic, leaving single-word labels (genus,
+#' family, etc.) unchanged.  Intended as a `labels` formatter for discrete
+#' ggplot2 scales, or as a standalone helper.
+#'
+#' Uses plotmath `italic()` expressions instead of markdown, so no
+#' `ggtext::element_markdown()` theme element is required.  This makes the
+#' function compatible with any ggplot2 theme, including complete themes such
+#' as [theme_idest()].
 #'
 #' @param x A character vector of taxon labels.
 #'
-#' @returns A character vector of the same length as `x`, with species names
-#'   wrapped in `*...*`.
+#' @returns A list of plotmath expressions (for species names) and plain
+#'   character strings (for non-species labels), suitable for use as `labels`
+#'   in [ggplot2::scale_x_discrete()] or [ggplot2::scale_y_discrete()].
 #' @export
 #' @author Adrien Taudiere
 #' @seealso [scale_x_italic_species()], [scale_y_italic_species()]
 #' @examples
 #' label_italic_species(c("Russula nigricans", "Amanita", "Boletus edulis"))
 label_italic_species <- function(x) {
-  ifelse(grepl(" ", x), paste0("*", x, "*"), x)
+  lapply(x, function(lab) {
+    if (grepl(" ", lab)) {
+      parse(text = paste0("italic(\"", lab, "\")"))[[1]]
+    } else {
+      lab
+    }
+  })
 }
 
 
@@ -747,21 +723,13 @@ label_italic_species <- function(x) {
 #'
 #' @description
 #' A drop-in replacement for [ggplot2::scale_x_discrete()] that automatically
-#' renders binomial species names (labels containing a space) in italic via
-#' `ggtext::element_markdown()`, while leaving single-word labels unchanged.
-#'
-#' **Important:** add this scale **after** any theme call (e.g. `theme_minimal()`)
-#' so that `element_markdown()` is not overridden by the theme's `element_text()`.
-#' Works correctly with `coord_flip()`.
-#'
-#' When using [theme_idest()], prefer its `x_is_species_name = TRUE` parameter
-#' instead of this function: it sets the correct font size and family alongside
-#' the markdown renderer and avoids element-merging conflicts.
+#' renders binomial species names (labels containing a space) in italic using
+#' plotmath expressions, while leaving single-word labels unchanged.
+#' Works with any theme, including complete themes like [theme_idest()].
 #'
 #' @param ... Arguments passed to [ggplot2::scale_x_discrete()].
 #'
-#' @returns A list containing a `scale_x_discrete` object and a `theme`
-#'   element, both of which are applied when added to a ggplot with `+`.
+#' @returns A `scale_x_discrete` ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
 #' @seealso [scale_y_italic_species()], [label_italic_species()]
@@ -776,13 +744,7 @@ label_italic_species <- function(x) {
 #'   theme_minimal() +
 #'   scale_x_italic_species()
 scale_x_italic_species <- function(...) {
-  list(
-    ggplot2::scale_x_discrete(labels = label_italic_species, ...),
-    ggplot2::theme(
-      axis.text.x = ggtext::element_markdown(),
-      axis.text.y = ggtext::element_markdown()
-    )
-  )
+  ggplot2::scale_x_discrete(labels = label_italic_species, ...)
 }
 
 
@@ -790,20 +752,13 @@ scale_x_italic_species <- function(...) {
 #'
 #' @description
 #' A drop-in replacement for [ggplot2::scale_y_discrete()] that automatically
-#' renders binomial species names (labels containing a space) in italic via
-#' `ggtext::element_markdown()`, while leaving single-word labels unchanged.
-#'
-#' **Important:** add this scale **after** any theme call (e.g. `theme_minimal()`)
-#' so that `element_markdown()` is not overridden by the theme's `element_text()`.
-#'
-#' When using [theme_idest()], prefer its `y_is_species_name = TRUE` parameter
-#' instead of this function: it sets the correct font size and family alongside
-#' the markdown renderer and avoids element-merging conflicts.
+#' renders binomial species names (labels containing a space) in italic using
+#' plotmath expressions, while leaving single-word labels unchanged.
+#' Works with any theme, including complete themes like [theme_idest()].
 #'
 #' @param ... Arguments passed to [ggplot2::scale_y_discrete()].
 #'
-#' @returns A list containing a `scale_y_discrete` object and a `theme`
-#'   element, both of which are applied when added to a ggplot with `+`.
+#' @returns A `scale_y_discrete` ggplot2 scale object.
 #' @export
 #' @author Adrien Taudiere
 #' @seealso [scale_x_italic_species()], [label_italic_species()]
@@ -818,11 +773,5 @@ scale_x_italic_species <- function(...) {
 #'   theme_minimal() +
 #'   scale_y_italic_species()
 scale_y_italic_species <- function(...) {
-  list(
-    ggplot2::scale_y_discrete(labels = label_italic_species, ...),
-    ggplot2::theme(
-      axis.text.x = ggtext::element_markdown(),
-      axis.text.y = ggtext::element_markdown()
-    )
-  )
+  ggplot2::scale_y_discrete(labels = label_italic_species, ...)
 }

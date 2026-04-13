@@ -63,7 +63,7 @@
 #'
 #' # Return a tibble instead of a phyloseq
 #' tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-#' 
+#'
 #' \donttest{
 #' res_guild_2 |> psmelt() |>
 #'  filter(Abundance > 0) |>
@@ -72,8 +72,8 @@
 #'  theme_bw() +
 #'  labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
 #'  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-#' 
-#' tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE) 
+#'
+#' tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE)
 #' }
 
 fungal_traits_guilds <- function(
@@ -97,16 +97,27 @@ fungal_traits_guilds <- function(
     "Species"
   ),
   fg_col_prefix = "fg_",
-  ft_csv_cols_select = c("GENUS", "COMMENT.on.genus", 
-    "primary_lifestyle", "Secondary_lifestyle", 
-    "Comment_on_lifestyle_template", "Endophytic_interaction_capability_template",
-    "Plant_pathogenic_capacity_template", "Decay_substrate_template",
-    "Decay_type_template", "Aquatic_habitat_template", 
-    "Animal_biotrophic_capacity_template", "Specific_hosts", 
-    "Growth_form_template", "Fruitbody_type_template", 
-    "Hymenium_type_template", "Ectomycorrhiza_exploration_type_template",
-    "Ectomycorrhiza_lineage_template", "primary_photobiont",
-    "secondary_photobiont"),
+  ft_csv_cols_select = c(
+    "GENUS",
+    "COMMENT.on.genus",
+    "primary_lifestyle",
+    "Secondary_lifestyle",
+    "Comment_on_lifestyle_template",
+    "Endophytic_interaction_capability_template",
+    "Plant_pathogenic_capacity_template",
+    "Decay_substrate_template",
+    "Decay_type_template",
+    "Aquatic_habitat_template",
+    "Animal_biotrophic_capacity_template",
+    "Specific_hosts",
+    "Growth_form_template",
+    "Fruitbody_type_template",
+    "Hymenium_type_template",
+    "Ectomycorrhiza_exploration_type_template",
+    "Ectomycorrhiza_lineage_template",
+    "primary_photobiont",
+    "secondary_photobiont"
+  ),
   db_url = "http://www.stbates.org/funguild_db_2.php",
   add_consensus = TRUE,
   consensus_col_prefix = "cons_",

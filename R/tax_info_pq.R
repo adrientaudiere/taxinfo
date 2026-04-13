@@ -53,7 +53,7 @@
 #'
 #' # FUNGAL TRAITS example
 #' # --------------------
-#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
 #'   package = "taxinfo") # minidataset for testing
 #' # fungal_traits <- system.file("extdata", "fungal_traits.csv", package = "taxinfo")
 #' fg_traits <- tax_info_pq(data_fungi_cleanNames,

@@ -125,8 +125,11 @@ tax_gbif_occur_pq <- function(
         gbif_taxa$usageKey == x
       )]
       if (is.null(tib) || nrow(tib) == 0) {
-        tib <- tibble(name = character(0), count = integer(0),
-                       canonicalName = character(0))
+        tib <- tibble(
+          name = character(0),
+          count = integer(0),
+          canonicalName = character(0)
+        )
       } else {
         tib$canonicalName <- species_canonical
       }
@@ -157,8 +160,11 @@ tax_gbif_occur_pq <- function(
         gbif_taxa$usageKey == x
       )]
       if (is.null(tib) || nrow(tib) == 0) {
-        tib <- tibble(name = character(0), count = integer(0),
-                       canonicalName = character(0))
+        tib <- tibble(
+          name = character(0),
+          count = integer(0),
+          canonicalName = character(0)
+        )
       } else {
         tib$canonicalName <- species_canonical
       }
