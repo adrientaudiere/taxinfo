@@ -121,9 +121,15 @@ tax_gbif_occur_pq <- function(
         )
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "country")$facet$country
-      tib$canonicalName <- gbif_taxa$canonicalName[which(
+      species_canonical <- gbif_taxa$canonicalName[which(
         gbif_taxa$usageKey == x
       )]
+      if (is.null(tib) || nrow(tib) == 0) {
+        tib <- tibble(name = character(0), count = integer(0),
+                       canonicalName = character(0))
+      } else {
+        tib$canonicalName <- species_canonical
+      }
       tib_occur_list[[i]] <- tib
     }
     if (verbose) {
@@ -147,9 +153,15 @@ tax_gbif_occur_pq <- function(
         )
       }
       tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
-      tib$canonicalName <- gbif_taxa$canonicalName[which(
+      species_canonical <- gbif_taxa$canonicalName[which(
         gbif_taxa$usageKey == x
       )]
+      if (is.null(tib) || nrow(tib) == 0) {
+        tib <- tibble(name = character(0), count = integer(0),
+                       canonicalName = character(0))
+      } else {
+        tib$canonicalName <- species_canonical
+      }
       tib_occur_list[[i]] <- tib
     }
     if (verbose) {

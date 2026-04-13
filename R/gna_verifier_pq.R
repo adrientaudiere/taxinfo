@@ -173,7 +173,8 @@ gna_verifier_pq <- function(
   } else {
     list(taxnames)
   }
-  res_verifier <- bind_rows(lapply(slice_taxnames, function(x) {
+
+  .call_gna <- function(x) {
     taxize::gna_verifier(
       x,
       data_sources = data_sources,
@@ -184,6 +185,20 @@ gna_verifier_pq <- function(
       stats = stats,
       main_taxon_threshold = main_taxon_threshold,
       output_type = "table"
+    )
+  }
+
+  res_verifier <- bind_rows(lapply(slice_taxnames, function(x) {
+    tryCatch(
+      .call_gna(x),
+      error = function(e) {
+        # taxize::gna_verifier can fail when the API returns fewer records than
+        # expected (mismatched names vector). Fall back to one-by-one queries.
+        cli::cli_warn(c(
+          "!" = "Batch GNA query failed ({conditionMessage(e)}), retrying one name at a time."
+        ))
+        bind_rows(lapply(x, \(name) tryCatch(.call_gna(name), error = \(e2) NULL)))
+      }
     )
   }))
 
