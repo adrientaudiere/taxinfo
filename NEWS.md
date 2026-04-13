@@ -27,8 +27,12 @@
 
 - Change the result column `genus` into `genusEpithet` from the `gna_verifier_pq()` function to avoid confusion between "Genus" and "genus" columns and to debug the use of duckdb in `taxinfo_pq()`.
 
+- `gna_verifier_pq()` gains a `species_only` parameter (default `TRUE`): when `TRUE`, `currentCanonicalSimple` is set to `NA` for uninomial matches (`matchedCardinality == 1`, i.e. genus or higher-rank names with no species epithet). `genusEpithet` is always populated regardless of this setting; `specificEpithet` is always `NA` for uninomials independently of this parameter.
+
 
 ## Bug fix
+
+- `gna_verifier_pq()`: fixed verbose summary always reporting 0 accepted/synonym names when `add_to_phyloseq = FALSE` (was incorrectly reading dropped columns from `res_verifier_clean` instead of `res_verifier`). Fixed `matchedCardinality` threshold used for "uninomial" reporting (was `== 2` instead of `== 1`). Fixed `genusEpithet` and `specificEpithet` being absent from the return value when `add_to_phyloseq = FALSE` and `genus_species_canonical_col = TRUE` (the function was returning the raw GNA result instead of the cleaned tibble). Fixed potential many-to-many join when `add_to_phyloseq = TRUE` by deduplicating on `submittedName` after `select()` rather than before.
 
 - Fixed issue in functions `tax_gbif_occur_pq()` and `range_bioreg_pq()` due to the loss of the column verbatim_index in `rgbif::name_backbone_checklist()` (commit [c74602b](https://github.com/ropensci/rgbif/commit/c74602b1c50e9c5d1a1fd6251dcad23595a94345)).
 
