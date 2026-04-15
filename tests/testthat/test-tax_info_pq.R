@@ -67,7 +67,7 @@ test_that("tax_info_pq returns phyloseq with TAXREF data", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   TAXREFv18_fungi <- system.file(
     "extdata",
-    "TAXREFv18_fungi.csv",
+    "TAXREFv18_fungi_mini.csv",
     package = "taxinfo"
   )
 
@@ -122,7 +122,7 @@ test_that("tax_info_pq csv_taxonomic_rank is required", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   TAXREFv18_fungi <- system.file(
     "extdata",
-    "TAXREFv18_fungi.csv",
+    "TAXREFv18_fungi_mini.csv",
     package = "taxinfo"
   )
 
@@ -135,7 +135,7 @@ test_that("tax_info_pq csv_taxonomic_rank is required", {
 test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
   TAXREFv18_fungi <- system.file(
     "extdata",
-    "TAXREFv18_fungi.csv",
+    "TAXREFv18_fungi_mini.csv",
     package = "taxinfo"
   )
 
@@ -153,7 +153,7 @@ test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
 test_that("tax_info_pq with taxnames returns tibble", {
   TAXREFv18_fungi <- system.file(
     "extdata",
-    "TAXREFv18_fungi.csv",
+    "TAXREFv18_fungi_mini.csv",
     package = "taxinfo"
   )
 
@@ -171,7 +171,7 @@ test_that("tax_info_pq use_duck_db parameter works", {
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   TAXREFv18_fungi <- system.file(
     "extdata",
-    "TAXREFv18_fungi.csv",
+    "TAXREFv18_fungi_mini.csv",
     package = "taxinfo"
   )
 

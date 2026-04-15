@@ -1,7 +1,6 @@
 test_that("example data files exist", {
   # Test that example data files are present
   extdata_files <- c(
-    "TAXREFv18_fungi.csv",
     "TAXREFv18_fungi_mini.csv",
     "bdc_18_01_wider_mini.csv",
     "fun_trait_mini.csv"
