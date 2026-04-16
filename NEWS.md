@@ -1,4 +1,7 @@
 # taxinfo 0.1.2
+
+- `range_bioreg_pq()` and `tax_check_ecoregion()` now call `gbif.range::read_ecoreg()` and `gbif.range::check_and_get_ecoreg()` instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
+
 ## Major Changes
 
 - **Changed default behavior**: The `add_to_phyloseq` parameter now defaults to `TRUE` when a phyloseq object is provided, and `FALSE` when using the `taxnames` parameter. This makes the workflow more intuitive - when working with phyloseq objects, the enriched object is returned by default.

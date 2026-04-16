@@ -95,8 +95,8 @@ range_bioreg_pq <- function(
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
     distinct()
 
-  eco.terra <- gbif.range::read_bioreg(
-    bioreg_name = "eco_terra",
+  eco.terra <- gbif.range::read_ecoreg(
+    ecoreg_name = "eco_terra",
     save_dir = NULL
   )
 

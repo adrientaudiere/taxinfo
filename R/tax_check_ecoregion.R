@@ -85,10 +85,10 @@ tax_check_ecoregion <- function(
   if (verbose) {
     cli::cli_alert_info("Downloading and validating ecoregion data")
   }
-  gbif.range::check_and_get_bioreg("eco_terra")
+  gbif.range::check_and_get_ecoreg("eco_terra")
 
-  ecoregions <- gbif.range::read_bioreg(
-    bioreg_name = "eco_terra",
+  ecoregions <- gbif.range::read_ecoreg(
+    ecoreg_name = "eco_terra",
     save_dir = NULL
   ) |>
     sf::st_as_sf() |>
