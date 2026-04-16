@@ -92,13 +92,14 @@ Most functions can work with either:
 
 Following the [Darwin core standards](https://dwc.tdwg.org/terms/), here are some key terms used in taxinfo (camel case naming convention):
 - **scientificName**: The full scientific name with authorship and date information if known (e.g., "Stereum ostrea (Blume & T.Nees) Fr., 1838")
-- **genus**: Just the genus part (e.g., "Stereum")
+- **genusEpithet**: Just the genus part (e.g., "Stereum"). Note that the correct Darwin core term is `genus`, but in taxinfo we use `genusEpithet` to avoid confusion with the `genus` field from phyloseq which is often used for the full scientific name.
 - **specificEpithet**: Just the species epithet part (e.g., "ostrea")
 - **namePublishedInYear**: The year the name was published (e.g., "1838")
 
-Other terms come from [verifier globalnames](https://verifier.globalnames.org/) (camel case naming convention):
-- **currentCanonicalSimple**: The simplified scientific name without authorship (e.g., "Stereum ostrea"). It correspond to concatenation of the `genus` and `specificEpithet` fields.
+Other term come from [verifier globalnames](https://verifier.globalnames.org/) (camel case naming convention):
+- **currentCanonicalSimple**: The simplified scientific name without authorship (e.g., "Stereum ostrea"). It correspond to concatenation of the `genusEpithet` and `specificEpithet` fields.
 
+- We add the terms **genusSpeciesEpithet**: Same as `currentCanonicalSimple` but `NA` for genus-only names (i.e. when `specificEpithet` is absent). Useful when you need to filter out unidentified-to-species taxa.
 
 ### Example Workflow
 

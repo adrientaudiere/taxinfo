@@ -34,15 +34,18 @@
 #'      autorities at the end of the binominal name (e.g.
 #'      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)`.
 #'    - **currentCanonicalSimple**: The current accepted name without autorities
-#'      (e.g. `Trametopsis brasiliensis`).
+#'      (e.g. `Trametopsis brasiliensis`, `Russula`).
 #'
 #'      Other columns can be added depending on the parameters:
-#'       `genus_species_canonical_col`, `year_col`, `authorship`.
+#'       `genus_species_canonical_col` (adds "genusEpithet", "specificEpithet",
+#'       and "genusSpeciesEpithet"), `year_col`, `authorship`.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param genus_species_canonical_col (logical, default TRUE) If TRUE
-#'   two new columns are added along with "currentCanonicalSimple":
-#'   "genusEpithet" and "specificEpithet"
+#'   three new columns are added along with "currentCanonicalSimple":
+#'   "genusEpithet", "specificEpithet" and "genusSpeciesEpithet".
+#'   "genusSpeciesEpithet" is identical to "currentCanonicalSimple" but is NA
+#'   when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).
 #' @param year_col (logical, default TRUE) If TRUE
 #'  a new column "namePublishedInYear" is added with the year of publication.
 #' @param authorship_col (logical, default TRUE) If TRUE three new columns are added:
@@ -150,7 +153,12 @@ gna_verifier_pq <- function(
   # Determine column names that will be added
   new_cols <- c("submittedName", "currentName", "currentCanonicalSimple")
   if (genus_species_canonical_col) {
-    new_cols <- c(new_cols, "genusEpithet", "specificEpithet")
+    new_cols <- c(
+      new_cols,
+      "genusEpithet",
+      "specificEpithet",
+      "genusSpeciesEpithet"
+    )
   }
 
   # Check for column name collisions and handle col_prefix
@@ -196,7 +204,12 @@ gna_verifier_pq <- function(
     res_verifier_clean <- res_verifier_clean |>
       mutate(
         genusEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 1),
-        specificEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 2)
+        specificEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 2),
+        genusSpeciesEpithet = ifelse(
+          is.na(.data$specificEpithet) | .data$specificEpithet == "",
+          NA_character_,
+          .data$currentCanonicalSimple
+        )
       )
   }
 

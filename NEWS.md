@@ -27,6 +27,8 @@
 
 - Change the result column `genus` into `genusEpithet` from the `gna_verifier_pq()` function to avoid confusion between "Genus" and "genus" columns and to debug the use of duckdb in `taxinfo_pq()`.
 
+- `gna_verifier_pq()` now adds a `genusSpeciesEpithet` column (when `genus_species_canonical_col = TRUE`) that copies `currentCanonicalSimple` but is `NA` for genus-only names (i.e. when `specificEpithet` is `NA` or empty).
+
 
 ## Bug fix
 
