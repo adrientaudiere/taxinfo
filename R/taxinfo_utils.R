@@ -241,3 +241,57 @@ check_package <- function(
 
   return(is_available)
 }
+
+
+#' Load WWF/TNC terrestrial ecoregions as an `sf` object
+#'
+#' @description
+#' Internal helper that returns the terrestrial ecoregions polygon layer used by
+#' [tax_ecoregion_occur()], [tax_check_ecoregion()] and
+#' [points_to_ecoregions()]. The layer is read from the shapefile shipped with
+#' the package (`inst/extdata/downloads/eco_terra/tnc_terr_ecoregions.shp`) and
+#' cached in a package-internal environment so that repeated calls are free.
+#'
+#' @param ecoreg_name (character, default `"eco_terra"`). Currently only
+#' `"eco_terra"` is supported; the argument is kept for future extension.
+#' @param refresh (logical, default `FALSE`). If `TRUE`, force a re-read from
+#'  disk and refresh the cache.
+#'
+#' @returns An `sf` object with valid geometries and at least the columns
+#' `ECO_NAME`, `BIOME` (or `WWF_MHTNAM`) and `REALM` (or `WWF_REALM2`).
+#'
+#' @author Adrien Taudiere
+#' @keywords internal
+load_ecoregions <- function(ecoreg_name = "eco_terra", refresh = FALSE) {
+  cache_key <- paste0("ecoregions_", ecoreg_name)
+  cache <- get(".taxinfo_cache", envir = asNamespace("taxinfo"))
+
+  if (!refresh && exists(cache_key, envir = cache, inherits = FALSE)) {
+    return(get(cache_key, envir = cache, inherits = FALSE))
+  }
+
+  shp <- system.file(
+    "extdata",
+    "downloads",
+    "eco_terra",
+    "tnc_terr_ecoregions.shp",
+    package = "taxinfo"
+  )
+
+  if (nzchar(shp) && file.exists(shp)) {
+    ecoregions <- sf::read_sf(shp) |>
+      sf::st_make_valid()
+  } else {
+    check_package("gbif.range")
+    gbif.range::check_and_get_ecoreg(ecoreg_name)
+    ecoregions <- gbif.range::read_ecoreg(
+      ecoreg_name = ecoreg_name,
+      save_dir = NULL
+    ) |>
+      sf::st_as_sf() |>
+      sf::st_make_valid()
+  }
+
+  assign(cache_key, ecoregions, envir = cache)
+  ecoregions
+}

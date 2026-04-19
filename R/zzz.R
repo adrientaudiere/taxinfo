@@ -1,3 +1,13 @@
+.taxinfo_cache <- new.env(parent = emptyenv())
+
+.onLoad <- function(libname, pkgname) {
+  assign(
+    ".taxinfo_cache",
+    new.env(parent = emptyenv()),
+    envir = asNamespace(pkgname)
+  )
+}
+
 .onAttach <- function(libname, pkgname) {
   # Set custom CLI theme for the package
   cli::cli_div(

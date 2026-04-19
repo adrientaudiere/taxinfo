@@ -67,17 +67,20 @@ documentation.}
      autorities at the end of the binominal name (e.g.
      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)`.
    - **currentCanonicalSimple**: The current accepted name without autorities
-     (e.g. `Trametopsis brasiliensis`).
+     (e.g. `Trametopsis brasiliensis`, `Russula`).
 
      Other columns can be added depending on the parameters:
-      `genus_species_canonical_col`, `year_col`, `authorship`.}
+      `genus_species_canonical_col` (adds "genusEpithet", "specificEpithet",
+      and "genusSpeciesEpithet"), `year_col`, `authorship`.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{genus_species_canonical_col}{(logical, default TRUE) If TRUE
-two new columns are added along with "currentCanonicalSimple":
-"genusEpithet" and "specificEpithet"}
+three new columns are added along with "currentCanonicalSimple":
+"genusEpithet", "specificEpithet" and "genusSpeciesEpithet".
+"genusSpeciesEpithet" is identical to "currentCanonicalSimple" but is NA
+when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).}
 
 \item{year_col}{(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.}

@@ -2,11 +2,25 @@
 
 - `range_bioreg_pq()` and `tax_check_ecoregion()` now call `gbif.range::read_ecoreg()` and `gbif.range::check_and_get_ecoreg()` instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
 
+## Breaking changes
+
+- `tax_check_ecoregion()` no longer takes `taxa_name` as its first argument. The new signature follows the package-wide `physeq = NULL, taxnames = NULL, taxonomic_rank` pattern. Single-species positional calls like `tax_check_ecoregion("Sp.", lon, lat)` must become `tax_check_ecoregion(taxnames = "Sp.", longitudes = lon, latitudes = lat)`. The return shape also changes: `is_in_ecoregion` is always a `n_taxa × n_points` logical matrix, and the full long tibble of (taxon × ecoregion) counts is available in the new `taxon_ecoregions` element.
+
 ## Major Changes
 
 - **Changed default behavior**: The `add_to_phyloseq` parameter now defaults to `TRUE` when a phyloseq object is provided, and `FALSE` when using the `taxnames` parameter. This makes the workflow more intuitive - when working with phyloseq objects, the enriched object is returned by default.
 
 ## New Features
+
+- Add `points_to_ecoregions()` to locate a set of GPS points in the WWF/TNC terrestrial ecoregion layer. Returns a tibble with `ECO_NAME`, `biome` and `realm` columns; used internally by `tax_check_ecoregion()`.
+
+- `tax_check_ecoregion()` has been rewritten as a thin comparison wrapper on top of the new `tax_ecoregion_occur()` and `points_to_ecoregions()` functions. It now supports a vector of taxa (via `taxnames`) or a phyloseq object (via `physeq` + `taxonomic_rank`), always returns a `n_taxa × n_points` logical matrix in `is_in_ecoregion`, and caches the WWF/TNC shapefile across calls instead of re-downloading it through `gbif.range::check_and_get_ecoreg()` each time. The shapefile is read via `sf::st_join()` (boundary-safe) instead of `sf::st_intersection()`.
+
+- Add `tax_ecoregion_occur()` to return a long tibble of `taxon_name × ECO_NAME × n_occur × prop_occur` from GBIF occurrences, with `min_nb_occur` / `min_proportion` filters. Zero-occurrence taxa are kept with `n_occur = 0L` so downstream joins do not silently drop them.
+
+- Add `tax_ecoregion_occur_pq()` as the phyloseq wrapper for `tax_ecoregion_occur()`. When `add_to_phyloseq = TRUE`, three columns are added to `@tax_table`: `ecoregion_top` (modal ecoregion), `ecoregion_n` (number of qualifying ecoregions) and `ecoregion_list` (semicolon-separated, ordered by descending occurrence count).
+
+- Add `tax_gbif_occur_coords()` to fetch georeferenced GBIF occurrences for a vector of taxa (capped by `n_occur`). Taxa with zero valid occurrences are listed in `attr(result, "missing_taxa")`.
 
 - `tax_photos_pq()` now works correctly with `gallery = TRUE` regardless of the `add_to_phyloseq` value: when `add_to_phyloseq = TRUE` the gallery is printed as a side-effect and the updated phyloseq object is returned invisibly. The `pixture` package dependency has been removed; the gallery is now built with `htmltools` (available on CRAN). Two new parameters `img_height` and `img_width` replace the previous `h`/`w` arguments passed via `...` to `pixture::pixgallery()`.
 

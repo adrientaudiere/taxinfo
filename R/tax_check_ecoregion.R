@@ -1,138 +1,135 @@
-#' Check if a GPS point is within an ecoregion where the species is present
+#' Check whether GPS points fall in ecoregions occupied by a set of taxa
 #'
 #' @description
-#' This function determines whether a given GPS point falls within an ecoregion
-#' where a species has been observed, using GBIF occurrence data
-#' and WWF ecoregion data.
+#' For each name in `taxnames` (or for each taxon of a `physeq` object), checks
+#' whether a set of test GPS points lie within a WWF/TNC terrestrial ecoregion
+#' that is present in the taxon's GBIF range. The function is a thin
+#' comparison wrapper around [tax_ecoregion_occur()] (for the taxa) and
+#' [points_to_ecoregions()] (for the test points).
 #'
-#' @param taxa_name (character) Scientific name of the species to check.
-#' @param longitudes (numeric vector) Longitude of the points to test
-#' @param latitudes (numeric vector) Latitude of the points to test
-#' @param n_occur numeric (default: 500) Maximum number of occurrences to
-#'  retrieve from GBIF
-#' @param min_proportion numeric (default: 0) Minimum proportion of occurrences
-#' in an ecoregion for it to be considered part of the species range (0 to 1).
-#' Note that min_proportion and min_nb_occur are combined (AND operator) when
-#' both are used.
-#' @param min_nb_occur numeric (default: 0) Minimum number of occurrences
-#' in an ecoregion for it to be considered part of the species range. Note that
-#' min_proportion and min_nb_occur are combined (AND operator) when both are
-#' used.
-#' @param verbose logical (default: TRUE) Whether to print progress messages
+#' @inheritParams tax_ecoregion_occur_pq
+#' @param longitudes (numeric vector) Longitudes of the points to test.
+#' @param latitudes (numeric vector) Latitudes of the points to test. Must
+#'  have the same length as `longitudes`.
 #'
-#' @return  A list containing:
-#' - ecoregion: A named vector with the number of occurrences in each
-#' ecoregion for the species
-#' - points_ecoregion: A vector with the ecoregion of each tested
-#' GPS point
-#' - is_in_ecoregion: TRUE if at least `min_nb_occur` of the tested GPS points falls within
-#' an ecoregion where the species has occurrences, FALSE otherwise
-#' @author Adrien Taudiere
+#' @returns A list with four elements:
+#' - `taxon_ecoregions`: the long tibble produced by [tax_ecoregion_occur()].
+#' - `points_ecoregion`: the tibble produced by [points_to_ecoregions()].
+#' - `is_in_ecoregion`: a logical matrix with rownames = taxon names and
+#'   colnames = `"point_<i>"`, shape `n_taxa x n_points`. `TRUE` means the
+#'   ecoregion of the point is among the taxon's ecoregions that pass
+#'   `min_nb_occur` / `min_proportion`.
+#' - `ecoregion`: a named list (one named integer vector per taxon) kept for
+#'   backward compatibility with earlier versions; prefer `taxon_ecoregions`.
+#'
 #' @details
-#' The function:
-#' 1. Extracts ecoregions from species occurrences
-#' 2. Determines the ecoregion of the tested GPS point
-#' 3. Checks if this ecoregion matches those of the species
+#' The previous positional signature `tax_check_ecoregion(taxa_name, lon, lat)`
+#' is no longer supported: the first argument is now `physeq`. Use
+#' `tax_check_ecoregion(taxnames = "Sp.", longitudes = lon, latitudes = lat)`
+#' for single-species calls.
 #'
-#' @seealso [tax_occur_check()], [tax_occur_multi_check_pq()], [tax_occur_check_pq()]
+#' @author Adrien Taudiere
+#' @seealso [tax_ecoregion_occur()], [tax_ecoregion_occur_pq()],
+#'  [points_to_ecoregions()], [tax_occur_check()]
 #' @examples
 #' \dontrun{
-#' # Get occurrences
 #' requireNamespace("rgbif")
-#' tax_check_ecoregion("Xylobolus subpileatus",
+#' res <- tax_check_ecoregion(
+#'   taxnames = "Xylobolus subpileatus",
 #'   longitudes = c(2.3522, 4.2),
-#'   latitudes = c(48.8566, 33)
+#'   latitudes  = c(48.8566, 33),
+#'   n_occur = 200
 #' )
-#'
-#' xylo_ecoregion <- tax_check_ecoregion("Xylobolus subpileatus",
-#'   longitudes = c(2.3522, 4.2), latitudes = c(48.8566, 33),
-#'   n_occur = 20
-#' )
+#' res$is_in_ecoregion
 #' }
-#'
 #' @export
 tax_check_ecoregion <- function(
-  taxa_name,
-  longitudes = NULL,
-  latitudes = NULL,
-  n_occur = 500,
-  min_proportion = 0,
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  longitudes,
+  latitudes,
+  n_occur = 1000,
   min_nb_occur = 0,
-  verbose = TRUE
+  min_proportion = 0,
+  clean_coord = FALSE,
+  verbose = TRUE,
+  time_to_sleep = 0.3,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 ) {
-  if (length(longitudes) != length(latitudes)) {
+  if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort(
-      "Parameters {.arg longitudes} and {.arg latitudes} must have the same length"
+      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
     )
   }
-  if (verbose) {
-    cli::cli_alert_info("Downloading ecoregion data for {.emph {taxa_name}}")
+  if (is.null(taxnames) && is.null(physeq)) {
+    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
-  occurrences <- rgbif::occ_search(
-    scientificName = taxa_name,
-    limit = n_occur,
-    hasGeospatialIssue = FALSE
-  )$data
-
-  clean_occurrences <- occurrences |>
-    filter(!is.na(decimalLongitude), !is.na(decimalLatitude))
-
-  if (nrow(clean_occurrences) == 0) {
-    cli::cli_alert_warning("No valid occurrences found")
-    return(FALSE)
-  }
-
-  if (verbose) {
-    cli::cli_alert_info("Downloading and validating ecoregion data")
-  }
-  gbif.range::check_and_get_ecoreg("eco_terra")
-
-  ecoregions <- gbif.range::read_ecoreg(
-    ecoreg_name = "eco_terra",
-    save_dir = NULL
-  ) |>
-    sf::st_as_sf() |>
-    sf::st_make_valid()
-
-  occurrences_sf <- sf::st_as_sf(
-    clean_occurrences,
-    coords = c("decimalLongitude", "decimalLatitude"),
-    crs = 4326
-  )
-
-  samples_point <- sf::st_as_sf(
-    data.frame(lon = longitudes, lat = latitudes),
-    coords = c("lon", "lat"),
-    crs = 4326
-  )
-  if (verbose) {
-    cli::cli_alert_info("Listing ecoregions for {.emph {taxa_name}}")
-  }
-
-  species_ecoregions <- sf::st_intersection(occurrences_sf, ecoregions) |>
-    sf::st_drop_geometry()
-
-  if (nrow(species_ecoregions) == 0) {
-    cli::cli_alert_warning("No ecoregions found for species occurrences")
-    return(FALSE)
-  }
-
-  ecoregions_list <- table(species_ecoregions$ECO_NAME) |>
-    sort(decreasing = TRUE) |>
-    (\(tab) tab[as.numeric(tab) > min_proportion * nrow(species_ecoregions)])()
-  if (verbose) {
-    cli::cli_alert_info(
-      "Listing ecoregions for {.val {length(longitudes)}} GPS points"
+  if (missing(longitudes) || missing(latitudes)) {
+    cli::cli_abort(
+      "{.arg longitudes} and {.arg latitudes} must be provided"
     )
   }
 
-  points_ecoregion <- sf::st_intersection(samples_point, ecoregions) |>
-    sf::st_drop_geometry()
+  if (is.null(taxnames)) {
+    taxnames <- taxonomic_rank_to_taxnames(
+      physeq = physeq,
+      taxonomic_rank = taxonomic_rank,
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
+    )
+  }
 
-  return(list(
-    "ecoregion" = ecoregions_list,
-    "points_ecoregion" = points_ecoregion,
-    "is_in_ecoregion" = sum(points_ecoregion$ECO_NAME %in% ecoregions_list) >
-      min_nb_occur
-  ))
+  ecoregions <- load_ecoregions()
+
+  taxon_tbl <- tax_ecoregion_occur(
+    taxnames = taxnames,
+    n_occur = n_occur,
+    min_nb_occur = min_nb_occur,
+    min_proportion = min_proportion,
+    clean_coord = clean_coord,
+    verbose = verbose,
+    time_to_sleep = time_to_sleep
+  )
+
+  points_tbl <- points_to_ecoregions(
+    longitudes = longitudes,
+    latitudes = latitudes,
+    ecoregions = ecoregions
+  )
+
+  is_in <- matrix(
+    FALSE,
+    nrow = length(unique(taxnames)),
+    ncol = length(longitudes),
+    dimnames = list(
+      unique(taxnames),
+      paste0("point_", seq_along(longitudes))
+    )
+  )
+  for (tn in rownames(is_in)) {
+    taxon_eco <- taxon_tbl |>
+      dplyr::filter(
+        .data$taxon_name == tn,
+        !is.na(.data$ECO_NAME)
+      ) |>
+      dplyr::pull(.data$ECO_NAME)
+    is_in[tn, ] <- points_tbl$ECO_NAME %in% taxon_eco
+  }
+
+  ecoregion_list <- lapply(
+    split(taxon_tbl, taxon_tbl$taxon_name),
+    function(df) {
+      df <- df[!is.na(df$ECO_NAME), , drop = FALSE]
+      stats::setNames(as.integer(df$n_occur), df$ECO_NAME)
+    }
+  )
+
+  list(
+    taxon_ecoregions = taxon_tbl,
+    points_ecoregion = points_tbl,
+    is_in_ecoregion = is_in,
+    ecoregion = ecoregion_list
+  )
 }

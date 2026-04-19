@@ -92,6 +92,10 @@ reference:
   - tax_occur_check_pq
   - tax_occur_multi_check_pq
   - tax_check_ecoregion
+  - tax_gbif_occur_coords
+  - tax_ecoregion_occur
+  - tax_ecoregion_occur_pq
+  - points_to_ecoregions
 
 - subtitle: "Using sequences from NCBI"
   contents:
