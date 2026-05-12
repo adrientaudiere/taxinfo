@@ -18,7 +18,7 @@ tax_info_pq(
   sep = ",",
   dec = ".",
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -55,6 +55,13 @@ Useful for large csv files.}
 \item{dec}{the field separator character. See [utils::read.csv()].}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
@@ -84,7 +91,7 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 
 # FUNGAL TRAITS example
 # --------------------
-fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
   package = "taxinfo") # minidataset for testing
 # fungal_traits <- system.file("extdata", "fungal_traits.csv", package = "taxinfo")
 fg_traits <- tax_info_pq(data_fungi_cleanNames,

@@ -37,6 +37,8 @@
 #'   [gna_verifier_pq()] when taxonomic names need to be verified.
 #'   See [taxize::gna_verifier()].
 #' @param verbose (Logical, default `TRUE`) If `TRUE`, print progress messages.
+#' @param ft_csv_cols_select A character vector of the column names to select
+#'   from the FungalTraits CSV file.
 #'
 #' @returns Either an updated phyloseq object (when `add_to_phyloseq = TRUE`)
 #'   or a tibble of the augmented tax_table.
@@ -62,8 +64,9 @@
 #' table(res_guild_2@tax_table[, "cons_trophicMode"])
 #'
 #' # Return a tibble instead of a phyloseq
+#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 #' tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-#' 
+#'
 #' \donttest{
 #' res_guild_2 |> psmelt() |>
 #'  filter(Abundance > 0) |>
@@ -72,8 +75,8 @@
 #'  theme_bw() +
 #'  labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
 #'  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-#' 
-#' tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE) 
+#'
+#' tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE)
 #' }
 
 fungal_traits_guilds <- function(
@@ -97,16 +100,27 @@ fungal_traits_guilds <- function(
     "Species"
   ),
   fg_col_prefix = "fg_",
-  ft_csv_cols_select = c("GENUS", "COMMENT.on.genus", 
-    "primary_lifestyle", "Secondary_lifestyle", 
-    "Comment_on_lifestyle_template", "Endophytic_interaction_capability_template",
-    "Plant_pathogenic_capacity_template", "Decay_substrate_template",
-    "Decay_type_template", "Aquatic_habitat_template", 
-    "Animal_biotrophic_capacity_template", "Specific_hosts", 
-    "Growth_form_template", "Fruitbody_type_template", 
-    "Hymenium_type_template", "Ectomycorrhiza_exploration_type_template",
-    "Ectomycorrhiza_lineage_template", "primary_photobiont",
-    "secondary_photobiont"),
+  ft_csv_cols_select = c(
+    "GENUS",
+    "COMMENT.on.genus",
+    "primary_lifestyle",
+    "Secondary_lifestyle",
+    "Comment_on_lifestyle_template",
+    "Endophytic_interaction_capability_template",
+    "Plant_pathogenic_capacity_template",
+    "Decay_substrate_template",
+    "Decay_type_template",
+    "Aquatic_habitat_template",
+    "Animal_biotrophic_capacity_template",
+    "Specific_hosts",
+    "Growth_form_template",
+    "Fruitbody_type_template",
+    "Hymenium_type_template",
+    "Ectomycorrhiza_exploration_type_template",
+    "Ectomycorrhiza_lineage_template",
+    "primary_photobiont",
+    "secondary_photobiont"
+  ),
   db_url = "http://www.stbates.org/funguild_db_2.php",
   add_consensus = TRUE,
   consensus_col_prefix = "cons_",
@@ -163,12 +177,14 @@ fungal_traits_guilds <- function(
   ]
 
   if (length(valid_tax_levels) == 0) {
-    cli::cli_warn(
-      c(
-        "None of the {.arg fg_tax_levels} columns found in tax_table.",
-        "i" = "Skipping FUNGuild annotation."
+    if (length(fg_tax_levels) > 0) {
+      cli::cli_warn(
+        c(
+          "None of the {.arg fg_tax_levels} columns found in tax_table.",
+          "i" = "Skipping FUNGuild annotation."
+        )
       )
-    )
+    }
   } else {
     if (length(valid_tax_levels) < length(fg_tax_levels)) {
       cli::cli_warn(

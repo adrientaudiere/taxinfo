@@ -43,6 +43,11 @@
 #'  gna_verifier seems to fail when too many names are sent at once including
 #'  strange ones such as what is obtain whith rglobi. Only used if
 #'   `valid_taxo_target_taxon` is set to TRUE.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 #' @author Adrien Taudiere
@@ -87,7 +92,7 @@ tax_globi_pq <- function(
   strict_interaction_types = TRUE,
   max_interactions = 1000,
   batch_size_gna_verifier = 50,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   check_package("rglobi")

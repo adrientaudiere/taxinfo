@@ -53,6 +53,11 @@
 #' @param ... Additional parameters to be passed to
 #'    [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and
 #'     `args_blastn`
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns Either a list (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new columns based on the
@@ -129,7 +134,7 @@ tax_retroblast_pq <- function(
   max_length = 4000,
   refseq_only = FALSE,
   sup_params = "NOT uncultured[Title] NOT clone[Title]",
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

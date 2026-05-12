@@ -23,8 +23,12 @@
 #' @param make_plot (logical, default TRUE) If TRUE, return a list of ggplot objects. Else return a list of range outputs from [gbif.range::get_range()].
 #' @param crop_plot (logical, default TRUE) If TRUE, crop the plot to the extent of the bioregion.
 #' @param remove_legend (logical, default TRUE) If TRUE, remove the legend from the plot.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @param ... Additional arguments to pass to [gbif.range::get_gbif()].
-#'
 #' @details
 #' [plot_range_bioreg_pq()] is a wrapper of just a shortcut for
 #'  `range_bioreg_pq(..., make_plot = TRUE)`.
@@ -69,7 +73,7 @@ range_bioreg_pq <- function(
   make_plot = FALSE,
   crop_plot = TRUE,
   remove_legend = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

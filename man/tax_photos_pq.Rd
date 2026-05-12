@@ -21,7 +21,7 @@ tax_photos_pq(
   simple_caption = FALSE,
   img_height = "150px",
   img_width = "200px",
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -74,6 +74,13 @@ and samples).}
 \item{img_height}{(character, default "150px") Height of images in the gallery.}
 
 \item{img_width}{(character, default "200px") Width of images in the gallery.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Unused, kept for backward compatibility.}
 }

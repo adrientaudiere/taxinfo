@@ -15,7 +15,7 @@ plot_tax_gbif_pq(
   verbose = TRUE,
   countries = NULL,
   info_names = c("country", "country code", "acceptedScientificName", "ScientificName"),
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -46,6 +46,13 @@ If FALSE, plot the occurrences as points.}
 \item{info_names}{(Character vector)
 The information to retrieve from GBIF for each occurrence. See
 [gbif.range::get_gbif()] for more details.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Additional arguments to pass to [gbif.range::get_gbif()].}
 }

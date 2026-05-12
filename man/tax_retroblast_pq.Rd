@@ -18,7 +18,7 @@ tax_retroblast_pq(
   max_length = 4000,
   refseq_only = FALSE,
   sup_params = "NOT uncultured[Title] NOT clone[Title]",
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -70,6 +70,13 @@ lead to no sequence retrieved for some taxon names.}
 \item{sup_params}{(char) Additional parameters to be added to the search term.
 By default set to ("NOT uncultured[Title] NOT clone[Title]") to exclude
 uncultured and clone sequences.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Additional parameters to be passed to
 [MiscMetabar::blast_to_phyloseq()] including: `nproc`, `e_value_cut` and

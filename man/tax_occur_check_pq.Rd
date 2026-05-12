@@ -15,7 +15,7 @@ tax_occur_check_pq(
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -50,6 +50,13 @@ Cannot be TRUE if `taxnames` is provided.}
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
 
 \item{verbose}{(Logical, default: TRUE). Whether to print progress messages.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Additional parameters passed to [tax_occur_check()].}
 }

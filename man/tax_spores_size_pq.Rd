@@ -12,7 +12,7 @@ tax_spores_size_pq(
   time_to_sleep = 0.5,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -37,6 +37,13 @@ else return a data.frame.}
 
 \item{col_prefix}{(character, default NULL)
 If not NULL, prefix to add to the new columns added to the phyloseq object.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 If `add_to_phyloseq` is TRUE, returns a phyloseq object with

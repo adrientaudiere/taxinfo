@@ -11,6 +11,11 @@
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with 1 new column (iucn_code) in the
 #' tax_table.
@@ -37,7 +42,7 @@ tax_iucn_code_pq <- function(
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
   col_prefix = NULL,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {

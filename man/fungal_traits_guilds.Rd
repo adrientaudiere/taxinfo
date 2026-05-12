@@ -54,6 +54,9 @@ represent the 7 standard taxonomic ranks fed to FUNGuild.}
 \item{fg_col_prefix}{(Character, default `"fg_"`) Prefix applied to all
 columns imported from FUNGuild.}
 
+\item{ft_csv_cols_select}{A character vector of the column names to select
+from the FungalTraits CSV file.}
+
 \item{db_url}{(Character) URL of the FUNGuild database.
 See [MiscMetabar::get_funguild_db()].}
 
@@ -102,6 +105,7 @@ table(res_guild_2@tax_table[, "fg_trophicMode"])
 table(res_guild_2@tax_table[, "cons_trophicMode"])
 
 # Return a tibble instead of a phyloseq
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
 
 \donttest{
@@ -113,7 +117,7 @@ res_guild_2 |> psmelt() |>
  labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE) 
+tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE)
 }
 }
 \seealso{

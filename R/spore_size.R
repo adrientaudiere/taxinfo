@@ -15,9 +15,13 @@
 #'  information to the phyloseq object. If FALSE, return a data.frame.
 #'  If NULL (default), add to phyloseq if `physeq` is provided,
 #'  else return a data.frame.
-#'
 #' @param col_prefix (character, default NULL)
 #'  If not NULL, prefix to add to the new columns added to the phyloseq object.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns If `add_to_phyloseq` is TRUE, returns a phyloseq object with
 #' new columns in the tax_table slot: `spore_size`, `spore_length`, `spore_width`.
@@ -116,7 +120,7 @@ tax_spores_size_pq <- function(
   time_to_sleep = 0.5,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {

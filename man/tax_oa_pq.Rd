@@ -14,7 +14,7 @@ tax_oa_pq(
   col_prefix = NULL,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -56,6 +56,13 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 "book-chapter", "book", "letter").}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Other params to passed on [openalexR::oa_fetch()]}
 }

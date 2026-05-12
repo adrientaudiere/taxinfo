@@ -19,7 +19,7 @@ tax_globi_pq(
   strict_interaction_types = TRUE,
   max_interactions = 1000,
   batch_size_gna_verifier = 50,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -77,6 +77,13 @@ verify at once with' [taxize::gna_verifier()] function. Its a hack because
 gna_verifier seems to fail when too many names are sent at once including
 strange ones such as what is obtain whith rglobi. Only used if
  `valid_taxo_target_taxon` is set to TRUE.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

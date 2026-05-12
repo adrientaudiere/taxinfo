@@ -37,6 +37,11 @@
 #' @param img_height (character, default "150px") Height of images in the gallery.
 #' @param img_width (character, default "200px") Width of images in the gallery.
 #' @param ... Unused, kept for backward compatibility.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns There is three behavior.(i) If add_to_phyloseq = TRUE, a new
 #'  phyloseq object is returned with a new column (called with the parameter
@@ -91,7 +96,7 @@ tax_photos_pq <- function(
   simple_caption = FALSE,
   img_height = "150px",
   img_width = "200px",
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

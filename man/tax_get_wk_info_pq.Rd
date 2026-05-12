@@ -16,7 +16,7 @@ tax_get_wk_info_pq(
   summarize_function_length = "mean",
   summarize_function_views = "sum",
   n_days = 30,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -59,6 +59,13 @@ across languages. Default is "mean".}
 across languages. Default is "sum".}
 
 \item{n_days}{(numeric, default 30) Number of days to consider for the page views.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

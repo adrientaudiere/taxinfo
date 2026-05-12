@@ -38,6 +38,11 @@
 #'   quicker computation when using method "elevatr" on taxa with a large
 #'   number of occurrences.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #'  object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -145,7 +150,7 @@ tax_gbif_alt <- function(
   elev_zoom = 5,
   n_coor_alt = NULL,
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {

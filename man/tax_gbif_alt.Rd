@@ -14,7 +14,7 @@ tax_gbif_alt(
   elev_zoom = 5,
   n_coor_alt = NULL,
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -52,6 +52,13 @@ quicker computation when using method "elevatr" on taxa with a large
 number of occurrences.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

@@ -35,6 +35,11 @@
 #'  "book-chapter", "book", "letter").
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param ... Other params to passed on [openalexR::oa_fetch()]
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #'  object, if add_to_phyloseq = TRUE, with 1 (`n_doi`) or 4 (`n_doi`,
@@ -128,7 +133,7 @@ tax_oa_pq <- function(
   col_prefix = NULL,
   type_works = c("article", "review", "book-chapter", "book", "letter"),
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

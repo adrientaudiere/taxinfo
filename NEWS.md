@@ -1,3 +1,7 @@
+# taxinfo (development version)
+
+* New function `tax_crosscheck_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.
+
 # taxinfo 0.1.2
 
 - `range_bioreg_pq()` and `tax_check_ecoregion()` now call `gbif.range::read_ecoreg()` and `gbif.range::check_and_get_ecoreg()` instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.

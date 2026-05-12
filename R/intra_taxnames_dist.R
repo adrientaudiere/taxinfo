@@ -13,8 +13,10 @@
 #'  two columns (e.g. c("Genus", "Species"), the default).
 #' @param verbose Logical. Print progress messages (default: TRUE)
 #' @param verbose_DECIPHER Logical. If TRUE, print messages from DECIPHER functions (default: FALSE)
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @param ... Additional arguments to pass to `DECIPHER::AlignSeqs()`
-#'
+#' 
 #' @returns A data.frame with columns:
 #' - taxnames: taxonomic names
 #' - n_taxa: number of taxa assigned to this taxnames

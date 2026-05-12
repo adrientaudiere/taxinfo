@@ -24,6 +24,9 @@ two columns (e.g. c("Genus", "Species"), the default).}
 
 \item{verbose_DECIPHER}{Logical. If TRUE, print messages from DECIPHER functions (default: FALSE)}
 
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
 \item{...}{Additional arguments to pass to `DECIPHER::AlignSeqs()`}
 }
 \value{

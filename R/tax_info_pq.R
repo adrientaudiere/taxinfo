@@ -39,6 +39,11 @@
 #' @param sep the field separator character. See [utils::read.csv()].
 #' @param dec the field separator character. See [utils::read.csv()].
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -53,7 +58,7 @@
 #'
 #' # FUNGAL TRAITS example
 #' # --------------------
-#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv", 
+#' fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
 #'   package = "taxinfo") # minidataset for testing
 #' # fungal_traits <- system.file("extdata", "fungal_traits.csv", package = "taxinfo")
 #' fg_traits <- tax_info_pq(data_fungi_cleanNames,
@@ -152,7 +157,7 @@ tax_info_pq <- function(
   sep = ",",
   dec = ".",
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {

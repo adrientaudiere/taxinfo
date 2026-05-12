@@ -26,6 +26,11 @@
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
 #' @param verbose (Logical, default: TRUE). Whether to print progress messages.
 #' @param ... Additional parameters passed to [tax_occur_check()].
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @return Either a data frame (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object (if add_to_phyloseq = TRUE).
@@ -86,7 +91,7 @@ tax_occur_check_pq <- function(
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

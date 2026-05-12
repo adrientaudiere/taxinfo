@@ -23,6 +23,11 @@
 #' @param info_names (Character vector)
 #'   The information to retrieve from GBIF for each occurrence. See
 #'   [gbif.range::get_gbif()] for more details.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @param ... Additional arguments to pass to [gbif.range::get_gbif()].
 #'
 #' @returns A list of ggplot2 objects, one for each taxon.
@@ -94,7 +99,7 @@ plot_tax_gbif_pq <- function(
     "acceptedScientificName",
     "ScientificName"
   ),
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 ) {

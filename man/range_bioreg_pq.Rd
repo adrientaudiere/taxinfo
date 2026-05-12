@@ -15,7 +15,7 @@ range_bioreg_pq(
   make_plot = FALSE,
   crop_plot = TRUE,
   remove_legend = TRUE,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE,
   ...
 )
@@ -44,6 +44,13 @@ messages from gbif.range functions.}
 \item{crop_plot}{(logical, default TRUE) If TRUE, crop the plot to the extent of the bioregion.}
 
 \item{remove_legend}{(logical, default TRUE) If TRUE, remove the legend from the plot.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 
 \item{...}{Additional arguments to pass to [gbif.range::get_gbif()].}
 }

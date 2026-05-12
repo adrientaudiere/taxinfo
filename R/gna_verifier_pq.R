@@ -50,6 +50,8 @@
 #'  a new column "namePublishedInYear" is added with the year of publication.
 #' @param authorship_col (logical, default TRUE) If TRUE three new columns are added:
 #'  "authorship", "bracketauthorship" and "scientificNameAuthorship".
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #' @returns
 #'   Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
 #'   with new columns (see param add_to_phyloseq) in the tax_table slot.
@@ -338,7 +340,13 @@ gna_verifier_pq <- function(
         "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
       ))
     }
-    res_verifier_clean$taxa_names_in_phyloseq <- names(taxnames)
+    res_verifier_clean$taxa_names_in_phyloseq <- if (
+      !is.null(names(taxnames))
+    ) {
+      names(taxnames)
+    } else {
+      taxnames
+    }
 
     # Apply col_prefix to returned tibble if specified
     if (!is.null(col_prefix)) {
@@ -346,6 +354,6 @@ gna_verifier_pq <- function(
         rename_with(~ paste0(col_prefix, .), .cols = -taxa_names_in_phyloseq)
     }
 
-    return(res_verifier)
+    return(res_verifier_clean)
   }
 }

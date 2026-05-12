@@ -14,7 +14,7 @@ tax_gbif_occur_pq(
   by_years = FALSE,
   verbose = TRUE,
   time_to_sleep = 0.3,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
 }
@@ -46,6 +46,13 @@ is computed by years}
 \item{time_to_sleep}{(numeric, default 0.3) Time to sleep between two calls to
 rgbif::occ_search(). Useful to avoid to be blocked by GBIF. Try to increase
 this value if you are blocked by the error "To download GBIF occurrence data in bulk, please request..."}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq

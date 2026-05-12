@@ -33,6 +33,11 @@
 #' @param summarize_function_views A function to summarize the page views
 #' across languages. Default is "sum".
 #' @param n_days (numeric, default 30) Number of days to consider for the page views.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -90,7 +95,7 @@ tax_get_wk_info_pq <- function(
   summarize_function_length = "mean",
   summarize_function_views = "sum",
   n_days = 30,
-  discard_genus_alone = taxonomic_rank == "currentCanonicalSimple",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
   check_package("wikitaxa")

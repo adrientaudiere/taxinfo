@@ -45,6 +45,7 @@ Suggests:
     ggforce,
     ggraph,
     ggstatsplot,
+    ggVennDiagram,
     ggtree,
     htmltools,
     igraph,

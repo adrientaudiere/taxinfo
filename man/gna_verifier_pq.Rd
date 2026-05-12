@@ -87,6 +87,9 @@ a new column "namePublishedInYear" is added with the year of publication.}
 
 \item{authorship_col}{(logical, default TRUE) If TRUE three new columns are added:
 "authorship", "bracketauthorship" and "scientificNameAuthorship".}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
