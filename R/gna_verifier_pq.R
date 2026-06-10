@@ -16,9 +16,6 @@
 #' @param capitalize (Logical) See [taxize::gna_verifier()] documentation.
 #' @param species_group (Logical) See [taxize::gna_verifier()] documentation.
 #' @param fuzzy_uninomial (Logical) See [taxize::gna_verifier()] documentation.
-#' @param stats (Logical) See [taxize::gna_verifier()] documentation.
-#' @param main_taxon_threshold (numeric) See [taxize::gna_verifier()]
-#'   documentation.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'
@@ -113,8 +110,6 @@ gna_verifier_pq <- function(
   capitalize = FALSE,
   species_group = FALSE,
   fuzzy_uninomial = FALSE,
-  stats = FALSE,
-  main_taxon_threshold = 0.5,
   verbose = TRUE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
@@ -191,8 +186,6 @@ gna_verifier_pq <- function(
       capitalize = capitalize,
       species_group = species_group,
       fuzzy_uninomial = fuzzy_uninomial,
-      stats = stats,
-      main_taxon_threshold = main_taxon_threshold,
       output_type = "table"
     )
   }))
