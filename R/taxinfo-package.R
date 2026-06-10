@@ -2,6 +2,7 @@
 #'
 #' @name taxinfo-package
 #' @import MiscMetabar phyloseq dplyr ggplot2 purrr tibble tidyr
+#' @importFrom lifecycle deprecate_soft
 NULL
 
 if (getRversion() >= "2.15.1") {

@@ -86,6 +86,11 @@ theme_idest <- function(
   axis = FALSE,
   ticks = FALSE
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "theme_idest()",
+    "ggplotpq::theme_idest()"
+  )
   ret <- theme_minimal(base_family = sans_family, base_size = base_size)
 
   ret <- ret + theme(legend.background = element_blank())
@@ -446,6 +451,11 @@ scale_color_idest_c <- function(
   direction = 1,
   ...
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "scale_color_idest_c()",
+    "ggplotpq::scale_color_idest_c()"
+  )
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
@@ -474,6 +484,11 @@ scale_fill_idest_c <- function(
   direction = 1,
   ...
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "scale_fill_idest_c()",
+    "ggplotpq::scale_fill_idest_c()"
+  )
   `%notin%` <- Negate(`%in%`)
 
   if (direction %notin% c(1, -1)) {
@@ -511,6 +526,11 @@ scale_color_idest_d <- function(
   override_order = FALSE,
   ...
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "scale_color_idest_d()",
+    "ggplotpq::scale_color_idest_d()"
+  )
   discrete_scale(
     aesthetics = "colour",
     scale_name = "moma_d",
@@ -537,6 +557,11 @@ scale_fill_idest_d <- function(
   override_order = FALSE,
   ...
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "scale_fill_idest_d()",
+    "ggplotpq::scale_fill_idest_d()"
+  )
   discrete_scale(
     aesthetics = "fill",
     scale_name = "moma_d",
@@ -574,6 +599,11 @@ idest_colors <- function(
   direction = c(1, -1),
   override_order = FALSE
 ) {
+  lifecycle::deprecate_soft(
+    "0.2.0",
+    "idest_colors()",
+    "ggplotpq::idest_colors()"
+  )
   `%notin%` <- Negate(`%in%`)
 
   palette <- idest_pal[[palette_name]]

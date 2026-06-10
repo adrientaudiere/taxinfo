@@ -68,9 +68,13 @@ A Venn-style summary shows the overlap in matched canonical names.
 \examples{
 \dontrun{
 # Cross-check a phyloseq object
-res <- tax_crosscheck_pq(data_fungi_mini)
+res <- tax_crosscheck_pq(data_fungi)
 res$summary
 res$comparison |> filter(status == "mismatch")
+
+res$venn_plot 
+
+res_taxref <- tax_crosscheck_pq(data_fungi, data_sources = 12)
 
 # Cross-check a vector of names
 res2 <- tax_crosscheck_pq(taxnames = c(

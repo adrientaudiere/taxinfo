@@ -13,8 +13,6 @@ gna_verifier_pq(
   capitalize = FALSE,
   species_group = FALSE,
   fuzzy_uninomial = FALSE,
-  stats = FALSE,
-  main_taxon_threshold = 0.5,
   verbose = TRUE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
@@ -45,11 +43,6 @@ See [taxize::gna_verifier()] documentation. For example,
 \item{species_group}{(Logical) See [taxize::gna_verifier()] documentation.}
 
 \item{fuzzy_uninomial}{(Logical) See [taxize::gna_verifier()] documentation.}
-
-\item{stats}{(Logical) See [taxize::gna_verifier()] documentation.}
-
-\item{main_taxon_threshold}{(numeric) See [taxize::gna_verifier()]
-documentation.}
 
 \item{verbose}{(logical, default TRUE) If TRUE, prompt some messages.}
 

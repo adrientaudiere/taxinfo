@@ -25,6 +25,7 @@ Imports:
     ggplot2,
     httr,
     jsonlite,
+    lifecycle,
     phyloseq,
     purrr,
     rgbif,
@@ -68,4 +69,4 @@ VignetteBuilder:
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
