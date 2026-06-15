@@ -178,7 +178,7 @@ Compare occurrence patterns at different spatial scales:
 # Check multiple radii
 radii <- c(50, 100, 200, 500)
 
-occurrence_multi_radius <- map_dfr(radii, function(r) {
+occurrence_multi_radius <- purrr::map_dfr(radii, function(r) {
   tax_occur_check_pq(data_clean,
     longitude = longitude,
     latitude = latitude,
@@ -281,7 +281,7 @@ sample_coords <- data.frame(
 )
 
 # Check if sampling sites overlap with known ranges
-site_validation <- map_dfr(1:nrow(sample_coords), function(i) {
+site_validation <- purrr::map_dfr(1:nrow(sample_coords), function(i) {
   tax_occur_check_pq(data_clean,
     longitude = sample_coords$longitude[i],
     latitude = sample_coords$latitude[i],

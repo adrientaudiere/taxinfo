@@ -156,30 +156,26 @@ data_fungi_clean <- gna_verifier_pq(data_fungi_mini,
 # Step 2: Add GBIF occurrence data (add_to_phyloseq defaults to TRUE)
 data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 #> ℹ Processing GBIF occurrences for Stereum ostrea
-#> ■■■■                              11% | ETA: 15s
 #> ℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#> ■■■■                              11% | ETA: 15sℹ Processing GBIF occurrences for Stereum hirsutum
-#> ■■■■                              11% | ETA: 15s■■■■■■■■                          22% | ETA: 16s
-#> ℹ Processing GBIF occurrences for Basidiodendron eyrei
-#> ■■■■■■■■                          22% | ETA: 16sℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#> ■■■■■■■■                          22% | ETA: 16sℹ Processing GBIF occurrences for Fomes fomentarius
-#> ■■■■■■■■                          22% | ETA: 16s■■■■■■■■■■■■■                     39% | ETA: 11s
-#> ℹ Processing GBIF occurrences for Cerocorticium molare
-#> ■■■■■■■■■■■■■                     39% | ETA: 11sℹ Processing GBIF occurrences for Aporpium canescens
-#> ■■■■■■■■■■■■■                     39% | ETA: 11sℹ Processing GBIF occurrences for Hypochnicium analogum
-#> ■■■■■■■■■■■■■                     39% | ETA: 11s■■■■■■■■■■■■■■■■■■                56% | ETA:  8s
-#> ℹ Processing GBIF occurrences for Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■■■■■■■                56% | ETA:  8sℹ Processing GBIF occurrences for Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■■■■■                56% | ETA:  8sℹ Processing GBIF occurrences for Trametes versicolor
-#> ■■■■■■■■■■■■■■■■■■                56% | ETA:  8sℹ Processing GBIF occurrences for Peniophora versiformis
-#> ■■■■■■■■■■■■■■■■■■                56% | ETA:  8s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  3s
+#> ■■■■■■                            17% | ETA:  6s
+#> ℹ Processing GBIF occurrences for Stereum hirsutum
+#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Basidiodendron eyrei
+#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Fomes fomentarius
+#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Cerocorticium molare
+#> ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■■■■                    44% | ETA:  4s
+#> ℹ Processing GBIF occurrences for Aporpium canescens
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hypochnicium analogum
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hyphoderma roseocremeum
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hyphoderma setigerum
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Trametes versicolor
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Peniophora versiformis
+#> ■■■■■■■■■■■■■■                    44% | ETA:  4s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2s
 #> ℹ Processing GBIF occurrences for Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  3sℹ Processing GBIF occurrences for Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  3s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  2s
-#> ℹ Processing GBIF occurrences for Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s
-#> ℹ Processing GBIF occurrences for Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
+#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Peniophorella pubera
+#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Auricularia mesenterica
+#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Hericium coralloides
+#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
 #> ℹ Processing GBIF occurrences for Xylodon flaviporus
 
 # Step 3: Add trait information
@@ -191,19 +187,21 @@ data_with_traits <- tax_info_pq(data_with_gbif,
   col_prefix = "ft_",
   sep = ";"
 )
-#> ✔ Added 18 columns from '/tmp/RtmpeW74JX/temp_libpath9a0d77e55e93/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
+#> ✔ Added 18 columns from '/tmp/Rtmp2RIrmo/temp_libpatha71a726f7d89c/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
 
 # Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
 data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ℹ Getting taxonomic IDs from Wikidata...
 #> ℹ Getting page views from Wikipedia for Stereum ostrea
-#> ■■■■                              11% | ETA: 50s
+#> ■■■■                              11% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#> ■■■■                              11% | ETA: 50sℹ Getting page views from Wikipedia for Stereum hirsutum
-#> ■■■■                              11% | ETA: 50s■■■■■■■                           21% | ETA:  2m
+#> ■■■■                              11% | ETA:  1m■■■■■■                            16% | ETA: 47s
+#> ℹ Getting page views from Wikipedia for Stereum hirsutum
+#> ■■■■■■                            16% | ETA: 47s■■■■■■■                           21% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  2mℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■■                        32% | ETA:  1m
+#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  1m
+#> ℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#> ■■■■■■■■■                         26% | ETA:  1m■■■■■■■■■■                        32% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Fomes fomentarius
 #> ■■■■■■■■■■                        32% | ETA:  1m■■■■■■■■■■■■                      37% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Mycena renatii
@@ -342,14 +340,14 @@ head(data_final@tax_table)
 #> ASV12 "(Pers.) Gray"           NA                "Xylodon"              NA  
 #> ASV18 "(Blume & T.Nees) Fr."   " 11508"          "Stereum ostrea"       " 9"
 #> ASV25 "(Fr.) Contu"            "   227"          "Ossicaulis lachnopus" " 4"
-#> ASV26 "(Willd.) Pers."         "122976"          "Stereum hirsutum"     "25"
+#> ASV26 "(Willd.) Pers."         "122978"          "Stereum hirsutum"     "25"
 #>       page_length page_views taxon_id   
 #> ASV7  NA          NA         NA         
-#> ASV8  "4404.333"  "1067"     "Q2710042" 
+#> ASV8  "4726.429"  " 1045"    "Q2710042" 
 #> ASV12 NA          NA         NA         
-#> ASV18 "4404.333"  "1067"     "Q2710042" 
-#> ASV25 "2340.000"  "  23"     "Q10613125"
-#> ASV26 "4704.111"  " 268"     "Q557377"
+#> ASV18 "4726.429"  " 1045"    "Q2710042" 
+#> ASV25 "2340.000"  "   23"    "Q10613125"
+#> ASV26 "4322.231"  " 1361"    "Q557377"
 
 # Alternative: Query specific taxa without a phyloseq object
 taxa_info <- tax_gbif_occur_pq(
