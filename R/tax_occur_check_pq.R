@@ -1,6 +1,9 @@
 #' Check for taxa occurrences within a radius around samples using GBIF data
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' This function performs a species range check for taxa contained
 #'   in a phyloseq object. The result can optionally be added to the phyloseq
 #'   object's tax_table as new columns.

@@ -1,6 +1,9 @@
 #' Get GBIF occurrence coordinates for a vector of taxa
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' Retrieves up to `n_occur` georeferenced GBIF occurrences for each name in
 #' `taxnames` and returns them as a long tibble. Taxa are resolved to GBIF
 #' usage keys once via [rgbif::name_backbone_checklist()] (filtering on

@@ -1,6 +1,9 @@
 #' Get scientific works about taxa present in a phyloseq object
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'   A wrapper of [openalexR::oa_fetch()] function to get the number of
 #'   scientific works (and a list of doi if count_only is set to FALSE) for each
 #'   taxa of a phyloseq object. Each taxa name is searched in the title and abstract

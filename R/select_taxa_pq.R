@@ -1,5 +1,8 @@
 #' Select taxa in a phyloseq object based on names in a given column of the tax_table
 #'
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' @param physeq A phyloseq object
 #' @param taxnames (optional) A character vector of taxonomic names.
 #' @param taxonomic_rank (Character, default "currentCanonicalSimple")
@@ -51,6 +54,14 @@ select_taxa_pq <- function(
 
   cond <- taxnames_in_physeq %in% taxnames
   names(cond) <- taxa_names(physeq)
+
+  if (!any(cond)) {
+    cli::cli_abort(c(
+      "No taxa match the requested {.arg taxnames}.",
+      "i" = "Searched the {.val {taxonomic_rank}} tax_table column(s) for {.val {taxnames}}."
+    ))
+  }
+
   new_physeq <- subset_taxa_pq(
     physeq,
     cond,

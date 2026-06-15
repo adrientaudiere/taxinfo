@@ -1,5 +1,8 @@
 #' Retrieve information about taxa from wikipedia
 #'
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' @details
 #' This is a very brut/raw approach of the notion of cultural keystone species
 #' (see Mattalia et al. 2025, https://doi.org/10.1002/pan3.10653 for a review of the concept).
@@ -226,6 +229,9 @@ tax_get_wk_info_pq <- function(
 #' Retrieve the wikipedia pages for a given Wikidata taxon identifier
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' Filter only wikipedia page link to a language with a two- or three-letter code
 #' defined by ISO 639-1 or ISO 639-3 (e.g. "en" for English, "fr" for French,
 #' "de" for German). We also add a list of more-than-three-letter codes for
@@ -329,6 +335,9 @@ tax_get_wk_lang <- function(taxon_id, languages_pages = NULL) {
 #' Retrieve information about wikipedia pages for a given taxon id
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' Input can be either a taxon_id (Wikidata taxon identifier) or a tibble as
 #' returned by [tax_get_wk_lang()].
 #'

@@ -1,8 +1,14 @@
 # taxinfo (development version)
 
+* The WWF/TNC ecoregion layer downloaded on first use by the ecoregion functions (`points_to_ecoregions()`, `tax_check_ecoregion()`, `tax_ecoregion_occur()`) is now written to a stable per-user cache directory (`tools::R_user_dir("taxinfo", "cache")`) instead of an `inst/extdata/downloads` folder created under the current working directory.
+
 * `gna_verifier_pq()` removes the `stats` and `main_taxon_threshold` parameters. These only affected kingdom-level summary metadata (not per-name results), and `main_taxon_threshold` was never forwarded to the API by `taxize::gna_verifier()` anyway.
 
+* `select_taxa_pq()` aborts with an explicit message naming the requested `taxnames` when none of them match the `tax_table`, instead of failing with an obscure `OTU abundance data must have non-zero dimensions` error; `taxa_summary_text()` inherits the same clear behaviour.
+
 * New function `tax_crosscheck_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.
+
+* `theme_idest()` falls back to the graphics-device default font when a requested font family (`Roboto Condensed`, `Linux Libertine G`, `Fira Code`) is not installed, instead of failing with `invalid font type` when the plot is printed (for example during `R CMD check` examples or a pkgdown render).
 
 # taxinfo 0.1.2
 

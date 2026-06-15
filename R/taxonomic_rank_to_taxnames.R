@@ -1,6 +1,9 @@
 #' Extract taxonomic names from a phyloseq object
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'   Mainly a internal function for function [gna_verifier_pq()], [tax_oa_pq()],
 #'  [gbif_occur_pq()], [tax_iucn_code_pq()], [tax_globi_pq()],
 #'  [plot_tax_gbif_pq()], ...

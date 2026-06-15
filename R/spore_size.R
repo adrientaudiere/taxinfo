@@ -1,6 +1,9 @@
 #' Extract spore size from mycoDB
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'  Extract spore size information from mycoDB (https://www.mycodb.fr/).
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
@@ -239,6 +242,9 @@ tax_spores_size_pq <- function(
 }
 
 #' Extract spore size from mycoDB for a single species
+#'
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 #'
 #' @param species_name Character. Species name, e.g. "Amanita muscaria"
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.

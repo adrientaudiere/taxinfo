@@ -76,10 +76,13 @@
 #'  labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
 #'  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 #'
-#' tax_bar_pq(res_guild_2,"Height", "cons_trophicMode", add_ribbon=TRUE)
+#'  tax_bar_pq(res_guild_2, "Height", "cons_trophicMode", add_ribbon=TRUE)
 #' }
 
 fungal_traits_guilds <- function(
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
   physeq,
   fungal_traits_file = system.file(
     "extdata",

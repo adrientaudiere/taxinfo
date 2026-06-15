@@ -1,6 +1,9 @@
 #' Verify (and fix) scientific names (Genus species) of a phyloseq object.
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'  A wrapper of [taxize::gna_verifier()] apply to phyloseq object
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.

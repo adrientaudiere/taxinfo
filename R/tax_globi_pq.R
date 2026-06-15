@@ -1,6 +1,9 @@
 #' Get biotic interactions for taxa present in a phyloseq object using rglobi
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'  A wrapper of [rglobi::get_interactions_by_taxa()] function to get biotic
 #'  interactions for each taxa of a phyloseq object
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.

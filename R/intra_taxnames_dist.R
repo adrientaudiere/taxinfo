@@ -1,6 +1,9 @@
 #' Compute intra-taxanames distances for each taxa names
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' This function computes intra-taxanames distances for each taxonomic names
 #'  (e.g. Genus species) in a phyloseq object containing ASV/OTU sequences and taxonomy.
 #'

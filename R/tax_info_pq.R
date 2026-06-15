@@ -2,6 +2,9 @@
 #' phyloseq object
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #'  A function to add information from a custom csv file (e.g. FungalTraits,
 #'  Taxref, ...) to the tax_table slot of a phyloseq object by joining
 #'  taxonomic names from phyloseq object (column `taxonomic_rank`) with a

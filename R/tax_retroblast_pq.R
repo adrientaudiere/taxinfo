@@ -1,6 +1,9 @@
 #' Verify taxonomic assignment using BLAST against NCBI nucleotide database
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' The idea is to take the binomial taxonomic name assigned to each ASV/OTU at
 #' the Genus_species level, search for sequences in NCBI nucleotide database
 #' corresponding to this taxon name (with some additional filters including

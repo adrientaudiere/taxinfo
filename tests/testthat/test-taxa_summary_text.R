@@ -6,6 +6,18 @@ test_that("taxa_summary_text input validation", {
   expect_error(taxa_summary_text(NULL))
 })
 
+test_that("taxa_summary_text aborts clearly when no taxa match", {
+  expect_error(
+    taxa_summary_text(
+      data_fungi,
+      taxonomic_rank = c("Genus", "Species"),
+      taxnames = "Definitely Notataxon",
+      verbose = FALSE
+    ),
+    "No taxa match"
+  )
+})
+
 # Examples from man page: taxa_summary_text.Rd (lines 41-50)
 test_that("taxa_summary_text returns character string", {
   # Example: taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")

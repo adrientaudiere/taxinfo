@@ -42,6 +42,9 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #' Text summary for a taxonomic rank
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' Create a text to summarize the number of samples, taxa, sequences and occurrences of selected taxa in a phyloseq object for a given value in the column of a tax_table
 #'
 #' @param physeq A phyloseq object
@@ -133,6 +136,9 @@ taxa_summary_text <- function(
 #' Check package availability and propose installation instructions
 #'
 #' @description
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' This function checks if a package is available using requireNamespace.
 #' If the package is not available, it provides helpful installation instructions.
 #'
@@ -283,10 +289,23 @@ load_ecoregions <- function(ecoreg_name = "eco_terra", refresh = FALSE) {
       sf::st_make_valid()
   } else {
     check_package("gbif.range")
-    gbif.range::check_and_get_ecoreg(ecoreg_name)
+    # The ~50 MB ecoregion layer is not bundled with the installed package, so
+    # download it once into a stable per-user cache (never the working
+    # directory: gbif.range's default save_dir is `getwd()/inst/extdata`).
+    save_dir <- tools::R_user_dir("taxinfo", "cache")
+    if (!dir.exists(save_dir)) {
+      dir.create(save_dir, recursive = TRUE)
+    }
+    if (!dir.exists(file.path(save_dir, ecoreg_name))) {
+      cli::cli_inform(c(
+        "i" = "Ecoregion layer {.val {ecoreg_name}} is not bundled with {.pkg taxinfo}.",
+        " " = "Downloading it once (~50 MB) to {.path {save_dir}}."
+      ))
+    }
+    gbif.range::check_and_get_ecoreg(ecoreg_name, save_dir = save_dir)
     ecoregions <- gbif.range::read_ecoreg(
       ecoreg_name = ecoreg_name,
-      save_dir = NULL
+      save_dir = save_dir
     ) |>
       sf::st_as_sf() |>
       sf::st_make_valid()

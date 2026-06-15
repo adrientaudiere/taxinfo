@@ -6,6 +6,18 @@ test_that("select_taxa_pq input validation", {
   expect_error(select_taxa_pq(NULL))
 })
 
+test_that("select_taxa_pq aborts clearly when no taxa match", {
+  expect_error(
+    select_taxa_pq(
+      data_fungi,
+      taxonomic_rank = c("Genus", "Species"),
+      taxnames = "Definitely Notataxon",
+      verbose = FALSE
+    ),
+    "No taxa match"
+  )
+})
+
 # Examples from man page: select_taxa_pq.Rd (lines 40-54)
 test_that("select_taxa_pq selects taxa by currentCanonicalSimple", {
   # Example: select_taxa_pq(data_fungi_mini_cleanNames, taxonomic_rank = "currentCanonicalSimple",

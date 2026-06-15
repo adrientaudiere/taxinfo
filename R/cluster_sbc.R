@@ -1,6 +1,9 @@
 #' Create Species-Bound Clusters using SWARM algorithm
 #' @description
 #'
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+#'
 #' This function creates Species-Bound Clusters (SBC) from a phyloseq object
 #' containing taxa (ASV/OTU) sequences and taxonomy based on a proposition
 #' by Riley *et al.* 2025 (<https://doi.org/10.1186/s12915-025-02284-x>).
