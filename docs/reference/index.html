@@ -56,6 +56,13 @@
 
         </dt>
         <dd>Verify (and fix) scientific names (Genus species) of a phyloseq object.</dd>
+
+        <dt>
+
+          <code><a href="tax_crosscheck_pq.html">tax_crosscheck_pq()</a></code>
+
+        </dt>
+        <dd>Cross-check taxonomic names using GBIF backbone and GNA Verifier</dd>
       </dl></div><div class="section level2">
       <h2 id="add-data-from-external-sources">Add data from external sources<a class="anchor" aria-label="anchor" href="#add-data-from-external-sources"></a></h2>
 
@@ -93,6 +100,13 @@
 
         </dt>
         <dd>Get number of occurrences for each taxa of a phyloseq object</dd>
+
+        <dt>
+
+          <code><a href="tax_gbif_alt.html">tax_gbif_alt()</a></code>
+
+        </dt>
+        <dd>Get altitude range statistics for each taxa from GBIF</dd>
       </dl></div><div class="section level2">
 
       <h3 id="globi-interactions-data">Globi interactions data<a class="anchor" aria-label="anchor" href="#globi-interactions-data"></a></h3>
@@ -155,6 +169,22 @@
 
         </dt>
         <dd>Retrieve information about wikipedia pages for a given taxon id</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="fungal-guilds-and-traits-fungaltraits-funguild-">Fungal guilds and traits (FungalTraits + FUNGuild)<a class="anchor" aria-label="anchor" href="#fungal-guilds-and-traits-fungaltraits-funguild-"></a></h3>
+
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="fungal_traits_guilds.html">fungal_traits_guilds()</a></code>
+
+        </dt>
+        <dd>Add FungalTraits and FUNGuild information to a phyloseq object</dd>
       </dl></div><div class="section level2">
 
       <h3 id="other-sources">Other sources<a class="anchor" aria-label="anchor" href="#other-sources"></a></h3>
@@ -226,7 +256,35 @@
           <code><a href="tax_check_ecoregion.html">tax_check_ecoregion()</a></code>
 
         </dt>
-        <dd>Check if a GPS point is within an ecoregion where the species is present</dd>
+        <dd>Check whether GPS points fall in ecoregions occupied by a set of taxa</dd>
+
+        <dt>
+
+          <code><a href="tax_gbif_occur_coords.html">tax_gbif_occur_coords()</a></code>
+
+        </dt>
+        <dd>Get GBIF occurrence coordinates for a vector of taxa</dd>
+
+        <dt>
+
+          <code><a href="tax_ecoregion_occur.html">tax_ecoregion_occur()</a></code>
+
+        </dt>
+        <dd>Count GBIF occurrences of taxa in each WWF/TNC terrestrial ecoregion</dd>
+
+        <dt>
+
+          <code><a href="tax_ecoregion_occur_pq.html">tax_ecoregion_occur_pq()</a></code>
+
+        </dt>
+        <dd>Count GBIF occurrences per ecoregion for the taxa of a phyloseq object</dd>
+
+        <dt>
+
+          <code><a href="points_to_ecoregions.html">points_to_ecoregions()</a></code>
+
+        </dt>
+        <dd>Map GPS points to WWF/TNC terrestrial ecoregions</dd>
       </dl></div><div class="section level2">
 
       <h3 id="using-sequences-from-ncbi">Using sequences from NCBI<a class="anchor" aria-label="anchor" href="#using-sequences-from-ncbi"></a></h3>
@@ -392,14 +450,14 @@
           <code><a href="scale_fill_idest_c.html">scale_fill_idest_c()</a></code>
 
         </dt>
-        <dd>IdEst continuous fill scales for ggplot2</dd>
+        <dd>IdEst continuous fill scales for ggplot2 &lt;a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"&gt; &lt;img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"&gt;&lt;/a&gt;</dd>
 
         <dt>
 
           <code><a href="scale_fill_idest_d.html">scale_fill_idest_d()</a></code>
 
         </dt>
-        <dd>IdEst discrete fill scales for ggplot2</dd>
+        <dd>IdEst discrete fill scales for ggplot2 &lt;a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"&gt; &lt;img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"&gt;&lt;/a&gt;</dd>
 
         <dt>
 
