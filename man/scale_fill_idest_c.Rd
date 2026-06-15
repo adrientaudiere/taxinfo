@@ -2,7 +2,9 @@
 % Please edit documentation in R/style.R
 \name{scale_fill_idest_c}
 \alias{scale_fill_idest_c}
-\title{IdEst continuous fill scales for ggplot2}
+\title{IdEst continuous fill scales for ggplot2
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>}
 \usage{
 scale_fill_idest_c(palette_name = "all_color_idest", direction = 1, ...)
 }
@@ -21,6 +23,8 @@ A ggplot2 scale object.
 }
 \description{
 IdEst continuous fill scales for ggplot2
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \author{
 Adrien Taudiere

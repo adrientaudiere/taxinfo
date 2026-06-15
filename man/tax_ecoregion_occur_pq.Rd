@@ -74,6 +74,9 @@ Either a phyloseq object with three new tax_table columns (if
  build the phyloseq columns.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Phyloseq wrapper around [tax_ecoregion_occur()]. Extracts taxon names from
 `physeq` using the column(s) named in `taxonomic_rank` (default
 `"currentCanonicalSimple"`, the output of [gna_verifier_pq()]; use
@@ -83,7 +86,6 @@ GBIF and maps occurrences to WWF/TNC terrestrial ecoregions.
 }
 \examples{
 \dontrun{
-data(data_fungi_mini)
 data_fungi_mini_clean <- gna_verifier_pq(data_fungi_mini)
 tax_ecoregion_occur_pq(
   data_fungi_mini_clean,

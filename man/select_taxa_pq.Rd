@@ -34,7 +34,8 @@ empty taxa are removed to take all samples.}
 A new phyloseq object containing only the selected taxa.
 }
 \description{
-Select taxa in a phyloseq object based on names in a given column of the tax_table
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \examples{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)

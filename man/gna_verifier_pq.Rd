@@ -89,7 +89,10 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
   with new columns (see param add_to_phyloseq) in the tax_table slot.
 }
 \description{
-A wrapper of [taxize::gna_verifier()] apply to phyloseq object
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
+ A wrapper of [taxize::gna_verifier()] apply to phyloseq object
 }
 \details{
 This function is mainly a wrapper of the work of others.

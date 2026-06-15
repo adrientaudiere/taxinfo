@@ -20,6 +20,9 @@ A tibble with three columns: "title", "site" and "lang". NA values
  is returned.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Filter only wikipedia page link to a language with a two- or three-letter code
 defined by ISO 639-1 or ISO 639-3 (e.g. "en" for English, "fr" for French,
 "de" for German). We also add a list of more-than-three-letter codes for

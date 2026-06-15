@@ -20,7 +20,8 @@ The available palette are c("all_color_idest", "ligth_color_idest",
 A ggplot2 scale object.
 }
 \description{
-IdEst continuous color scales for ggplot2
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \author{
 Adrien Taudiere

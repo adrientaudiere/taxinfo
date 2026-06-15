@@ -54,6 +54,9 @@ A list with the following elements:
   }
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Compares name-verification results from two independent sources:
 \itemize{
   \item \strong{GNA Verifier} (via [taxize::gna_verifier()]) with

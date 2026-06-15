@@ -44,7 +44,8 @@ object, if add_to_phyloseq = TRUE, with 1 new column (iucn_code) in the
 tax_table.
 }
 \description{
-Get iucn conservation status through gbif
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \details{
 This function is mainly a wrapper of the work of others.

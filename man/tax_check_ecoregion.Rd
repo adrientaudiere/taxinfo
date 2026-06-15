@@ -72,6 +72,9 @@ A list with four elements:
   backward compatibility with earlier versions; prefer `taxon_ecoregions`.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 For each name in `taxnames` (or for each taxon of a `physeq` object), checks
 whether a set of test GPS points lie within a WWF/TNC terrestrial ecoregion
 that is present in the taxon's GBIF range. The function is a thin

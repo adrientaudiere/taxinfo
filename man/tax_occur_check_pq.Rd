@@ -65,6 +65,9 @@ Either a data frame (if add_to_phyloseq = FALSE) or a new phyloseq
 object (if add_to_phyloseq = TRUE).
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 This function performs a species range check for taxa contained
   in a phyloseq object. The result can optionally be added to the phyloseq
   object's tax_table as new columns.

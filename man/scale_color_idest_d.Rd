@@ -28,7 +28,8 @@ whether to override the order of the palette.}
 A ggplot2 scale object.
 }
 \description{
-IdEst discrete color scales for ggplot2
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \author{
 Adrien Taudiere

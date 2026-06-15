@@ -35,6 +35,9 @@ will not count in the venn diagram}
 A character string summarizing the number of samples, taxa, sequences and occurrences of the selected taxa.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Create a text to summarize the number of samples, taxa, sequences and occurrences of selected taxa in a phyloseq object for a given value in the column of a tax_table
 }
 \examples{

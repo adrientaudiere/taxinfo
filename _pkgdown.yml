@@ -46,6 +46,7 @@ reference:
     using authoritative databases and verification services.
   contents:
   - gna_verifier_pq
+  - tax_crosscheck_pq
 
 - title: "Add data from external sources"
   desc: >

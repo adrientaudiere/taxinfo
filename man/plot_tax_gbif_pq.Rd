@@ -60,6 +60,9 @@ The information to retrieve from GBIF for each occurrence. See
 A list of ggplot2 objects, one for each taxon.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
   using ggplot2. The function can take either a phyloseq object or a vector of
   taxonomic names. If a phyloseq object is provided, the taxonomic names are

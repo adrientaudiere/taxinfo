@@ -121,6 +121,9 @@ theme_idest(
 A ggplot2 theme object.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 This theme is used by Adrien Taudiere [IdEst](https://adrientaudiere.com/).
  Based on [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes/tree/master)
 `hrbrthemes::theme_ipsum()` by boB Rudis.

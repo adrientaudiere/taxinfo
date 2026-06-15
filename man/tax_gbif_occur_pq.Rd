@@ -59,6 +59,9 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
  object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 A wrapper of [rgbif::occ_search()] function to get the number of occurences.
 Optionally, the number of occurrences can be obtained by years or by country.
 }

@@ -68,6 +68,9 @@ A list containing:
  found within the radius
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Performs a species occurrence check within a fixed radius around a GPS point using
   GBIF occurrence data.
 }

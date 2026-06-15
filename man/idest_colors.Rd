@@ -30,7 +30,8 @@ The available palette are c("all_color_idest", "ligth_color_idest",
 A vector of colors.
 }
 \description{
-IdEst colors for ggplot theme_idest
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \author{
 Adrien Taudiere

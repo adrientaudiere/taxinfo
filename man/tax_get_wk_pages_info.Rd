@@ -57,6 +57,9 @@ A list with two elements:
  - `page_views`: Total number of page views over the last 'n_days' days
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Input can be either a taxon_id (Wikidata taxon identifier) or a tibble as
 returned by [tax_get_wk_lang()].
 }

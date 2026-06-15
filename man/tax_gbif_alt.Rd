@@ -69,6 +69,9 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
  (number of points detected in ocean).
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 Retrieve altitude/elevation statistics (minimum, maximum, 5%, 50%, 95% quantiles,
 mean and standard deviation) for taxa from GBIF occurrence data.
 

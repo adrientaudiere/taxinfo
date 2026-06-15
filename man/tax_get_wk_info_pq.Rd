@@ -78,7 +78,8 @@ The tibble contains the following columns:
   - `taxa_name`: Taxonomic name used to query wikipedia
 }
 \description{
-Retrieve information about taxa from wikipedia
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \details{
 This is a very brut/raw approach of the notion of cultural keystone species

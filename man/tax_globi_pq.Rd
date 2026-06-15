@@ -90,7 +90,10 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
 }
 \description{
-A wrapper of [rglobi::get_interactions_by_taxa()] function to get biotic
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
+ A wrapper of [rglobi::get_interactions_by_taxa()] function to get biotic
  interactions for each taxa of a phyloseq object
 }
 \details{

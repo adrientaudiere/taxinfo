@@ -18,7 +18,8 @@ the species is found but no spore size info is available, returns
 "No spore size info in mycoDB".
 }
 \description{
-Extract spore size from mycoDB for a single species
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \examples{
 extract_spores_mycodb("Amanita muscaria")

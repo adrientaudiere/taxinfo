@@ -52,7 +52,10 @@ If `add_to_phyloseq` is FALSE, returns a data.frame with columns `taxa_name`,
 `spore_size`, `spore_length`, `spore_width`.
 }
 \description{
-Extract spore size information from mycoDB (https://www.mycodb.fr/).
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
+ Extract spore size information from mycoDB (https://www.mycodb.fr/).
 }
 \examples{
 \dontrun{

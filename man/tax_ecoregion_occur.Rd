@@ -43,6 +43,9 @@ A tibble with columns `taxon_name`, `ECO_NAME`, `biome`, `realm`,
  joins do not silently drop them.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 For each name in `taxnames`, retrieves GBIF occurrence coordinates
 ([tax_gbif_occur_coords()]), maps them to WWF/TNC terrestrial ecoregions in
 a single spatial join and returns a long tibble with the number and the

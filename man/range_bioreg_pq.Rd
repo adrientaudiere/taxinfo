@@ -59,6 +59,9 @@ If make_plot = TRUE (default), a list of ggplot objects, one for each taxon.
 If make_plot = FALSE, a list of range outputs from [gbif.range::get_range()].
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
+
 A wrapper of [gbif.range::get_gbif()] and [gbif.range::get_range()] functions
   to get and plot the range of taxa using ggplot2.
   The function takes a phyloseq object as input and  extracts the taxonomic

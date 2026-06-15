@@ -95,7 +95,8 @@ There is three behavior.(i) If add_to_phyloseq = TRUE, a new
  a tibble.
 }
 \description{
-Find photos of taxa from GBIF or Wikitaxa
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
 \details{
 There is three behavior. See the returns section. Gbif source is quicker
