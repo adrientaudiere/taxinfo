@@ -8,6 +8,8 @@ test_that("tax_iucn_code_pq input validation", {
 
 # Examples from man page: tax_iucn_code_pq.Rd (lines 45-53)
 test_that("tax_iucn_code_pq returns phyloseq with iucn_code column", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
   #   tax_iucn_code_pq()
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
@@ -18,6 +20,8 @@ test_that("tax_iucn_code_pq returns phyloseq with iucn_code column", {
 })
 
 test_that("tax_iucn_code_pq with taxnames returns tibble", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
   result <- tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 

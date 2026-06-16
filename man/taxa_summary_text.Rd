@@ -41,7 +41,10 @@ A character string summarizing the number of samples, taxa, sequences and occurr
 Create a text to summarize the number of samples, taxa, sequences and occurrences of selected taxa in a phyloseq object for a given value in the column of a tax_table
 }
 \examples{
+data_fungi_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+
 taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
+\donttest{
 taxa_summary_text(data_fungi_cleanNames,
   taxnames = "Xylodon flaviporus",
   min_nb_seq = 100, verbose = FALSE
@@ -50,6 +53,7 @@ taxa_summary_text(data_fungi_cleanNames,
   taxonomic_rank = "Trait",
   taxnames = c("Soft Rot"), verbose = FALSE
 )
+}
 }
 \author{
 Adrien Taudiere

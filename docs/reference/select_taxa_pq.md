@@ -1,7 +1,9 @@
 # Select taxa in a phyloseq object based on names in a given column of the tax_table
 
-Select taxa in a phyloseq object based on names in a given column of the
-tax_table
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
 
 ## Usage
 
@@ -61,14 +63,8 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
-#> ✔ GNA verification summary:
-#> • Total taxa in phyloseq: 45
-#> • Taxa submitted for verification: 37
-#> • Genus-level only taxa: 2
-#> • Total matches found: 25
-#> • Synonyms: 4 (including 4 at genus level)
-#> • Accepted names: 21 (including 15 at genus level)
 
 select_taxa_pq(data_fungi_mini_cleanNames,
   taxonomic_rank = "currentCanonicalSimple",
@@ -76,11 +72,7 @@ select_taxa_pq(data_fungi_mini_cleanNames,
   verbose = FALSE,
   clean_pq = FALSE
 )
-#> phyloseq-class experiment-level object
-#> otu_table()   OTU Table:         [ 2 taxa and 137 samples ]
-#> sample_data() Sample Data:       [ 137 samples by 7 sample variables ]
-#> tax_table()   Taxonomy Table:    [ 2 taxa by 21 taxonomic ranks ]
-#> refseq()      DNAStringSet:      [ 2 reference sequences ]
+} # }
 select_taxa_pq(data_fungi,
   taxonomic_rank = c("Genus", "Species"),
   taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE

@@ -1,5 +1,10 @@
 # Verify taxonomic assignment using BLAST against NCBI nucleotide database
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 The idea is to take the binomial taxonomic name assigned to each ASV/OTU
 at the Genus_species level, search for sequences in NCBI nucleotide
 database corresponding to this taxon name (with some additional filters
@@ -33,6 +38,8 @@ tax_retroblast_pq(
   max_length = 4000,
   refseq_only = FALSE,
   sup_params = "NOT uncultured[Title] NOT clone[Title]",
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE,
   ...
 )
 ```
@@ -110,6 +117,17 @@ tax_retroblast_pq(
   default set to ("NOT uncultured\[Title\] NOT clone\[Title\]") to
   exclude uncultured and clone sequences.
 
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
 - ...:
 
   Additional parameters to be passed to
@@ -146,541 +164,42 @@ Adrien Taudiere
 ## Examples
 
 ``` r
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_source = 210)
-#> ✔ GNA verification summary:
-#> • Total taxa in phyloseq: 45
-#> • Taxa submitted for verification: 37
-#> • Genus-level only taxa: 2
-#> • Total matches found: 25
-#> • Synonyms: 4 (including 4 at genus level)
-#> • Accepted names: 21 (including 15 at genus level)
+if (FALSE) { # \dontrun{
+data_fungi_mini_cleanNames <-
+  gna_verifier_pq(data_fungi_mini,
+    data_source = 210)
 
 res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
   marker = c("ITS", "internal transcribed spacer"),
-  retmax = 10, id_cut = 99
+  retmax = 10,
+   id_cut = 99,
+   add_to_phyloseq = FALSE
 )
-#> ℹ Processing taxon: Stereum ostrea
-#> ℹ Search term: `Stereum ostrea[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ℹ Number of results for Stereum ostrea: 69
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■                              11% | ETA: 48s
-#> ℹ Processing taxon: Ossicaulis lachnopus
-#> ■■■■                              11% | ETA: 48s
-
-#> ℹ Search term: `Ossicaulis lachnopus[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■                              11% | ETA: 48s
-
-#> ℹ Number of results for Ossicaulis lachnopus: 6
-#> ■■■■                              11% | ETA: 48s
-
-#> ℹ Number of FASTA sequences retrieved: 6
-#> ■■■■                              11% | ETA: 48s
-
-#> ■■■■■■                            16% | ETA:  1m
-#> ℹ Processing taxon: Stereum hirsutum
-#> ■■■■■■                            16% | ETA:  1m
-
-#> ℹ Search term: `Stereum hirsutum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■                            16% | ETA:  1m
-
-#> ℹ Number of results for Stereum hirsutum: 229
-#> ■■■■■■                            16% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■                            16% | ETA:  1m
-
-#> ■■■■■■■                           21% | ETA:  1m
-#> ℹ Processing taxon: Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Search term: `Basidiodendron eyrei[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Number of results for Basidiodendron eyrei: 15
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ■■■■■■■■■                         26% | ETA:  1m
-#> ℹ Processing taxon: Sistotrema oblongisporum
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Search term: `Sistotrema oblongisporum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Number of results for Sistotrema oblongisporum: 13
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■                        32% | ETA:  1m
-#> ℹ Processing taxon: Fomes fomentarius
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Search term: `Fomes fomentarius[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Number of results for Fomes fomentarius: 453
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-#> ℹ Processing taxon: Mycena renatii
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Search term: `Mycena renatii[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Number of results for Mycena renatii: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ! No sequence found for Mycena renatii
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Processing taxon: Cerocorticium molare
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Search term: `Cerocorticium molare[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Number of results for Cerocorticium molare: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ! No sequence found for Cerocorticium molare
-#> ■■■■■■■■■■■■                      37% | ETA: 47s
-
-#> ■■■■■■■■■■■■■■■                   47% | ETA: 33s
-#> ℹ Processing taxon: Aporpium canescens
-#> ■■■■■■■■■■■■■■■                   47% | ETA: 33s
-
-#> ℹ Search term: `Aporpium canescens[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■                   47% | ETA: 33s
-
-#> ℹ Number of results for Aporpium canescens: 11
-#> ■■■■■■■■■■■■■■■                   47% | ETA: 33s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■                   47% | ETA: 33s
-
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-#> ℹ Processing taxon: Hypochnicium analogum
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Search term: `Hypochnicium analogum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Number of results for Hypochnicium analogum: 0
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ! No sequence found for Hypochnicium analogum
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Processing taxon: Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Search term: `Hyphoderma roseocremeum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Number of results for Hyphoderma roseocremeum: 10
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 30s
-
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 22s
-#> ℹ Processing taxon: Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 22s
-
-#> ℹ Search term: `Hyphoderma setigerum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 22s
-
-#> ℹ Number of results for Hyphoderma setigerum: 62
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 22s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 22s
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 20s
-#> ℹ Processing taxon: Trametes versicolor
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 20s
-
-#> ℹ Search term: `Trametes versicolor[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 20s
-
-#> ℹ Number of results for Trametes versicolor: 959
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 20s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 20s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 17s
-#> ℹ Processing taxon: Peniophora versiformis
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 17s
-
-#> ℹ Search term: `Peniophora versiformis[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 17s
-
-#> ℹ Number of results for Peniophora versiformis: 12
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 17s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 17s
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-#> ℹ Processing taxon: Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Search term: `Exidia glandulosa[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Number of results for Exidia glandulosa: 62
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-#> ℹ Processing taxon: Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Search term: `Peniophorella pubera[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Number of results for Peniophorella pubera: 53
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  7s
-#> ℹ Processing taxon: Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  7s
-
-#> ℹ Search term: `Auricularia mesenterica[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  7s
-
-#> ℹ Number of results for Auricularia mesenterica: 31
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  7s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  7s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-#> ℹ Processing taxon: Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Search term: `Hericium coralloides[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Number of results for Hericium coralloides: 82
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
-#> 
-#> ℹ Processing taxon: Xylodon flaviporus
-#> ℹ Search term: `Xylodon flaviporus[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ℹ Number of results for Xylodon flaviporus: 146
-#> ℹ Number of FASTA sequences retrieved: 10
 
 res_retro$tib_retroblast |>
   summarise(
     prop_good_assign = sum(good_assign) / sum(blast_result),
     n_alt_assign = sum(!is.na(alt_assign))
   )
-#> Error in res_retro$tib_retroblast: $ operator not defined for this S4 class
 
 table(res_retro$tib_retroblast$alt_assign)
-#> Error in res_retro$tib_retroblast: $ operator not defined for this S4 class
 
 res_retro_100 <- tax_retroblast_pq(data_fungi_mini_cleanNames,
   marker = c("ITS", "internal transcribed spacer"),
   retmax = 100, id_cut = 100
 )
-#> ■■■                                5% | ETA:  0s
-#> ℹ Processing taxon: Stereum ostrea
-#> ■■■                                5% | ETA:  0s
-
-#> ℹ Search term: `Stereum ostrea[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■                                5% | ETA:  0s
-
-#> ℹ Number of results for Stereum ostrea: 69
-#> ■■■                                5% | ETA:  0s
-
-#> ℹ Number of FASTA sequences retrieved: 69
-#> ■■■                                5% | ETA:  0s
-
-#> ■■■■                              11% | ETA: 42s
-#> ℹ Processing taxon: Ossicaulis lachnopus
-#> ■■■■                              11% | ETA: 42s
-
-#> ℹ Search term: `Ossicaulis lachnopus[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■                              11% | ETA: 42s
-
-#> ℹ Number of results for Ossicaulis lachnopus: 6
-#> ■■■■                              11% | ETA: 42s
-
-#> ℹ Number of FASTA sequences retrieved: 6
-#> ■■■■                              11% | ETA: 42s
-
-#> ■■■■■■                            16% | ETA: 47s
-#> ℹ Processing taxon: Stereum hirsutum
-#> ■■■■■■                            16% | ETA: 47s
-
-#> ℹ Search term: `Stereum hirsutum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■                            16% | ETA: 47s
-
-#> ℹ Number of results for Stereum hirsutum: 229
-#> ■■■■■■                            16% | ETA: 47s
-
-#> ℹ Number of FASTA sequences retrieved: 100
-#> ■■■■■■                            16% | ETA: 47s
-
-#> ■■■■■■■                           21% | ETA:  1m
-#> ℹ Processing taxon: Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Search term: `Basidiodendron eyrei[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Number of results for Basidiodendron eyrei: 15
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 15
-#> ■■■■■■■                           21% | ETA:  1m
-
-#> ■■■■■■■■■                         26% | ETA:  1m
-#> ℹ Processing taxon: Sistotrema oblongisporum
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Search term: `Sistotrema oblongisporum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Number of results for Sistotrema oblongisporum: 13
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 13
-#> ■■■■■■■■■                         26% | ETA:  1m
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■                        32% | ETA:  1m
-#> ℹ Processing taxon: Fomes fomentarius
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Search term: `Fomes fomentarius[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Number of results for Fomes fomentarius: 453
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ℹ Number of FASTA sequences retrieved: 100
-#> ■■■■■■■■■■                        32% | ETA:  1m
-
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-#> ℹ Processing taxon: Mycena renatii
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Search term: `Mycena renatii[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of results for Mycena renatii: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ! No sequence found for Mycena renatii
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Processing taxon: Cerocorticium molare
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Search term: `Cerocorticium molare[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of results for Cerocorticium molare: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ! No sequence found for Cerocorticium molare
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Processing taxon: Aporpium canescens
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Search term: `Aporpium canescens[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of results for Aporpium canescens: 11
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ℹ Number of FASTA sequences retrieved: 11
-#> ■■■■■■■■■■■■                      37% | ETA: 49s
-
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-#> ℹ Processing taxon: Hypochnicium analogum
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-
-#> ℹ Search term: `Hypochnicium analogum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-
-#> ℹ Number of results for Hypochnicium analogum: 0
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-
-#> ℹ Number of FASTA sequences retrieved: 0
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-
-#> ! No sequence found for Hypochnicium analogum
-#> ■■■■■■■■■■■■■■■■■                 53% | ETA: 31s
-
-#> ■■■■■■■■■■■■■■■■■■                58% | ETA: 26s
-#> ℹ Processing taxon: Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■■■■■■■                58% | ETA: 26s
-
-#> ℹ Search term: `Hyphoderma roseocremeum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■                58% | ETA: 26s
-
-#> ℹ Number of results for Hyphoderma roseocremeum: 10
-#> ■■■■■■■■■■■■■■■■■■                58% | ETA: 26s
-
-#> ℹ Number of FASTA sequences retrieved: 10
-#> ■■■■■■■■■■■■■■■■■■                58% | ETA: 26s
-
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 23s
-#> ℹ Processing taxon: Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 23s
-
-#> ℹ Search term: `Hyphoderma setigerum[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 23s
-
-#> ℹ Number of results for Hyphoderma setigerum: 62
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 23s
-
-#> ℹ Number of FASTA sequences retrieved: 62
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 23s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 21s
-#> ℹ Processing taxon: Trametes versicolor
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 21s
-
-#> ℹ Search term: `Trametes versicolor[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 21s
-
-#> ℹ Number of results for Trametes versicolor: 959
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 21s
-
-#> ℹ Number of FASTA sequences retrieved: 100
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 21s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 18s
-#> ℹ Processing taxon: Peniophora versiformis
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 18s
-
-#> ℹ Search term: `Peniophora versiformis[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 18s
-
-#> ℹ Number of results for Peniophora versiformis: 12
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 18s
-
-#> ℹ Number of FASTA sequences retrieved: 12
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 18s
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-#> ℹ Processing taxon: Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Search term: `Exidia glandulosa[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Number of results for Exidia glandulosa: 62
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ℹ Number of FASTA sequences retrieved: 62
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 14s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-#> ℹ Processing taxon: Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Search term: `Peniophorella pubera[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Number of results for Peniophorella pubera: 53
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> ℹ Number of FASTA sequences retrieved: 53
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 11s
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  8s
-#> ℹ Processing taxon: Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  8s
-
-#> ℹ Search term: `Auricularia mesenterica[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  8s
-
-#> ℹ Number of results for Auricularia mesenterica: 31
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  8s
-
-#> ℹ Number of FASTA sequences retrieved: 31
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  8s
-
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-#> ℹ Processing taxon: Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Search term: `Hericium coralloides[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Number of results for Hericium coralloides: 82
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> ℹ Number of FASTA sequences retrieved: 82
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  4s
-
-#> No blast query match the score filters
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
-#> 
-#> ℹ Processing taxon: Xylodon flaviporus
-#> ℹ Search term: `Xylodon flaviporus[Organism] AND (ITS[Title] OR internal transcribed spacer[Title]) AND 300:4000[SLEN] NOT uncultured[Title] NOT clone[Title]`
-#> ℹ Number of results for Xylodon flaviporus: 146
-#> ℹ Number of FASTA sequences retrieved: 100
 
 # nb of queried names for sequences (id=100%)
 res_retro_100$tib_retroblast$blast_queried |> sum()
-#> Error in res_retro_100$tib_retroblast: $ operator not defined for this S4 class
 # nb of queried names with at least one blast result (id=100%)
 res_retro_100$tib_retroblast$blast_result |> sum()
-#> Error in res_retro_100$tib_retroblast: $ operator not defined for this S4 class
 # nb of good assignation (id=100%)
 res_retro_100$tib_retroblast$good_assign |> sum()
-#> Error in res_retro_100$tib_retroblast: $ operator not defined for this S4 class
 # nb of alternative assignation proposed (id=100%)
 res_retro_100$tib_retroblast$alt_assign |>
   is.na() |>
   sapply(isFALSE) |>
   sum()
-#> Error in res_retro_100$tib_retroblast: $ operator not defined for this S4 class
+
+} # }
 ```

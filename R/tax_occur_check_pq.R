@@ -42,6 +42,7 @@
 #' @author Adrien Taudiere
 #'
 #' @examples
+#' \dontrun{
 #'
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 #'
@@ -82,6 +83,7 @@
 #'
 #' subset_taxa_pq(data_fungi_mini_cleanNames_range_verif, cond_count_sup_0) |>
 #'   summary_plot_pq()
+#' }
 #' @export
 tax_occur_check_pq <- function(
   physeq = NULL,

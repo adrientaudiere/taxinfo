@@ -20,6 +20,8 @@ test_that("taxa_summary_text aborts clearly when no taxa match", {
 
 # Examples from man page: taxa_summary_text.Rd (lines 41-50)
 test_that("taxa_summary_text returns character string", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
   result <- taxa_summary_text(
@@ -32,6 +34,8 @@ test_that("taxa_summary_text returns character string", {
 })
 
 test_that("taxa_summary_text with min_nb_seq parameter", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus",
   #   min_nb_seq = 100, verbose = FALSE)
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
@@ -46,6 +50,8 @@ test_that("taxa_summary_text with min_nb_seq parameter", {
 })
 
 test_that("taxa_summary_text with different taxonomic_rank", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: taxa_summary_text(data_fungi_cleanNames, taxonomic_rank = "Trait",
   #   taxnames = c("Soft Rot"), verbose = FALSE)
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi)

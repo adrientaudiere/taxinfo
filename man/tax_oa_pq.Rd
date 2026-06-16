@@ -91,7 +91,7 @@ This function is mainly a wrapper of the work of others.
   Please cite `openalexR` package.
 }
 \examples{
-\donttest{
+\dontrun{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
   tax_oa_pq()
 

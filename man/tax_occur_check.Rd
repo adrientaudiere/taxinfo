@@ -75,7 +75,7 @@ Performs a species occurrence check within a fixed radius around a GPS point usi
   GBIF occurrence data.
 }
 \examples{
-\donttest{
+\dontrun{
 # Check for Oak species near Paris
 long <- 2.3522
 lat <- 48.8566

@@ -85,7 +85,7 @@
 #' @author Adrien Taudiere
 #' @seealso [MiscMetabar::blast_to_phyloseq()], [rentrez::entrez_search()]
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini,
 #'     data_source = 210)

@@ -9,3 +9,5 @@ README.Rmd
 ^inst/extdata/downloads$
 ^vignettes/inst$
 ^vignettes/articles$
+^vignettes/.*\.Rmd\.orig$
+^vignettes/precompile\.R$

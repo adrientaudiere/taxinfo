@@ -1,5 +1,10 @@
 # Get information from a custom csv file using taxonomic names present in a phyloseq object
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-maturing-blue"
+alt="lifecycle-maturing"\>\</a\>
+
 A function to add information from a custom csv file (e.g. FungalTraits,
 Taxref, ...) to the tax_table slot of a phyloseq object by joining
 taxonomic names from phyloseq object (column \`taxonomic_rank\`) with a
@@ -30,7 +35,9 @@ tax_info_pq(
   csv_cols_select = NULL,
   sep = ",",
   dec = ".",
-  verbose = TRUE
+  verbose = TRUE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 )
 ```
 
@@ -95,6 +102,17 @@ tax_info_pq(
 
   (logical, default TRUE) If TRUE, prompt some messages.
 
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
 ## Value
 
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
@@ -114,13 +132,15 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi,
 
 # FUNGAL TRAITS example
 # --------------------
-fungal_traits <- system.file("extdata", "fun_trait_mini.csv", package = "taxinfo")
+fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
+  package = "taxinfo") # minidataset for testing
+# fungal_traits <- system.file("extdata", "fungal_traits.csv", package = "taxinfo")
 fg_traits <- tax_info_pq(data_fungi_cleanNames,
   taxonomic_rank = "genusEpithet",
   file_name = fungal_traits,
   csv_taxonomic_rank = "GENUS",
   col_prefix = "ft_",
-  sep = ";",
+  sep = "\t",
   add_to_phyloseq = FALSE
 )
 

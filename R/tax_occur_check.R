@@ -42,7 +42,7 @@
 #'  found within the radius
 #' @seealso [tax_occur_check_pq()], [tax_occur_multi_check_pq()]
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Check for Oak species near Paris
 #' long <- 2.3522
 #' lat <- 48.8566

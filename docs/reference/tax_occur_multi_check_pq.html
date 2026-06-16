@@ -145,57 +145,17 @@ See ?[tax_occur_check_pq()].</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_fungi_mini_cleanNames</span> <span class="op">&lt;-</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="va">data_fungi_mini_cleanNames</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span>,</span></span>
 <span class="r-in"><span>    data_sources <span class="op">=</span> <span class="fl">210</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">45</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">37</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">2</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">25</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">4</span> (including <span style="color: #0000BB;">4</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">21</span> (including <span style="color: #0000BB;">15</span> at genus level)</span>
 <span class="r-in"><span><span class="va">res_occur_check</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu">tax_occur_multi_check_pq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>, <span class="va">Diameter</span> <span class="op">==</span> <span class="fl">52</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    longitudes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.31</span>, <span class="fl">8.31</span>, <span class="fl">8.64</span>, <span class="op">-</span><span class="fl">1.19</span>, <span class="fl">7.03</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    latitudes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">47.38</span>, <span class="fl">47.38</span>, <span class="fl">45.83</span>, <span class="fl">43.65</span>, <span class="fl">43.93</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Processing GPS point: <span style="color: #0000BB;">"8.31_47.38"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 36 taxa and 0 samples.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">999</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1000</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">99.9</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">912</span> occurrences for species <span style="font-style: italic;">Stereum hirsutum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">1.78</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■                       </span>  25% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Processing GPS point: <span style="color: #0000BB;">"8.64_45.83"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 38 taxa and 0 samples.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Processing GPS point: <span style="color: #0000BB;">"-1.19_43.65"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 40 taxa and 0 samples.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■                </span>  50% | ETA:  9s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Processing GPS point: <span style="color: #0000BB;">"7.03_43.93"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 40 taxa and 0 samples.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 44 taxa ( ASV7 / ASV8 / ASV12 / ASV18 / ASV25 / ASV27 / ASV29 / ASV32 / ASV34 / ASV35 / ASV41 / ASV42 / ASV46 / ASV47 / ASV48 / ASV49 / ASV50 / ASV53 / ASV54 / ASV58 / ASV59 / ASV61 / ASV62 / ASV63 / ASV64 / ASV67 / ASV68 / ASV71 / ASV72 / ASV75 / ASV77 / ASV82 / ASV83 / ASV85 / ASV91 / ASV93 / ASV94 / ASV99 / ASV100 / ASV101 / ASV104 / ASV105 / ASV107 / ASV108 ) and 4 sample(s) ( A10-005-H_S189_MERGED.fastq.gz / A10-005-M_S190_MERGED.fastq.gz / AD32-007-M_S13_MERGED.fastq.gz / EC2-013-B_S104_MERGED.fastq.gz ).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After filtering taxa with at least <span style="color: #0000BB;">1</span> GBIF occurrences within <span style="color: #0000BB;">50</span>km:/n  - Taxa: <span style="color: #0000BB;">1</span>/<span style="color: #0000BB;">45</span> remain/n  - Samples: <span style="color: #0000BB;">1</span>/<span style="color: #0000BB;">5</span> remain/n  - Occurrences: <span style="color: #0000BB;">1</span>/<span style="color: #0000BB;">28</span> remain</span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

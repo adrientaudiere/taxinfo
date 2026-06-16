@@ -36,7 +36,10 @@ test_that("tax_crosscheck_pq status classification logic", {
   expect_equal(classify_status("Amanita muscaria", "Amanita muscaria"), "match")
   expect_equal(classify_status("Amanita", "Amanita muscaria"), "mismatch")
   expect_equal(classify_status("Amanita muscaria", NA_character_), "gna_only")
-  expect_equal(classify_status(NA_character_, "Amanita muscaria"), "backbone_only")
+  expect_equal(
+    classify_status(NA_character_, "Amanita muscaria"),
+    "backbone_only"
+  )
   expect_equal(classify_status("Amanita muscaria", ""), "gna_only")
   expect_equal(classify_status("", "Amanita muscaria"), "backbone_only")
   expect_equal(classify_status(NA_character_, NA_character_), "both_na")
@@ -54,13 +57,23 @@ test_that("tax_crosscheck_pq returns expected structure with taxnames", {
   )
 
   expect_type(result, "list")
-  expect_named(result, c("gna_results", "backbone_results", "comparison", "summary"))
+  expect_named(
+    result,
+    c("gna_results", "backbone_results", "comparison", "summary")
+  )
   expect_s3_class(result$gna_results, "data.frame")
   expect_s3_class(result$backbone_results, "data.frame")
   expect_s3_class(result$comparison, "data.frame")
   expect_type(result$summary, "integer")
 
-  expected_summary_names <- c("total", "match", "mismatch", "gna_only", "backbone_only", "both_na")
+  expected_summary_names <- c(
+    "total",
+    "match",
+    "mismatch",
+    "gna_only",
+    "backbone_only",
+    "both_na"
+  )
   expect_true(all(expected_summary_names %in% names(result$summary)))
   expect_equal(result$summary[["total"]], 2)
 })
@@ -80,8 +93,10 @@ test_that("tax_crosscheck_pq comparison has status column with valid values", {
   expect_true("gna_canonical" %in% colnames(result$comparison))
   expect_true("backbone_canonical" %in% colnames(result$comparison))
   expect_equal(nrow(result$comparison), 2)
-  expect_true(all(result$comparison$status %in%
-    c("match", "mismatch", "gna_only", "backbone_only", "both_na")))
+  expect_true(all(
+    result$comparison$status %in%
+      c("match", "mismatch", "gna_only", "backbone_only", "both_na")
+  ))
 })
 
 test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {

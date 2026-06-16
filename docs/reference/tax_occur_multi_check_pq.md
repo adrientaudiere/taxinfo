@@ -1,5 +1,10 @@
 # Check for taxa occurrences within a radius around multiple samples using GBIF data
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 This function performs a species range check for taxa contained in a
 phyloseq object, for multiple samples based on their geographic
 coordinates (longitude and latitude).
@@ -89,10 +94,15 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+data_fungi_mini_cleanNames <-
+  gna_verifier_pq(data_fungi_mini,
+    data_sources = 210
+  )
 res_occur_check <-
   tax_occur_multi_check_pq(subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
     longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
     latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
   )
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'physeq' in selecting a method for function 'nsamples': error in evaluating the argument 'object' in selecting a method for function 'sample_data': object 'data_fungi_mini_cleanNames' not found
+} # }
 ```

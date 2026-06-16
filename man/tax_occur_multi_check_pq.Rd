@@ -62,6 +62,7 @@ object, for multiple samples based on their geographic coordinates (longitude
 and latitude).
 }
 \examples{
+\dontrun{
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini,
     data_sources = 210
@@ -71,6 +72,7 @@ res_occur_check <-
     longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
     latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
   )
+}
 }
 \seealso{
 [tax_occur_check()], [tax_occur_multi_pq()]

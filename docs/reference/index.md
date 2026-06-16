@@ -8,6 +8,8 @@ using authoritative databases and verification services.
 - [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
   : Verify (and fix) scientific names (Genus species) of a phyloseq
   object.
+- [`tax_crosscheck_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.md)
+  : Cross-check taxonomic names using GBIF backbone and GNA Verifier
 
 ## Add data from external sources
 
@@ -24,6 +26,8 @@ various external databases and APIs.
 
 - [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md)
   : Get number of occurrences for each taxa of a phyloseq object
+- [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md)
+  : Get altitude range statistics for each taxa from GBIF
 
 ### Globi interactions data
 
@@ -47,6 +51,11 @@ taxonomic information, page statistics, and content analysis.
   : Retrieve the wikipedia pages for a given Wikidata taxon identifier
 - [`tax_get_wk_pages_info()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_pages_info.md)
   : Retrieve information about wikipedia pages for a given taxon id
+
+### Fungal guilds and traits (FungalTraits + FUNGuild)
+
+- [`fungal_traits_guilds()`](https://adrientaudiere.github.io/taxinfo/reference/fungal_traits_guilds.md)
+  : Add FungalTraits and FUNGuild information to a phyloseq object
 
 ### Other sources
 
@@ -73,8 +82,17 @@ names.
   : Check for taxa occurrences within a radius around multiple samples
   using GBIF data
 - [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
-  : Check if a GPS point is within an ecoregion where the species is
-  present
+  : Check whether GPS points fall in ecoregions occupied by a set of
+  taxa
+- [`tax_gbif_occur_coords()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_coords.md)
+  : Get GBIF occurrence coordinates for a vector of taxa
+- [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  : Count GBIF occurrences of taxa in each WWF/TNC terrestrial ecoregion
+- [`tax_ecoregion_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.md)
+  : Count GBIF occurrences per ecoregion for the taxa of a phyloseq
+  object
+- [`points_to_ecoregions()`](https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.md)
+  : Map GPS points to WWF/TNC terrestrial ecoregions
 
 ### Using sequences from NCBI
 
@@ -143,9 +161,15 @@ themes.
 - [`scale_color_idest_d()`](https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_d.md)
   : IdEst discrete color scales for ggplot2
 - [`scale_fill_idest_c()`](https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_c.md)
-  : IdEst continuous fill scales for ggplot2
+  : IdEst continuous fill scales for ggplot2 \<a
+  href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+  \<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+  alt="lifecycle-experimental"\>\</a\>
 - [`scale_fill_idest_d()`](https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_d.md)
-  : IdEst discrete fill scales for ggplot2
+  : IdEst discrete fill scales for ggplot2 \<a
+  href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+  \<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+  alt="lifecycle-experimental"\>\</a\>
 - [`theme_idest()`](https://adrientaudiere.github.io/taxinfo/reference/theme_idest.md)
   : ggplot theme for IdEst
 

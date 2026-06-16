@@ -16,12 +16,15 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/check_package.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/cluster_sbc.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/extract_spores_mycodb.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/fungal_traits_guilds.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/idest_colors.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/idest_pal.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/index.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/intra_taxnames_dist.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/load_ecoregions.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/range_bioreg_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_c.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_d.html</loc></url>
@@ -29,6 +32,11 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_d.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_coords.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_info_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_lang.html</loc></url>

@@ -1,5 +1,10 @@
 # Retrieve information about wikipedia pages for a given taxon id
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 Input can be either a taxon_id (Wikidata taxon identifier) or a tibble
 as returned by \[tax_get_wk_lang()\].
 

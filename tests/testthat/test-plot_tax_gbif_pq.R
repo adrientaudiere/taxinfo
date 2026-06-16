@@ -1,3 +1,6 @@
+skip_if_offline()
+skip_on_cran()
+
 # Test plot_tax_gbif_pq function
 # Examples from man page: plot_tax_gbif_pq.Rd
 

@@ -103,6 +103,8 @@ test_that("tax_occur_multi_check_pq min_occur filtering", {
 
 # Examples from man page: tax_occur_multi_check_pq.Rd (lines 62-66)
 test_that("tax_occur_multi_check_pq returns expected structure", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: res_occur_check <- tax_occur_multi_check_pq(
   #   subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
   #   longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
@@ -138,6 +140,8 @@ test_that("tax_occur_multi_check_pq neither physeq nor taxnames errors", {
 })
 
 test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
+  skip_if_offline()
+  skip_on_cran()
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
   # Create valid coordinates for the subset

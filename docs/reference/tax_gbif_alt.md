@@ -1,0 +1,214 @@
+# Get altitude range statistics for each taxa from GBIF
+
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
+Retrieve altitude/elevation statistics (minimum, maximum, 5 mean and
+standard deviation) for taxa from GBIF occurrence data.
+
+Two methods are available: - \*\*"gbif"\*\* (default): Uses GBIF's
+Download API (\`occ_download()\`) to retrieve occurrence records with
+non-null elevation values. This is the recommended approach by GBIF for
+research purposes. \*\*Requires GBIF credentials.\*\* -
+\*\*"elevatr"\*\*: Computes elevation from GPS coordinates retrieved
+from GBIF using AWS Terrain Tiles via the \`elevatr\` package. This
+provides more complete coverage for occurrences that lack elevation data
+but requires the \`elevatr\` and \`rnaturalearth\` packages.
+
+## Usage
+
+``` r
+tax_gbif_alt(
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  add_to_phyloseq = NULL,
+  col_prefix = NULL,
+  method = c("gbif", "elevatr"),
+  elev_zoom = 5,
+  n_coor_alt = NULL,
+  verbose = TRUE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
+)
+```
+
+## Arguments
+
+- physeq:
+
+  (optional) A phyloseq object. Either \`physeq\` or \`taxnames\` must
+  be provided, but not both.
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (Character, default "currentCanonicalSimple") The column(s) present in
+  the @tax_table slot of the phyloseq object. Can be a vector of two
+  columns (e.g. c("Genus", "Species")).
+
+- add_to_phyloseq:
+
+  (logical, default TRUE when physeq is provided, FALSE when taxnames is
+  provided) If TRUE, add new column(s) in the tax_table of the phyloseq
+  object. Automatically set to TRUE when a phyloseq object is provided
+  and FALSE when taxnames is provided. Cannot be TRUE if \`taxnames\` is
+  provided.
+
+- col_prefix:
+
+  A character string to be added as a prefix to the new columns names
+  added to the tax_table slot of the phyloseq object (default: NULL).
+
+- method:
+
+  (character, default "gbif") Method to retrieve elevation data: -
+  "gbif": Use GBIF's Download API with \`pred_notnull("elevation")\` to
+  retrieve only records with elevation data. This is the recommended
+  approach by GBIF for research. \*\*Requires GBIF credentials\*\* (see
+  Details). - "elevatr": Compute elevation from GPS coordinates using
+  AWS Terrain Tiles. Requires the \`elevatr\` and \`rnaturalearth\`
+  packages.
+
+- elev_zoom:
+
+  (numeric, default 5) Zoom level for AWS Terrain Tiles. Only used when
+  \`method = "elevatr"\`. Higher values give finer resolution but are
+  slower. Range: 1-14. See \[elevatr::get_elev_point()\] for details.
+
+- n_coor_alt:
+
+  (int, default NULL) Number of occurrences to samples. If left to NULL,
+  all occurrences are used to computed the altitute. It allow quicker
+  computation when using method "elevatr" on taxa with a large number of
+  occurrences.
+
+- verbose:
+
+  (logical, default TRUE) If TRUE, prompt some messages.
+
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+## Value
+
+Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
+if add_to_phyloseq = TRUE, with new column(s) in the tax_table. The
+returned data includes: altitude_min, altitude_max, altitude_q05,
+altitude_q50, altitude_q95, altitude_mean, altitude_sd,
+altitude_n_records, and canonicalName. When \`method = "elevatr"\`, also
+includes altitude_n_ocean (number of points detected in ocean).
+
+## Details
+
+\## Method "gbif" (default)
+
+This method uses GBIF's Download API via \`rgbif::occ_download()\` with
+the following predicates: - \`pred_in("taxonKey", gbif_taxon_keys)\` -
+Filter by taxon keys - \`pred("hasCoordinate", TRUE)\` - Only records
+with coordinates - \`pred("hasGeospatialIssue", FALSE)\` - Exclude
+records with geospatial issues - \`pred_notnull("elevation")\` - Only
+records with elevation data
+
+This is the recommended approach by GBIF for research purposes as it
+provides citable downloads with DOIs.
+
+\*\*GBIF credentials are required.\*\* You must: 1. Register at
+\<https://www.gbif.org/user/register\> 2. Store credentials in your
+\`.Renviron\` file: - \`GBIF_USER=your_username\` -
+\`GBIF_PWD=your_password\` - \`GBIF_EMAIL=your_email\` 3. See
+\<https://docs.ropensci.org/rgbif/reference/occ_download.html\> for more
+details.
+
+Note: Downloads are asynchronous and may take some time to complete.
+
+\## Method "elevatr"
+
+This method retrieves GPS coordinates from GBIF occurrence records and
+computes elevation using AWS Terrain Tiles via the \`elevatr\` package.
+This provides more complete coverage than relying on GBIF's elevation
+field.
+
+Ocean points are detected using land boundaries from \`rnaturalearth\`
+and are reported in the \`altitude_n_ocean\` column. A warning is issued
+if ocean points are detected for a taxon.
+
+Please cite \`rgbif\` package. When using method "elevatr", also cite
+\`elevatr\` and \`rnaturalearth\` packages.
+
+## See also
+
+\[rgbif::occ_download()\], \[elevatr::get_elev_point()\],
+\[tax_gbif_occur_pq()\], \[plot_tax_gbif_pq()\]
+
+## Author
+
+Adrien Taudiere
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+data_fungi_mini_cleanNames <-
+  gna_verifier_pq(data_fungi_mini)
+
+# Get altitude range statistics using GBIF Download API (default)
+# Note: Requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
+# Register at https://www.gbif.org/user/register
+data_fungi_mini_alt <- tax_gbif_alt(data_fungi_mini_cleanNames,
+  add_to_phyloseq = FALSE
+)
+
+# Using taxnames vector (returns a tibble)
+altitude_gbif <- tax_gbif_alt(
+  taxnames = c("Amanita muscaria", "Boletus edulis")
+)
+
+# Use elevatr method to compute elevation from GPS coordinates
+# (provides more coverage, no GBIF credentials needed)
+altitude_elevatr <- tax_gbif_alt(
+  taxnames = c("Amanita muscaria"),
+  method = "elevatr",
+  n_coor_alt = 100,
+  verbose = FALSE
+)
+
+# Add altitude data to phyloseq object
+data_fungi_mini_with_alt <- tax_gbif_alt(data_fungi_mini_cleanNames)
+
+data_fungi_mini_with_alt@tax_table |>
+  as.data.frame() |>
+  tibble() |>
+  filter(as.numeric(altitude_n_records) > 100) |>
+  distinct(taxa_name, .keep_all = TRUE) |>
+  ggplot(aes(y = as.numeric(altitude_mean), x = taxa_name, fill = Guild)) +
+  geom_col() +
+  coord_flip() +
+  geom_errorbar(
+    aes(ymin = as.numeric(altitude_q05), ymax = as.numeric(altitude_q95)),
+    width = 0.2
+  ) +
+  geom_label(aes(label = paste0("n=", altitude_n_records)), size = 2) +
+  labs(
+    title = "Mean altitude with 5%-95% quantiles (only taxa with >100 records)",
+    subtitle = "Labels depict the number of gbif records with altitude data, \n
+    color depict ecological Guild",
+    x = "Taxa names",
+    fill = "Guild"
+  ) +
+  theme(legend.position = "bottom")
+} # }
+```

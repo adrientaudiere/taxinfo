@@ -8,6 +8,8 @@ test_that("tax_globi_pq input validation", {
 
 # Examples from man page: tax_globi_pq.Rd (lines 91-106)
 test_that("tax_globi_pq returns tibble with add_to_phyloseq = FALSE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: res_globi <- tax_globi_pq(data_fungi_mini,
   #   taxonomic_rank = c("Genus", "Species"),
   #   interaction_types = list("parasiteOf", "hasHost"),
@@ -25,6 +27,8 @@ test_that("tax_globi_pq returns tibble with add_to_phyloseq = FALSE", {
 })
 
 test_that("tax_globi_pq returns phyloseq with add_to_phyloseq = TRUE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
   #   interaction_types = c("hasHost"))
   data_fungi_mini_cleanNames <- gna_verifier_pq(
@@ -55,6 +59,8 @@ test_that("tax_globi_pq both physeq and taxnames causes error", {
 })
 
 test_that("tax_globi_pq verbose parameter works", {
+  skip_if_offline()
+  skip_on_cran()
   # Should work with verbose = FALSE
   result <- tax_globi_pq(
     data_fungi_mini,
@@ -69,6 +75,8 @@ test_that("tax_globi_pq verbose parameter works", {
 })
 
 test_that("tax_globi_pq discard_synonym parameter works", {
+  skip_if_offline()
+  skip_on_cran()
   # Test with discard_synonym = TRUE (default)
   result_discard <- tax_globi_pq(
     data_fungi_mini,

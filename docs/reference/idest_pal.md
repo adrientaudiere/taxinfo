@@ -13,10 +13,6 @@ The available palette are c("all_color_idest", "ligth_color_idest",
 idest_pal
 ```
 
-## Format
-
-An object of class `list` of length 10.
-
 ## Author
 
 Adrien Taudiere

@@ -71,7 +71,7 @@ A wrapper of [gbif.range::get_gbif()] function to plot the range of taxa
   The function can also filter the occurrences by country.
 }
 \examples{
-\donttest{
+\dontrun{
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 
 p <- plot_tax_gbif_pq(

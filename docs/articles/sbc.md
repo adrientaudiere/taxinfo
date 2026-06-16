@@ -25,6 +25,7 @@
 ```
 
 ``` r
+
 library(taxinfo)
 ```
 
@@ -51,12 +52,14 @@ sequence similarity threshold can vary between these clusters”.
 ```
 
 ``` r
+
 d_f_ab <- subset_taxa_pq(data_fungi, taxa_sums(data_fungi) > 50)
 ```
 
 ## Compute intra-taxonomic names distance
 
 ``` r
+
 intra_taxn_dist <- intra_taxnames_dist(d_f_ab, verbose = FALSE)
 
 intra_taxn_dist |>
@@ -108,6 +111,7 @@ intra_taxn_dist |>
 ```
 
 ``` r
+
 sbc_clusters <- cluster_sbc(d_f_ab, verbose = FALSE)
 
 track_wkflow(list(
@@ -141,6 +145,7 @@ track_wkflow(list(
     #> 1        3
 
 ``` r
+
 summary_plot_pq(sbc_clusters$physeq_SBC)
 ```
 
@@ -151,6 +156,7 @@ taxa, samples, and other key metrics.](figures/unnamed-chunk-5-1.png)
 ## Visualize results
 
 ``` r
+
 left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   filter(!is.na(optimal_d)) |>
   ggplot(aes(x = optimal_d, y = mean_dist, size = n_taxa.x, label = taxnames, color = other_taxnames == "")) +
@@ -201,6 +207,7 @@ cluster.](figures/unnamed-chunk-6-1.png)
 ```
 
 ``` r
+
 left_join(intra_taxn_dist, sbc_clusters$d_per_taxnames, by = "taxnames") |>
   mutate(is_na_optimal_d = is.na(optimal_d)) |>
   filter(!is.na(mean_dist)) |>
@@ -219,6 +226,7 @@ marks the threshold at 0.03.](figures/unnamed-chunk-7-1.png)
 ## Session information
 
 ``` r
+
 sessionInfo()
 ```
 

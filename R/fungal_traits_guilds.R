@@ -1,6 +1,10 @@
 #' Add FungalTraits and FUNGuild information to a phyloseq object
 #'
 #' @description
+#' 
+#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+#' <img src="https://img.shields.io/badge/lifecycle-maturing-blue" alt="lifecycle-maturing"></a>
+#' 
 #' A convenience wrapper that adds guild and trait information from both the
 #' FungalTraits database and the FUNGuild database to the `tax_table` slot of
 #' a phyloseq object. Optionally creates consensus columns that summarise
@@ -49,6 +53,7 @@
 #'   [MiscMetabar::add_funguild_info()], [MiscMetabar::funguild_assign()]
 #'
 #' @examples
+#' \dontrun{
 #' # physeq object with already-verified names
 #' res_guild <- data_fungi |>
 #'  gna_verifier_pq(data_sources = 210) |>
@@ -67,7 +72,6 @@
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 #' tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
 #'
-#' \donttest{
 #' res_guild_2 |> psmelt() |>
 #'  filter(Abundance > 0) |>
 #'  ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +
@@ -80,12 +84,6 @@
 #' }
 
 fungal_traits_guilds <- function(
-#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
-#' <img src="https://img.shields.io/badge/lifecycle-maturing-blue" alt="lifecycle-maturing"></a>
-#'
-#' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
-#' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
-#'
   physeq,
   fungal_traits_file = system.file(
     "extdata",

@@ -1,5 +1,10 @@
 # Verify (and fix) scientific names (Genus species) of a phyloseq object.
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-maturing-blue"
+alt="lifecycle-maturing"\>\</a\>
+
 A wrapper of \[taxize::gna_verifier()\] apply to phyloseq object
 
 ## Usage
@@ -14,14 +19,13 @@ gna_verifier_pq(
   capitalize = FALSE,
   species_group = FALSE,
   fuzzy_uninomial = FALSE,
-  stats = FALSE,
-  main_taxon_threshold = 0.5,
   verbose = TRUE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
-  authorship_col = TRUE
+  authorship_col = TRUE,
+  discard_NA = TRUE
 )
 ```
 
@@ -64,14 +68,6 @@ gna_verifier_pq(
 
   (Logical) See \[taxize::gna_verifier()\] documentation.
 
-- stats:
-
-  (Logical) See \[taxize::gna_verifier()\] documentation.
-
-- main_taxon_threshold:
-
-  (numeric) See \[taxize::gna_verifier()\] documentation.
-
 - verbose:
 
   (logical, default TRUE) If TRUE, prompt some messages.
@@ -93,10 +89,12 @@ gna_verifier_pq(
   with autorities at the end of the binominal name (e.g. \`Trametopsis
   brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)\`. -
   \*\*currentCanonicalSimple\*\*: The current accepted name without
-  autorities (e.g. \`Trametopsis brasiliensis\`).
+  autorities (e.g. \`Trametopsis brasiliensis\`, \`Russula\`).
 
   Other columns can be added depending on the parameters:
-  \`genus_species_canonical_col\`, \`year_col\`, \`authorship\`.
+  \`genus_species_canonical_col\` (adds "genusEpithet",
+  "specificEpithet", and "genusSpeciesEpithet"), \`year_col\`,
+  \`authorship\`.
 
 - col_prefix:
 
@@ -105,8 +103,11 @@ gna_verifier_pq(
 
 - genus_species_canonical_col:
 
-  (logical, default TRUE) If TRUE two new columns are added along with
-  "currentCanonicalSimple": "genusEpithet" and "specificEpithet"
+  (logical, default TRUE) If TRUE three new columns are added along with
+  "currentCanonicalSimple": "genusEpithet", "specificEpithet" and
+  "genusSpeciesEpithet". "genusSpeciesEpithet" is identical to
+  "currentCanonicalSimple" but is NA when "specificEpithet" is NA or
+  empty (i.e. genus-only names are excluded).
 
 - year_col:
 
@@ -117,6 +118,11 @@ gna_verifier_pq(
 
   (logical, default TRUE) If TRUE three new columns are added:
   "authorship", "bracketauthorship" and "scientificNameAuthorship".
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
 
 ## Value
 
@@ -139,28 +145,11 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 df <- gna_verifier_pq(data_fungi, data_sources = 210, add_to_phyloseq = FALSE)
-#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
-#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
-#> Warning: Unknown or uninitialised column: `matchedCardinality`.
-#> Warning: Unknown or uninitialised column: `taxonomicStatus`.
-#> Warning: Unknown or uninitialised column: `matchedCardinality`.
-#> ✔ GNA verification summary:
-#> • Taxa submitted for verification: 373
-#> • Total matches found: 0
-#> • Synonyms: 0 (including 0 at genus level)
-#> • Accepted names: 0 (including 0 at genus level)
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
-#> ✔ GNA verification summary:
-#> • Total taxa in phyloseq: 45
-#> • Taxa submitted for verification: 37
-#> • Genus-level only taxa: 2
-#> • Total matches found: 25
-#> • Synonyms: 4 (including 4 at genus level)
-#> • Accepted names: 21 (including 15 at genus level)
 
-if (FALSE) { # \dontrun{
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 sum(!is.na(data_fungi_cleanNames@tax_table[, "currentName"]))

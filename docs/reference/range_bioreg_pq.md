@@ -1,5 +1,10 @@
 # Get and plot the range of taxa within a bioregion using gbif.range package
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 A wrapper of \[gbif.range::get_gbif()\] and \[gbif.range::get_range()\]
 functions to get and plot the range of taxa using ggplot2. The function
 takes a phyloseq object as input and extracts the taxonomic names from
@@ -21,6 +26,8 @@ range_bioreg_pq(
   make_plot = FALSE,
   crop_plot = TRUE,
   remove_legend = TRUE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE,
   ...
 )
 
@@ -71,6 +78,17 @@ plot_range_bioreg_pq(...)
 - remove_legend:
 
   (logical, default TRUE) If TRUE, remove the legend from the plot.
+
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
 
 - ...:
 

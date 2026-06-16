@@ -31,6 +31,8 @@ test_that("tax_occur_check coordinates validation", {
 
 # Examples from man page: tax_occur_check.Rd (lines 74-82)
 test_that("tax_occur_check returns correct structure", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
   long <- 2.3522
   lat <- 48.8566
@@ -51,6 +53,8 @@ test_that("tax_occur_check returns correct structure", {
 })
 
 test_that("tax_occur_check with Trametopsis brasiliensis", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
   long <- 2.3522
   lat <- 48.8566
@@ -60,6 +64,8 @@ test_that("tax_occur_check with Trametopsis brasiliensis", {
 })
 
 test_that("tax_occur_check with return_all_occ = TRUE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
   long <- 2.3522
   lat <- 48.8566

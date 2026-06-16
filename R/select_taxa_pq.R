@@ -20,6 +20,7 @@
 #' @author Adrien Taudiere
 #'
 #' @examples
+#' \dontrun{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 #'
 #' select_taxa_pq(data_fungi_mini_cleanNames,
@@ -28,6 +29,7 @@
 #'   verbose = FALSE,
 #'   clean_pq = FALSE
 #' )
+#' }
 #' select_taxa_pq(data_fungi,
 #'   taxonomic_rank = c("Genus", "Species"),
 #'   taxnames = c("Xylodon flaviporus"), verbose = FALSE, clean_pq = FALSE

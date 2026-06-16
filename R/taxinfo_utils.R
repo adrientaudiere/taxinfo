@@ -64,7 +64,10 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #' @export
 #'
 #' @examples
+#' data_fungi_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
+#' 
 #' taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
+#' \donttest{
 #' taxa_summary_text(data_fungi_cleanNames,
 #'   taxnames = "Xylodon flaviporus",
 #'   min_nb_seq = 100, verbose = FALSE
@@ -73,6 +76,7 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'   taxonomic_rank = "Trait",
 #'   taxnames = c("Soft Rot"), verbose = FALSE
 #' )
+#' }
 taxa_summary_text <- function(
   physeq,
   taxnames = NULL,

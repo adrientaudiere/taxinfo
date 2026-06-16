@@ -123,7 +123,7 @@ Note that this function need a physeq object and cannot works with a
 list of taxonomic names (taxnames is not a parameter of the function).
 }
 \examples{
-\donttest{
+\dontrun{
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini,
     data_source = 210)

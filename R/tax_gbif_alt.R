@@ -93,10 +93,10 @@
 #' and `rnaturalearth` packages.
 #'
 #' @examples
+#' \dontrun{
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini)
 #'
-#' \dontrun{
 #' # Get altitude range statistics using GBIF Download API (default)
 #' # Note: Requires GBIF credentials (GBIF_USER, GBIF_PWD, GBIF_EMAIL)
 #' # Register at https://www.gbif.org/user/register

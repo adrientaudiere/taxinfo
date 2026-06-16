@@ -1,78 +1,126 @@
-# Check if a GPS point is within an ecoregion where the species is present
+# Check whether GPS points fall in ecoregions occupied by a set of taxa
 
-This function determines whether a given GPS point falls within an
-ecoregion where a species has been observed, using GBIF occurrence data
-and WWF ecoregion data.
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
+For each name in \`taxnames\` (or for each taxon of a \`physeq\`
+object), checks whether a set of test GPS points lie within a WWF/TNC
+terrestrial ecoregion that is present in the taxon's GBIF range. The
+function is a thin comparison wrapper around \[tax_ecoregion_occur()\]
+(for the taxa) and \[points_to_ecoregions()\] (for the test points).
 
 ## Usage
 
 ``` r
 tax_check_ecoregion(
-  taxa_name,
-  longitudes = NULL,
-  latitudes = NULL,
-  n_occur = 500,
-  min_proportion = 0,
+  physeq = NULL,
+  taxnames = NULL,
+  taxonomic_rank = "currentCanonicalSimple",
+  longitudes,
+  latitudes,
+  n_occur = 1000,
   min_nb_occur = 0,
-  verbose = TRUE
+  min_proportion = 0,
+  clean_coord = FALSE,
+  verbose = TRUE,
+  time_to_sleep = 0.3,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 )
 ```
 
 ## Arguments
 
-- taxa_name:
+- physeq:
 
-  (character) Scientific name of the species to check.
+  (optional) A phyloseq object. Either \`physeq\` or \`taxnames\` must
+  be provided, but not both.
+
+- taxnames:
+
+  (optional) A character vector of taxonomic names.
+
+- taxonomic_rank:
+
+  (character, default \`"currentCanonicalSimple"\`). The column(s) of
+  \`physeq@tax_table\` to paste together as taxon names.
 
 - longitudes:
 
-  (numeric vector) Longitude of the points to test
+  (numeric vector) Longitudes of the points to test.
 
 - latitudes:
 
-  (numeric vector) Latitude of the points to test
+  (numeric vector) Latitudes of the points to test. Must have the same
+  length as \`longitudes\`.
 
 - n_occur:
 
-  numeric (default: 500) Maximum number of occurrences to retrieve from
-  GBIF
-
-- min_proportion:
-
-  numeric (default: 0) Minimum proportion of occurrences in an ecoregion
-  for it to be considered part of the species range (0 to 1). Note that
-  min_proportion and min_nb_occur are combined (AND operator) when both
-  are used.
+  (numeric, default \`1000\`). Maximum number of occurrences to retrieve
+  per taxon. Use a smaller value (e.g. \`200\`) for quick checks.
 
 - min_nb_occur:
 
-  numeric (default: 0) Minimum number of occurrences in an ecoregion for
-  it to be considered part of the species range. Note that
-  min_proportion and min_nb_occur are combined (AND operator) when both
-  are used.
+  (numeric, default \`0\`). Keep only (taxon, ecoregion) pairs with at
+  least this many occurrences.
+
+- min_proportion:
+
+  (numeric, default \`0\`). Keep only (taxon, ecoregion) pairs whose
+  share of the taxon's total occurrences is \`\>= min_proportion\` (a
+  number in \`\[0, 1\]\`). Combined with \`min_nb_occur\` via AND.
+
+- clean_coord:
+
+  (logical, default \`FALSE\`). If \`TRUE\`, run
+  \[CoordinateCleaner::clean_coordinates()\] on the result (requires the
+  \`CoordinateCleaner\` package).
 
 - verbose:
 
-  logical (default: TRUE) Whether to print progress messages
+  (logical, default \`TRUE\`). If \`TRUE\`, print progress messages.
+
+- time_to_sleep:
+
+  (numeric, default \`0.3\`). Seconds to pause between
+  \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting.
+
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
 
 ## Value
 
-A list containing: - ecoregion: A named vector with the number of
-occurrences in each ecoregion for the species - points_ecoregion: A
-vector with the ecoregion of each tested GPS point - is_in_ecoregion:
-TRUE if at least \`min_nb_occur\` of the tested GPS points falls within
-an ecoregion where the species has occurrences, FALSE otherwise
+A list with four elements: - \`taxon_ecoregions\`: the long tibble
+produced by \[tax_ecoregion_occur()\]. - \`points_ecoregion\`: the
+tibble produced by \[points_to_ecoregions()\]. - \`is_in_ecoregion\`: a
+logical matrix with rownames = taxon names and colnames =
+\`"point\_\<i\>"\`, shape \`n_taxa x n_points\`. \`TRUE\` means the
+ecoregion of the point is among the taxon's ecoregions that pass
+\`min_nb_occur\` / \`min_proportion\`. - \`ecoregion\`: a named list
+(one named integer vector per taxon) kept for backward compatibility
+with earlier versions; prefer \`taxon_ecoregions\`.
 
 ## Details
 
-The function: 1. Extracts ecoregions from species occurrences 2.
-Determines the ecoregion of the tested GPS point 3. Checks if this
-ecoregion matches those of the species
+The previous positional signature \`tax_check_ecoregion(taxa_name, lon,
+lat)\` is no longer supported: the first argument is now \`physeq\`. Use
+\`tax_check_ecoregion(taxnames = "Sp.", longitudes = lon, latitudes =
+lat)\` for single-species calls.
 
 ## See also
 
-\[tax_occur_check()\], \[tax_occur_multi_check_pq()\],
-\[tax_occur_check_pq()\]
+\[tax_ecoregion_occur()\], \[tax_ecoregion_occur_pq()\],
+\[points_to_ecoregions()\], \[tax_occur_check()\]
 
 ## Author
 
@@ -82,16 +130,13 @@ Adrien Taudiere
 
 ``` r
 if (FALSE) { # \dontrun{
-# Get occurrences
 requireNamespace("rgbif")
-tax_check_ecoregion("Xylobolus subpileatus",
+res <- tax_check_ecoregion(
+  taxnames = "Xylobolus subpileatus",
   longitudes = c(2.3522, 4.2),
-  latitudes = c(48.8566, 33)
+  latitudes  = c(48.8566, 33),
+  n_occur = 200
 )
-
-xylo_ecoregion <- tax_check_ecoregion("Xylobolus subpileatus",
-  longitudes = c(2.3522, 4.2), latitudes = c(48.8566, 33),
-  n_occur = 20
-)
+res$is_in_ecoregion
 } # }
 ```

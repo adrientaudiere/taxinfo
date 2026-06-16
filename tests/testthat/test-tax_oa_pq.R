@@ -74,6 +74,8 @@ test_that("tax_oa_pq DOI validation", {
 
 # Examples from man page: tax_oa_pq.Rd (lines 80-145)
 test_that("tax_oa_pq returns phyloseq with publication data", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |> tax_oa_pq()
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
     tax_oa_pq()
@@ -84,6 +86,8 @@ test_that("tax_oa_pq returns phyloseq with publication data", {
 })
 
 test_that("tax_oa_pq with specific type_works", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   result <- tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
@@ -92,6 +96,8 @@ test_that("tax_oa_pq with specific type_works", {
 })
 
 test_that("tax_oa_pq with return_raw_oa = TRUE returns list", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames, return_raw_oa = TRUE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames, return_raw_oa = TRUE)

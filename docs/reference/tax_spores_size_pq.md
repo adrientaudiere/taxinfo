@@ -1,5 +1,10 @@
 # Extract spore size from mycoDB
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 Extract spore size information from mycoDB (https://www.mycodb.fr/).
 
 ## Usage
@@ -12,7 +17,9 @@ tax_spores_size_pq(
   verbose = TRUE,
   time_to_sleep = 0.5,
   add_to_phyloseq = NULL,
-  col_prefix = NULL
+  col_prefix = NULL,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 )
 ```
 
@@ -52,6 +59,17 @@ tax_spores_size_pq(
 
   (character, default NULL) If not NULL, prefix to add to the new
   columns added to the phyloseq object.
+
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
 
 ## Value
 

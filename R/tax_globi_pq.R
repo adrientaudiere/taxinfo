@@ -59,6 +59,7 @@
 #' @importFrom rglobi get_interactions_by_taxa
 #'
 #' @examples
+#' \dontrun{
 #' data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
 #'   data_sources = 210
 #' )
@@ -67,7 +68,6 @@
 #'   interaction_types = c("hasHost")
 #' )
 #'
-#' \donttest{
 #' res_globi <- tax_globi_pq(data_fungi_mini,
 #'   taxonomic_rank = c("Genus", "Species"),
 #'   interaction_types = list("parasiteOf", "hasHost"),

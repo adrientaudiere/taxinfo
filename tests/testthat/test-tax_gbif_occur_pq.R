@@ -18,6 +18,8 @@ test_that("tax_gbif_occur_pq parameter defaults", {
 
 # Examples from man page: tax_gbif_occur_pq.Rd (lines 61-72)
 test_that("tax_gbif_occur_pq with taxnames returns tibble", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_gbif_occur_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
   result <- tax_gbif_occur_pq(
     taxnames = c("Amanita muscaria", "Boletus edulis")
@@ -28,6 +30,8 @@ test_that("tax_gbif_occur_pq with taxnames returns tibble", {
 })
 
 test_that("tax_gbif_occur_pq with phyloseq add_to_phyloseq = FALSE returns tibble", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_gbif_occur_pq(data_fungi_mini_cleanNames, add_to_phyloseq = FALSE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   result <- tax_gbif_occur_pq(
@@ -39,6 +43,8 @@ test_that("tax_gbif_occur_pq with phyloseq add_to_phyloseq = FALSE returns tibbl
 })
 
 test_that("tax_gbif_occur_pq with by_years parameter", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_years = TRUE, add_to_phyloseq = FALSE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   result <- tax_gbif_occur_pq(
@@ -50,6 +56,8 @@ test_that("tax_gbif_occur_pq with by_years parameter", {
 })
 
 test_that("tax_gbif_occur_pq returns phyloseq with add_to_phyloseq = TRUE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   result <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)

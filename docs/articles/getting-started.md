@@ -10,8 +10,6 @@
 #> Loading required package: MiscMetabar
 #> Loading required package: phyloseq
 #> Loading required package: ggplot2
-#> Loading required package: dada2
-#> Loading required package: Rcpp
 #> Loading required package: dplyr
 #> 
 #> Attaching package: 'dplyr'
@@ -21,10 +19,10 @@
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
-#> Loading required package: purrr
 ```
 
 ``` r
+
 library(taxinfo)
 ```
 
@@ -72,6 +70,7 @@ enrich your taxonomic data:
 ### Step 1: Load Example Data
 
 ``` r
+
 # Load example fungal data from MiscMetabar
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -97,16 +96,17 @@ using the Global Names Architecture:
 **Messages**
 
 ``` popup-pre
-#>  [32m✔ [39m GNA verification summary:
-#>  [36m• [39m Total taxa in phyloseq:  [34m20 [39m
-#>  [36m• [39m Taxa submitted for verification:  [34m19 [39m
-#>  [36m• [39m Genus-level only taxa:  [34m2 [39m
-#>  [36m• [39m Total matches found:  [34m15 [39m
-#>  [36m• [39m Synonyms:  [34m4 [39m (including  [34m4 [39m at genus level)
-#>  [36m• [39m Accepted names:  [34m11 [39m (including  [34m6 [39m at genus level)
+#> ✔ GNA verification summary:
+#> • Total taxa in phyloseq: 20
+#> • Taxa submitted for verification: 19
+#> • Genus-level only taxa: 2
+#> • Total matches found: 15
+#> • Synonyms: 4 (including 4 at genus level)
+#> • Accepted names: 11 (including 6 at genus level)
 ```
 
 ``` r
+
 # Keep only first 20 taxa for speed
 data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
@@ -114,11 +114,12 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 
 ``` r
 
+
 # View the enhanced taxonomic table
 head(data_clean@tax_table)
 ```
 
-    #> Taxonomy Table:     [6 taxa by 21 taxonomic ranks]:
+    #> Taxonomy Table:     [6 taxa by 22 taxonomic ranks]:
     #>       Domain  Phylum          Class            Order            
     #> ASV7  "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
     #> ASV8  "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
@@ -154,20 +155,20 @@ head(data_clean@tax_table)
     #> ASV18 "Stereum ostrea (Blume & T.Nees) Fr., 1838" "Stereum ostrea"      
     #> ASV25 "Ossicaulis lachnopus (Fr.) Contu, 2000"    "Ossicaulis lachnopus"
     #> ASV26 "Stereum hirsutum (Willd.) Pers., 1800"     "Stereum hirsutum"    
-    #>       genusEpithet specificEpithet namePublishedInYear authorship
-    #> ASV7  NA           NA              NA                  NA        
-    #> ASV8  "Stereum"    "ostrea"        "1838"              "Fr."     
-    #> ASV12 "Xylodon"    NA              "1821"              "Gray"    
-    #> ASV18 "Stereum"    "ostrea"        "1838"              "Fr."     
-    #> ASV25 "Ossicaulis" "lachnopus"     "2000"              "Contu"   
-    #> ASV26 "Stereum"    "hirsutum"      "1800"              "Pers."   
-    #>       bracketauthorship scientificNameAuthorship
-    #> ASV7  NA                NA                      
-    #> ASV8  "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
-    #> ASV12 "Pers."           "(Pers.) Gray"          
-    #> ASV18 "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
-    #> ASV25 "Fr."             "(Fr.) Contu"           
-    #> ASV26 "Willd."          "(Willd.) Pers."
+    #>       genusEpithet specificEpithet genusSpeciesEpithet    namePublishedInYear
+    #> ASV7  NA           NA              NA                     NA                 
+    #> ASV8  "Stereum"    "ostrea"        "Stereum ostrea"       "1838"             
+    #> ASV12 "Xylodon"    NA              NA                     "1821"             
+    #> ASV18 "Stereum"    "ostrea"        "Stereum ostrea"       "1838"             
+    #> ASV25 "Ossicaulis" "lachnopus"     "Ossicaulis lachnopus" "2000"             
+    #> ASV26 "Stereum"    "hirsutum"      "Stereum hirsutum"     "1800"             
+    #>       authorship bracketauthorship scientificNameAuthorship
+    #> ASV7  NA         NA                NA                      
+    #> ASV8  "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
+    #> ASV12 "Gray"     "Pers."           "(Pers.) Gray"          
+    #> ASV18 "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
+    #> ASV25 "Contu"    "Fr."             "(Fr.) Contu"           
+    #> ASV26 "Pers."    "Willd."          "(Willd.) Pers."
 
 This adds standardized columns: - `taxa_name`: Original name submitted -
 `currentName`: Current accepted name with authorities  
@@ -186,11 +187,11 @@ matching algorithm results as a tibble by setting
 **Messages**
 
 ``` popup-pre
-#>  [32m✔ [39m GNA verification summary:
-#>  [36m• [39m Taxa submitted for verification:  [34m26 [39m
-#>  [36m• [39m Total matches found:  [34m0 [39m
-#>  [36m• [39m Synonyms:  [34m0 [39m (including  [34m0 [39m at genus level)
-#>  [36m• [39m Accepted names:  [34m0 [39m (including  [34m0 [39m at genus level)
+#> ✔ GNA verification summary:
+#> • Taxa submitted for verification: 26
+#> • Total matches found: 0
+#> • Synonyms: 0 (including 0 at genus level)
+#> • Accepted names: 0 (including 0 at genus level)
 ```
 
 ×
@@ -206,6 +207,7 @@ matching algorithm results as a tibble by setting
 ```
 
 ``` r
+
 df <- gna_verifier_pq(data_fungi_mini,
   data_sources = 210,
   add_to_phyloseq = FALSE
@@ -213,112 +215,137 @@ df <- gna_verifier_pq(data_fungi_mini,
 ```
 
 ``` r
+
 glimpse(df)
 ```
 
     #> Rows: 26
-    #> Columns: 30
-    #> $ submittedName          <chr> "Stereum ostrea", "Xylodon raduloides", "Ossica…
-    #> $ dataSourceId           <chr> "210", "210", "210", "210", "210", "210", "210"…
-    #> $ dataSourceTitleShort   <chr> "TAXREF", "TAXREF", "TAXREF", "TAXREF", "TAXREF…
-    #> $ curation               <chr> "Curated", "Curated", "Curated", "Curated", "Cu…
-    #> $ recordId               <chr> "900725", "901834", "465057", "44622", "189273"…
-    #> $ entryDate              <chr> "2025-04-02", "2025-04-02", "2025-04-02", "2025…
-    #> $ sortScore              <dbl> 9.411447, 8.634970, 9.411447, 9.411447, 8.63497…
-    #> $ matchedNameID          <chr> "0a43b928-10f0-57d2-8b37-7ce10de25b32", "89b563…
-    #> $ matchedName            <chr> "Stereum ostrea (Blume & T.Nees) Fr., 1838", "X…
-    #> $ matchedCardinality     <dbl> 2, 1, 2, 2, 1, 2, 2, NA, 2, 2, 1, 2, 2, 1, 2, 1…
-    #> $ matchedCanonicalSimple <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lachno…
-    #> $ matchedCanonicalFull   <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lachno…
-    #> $ currentRecordId        <chr> "900725", "901834", "465057", "44622", "189273"…
-    #> $ currentNameId          <chr> "0a43b928-10f0-57d2-8b37-7ce10de25b32", "89b563…
-    #> $ currentName            <chr> "Stereum ostrea (Blume & T.Nees) Fr., 1838", "X…
-    #> $ currentCardinality     <dbl> 2, 1, 2, 2, 1, 2, 2, NA, 2, 2, 1, 2, 2, 1, 2, 1…
-    #> $ currentCanonicalSimple <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lachno…
-    #> $ currentCanonicalFull   <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lachno…
-    #> $ taxonomicStatus        <chr> "Accepted", "Accepted", "Accepted", "Accepted",…
-    #> $ isSynonym              <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…
-    #> $ editDistance           <dbl> 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 0, 0, 0, 0…
-    #> $ stemEditDistance       <dbl> 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 0, 0, 0, 0…
-    #> $ matchType              <chr> "Exact", "PartialExact", "Exact", "Exact", "Par…
-    #> $ cardinalityScore       <dbl> 1, 0, 1, 1, 0, 1, 1, NA, 1, 1, 0, 1, 1, 0, 1, 1…
-    #> $ infraSpecificRankScore <dbl> 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 0, 0, 0, 0…
-    #> $ fuzzyLessScore         <dbl> 1, 1, 1, 1, 1, 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, 1…
-    #> $ curatedDataScore       <dbl> 0.6666667, 0.6666667, 0.6666667, 0.6666667, 0.6…
-    #> $ authorMatchScore       <dbl> 0.1428571, 0.1428571, 0.1428571, 0.1428571, 0.1…
-    #> $ acceptedNameScore      <dbl> 1, 1, 1, 1, 1, 1, 1, NA, 1, 0, 1, 0, 0, 1, 0, 1…
-    #> $ parsingQualityScore    <dbl> 1, 1, 1, 1, 1, 1, 1, NA, 1, 1, 1, 1, 1, 1, 1, 1…
+    #> Columns: 11
+    #> $ submittedName            <chr> "Stereum ostrea", "Xylodon raduloides", "Ossi…
+    #> $ currentName              <chr> "Stereum ostrea (Blume & T.Nees) Fr., 1838", …
+    #> $ currentCanonicalSimple   <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lach…
+    #> $ genusEpithet             <chr> "Stereum", "Xylodon", "Ossicaulis", "Stereum"…
+    #> $ specificEpithet          <chr> "ostrea", NA, "lachnopus", "hirsutum", NA, "e…
+    #> $ genusSpeciesEpithet      <chr> "Stereum ostrea", NA, "Ossicaulis lachnopus",…
+    #> $ namePublishedInYear      <chr> "1838", "1821", "2000", "1800", "1980", "1963…
+    #> $ authorship               <chr> "Fr.", "Gray", "Contu", "Pers.", "Ryvarden & …
+    #> $ bracketauthorship        <chr> "Blume & T.Nees", "Pers.", "Fr.", "Willd.", N…
+    #> $ scientificNameAuthorship <chr> "(Blume & T.Nees) Fr.", "(Pers.) Gray", "(Fr.…
+    #> $ taxa_names_in_phyloseq   <chr> "Stereum ostrea", "Xylodon raduloides", "Ossi…
 
 ### Step 3: Add Biodiversity Information
 
 Once names are verified, you can enrich your data with various sources:
 
-🛈⚠
+🛈
 
 ×
 
 **Messages**
 
 ``` popup-pre
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum ostrea [3m [23m
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mOssicaulis lachnopus [3m [23m
-#>  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum hirsutum [3m [23m
-#>  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mBasidiodendron eyrei [3m [23m
-#>  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mSistotrema oblongisporum [3m [23m
-#>  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mFomes fomentarius [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [36mℹ [39m Processing GBIF occurrences for  [3m [3mCerocorticium molare [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [36mℹ [39m Processing GBIF occurrences for  [3m [3mAporpium canescens [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mHypochnicium analogum [3m [23m
-#>  [36mℹ [39m Getting taxonomic IDs from Wikidata...
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mStereum ostrea [3m [23m
-#>  [32m■■■■■■■                          [39m  20% | ETA: 23s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mOssicaulis lachnopus [3m [23m
-#>  [32m■■■■■■■                          [39m  20% | ETA: 23s [36mℹ [39m Getting page views from Wikipedia for  [3m [3mStereum hirsutum [3m [23m
-#>  [32m■■■■■■■                          [39m  20% | ETA: 23s [32m■■■■■■■■■■■■■                    [39m  40% | ETA: 33s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mBasidiodendron eyrei [3m [23m
-#>  [32m■■■■■■■■■■■■■                    [39m  40% | ETA: 33s [32m■■■■■■■■■■■■■■■■                 [39m  50% | ETA: 24s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mSistotrema oblongisporum [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■                 [39m  50% | ETA: 24s [32m■■■■■■■■■■■■■■■■■■■              [39m  60% | ETA: 18s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mFomes fomentarius [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% | ETA: 18s [32m■■■■■■■■■■■■■■■■■■■■■■           [39m  70% | ETA: 23s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mMycena renatii [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■■           [39m  70% | ETA: 23s [36mℹ [39m Getting page views from Wikipedia for  [3m [3mCerocorticium molare [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■■           [39m  70% | ETA: 23s [36mℹ [39m Getting page views from Wikipedia for  [3m [3mAporpium canescens [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■■           [39m  70% | ETA: 23s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mHypochnicium analogum [3m [23m
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mStereum ostrea [3m [23m
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mOssicaulis lachnopus [3m [23m
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mStereum hirsutum [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■                       [39m  30% |  ETA: 20s
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mBasidiodendron eyrei [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■                       [39m  30% |  ETA: 20sFetching OpenAlex  [32m■■■■■■■■■■■■■                    [39m  40% |  ETA: 14s
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mSistotrema oblongisporum [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■                    [39m  40% |  ETA: 14s [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mFomes fomentarius [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■                    [39m  40% |  ETA: 14sFetching OpenAlex  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% |  ETA: 14s
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mMycena renatii [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% |  ETA: 14s
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mCerocorticium molare [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% |  ETA: 14s
-#>  [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mAporpium canescens [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% |  ETA: 14s [36mℹ [39m Fetching OpenAlex works for taxon:  [3m [3mHypochnicium analogum [3m [23m
-#> Fetching OpenAlex  [32m■■■■■■■■■■■■■■■■■■■              [39m  60% |  ETA: 14s
-```
+#> ℹ Processing GBIF occurrences for Stereum ostrea
+#> ℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#> 
+■■■■■■■■■■■                       33% | ETA:  3s [K
 
-×
+ [Kℹ Processing GBIF occurrences for Stereum hirsutum
+#> ■■■■■■■■■■■                       33% | ETA:  3s
 
-**Warnings**
+■■■■■■■■■■■■■■                    44% | ETA:  2s [K
 
-``` popup-pre
-#> Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, :
-#> No records found!
-#> Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, :
-#> No records found!
+ [Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#> ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#> ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Fomes fomentarius
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Cerocorticium molare
+#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s [K
+
+ [Kℹ Processing GBIF occurrences for Aporpium canescens
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+ [Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#> ℹ Getting taxonomic IDs from Wikidata...
+#> ℹ Getting page views from Wikipedia for Stereum ostrea
+#> 
+■■■■■■■                           20% | ETA: 23s [K
+
+ [Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#> ■■■■■■■                           20% | ETA: 23s
+
+■■■■■■■■■■                        30% | ETA: 20s [K
+
+ [Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#> ■■■■■■■■■■                        30% | ETA: 20s
+
+■■■■■■■■■■■■■                     40% | ETA: 34s [K
+
+ [Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#> ■■■■■■■■■■■■■                     40% | ETA: 34s
+
+■■■■■■■■■■■■■■■■                  50% | ETA: 25s [K
+
+ [Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#> ■■■■■■■■■■■■■■■■                  50% | ETA: 25s
+
+■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s [K
+
+ [Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#> ■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s
+
+■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s [K
+
+ [Kℹ Getting page views from Wikipedia for Mycena renatii
+#> ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+ [Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#> ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+ [Kℹ Getting page views from Wikipedia for Aporpium canescens
+#> ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+ [Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#> ℹ Fetching OpenAlex works for taxon: Stereum ostrea
+#> HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Ossicaulis lachnopus
+#> HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Stereum hirsutum
+#> HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Basidiodendron eyrei
+#> HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Sistotrema oblongisporum
+#> HTTP status 429 Too Many Requests
+Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s [K
+
+ [Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
+#> Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+ [Kℹ Fetching OpenAlex works for taxon: Mycena renatii
+#> Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+ [Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
+#> Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+ [Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
+#> Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+ [Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
+#> Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+ [K
 ```
 
 ``` r
+
 data_enriched <- data_clean |>
   # Add GBIF occurrence data (add_to_phyloseq defaults to TRUE for phyloseq objects)
   tax_gbif_occur_pq() |>
@@ -330,34 +357,22 @@ data_enriched <- data_clean |>
   tax_oa_pq()
 ```
 
+    #> Error in `filter()`:
+    #> ℹ In argument: `type %in% type_works`.
+    #> Caused by error:
+    #> ! object 'type' not found
+
 ``` r
+
 
 print(paste("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", ")))
 ```
 
-    #> [1] "The enriched taxonomic table now has the following new columns:  Global_occurences, target_taxon_name, nb, hasHost, lang, page_length, page_views, taxon_id, n_doi, list_doi, n_citation, list_keywords"
-
-🛈⚠
-
-×
-
-**Messages**
-
-``` popup-pre
-#>  [1m [22mScale for  [32msize [39m is already present.
-#> Adding another scale for  [32msize [39m, which will replace the existing scale.
-```
-
-×
-
-**Warnings**
-
-``` popup-pre
-#> Warning:  [1m [22mRemoved 9 rows containing missing values or values outside the scale range
-#> (`geom_text()`).
-```
+    #> Error:
+    #> ! object 'data_enriched' not found
 
 ``` r
+
 # todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
   mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
@@ -378,30 +393,21 @@ psm <- psmelt(data_enriched) |>
     paste0("italic('", .x, "')"),
     .x
   )))
+```
+
+    #> Error:
+    #> ! object 'data_enriched' not found
+
+``` r
+
 psm
 ```
 
-    #> # A tibble: 15 × 8
-    #>    taxa_name         Abundance page_views Guild nb_num n_doi Quercus_interaction
-    #>    <chr>                 <dbl>      <dbl> <chr>  <dbl> <dbl>               <dbl>
-    #>  1 Antrodiella           20584         NA Wood…      0     0                   0
-    #>  2 Aporpium canesce…     10784         NA Unde…      0     1                   0
-    #>  3 Auricularia            9895         NA Unde…      0     0                   0
-    #>  4 Basidiodendron e…     19661         41 Unde…     92     7                   1
-    #>  5 Cerocorticium mo…     10878         NA Unde…      0     0                   0
-    #>  6 Fomes fomentarius     25336      32135 Wood…    462   475                   1
-    #>  7 Helicogloea           11053         NA Unde…      0     0                   0
-    #>  8 Hypochnicium ana…     10178         NA Unde…      0     1                   0
-    #>  9 Mycena renatii        12922         NA Leaf…      0     0                   0
-    #> 10 Ossicaulis lachn…     33792         48 Wood…      0     4                   0
-    #> 11 Phanerochaete         10215         NA Wood…      0     0                   0
-    #> 12 Sistotrema oblon…     16933         35 Ecto…     14     3                   1
-    #> 13 Stereum hirsutum      20660       3190 Unde…    758   243                   1
-    #> 14 Stereum ostrea        74225       1859 Unde…    466    35                   1
-    #> 15 Xylodon               38237         NA Unde…      0     0                   0
-    #> # ℹ 1 more variable: taxa_name_italic <chr>
+    #> Error:
+    #> ! object 'psm' not found
 
 ``` r
+
 
 ggplot(psm, aes(
   y = forcats::fct_reorder(taxa_name, Abundance),
@@ -428,11 +434,8 @@ ggplot(psm, aes(
   )
 ```
 
-![Scatter plot showing molecular abundance (log10 scale) on the x-axis
-and taxa names on the y-axis. Points are colored by ecological guild,
-sized by number of publications, and shaped indicate the interaction
-with Quercus species. Wikipedia page view counts are displayed as text
-labels next to each point.](figures/unnamed-chunk-6-1.png)
+    #> Error:
+    #> ! object 'psm' not found
 
 ## Using Taxnames Instead of Phyloseq Objects
 
@@ -447,18 +450,22 @@ information for specific taxa without having a phyloseq object:
 **Messages**
 
 ``` popup-pre
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mAmanita muscaria [3m [23m
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mBoletus edulis [3m [23m
-#>  [36mℹ [39m Processing GBIF occurrences for  [3m [3mCantharellus cibarius [3m [23m
-#>  [36mℹ [39m Getting taxonomic IDs from Wikidata...
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mAmanita muscaria [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA: 24s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mBoletus edulis [3m [23m
-#>  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA: 24s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#>  [36mℹ [39m Getting page views from Wikipedia for  [3m [3mCantharellus cibarius [3m [23m
+#> ℹ Processing GBIF occurrences for Amanita muscaria
+#> ℹ Processing GBIF occurrences for Boletus edulis
+#> ℹ Processing GBIF occurrences for Cantharellus cibarius
+#> ℹ Getting taxonomic IDs from Wikidata...
+#> ℹ Getting page views from Wikipedia for Amanita muscaria
+#> 
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s [K
+
+ [Kℹ Getting page views from Wikipedia for Boletus edulis
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s
+
+ [Kℹ Getting page views from Wikipedia for Cantharellus cibarius
 ```
 
 ``` r
+
 # Using taxnames parameter - returns a tibble
 taxa_to_query <- c("Amanita muscaria", "Boletus edulis", "Cantharellus cibarius")
 
@@ -467,34 +474,38 @@ gbif_data <- tax_gbif_occur_pq(taxnames = taxa_to_query)
 ```
 
 ``` r
+
 head(gbif_data)
 ```
 
     #> # A tibble: 3 × 2
     #>   Global_occurences canonicalName        
     #>               <int> <chr>                
-    #> 1            271186 Amanita muscaria     
-    #> 2             69053 Boletus edulis       
-    #> 3             66228 Cantharellus cibarius
+    #> 1            316020 Amanita muscaria     
+    #> 2             79350 Boletus edulis       
+    #> 3             73690 Cantharellus cibarius
 
 ``` r
+
 
 # Get Wikipedia information
 wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
 ```
 
 ``` r
+
 head(wiki_data)
 ```
 
     #> # A tibble: 3 × 5
     #>    lang page_length page_views taxon_id taxa_name            
     #>   <int>       <dbl>      <int> <chr>    <chr>                
-    #> 1    82      13832.     285985 Q131227  Amanita muscaria     
-    #> 2    81      13897.     104566 Q19740   Boletus edulis       
-    #> 3    66       6684.      67843 Q188749  Cantharellus cibarius
+    #> 1    83      21259.      12239 Q131227  Amanita muscaria     
+    #> 2    82      14549.      24154 Q19740   Boletus edulis       
+    #> 3    66       6946.       7876 Q188749  Cantharellus cibarius
 
 ``` r
+
 
 # When using taxnames, add_to_phyloseq is automatically set to FALSE
 # and the function returns a tibble instead of a phyloseq object
@@ -512,17 +523,8 @@ returns an enriched phyloseq object - You cannot use both `physeq` and
 You can also integrate custom databases or trait information. Here we
 will add fungal traits from a CSV file.
 
-🛈
-
-×
-
-**Messages**
-
-``` popup-pre
-#>  [32m✔ [39m Added  [34m [34m18 [34m [39m columns from  [34m [34m/tmp/RtmpBEsapu/temp_libpath79c6fe8cd81/taxinfo/extdata/fun_trait_mini.csv [34m [39m with information for  [34m [34m0 [34m [39m taxa in the tax_table slot of the phyloseq object
-```
-
 ``` r
+
 fungal_traits <- system.file("extdata",
   "fun_trait_mini.csv",
   package = "taxinfo"
@@ -537,12 +539,17 @@ data_final <- tax_info_pq(data_enriched,
 )
 ```
 
+    #> Error:
+    #> ! object 'data_enriched' not found
+
 ``` r
+
 
 dim(data_final)
 ```
 
-    #> NULL
+    #> Error:
+    #> ! object 'data_final' not found
 
 ## Function Categories
 
@@ -610,24 +617,25 @@ subsequent vignette will dive deeper into specific functionality areas.
 ## Session information
 
 ``` r
+
 sessionInfo()
 ```
 
-    #> R version 4.5.1 (2025-06-13)
+    #> R version 4.6.0 (2026-04-24)
     #> Platform: x86_64-pc-linux-gnu
-    #> Running under: Kali GNU/Linux Rolling
+    #> Running under: Pop!_OS 24.04 LTS
     #> 
     #> Matrix products: default
     #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-    #> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.29.so;  LAPACK version 3.12.0
+    #> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
     #> 
     #> locale:
-    #>  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
-    #>  [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
-    #>  [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
-    #>  [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
+    #>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+    #>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+    #>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    #>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
     #>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    #> [11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+    #> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
     #> 
     #> time zone: Europe/Paris
     #> tzcode source: system (glibc)
@@ -636,75 +644,38 @@ sessionInfo()
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] taxinfo_0.1.2      MiscMetabar_0.14.4 purrr_1.2.0        dplyr_1.1.4       
-    #> [5] dada2_1.38.0       Rcpp_1.1.0         ggplot2_4.0.1      phyloseq_1.54.0   
+    #> [1] taxinfo_0.1.2      MiscMetabar_0.16.8 dplyr_1.2.1        ggplot2_4.0.3     
+    #> [5] phyloseq_1.56.0   
     #> 
     #> loaded via a namespace (and not attached):
-    #>   [1] RColorBrewer_1.1-3          rstudioapi_0.17.1          
-    #>   [3] jsonlite_2.0.0              magrittr_2.0.4             
-    #>   [5] farver_2.1.2                rmarkdown_2.30             
-    #>   [7] fs_1.6.6                    ragg_1.5.0                 
-    #>   [9] vctrs_0.6.5                 multtest_2.66.0            
-    #>  [11] Rsamtools_2.26.0            RCurl_1.98-1.17            
-    #>  [13] forcats_1.0.1               progress_1.2.3             
-    #>  [15] htmltools_0.5.8.1           S4Arrays_1.10.0            
-    #>  [17] curl_7.0.0                  Rhdf5lib_1.32.0            
-    #>  [19] SparseArray_1.10.1          rhdf5_2.54.0               
-    #>  [21] sass_0.4.10                 bslib_0.9.0                
-    #>  [23] htmlwidgets_1.6.4           desc_1.4.3                 
-    #>  [25] plyr_1.8.9                  zoo_1.8-14                 
-    #>  [27] cachem_1.1.0                GenomicAlignments_1.46.0   
-    #>  [29] whisker_0.4.1               igraph_2.2.1               
-    #>  [31] lifecycle_1.0.4             iterators_1.0.14           
-    #>  [33] pkgconfig_2.0.3             Matrix_1.7-4               
-    #>  [35] R6_2.6.1                    fastmap_1.2.0              
-    #>  [37] MatrixGenerics_1.22.0       digest_0.6.38              
-    #>  [39] ShortRead_1.68.0            S4Vectors_0.48.0           
-    #>  [41] textshaping_1.0.4           GenomicRanges_1.62.0       
-    #>  [43] hwriter_1.3.2.1             vegan_2.7-2                
-    #>  [45] labeling_0.4.3              urltools_1.7.3.1           
-    #>  [47] httr_1.4.7                  abind_1.4-8                
-    #>  [49] mgcv_1.9-4                  compiler_4.5.1             
-    #>  [51] bit64_4.6.0-1               withr_3.0.2                
-    #>  [53] S7_0.2.1                    BiocParallel_1.44.0        
-    #>  [55] WikidataQueryServiceR_1.0.0 MASS_7.3-65                
-    #>  [57] DelayedArray_0.36.0         biomformat_1.38.0          
-    #>  [59] permute_0.9-8               oai_0.4.0                  
-    #>  [61] tools_4.5.1                 ape_5.8-1                  
-    #>  [63] rgbif_3.8.4                 glue_1.8.0                 
-    #>  [65] nlme_3.1-168                rhdf5filters_1.22.0        
-    #>  [67] grid_4.5.1                  WikidataR_2.3.3            
-    #>  [69] cluster_2.1.8.1             reshape2_1.4.5             
-    #>  [71] ade4_1.7-23                 generics_0.1.4             
-    #>  [73] gtable_0.3.6                ratelimitr_0.4.2           
-    #>  [75] tzdb_0.5.0                  tidyr_1.3.1                
-    #>  [77] data.table_1.17.8           hms_1.1.4                  
-    #>  [79] utf8_1.2.6                  xml2_1.5.0                 
-    #>  [81] XVector_0.50.0              BiocGenerics_0.56.0        
-    #>  [83] foreach_1.5.2               pillar_1.11.1              
-    #>  [85] stringr_1.6.0               vroom_1.6.6                
-    #>  [87] rglobi_0.3.4                splines_4.5.1              
-    #>  [89] lattice_0.22-7              survival_3.8-3             
-    #>  [91] bit_4.6.0                   deldir_2.0-4               
-    #>  [93] tidyselect_1.2.1            pbapply_1.7-4              
-    #>  [95] Biostrings_2.78.0           knitr_1.50                 
-    #>  [97] IRanges_2.44.0              Seqinfo_1.0.0              
-    #>  [99] SummarizedExperiment_1.40.0 crul_1.6.0                 
-    #> [101] stats4_4.5.1                xfun_0.54                  
-    #> [103] wikitaxa_0.4.0              Biobase_2.70.0             
-    #> [105] taxize_0.10.0               matrixStats_1.5.0          
-    #> [107] stringi_1.8.7               lazyeval_0.2.2             
-    #> [109] yaml_2.3.10                 evaluate_1.0.5             
-    #> [111] codetools_0.2-20            cigarillo_1.0.0            
-    #> [113] httpcode_0.3.0              interp_1.1-6               
-    #> [115] tibble_3.3.0                cli_3.6.5                  
-    #> [117] RcppParallel_5.1.11-1       systemfonts_1.3.1          
-    #> [119] jquerylib_0.1.4             triebeard_0.4.1            
-    #> [121] tidyverse_2.0.0             png_0.1-8                  
-    #> [123] parallel_4.5.1              assertthat_0.2.1           
-    #> [125] pkgdown_2.2.0               readr_2.1.6                
-    #> [127] openalexR_2.0.2             prettyunits_1.2.0          
-    #> [129] latticeExtra_0.6-31         jpeg_0.1-11                
-    #> [131] WikipediR_1.7.1             bitops_1.0-9               
-    #> [133] pwalign_1.6.0               scales_1.4.0               
-    #> [135] crayon_1.5.3                rlang_1.1.6
+    #>  [1] ade4_1.7-24           tidyselect_1.2.1      farver_2.1.2         
+    #>  [4] urltools_1.7.3.1      Biostrings_2.80.1     S7_0.2.2             
+    #>  [7] bitops_1.0-9          divent_0.5-4          RCurl_1.98-1.19      
+    #> [10] lazyeval_0.2.3        WikipediR_1.7.1       digest_0.6.39        
+    #> [13] wikitaxa_0.5.0        lifecycle_1.0.5       cluster_2.1.8.2      
+    #> [16] survival_3.8-6        magrittr_2.0.5        compiler_4.6.0       
+    #> [19] rlang_1.2.0           tools_4.6.0           utf8_1.2.6           
+    #> [22] igraph_2.3.2          data.table_1.18.4     knitr_1.51           
+    #> [25] bit_4.6.0             curl_7.1.0            plyr_1.8.9           
+    #> [28] xml2_1.5.2            RColorBrewer_1.1-3    httpcode_0.3.0       
+    #> [31] withr_3.0.2           purrr_1.2.2           BiocGenerics_0.58.1  
+    #> [34] triebeard_0.4.1       grid_4.6.0            stats4_4.6.0         
+    #> [37] multtest_2.68.0       biomformat_1.40.0     scales_1.4.0         
+    #> [40] iterators_1.0.14      MASS_7.3-65           crul_1.6.0           
+    #> [43] taxize_0.10.1         cli_3.6.6             vegan_2.7-5          
+    #> [46] crayon_1.5.3          generics_0.1.4        otel_0.2.0           
+    #> [49] RcppParallel_5.1.11-2 tzdb_0.5.0            httr_1.4.8           
+    #> [52] rgbif_3.8.5           reshape2_1.4.5        ape_5.8-1            
+    #> [55] stringr_1.6.0         splines_4.6.0         parallel_4.6.0       
+    #> [58] XVector_0.52.0        vctrs_0.7.3           Matrix_1.7-5         
+    #> [61] jsonlite_2.0.0        hms_1.1.4             IRanges_2.46.0       
+    #> [64] S4Vectors_0.50.1      bit64_4.8.2           foreach_1.5.2        
+    #> [67] rglobi_0.3.4          tidyr_1.3.2           glue_1.8.1           
+    #> [70] codetools_0.2-20      stringi_1.8.7         gtable_0.3.6         
+    #> [73] tibble_3.3.1          pillar_1.11.1         Seqinfo_1.2.0        
+    #> [76] R6_2.6.1              Rdpack_2.6.6          vroom_1.7.1          
+    #> [79] evaluate_1.0.5        oai_0.4.0             lattice_0.22-9       
+    #> [82] Biobase_2.72.0        readr_2.2.0           rbibutils_2.4.1      
+    #> [85] openalexR_3.0.1       Rcpp_1.1.1-1.1        nlme_3.1-169         
+    #> [88] permute_0.9-10        whisker_0.4.1         mgcv_1.9-4           
+    #> [91] xfun_0.58             zoo_1.8-15            pkgconfig_2.0.3

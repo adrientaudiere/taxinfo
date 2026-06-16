@@ -1,6 +1,9 @@
 # Extract spore size from mycoDB for a single species
 
-Extract spore size from mycoDB for a single species
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
 
 ## Usage
 
@@ -44,7 +47,7 @@ extract_spores_mycodb("Boletus edulis")
 extract_spores_mycodb("Xylobolus subpileatus")
 #> [1] "No spore size info in mycoDB"
 extract_spores_mycodb("Nonexistent species")
-#> [1] "No spore size info in mycoDB"
+#> [1] "Not in mycoDB"
 extract_spores_mycodb("Amanita")
-#> [1] "No spore size info in mycoDB"
+#> [1] "Not in mycoDB"
 ```

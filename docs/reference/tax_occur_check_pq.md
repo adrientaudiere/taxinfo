@@ -1,5 +1,10 @@
 # Check for taxa occurrences within a radius around samples using GBIF data
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 This function performs a species range check for taxa contained in a
 phyloseq object. The result can optionally be added to the phyloseq
 object's tax_table as new columns.
@@ -18,6 +23,8 @@ tax_occur_check_pq(
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE,
   ...
 )
 ```
@@ -76,6 +83,17 @@ tax_occur_check_pq(
 
   (Logical, default: TRUE). Whether to print progress messages.
 
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
 - ...:
 
   Additional parameters passed to \[tax_occur_check()\].
@@ -96,6 +114,10 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+
 check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   longitude = 2.3,
   latitude = 48,
@@ -103,13 +125,11 @@ check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
   n_occur = 50,
   add_to_phyloseq = FALSE
 )
-#> Error: object 'data_fungi_mini_cleanNames' not found
 
 check_res |>
   mutate(taxa_name = forcats::fct_reorder(taxa_name, count_in_radius)) |>
   ggplot(aes(x = count_in_radius, y = taxa_name, fill = total_count_in_world)) +
   geom_col()
-#> Error: object 'check_res' not found
 
 data_fungi_mini_cleanNames_range_verif <-
   tax_occur_check_pq(data_fungi_mini_cleanNames,
@@ -118,36 +138,22 @@ data_fungi_mini_cleanNames_range_verif <-
     radius_km = 50,
     n_occur = 10
   )
-#> Error: object 'data_fungi_mini_cleanNames' not found
 
 df <- data_fungi_mini_cleanNames_range_verif@tax_table[, "count_in_radius"] |>
   table(useNA = "always") |>
   data.frame()
-#> Error: object 'data_fungi_mini_cleanNames_range_verif' not found
 
 colnames(df) <- c("count_in_radius", "n_taxa")
-#> Error in `colnames<-`(`*tmp*`, value = c("count_in_radius", "n_taxa")): attempt to set 'colnames' on an object with less than two dimensions
 df
-#> function (x, df1, df2, ncp, log = FALSE) 
-#> {
-#>     if (missing(ncp)) 
-#>         .Call(C_df, x, df1, df2, log)
-#>     else .Call(C_dnf, x, df1, df2, ncp, log)
-#> }
-#> <bytecode: 0x5621c379fc40>
-#> <environment: namespace:stats>
 
 # Subset taxa with at least one occurrence in the radius
 cond_count_sup_0 <-
   data_fungi_mini_cleanNames_range_verif@tax_table[, "count_in_radius"] |>
     as.numeric() > 0
-#> Error: object 'data_fungi_mini_cleanNames_range_verif' not found
 cond_count_sup_0[is.na(cond_count_sup_0)] <- FALSE
-#> Error: object 'cond_count_sup_0' not found
 names(cond_count_sup_0) <- taxa_names(data_fungi_mini_cleanNames_range_verif)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'physeq' in selecting a method for function 'taxa_names': object 'data_fungi_mini_cleanNames_range_verif' not found
 
 subset_taxa_pq(data_fungi_mini_cleanNames_range_verif, cond_count_sup_0) |>
   summary_plot_pq()
-#> Error: object 'cond_count_sup_0' not found
+} # }
 ```

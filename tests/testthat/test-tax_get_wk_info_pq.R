@@ -8,6 +8,8 @@ test_that("tax_get_wk_info_pq input validation", {
 
 # Examples from vignette: getting-started.Rmd and man page: tax_get_wk_info_pq.Rd
 test_that("tax_get_wk_info_pq with taxnames returns tibble", {
+  skip_if_offline()
+  skip_on_cran()
   # Example from vignette: wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
   taxa_to_query <- c(
     "Amanita muscaria",
@@ -21,6 +23,8 @@ test_that("tax_get_wk_info_pq with taxnames returns tibble", {
 })
 
 test_that("tax_get_wk_info_pq returns phyloseq with add_to_phyloseq = TRUE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: data_fungi_mini_cleanNames_wk_info <- tax_get_wk_info_pq(data_fungi_mini_cleanNames)
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   data_fungi_mini_cleanNames_wk_info <- tax_get_wk_info_pq(
@@ -31,6 +35,8 @@ test_that("tax_get_wk_info_pq returns phyloseq with add_to_phyloseq = TRUE", {
 })
 
 test_that("tax_get_wk_info_pq returns tibble with add_to_phyloseq = FALSE", {
+  skip_if_offline()
+  skip_on_cran()
   # Example: wk_info <- tax_get_wk_info_pq(subset_taxa_pq(...))
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   wk_info <- tax_get_wk_info_pq(

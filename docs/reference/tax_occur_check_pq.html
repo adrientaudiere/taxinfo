@@ -162,15 +162,9 @@ object (if add_to_phyloseq = TRUE).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_mini_cleanNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">45</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">37</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">2</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">25</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">2</span> (including <span style="color: #0000BB;">2</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">23</span> (including <span style="color: #0000BB;">21</span> at genus level)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">check_res</span> <span class="op">&lt;-</span> <span class="fu">tax_occur_check_pq</span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>,</span></span>
 <span class="r-in"><span>  longitude <span class="op">=</span> <span class="fl">2.3</span>,</span></span>
@@ -179,169 +173,11 @@ object (if add_to_phyloseq = TRUE).</p>
 <span class="r-in"><span>  n_occur <span class="op">=</span> <span class="fl">50</span>,</span></span>
 <span class="r-in"><span>  add_to_phyloseq <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Stereum ostrea</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">48.13</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Species with fewer than 7 unique records will not be tested.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">9</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">17</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">52.9</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">9</span> occurrences for species <span style="font-style: italic;">Xylodon raduloides</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">52.12</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">48</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">96</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">43</span> occurrences for species <span style="font-style: italic;">Stereum hirsutum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">11.61</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Trametopsis brasiliensis</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">3</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">3</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">3</span> occurrences for species <span style="font-style: italic;">Basidiodendron eyrei</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Sistotrema oblongisporum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.24</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">49</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">98</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">47</span> occurrences for species <span style="font-style: italic;">Fomes fomentarius</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">19.21</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Mycena renati</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.14</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Helicogloea pellucida</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">32</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">35</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">91.4</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">31</span> occurrences for species <span style="font-style: italic;">Radulomyces molaris</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">13.37</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">27</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">28</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">96.4</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">27</span> occurrences for species <span style="font-style: italic;">Elmerina caryae</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Phanerochaete livescens</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">31</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">32</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">96.9</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">31</span> occurrences for species <span style="font-style: italic;">Gloeohypochnicium analogum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">8</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">80</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">8</span> occurrences for species <span style="font-style: italic;">Hyphoderma roseocremeum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">53.29</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">33</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">35</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">94.3</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">33</span> occurrences for species <span style="font-style: italic;">Hyphoderma setigerum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">37</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">74</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">31</span> occurrences for species <span style="font-style: italic;">Trametes versicolor</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">7.4</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Peniophora versiformis</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">41.11</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">49</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">98</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">48</span> occurrences for species <span style="font-style: italic;">Exidia glandulosa</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">15.5</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">38</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">41</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">92.7</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">38</span> occurrences for species <span style="font-style: italic;">Peniophorella pubera</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">49.56</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">44</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">88</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">41</span> occurrences for species <span style="font-style: italic;">Auricularia mesenterica</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">18.94</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Laetisaria buckii</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">40</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">80</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">40</span> occurrences for species <span style="font-style: italic;">Hericium coralloides</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">46.83</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">46</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">50</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">92</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">46</span> occurrences for species <span style="font-style: italic;">Xylodon flaviporus</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">47.96</span> km</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">check_res</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>taxa_name <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">taxa_name</span>, <span class="va">count_in_radius</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">count_in_radius</span>, y <span class="op">=</span> <span class="va">taxa_name</span>, fill <span class="op">=</span> <span class="va">total_count_in_world</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="tax_occur_check_pq-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_mini_cleanNames_range_verif</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu">tax_occur_check_pq</span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>,</span></span>
@@ -350,164 +186,6 @@ object (if add_to_phyloseq = TRUE).</p>
 <span class="r-in"><span>    radius_km <span class="op">=</span> <span class="fl">50</span>,</span></span>
 <span class="r-in"><span>    n_occur <span class="op">=</span> <span class="fl">10</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Stereum ostrea</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">48.13</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Xylodon raduloides</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">7</span> occurrences for species <span style="font-style: italic;">Stereum hirsutum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">15.78</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Trametopsis brasiliensis</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">3</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">3</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Basidiodendron eyrei</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Sistotrema oblongisporum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.24</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">3</span> occurrences for species <span style="font-style: italic;">Fomes fomentarius</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">21.61</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Mycena renati</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.14</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Helicogloea pellucida</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Species with fewer than 7 unique records will not be tested.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">2</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">20</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Radulomyces molaris</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">55.34</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Elmerina caryae</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">52.17</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Phanerochaete livescens</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Gloeohypochnicium analogum</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">50.53</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Species with fewer than 7 unique records will not be tested.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">0</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">8</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">0</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No valid occurrences for <span style="font-style: italic;">Hyphoderma roseocremeum</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Species with fewer than 7 unique records will not be tested.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">0</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">0</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No valid occurrences for <span style="font-style: italic;">Hyphoderma setigerum</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">4</span> occurrences for species <span style="font-style: italic;">Trametes versicolor</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">7.4</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">1</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Peniophora versiformis</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">41.11</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">9</span> occurrences for species <span style="font-style: italic;">Exidia glandulosa</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">20.54</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Species with fewer than 7 unique records will not be tested.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">1</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">10</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Peniophorella pubera</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.65</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">8</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">80</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Auricularia mesenterica</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">49.8</span> km</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No occurrences found for <span style="font-style: italic;">Laetisaria buckii</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">10</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">100</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">1</span> occurrences for species <span style="font-style: italic;">Hericium coralloides</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">49.87</span> km</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[vect] guessed crs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading <span style="color: #0000BB;">ne_50m_land.zip</span> from naturalearth...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> After cleaning with CoordinateCleaner::clean_coordinates:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - <span style="color: #0000BB;">9</span> occurrences remain(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Total original: <span style="color: #0000BB;">10</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> - Retention rate: <span style="color: #0000BB;">90</span>%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Found <span style="color: #0000BB;">0</span> occurrences for species <span style="font-style: italic;">Xylodon flaviporus</span>:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Closest occurrence: <span style="color: #0000BB;">54.11</span> km</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">data_fungi_mini_cleanNames_range_verif</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"count_in_radius"</span><span class="op">]</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span>useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
@@ -515,14 +193,6 @@ object (if add_to_phyloseq = TRUE).</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"count_in_radius"</span>, <span class="st">"n_taxa"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   count_in_radius n_taxa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               0      6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2               1      6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3               3      4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4               4      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5               7      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6               9      2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            &lt;NA&gt;     25</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Subset taxa with at least one occurrence in the radius</span></span></span>
 <span class="r-in"><span><span class="va">cond_count_sup_0</span> <span class="op">&lt;-</span></span></span>
@@ -533,13 +203,7 @@ object (if add_to_phyloseq = TRUE).</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/subset_taxa_pq.html" class="external-link">subset_taxa_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames_range_verif</span>, <span class="va">cond_count_sup_0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/summary_plot_pq.html" class="external-link">summary_plot_pq</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cleaning suppress 0 taxa (  ) and 34 sample(s) ( AD26-005-B_S9_MERGED.fastq.gz / AD26-005-H_S10_MERGED.fastq.gz / AD26-005-M_S11_MERGED.fastq.gz / ADABM30X-M_S16_MERGED.fastq.gz / BG7-010-H_S31_MERGED.fastq.gz / BJ8-ABM-003_S35_MERGED.fastq.gz / BQ4-018-M_S51_MERGED.fastq.gz / BR8-005_S53_MERGED.fastq.gz / BT7-006_S56_MERGED.fastq.gz / CB8-019-B_S69_MERGED.fastq.gz / CB8-019-H_S70_MERGED.fastq.gz / CB8-019-M_S71_MERGED.fastq.gz / DJ2-008-H_S88_MERGED.fastq.gz / DS1-ABM002-B_S91_MERGED.fastq.gz / DS1-ABM002-H_S92_MERGED.fastq.gz / DS1-ABM002-M_S93_MERGED.fastq.gz / DY5-004-B_S96_MERGED.fastq.gz / DY5-004-H_S97_MERGED.fastq.gz / F6-ABM-001_S105_MERGED.fastq.gz / F7-015-M_S106_MERGED.fastq.gz / H24-NVABM1-H_S111_MERGED.fastq.gz / J18-004-B_S114_MERGED.fastq.gz / J18-004-M_S116_MERGED.fastq.gz / NVABM-0163-H_S135_MERGED.fastq.gz / NVABM0216_S136_MERGED.fastq.gz / NVABM0244-M_S137_MERGED.fastq.gz / P27-ABM001_S155_MERGED.fastq.gz / T28-ABM602-B_S162_MERGED.fastq.gz / W25-ABMX_S164_MERGED.fastq.gz / W26-001-B_S165_MERGED.fastq.gz / W9-025-M_S169_MERGED.fastq.gz / X29-004-B_S174_MERGED.fastq.gz / Y28-002-B_S178_MERGED.fastq.gz / Z29-001-H_S185_MERGED.fastq.gz ).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of non-matching ASV 0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of matching ASV 45</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of filtered-out ASV 31</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept ASV 14</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of kept samples 103</span>
-<span class="r-plt img"><img src="tax_occur_check_pq-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

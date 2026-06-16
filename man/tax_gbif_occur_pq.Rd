@@ -70,10 +70,10 @@ This function is mainly a wrapper of the work of others.
  Please cite `rgbif` package.
 }
 \examples{
+\dontrun{
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini)
 
-\donttest{
 data_fungi_mini_cleanNames <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
 
 # Get data without adding to phyloseq

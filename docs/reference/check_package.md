@@ -1,5 +1,10 @@
 # Check package availability and propose installation instructions
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-maturing-blue"
+alt="lifecycle-maturing"\>\</a\>
+
 This function checks if a package is available using requireNamespace.
 If the package is not available, it provides helpful installation
 instructions.

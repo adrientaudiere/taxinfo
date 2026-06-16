@@ -1,0 +1,288 @@
+---
+title: "GBIF-based Functions for Occurrence Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{GBIF-based Functions for Occurrence Data}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r child="includes/_styles.Rmd"}
+```
+
+```{r setup}
+library(taxinfo)
+library(MiscMetabar)
+library(ggplot2)
+library(dplyr)
+```
+
+
+## Overview
+
+The Global Biodiversity Information Facility (GBIF) is the world's largest repository of biodiversity occurrence data. The taxinfo package provides seamless integration with GBIF through specialized functions that retrieve occurrence data, create distribution maps, and analyze biogeographic patterns for taxa in your phyloseq objects.
+
+## Core GBIF Functions
+
+- `tax_gbif_occur_pq()`: Retrieve occurrence counts from GBIF
+- `plot_tax_gbif_pq()`: Create distribution maps
+- `range_bioreg_pq()`: Analyze biogeographic ranges
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
+- `tax_occur_check_pq()`: Check occurrences within a geographic radius
+
+**Note:** Functions like `tax_gbif_occur_pq()` and `tax_occur_check_pq()` can work with either phyloseq objects or vectors of taxonomic names (`taxnames` parameter). When using a phyloseq object, results are automatically added to the tax_table. When using `taxnames`, a tibble is returned.
+
+## Basic Occurrence Data Retrieval
+
+### Get verified taxonomic names
+
+```{r}
+# Load and prepare example data
+data("data_fungi_mini", package = "MiscMetabar")
+
+# Keep only first 20 taxa for speed
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210)
+```
+
+### Find GBIF occurrence counts and add to phyloseq object
+
+```{r}
+data_clean_gbif <- tax_gbif_occur_pq(data_clean)
+```
+
+
+
+### Example Visualization 
+
+Here's an example of what GBIF occurrence data visualization can look like:
+ 
+```{r echo=FALSE, fig.alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis.", out.width="100%"}
+data_clean_gbif@tax_table |>
+  as.data.frame() |>
+  mutate(occurrences = as.numeric(Global_occurences)) |>
+  filter(!is.na(occurrences), occurrences > 0) |>
+  distinct(currentCanonicalSimple, .keep_all = TRUE) |>
+  ggplot(aes(x = forcats::fct_reorder(currentCanonicalSimple, occurrences), y = log10(1 + occurrences))) +
+  geom_col(aes(fill = Order), alpha = 0.7) +
+  coord_flip() +
+  labs(
+    title = "GBIF Occurrence Counts by Taxon",
+    x = "Taxon",
+    y = "Number of occurrences (log scale)"
+  ) +
+  theme_idest() +
+  theme(axis.text.y = element_text(face = "italic"))
+```
+
+### Occurrence Counts by Country
+
+Analyze geographic distribution patterns:
+
+```{r, fig.alt="Violin plot with overlaid jittered points showing the distribution of GBIF occurrence counts (log scale) by country. Each violin represents a different country (US, FR, DE, GB, ES, MX) with sample sizes shown above each violin. Violins are colored by country."}
+data_clean_gbif_country <- tax_gbif_occur_pq(data_clean, by_country = TRUE)
+
+data_clean_gbif_country@tax_table |>
+  as.data.frame() |>
+  select(currentCanonicalSimple, US, FR, DE, GB, ES, MX) |>
+  tidyr::pivot_longer(
+    cols = c(US, FR, DE, GB, ES, MX),
+    names_to = "country",
+    values_to = "occurrences"
+  ) |>
+  mutate(occurrences = as.numeric(occurrences)) |>
+  filter(!is.na(occurrences), occurrences > 0) |>
+  ggplot(aes(x = country, y = occurrences, fill = country)) +
+  geom_violin() +
+  geom_jitter(width = 0.2, alpha = 0.5, height = 0) +
+  scale_y_log10() +
+  stat_summary(
+    fun.data = function(x) {
+      return(data.frame(y = max(x) + 0.1, label = paste("n =", length(x))))
+    },
+    geom = "text",
+    vjust = 0
+  ) +
+  labs(
+    title = "GBIF Occurrences by Country",
+    x = "Country",
+    y = "Number of occurrences (log scale)"
+  ) +
+  theme_idest() +
+  theme(legend.position = "none")
+```
+
+### Temporal Patterns
+
+Examine occurrence trends over time. Here we don't use `add_to_phyloseq` since the data frame output is 
+sufficient.
+
+```{r, fig.alt="Line plot showing GBIF occurrence counts over time for multiple taxa. Each taxon is represented by a colored line with points. Dotted lines link points with NA in the temporal timeline. Taxon names are shown as text labels on the right side of the plot. The y-axis shows occurrence counts on a log scale."}
+gbif_years <- tax_gbif_occur_pq(data_clean,
+  by_years = TRUE,
+  add_to_phyloseq = FALSE
+) |>
+  tidyr::pivot_longer(cols = -canonicalName, names_to = "year", values_to = "count") |>
+  mutate(year = as.numeric(year))
+
+# Visualize temporal trends for the occurences of taxa
+gbif_years |>
+  ggplot(aes(x = year, y = log10(count + 1), color = canonicalName)) +
+  geom_line() +
+  geom_line(data = filter(gbif_years, !is.na(count)), linetype = "dotted") +
+  geom_point() +
+  labs(
+    title = "GBIF Occurrences Over Time",
+    x = "Year",
+    y = "Number of GBIF occurrences"
+  ) +
+  theme_idest() +
+  ggrepel::geom_text_repel(
+    data = summarise(group_by(arrange(filter(gbif_years, !is.na(count)), desc(year)), canonicalName), count = first(count), year = first(year)),
+    aes(label = canonicalName, x = as.numeric(year)), hjust = 0,
+    direction = "y", size = 3
+  ) +
+  xlim(2010, 2026) +
+  theme(legend.position = "none")
+```
+
+```{r, fig.alt="Line plot showing cumulative GBIF occurrence counts over time (2008-2026) for multiple taxa. Each taxon is represented by a colored line with points showing cumulative growth. Taxon names are labeled on the right side of the plot in italic font."}
+gbif_years_cumsum <- gbif_years |>
+  mutate(year = as.numeric(year)) |>
+  arrange(year) |>
+  group_by(canonicalName) |>
+  mutate(year = as.numeric(year)) |>
+  mutate(cum_count = cumsum(tidyr::replace_na(count, 0)))
+ggplot(gbif_years_cumsum, aes(
+  x = year, y = log10(cum_count + 1),
+  color = canonicalName
+)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "GBIF Cumulative Occurrences Over Time",
+    x = "Year",
+    y = "Number of GBIF occurrences"
+  ) +
+  theme_idest() +
+  ggrepel::geom_text_repel(
+    data = summarise(
+      group_by(
+        arrange(gbif_years_cumsum, desc(year)),
+        canonicalName
+      ),
+      cum_count = first(cum_count),
+      year = first(year)
+    ),
+    aes(
+      label = canonicalName,
+      x = as.numeric(year)
+    ),
+    hjust = 0, direction = "y", size = 3
+  ) +
+  xlim(2008, 2026) +
+  theme(legend.position = "none")
+```
+
+
+## Visualization and Mapping
+
+### Basic Distribution Plots
+
+Create occurrence distribution visualizations:
+
+```{r, fig.alt="Scatter plot comparing the number of sequences (x-axis, log scale) to GBIF occurrence counts (y-axis, log scale) for each taxon. Taxon names are shown in italic font near each point."}
+# Plot global vs regional occurrences
+psmelt(data_clean_gbif) |>
+  as.data.frame() |>
+  group_by(currentCanonicalSimple) |>
+  summarise(
+    Global_occurences = as.numeric(unique(Global_occurences)),
+    nb_seq = sum(Abundance),
+    nb_samp = sum(Abundance > 0)
+  ) |>
+  filter(!is.na(Global_occurences)) |>
+  ggplot(aes(
+    x = log10(1 + nb_seq),
+    y = log10(1 + Global_occurences)
+  )) +
+  geom_point(alpha = 0.7) +
+  ggrepel::geom_text_repel(aes(label = currentCanonicalSimple),
+    vjust = -0.5,
+    size = 3,
+    fontface = "italic",
+    min.segment.length = 0.2,
+    force = 4
+  ) +
+  coord_flip() +
+  labs(
+    title = "GBIF Occurrence Counts vs molecular abundance",
+    x = "Number of sequences (log scale)",
+    y = "Number of GBIF occurrences (log scale)"
+  ) +
+  theme_idest()
+```
+
+### Interactive Distribution Maps
+
+Create interactive maps showing species distributions:
+
+```{r, fig.alt="Interactive map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus. Points on the map represent individual occurrence locations. Color indicates the year of the occurrence record."}
+plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
+  interactive_plot = TRUE
+)
+```
+
+
+### Static Distribution Maps
+
+
+```{r, fig.alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)."}
+distribution_maps <- plot_tax_gbif_pq(
+  taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei"),
+  n_occur = 1000
+)
+distribution_maps[[1]]
+distribution_maps[[2]]
+```
+
+
+
+## Biogeographic Analysis
+
+### Range Analysis
+
+```{r}
+data_clean_range <- range_bioreg_pq(
+  select_taxa_pq(data_clean,
+    taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei")
+  ),
+  make_plot = TRUE
+)
+```
+
+```{r, fig.alt="Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Basidiodendron eyrei."}
+data_clean_range[[2]]
+```
+
+### Ecoregion Validation
+
+Check if occurrences match expected ecoregions:
+
+```{r}
+tax_check_ecoregion(
+  taxnames = "Xylobolus subpileatus",
+  longitudes = c(2.3522, 4.2),
+  latitudes = c(48.8566, 33)
+)
+```
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```
+

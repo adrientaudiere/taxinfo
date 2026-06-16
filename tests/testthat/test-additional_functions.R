@@ -1,3 +1,6 @@
+skip_if_offline()
+skip_on_cran()
+
 # Test additional functions with basic validation
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi, add_to_phyloseq = TRUE)
 

@@ -1,5 +1,10 @@
 # Extract taxonomic names from a phyloseq object
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 Mainly a internal function for function \[gna_verifier_pq()\],
 \[tax_oa_pq()\], \[gbif_occur_pq()\], \[tax_iucn_code_pq()\],
 \[tax_globi_pq()\], \[plot_tax_gbif_pq()\], ...
@@ -109,4 +114,31 @@ taxonomic_rank_to_taxnames(data_fungi_mini,
 #> [19] "Exidia glandulosa"          "Peniophorella pubera"      
 #> [21] "Auricularia mesenterica"    "Marchandiomyces buckii"    
 #> [23] "Hericium coralloides"       "Xylodon flaviporus"        
+
+if (FALSE) { # \dontrun{
+taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="currentCanonicalSimple")
+taxonomic_rank_to_taxnames(gna_verifier_pq(data_fungi_mini), taxonomic_rank="genusEpithet")
+} # }
+taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class")
+#> [1] "Agaricomycetes"     "Atractiellomycetes" "Tremellomycetes"   
+#> [4] "NA"                
+taxonomic_rank_to_taxnames(data_fungi_mini, taxonomic_rank="Class",
+ distinct_names = FALSE,
+ discard_NA = TRUE
+)
+#>  [1] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#>  [4] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#>  [7] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [10] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [13] "Agaricomycetes"     "Atractiellomycetes" "Agaricomycetes"    
+#> [16] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [19] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [22] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [25] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [28] "Agaricomycetes"     "Tremellomycetes"    "Agaricomycetes"    
+#> [31] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [34] "Tremellomycetes"    "Agaricomycetes"     "Agaricomycetes"    
+#> [37] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
+#> [40] "NA"                 "Agaricomycetes"     "Agaricomycetes"    
+#> [43] "Agaricomycetes"     "Agaricomycetes"     "Agaricomycetes"    
 ```

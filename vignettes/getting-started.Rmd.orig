@@ -1,0 +1,257 @@
+---
+title: "Getting Started with taxinfo: Augment phyloseq Objects with Taxonomic Information"
+author: "Adrien Taudiere"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    theme: united
+    highlight: tango
+vignette: >
+  %\VignetteIndexEntry{Getting Started with taxinfo}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r child="includes/_styles.Rmd"}
+```
+
+```{r setup}
+library(taxinfo)
+```
+
+## Overview
+
+The **taxinfo** package provides comprehensive tools for augmenting phyloseq objects with taxonomic-based information from various external data sources. This vignette provides a big picture overview of the package's capabilities and workflow. A large part of ASV or OTUs, hereafter referred to as `taxa`, obtained from metabarcoding studies are often not identified at the species level. But those taxa with a genus or species level identification can still be enriched with valuable information from various databases. The **taxinfo** package allows you to easily integrate such information into your phyloseq objects. **Taxinfo** also create a body of evidence for the presence of a species in your samples by testing the likelihood of each taxon being present.
+
+## Key Features
+
+**taxinfo** integrates with multiple authoritative data sources to enrich your taxonomic data:
+
+- **🔍 Scientific Names Verification**: Verify and standardize taxonomic names using Global Names Architecture
+- **🌍 Biodiversity Data**: Access GBIF occurrence data and species interactions from GLOBI  
+- **📚 Knowledge Integration**: Retrieve Wikipedia data and scientific literature from OpenAlex
+- **🗺️ Geographic Analysis**: Analyze biogeographic ranges and create distribution maps
+
+## Main Data Sources
+
+| Source | Description | Key Functions |
+|--------|-------------|---------------|
+| **GBIF** | Global biodiversity occurrence data | `tax_gbif_occur_pq()`, `plot_tax_gbif_pq()` |
+| **Wikipedia** | Encyclopedia data and page statistics | `tax_get_wk_info_pq()` |
+| **GLOBI** | Species interaction networks | `tax_globi_pq()` |
+| **OpenAlex** | Scientific literature database | `tax_oa_pq()` |
+| **GNA** | Global Names Architecture for name verification | `gna_verifier_pq()` |
+| **Custom CSV** | Any database in CSV format with a column documenting Taxonomic information | `tax_info_pq()` |
+
+## Basic Workflow
+
+### Step 1: Load Example Data
+
+```{r}
+# Load example fungal data from MiscMetabar
+data("data_fungi_mini", package = "MiscMetabar")
+
+# Check the structure
+data_fungi_mini
+```
+
+### Step 2: Verify and Clean Taxonomic Names
+
+The first step is typically to verify and standardize taxonomic names using the Global Names Architecture:
+
+```{r}
+# Keep only first 20 taxa for speed
+data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
+  gna_verifier_pq(data_sources = 210)
+
+# View the enhanced taxonomic table
+head(data_clean@tax_table)
+```
+
+This adds standardized columns:
+- `taxa_name`: Original name submitted
+- `currentName`: Current accepted name with authorities  
+- `currentCanonicalSimple`: Clean accepted name without authorities
+- `specificEpithet` : Accepted name at species level or NA
+- `genus` : Accepted name at Genus level or NA
+
+
+You can also output only the verified names with more information on the matching algorithm results as a tibble by setting `add_to_phyloseq = FALSE`.
+
+```{r}
+df <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210,
+  add_to_phyloseq = FALSE
+)
+glimpse(df)
+```
+
+### Step 3: Add Biodiversity Information
+
+Once names are verified, you can enrich your data with various sources:
+
+```{r}
+data_enriched <- data_clean |>
+  # Add GBIF occurrence data (add_to_phyloseq defaults to TRUE for phyloseq objects)
+  tax_gbif_occur_pq() |>
+  # Add species interaction data from GLOBI
+  tax_globi_pq(interaction_types = "hasHost") |>
+  # Add Wikipedia information
+  tax_get_wk_info_pq() |>
+  # Add OpenAlex publication data
+  tax_oa_pq()
+
+print(paste("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", ")))
+```
+
+
+```{r, fig.alt="Scatter plot showing molecular abundance (log10 scale) on the x-axis and taxa names on the y-axis. Points are colored by ecological guild, sized by number of publications, and shaped indicate the interaction with Quercus species. Wikipedia page view counts are displayed as text labels next to each point."}
+# todo add a title and add openalex information on the plot
+psm <- psmelt(data_enriched) |>
+  mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
+  mutate(Quercus_interaction = map_dbl(target_taxon_name, ~ grepl("Quercus", .x))) |>
+  filter(!is.na(taxa_name) & taxa_name != "NA") |>
+  group_by(taxa_name) |>
+  summarise(
+    Abundance = sum(Abundance),
+    page_views = mean(as.numeric(page_views), na.rm = TRUE),
+    Guild = unique(Guild),
+    nb_num = mean(nb_num, na.rm = TRUE),
+    n_doi = as.numeric(unique(n_doi)),
+    Quercus_interaction = unique(Quercus_interaction)
+  ) |>
+  mutate(page_views = ifelse(is.na(page_views) | page_views == 0, NA, page_views)) |>
+  mutate(n_doi = ifelse(is.na(n_doi), 0, n_doi)) |>
+  mutate(taxa_name_italic = map_chr(taxa_name, ~ ifelse(length(strsplit(.x, " ")[[1]]) == 2,
+    paste0("italic('", .x, "')"),
+    .x
+  )))
+psm
+
+ggplot(psm, aes(
+  y = forcats::fct_reorder(taxa_name, Abundance),
+  x = log10(1 + Abundance),
+  size = n_doi,
+  color = Guild,
+  shape = Quercus_interaction == 0
+)) +
+  geom_point() +
+  geom_text(aes(label = page_views), size = 2.5, color = "black", nudge_x = 0.07) +
+  scale_size_continuous(name = "Number of publications") +
+  xlab("Molecular abundance (log10 scale)") +
+  ylab("Taxa") +
+  scale_y_discrete(labels = parse(text = psm$taxa_name_italic)) +
+  theme_idest(plot_title_size = 12, subtitle_size = 9, axis_text_family = "mono", axis_text_size = 8) +
+  theme(
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(1, "line")
+  ) +
+  scale_size(range = c(2, 6)) +
+  labs(
+    title = "Number of sequences for each taxa.",
+    subtitle = stringr::str_wrap("Color of points indicates the ecological guild. Shape indicates if the taxon is hosted by Quercus species in GLOBI. The number on the right of each point indicates the number of wikipedia page views on the last 30 days.", width = 112)
+  )
+```
+
+## Using Taxnames Instead of Phyloseq Objects
+
+Most functions in **taxinfo** can work with either a phyloseq object or a vector of taxonomic names. This is useful when you want to query information for specific taxa without having a phyloseq object:
+
+```{r}
+# Using taxnames parameter - returns a tibble
+taxa_to_query <- c("Amanita muscaria", "Boletus edulis", "Cantharellus cibarius")
+
+# Get GBIF occurrence data for specific taxa
+gbif_data <- tax_gbif_occur_pq(taxnames = taxa_to_query)
+head(gbif_data)
+
+# Get Wikipedia information
+wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
+head(wiki_data)
+
+# When using taxnames, add_to_phyloseq is automatically set to FALSE
+# and the function returns a tibble instead of a phyloseq object
+```
+
+**Key Points:**
+- When using `taxnames`, the `add_to_phyloseq` parameter is automatically set to `FALSE` and functions return tibbles
+- When using a phyloseq object, `add_to_phyloseq` defaults to `TRUE` and returns an enriched phyloseq object
+- You cannot use both `physeq` and `taxnames` at the same time
+- The `add_to_phyloseq` parameter cannot be `TRUE` when using `taxnames`
+
+### Step 4: Add Custom Database Information
+
+You can also integrate custom databases or trait information. Here we will 
+add fungal traits from a CSV file.
+
+```{r}
+fungal_traits <- system.file("extdata",
+  "fun_trait_mini.csv",
+  package = "taxinfo"
+)
+
+data_final <- tax_info_pq(data_enriched,
+  taxonomic_rank = "genusEpithet",
+  file_name = fungal_traits,
+  csv_taxonomic_rank = "GENUS",
+  col_prefix = "ft_",
+  sep = ";"
+)
+
+dim(data_final)
+```
+
+
+## Function Categories
+
+### Taxonomic Name Standardization
+- `gna_verifier_pq()`: Verify and standardize taxonomic names using Global Names 
+  Architecture through the `taxize` package. 
+
+### Biodiversity Data Integration  
+- `tax_gbif_occur_pq()`: Retrieve GBIF occurrence data
+- `tax_globi_pq()`: Access species interaction data from GLOBI
+- `tax_info_pq()`: Add information from CSV files
+
+### Knowledge Base Integration
+- `tax_get_wk_info_pq()`: Get comprehensive Wikipedia data
+- `tax_oa_pq()`: Retrieve scientific literature from OpenAlex
+
+### Geographic Analysis
+- `range_bioreg_pq()`: Analyze biogeographic ranges
+- `plot_tax_gbif_pq()`: Create distribution maps
+
+### Check for credibility and validity of the presence of taxonomic names (`species`) 
+- `tax_check_ecoregion()`: Validate occurrences against ecoregions
+- `tax_retroblast_pq()`: Sequence-based taxonomic verification
+- `tax_photos_pq()`: Access taxonomic images and media
+- `tax_occur_check_pq()`: Multi-source occurrence validation
+
+## Best Practices
+
+1. **Use conservative way to identify taxa at the species level**, most taxinfo
+function rely directly on species-level identification
+2. **Always start with name verification** using `gna_verifier_pq()`
+3. **Use appropriate data sources** for your taxonomic group of interest
+
+## Next Steps
+
+- **Checking Taxa Presence**: Learn how to validate if taxa are likely present in your samples
+- **GBIF-based Functions**: Explore occurrence data and distribution mapping  
+- **Adding External Information**: Integrate Wikipedia, GLOBI, and custom databases
+
+This provides the foundation for using taxinfo effectively. Each subsequent vignette will dive deeper into specific functionality areas.
+
+
+## Session information
+
+```{r}
+sessionInfo()
+```

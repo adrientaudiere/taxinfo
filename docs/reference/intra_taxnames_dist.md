@@ -1,5 +1,10 @@
 # Compute intra-taxanames distances for each taxa names
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 This function computes intra-taxanames distances for each taxonomic
 names (e.g. Genus species) in a phyloseq object containing ASV/OTU
 sequences and taxonomy.
@@ -16,6 +21,7 @@ intra_taxnames_dist(
   taxonomic_rank = c("Genus", "Species"),
   verbose = TRUE,
   verbose_DECIPHER = FALSE,
+  discard_NA = TRUE,
   ...
 )
 ```
@@ -40,6 +46,11 @@ intra_taxnames_dist(
 
   Logical. If TRUE, print messages from DECIPHER functions (default:
   FALSE)
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
 
 - ...:
 

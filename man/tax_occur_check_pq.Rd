@@ -73,6 +73,7 @@ This function performs a species range check for taxa contained
   object's tax_table as new columns.
 }
 \examples{
+\dontrun{
 
 data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
 
@@ -113,6 +114,7 @@ names(cond_count_sup_0) <- taxa_names(data_fungi_mini_cleanNames_range_verif)
 
 subset_taxa_pq(data_fungi_mini_cleanNames_range_verif, cond_count_sup_0) |>
   summary_plot_pq()
+}
 }
 \seealso{
 [tax_occur_check()], [tax_occur_multi_check_pq()]

@@ -1,6 +1,74 @@
 # Changelog
 
-## taxinfo 0.1.2 (Development version)
+## taxinfo (development version)
+
+- The WWF/TNC ecoregion layer downloaded on first use by the ecoregion
+  functions
+  ([`points_to_ecoregions()`](https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.md),
+  [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md),
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md))
+  is now written to a stable per-user cache directory
+  (`tools::R_user_dir("taxinfo", "cache")`) instead of an
+  `inst/extdata/downloads` folder created under the current working
+  directory.
+
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  removes the `stats` and `main_taxon_threshold` parameters. These only
+  affected kingdom-level summary metadata (not per-name results), and
+  `main_taxon_threshold` was never forwarded to the API by
+  [`taxize::gna_verifier()`](https://docs.ropensci.org/taxize/reference/gna_verifier.html)
+  anyway.
+
+- [`select_taxa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.md)
+  aborts with an explicit message naming the requested `taxnames` when
+  none of them match the `tax_table`, instead of failing with an obscure
+  `OTU abundance data must have non-zero dimensions` error;
+  [`taxa_summary_text()`](https://adrientaudiere.github.io/taxinfo/reference/taxa_summary_text.md)
+  inherits the same clear behaviour.
+
+- New function
+  [`tax_crosscheck_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.md)
+  compares name-verification results from GNA Verifier
+  ([`taxize::gna_verifier()`](https://docs.ropensci.org/taxize/reference/gna_verifier.html)
+  with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and
+  [`rgbif::name_backbone_checklist()`](https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html).
+  Returns a per-taxon comparison with status labels (`match`,
+  `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count
+  vector, and an optional Venn diagram via `ggVennDiagram`.
+  Discrepancies between the two services highlight taxa that may need
+  manual review.
+
+- [`theme_idest()`](https://adrientaudiere.github.io/taxinfo/reference/theme_idest.md)
+  falls back to the graphics-device default font when a requested font
+  family (`Roboto Condensed`, `Linux Libertine G`, `Fira Code`) is not
+  installed, instead of failing with `invalid font type` when the plot
+  is printed (for example during `R CMD check` examples or a pkgdown
+  render).
+
+## taxinfo 0.1.2
+
+- [`range_bioreg_pq()`](https://adrientaudiere.github.io/taxinfo/reference/range_bioreg_pq.md)
+  and
+  [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
+  now call
+  [`gbif.range::read_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/read_ecoreg.html)
+  and
+  [`gbif.range::check_and_get_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/check_and_get_ecoreg.html)
+  instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
+
+### Breaking changes
+
+- [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
+  no longer takes `taxa_name` as its first argument. The new signature
+  follows the package-wide
+  `physeq = NULL, taxnames = NULL, taxonomic_rank` pattern.
+  Single-species positional calls like
+  `tax_check_ecoregion("Sp.", lon, lat)` must become
+  `tax_check_ecoregion(taxnames = "Sp.", longitudes = lon, latitudes = lat)`.
+  The return shape also changes: `is_in_ecoregion` is always a
+  `n_taxa × n_points` logical matrix, and the full long tibble of (taxon
+  × ecoregion) counts is available in the new `taxon_ecoregions`
+  element.
 
 ### Major Changes
 
@@ -11,6 +79,70 @@
   returned by default.
 
 ### New Features
+
+- Add
+  [`points_to_ecoregions()`](https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.md)
+  to locate a set of GPS points in the WWF/TNC terrestrial ecoregion
+  layer. Returns a tibble with `ECO_NAME`, `biome` and `realm` columns;
+  used internally by
+  [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md).
+
+- [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
+  has been rewritten as a thin comparison wrapper on top of the new
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  and
+  [`points_to_ecoregions()`](https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.md)
+  functions. It now supports a vector of taxa (via `taxnames`) or a
+  phyloseq object (via `physeq` + `taxonomic_rank`), always returns a
+  `n_taxa × n_points` logical matrix in `is_in_ecoregion`, and caches
+  the WWF/TNC shapefile across calls instead of re-downloading it
+  through
+  [`gbif.range::check_and_get_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/check_and_get_ecoreg.html)
+  each time. The shapefile is read via
+  [`sf::st_join()`](https://r-spatial.github.io/sf/reference/st_join.html)
+  (boundary-safe) instead of
+  [`sf::st_intersection()`](https://r-spatial.github.io/sf/reference/geos_binary_ops.html).
+
+- Add
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  to return a long tibble of
+  `taxon_name × ECO_NAME × n_occur × prop_occur` from GBIF occurrences,
+  with `min_nb_occur` / `min_proportion` filters. Zero-occurrence taxa
+  are kept with `n_occur = 0L` so downstream joins do not silently drop
+  them.
+
+- Add
+  [`tax_ecoregion_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.md)
+  as the phyloseq wrapper for
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md).
+  When `add_to_phyloseq = TRUE`, three columns are added to
+  `@tax_table`: `ecoregion_top` (modal ecoregion), `ecoregion_n` (number
+  of qualifying ecoregions) and `ecoregion_list` (semicolon-separated,
+  ordered by descending occurrence count).
+
+- Add
+  [`tax_gbif_occur_coords()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_coords.md)
+  to fetch georeferenced GBIF occurrences for a vector of taxa (capped
+  by `n_occur`). Taxa with zero valid occurrences are listed in
+  `attr(result, "missing_taxa")`.
+
+- [`tax_photos_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.md)
+  now works correctly with `gallery = TRUE` regardless of the
+  `add_to_phyloseq` value: when `add_to_phyloseq = TRUE` the gallery is
+  printed as a side-effect and the updated phyloseq object is returned
+  invisibly. The `pixture` package dependency has been removed; the
+  gallery is now built with `htmltools` (available on CRAN). Two new
+  parameters `img_height` and `img_width` replace the previous `h`/`w`
+  arguments passed via `...` to `pixture::pixgallery()`.
+
+- Add
+  [`fungal_traits_guilds()`](https://adrientaudiere.github.io/taxinfo/reference/fungal_traits_guilds.md)
+  to enrich a phyloseq `tax_table` with guild and trait information from
+  both the FungalTraits and FUNGuild databases in a single call. The
+  function automatically calls \[gna_verifier_pq()\] when
+  `currentCanonicalSimple` is absent, and optionally produces consensus
+  columns (`cons_trophicMode`, `cons_trophicMode_agreement`) comparing
+  the two sources.
 
 - All main functions
   ([`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md),
@@ -67,6 +199,12 @@
   [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
   function to avoid confusion between “Genus” and “genus” columns and to
   debug the use of duckdb in `taxinfo_pq()`.
+
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  now adds a `genusSpeciesEpithet` column (when
+  `genus_species_canonical_col = TRUE`) that copies
+  `currentCanonicalSimple` but is `NA` for genus-only names (i.e. when
+  `specificEpithet` is `NA` or empty).
 
 ### Bug fix
 

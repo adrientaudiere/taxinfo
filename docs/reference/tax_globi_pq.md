@@ -1,5 +1,10 @@
 # Get biotic interactions for taxa present in a phyloseq object using rglobi
 
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
 A wrapper of \[rglobi::get_interactions_by_taxa()\] function to get
 biotic interactions for each taxa of a phyloseq object
 
@@ -20,7 +25,9 @@ tax_globi_pq(
   verbose = FALSE,
   strict_interaction_types = TRUE,
   max_interactions = 1000,
-  batch_size_gna_verifier = 50
+  batch_size_gna_verifier = 50,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 )
 ```
 
@@ -111,6 +118,17 @@ tax_globi_pq(
   ones such as what is obtain whith rglobi. Only used if
   \`valid_taxo_target_taxon\` is set to TRUE.
 
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
 ## Value
 
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
@@ -128,49 +146,20 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210
+)
+
+data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
+  interaction_types = c("hasHost")
+)
+
 res_globi <- tax_globi_pq(data_fungi_mini,
   taxonomic_rank = c("Genus", "Species"),
   interaction_types = list("parasiteOf", "hasHost"),
   verbose = TRUE,
   max_interactions = 10
 )
-#> ℹ After verification of valid target taxon names: 9/10 interactions kept for Stereum ostrea
-#> ℹ After verification of valid target taxon names: 1/10 interactions kept for Xylodon raduloides
-#> ! No interaction found for Ossicaulis lachnopus
-#> ℹ After verification of valid target taxon names: 6/8 interactions kept for Stereum hirsutum
-#> ! No interaction found for Antrodiella brasiliensis
-#> ℹ After verification of valid target taxon names: 7/9 interactions kept for Basidiodendron eyrei
-#> ℹ After verification of valid target taxon names: 6/6 interactions kept for Sistotrema oblongisporum
-#> ℹ After verification of valid target taxon names: 9/10 interactions kept for Fomes fomentarius
-#> ℹ After verification of valid target taxon names: 4/6 interactions kept for Mycena renati
-#> ℹ After verification of valid target taxon names: 6/6 interactions kept for Helicogloea pellucida
-#> ℹ After verification of valid target taxon names: 8/8 interactions kept for Radulomyces molaris
-#> ℹ After verification of valid target taxon names: 4/10 interactions kept for Elmerina caryae
-#> ℹ After verification of valid target taxon names: 2/2 interactions kept for Phanerochaete livescens
-#> ℹ After verification of valid target taxon names: 5/9 interactions kept for Gloeohypochnicium analogum
-#> ℹ After verification of valid target taxon names: 7/8 interactions kept for Hyphoderma roseocremeum
-#> ℹ After verification of valid target taxon names: 7/10 interactions kept for Hyphoderma setigerum
-#> ℹ After verification of valid target taxon names: 4/7 interactions kept for Trametes versicolor
-#> ℹ After verification of valid target taxon names: 2/10 interactions kept for Peniophora versiformis
-#> ! No interaction found for Exidia glandulosa
-#> ℹ After verification of valid target taxon names: 1/9 interactions kept for Peniophorella pubera
-#> ℹ After verification of valid target taxon names: 7/9 interactions kept for Auricularia mesenterica
-#> ! No interaction found for Marchandiomyces buckii
-#> ℹ After verification of valid target taxon names: 3/8 interactions kept for Hericium coralloides
-#> ℹ After verification of valid target taxon names: 5/9 interactions kept for Xylodon flaviporus
-
-data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini,
-  data_sources = 210
-)
-#> ✔ GNA verification summary:
-#> • Total taxa in phyloseq: 45
-#> • Taxa submitted for verification: 37
-#> • Genus-level only taxa: 2
-#> • Total matches found: 25
-#> • Synonyms: 4 (including 4 at genus level)
-#> • Accepted names: 21 (including 15 at genus level)
-
-data_fungi_mini_cleanNames <- tax_globi_pq(data_fungi_mini_cleanNames,
-  interaction_types = c("hasHost")
-)
+} # }
 ```

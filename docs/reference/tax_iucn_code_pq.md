@@ -1,6 +1,9 @@
 # Get iucn conservation status through gbif
 
-Get iucn conservation status through gbif
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
 
 ## Usage
 
@@ -10,7 +13,9 @@ tax_iucn_code_pq(
   taxnames = NULL,
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
-  col_prefix = NULL
+  col_prefix = NULL,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE
 )
 ```
 
@@ -44,6 +49,17 @@ tax_iucn_code_pq(
   A character string to be added as a prefix to the new columns names
   added to the tax_table slot of the phyloseq object (default: NULL).
 
+- discard_genus_alone:
+
+  (logical, default \`TRUE\` when \`taxonomic_rank ==
+  "currentCanonicalSimple"\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
+- discard_NA:
+
+  (logical, default \`TRUE\`). Passed to
+  \[taxonomic_rank_to_taxnames()\].
+
 ## Value
 
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
@@ -66,26 +82,15 @@ Adrien Taudiere
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+
 data_fungi_mini_cleanNames <-
   gna_verifier_pq(data_fungi_mini) |>
   tax_iucn_code_pq()
-#> ✔ GNA verification summary:
-#> • Total taxa in phyloseq: 45
-#> • Taxa submitted for verification: 37
-#> • Genus-level only taxa: 2
-#> • Total matches found: 25
-#> • Synonyms: 2 (including 2 at genus level)
-#> • Accepted names: 23 (including 21 at genus level)
-#> Joining with `by = join_by(taxa_name)`
 
 table(data_fungi_mini_cleanNames@tax_table[, "iucn_code"])
-#> 
-#> NE VU 
-#> 30  1 
 
 # Using taxnames vector (returns a tibble)
 tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
-#>   iucn_code        taxa_name
-#> 1        NE Amanita muscaria
-#> 2        LC   Boletus edulis
+} # }
 ```

@@ -264,41 +264,11 @@ div[style*="position: relative"] > pre {
     });
   });
 })();
-</script><div class="chunk-with-popups" style="position: relative; margin: 0; padding: 0;">
-<div class="popup-icons" style="position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;">
-<span class="popup-toggle" data-target="msg-popup-setup" title="Messages" aria-haspopup="true" aria-expanded="false">🛈</span>
-</div>
-<div id="msg-popup-setup" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
-<button class="popup-close" aria-label="Close">
-×
-</button>
-<div class="popup-header">
-<strong>Messages</strong>
-</div>
-<pre class="popup-pre">#&gt; Loading required package: MiscMetabar
-#&gt; Loading required package: phyloseq
-#&gt; Loading required package: ggplot2
-#&gt; Loading required package: dada2
-#&gt; Loading required package: Rcpp
-#&gt; Loading required package: dplyr
-#&gt; 
-#&gt; Attaching package: 'dplyr'
-#&gt; The following objects are masked from 'package:stats':
-#&gt; 
-#&gt;     filter, lag
-#&gt; The following objects are masked from 'package:base':
-#&gt; 
-#&gt;     intersect, setdiff, setequal, union
-#&gt; Loading required package: purrr
-</pre>
-</div>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adrientaudiere.github.io/taxinfo">taxinfo</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adrientaudiere/MiscMetabar" class="external-link">MiscMetabar</a></span><span class="op">)</span></span>
+</script><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adrientaudiere.github.io/taxinfo/">taxinfo</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adrientaudiere/MiscMetabar" class="external-link">MiscMetabar</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-</div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -350,16 +320,16 @@ are automatically added to the tax_table. When using
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [32m✔ [39m GNA verification summary:
-#&gt;  [36m• [39m Total taxa in phyloseq:  [34m20 [39m
-#&gt;  [36m• [39m Taxa submitted for verification:  [34m19 [39m
-#&gt;  [36m• [39m Genus-level only taxa:  [34m2 [39m
-#&gt;  [36m• [39m Total matches found:  [34m15 [39m
-#&gt;  [36m• [39m Synonyms:  [34m4 [39m (including  [34m4 [39m at genus level)
-#&gt;  [36m• [39m Accepted names:  [34m11 [39m (including  [34m6 [39m at genus level)
+<pre class="popup-pre">#&gt; ✔ GNA verification summary:
+#&gt; • Total taxa in phyloseq: 20
+#&gt; • Taxa submitted for verification: 19
+#&gt; • Genus-level only taxa: 2
+#&gt; • Total matches found: 15
+#&gt; • Synonyms: 4 (including 4 at genus level)
+#&gt; • Accepted names: 11 (including 6 at genus level)
 </pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load and prepare example data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"data_fungi_mini"</span>, package <span class="op">=</span> <span class="st">"MiscMetabar"</span><span class="op">)</span></span>
 <span></span>
@@ -382,21 +352,41 @@ are automatically added to the tax_table. When using
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum ostrea [3m [23m
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mOssicaulis lachnopus [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum hirsutum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mBasidiodendron eyrei [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mSistotrema oblongisporum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mFomes fomentarius [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mCerocorticium molare [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■     [39m  89% | ETA:  0s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mAporpium canescens [3m [23m
-#&gt;  [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■     [39m  89% | ETA:  0s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mHypochnicium analogum [3m [23m
+<pre class="popup-pre">#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
+#&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  2s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+ [Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s [K
+
+ [Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+ [Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_clean_gbif</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span><span class="va">data_clean</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -405,7 +395,29 @@ are automatically added to the tax_table. When using
 </h3>
 <p>Here’s an example of what GBIF occurrence data visualization can look
 like:</p>
-<p><img src="figures/unnamed-chunk-4-1.png" class="r-plt" alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis." width="100%"></p>
+<div class="chunk-with-popups" style="position: relative; margin: 0; padding: 0;">
+<div class="popup-icons" style="position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;">
+<span class="popup-toggle" data-target="warn-popup-unnamed-chunk-4" title="Warnings" aria-haspopup="true" aria-expanded="false">⚠</span>
+</div>
+<div id="warn-popup-unnamed-chunk-4" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
+<button class="popup-close" aria-label="Close">
+×
+</button>
+<div class="popup-header">
+<strong>Warnings</strong>
+</div>
+<pre class="popup-pre">#&gt; Warning: `theme_idest()` was deprecated in taxinfo 0.2.0.
+#&gt; ℹ Please use `ggplotpq::theme_idest()` instead.
+#&gt; This warning is displayed once per session.
+#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+</pre>
+</div>
+<div class="figure">
+<img src="figures/unnamed-chunk-4-1.png" alt="Horizontal bar chart showing GBIF occurrence counts for different taxa on a log scale. Bars are colored by taxonomic Order and arranged by occurrence count from lowest to highest. Taxon names are displayed on the y-axis." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-4
+</p>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="occurrence-counts-by-country">Occurrence Counts by Country<a class="anchor" aria-label="anchor" href="#occurrence-counts-by-country"></a>
@@ -422,22 +434,49 @@ like:</p>
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum ostrea [3m [23m
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mOssicaulis lachnopus [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum hirsutum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mBasidiodendron eyrei [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mSistotrema oblongisporum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mFomes fomentarius [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mCerocorticium molare [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mAporpium canescens [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mHypochnicium analogum [3m [23m
+<pre class="popup-pre">#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
+#&gt; 
+■■■■■■■■                          22% | ETA: 39s [K
+
+ [Kℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#&gt; ■■■■■■■■                          22% | ETA: 39s
+
+■■■■■■■■■■■                       33% | ETA: 32s [K
+
+ [Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA: 32s
+
+■■■■■■■■■■■■■■                    44% | ETA: 23s [K
+
+ [Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA: 23s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA: 15s [K
+
+ [Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA: 15s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s [K
+
+ [Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s [K
+
+ [Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s [K
+
+ [Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s
+
+ [Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_clean_gbif_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span><span class="va">data_clean</span>, by_country <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">data_clean_gbif_country</span><span class="op">@</span><span class="va">tax_table</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -467,7 +506,11 @@ like:</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_idest.html">theme_idest</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<img src="figures/unnamed-chunk-5-1.png" class="r-plt" alt="Violin plot with overlaid jittered points showing the distribution of GBIF occurrence counts (log scale) by country. Each violin represents a different country (US, FR, DE, GB, ES, MX) with sample sizes shown above each violin. Violins are colored by country." width="100%">
+<div class="figure">
+<img src="figures/unnamed-chunk-5-1.png" alt="Violin plot with overlaid jittered points showing the distribution of GBIF occurrence counts (log scale) by country. Each violin represents a different country (US, FR, DE, GB, ES, MX) with sample sizes shown above each violin. Violins are colored by country." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-5
+</p>
+</div>
 </div>
 </div>
 <div class="section level3">
@@ -487,18 +530,40 @@ sufficient.</p>
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum ostrea [3m [23m
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mOssicaulis lachnopus [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mStereum hirsutum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mBasidiodendron eyrei [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [36mℹ [39m Processing GBIF occurrences for  [3m [3mSistotrema oblongisporum [3m [23m
-#&gt;  [32m■■■■■■■■■■■                      [39m  33% | ETA:  2s [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mFomes fomentarius [3m [23m
-#&gt;  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [36mℹ [39m Processing GBIF occurrences for  [3m [3mCerocorticium molare [3m [23m
-#&gt;  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [36mℹ [39m Processing GBIF occurrences for  [3m [3mAporpium canescens [3m [23m
-#&gt;  [32m■■■■■■■■■■■■■■■■■■■■■            [39m  67% | ETA:  1s [32m■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  [39m 100% | ETA:  0s
-#&gt;  [36mℹ [39m Processing GBIF occurrences for  [3m [3mHypochnicium analogum [3m [23m
+<pre class="popup-pre">#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
+#&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  2s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA:  2s [K
+
+ [Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s [K
+
+ [Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s [K
+
+ [Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+ [Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre>
 </div>
 <div id="warn-popup-unnamed-chunk-6" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
@@ -508,22 +573,22 @@ sufficient.</p>
 <div class="popup-header">
 <strong>Warnings</strong>
 </div>
-<pre class="popup-pre">#&gt; Warning:  [1m [22mRemoved 223 rows containing missing values or values outside the scale range
-#&gt; (`geom_line()`).
-#&gt; Warning:  [1m [22mRemoved 25 rows containing missing values or values outside the scale range
-#&gt; (`geom_line()`).
-#&gt; Warning:  [1m [22mRemoved 250 rows containing missing values or values outside the scale range
+<pre class="popup-pre">#&gt; Warning: Removed 218 rows containing missing values or values outside the scale
+#&gt; range (`geom_line()`).
+#&gt; Warning: Removed 22 rows containing missing values or values outside the scale
+#&gt; range (`geom_line()`).
+#&gt; Warning: Removed 247 rows containing missing values or values outside the scale range
 #&gt; (`geom_point()`).
 </pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gbif_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span><span class="va">data_clean</span>,</span>
 <span>  by_years <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  add_to_phyloseq <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">canonicalName</span>, names_to <span class="op">=</span> <span class="st">"year"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Visualize temporal trends for the occurences of taxa</span></span>
 <span><span class="va">gbif_years</span> <span class="op">|&gt;</span></span>
@@ -544,7 +609,11 @@ sufficient.</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">2010</span>, <span class="fl">2026</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<img src="figures/unnamed-chunk-6-1.png" class="r-plt" alt="Line plot showing GBIF occurrence counts over time for multiple taxa. Each taxon is represented by a colored line with points. Dotted lines link points with NA in the temporal timeline. Taxon names are shown as text labels on the right side of the plot. The y-axis shows occurrence counts on a log scale." width="100%">
+<div class="figure">
+<img src="figures/unnamed-chunk-6-1.png" alt="Line plot showing GBIF occurrence counts over time for multiple taxa. Each taxon is represented by a colored line with points. Dotted lines link points with NA in the temporal timeline. Taxon names are shown as text labels on the right side of the plot. The y-axis shows occurrence counts on a log scale." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-6
+</p>
+</div>
 </div>
 <div class="chunk-with-popups" style="position: relative; margin: 0; padding: 0;">
 <div class="popup-icons" style="position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;">
@@ -557,13 +626,13 @@ sufficient.</p>
 <div class="popup-header">
 <strong>Warnings</strong>
 </div>
-<pre class="popup-pre">#&gt; Warning:  [1m [22mRemoved 153 rows containing missing values or values outside the scale range
-#&gt; (`geom_line()`).
-#&gt; Warning:  [1m [22mRemoved 153 rows containing missing values or values outside the scale range
+<pre class="popup-pre">#&gt; Warning: Removed 144 rows containing missing values or values outside the scale
+#&gt; range (`geom_line()`).
+#&gt; Warning: Removed 144 rows containing missing values or values outside the scale range
 #&gt; (`geom_point()`).
 </pre>
 </div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gbif_years_cumsum</span> <span class="op">&lt;-</span> <span class="va">gbif_years</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -599,7 +668,11 @@ sufficient.</p>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2026</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<img src="figures/unnamed-chunk-7-1.png" class="r-plt" alt="Line plot showing cumulative GBIF occurrence counts over time (2008-2026) for multiple taxa. Each taxon is represented by a colored line with points showing cumulative growth. Taxon names are labeled on the right side of the plot in italic font." width="100%">
+<div class="figure">
+<img src="figures/unnamed-chunk-7-1.png" alt="Line plot showing cumulative GBIF occurrence counts over time (2008-2026) for multiple taxa. Each taxon is represented by a colored line with points showing cumulative growth. Taxon names are labeled on the right side of the plot in italic font." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-7
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -610,7 +683,7 @@ sufficient.</p>
 <h3 id="basic-distribution-plots">Basic Distribution Plots<a class="anchor" aria-label="anchor" href="#basic-distribution-plots"></a>
 </h3>
 <p>Create occurrence distribution visualizations:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot global vs regional occurrences</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/psmelt.html" class="external-link">psmelt</a></span><span class="op">(</span><span class="va">data_clean_gbif</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -640,7 +713,11 @@ sufficient.</p>
 <span>    y <span class="op">=</span> <span class="st">"Number of GBIF occurrences (log scale)"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_idest.html">theme_idest</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="figures/unnamed-chunk-8-1.png" class="r-plt" alt="Scatter plot comparing the number of sequences (x-axis, log scale) to GBIF occurrence counts (y-axis, log scale) for each taxon. Taxon names are shown in italic font near each point." width="100%"></p>
+<div class="figure">
+<img src="figures/unnamed-chunk-8-1.png" alt="Scatter plot comparing the number of sequences (x-axis, log scale) to GBIF occurrence counts (y-axis, log scale) for each taxon. Taxon names are shown in italic font near each point." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-8
+</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="interactive-distribution-maps">Interactive Distribution Maps<a class="anchor" aria-label="anchor" href="#interactive-distribution-maps"></a>
@@ -662,7 +739,7 @@ sufficient.</p>
 #&gt; Number of filtered-out ASV 18
 #&gt; Number of kept ASV 2
 #&gt; Number of kept samples 137
-#&gt;  [36mℹ [39m Start the computation of Ossicaulis lachnopus
+#&gt; ℹ Start the computation of Ossicaulis lachnopus
 </pre>
 </div>
 <div id="warn-popup-unnamed-chunk-9" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
@@ -680,29 +757,35 @@ sufficient.</p>
 #&gt; metadata columns contains NA.
 </pre>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_tax_gbif_pq.html">plot_tax_gbif_pq</a></span><span class="op">(</span><span class="fu"><a href="../reference/select_taxa_pq.html">select_taxa_pq</a></span><span class="op">(</span><span class="va">data_clean</span>, taxnames <span class="op">=</span> <span class="st">"Ossicaulis lachnopus"</span><span class="op">)</span>,</span>
 <span>  interactive_plot <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span></span>
-<span><span class="co">#&gt; ...GBIF records of Ossicaulis lachnopus : download of all records starting... </span></span>
-<span><span class="co">#&gt;  ----------------- 100 %...</span></span>
-<span><span class="co">#&gt; ---&gt; Grain filtering...</span></span>
-<span><span class="co">#&gt; Records removed: 2 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of duplicated records... </span></span>
-<span><span class="co">#&gt; Records removed: 71 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of absence records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Basis of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 45 </span></span>
-<span><span class="co">#&gt; ---&gt; Establishment of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Time period selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of identical xy records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of raster centroids... </span></span>
-<span><span class="co">#&gt; Records removed: 0</span></span></code></pre>
+<pre><code>#&gt; |--------------------------------------------|
+#&gt; | Total number (all records)    :        227 |
+#&gt; | Kept records                  :        206 |
+#&gt; |--------------------------------------------|
+#&gt; | Kept records according to parameters:
+#&gt; | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download starting...
+#&gt; 
+------------- #1 (100%...) [K
+#&gt; ...Records (XY) filtering summary:
+#&gt; ----------------------------------------------
+#&gt;                     step removed remaining
+#&gt;          Grain filtering       3       203
+#&gt;       Duplicated records      73       130
+#&gt;          Absence records       0       130
+#&gt;          Basis selection      49        81
+#&gt;  Establishment selection       0        81
+#&gt;               Time frame       0        81
+#&gt;        Identical records       0        81
+#&gt;         Raster centroids       0        81
+#&gt; 
+#&gt; Initial records         : 206
+#&gt; Total removed           : 125
+#&gt; Final records (XY)      : 81
+#&gt; ----------------------------------------------
+#&gt; Final records (no XY)   : 0</code></pre>
 <pre><code><span><span class="co">#&gt; [[1]]</span></span></code></pre>
 </div>
 </div>
@@ -720,59 +803,79 @@ sufficient.</p>
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [36mℹ [39m Start the computation of Ossicaulis lachnopus
-#&gt;  [36mℹ [39m Start the computation of Basidiodendron eyrei
+<pre class="popup-pre">#&gt; ℹ Start the computation of Ossicaulis lachnopus
+#&gt; ℹ Start the computation of Basidiodendron eyrei
 </pre>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distribution_maps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_tax_gbif_pq.html">plot_tax_gbif_pq</a></span><span class="op">(</span></span>
 <span>  taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ossicaulis lachnopus"</span>, <span class="st">"Basidiodendron eyrei"</span><span class="op">)</span>,</span>
 <span>  n_occur <span class="op">=</span> <span class="fl">1000</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span></span>
-<span><span class="co">#&gt; ...GBIF records of Ossicaulis lachnopus : download of all records starting... </span></span>
-<span><span class="co">#&gt;  ----------------- 100 %...</span></span>
-<span><span class="co">#&gt; ---&gt; Grain filtering...</span></span>
-<span><span class="co">#&gt; Records removed: 2 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of duplicated records... </span></span>
-<span><span class="co">#&gt; Records removed: 71 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of absence records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Basis of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 45 </span></span>
-<span><span class="co">#&gt; ---&gt; Establishment of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Time period selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of identical xy records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of raster centroids... </span></span>
-<span><span class="co">#&gt; Records removed: 0</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 815 </span></span>
-<span><span class="co">#&gt; ...GBIF records of Basidiodendron eyrei : download of all records starting... </span></span>
-<span><span class="co">#&gt;  ----------------- 100 %...</span></span>
-<span><span class="co">#&gt; ---&gt; Grain filtering...</span></span>
-<span><span class="co">#&gt; Records removed: 3 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of duplicated records... </span></span>
-<span><span class="co">#&gt; Records removed: 288 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of absence records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Basis of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 302 </span></span>
-<span><span class="co">#&gt; ---&gt; Establishment of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Time period selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of identical xy records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of raster centroids... </span></span>
-<span><span class="co">#&gt; Records removed: 0</span></span></code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<pre><code>#&gt; |--------------------------------------------|
+#&gt; | Total number (all records)    :        227 |
+#&gt; | Kept records                  :        206 |
+#&gt; |--------------------------------------------|
+#&gt; | Kept records according to parameters:
+#&gt; | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download starting...
+#&gt; 
+------------- #1 (100%...) [K
+#&gt; ...Records (XY) filtering summary:
+#&gt; ----------------------------------------------
+#&gt;                     step removed remaining
+#&gt;          Grain filtering       3       203
+#&gt;       Duplicated records      73       130
+#&gt;          Absence records       0       130
+#&gt;          Basis selection      49        81
+#&gt;  Establishment selection       0        81
+#&gt;               Time frame       0        81
+#&gt;        Identical records       0        81
+#&gt;         Raster centroids       0        81
+#&gt; 
+#&gt; Initial records         : 206
+#&gt; Total removed           : 125
+#&gt; Final records (XY)      : 81
+#&gt; ----------------------------------------------
+#&gt; Final records (no XY)   : 0</code></pre>
+<pre><code>#&gt; |--------------------------------------------|
+#&gt; | Total number (all records)    :       1165 |
+#&gt; | Kept records                  :        857 |
+#&gt; |--------------------------------------------|
+#&gt; | Kept records according to parameters:
+#&gt; | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Basidiodendron eyrei: download starting...
+#&gt; 
+------------- #1 (100%...) [K
+#&gt; ...Records (XY) filtering summary:
+#&gt; ----------------------------------------------
+#&gt;                     step removed remaining
+#&gt;          Grain filtering      27       830
+#&gt;       Duplicated records     295       535
+#&gt;          Absence records       0       535
+#&gt;          Basis selection     286       249
+#&gt;  Establishment selection       0       249
+#&gt;               Time frame       0       249
+#&gt;        Identical records       0       249
+#&gt;         Raster centroids       0       249
+#&gt; 
+#&gt; Initial records         : 857
+#&gt; Total removed           : 608
+#&gt; Final records (XY)      : 249
+#&gt; ----------------------------------------------
+#&gt; Final records (no XY)   : 0</code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distribution_maps</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<p><img src="figures/unnamed-chunk-10-1.png" class="r-plt" alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)." width="100%"></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="figure">
+<img src="figures/unnamed-chunk-10-1.png" alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-10
+</p>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distribution_maps</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<img src="figures/unnamed-chunk-10-2.png" class="r-plt" alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)." width="100%">
+<div class="figure">
+<img src="figures/unnamed-chunk-10-2.png" alt="Static world map showing the geographic distribution of GBIF occurrence records for Ossicaulis lachnopus and Basidiodendron eyrei. Points on the map represent up to 1000 occurrence locations for each species. Color indicates the type of record (e.g. human observation or material sample)." width="100%"><p class="caption">
+plot of chunk unnamed-chunk-10
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -798,10 +901,14 @@ sufficient.</p>
 #&gt; Number of filtered-out ASV 17
 #&gt; Number of kept ASV 3
 #&gt; Number of kept samples 137
-#&gt;  [36mℹ [39m Finding GBIF occurrence for  [3m [3mOssicaulis lachnopus [3m [23m
-#&gt;  [36mℹ [39m Starting range computation for  [3m [3mOssicaulis lachnopus [3m [23m
-#&gt;  [36mℹ [39m Finding GBIF occurrence for  [3m [3mBasidiodendron eyrei [3m [23m
-#&gt;  [36mℹ [39m Starting range computation for  [3m [3mBasidiodendron eyrei [3m [23m
+#&gt; ℹ Finding GBIF occurrence for Ossicaulis lachnopus
+#&gt; ℹ Starting range computation for Ossicaulis lachnopus
+#&gt; ! Not enough occurrence data for Ossicaulis lachnopus
+#&gt; ! Not enough occurrence data to plot Ossicaulis lachnopus
+#&gt; ℹ Finding GBIF occurrence for Basidiodendron eyrei
+#&gt; ℹ Starting range computation for Basidiodendron eyrei
+#&gt; ! Not enough occurrence data for Basidiodendron eyrei
+#&gt; ! Not enough occurrence data to plot Basidiodendron eyrei
 </pre>
 </div>
 <div id="warn-popup-unnamed-chunk-11" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
@@ -819,55 +926,67 @@ sufficient.</p>
 #&gt; metadata columns contains NA.
 </pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_clean_range</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/range_bioreg_pq.html">range_bioreg_pq</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/select_taxa_pq.html">select_taxa_pq</a></span><span class="op">(</span><span class="va">data_clean</span>,</span>
 <span>    taxnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ossicaulis lachnopus"</span>, <span class="st">"Basidiodendron eyrei"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  make_plot <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 191 </span></span>
-<span><span class="co">#&gt; ...GBIF records of Ossicaulis lachnopus : download of sample of records starting... </span></span>
-<span><span class="co">#&gt;  ----------------- 100 %...</span></span>
-<span><span class="co">#&gt; ---&gt; Grain filtering...</span></span>
-<span><span class="co">#&gt; Records removed: 2 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of duplicated records... </span></span>
-<span><span class="co">#&gt; Records removed: 71 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of absence records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Basis of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 45 </span></span>
-<span><span class="co">#&gt; ---&gt; Establishment of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Time period selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of identical xy records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of raster centroids... </span></span>
-<span><span class="co">#&gt; Records removed: 0</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Total number of records: 815 </span></span>
-<span><span class="co">#&gt; ...GBIF records of Basidiodendron eyrei : download of sample of records starting... </span></span>
-<span><span class="co">#&gt;  ----------------- 100 %...</span></span>
-<span><span class="co">#&gt; ---&gt; Grain filtering...</span></span>
-<span><span class="co">#&gt; Records removed: 3 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of duplicated records... </span></span>
-<span><span class="co">#&gt; Records removed: 288 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of absence records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Basis of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 302 </span></span>
-<span><span class="co">#&gt; ---&gt; Establishment of records selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Time period selection... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of identical xy records... </span></span>
-<span><span class="co">#&gt; Records removed: 0 </span></span>
-<span><span class="co">#&gt; ---&gt; Removal of raster centroids... </span></span>
-<span><span class="co">#&gt; Records removed: 0</span></span></code></pre>
+<pre><code>#&gt; |--------------------------------------------|
+#&gt; | Total number (all records)    :        227 |
+#&gt; | Kept records                  :        206 |
+#&gt; |--------------------------------------------|
+#&gt; | Kept records according to parameters:
+#&gt; | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download of sample starting...
+#&gt; 
+------------- #1 (100%...) [K
+#&gt; ...Records (XY) filtering summary:
+#&gt; ----------------------------------------------
+#&gt;                     step removed remaining
+#&gt;          Grain filtering       3       203
+#&gt;       Duplicated records      73       130
+#&gt;          Absence records       0       130
+#&gt;          Basis selection      49        81
+#&gt;  Establishment selection       0        81
+#&gt;               Time frame       0        81
+#&gt;        Identical records       0        81
+#&gt;         Raster centroids       0        81
+#&gt; 
+#&gt; Initial records         : 206
+#&gt; Total removed           : 125
+#&gt; Final records (XY)      : 81
+#&gt; ----------------------------------------------
+#&gt; Final records (no XY)   : 0</code></pre>
+<pre><code>#&gt; |--------------------------------------------|
+#&gt; | Total number (all records)    :       1165 |
+#&gt; | Kept records                  :        857 |
+#&gt; |--------------------------------------------|
+#&gt; | Kept records according to parameters:
+#&gt; | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Basidiodendron eyrei: download of sample starting...
+#&gt; 
+------------- #1 (100%...) [K
+#&gt; ...Records (XY) filtering summary:
+#&gt; ----------------------------------------------
+#&gt;                     step removed remaining
+#&gt;          Grain filtering      27       830
+#&gt;       Duplicated records     295       535
+#&gt;          Absence records       0       535
+#&gt;          Basis selection     286       249
+#&gt;  Establishment selection       0       249
+#&gt;               Time frame       0       249
+#&gt;        Identical records       0       249
+#&gt;         Raster centroids       0       249
+#&gt; 
+#&gt; Initial records         : 857
+#&gt; Total removed           : 608
+#&gt; Final records (XY)      : 249
+#&gt; ----------------------------------------------
+#&gt; Final records (no XY)   : 0</code></pre>
 </div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_clean_range</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<p><img src="figures/unnamed-chunk-12-1.png" class="r-plt" alt="Biogeographic range analysis plot showing the distribution of occurrence records across different biogeographic regions for Basidiodendron eyrei." width="100%"></p>
+<pre><code><span><span class="co">#&gt; NULL</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="ecoregion-validation">Ecoregion Validation<a class="anchor" aria-label="anchor" href="#ecoregion-validation"></a>
@@ -875,7 +994,7 @@ sufficient.</p>
 <p>Check if occurrences match expected ecoregions:</p>
 <div class="chunk-with-popups" style="position: relative; margin: 0; padding: 0;">
 <div class="popup-icons" style="position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;">
-<span class="popup-toggle" data-target="msg-popup-unnamed-chunk-13" title="Messages" aria-haspopup="true" aria-expanded="false">🛈</span><span class="popup-toggle" data-target="warn-popup-unnamed-chunk-13" title="Warnings" aria-haspopup="true" aria-expanded="false">⚠</span>
+<span class="popup-toggle" data-target="msg-popup-unnamed-chunk-13" title="Messages" aria-haspopup="true" aria-expanded="false">🛈</span>
 </div>
 <div id="msg-popup-unnamed-chunk-13" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
 <button class="popup-close" aria-label="Close">
@@ -884,151 +1003,245 @@ sufficient.</p>
 <div class="popup-header">
 <strong>Messages</strong>
 </div>
-<pre class="popup-pre">#&gt;  [36mℹ [39m Downloading ecoregion data for  [3m [3mXylobolus subpileatus [3m [23m
-#&gt;  [36mℹ [39m Downloading and validating ecoregion data
-#&gt;  [36mℹ [39m Listing ecoregions for  [3m [3mXylobolus subpileatus [3m [23m
-#&gt;  [36mℹ [39m Listing ecoregions for  [34m [34m2 [34m [39m GPS points
-</pre>
-</div>
-<div id="warn-popup-unnamed-chunk-13" class="popup" role="dialog" aria-hidden="true" onclick="event.stopPropagation();">
-<button class="popup-close" aria-label="Close">
-×
-</button>
-<div class="popup-header">
-<strong>Warnings</strong>
-</div>
-<pre class="popup-pre">#&gt; Warning: attribute variables are assumed to be spatially constant throughout
-#&gt; all geometries
-#&gt; Warning: attribute variables are assumed to be spatially constant throughout
-#&gt; all geometries
+<pre class="popup-pre">#&gt; ℹ Ecoregion layer "eco_terra" is not bundled with taxinfo.
+#&gt;   Downloading it once (~50 MB) to '/home/adrien/.cache/R/taxinfo'.
+#&gt; eco_terra directory does not exist or contains no .shp files. 
+#&gt;             
+#&gt;  [/home/adrien/.cache/R/taxinfo/eco_terra/eco_terra] will be created and data will be downloaded.
+#&gt;             
+#&gt;  Downloading data...
+#&gt; 
+#&gt; Preparing to download ecoregion eco_terra 
+#&gt;  data file to: /home/adrien/.cache/R/taxinfo
+#&gt; 
+#&gt; Downloaded: eco_terra
+#&gt; 
+#&gt; Description: Terrestrial Ecoregions of the World
+#&gt; 
+#&gt; Unzipped: eco_terra 
+#&gt;  saved to: /home/adrien/.cache/R/taxinfo/eco_terra 
+#&gt;  removed:  eco_terra.zip
+#&gt; 
+#&gt; ℹ Fetching GBIF occurrences for Xylobolus subpileatus
 </pre>
 </div>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/tax_check_ecoregion.html">tax_check_ecoregion</a></span><span class="op">(</span><span class="st">"Xylobolus subpileatus"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tax_check_ecoregion.html">tax_check_ecoregion</a></span><span class="op">(</span></span>
+<span>  taxnames <span class="op">=</span> <span class="st">"Xylobolus subpileatus"</span>,</span>
 <span>  longitudes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.3522</span>, <span class="fl">4.2</span><span class="op">)</span>,</span>
 <span>  latitudes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">48.8566</span>, <span class="fl">33</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; $ecoregion</span></span>
+<pre><code><span><span class="co">#&gt; $taxon_ecoregions</span></span>
+<span><span class="co">#&gt; # A tibble: 91 × 6</span></span>
+<span><span class="co">#&gt;    taxon_name            ECO_NAME                 biome realm n_occur prop_occur</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                 &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Xylobolus subpileatus Lower New England / Nor… Temp… Near…     124      0.124</span></span>
+<span><span class="co">#&gt;  2 Xylobolus subpileatus Pannonian Mixed Forests  Temp… Pale…      65      0.065</span></span>
+<span><span class="co">#&gt;  3 Xylobolus subpileatus Isthmian-Pacific Moist … Trop… Neot…      56      0.056</span></span>
+<span><span class="co">#&gt;  4 Xylobolus subpileatus Florida Peninsula        Temp… Near…      53      0.053</span></span>
+<span><span class="co">#&gt;  5 Xylobolus subpileatus Piedmont                 Temp… Near…      53      0.053</span></span>
+<span><span class="co">#&gt;  6 Xylobolus subpileatus North Atlantic Coast     Temp… Near…      46      0.046</span></span>
+<span><span class="co">#&gt;  7 Xylobolus subpileatus East Gulf Coastal Plain  Temp… Near…      43      0.043</span></span>
+<span><span class="co">#&gt;  8 Xylobolus subpileatus Cumberlands And Souther… Temp… Near…      38      0.038</span></span>
+<span><span class="co">#&gt;  9 Xylobolus subpileatus Upper East Gulf Coastal… Temp… Near…      34      0.034</span></span>
+<span><span class="co">#&gt; 10 Xylobolus subpileatus Trans-Mexican Volcanic … Trop… Neot…      27      0.027</span></span>
+<span><span class="co">#&gt; # ℹ 81 more rows</span></span>
 <span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $points_ecoregion</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 6</span></span>
+<span><span class="co">#&gt;   point_id longitude latitude ECO_NAME                           biome     realm</span></span>
+<span><span class="co">#&gt;      &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;                              &lt;chr&gt;     &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1        1      2.35     48.9 Atlantic Mixed Forests             Temperat… Pale…</span></span>
+<span><span class="co">#&gt; 2        2      4.2      33   North Saharan Steppe And Woodlands Deserts … Pale…</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $is_in_ecoregion</span></span>
+<span><span class="co">#&gt;                       point_1 point_2</span></span>
+<span><span class="co">#&gt; Xylobolus subpileatus   FALSE   FALSE</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $ecoregion</span></span>
+<span><span class="co">#&gt; $ecoregion$`Xylobolus subpileatus`</span></span>
 <span><span class="co">#&gt;                            Lower New England / Northern Piedmont </span></span>
-<span><span class="co">#&gt;                                                               93 </span></span>
-<span><span class="co">#&gt;                                             North Atlantic Coast </span></span>
-<span><span class="co">#&gt;                                                               44 </span></span>
-<span><span class="co">#&gt;                                                         Piedmont </span></span>
-<span><span class="co">#&gt;                                                               37 </span></span>
+<span><span class="co">#&gt;                                                              124 </span></span>
 <span><span class="co">#&gt;                                          Pannonian Mixed Forests </span></span>
-<span><span class="co">#&gt;                                                               27 </span></span>
-<span><span class="co">#&gt;                                          East Gulf Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                               24 </span></span>
+<span><span class="co">#&gt;                                                               65 </span></span>
+<span><span class="co">#&gt;                                   Isthmian-Pacific Moist Forests </span></span>
+<span><span class="co">#&gt;                                                               56 </span></span>
 <span><span class="co">#&gt;                                                Florida Peninsula </span></span>
-<span><span class="co">#&gt;                                                               22 </span></span>
-<span><span class="co">#&gt;                                    Upper East Gulf Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                               22 </span></span>
-<span><span class="co">#&gt;                                  Gulf Coast Prairies And Marshes </span></span>
-<span><span class="co">#&gt;                                                               18 </span></span>
-<span><span class="co">#&gt;                                    Upper West Gulf Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                               18 </span></span>
+<span><span class="co">#&gt;                                                               53 </span></span>
+<span><span class="co">#&gt;                                                         Piedmont </span></span>
+<span><span class="co">#&gt;                                                               53 </span></span>
+<span><span class="co">#&gt;                                             North Atlantic Coast </span></span>
+<span><span class="co">#&gt;                                                               46 </span></span>
+<span><span class="co">#&gt;                                          East Gulf Coastal Plain </span></span>
+<span><span class="co">#&gt;                                                               43 </span></span>
 <span><span class="co">#&gt;                        Cumberlands And Southern Ridge And Valley </span></span>
-<span><span class="co">#&gt;                                                               16 </span></span>
-<span><span class="co">#&gt;                                          North Central Tillplain </span></span>
-<span><span class="co">#&gt;                                                               14 </span></span>
-<span><span class="co">#&gt;                                              Southern Blue Ridge </span></span>
-<span><span class="co">#&gt;                                                               14 </span></span>
-<span><span class="co">#&gt;                                                      Great Lakes </span></span>
-<span><span class="co">#&gt;                                                               11 </span></span>
+<span><span class="co">#&gt;                                                               38 </span></span>
+<span><span class="co">#&gt;                                    Upper East Gulf Coastal Plain </span></span>
+<span><span class="co">#&gt;                                                               34 </span></span>
+<span><span class="co">#&gt;                     Trans-Mexican Volcanic Belt Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                                                               27 </span></span>
+<span><span class="co">#&gt;                                    Upper West Gulf Coastal Plain </span></span>
+<span><span class="co">#&gt;                                                               26 </span></span>
+<span><span class="co">#&gt;                                  Gulf Coast Prairies And Marshes </span></span>
+<span><span class="co">#&gt;                                                               25 </span></span>
 <span><span class="co">#&gt;                                 Mississippi River Alluvial Plain </span></span>
-<span><span class="co">#&gt;                                                               11 </span></span>
+<span><span class="co">#&gt;                                                               25 </span></span>
+<span><span class="co">#&gt;                                              Southern Blue Ridge </span></span>
+<span><span class="co">#&gt;                                                               25 </span></span>
+<span><span class="co">#&gt;                                                      Great Lakes </span></span>
+<span><span class="co">#&gt;                                                               22 </span></span>
+<span><span class="co">#&gt;                                          North Central Tillplain </span></span>
+<span><span class="co">#&gt;                                                               22 </span></span>
+<span><span class="co">#&gt;                                       Talamancan Montane Forests </span></span>
+<span><span class="co">#&gt;                                                               18 </span></span>
+<span><span class="co">#&gt;                     Corsican Montane Broadleaf And Mixed Forests </span></span>
+<span><span class="co">#&gt;                                                               17 </span></span>
 <span><span class="co">#&gt;                                                           Ozarks </span></span>
-<span><span class="co">#&gt;                                                               11 </span></span>
-<span><span class="co">#&gt;                                     South Atlantic Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                               10 </span></span>
-<span><span class="co">#&gt;                                       Mid-Atlantic Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                                9 </span></span>
+<span><span class="co">#&gt;                                                               17 </span></span>
+<span><span class="co">#&gt;                                          Chesapeake Bay Lowlands </span></span>
+<span><span class="co">#&gt;                                                               14 </span></span>
 <span><span class="co">#&gt;                                          West Gulf Coastal Plain </span></span>
-<span><span class="co">#&gt;                                                                9 </span></span>
+<span><span class="co">#&gt;                                                               14 </span></span>
+<span><span class="co">#&gt;                                     South Atlantic Coastal Plain </span></span>
+<span><span class="co">#&gt;                                                               13 </span></span>
+<span><span class="co">#&gt;                                        Central Tallgrass Prairie </span></span>
+<span><span class="co">#&gt;                                                               12 </span></span>
+<span><span class="co">#&gt;                                       Mid-Atlantic Coastal Plain </span></span>
+<span><span class="co">#&gt;                                                               12 </span></span>
+<span><span class="co">#&gt;                            Sierra Madre De Chiapas Moist Forests </span></span>
+<span><span class="co">#&gt;                                                               12 </span></span>
+<span><span class="co">#&gt;                              Western Himalayan Broadleaf Forests </span></span>
+<span><span class="co">#&gt;                                                               12 </span></span>
+<span><span class="co">#&gt;                                             Interior Low Plateau </span></span>
+<span><span class="co">#&gt;                                                               11 </span></span>
 <span><span class="co">#&gt;                      Crosstimbers And Southern Tallgrass Prairie </span></span>
+<span><span class="co">#&gt;                                                                8 </span></span>
+<span><span class="co">#&gt;                Italian Sclerophyllous And Semi-Deciduous Forests </span></span>
+<span><span class="co">#&gt;                                                                8 </span></span>
+<span><span class="co">#&gt;                               Costa Rican Seasonal Moist Forests </span></span>
 <span><span class="co">#&gt;                                                                7 </span></span>
 <span><span class="co">#&gt;                                        Western Allegheny Plateau </span></span>
+<span><span class="co">#&gt;                                                                7 </span></span>
+<span><span class="co">#&gt;                                       Central Appalachian Forest </span></span>
 <span><span class="co">#&gt;                                                                6 </span></span>
-<span><span class="co">#&gt;                                          Chesapeake Bay Lowlands </span></span>
+<span><span class="co">#&gt;                               Himalayan Subtropical Pine Forests </span></span>
+<span><span class="co">#&gt;                                                                6 </span></span>
+<span><span class="co">#&gt;                                          Oaxacan Montane Forests </span></span>
+<span><span class="co">#&gt;                                                                6 </span></span>
+<span><span class="co">#&gt;                                     Central American Dry Forests </span></span>
 <span><span class="co">#&gt;                                                                5 </span></span>
-<span><span class="co">#&gt;                                             Interior Low Plateau </span></span>
+<span><span class="co">#&gt;                             Eastern Australian Temperate Forests </span></span>
 <span><span class="co">#&gt;                                                                5 </span></span>
 <span><span class="co">#&gt;                                 Osage Plains/Flint Hills Prairie </span></span>
 <span><span class="co">#&gt;                                                                5 </span></span>
-<span><span class="co">#&gt;                     Trans-Mexican Volcanic Belt Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;             Tyrrhenian-Adriatic Sclerophyllous And Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                5 </span></span>
-<span><span class="co">#&gt;                                       Central Appalachian Forest </span></span>
-<span><span class="co">#&gt;                                                                4 </span></span>
-<span><span class="co">#&gt;                Italian Sclerophyllous And Semi-Deciduous Forests </span></span>
-<span><span class="co">#&gt;                                                                4 </span></span>
-<span><span class="co">#&gt;                                          Oaxacan Montane Forests </span></span>
-<span><span class="co">#&gt;                                                                4 </span></span>
 <span><span class="co">#&gt;                                               Ouachita Mountains </span></span>
 <span><span class="co">#&gt;                                                                4 </span></span>
-<span><span class="co">#&gt;                            Sierra Madre De Chiapas Moist Forests </span></span>
-<span><span class="co">#&gt;                                                                4 </span></span>
-<span><span class="co">#&gt;                                       Talamancan Montane Forests </span></span>
-<span><span class="co">#&gt;                                                                4 </span></span>
-<span><span class="co">#&gt;                                        Central Tallgrass Prairie </span></span>
-<span><span class="co">#&gt;                                                                3 </span></span>
 <span><span class="co">#&gt;                           Sierra Madre Oriental Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                                                                4 </span></span>
+<span><span class="co">#&gt; Southwest Iberian Mediterranean Sclerophyllous And Mixed Forests </span></span>
+<span><span class="co">#&gt;                                                                4 </span></span>
+<span><span class="co">#&gt;                                             Balkan Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                3 </span></span>
-<span><span class="co">#&gt;                               Costa Rican Seasonal Moist Forests </span></span>
+<span><span class="co">#&gt;                                           High Allegheny Plateau </span></span>
+<span><span class="co">#&gt;                                                                3 </span></span>
+<span><span class="co">#&gt;                                  Isthmian-Atlantic Moist Forests </span></span>
+<span><span class="co">#&gt;                                                                3 </span></span>
+<span><span class="co">#&gt;                                              Jalisco Dry Forests </span></span>
+<span><span class="co">#&gt;                                                                3 </span></span>
+<span><span class="co">#&gt;                                 Northwestern Thorn Scrub Forests </span></span>
+<span><span class="co">#&gt;                                                                3 </span></span>
+<span><span class="co">#&gt;                            Sierra Madre Del Sur Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                                                                3 </span></span>
+<span><span class="co">#&gt;                                                Bajío Dry Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                         Canary Islands Dry Woodlands And Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                          Chiapas Montane Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                  Dinaric Mountains Mixed Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                   East African Montane Moorlands </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                Iberian Sclerophyllous And Semi-Deciduous Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                 Kayah-Karen Montane Rain Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                             Kazakh Forest Steppe </span></span>
 <span><span class="co">#&gt;                                                                2 </span></span>
 <span><span class="co">#&gt;                                 Magdalena Valley Montane Forests </span></span>
 <span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                  Northwestern Himalayan Alpine Shrub And Meadows </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                           Po Basin Mixed Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                     Southern Pacific Dry Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
 <span><span class="co">#&gt;                                       Taiheiyo Evergreen Forests </span></span>
 <span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                      Western Himalayan Subalpine Conifer Forests </span></span>
+<span><span class="co">#&gt;                                                                2 </span></span>
+<span><span class="co">#&gt;                                   Albertine Rift Montane Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                   Alps Conifer And Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                               Balsas Dry Forests </span></span>
-<span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt;                                                    Boreal Shield </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                         Cantabrian Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                     Cauca Valley Montane Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                Central American Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                   Central European Mixed Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                         Central Mexican Matorral </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                                 Columbia Plateau </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                      Crete Mediterranean Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                   English Lowlands Beech Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt;                                           High Allegheny Plateau </span></span>
+<span><span class="co">#&gt;                                        Ethiopian Montane Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt;                Iberian Sclerophyllous And Semi-Deciduous Forests </span></span>
+<span><span class="co">#&gt;                       Ethiopian Montane Grasslands And Woodlands </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt;                                              Jalisco Dry Forests </span></span>
+<span><span class="co">#&gt;                                     Huang He Plain Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                   Northern Appalachian / Acadian </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                Northern Zanzibar-Inhambane Coastal Forest Mosaic </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                           Northwest Russian-Novaya Zemlya Tundra </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                              Northwestern Andean Montane Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;          Nujiang Langcang Gorge Alpine Conifer And Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                   Pindus Mountains Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                            Prairie-Forest Border </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt;                            Sierra Madre Del Sur Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                               Pyrenees Conifer And Mixed Forests </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt; Southwest Iberian Mediterranean Sclerophyllous And Mixed Forests </span></span>
+<span><span class="co">#&gt;                                 Queensland Tropical Rain Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                         Sierra Madre Occidental Pine-Oak Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                                   Sonoran Desert </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
 <span><span class="co">#&gt;                                            Superior Mixed Forest </span></span>
 <span><span class="co">#&gt;                                                                1 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $points_ecoregion</span></span>
-<span><span class="co">#&gt;   ECO_ID_U ECO_CODE                           ECO_NAME ECO_NUM</span></span>
-<span><span class="co">#&gt; 1    10510   PA0402             Atlantic Mixed Forests       2</span></span>
-<span><span class="co">#&gt; 2    10691   PA1321 North Saharan Steppe And Woodlands      21</span></span>
-<span><span class="co">#&gt;                                   ECODE_NAME CLS_CODE ECO_NOTES WWF_REALM</span></span>
-<span><span class="co">#&gt; 1             PA0402. Atlantic mixed forests        0      &lt;NA&gt;        PA</span></span>
-<span><span class="co">#&gt; 2 PA1321. North Saharan steppe and woodlands        0      &lt;NA&gt;        PA</span></span>
-<span><span class="co">#&gt;   WWF_REALM2 WWF_MHTNUM                            WWF_MHTNAM RealmMHT</span></span>
-<span><span class="co">#&gt; 1 Palearctic          4 Temperate Broadleaf and Mixed Forests      PA4</span></span>
-<span><span class="co">#&gt; 2 Palearctic         13          Deserts and Xeric Shrublands     PA13</span></span>
-<span><span class="co">#&gt;   ER_UPDATE ER_DATE_U ER_RATION  SOURCEDATA</span></span>
-<span><span class="co">#&gt; 1      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; Olson, 2001</span></span>
-<span><span class="co">#&gt; 2      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; Olson, 2001</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $is_in_ecoregion</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code></pre>
+<span><span class="co">#&gt;                                           Tamaulipan Thorn Scrub </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                    Upper Gangetic Plains Moist Deciduous Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                               Western European Broadleaf Forests </span></span>
+<span><span class="co">#&gt;                                                                1 </span></span>
+<span><span class="co">#&gt;                                  Western Guinean Lowland Forests </span></span>
+<span><span class="co">#&gt;                                                                1</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1037,21 +1250,21 @@ sufficient.</p>
 </h2>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; R version 4.5.1 (2025-06-13)</span></span>
+<pre><code><span><span class="co">#&gt; R version 4.6.0 (2026-04-24)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Kali GNU/Linux Rolling</span></span>
+<span><span class="co">#&gt; Running under: Pop!_OS 24.04 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
-<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.29.so;  LAPACK version 3.12.0</span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
-<span><span class="co">#&gt;  [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              </span></span>
-<span><span class="co">#&gt;  [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    </span></span>
-<span><span class="co">#&gt;  [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   </span></span>
-<span><span class="co">#&gt;  [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 </span></span>
+<span><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
 <span><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span><span class="co">#&gt; [11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; time zone: Europe/Paris</span></span>
 <span><span class="co">#&gt; tzcode source: system (glibc)</span></span>
@@ -1060,88 +1273,56 @@ sufficient.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] taxinfo_0.1.2      MiscMetabar_0.14.4 purrr_1.2.0        dplyr_1.1.4       </span></span>
-<span><span class="co">#&gt; [5] dada2_1.38.0       Rcpp_1.1.0         ggplot2_4.0.1      phyloseq_1.54.0   </span></span>
+<span><span class="co">#&gt; [1] taxinfo_0.1.2      MiscMetabar_0.16.8 dplyr_1.2.1        ggplot2_4.0.3     </span></span>
+<span><span class="co">#&gt; [5] phyloseq_1.56.0   </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;   [1] splines_4.5.1               rnaturalearth_1.1.0        </span></span>
-<span><span class="co">#&gt;   [3] bitops_1.0-9                urltools_1.7.3.1           </span></span>
-<span><span class="co">#&gt;   [5] tibble_3.3.0                triebeard_0.4.1            </span></span>
-<span><span class="co">#&gt;   [7] lifecycle_1.0.4             pwalign_1.6.0              </span></span>
-<span><span class="co">#&gt;   [9] sf_1.0-22                   lattice_0.22-7             </span></span>
-<span><span class="co">#&gt;  [11] MASS_7.3-65                 crosstalk_1.2.2            </span></span>
-<span><span class="co">#&gt;  [13] magrittr_2.0.4              sass_0.4.10                </span></span>
-<span><span class="co">#&gt;  [15] rmarkdown_2.30              jquerylib_0.1.4            </span></span>
-<span><span class="co">#&gt;  [17] yaml_2.3.10                 NMOF_2.11-0                </span></span>
-<span><span class="co">#&gt;  [19] sp_2.2-0                    DBI_1.2.3                  </span></span>
-<span><span class="co">#&gt;  [21] RColorBrewer_1.1-3          ade4_1.7-23                </span></span>
-<span><span class="co">#&gt;  [23] maps_3.4.3                  abind_1.4-8                </span></span>
-<span><span class="co">#&gt;  [25] ShortRead_1.68.0            GenomicRanges_1.62.0       </span></span>
-<span><span class="co">#&gt;  [27] BiocGenerics_0.56.0         RCurl_1.98-1.17            </span></span>
-<span><span class="co">#&gt;  [29] satellite_1.0.6             IRanges_2.44.0             </span></span>
-<span><span class="co">#&gt;  [31] S4Vectors_0.48.0            ggrepel_0.9.6              </span></span>
-<span><span class="co">#&gt;  [33] gbif.range_1.0              crul_1.6.0                 </span></span>
-<span><span class="co">#&gt;  [35] terra_1.8-80                rglobi_0.3.4               </span></span>
-<span><span class="co">#&gt;  [37] vegan_2.7-2                 units_1.0-0                </span></span>
-<span><span class="co">#&gt;  [39] brew_1.0-10                 pkgdown_2.2.0              </span></span>
-<span><span class="co">#&gt;  [41] svglite_2.2.2               permute_0.9-8              </span></span>
-<span><span class="co">#&gt;  [43] codetools_0.2-20            DelayedArray_0.36.0        </span></span>
-<span><span class="co">#&gt;  [45] xml2_1.5.0                  tidyselect_1.2.1           </span></span>
-<span><span class="co">#&gt;  [47] raster_3.6-32               httpcode_0.3.0             </span></span>
-<span><span class="co">#&gt;  [49] farver_2.1.2                gmp_0.7-5                  </span></span>
-<span><span class="co">#&gt;  [51] matrixStats_1.5.0           stats4_4.5.1               </span></span>
-<span><span class="co">#&gt;  [53] base64enc_0.1-3             Seqinfo_1.0.0              </span></span>
-<span><span class="co">#&gt;  [55] GenomicAlignments_1.46.0    jsonlite_2.0.0             </span></span>
-<span><span class="co">#&gt;  [57] multtest_2.66.0             e1071_1.7-16               </span></span>
-<span><span class="co">#&gt;  [59] survival_3.8-3              iterators_1.0.14           </span></span>
-<span><span class="co">#&gt;  [61] systemfonts_1.3.1           foreach_1.5.2              </span></span>
-<span><span class="co">#&gt;  [63] tools_4.5.1                 ragg_1.5.0                 </span></span>
-<span><span class="co">#&gt;  [65] glue_1.8.0                  SparseArray_1.10.1         </span></span>
-<span><span class="co">#&gt;  [67] leaflet.providers_2.0.0     xfun_0.54                  </span></span>
-<span><span class="co">#&gt;  [69] mgcv_1.9-4                  MatrixGenerics_1.22.0      </span></span>
-<span><span class="co">#&gt;  [71] withr_3.0.2                 fastmap_1.2.0              </span></span>
-<span><span class="co">#&gt;  [73] latticeExtra_0.6-31         rhdf5filters_1.22.0        </span></span>
-<span><span class="co">#&gt;  [75] digest_0.6.38               CoordinateCleaner_3.0.1    </span></span>
-<span><span class="co">#&gt;  [77] R6_2.6.1                    wk_0.9.4                   </span></span>
-<span><span class="co">#&gt;  [79] textshaping_1.0.4           jpeg_0.1-11                </span></span>
-<span><span class="co">#&gt;  [81] cigarillo_1.0.0             tidyr_1.3.1                </span></span>
-<span><span class="co">#&gt;  [83] generics_0.1.4              data.table_1.17.8          </span></span>
-<span><span class="co">#&gt;  [85] FNN_1.1.4.1                 class_7.3-23               </span></span>
-<span><span class="co">#&gt;  [87] httr_1.4.7                  htmlwidgets_1.6.4          </span></span>
-<span><span class="co">#&gt;  [89] S4Arrays_1.10.0             whisker_0.4.1              </span></span>
-<span><span class="co">#&gt;  [91] pkgconfig_2.0.3             gtable_0.3.6               </span></span>
-<span><span class="co">#&gt;  [93] S7_0.2.1                    hwriter_1.3.2.1            </span></span>
-<span><span class="co">#&gt;  [95] XVector_0.50.0              htmltools_0.5.8.1          </span></span>
-<span><span class="co">#&gt;  [97] biomformat_1.38.0           scales_1.4.0               </span></span>
-<span><span class="co">#&gt;  [99] tidyverse_2.0.0             Biobase_2.70.0             </span></span>
-<span><span class="co">#&gt; [101] ClusterR_1.3.5              png_0.1-8                  </span></span>
-<span><span class="co">#&gt; [103] geometry_0.5.2              knitr_1.50                 </span></span>
-<span><span class="co">#&gt; [105] rstudioapi_0.17.1           geosphere_1.5-20           </span></span>
-<span><span class="co">#&gt; [107] reshape2_1.4.5              rgbif_3.8.4                </span></span>
-<span><span class="co">#&gt; [109] uuid_1.2-1                  magic_1.6-1                </span></span>
-<span><span class="co">#&gt; [111] nlme_3.1-168                curl_7.0.0                 </span></span>
-<span><span class="co">#&gt; [113] proxy_0.4-27                cachem_1.1.0               </span></span>
-<span><span class="co">#&gt; [115] zoo_1.8-14                  rhdf5_2.54.0               </span></span>
-<span><span class="co">#&gt; [117] stringr_1.6.0               KernSmooth_2.23-26         </span></span>
-<span><span class="co">#&gt; [119] parallel_4.5.1              s2_1.1.9                   </span></span>
-<span><span class="co">#&gt; [121] desc_1.4.3                  pillar_1.11.1              </span></span>
-<span><span class="co">#&gt; [123] grid_4.5.1                  vctrs_0.6.5                </span></span>
-<span><span class="co">#&gt; [125] mapview_2.11.4              cluster_2.1.8.1            </span></span>
-<span><span class="co">#&gt; [127] evaluate_1.0.5              oai_0.4.0                  </span></span>
-<span><span class="co">#&gt; [129] cli_3.6.5                   taxize_0.10.0              </span></span>
-<span><span class="co">#&gt; [131] compiler_4.5.1              Rsamtools_2.26.0           </span></span>
-<span><span class="co">#&gt; [133] rlang_1.1.6                 crayon_1.5.3               </span></span>
-<span><span class="co">#&gt; [135] leafpop_0.1.0               labeling_0.4.3             </span></span>
-<span><span class="co">#&gt; [137] mclust_6.1.2                interp_1.1-6               </span></span>
-<span><span class="co">#&gt; [139] classInt_0.4-11             plyr_1.8.9                 </span></span>
-<span><span class="co">#&gt; [141] forcats_1.0.1               fs_1.6.6                   </span></span>
-<span><span class="co">#&gt; [143] stringi_1.8.7               deldir_2.0-4               </span></span>
-<span><span class="co">#&gt; [145] BiocParallel_1.44.0         Biostrings_2.78.0          </span></span>
-<span><span class="co">#&gt; [147] lazyeval_0.2.2              leaflet_2.2.3              </span></span>
-<span><span class="co">#&gt; [149] Matrix_1.7-4                leafem_0.2.5               </span></span>
-<span><span class="co">#&gt; [151] Rhdf5lib_1.32.0             SummarizedExperiment_1.40.0</span></span>
-<span><span class="co">#&gt; [153] igraph_2.2.1                RcppParallel_5.1.11-1      </span></span>
-<span><span class="co">#&gt; [155] bslib_0.9.0                 ape_5.8-1</span></span></code></pre>
+<span><span class="co">#&gt;   [1] RColorBrewer_1.1-3      wk_0.9.5                jsonlite_2.0.0         </span></span>
+<span><span class="co">#&gt;   [4] magrittr_2.0.5          farver_2.1.2            CoordinateCleaner_3.0.1</span></span>
+<span><span class="co">#&gt;   [7] vctrs_0.7.3             multtest_2.68.0         RCurl_1.98-1.19        </span></span>
+<span><span class="co">#&gt;  [10] base64enc_0.1-6         terra_1.9-27            htmltools_0.5.9        </span></span>
+<span><span class="co">#&gt;  [13] forcats_1.0.1           curl_7.1.0              s2_1.1.11              </span></span>
+<span><span class="co">#&gt;  [16] raster_3.6-32           divent_0.5-4            KernSmooth_2.23-26     </span></span>
+<span><span class="co">#&gt;  [19] htmlwidgets_1.6.4       plyr_1.8.9              zoo_1.8-15             </span></span>
+<span><span class="co">#&gt;  [22] uuid_1.2-2              whisker_0.4.1           igraph_2.3.2           </span></span>
+<span><span class="co">#&gt;  [25] lifecycle_1.0.5         iterators_1.0.14        pkgconfig_2.0.3        </span></span>
+<span><span class="co">#&gt;  [28] Matrix_1.7-5            R6_2.6.1                fastmap_1.2.0          </span></span>
+<span><span class="co">#&gt;  [31] rbibutils_2.4.1         digest_0.6.39           mapview_2.11.4         </span></span>
+<span><span class="co">#&gt;  [34] S4Vectors_0.50.1        leafem_0.2.5            textshaping_1.0.5      </span></span>
+<span><span class="co">#&gt;  [37] crosstalk_1.2.2         vegan_2.7-5             labeling_0.4.3         </span></span>
+<span><span class="co">#&gt;  [40] urltools_1.7.3.1        httr_1.4.8              NMOF_2.11-0            </span></span>
+<span><span class="co">#&gt;  [43] mgcv_1.9-4              compiler_4.6.0          proxy_0.4-29           </span></span>
+<span><span class="co">#&gt;  [46] bit64_4.8.2             withr_3.0.2             brew_1.0-10            </span></span>
+<span><span class="co">#&gt;  [49] S7_0.2.2                DBI_1.3.0               maps_3.4.3             </span></span>
+<span><span class="co">#&gt;  [52] MASS_7.3-65             gbif.range_1.6.0        leaflet_2.2.3          </span></span>
+<span><span class="co">#&gt;  [55] classInt_0.4-11         biomformat_1.40.0       permute_0.9-10         </span></span>
+<span><span class="co">#&gt;  [58] oai_0.4.0               tools_4.6.0             units_1.0-1            </span></span>
+<span><span class="co">#&gt;  [61] otel_0.2.0              ape_5.8-1               zip_3.0.0              </span></span>
+<span><span class="co">#&gt;  [64] rgbif_3.8.5             satellite_1.0.6         glue_1.8.1             </span></span>
+<span><span class="co">#&gt;  [67] nlme_3.1-169            grid_4.6.0              sf_1.1-1               </span></span>
+<span><span class="co">#&gt;  [70] cluster_2.1.8.2         reshape2_1.4.5          ade4_1.7-24            </span></span>
+<span><span class="co">#&gt;  [73] generics_0.1.4          leaflet.providers_3.0.0 gtable_0.3.6           </span></span>
+<span><span class="co">#&gt;  [76] tzdb_0.5.0              class_7.3-23            tidyr_1.3.2            </span></span>
+<span><span class="co">#&gt;  [79] data.table_1.18.4       hms_1.1.4               sp_2.2-1               </span></span>
+<span><span class="co">#&gt;  [82] xml2_1.5.2              utf8_1.2.6              XVector_0.52.0         </span></span>
+<span><span class="co">#&gt;  [85] BiocGenerics_0.58.1     ggrepel_0.9.8           foreach_1.5.2          </span></span>
+<span><span class="co">#&gt;  [88] pillar_1.11.1           stringr_1.6.0           vroom_1.7.1            </span></span>
+<span><span class="co">#&gt;  [91] rglobi_0.3.4            splines_4.6.0           lattice_0.22-9         </span></span>
+<span><span class="co">#&gt;  [94] survival_3.8-6          FNN_1.1.4.1             gmp_0.7-5.1            </span></span>
+<span><span class="co">#&gt;  [97] bit_4.6.0               tidyselect_1.2.1        Biostrings_2.80.1      </span></span>
+<span><span class="co">#&gt; [100] knitr_1.51              IRanges_2.46.0          Seqinfo_1.2.0          </span></span>
+<span><span class="co">#&gt; [103] svglite_2.2.2           crul_1.6.0              stats4_4.6.0           </span></span>
+<span><span class="co">#&gt; [106] xfun_0.58               wikitaxa_0.5.0          Biobase_2.72.0         </span></span>
+<span><span class="co">#&gt; [109] taxize_0.10.1           leafpop_0.1.0           stringi_1.8.7          </span></span>
+<span><span class="co">#&gt; [112] lazyeval_0.2.3          evaluate_1.0.5          codetools_0.2-20       </span></span>
+<span><span class="co">#&gt; [115] httpcode_0.3.0          tibble_3.3.1            cli_3.6.6              </span></span>
+<span><span class="co">#&gt; [118] RcppParallel_5.1.11-2   systemfonts_1.3.2       Rdpack_2.6.6           </span></span>
+<span><span class="co">#&gt; [121] jquerylib_0.1.4         Rcpp_1.1.1-1.1          rnaturalearth_1.2.0    </span></span>
+<span><span class="co">#&gt; [124] triebeard_0.4.1         png_0.1-9               parallel_4.6.0         </span></span>
+<span><span class="co">#&gt; [127] readr_2.2.0             openalexR_3.0.1         mclust_6.1.2           </span></span>
+<span><span class="co">#&gt; [130] ClusterR_1.3.6          WikipediR_1.7.1         bitops_1.0-9           </span></span>
+<span><span class="co">#&gt; [133] scales_1.4.0            e1071_1.7-17            purrr_1.2.2            </span></span>
+<span><span class="co">#&gt; [136] crayon_1.5.3            geosphere_1.6-8         rlang_1.2.0</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

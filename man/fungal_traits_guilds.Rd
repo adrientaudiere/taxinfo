@@ -80,6 +80,9 @@ Either an updated phyloseq object (when `add_to_phyloseq = TRUE`)
   or a tibble of the augmented tax_table.
 }
 \description{
+<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
+<img src="https://img.shields.io/badge/lifecycle-maturing-blue" alt="lifecycle-maturing"></a>
+
 A convenience wrapper that adds guild and trait information from both the
 FungalTraits database and the FUNGuild database to the `tax_table` slot of
 a phyloseq object. Optionally creates consensus columns that summarise
@@ -90,6 +93,7 @@ If `currentCanonicalSimple` is not already present in the `tax_table`,
 names before querying the databases.
 }
 \examples{
+\dontrun{
 # physeq object with already-verified names
 res_guild <- data_fungi |>
  gna_verifier_pq(data_sources = 210) |>
@@ -108,7 +112,6 @@ table(res_guild_2@tax_table[, "cons_trophicMode"])
 data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
 
-\donttest{
 res_guild_2 |> psmelt() |>
  filter(Abundance > 0) |>
  ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +
@@ -119,12 +122,6 @@ res_guild_2 |> psmelt() |>
 
  tax_bar_pq(res_guild_2, "Height", "cons_trophicMode", add_ribbon=TRUE)
 }
-<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
-<img src="https://img.shields.io/badge/lifecycle-maturing-blue" alt="lifecycle-maturing"></a>
-
-<a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
-<img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
-
 }
 \seealso{
 [tax_info_pq()], [gna_verifier_pq()],

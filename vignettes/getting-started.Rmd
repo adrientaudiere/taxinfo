@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with taxinfo: Augment phyloseq Objects with Taxonomic Information"
 author: "Adrien Taudiere"
-date: "`r Sys.Date()`"
+date: "2026-06-16"
 output: 
   html_document:
     toc: true
@@ -19,12 +19,224 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r child="includes/_styles.Rmd"}
-```
 
-```{r setup}
+
+
+<style type="text/css">
+.chunk-with-popups div.sourceCode {
+ min-height: 2.5em;
+   padding-bottom: 0.3em;
+}
+
+.popup-icons .popup-toggle {
+  cursor: pointer;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.popup-toggle[data-target^="msg-popup-"] {
+  color: #2e7891;           
+}
+
+/* Warning color */
+.popup-toggle[data-target^="warn-popup-"] {
+  color: #aa4c26;          
+  text-stroke: 0.5px #aa4c26;
+  -webkit-text-stroke: 0.5px #aa4c26;
+}
+
+/* Add space between message and warning icons only when both are present */
+.popup-toggle[data-target^="msg-popup-"] + .popup-toggle[data-target^="warn-popup-"] {
+  margin-left: 12px;
+}
+
+/* Tint pop-up borders to match icon color */
+div[id^="msg-popup-"] {
+  border-color: #2e7891;
+}
+div[id^="warn-popup-"] {
+  border-color: #aa4c26;
+}
+
+/* optional: colored header text */
+div[id^="msg-popup-"] .popup-header strong { color: #2e7891; }
+div[id^="warn-popup-"] .popup-header strong { color: #aa4c26; }
+
+/* popup base */
+.popup {
+  display: none; /* toggled by JS */
+  position: absolute;
+  bottom: 30px;
+  right: 5px;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  z-index: 1000;
+  max-width: 720px;
+  max-height: 320px;
+  overflow: auto;
+  width: auto;
+  box-sizing: border-box;
+}
+
+/* popup close button */
+.popup-close {
+  float: right;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: #666;
+  padding: 0 4px;
+}
+
+/* header and content */
+.popup-header {
+  margin-bottom: 6px;
+}
+.popup-pre {
+  margin: 0;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  line-height: 1.25;
+  overflow-x: auto;
+}
+
+.sourceCode pre {
+  margin: 0 !important;
+  /* padding: 0.1em !important; */
+  line-height: 1.2 !important;
+}
+
+.sourceCode code {
+  line-height: 1.2 !important;
+}
+
+div.sourceCode {
+  margin: 0.2em 0 !important;
+}
+
+/* Ensure proper spacing in wrapped divs */
+  div[style*="position: relative"] > div.sourceCode,
+div[style*="position: relative"] > pre {
+  margin-top: 0 !important;
+  margin-bottom: 0.2em !important;
+}
+
+/* Fix spacing in pop-up pre elements */
+  div[id*="-popup-"] pre {
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+</style>
+
+
+<script>
+// v10 JS: reliable toggle + close when clicking outside + Escape to close
+(function () {
+  function onReady(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  onReady(function () {
+    // delegate: handle toggle clicks
+    document.querySelectorAll('.popup-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var id = btn.getAttribute('data-target');
+        if (!id) return;
+        var popup = document.getElementById(id);
+        if (!popup) return;
+        var isVisible = popup.style.display === 'block';
+        // close any other popups first
+        document.querySelectorAll('.popup').forEach(function (p) {
+          p.style.display = 'none';
+          p.setAttribute('aria-hidden', 'true');
+        });
+        if (!isVisible) {
+          popup.style.display = 'block';
+          popup.setAttribute('aria-hidden', 'false');
+        } else {
+          popup.style.display = 'none';
+          popup.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    // stop clicks inside popup from bubbling to document
+    document.querySelectorAll('.popup').forEach(function (popup) {
+      popup.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+      });
+      // close button inside popup
+      var btn = popup.querySelector('.popup-close');
+      if (btn) {
+        btn.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          popup.style.display = 'none';
+          popup.setAttribute('aria-hidden', 'true');
+        });
+      }
+    });
+
+    // close on click outside any popup
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.popup').forEach(function (p) {
+        if (p.style.display && p.style.display !== 'none') {
+          p.style.display = 'none';
+          p.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' || ev.key === 'Esc') {
+        document.querySelectorAll('.popup').forEach(function (p) {
+          if (p.style.display && p.style.display !== 'none') {
+            p.style.display = 'none';
+            p.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+    });
+  });
+})();
+</script>
+
+
+<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
+<div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-setup' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
+<div id='msg-popup-setup' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; Loading required package: MiscMetabar
+#&gt; Loading required package: phyloseq
+#&gt; Loading required package: ggplot2
+#&gt; Loading required package: dplyr
+#&gt; 
+#&gt; Attaching package: 'dplyr'
+#&gt; The following objects are masked from 'package:stats':
+#&gt; 
+#&gt;     filter, lag
+#&gt; The following objects are masked from 'package:base':
+#&gt; 
+#&gt;     intersect, setdiff, setequal, union
+</pre></div>
+
+
+``` r
 library(taxinfo)
 ```
+
+</div>
+
 
 ## Overview
 
@@ -54,7 +266,9 @@ The **taxinfo** package provides comprehensive tools for augmenting phyloseq obj
 
 ### Step 1: Load Example Data
 
-```{r}
+
+
+``` r
 # Load example fungal data from MiscMetabar
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -62,18 +276,99 @@ data("data_fungi_mini", package = "MiscMetabar")
 data_fungi_mini
 ```
 
+```
+#> phyloseq-class experiment-level object
+#> otu_table()   OTU Table:         [ 45 taxa and 137 samples ]
+#> sample_data() Sample Data:       [ 137 samples by 7 sample variables ]
+#> tax_table()   Taxonomy Table:    [ 45 taxa by 12 taxonomic ranks ]
+#> refseq()      DNAStringSet:      [ 45 reference sequences ]
+```
+
+
 ### Step 2: Verify and Clean Taxonomic Names
 
 The first step is typically to verify and standardize taxonomic names using the Global Names Architecture:
 
-```{r}
+<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
+<div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-3' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
+<div id='msg-popup-unnamed-chunk-3' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ✔ GNA verification summary:
+#&gt; • Total taxa in phyloseq: 20
+#&gt; • Taxa submitted for verification: 19
+#&gt; • Genus-level only taxa: 2
+#&gt; • Total matches found: 15
+#&gt; • Synonyms: 4 (including 4 at genus level)
+#&gt; • Accepted names: 11 (including 6 at genus level)
+</pre></div>
+
+
+``` r
 # Keep only first 20 taxa for speed
 data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
+```
+
+
+
+``` r
 
 # View the enhanced taxonomic table
 head(data_clean@tax_table)
 ```
+
+```
+#> Taxonomy Table:     [6 taxa by 22 taxonomic ranks]:
+#>       Domain  Phylum          Class            Order            
+#> ASV7  "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
+#> ASV8  "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
+#> ASV12 "Fungi" "Basidiomycota" "Agaricomycetes" "Hymenochaetales"
+#> ASV18 "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
+#> ASV25 "Fungi" "Basidiomycota" "Agaricomycetes" "Agaricales"     
+#> ASV26 "Fungi" "Basidiomycota" "Agaricomycetes" "Russulales"     
+#>       Family           Genus        Species      Trophic.Mode
+#> ASV7  "Stereaceae"     NA           NA           "Saprotroph"
+#> ASV8  "Stereaceae"     "Stereum"    "ostrea"     "Saprotroph"
+#> ASV12 "Schizoporaceae" "Xylodon"    "raduloides" "Saprotroph"
+#> ASV18 "Stereaceae"     "Stereum"    "ostrea"     "Saprotroph"
+#> ASV25 "Lyophyllaceae"  "Ossicaulis" "lachnopus"  "Saprotroph"
+#> ASV26 "Stereaceae"     "Stereum"    "hirsutum"   "Saprotroph"
+#>       Guild                                  Trait       Confidence.Ranking
+#> ASV7  "Wood Saprotroph-Undefined Saprotroph" "NULL"      "Probable"        
+#> ASV8  "Undefined Saprotroph"                 "White Rot" "Probable"        
+#> ASV12 "Undefined Saprotroph"                 "White Rot" "Probable"        
+#> ASV18 "Undefined Saprotroph"                 "White Rot" "Probable"        
+#> ASV25 "Wood Saprotroph"                      "Brown Rot" "Probable"        
+#> ASV26 "Undefined Saprotroph"                 "White Rot" "Probable"        
+#>       Genus_species          taxa_name             
+#> ASV7  "NA_NA"                ""                    
+#> ASV8  "Stereum_ostrea"       "Stereum ostrea"      
+#> ASV12 "Xylodon_raduloides"   "Xylodon raduloides"  
+#> ASV18 "Stereum_ostrea"       "Stereum ostrea"      
+#> ASV25 "Ossicaulis_lachnopus" "Ossicaulis lachnopus"
+#> ASV26 "Stereum_hirsutum"     "Stereum hirsutum"    
+#>       currentName                                 currentCanonicalSimple
+#> ASV7  NA                                          NA                    
+#> ASV8  "Stereum ostrea (Blume & T.Nees) Fr., 1838" "Stereum ostrea"      
+#> ASV12 "Xylodon (Pers.) Gray, 1821"                "Xylodon"             
+#> ASV18 "Stereum ostrea (Blume & T.Nees) Fr., 1838" "Stereum ostrea"      
+#> ASV25 "Ossicaulis lachnopus (Fr.) Contu, 2000"    "Ossicaulis lachnopus"
+#> ASV26 "Stereum hirsutum (Willd.) Pers., 1800"     "Stereum hirsutum"    
+#>       genusEpithet specificEpithet genusSpeciesEpithet    namePublishedInYear
+#> ASV7  NA           NA              NA                     NA                 
+#> ASV8  "Stereum"    "ostrea"        "Stereum ostrea"       "1838"             
+#> ASV12 "Xylodon"    NA              NA                     "1821"             
+#> ASV18 "Stereum"    "ostrea"        "Stereum ostrea"       "1838"             
+#> ASV25 "Ossicaulis" "lachnopus"     "Ossicaulis lachnopus" "2000"             
+#> ASV26 "Stereum"    "hirsutum"      "Stereum hirsutum"     "1800"             
+#>       authorship bracketauthorship scientificNameAuthorship
+#> ASV7  NA         NA                NA                      
+#> ASV8  "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
+#> ASV12 "Gray"     "Pers."           "(Pers.) Gray"          
+#> ASV18 "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."  
+#> ASV25 "Contu"    "Fr."             "(Fr.) Contu"           
+#> ASV26 "Pers."    "Willd."          "(Willd.) Pers."
+```
+</div>
+
 
 This adds standardized columns:
 - `taxa_name`: Original name submitted
@@ -85,19 +380,94 @@ This adds standardized columns:
 
 You can also output only the verified names with more information on the matching algorithm results as a tibble by setting `add_to_phyloseq = FALSE`.
 
-```{r}
+<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
+<div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-4' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span><span class='popup-toggle' data-target='warn-popup-unnamed-chunk-4' title='Warnings' aria-haspopup='true' aria-expanded='false'>⚠</span></div>
+<div id='msg-popup-unnamed-chunk-4' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ✔ GNA verification summary:
+#&gt; • Taxa submitted for verification: 26
+#&gt; • Total matches found: 0
+#&gt; • Synonyms: 0 (including 0 at genus level)
+#&gt; • Accepted names: 0 (including 0 at genus level)
+</pre></div>
+<div id='warn-popup-unnamed-chunk-4' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Warnings</strong></div><pre class='popup-pre'>#&gt; Warning: Unknown or uninitialised column: `taxonomicStatus`.
+#&gt; Unknown or uninitialised column: `taxonomicStatus`.
+#&gt; Warning: Unknown or uninitialised column: `matchedCardinality`.
+#&gt; Warning: Unknown or uninitialised column: `taxonomicStatus`.
+#&gt; Warning: Unknown or uninitialised column: `matchedCardinality`.
+</pre></div>
+
+
+``` r
 df <- gna_verifier_pq(data_fungi_mini,
   data_sources = 210,
   add_to_phyloseq = FALSE
 )
+```
+
+
+
+``` r
 glimpse(df)
 ```
+
+```
+#> Rows: 26
+#> Columns: 11
+#> $ submittedName            <chr> "Stereum ostrea", "Xylodon raduloides", "Ossi…
+#> $ currentName              <chr> "Stereum ostrea (Blume & T.Nees) Fr., 1838", …
+#> $ currentCanonicalSimple   <chr> "Stereum ostrea", "Xylodon", "Ossicaulis lach…
+#> $ genusEpithet             <chr> "Stereum", "Xylodon", "Ossicaulis", "Stereum"…
+#> $ specificEpithet          <chr> "ostrea", NA, "lachnopus", "hirsutum", NA, "e…
+#> $ genusSpeciesEpithet      <chr> "Stereum ostrea", NA, "Ossicaulis lachnopus",…
+#> $ namePublishedInYear      <chr> "1838", "1821", "2000", "1800", "1980", "1963…
+#> $ authorship               <chr> "Fr.", "Gray", "Contu", "Pers.", "Ryvarden & …
+#> $ bracketauthorship        <chr> "Blume & T.Nees", "Pers.", "Fr.", "Willd.", N…
+#> $ scientificNameAuthorship <chr> "(Blume & T.Nees) Fr.", "(Pers.) Gray", "(Fr.…
+#> $ taxa_names_in_phyloseq   <chr> "Stereum ostrea", "Xylodon raduloides", "Ossi…
+```
+</div>
+
 
 ### Step 3: Add Biodiversity Information
 
 Once names are verified, you can enrich your data with various sources:
 
-```{r}
+<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
+<div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-5' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
+<div id='msg-popup-unnamed-chunk-5' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
+#&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#&gt; ■■■■■■■■■■■                       33% | ETA:  3s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  3s■■■■■■■■■■■■■■                    44% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; ℹ Getting taxonomic IDs from Wikidata...
+#&gt; ℹ Getting page views from Wikipedia for Stereum ostrea
+#&gt; ■■■■■■■                           20% | ETA: 23s[K[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#&gt; ■■■■■■■                           20% | ETA: 23s■■■■■■■■■■                        30% | ETA: 20s[K[Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#&gt; ■■■■■■■■■■                        30% | ETA: 20s■■■■■■■■■■■■■                     40% | ETA: 34s[K[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■                     40% | ETA: 34s■■■■■■■■■■■■■■■■                  50% | ETA: 25s[K[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 25s■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s[K[Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[K[Kℹ Getting page views from Wikipedia for Mycena renatii
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#&gt; ℹ Fetching OpenAlex works for taxon: Stereum ostrea
+#&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Ossicaulis lachnopus
+#&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Stereum hirsutum
+#&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Basidiodendron eyrei
+#&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Sistotrema oblongisporum
+#&gt; HTTP status 429 Too Many RequestsFetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s[K[Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Mycena renatii
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[K
+</pre></div>
+
+
+``` r
 data_enriched <- data_clean |>
   # Add GBIF occurrence data (add_to_phyloseq defaults to TRUE for phyloseq objects)
   tax_gbif_occur_pq() |>
@@ -107,12 +477,38 @@ data_enriched <- data_clean |>
   tax_get_wk_info_pq() |>
   # Add OpenAlex publication data
   tax_oa_pq()
+```
+
+
+
+```
+#> Error in `filter()`:
+#> ℹ In argument: `type %in% type_works`.
+#> Caused by error:
+#> ! object 'type' not found
+```
+
+
+
+``` r
 
 print(paste("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", ")))
 ```
 
 
-```{r, fig.alt="Scatter plot showing molecular abundance (log10 scale) on the x-axis and taxa names on the y-axis. Points are colored by ecological guild, sized by number of publications, and shaped indicate the interaction with Quercus species. Wikipedia page view counts are displayed as text labels next to each point."}
+
+```
+#> Error:
+#> ! object 'data_enriched' not found
+```
+
+</div>
+
+
+
+
+
+``` r
 # todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
   mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
@@ -133,7 +529,31 @@ psm <- psmelt(data_enriched) |>
     paste0("italic('", .x, "')"),
     .x
   )))
+```
+
+
+
+```
+#> Error:
+#> ! object 'data_enriched' not found
+```
+
+
+
+``` r
 psm
+```
+
+
+
+```
+#> Error:
+#> ! object 'psm' not found
+```
+
+
+
+``` r
 
 ggplot(psm, aes(
   y = forcats::fct_reorder(taxa_name, Abundance),
@@ -160,25 +580,85 @@ ggplot(psm, aes(
   )
 ```
 
+
+
+```
+#> Error:
+#> ! object 'psm' not found
+```
+
+
+
 ## Using Taxnames Instead of Phyloseq Objects
 
 Most functions in **taxinfo** can work with either a phyloseq object or a vector of taxonomic names. This is useful when you want to query information for specific taxa without having a phyloseq object:
 
-```{r}
+<div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
+<div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-7' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
+<div id='msg-popup-unnamed-chunk-7' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Amanita muscaria
+#&gt; ℹ Processing GBIF occurrences for Boletus edulis
+#&gt; ℹ Processing GBIF occurrences for Cantharellus cibarius
+#&gt; ℹ Getting taxonomic IDs from Wikidata...
+#&gt; ℹ Getting page views from Wikipedia for Amanita muscaria
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s[K[Kℹ Getting page views from Wikipedia for Boletus edulis
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s[Kℹ Getting page views from Wikipedia for Cantharellus cibarius
+</pre></div>
+
+
+``` r
 # Using taxnames parameter - returns a tibble
 taxa_to_query <- c("Amanita muscaria", "Boletus edulis", "Cantharellus cibarius")
 
 # Get GBIF occurrence data for specific taxa
 gbif_data <- tax_gbif_occur_pq(taxnames = taxa_to_query)
+```
+
+
+
+``` r
 head(gbif_data)
+```
+
+```
+#> # A tibble: 3 × 2
+#>   Global_occurences canonicalName        
+#>               <int> <chr>                
+#> 1            316020 Amanita muscaria     
+#> 2             79350 Boletus edulis       
+#> 3             73690 Cantharellus cibarius
+```
+
+
+``` r
 
 # Get Wikipedia information
 wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
+```
+
+
+
+``` r
 head(wiki_data)
+```
+
+```
+#> # A tibble: 3 × 5
+#>    lang page_length page_views taxon_id taxa_name            
+#>   <int>       <dbl>      <int> <chr>    <chr>                
+#> 1    83      21259.      12239 Q131227  Amanita muscaria     
+#> 2    82      14549.      24154 Q19740   Boletus edulis       
+#> 3    66       6946.       7876 Q188749  Cantharellus cibarius
+```
+
+
+``` r
 
 # When using taxnames, add_to_phyloseq is automatically set to FALSE
 # and the function returns a tibble instead of a phyloseq object
 ```
+
+</div>
+
 
 **Key Points:**
 - When using `taxnames`, the `add_to_phyloseq` parameter is automatically set to `FALSE` and functions return tibbles
@@ -191,7 +671,9 @@ head(wiki_data)
 You can also integrate custom databases or trait information. Here we will 
 add fungal traits from a CSV file.
 
-```{r}
+
+
+``` r
 fungal_traits <- system.file("extdata",
   "fun_trait_mini.csv",
   package = "taxinfo"
@@ -204,9 +686,30 @@ data_final <- tax_info_pq(data_enriched,
   col_prefix = "ft_",
   sep = ";"
 )
+```
+
+
+
+```
+#> Error:
+#> ! object 'data_enriched' not found
+```
+
+
+
+``` r
 
 dim(data_final)
 ```
+
+
+
+```
+#> Error:
+#> ! object 'data_final' not found
+```
+
+
 
 
 ## Function Categories
@@ -252,6 +755,70 @@ This provides the foundation for using taxinfo effectively. Each subsequent vign
 
 ## Session information
 
-```{r}
+
+
+``` r
 sessionInfo()
 ```
+
+```
+#> R version 4.6.0 (2026-04-24)
+#> Platform: x86_64-pc-linux-gnu
+#> Running under: Pop!_OS 24.04 LTS
+#> 
+#> Matrix products: default
+#> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+#> 
+#> locale:
+#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#> 
+#> time zone: Europe/Paris
+#> tzcode source: system (glibc)
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> other attached packages:
+#> [1] taxinfo_0.1.2      MiscMetabar_0.16.8 dplyr_1.2.1        ggplot2_4.0.3     
+#> [5] phyloseq_1.56.0   
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] ade4_1.7-24           tidyselect_1.2.1      farver_2.1.2         
+#>  [4] urltools_1.7.3.1      Biostrings_2.80.1     S7_0.2.2             
+#>  [7] bitops_1.0-9          divent_0.5-4          RCurl_1.98-1.19      
+#> [10] lazyeval_0.2.3        WikipediR_1.7.1       digest_0.6.39        
+#> [13] wikitaxa_0.5.0        lifecycle_1.0.5       cluster_2.1.8.2      
+#> [16] survival_3.8-6        magrittr_2.0.5        compiler_4.6.0       
+#> [19] rlang_1.2.0           tools_4.6.0           utf8_1.2.6           
+#> [22] igraph_2.3.2          data.table_1.18.4     knitr_1.51           
+#> [25] bit_4.6.0             curl_7.1.0            plyr_1.8.9           
+#> [28] xml2_1.5.2            RColorBrewer_1.1-3    httpcode_0.3.0       
+#> [31] withr_3.0.2           purrr_1.2.2           BiocGenerics_0.58.1  
+#> [34] triebeard_0.4.1       grid_4.6.0            stats4_4.6.0         
+#> [37] multtest_2.68.0       biomformat_1.40.0     scales_1.4.0         
+#> [40] iterators_1.0.14      MASS_7.3-65           crul_1.6.0           
+#> [43] taxize_0.10.1         cli_3.6.6             vegan_2.7-5          
+#> [46] crayon_1.5.3          generics_0.1.4        otel_0.2.0           
+#> [49] RcppParallel_5.1.11-2 tzdb_0.5.0            httr_1.4.8           
+#> [52] rgbif_3.8.5           reshape2_1.4.5        ape_5.8-1            
+#> [55] stringr_1.6.0         splines_4.6.0         parallel_4.6.0       
+#> [58] XVector_0.52.0        vctrs_0.7.3           Matrix_1.7-5         
+#> [61] jsonlite_2.0.0        hms_1.1.4             IRanges_2.46.0       
+#> [64] S4Vectors_0.50.1      bit64_4.8.2           foreach_1.5.2        
+#> [67] rglobi_0.3.4          tidyr_1.3.2           glue_1.8.1           
+#> [70] codetools_0.2-20      stringi_1.8.7         gtable_0.3.6         
+#> [73] tibble_3.3.1          pillar_1.11.1         Seqinfo_1.2.0        
+#> [76] R6_2.6.1              Rdpack_2.6.6          vroom_1.7.1          
+#> [79] evaluate_1.0.5        oai_0.4.0             lattice_0.22-9       
+#> [82] Biobase_2.72.0        readr_2.2.0           rbibutils_2.4.1      
+#> [85] openalexR_3.0.1       Rcpp_1.1.1-1.1        nlme_3.1-169         
+#> [88] permute_0.9-10        whisker_0.4.1         mgcv_1.9-4           
+#> [91] xfun_0.58             zoo_1.8-15            pkgconfig_2.0.3
+```
+

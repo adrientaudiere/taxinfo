@@ -176,78 +176,9 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">data_fungi_mini_cleanNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">tax_oa_pq</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">45</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">37</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">2</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">25</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">2</span> (including <span style="color: #0000BB;">2</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">23</span> (including <span style="color: #0000BB;">21</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■                               </span>   0% |  ETA: ?</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■                               </span>   0% |  ETA: ?</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon raduloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■                               </span>   0% |  ETA: ?</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>   9% |  ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum hirsutum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>   9% |  ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametopsis brasiliensis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Sistotrema oblongisporum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  2m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■                       </span>  26% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Fomes fomentarius</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■                       </span>  26% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Mycena renati</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Helicogloea pellucida</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Radulomyces molaris</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Elmerina caryae</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 40s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Phanerochaete livescens</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 40s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Gloeohypochnicium analogum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 40s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma roseocremeum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 40s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  61% |  ETA: 27s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma setigerum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  61% |  ETA: 27s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  65% |  ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametes versicolor</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  65% |  ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophora versiformis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Exidia glandulosa</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span>  78% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophorella pubera</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span>  78% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Auricularia mesenterica</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% |  ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Laetisaria buckii</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% |  ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hericium coralloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% |  ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% |  ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon flaviporus</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% |  ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% |  ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_taxa-methods.html" class="external-link">subset_taxa</a></span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">n_doi</span><span class="op">)</span><span class="op">)</span><span class="op">@</span><span class="va">tax_table</span>,</span></span>
@@ -258,144 +189,14 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">Order</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Number of Scientific Papers (log10 scale)"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="tax_oa_pq-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">tax_oa_pq</span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>, type_works <span class="op">=</span> <span class="st">"dataset"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon raduloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>   9% |  ETA: 38s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum hirsutum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■                            </span>   9% |  ETA: 38s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametopsis brasiliensis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■                           </span>  13% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■                        </span>  22% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Sistotrema oblongisporum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■                        </span>  22% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Fomes fomentarius</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■                        </span>  22% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Mycena renati</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Helicogloea pellucida</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Radulomyces molaris</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Elmerina caryae</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Phanerochaete livescens</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Gloeohypochnicium analogum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■              </span>  57% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma roseocremeum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■              </span>  57% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma setigerum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■              </span>  57% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  65% |  ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametes versicolor</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  65% |  ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophora versiformis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Exidia glandulosa</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% |  ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span>  78% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophorella pubera</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span>  78% |  ETA: 39s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Auricularia mesenterica</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% |  ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% |  ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Laetisaria buckii</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% |  ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  91% |  ETA: 14s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hericium coralloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  91% |  ETA: 14s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% |  ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon flaviporus</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% |  ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Fetching OpenAlex <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% |  ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Column names already exist in tax_table: <span style="color: #0000BB;">"n_doi"</span>, <span style="color: #0000BB;">"list_doi"</span>, <span style="color: #0000BB;">"n_citation"</span>, and</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">"list_keywords"</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Adding prefix 'oa_' to avoid conflicts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phyloseq-class experiment-level object</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> otu_table()   OTU Table:         [ 45 taxa and 137 samples ]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sample_data() Sample Data:       [ 137 samples by 7 sample variables ]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tax_table()   Taxonomy Table:    [ 45 taxa by 29 taxonomic ranks ]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> refseq()      DNAStringSet:      [ 45 reference sequences ]</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">list_pub_raw</span> <span class="op">&lt;-</span> <span class="fu">tax_oa_pq</span><span class="op">(</span><span class="va">data_fungi_mini_cleanNames</span>,</span></span>
 <span class="r-in"><span>  col_prefix <span class="op">=</span> <span class="st">"oa_"</span>,</span></span>
 <span class="r-in"><span>  return_raw_oa <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> `add_to_phyloseq` is set to FALSE when `return_raw_oa` is TRUE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum ostrea</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■                            </span>   9% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon raduloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■                            </span>   9% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Stereum hirsutum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■                            </span>   9% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■                          </span>  17% | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametopsis brasiliensis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■                          </span>  17% | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■                        </span>  22% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Basidiodendron eyrei</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■                        </span>  22% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Sistotrema oblongisporum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■                        </span>  22% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 38s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Fomes fomentarius</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■                      </span>  30% | ETA: 38s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Mycena renati</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■                     </span>  35% | ETA:  1m</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Helicogloea pellucida</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Radulomyces molaris</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Elmerina caryae</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■                   </span>  39% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span>  52% | ETA: 32s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Phanerochaete livescens</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span>  52% | ETA: 32s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Gloeohypochnicium analogum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■               </span>  52% | ETA: 32s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  61% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma roseocremeum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  61% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hyphoderma setigerum</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  61% | ETA: 24s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 20s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Trametes versicolor</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■          </span>  70% | ETA: 20s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■         </span>  74% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophora versiformis</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■         </span>  74% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Exidia glandulosa</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■         </span>  74% | ETA: 49s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% | ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Peniophorella pubera</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83% | ETA: 30s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% | ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Auricularia mesenterica</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■     </span>  87% | ETA: 22s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  91% | ETA: 14s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Laetisaria buckii</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■    </span>  91% | ETA: 14s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% | ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Hericium coralloides</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% | ETA:  7s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100% | ETA:  0s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fetching OpenAlex works for taxon: <span style="font-style: italic;">Xylodon flaviporus</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">list_pub_Health_science</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">list_pub_raw</span>, <span class="kw">function</span><span class="op">(</span><span class="va">xx</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">xx</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -413,9 +214,6 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in filter(xx, map_lgl(topics, function(tibble_item) {    if (is.null(tibble_item) || nrow(tibble_item) == 0) {        return(FALSE)    }    else {        any(grepl("Health science", tibble_item$display_name[tibble_item$type ==             "domain"], ignore.case = TRUE))    }})):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `map_lgl(...)`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `map_lgl()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> could not find function "map_lgl"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">list_pub_Ecology</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">list_pub_raw</span>, <span class="kw">function</span><span class="op">(</span><span class="va">xx</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -434,9 +232,6 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in filter(xx, map_lgl(topics, function(tibble_item) {    if (is.null(tibble_item) || nrow(tibble_item) == 0) {        return(FALSE)    }    else {        any(grepl("Ecology", tibble_item$display_name[tibble_item$type ==             "subfield"], ignore.case = TRUE))    }})):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `map_lgl(...)`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `map_lgl()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> could not find function "map_lgl"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">list_pub_at_least_ten_citations</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">list_pub_raw</span>, <span class="kw">function</span><span class="op">(</span><span class="va">xx</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -446,7 +241,7 @@ Only used if count_only is set to FALSE Default is c("article", "review",
 <span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">xx</span>, <span class="va">cited_by_count</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

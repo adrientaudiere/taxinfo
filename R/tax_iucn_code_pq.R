@@ -30,6 +30,7 @@
 #'   Please cite `rgbif` package.
 #' @seealso [tax_info_pq()], [rgbif::name_usage()]
 #' @examples
+#' \dontrun{
 #'
 #' data_fungi_mini_cleanNames <-
 #'   gna_verifier_pq(data_fungi_mini) |>
@@ -39,6 +40,7 @@
 #'
 #' # Using taxnames vector (returns a tibble)
 #' tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
+#' }
 tax_iucn_code_pq <- function(
   physeq = NULL,
   taxnames = NULL,

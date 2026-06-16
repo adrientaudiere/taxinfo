@@ -3,6 +3,8 @@ test_that("fungal_traits_guilds errors without physeq", {
 })
 
 test_that("fungal_traits_guilds adds FungalTraits columns when names are clean", {
+  skip_if_offline()
+  skip_on_cran()
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
   res <- fungal_traits_guilds(
@@ -17,6 +19,8 @@ test_that("fungal_traits_guilds adds FungalTraits columns when names are clean",
 })
 
 test_that("fungal_traits_guilds runs gna_verifier_pq when names are absent", {
+  skip_if_offline()
+  skip_on_cran()
   expect_false("currentCanonicalSimple" %in% colnames(data_fungi@tax_table))
 
   res <- fungal_traits_guilds(
@@ -33,6 +37,8 @@ test_that("fungal_traits_guilds runs gna_verifier_pq when names are absent", {
 })
 
 test_that("fungal_traits_guilds returns tibble when add_to_phyloseq = FALSE", {
+  skip_if_offline()
+  skip_on_cran()
   data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 
   res <- fungal_traits_guilds(
