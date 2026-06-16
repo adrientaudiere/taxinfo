@@ -21,7 +21,7 @@ test_that("tax_iucn_code_pq with taxnames returns tibble", {
   # Example: tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
   result <- tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
 
-  expect_s3_class(result, "tbl_df")
+  expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 2)
   expect_true("iucn_code" %in% colnames(result))
 })

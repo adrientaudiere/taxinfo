@@ -187,7 +187,7 @@ data_with_traits <- tax_info_pq(data_with_gbif,
   col_prefix = "ft_",
   sep = ";"
 )
-#> ✔ Added 18 columns from '/tmp/RtmpfG79Lq/temp_libpathc9e864138a5c2/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
+#> ✔ Added 18 columns from '/tmp/Rtmpcu5CHd/temp_libpathfa41c7e4a6384/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
 
 # Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
 data_final <- tax_get_wk_info_pq(data_with_traits)
@@ -195,9 +195,9 @@ data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ℹ Getting page views from Wikipedia for Stereum ostrea
 #> ■■■■                              11% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#> ■■■■                              11% | ETA:  1m■■■■■■                            16% | ETA:  1m
+#> ■■■■                              11% | ETA:  1m■■■■■■                            16% | ETA: 49s
 #> ℹ Getting page views from Wikipedia for Stereum hirsutum
-#> ■■■■■■                            16% | ETA:  1m■■■■■■■                           21% | ETA:  2m
+#> ■■■■■■                            16% | ETA: 49s■■■■■■■                           21% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Basidiodendron eyrei
 #> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Sistotrema oblongisporum
@@ -343,11 +343,11 @@ head(data_final@tax_table)
 #> ASV26 "(Willd.) Pers."         "122978"          "Stereum hirsutum"     "25"
 #>       page_length page_views taxon_id   
 #> ASV7  NA          NA         NA         
-#> ASV8  "5519.600"  " 947"     "Q2710042" 
+#> ASV8  "4282.375"  "1044"     "Q2710042" 
 #> ASV12 NA          NA         NA         
-#> ASV18 "5519.600"  " 947"     "Q2710042" 
+#> ASV18 "4282.375"  "1044"     "Q2710042" 
 #> ASV25 "2340.000"  "   0"     "Q10613125"
-#> ASV26 "4706.000"  "   0"     "Q557377"
+#> ASV26 "5384.125"  "1143"     "Q557377"
 
 # Alternative: Query specific taxa without a phyloseq object
 taxa_info <- tax_gbif_occur_pq(
@@ -363,8 +363,8 @@ head(taxa_info)
 #> # Groups:   canonicalName [2]
 #>   canonicalName        NL    US    GB    DE    CA    SE    DK    RU    AT    AU
 #>   <chr>             <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-#> 1 Amanita muscaria 129964 31550 26199 24501 10128  9160  9005  8804  7738  7243
-#> 2 Boletus edulis     5825  5828 10710  4798    NA 12976  5966  4153  3866    NA
+#> 1 Amanita muscaria 129964 31554 26199 24501 10129  9160  9005  8805  7739  7249
+#> 2 Boletus edulis     5825  5834 10710  4798    NA 12976  5966  4153  3867    NA
 #> # ℹ 2 more variables: NO <int>, CH <int>
 ```
 

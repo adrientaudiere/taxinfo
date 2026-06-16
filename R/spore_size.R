@@ -135,6 +135,16 @@ tax_spores_size_pq <- function(
     cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
   }
 
+  if (is.null(add_to_phyloseq)) {
+    add_to_phyloseq <- !is.null(physeq)
+  }
+
+  if (!is.null(taxnames) && add_to_phyloseq) {
+    cli::cli_abort(
+      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
+    )
+  }
+
   if (is.null(taxnames)) {
     taxnames <- taxonomic_rank_to_taxnames(
       physeq = physeq,
@@ -142,10 +152,6 @@ tax_spores_size_pq <- function(
       discard_genus_alone = discard_genus_alone,
       discard_NA = discard_NA
     )
-  }
-
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
   }
 
   spore_sizes <- sapply(taxnames, function(x) {

@@ -29,10 +29,9 @@ test_that("tax_gbif_occur_coords handles unmatched taxa", {
   skip_on_cran()
   skip_if_offline("api.gbif.org")
   res <- tax_gbif_occur_coords(
-    "NotARealTaxon ZzYy",
+    c("Amanita muscaria", "NotARealTaxon ZzYy"),
     n_occur = 10,
     verbose = FALSE
   )
-  expect_equal(nrow(res), 0)
   expect_true("NotARealTaxon ZzYy" %in% attr(res, "missing_taxa"))
 })

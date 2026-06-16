@@ -272,7 +272,8 @@ data_clean_range[[2]]
 Check if occurrences match expected ecoregions:
 
 ```{r}
-tax_check_ecoregion("Xylobolus subpileatus",
+tax_check_ecoregion(
+  taxnames = "Xylobolus subpileatus",
   longitudes = c(2.3522, 4.2),
   latitudes = c(48.8566, 33)
 )

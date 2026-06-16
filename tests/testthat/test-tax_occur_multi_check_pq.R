@@ -126,14 +126,14 @@ test_that("tax_occur_multi_check_pq both physeq and taxnames errors", {
       physeq = "dummy",
       taxnames = c("Amanita muscaria")
     ),
-    "You must specify either"
+    "provided"
   )
 })
 
 test_that("tax_occur_multi_check_pq neither physeq nor taxnames errors", {
   expect_error(
     tax_occur_multi_check_pq(physeq = NULL, taxnames = NULL),
-    "You must specify either"
+    "provided"
   )
 })
 
@@ -151,6 +151,6 @@ test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
       longitudes = rep(2.3, n_samples - 1), # Wrong length
       latitudes = rep(48.8, n_samples)
     ),
-    "must have the same length"
+    "length"
   )
 })

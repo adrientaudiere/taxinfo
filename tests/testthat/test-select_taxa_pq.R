@@ -53,10 +53,10 @@ test_that("select_taxa_pq selects taxa by multiple columns", {
 
 test_that("select_taxa_pq selects taxa by Trait column", {
   # Example: select_taxa_pq(data_fungi, taxonomic_rank = "Trait", taxnames = c("Soft Rot"))
-  result <- select_taxa_pq(
+  expect_warning(expect_warning(expect_warning(result <- select_taxa_pq(
     data_fungi,
     taxonomic_rank = "Trait",
     taxnames = c("Soft Rot")
-  )
+  ))))
   expect_s4_class(result, "phyloseq")
 })

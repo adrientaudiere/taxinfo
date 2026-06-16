@@ -54,5 +54,5 @@ test_that("tax_gbif_occur_pq returns phyloseq with add_to_phyloseq = TRUE", {
   data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   result <- tax_gbif_occur_pq(data_fungi_mini_cleanNames, by_country = TRUE)
   expect_s4_class(result, "phyloseq")
-  expect_true("Global_occurences" %in% colnames(result@tax_table))
+  expect_true("US" %in% colnames(result@tax_table))
 })

@@ -20,6 +20,7 @@ test_that("tax_gbif_alt GBIF integration", {
   # Test GBIF altitude data retrieval
   skip_if_offline()
   skip_on_cran()
+  skip_if_no_gbif_credentials()
 
   # Basic test with a common species
   result <- tax_gbif_alt(
@@ -38,6 +39,7 @@ test_that("tax_gbif_alt altitude statistics structure", {
   # Test that altitude statistics returns expected columns
   skip_if_offline()
   skip_on_cran()
+  skip_if_no_gbif_credentials()
 
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
@@ -73,6 +75,7 @@ test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
   skip_if_offline()
   skip_on_cran()
+  skip_if_no_gbif_credentials()
 
   result <- tax_gbif_alt(
     taxnames = c("Amanita muscaria", "Boletus edulis"),
@@ -95,15 +98,16 @@ test_that("tax_gbif_alt handles taxa without altitude data", {
   # will or won't have data
 })
 
-test_that("tax_gbif_alt n_occur_altitude parameter", {
-  # Test that n_occur_altitude controls sample size
+test_that("tax_gbif_alt n_coor_alt parameter", {
+  # Test that n_coor_alt controls sample size
   skip_if_offline()
   skip_on_cran()
+  skip_if_no_gbif_credentials()
 
   # Request smaller sample
   result_small <- tax_gbif_alt(
     taxnames = c("Amanita muscaria"),
-    n_occur_altitude = 100,
+    n_coor_alt = 100,
     verbose = FALSE
   )
 

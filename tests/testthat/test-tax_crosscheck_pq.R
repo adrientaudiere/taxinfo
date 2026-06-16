@@ -58,7 +58,7 @@ test_that("tax_crosscheck_pq returns expected structure with taxnames", {
   expect_s3_class(result$gna_results, "data.frame")
   expect_s3_class(result$backbone_results, "data.frame")
   expect_s3_class(result$comparison, "data.frame")
-  expect_type(result$summary, "double")
+  expect_type(result$summary, "integer")
 
   expected_summary_names <- c("total", "match", "mismatch", "gna_only", "backbone_only", "both_na")
   expect_true(all(expected_summary_names %in% names(result$summary)))

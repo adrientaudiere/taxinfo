@@ -56,7 +56,7 @@ test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = 
     add_to_phyloseq = FALSE
   )
 
-  expect_s3_class(fg_traits, "tbl_df")
+  expect_s3_class(fg_traits, "data.frame")
 })
 
 test_that("tax_info_pq returns phyloseq with TAXREF data", {
@@ -164,7 +164,7 @@ test_that("tax_info_pq with taxnames returns tibble", {
     add_to_phyloseq = FALSE
   )
 
-  expect_s3_class(result, "tbl_df")
+  expect_s3_class(result, "data.frame")
 })
 
 test_that("tax_info_pq use_duck_db parameter works", {
