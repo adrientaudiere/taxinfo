@@ -303,7 +303,7 @@ head(data_clean_oa@tax_table[, c(
 
 Analyze research patterns:
 
-```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled."}
+```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line is shown. Taxonomic names are labeled."}
 data_clean_oa@tax_table |>
   as.data.frame() |>
   select(
@@ -329,12 +329,13 @@ data_clean_oa@tax_table |>
     size = "Mean nb of citation"
   ) +
   ggrepel::geom_text_repel(aes(label = currentCanonicalSimple), size = 3, color = "black", fontface = "italic") +
-  theme_idest() +
-  ggpmisc::stat_poly_eq(
-    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
-    formula = y ~ x,
-    parse = TRUE
-  )
+  theme_idest()
+# ggpmisc::stat_poly_eq() layer disabled: 'ggpmisc' is not a dependency.
+# ggpmisc::stat_poly_eq(
+#   aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
+#   formula = y ~ x,
+#   parse = TRUE
+# )
 ```
 
 ## Custom Database Integration
