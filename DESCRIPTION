@@ -14,7 +14,8 @@ Description: Augments 'phyloseq' objects with taxonomy-based information
     metabarcoding analyses. Most functions support both 'phyloseq' objects
     and plain taxonomic name vectors as input.
 License: AGPL-3
-URL: https://adrientaudiere.github.io/taxinfo
+URL: https://adrientaudiere.github.io/taxinfo/,
+    https://adrientaudiere.github.io/taxinfo
 BugReports: https://github.com/adrientaudiere/taxinfo/issues
 Depends:
     MiscMetabar,
