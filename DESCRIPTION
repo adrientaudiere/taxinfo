@@ -13,7 +13,7 @@ Description: Augments 'phyloseq' objects with taxonomy-based information
     Designed to work with the 'phyloseq' data structure common in
     metabarcoding analyses. Most functions support both 'phyloseq' objects
     and plain taxonomic name vectors as input.
-License: MIT + file LICENSE
+License: MIT
 URL: https://adrientaudiere.github.io/taxinfo
 BugReports: https://github.com/adrientaudiere/taxinfo/issues
 Depends:
