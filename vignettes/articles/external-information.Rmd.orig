@@ -5,9 +5,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-<!-- Generated from external-information.Rmd.orig by precompile.R. -->
-<!-- Edit the .orig source, then run: Rscript vignettes/articles/precompile.R -->
-
 
 ```{r child="../includes/_styles.Rmd"}
 ```

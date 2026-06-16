@@ -8,3 +8,4 @@ README.Rmd
 ^inst/extdata/Ecoregions2017\.zip$
 ^inst/extdata/downloads$
 ^vignettes/inst$
+^vignettes/articles$
