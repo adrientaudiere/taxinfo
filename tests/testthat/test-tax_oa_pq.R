@@ -74,33 +74,27 @@ test_that("tax_oa_pq DOI validation", {
 
 # Examples from man page: tax_oa_pq.Rd (lines 80-145)
 test_that("tax_oa_pq returns phyloseq with publication data", {
-  skip_if_offline()
   skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |> tax_oa_pq()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
-    tax_oa_pq()
+  result <- tax_oa_pq(load_clean_pq())
 
-  expect_s4_class(data_fungi_mini_cleanNames, "phyloseq")
+  expect_s4_class(result, "phyloseq")
   # Check for n_doi column added
-  expect_true("n_doi" %in% colnames(data_fungi_mini_cleanNames@tax_table))
+  expect_true("n_doi" %in% colnames(result@tax_table))
 })
 
 test_that("tax_oa_pq with specific type_works", {
-  skip_if_offline()
   skip_on_cran()
   # Example: tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
+  result <- tax_oa_pq(load_clean_pq(), type_works = "dataset")
 
   expect_s4_class(result, "phyloseq")
 })
 
 test_that("tax_oa_pq with return_raw_oa = TRUE returns list", {
-  skip_if_offline()
   skip_on_cran()
   # Example: list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames, return_raw_oa = TRUE)
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames, return_raw_oa = TRUE)
+  list_pub_raw <- tax_oa_pq(load_clean_pq(), return_raw_oa = TRUE)
 
   expect_type(list_pub_raw, "list")
 })

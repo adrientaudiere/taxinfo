@@ -1,6 +1,8 @@
 # Test tax_occur_check_pq function
 # Examples from man page: tax_occur_check_pq.Rd
 
+clean <- load_clean_pq()
+
 test_that("tax_occur_check_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_occur_check_pq(NULL))
@@ -8,13 +10,9 @@ test_that("tax_occur_check_pq input validation", {
 
 # Examples from man page: tax_occur_check_pq.Rd (lines 65-101)
 test_that("tax_occur_check_pq returns data frame with add_to_phyloseq = FALSE", {
-  skip_if_offline()
   skip_on_cran()
-  # Example: check_res <- tax_occur_check_pq(data_fungi_mini_cleanNames,
-  #   longitude = 2.3, latitude = 48, radius_km = 100, n_occur = 50, add_to_phyloseq = FALSE)
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
   check_res <- tax_occur_check_pq(
-    data_fungi_mini_cleanNames,
+    clean,
     longitude = 2.3,
     latitude = 48,
     radius_km = 100,
@@ -28,25 +26,28 @@ test_that("tax_occur_check_pq returns data frame with add_to_phyloseq = FALSE", 
   expect_true("total_count_in_world" %in% colnames(check_res))
 })
 
-test_that("tax_occur_check_pq returns phyloseq with add_to_phyloseq = TRUE", {
-  skip_if_offline()
+test_that("tax_occur_check_pq returns phyloseq and respects col_prefix", {
   skip_on_cran()
-  # Example: data_fungi_mini_cleanNames_range_verif <- tax_occur_check_pq(data_fungi_mini_cleanNames,
-  #   longitude = 2.3, latitude = 48, radius_km = 50, n_occur = 10)
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  data_fungi_mini_cleanNames_range_verif <- tax_occur_check_pq(
-    data_fungi_mini_cleanNames,
+  res <- tax_occur_check_pq(
+    clean,
     longitude = 2.3,
     latitude = 48,
     radius_km = 50,
     n_occur = 10
   )
+  expect_s4_class(res, "phyloseq")
+  expect_true("count_in_radius" %in% colnames(res@tax_table))
 
-  expect_s4_class(data_fungi_mini_cleanNames_range_verif, "phyloseq")
-  expect_true(
-    "count_in_radius" %in%
-      colnames(data_fungi_mini_cleanNames_range_verif@tax_table)
+  res_prefix <- tax_occur_check_pq(
+    clean,
+    longitude = 2.3,
+    latitude = 48,
+    radius_km = 50,
+    n_occur = 10,
+    col_prefix = "occ_"
   )
+  expect_s4_class(res_prefix, "phyloseq")
+  expect_true(any(grepl("^occ_", colnames(res_prefix@tax_table))))
 })
 
 test_that("tax_occur_check_pq both physeq and taxnames errors", {
@@ -76,13 +77,9 @@ test_that("tax_occur_check_pq add_to_phyloseq cannot be TRUE with taxnames", {
 })
 
 test_that("tax_occur_check_pq requires longitude and latitude", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-
   expect_error(
     tax_occur_check_pq(
-      data_fungi_mini_cleanNames,
+      clean,
       longitude = NULL,
       latitude = 48
     )
@@ -90,28 +87,9 @@ test_that("tax_occur_check_pq requires longitude and latitude", {
 
   expect_error(
     tax_occur_check_pq(
-      data_fungi_mini_cleanNames,
+      clean,
       longitude = 2.3,
       latitude = NULL
     )
   )
-})
-
-test_that("tax_occur_check_pq col_prefix parameter works", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-  result <- tax_occur_check_pq(
-    data_fungi_mini_cleanNames,
-    longitude = 2.3,
-    latitude = 48,
-    radius_km = 50,
-    n_occur = 10,
-    col_prefix = "occ_"
-  )
-
-  expect_s4_class(result, "phyloseq")
-  # Check that columns have the prefix
-  col_names <- colnames(result@tax_table)
-  expect_true(any(grepl("^occ_", col_names)))
 })

@@ -7,18 +7,13 @@ test_that("tax_retroblast_pq input validation", {
 })
 
 # Examples from man page: tax_retroblast_pq.Rd (lines 114-144)
-test_that("tax_retroblast_pq returns list with add_to_phyloseq = FALSE", {
-  skip_if_offline()
+test_that("tax_retroblast_pq returns list with expected structure and columns", {
   skip_on_cran()
   # Example: res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
   #   marker = c("ITS", "internal transcribed spacer"),
   #   retmax = 10, id_cut = 99, add_to_phyloseq = FALSE)
-  data_fungi_mini_cleanNames <- gna_verifier_pq(
-    data_fungi_mini,
-    data_sources = 210
-  )
   res_retro <- tax_retroblast_pq(
-    data_fungi_mini_cleanNames,
+    load_clean_pq(),
     marker = c("ITS", "internal transcribed spacer"),
     retmax = 10,
     id_cut = 99,
@@ -30,46 +25,8 @@ test_that("tax_retroblast_pq returns list with add_to_phyloseq = FALSE", {
   expect_true("tib_retroblast" %in% names(res_retro))
   expect_true("entrez_search" %in% names(res_retro))
 
-  # tib_retroblast should be a tibble
+  # tib_retroblast should be a tibble with the expected columns
   expect_s3_class(res_retro$tib_retroblast, "tbl_df")
-})
-
-test_that("tax_retroblast_pq returns phyloseq with add_to_phyloseq = TRUE", {
-  skip_if_offline()
-  skip_on_cran()
-  # Example: res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
-  #   marker = c("ITS", "internal transcribed spacer"),
-  #   retmax = 10, id_cut = 99)
-  data_fungi_mini_cleanNames <- gna_verifier_pq(
-    data_fungi_mini,
-    data_sources = 210
-  )
-  res_retro <- tax_retroblast_pq(
-    data_fungi_mini_cleanNames,
-    marker = c("ITS", "internal transcribed spacer"),
-    retmax = 10,
-    id_cut = 99
-  )
-
-  expect_s4_class(res_retro, "phyloseq")
-})
-
-test_that("tax_retroblast_pq tib_retroblast has expected columns", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(
-    data_fungi_mini,
-    data_sources = 210
-  )
-  res_retro <- tax_retroblast_pq(
-    data_fungi_mini_cleanNames,
-    marker = c("ITS", "internal transcribed spacer"),
-    retmax = 10,
-    id_cut = 99,
-    add_to_phyloseq = FALSE
-  )
-
-  # Check for expected columns in tib_retroblast
   expected_cols <- c(
     "taxa_name",
     "taxnames_species",
@@ -85,17 +42,26 @@ test_that("tax_retroblast_pq tib_retroblast has expected columns", {
   }
 })
 
-test_that("tax_retroblast_pq verbose parameter works", {
-  skip_if_offline()
+test_that("tax_retroblast_pq returns phyloseq with add_to_phyloseq = TRUE", {
   skip_on_cran()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(
-    data_fungi_mini,
-    data_sources = 210
+  # Example: res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
+  #   marker = c("ITS", "internal transcribed spacer"),
+  #   retmax = 10, id_cut = 99)
+  res_retro <- tax_retroblast_pq(
+    load_clean_pq(),
+    marker = c("ITS", "internal transcribed spacer"),
+    retmax = 10,
+    id_cut = 99
   )
 
+  expect_s4_class(res_retro, "phyloseq")
+})
+
+test_that("tax_retroblast_pq verbose parameter works", {
+  skip_on_cran()
   # Should work with verbose = FALSE
   expect_no_error(tax_retroblast_pq(
-    data_fungi_mini_cleanNames,
+    load_clean_pq(),
     marker = c("ITS"),
     retmax = 5,
     id_cut = 99,

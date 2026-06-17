@@ -2,6 +2,7 @@
 # Tests for extract_spores_mycodb and tax_spores_size_pq functions
 
 test_that("extract_spores_mycodb returns valid structure", {
+  skip_on_cran()
   # Test with known species that should exist in mycoDB
   result <- extract_spores_mycodb("Amanita muscaria", verbose = FALSE)
 
@@ -10,6 +11,7 @@ test_that("extract_spores_mycodb returns valid structure", {
 })
 
 test_that("extract_spores_mycodb handles non-existent species", {
+  skip_on_cran()
   # Test with a species that definitely doesn't exist
   result <- extract_spores_mycodb("Nonexistent fungusname", verbose = FALSE)
 
@@ -19,6 +21,7 @@ test_that("extract_spores_mycodb handles non-existent species", {
 })
 
 test_that("extract_spores_mycodb handles genus-only input", {
+  skip_on_cran()
   # Test with genus-only input (no species)
   result <- extract_spores_mycodb("Amanita", verbose = FALSE)
 
@@ -53,11 +56,12 @@ test_that("tax_spores_size_pq add_to_phyloseq validation", {
 
 # Integration test with taxnames parameter
 test_that("tax_spores_size_pq with taxnames returns dataframe", {
+  skip_on_cran()
   # Test with a known species
   result <- tax_spores_size_pq(
     taxnames = c("Boletus edulis"),
     verbose = FALSE,
-    time_to_sleep = 0.1
+    time_to_sleep = 0
   )
 
   expect_s3_class(result, "data.frame")
@@ -68,6 +72,7 @@ test_that("tax_spores_size_pq with taxnames returns dataframe", {
 })
 
 test_that("extract_spores_mycodb verbose parameter works", {
+  skip_on_cran()
   # Test with verbose = TRUE (should not error)
   expect_no_error(extract_spores_mycodb("Boletus edulis", verbose = TRUE))
 

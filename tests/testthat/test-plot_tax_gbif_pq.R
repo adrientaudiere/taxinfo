@@ -1,15 +1,14 @@
-skip_if_offline()
 skip_on_cran()
 
 # Test plot_tax_gbif_pq function
 # Examples from man page: plot_tax_gbif_pq.Rd
 
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi)
+data_fungi_cleanNames <- load_clean_pq()
 
 data_fungi_cleanNames_3sp <- subset_taxa_pq(
   data_fungi_cleanNames,
   grepl(
-    "Sistotrema raduloides|Stypella subgelatinosa|Rhamphoria piriformis",
+    "Sistotrema raduloides|Stypella subgelatinosa",
     data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"]
   ),
   taxa_names_from_physeq = TRUE
@@ -49,7 +48,7 @@ test_that("plot_tax_gbif_pq plotting functionality", {
 test_that("plot_tax_gbif_pq with taxnames parameter returns list of ggplots", {
   # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"))
   p <- plot_tax_gbif_pq(
-    taxnames = c("Xylobolus subpileatus", "Stereum subpileatus")
+    taxnames = c("Fomes fomentarius", "Xylodon flaviporus")
   )
 
   expect_type(p, "list")
@@ -60,7 +59,7 @@ test_that("plot_tax_gbif_pq with hexagons = TRUE and taxnames", {
   # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"),
   #   hexagons = TRUE, verbose = FALSE)
   p <- plot_tax_gbif_pq(
-    taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+    taxnames = c("Fomes fomentarius", "Xylodon flaviporus"),
     hexagons = TRUE,
     verbose = FALSE
   )
@@ -72,7 +71,7 @@ test_that("plot_tax_gbif_pq with countries filter", {
   # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
   #   hexagons = TRUE, verbose = FALSE, countries = c("france", "spain"))
   p <- plot_tax_gbif_pq(
-    taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
+    taxnames = c("Fomes fomentarius", "Xylodon flaviporus"),
     hexagons = TRUE,
     verbose = FALSE,
     countries = c("france", "spain")

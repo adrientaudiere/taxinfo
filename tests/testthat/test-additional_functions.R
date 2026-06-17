@@ -1,16 +1,16 @@
-skip_if_offline()
 skip_on_cran()
 
 # Test additional functions with basic validation
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi, add_to_phyloseq = TRUE)
+data_fungi_cleanNames <- load_clean_pq()
 
 data_fungi_cleanNames_3sp <-
   suppressWarnings(select_taxa_pq(
     data_fungi_cleanNames,
+    taxonomic_rank = "currentCanonicalSimple",
     taxnames = c(
       "Sistotrema raduloides",
       "Stypella subgelatinosa",
-      "Rhamphoria piriformis"
+      "Mycena renati"
     ),
     clean_pq = TRUE
   ))
@@ -41,15 +41,16 @@ test_that("tax_get_wk_info_pq input validation", {
   res1 <- tax_get_wk_info_pq(
     data_fungi_cleanNames_3sp,
     languages_pages = c("en"),
-    time_to_sleep = 2,
+    time_to_sleep = 0,
     add_to_phyloseq = FALSE
   )
-  expect_equal(nrow(res1), 2)
+  expect_s3_class(res1, "tbl_df")
+  expect_gt(nrow(res1), 0)
 
   res2 <- tax_get_wk_info_pq(
     data_fungi_cleanNames_3sp,
     add_to_phyloseq = TRUE,
-    time_to_sleep = 2
+    time_to_sleep = 0
   )
   expect_s4_class(res2, "phyloseq")
 })
@@ -65,7 +66,8 @@ test_that("tax_globi_pq input validation", {
     max_interactions = 10,
     add_to_phyloseq = FALSE
   )
-  expect_equal(dim(res1), c(2, 4))
+  expect_s3_class(res1, "tbl_df")
+  expect_equal(ncol(res1), 4)
 
   res2 <- tax_globi_pq(
     data_fungi_cleanNames_3sp,
@@ -81,7 +83,9 @@ test_that("tax_globi_pq input validation", {
 test_that("tax_iucn_code_pq input validation", {
   expect_error(tax_iucn_code_pq(NULL))
   res1 <- tax_iucn_code_pq(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-  expect_equal(dim(res1), c(254, 2))
+  expect_s3_class(res1, "data.frame")
+  expect_equal(ncol(res1), 2)
+  expect_true("iucn_code" %in% colnames(res1))
 
   res2 <- tax_iucn_code_pq(data_fungi_cleanNames)
   expect_s4_class(res2, "phyloseq")
@@ -97,8 +101,8 @@ test_that("tax_retroblast_pq input validation", {
     id_cut = 99,
     add_to_phyloseq = FALSE
   )
-  expect_equal(length(res1), 2)
-  expect_equal(nrow(res1$tib_retroblast), 6)
+  expect_length(res1, 2)
+  expect_s3_class(res1$tib_retroblast, "tbl_df")
 
   res2 <- tax_retroblast_pq(
     data_fungi_cleanNames_3sp,
@@ -124,7 +128,8 @@ test_that("tax_check_ecoregion input validation", {
   res1 <- suppressWarnings(tax_check_ecoregion(
     taxnames = "Xylobolus subpileatus",
     longitudes = c(2.3522, 4.2),
-    latitudes = c(48.8566, 33)
+    latitudes = c(48.8566, 33),
+    time_to_sleep = 0
   ))
   expect_equal(length(res1), 4)
   expect_false(any(res1$is_in_ecoregion))

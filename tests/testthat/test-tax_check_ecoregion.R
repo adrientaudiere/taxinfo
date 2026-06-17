@@ -28,12 +28,12 @@ test_that("tax_check_ecoregion input validation", {
 
 test_that("tax_check_ecoregion returns expected structure", {
   skip_on_cran()
-  skip_if_offline("api.gbif.org")
   res <- tax_check_ecoregion(
     taxnames = "Xylobolus subpileatus",
     longitudes = c(2.3522, 4.2),
     latitudes = c(48.8566, 33),
     n_occur = 100,
+    time_to_sleep = 0,
     verbose = FALSE
   )
   expect_type(res, "list")

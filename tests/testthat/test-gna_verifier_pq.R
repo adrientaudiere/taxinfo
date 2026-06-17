@@ -67,7 +67,6 @@ test_that("gna_verifier_pq with taxnames and physeq both provided errors", {
 })
 
 test_that("gna_verifier_pq with taxnames only works", {
-  skip_if_offline()
   skip_on_cran()
   # Test with taxnames parameter only
   result <- gna_verifier_pq(
@@ -87,7 +86,6 @@ test_that("gna_verifier_pq add_to_phyloseq cannot be TRUE with taxnames", {
 })
 
 test_that("gna_verifier_pq col_prefix parameter works", {
-  skip_if_offline()
   skip_on_cran()
   # Test with col_prefix parameter
   result <- gna_verifier_pq(

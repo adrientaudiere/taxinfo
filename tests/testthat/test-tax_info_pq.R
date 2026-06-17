@@ -1,6 +1,14 @@
 # Test tax_info_pq function
 # Examples from man page: tax_info_pq.Rd
 
+# Shared, pre-cleaned fixture (replaces repeated gna_verifier_pq() setups).
+clean <- load_clean_pq()
+taxref_csv <- system.file(
+  "extdata",
+  "TAXREFv18_fungi_mini.csv",
+  package = "taxinfo"
+)
+
 test_that("tax_info_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_info_pq(NULL))
@@ -34,14 +42,7 @@ test_that("tax_info_pq file handling", {
 })
 
 # Examples from man page: tax_info_pq.Rd (lines 77-168)
-test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = FALSE", {
-  skip_if_offline()
-  skip_on_cran()
-  # Example: fg_traits <- tax_info_pq(data_fungi_cleanNames,
-  #   taxonomic_rank = "genusEpithet", file_name = fungal_traits,
-  #   csv_taxonomic_rank = "GENUS", col_prefix = "ft_", sep = ";",
-  #   add_to_phyloseq = FALSE)
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
+test_that("tax_info_pq with fungal traits returns a tibble", {
   fungal_traits <- system.file(
     "extdata",
     "fun_trait_mini.csv",
@@ -49,7 +50,7 @@ test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = 
   )
 
   fg_traits <- tax_info_pq(
-    data_fungi_cleanNames,
+    clean,
     taxonomic_rank = "genusEpithet",
     file_name = fungal_traits,
     csv_taxonomic_rank = "GENUS",
@@ -62,22 +63,9 @@ test_that("tax_info_pq with fungal traits returns tibble with add_to_phyloseq = 
 })
 
 test_that("tax_info_pq returns phyloseq with TAXREF data", {
-  skip_if_offline()
-  skip_on_cran()
-  # Example: res_with_R <- tax_info_pq(data_fungi_cleanNames,
-  #   file_name = TAXREFv18_fungi,
-  #   csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
-  #   col_prefix = "taxref_")
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file(
-    "extdata",
-    "TAXREFv18_fungi_mini.csv",
-    package = "taxinfo"
-  )
-
   res_with_R <- tax_info_pq(
-    data_fungi_cleanNames,
-    file_name = TAXREFv18_fungi,
+    clean,
+    file_name = taxref_csv,
     csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
     col_prefix = "taxref_"
   )
@@ -100,12 +88,9 @@ test_that("tax_info_pq neither physeq nor taxnames errors", {
 })
 
 test_that("tax_info_pq file_name is required", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   expect_error(
     tax_info_pq(
-      data_fungi_cleanNames,
+      clean,
       csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
     ),
     "file_name"
@@ -113,12 +98,9 @@ test_that("tax_info_pq file_name is required", {
 })
 
 test_that("tax_info_pq file_name must exist", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
   expect_error(
     tax_info_pq(
-      data_fungi_cleanNames,
+      clean,
       file_name = "/nonexistent/path/file.csv",
       csv_taxonomic_rank = "NOM_VALIDE_SIMPLE"
     ),
@@ -127,32 +109,17 @@ test_that("tax_info_pq file_name must exist", {
 })
 
 test_that("tax_info_pq csv_taxonomic_rank is required", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file(
-    "extdata",
-    "TAXREFv18_fungi_mini.csv",
-    package = "taxinfo"
-  )
-
   expect_error(
-    tax_info_pq(data_fungi_cleanNames, file_name = TAXREFv18_fungi),
+    tax_info_pq(clean, file_name = taxref_csv),
     "csv_taxonomic_rank"
   )
 })
 
 test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
-  TAXREFv18_fungi <- system.file(
-    "extdata",
-    "TAXREFv18_fungi_mini.csv",
-    package = "taxinfo"
-  )
-
   expect_error(
     tax_info_pq(
       taxnames = c("Amanita muscaria"),
-      file_name = TAXREFv18_fungi,
+      file_name = taxref_csv,
       csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
       add_to_phyloseq = TRUE
     ),
@@ -161,17 +128,9 @@ test_that("tax_info_pq add_to_phyloseq cannot be TRUE with taxnames", {
 })
 
 test_that("tax_info_pq with taxnames returns tibble", {
-  skip_if_offline()
-  skip_on_cran()
-  TAXREFv18_fungi <- system.file(
-    "extdata",
-    "TAXREFv18_fungi_mini.csv",
-    package = "taxinfo"
-  )
-
   result <- tax_info_pq(
     taxnames = c("Amanita muscaria"),
-    file_name = TAXREFv18_fungi,
+    file_name = taxref_csv,
     csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
     add_to_phyloseq = FALSE
   )
@@ -180,18 +139,10 @@ test_that("tax_info_pq with taxnames returns tibble", {
 })
 
 test_that("tax_info_pq use_duck_db parameter works", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-  TAXREFv18_fungi <- system.file(
-    "extdata",
-    "TAXREFv18_fungi_mini.csv",
-    package = "taxinfo"
-  )
-
+  skip_if_not_installed("duckdb")
   result <- tax_info_pq(
-    data_fungi_cleanNames,
-    file_name = TAXREFv18_fungi,
+    clean,
+    file_name = taxref_csv,
     csv_taxonomic_rank = "NOM_VALIDE_SIMPLE",
     col_prefix = "taxref_",
     use_duck_db = TRUE,

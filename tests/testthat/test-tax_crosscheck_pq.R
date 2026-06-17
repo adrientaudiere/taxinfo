@@ -47,7 +47,6 @@ test_that("tax_crosscheck_pq status classification logic", {
 })
 
 test_that("tax_crosscheck_pq returns expected structure with taxnames", {
-  skip_if_offline()
   skip_on_cran()
 
   result <- tax_crosscheck_pq(
@@ -79,7 +78,6 @@ test_that("tax_crosscheck_pq returns expected structure with taxnames", {
 })
 
 test_that("tax_crosscheck_pq comparison has status column with valid values", {
-  skip_if_offline()
   skip_on_cran()
 
   result <- tax_crosscheck_pq(
@@ -100,7 +98,6 @@ test_that("tax_crosscheck_pq comparison has status column with valid values", {
 })
 
 test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
-  skip_if_offline()
   skip_on_cran()
 
   result <- tax_crosscheck_pq(
@@ -114,7 +111,6 @@ test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
 })
 
 test_that("tax_crosscheck_pq summary counts add up to total", {
-  skip_if_offline()
   skip_on_cran()
 
   result <- tax_crosscheck_pq(

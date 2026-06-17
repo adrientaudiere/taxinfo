@@ -8,10 +8,10 @@ test_that("tax_ecoregion_occur input validation", {
 
 test_that("tax_ecoregion_occur returns a long tibble with required columns", {
   skip_on_cran()
-  skip_if_offline("api.gbif.org")
   res <- tax_ecoregion_occur(
     "Xylobolus subpileatus",
     n_occur = 100,
+    time_to_sleep = 0,
     verbose = FALSE
   )
   expect_s3_class(res, "tbl_df")
@@ -32,10 +32,10 @@ test_that("tax_ecoregion_occur returns a long tibble with required columns", {
 
 test_that("tax_ecoregion_occur keeps unmatched taxa with n_occur = 0", {
   skip_on_cran()
-  skip_if_offline("api.gbif.org")
   res <- tax_ecoregion_occur(
     c("Xylobolus subpileatus", "NotARealTaxon ZzYy"),
     n_occur = 50,
+    time_to_sleep = 0,
     verbose = FALSE
   )
   expect_true("NotARealTaxon ZzYy" %in% res$taxon_name)

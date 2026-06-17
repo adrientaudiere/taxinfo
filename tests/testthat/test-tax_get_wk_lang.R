@@ -3,7 +3,6 @@
 
 # Examples from man page: tax_get_wk_lang.Rd (lines 31-36)
 test_that("tax_get_wk_lang returns tibble structure", {
-  skip_if_offline()
   skip_on_cran()
   # Example: tax_get_wk_lang("Q10723171")
   result <- tax_get_wk_lang("Q10723171")
@@ -17,7 +16,6 @@ test_that("tax_get_wk_lang returns tibble structure", {
 })
 
 test_that("tax_get_wk_lang returns data for valid taxon_id", {
-  skip_if_offline()
   skip_on_cran()
   # Example: tax_get_wk_lang("Q10723171") |> nrow()
   result <- tax_get_wk_lang("Q10723171")
@@ -27,7 +25,6 @@ test_that("tax_get_wk_lang returns data for valid taxon_id", {
 })
 
 test_that("tax_get_wk_lang handles NA taxon_id", {
-  skip_if_offline()
   skip_on_cran()
   result <- tax_get_wk_lang(NA)
 
@@ -37,7 +34,6 @@ test_that("tax_get_wk_lang handles NA taxon_id", {
 })
 
 test_that("tax_get_wk_lang handles empty string taxon_id", {
-  skip_if_offline()
   skip_on_cran()
   result <- tax_get_wk_lang("")
 
@@ -47,7 +43,6 @@ test_that("tax_get_wk_lang handles empty string taxon_id", {
 })
 
 test_that("tax_get_wk_lang languages_pages parameter works", {
-  skip_if_offline()
   skip_on_cran()
   # Test with specific language filter
   result_all <- tax_get_wk_lang("Q10723171")
@@ -65,7 +60,6 @@ test_that("tax_get_wk_lang languages_pages parameter works", {
 })
 
 test_that("tax_get_wk_lang handles non-existent taxon_id", {
-  skip_if_offline()
   skip_on_cran()
   # Test with a non-existent taxon ID
   result <- tax_get_wk_lang("Q999999999999")

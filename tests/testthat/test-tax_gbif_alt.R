@@ -18,7 +18,6 @@ test_that("tax_gbif_alt parameter defaults", {
 
 test_that("tax_gbif_alt GBIF integration", {
   # Test GBIF altitude data retrieval
-  skip_if_offline()
   skip_on_cran()
   skip_if_no_gbif_credentials()
 
@@ -37,7 +36,6 @@ test_that("tax_gbif_alt GBIF integration", {
 
 test_that("tax_gbif_alt altitude statistics structure", {
   # Test that altitude statistics returns expected columns
-  skip_if_offline()
   skip_on_cran()
   skip_if_no_gbif_credentials()
 
@@ -73,7 +71,6 @@ test_that("tax_gbif_alt altitude statistics structure", {
 
 test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
-  skip_if_offline()
   skip_on_cran()
   skip_if_no_gbif_credentials()
 
@@ -89,7 +86,6 @@ test_that("tax_gbif_alt handles multiple taxa", {
 
 test_that("tax_gbif_alt handles taxa without altitude data", {
   # Test graceful handling of missing data
-  skip_if_offline()
   skip_on_cran()
   skip("Manual test - depends on species with/without data")
 
@@ -100,7 +96,6 @@ test_that("tax_gbif_alt handles taxa without altitude data", {
 
 test_that("tax_gbif_alt n_coor_alt parameter", {
   # Test that n_coor_alt controls sample size
-  skip_if_offline()
   skip_on_cran()
   skip_if_no_gbif_credentials()
 

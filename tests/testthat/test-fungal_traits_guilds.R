@@ -3,12 +3,9 @@ test_that("fungal_traits_guilds errors without physeq", {
 })
 
 test_that("fungal_traits_guilds adds FungalTraits columns when names are clean", {
-  skip_if_offline()
   skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-
   res <- fungal_traits_guilds(
-    data_fungi_cleanNames,
+    load_clean_pq(),
     add_consensus = FALSE,
     fg_tax_levels = character(0),
     verbose = FALSE
@@ -19,12 +16,14 @@ test_that("fungal_traits_guilds adds FungalTraits columns when names are clean",
 })
 
 test_that("fungal_traits_guilds runs gna_verifier_pq when names are absent", {
-  skip_if_offline()
   skip_on_cran()
-  expect_false("currentCanonicalSimple" %in% colnames(data_fungi@tax_table))
+  # Pass a small RAW (unverified) phyloseq to exercise the internal
+  # gna_verifier_pq() path triggered when currentCanonicalSimple is absent.
+  raw_pq <- prune_taxa(taxa_names(data_fungi_mini)[1:5], data_fungi_mini)
+  expect_false("currentCanonicalSimple" %in% colnames(raw_pq@tax_table))
 
   res <- fungal_traits_guilds(
-    data_fungi,
+    raw_pq,
     gna_data_sources = 210,
     add_consensus = FALSE,
     fg_tax_levels = character(0),
@@ -37,12 +36,9 @@ test_that("fungal_traits_guilds runs gna_verifier_pq when names are absent", {
 })
 
 test_that("fungal_traits_guilds returns tibble when add_to_phyloseq = FALSE", {
-  skip_if_offline()
   skip_on_cran()
-  data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-
   res <- fungal_traits_guilds(
-    data_fungi_cleanNames,
+    load_clean_pq(),
     add_consensus = FALSE,
     fg_tax_levels = character(0),
     add_to_phyloseq = FALSE,

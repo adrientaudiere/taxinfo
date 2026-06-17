@@ -1,6 +1,8 @@
 # Test tax_occur_multi_check_pq function
 # Examples from man page: tax_occur_multi_check_pq.Rd
 
+clean <- load_clean_pq()
+
 test_that("tax_occur_multi_check_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_occur_multi_check_pq(NULL))
@@ -103,17 +105,12 @@ test_that("tax_occur_multi_check_pq min_occur filtering", {
 
 # Examples from man page: tax_occur_multi_check_pq.Rd (lines 62-66)
 test_that("tax_occur_multi_check_pq returns expected structure", {
-  skip_if_offline()
   skip_on_cran()
-  # Example: res_occur_check <- tax_occur_multi_check_pq(
-  #   subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
-  #   longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
-  #   latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93))
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
+  n_samples <- nsamples(clean)
   res_occur_check <- tax_occur_multi_check_pq(
-    subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
-    longitudes = c(8.31, 8.31, 8.64, -1.19, 7.03),
-    latitudes = c(47.38, 47.38, 45.83, 43.65, 43.93)
+    clean,
+    longitudes = rep(8.31, n_samples),
+    latitudes = rep(47.38, n_samples)
   )
 
   # Should return a list
@@ -140,18 +137,11 @@ test_that("tax_occur_multi_check_pq neither physeq nor taxnames errors", {
 })
 
 test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
-  skip_if_offline()
-  skip_on_cran()
-  data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini)
-
-  # Create valid coordinates for the subset
-  n_samples <- nrow(
-    subset_samples(data_fungi_mini_cleanNames, Diameter == 52)@sam_data
-  )
+  n_samples <- nsamples(clean)
 
   expect_error(
     tax_occur_multi_check_pq(
-      subset_samples(data_fungi_mini_cleanNames, Diameter == 52),
+      clean,
       longitudes = rep(2.3, n_samples - 1), # Wrong length
       latitudes = rep(48.8, n_samples)
     ),

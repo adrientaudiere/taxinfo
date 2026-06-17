@@ -8,8 +8,7 @@
 # `data_fungi` (1420 taxa). Freezing one tiny cleaned object makes the suite
 # fast, deterministic and largely offline.
 #
-# Regenerate (needs network, no credentials required) with:
-#   source("tests/testthat/fixtures/make-data_fungi_clean.R")
+# Regenerate (needs network, no credentials required) by sourcing this file
 # from the package root, then commit the updated .rds.
 
 suppressPackageStartupMessages(library(phyloseq))
@@ -37,14 +36,27 @@ extra <- phyloseq::taxa_names(clean_full)[cc %in% extra_species]
 keep_taxa <- unique(c(anchors, head(extra, 3)))
 fixture <- phyloseq::prune_taxa(keep_taxa, clean_full)
 
-# Drop empty samples and keep a small, representative handful.
-fixture <- phyloseq::prune_samples(
-  phyloseq::sample_sums(fixture) > 0,
-  fixture
+# Keep a small set of samples chosen to retain every anchor taxon (greedy
+# cover), so no `keep_taxa` member is silently dropped to zero counts.
+otu <- as(phyloseq::otu_table(fixture), "matrix")
+if (!phyloseq::taxa_are_rows(fixture)) {
+  otu <- t(otu)
+}
+uncovered <- anchors
+chosen <- character(0)
+while (length(uncovered) > 0) {
+  present <- colnames(otu)[colSums(otu[uncovered, , drop = FALSE] > 0) > 0]
+  best <- present[which.max(colSums(otu[uncovered, present, drop = FALSE] > 0))]
+  chosen <- c(chosen, best)
+  uncovered <- uncovered[otu[uncovered, best] == 0]
+}
+# Top up to a handful of samples for a little abundance variation.
+extra_samp <- setdiff(
+  names(sort(colSums(otu > 0), decreasing = TRUE)),
+  chosen
 )
-keep_samples <- head(phyloseq::sample_names(fixture), 8)
+keep_samples <- head(c(chosen, extra_samp), 8)
 fixture <- phyloseq::prune_samples(keep_samples, fixture)
-fixture <- phyloseq::prune_taxa(phyloseq::taxa_sums(fixture) > 0, fixture)
 
 message(
   "fixture: ", phyloseq::ntaxa(fixture), " taxa, ",

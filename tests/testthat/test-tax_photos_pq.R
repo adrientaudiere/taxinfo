@@ -45,7 +45,6 @@ test_that("tax_photos_pq input validation", {
 
 # taxnames + gallery=TRUE (gbif and wikitaxa)
 test_that("tax_photos_pq taxnames + gallery=TRUE + gbif returns shiny.tag", {
-  skip_if_offline()
   skip_on_cran()
   result <- tax_photos_pq(
     taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
@@ -57,7 +56,6 @@ test_that("tax_photos_pq taxnames + gallery=TRUE + gbif returns shiny.tag", {
 })
 
 test_that("tax_photos_pq taxnames + gallery=TRUE + wikitaxa returns shiny.tag", {
-  skip_if_offline()
   skip_on_cran()
   result <- tax_photos_pq(
     taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
@@ -70,7 +68,6 @@ test_that("tax_photos_pq taxnames + gallery=TRUE + wikitaxa returns shiny.tag", 
 
 # physeq + add_to_phyloseq=TRUE + gallery=FALSE
 test_that("tax_photos_pq physeq + add_to_phyloseq=TRUE + gallery=FALSE returns phyloseq", {
-  skip_if_offline()
   skip_on_cran()
   physeq2 <- make_mini_physeq()
   for (src in c("gbif", "wikitaxa")) {
@@ -89,7 +86,6 @@ test_that("tax_photos_pq physeq + add_to_phyloseq=TRUE + gallery=FALSE returns p
 # physeq + add_to_phyloseq=TRUE + gallery=TRUE + simple_caption=FALSE
 # (was broken: taxa_match unnamed vector caused subset_taxa_pq to error)
 test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=FALSE works", {
-  skip_if_offline()
   skip_on_cran()
   physeq2 <- make_mini_physeq()
   for (src in c("gbif", "wikitaxa")) {
@@ -107,7 +103,6 @@ test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=FALSE works", {
 
 # physeq + add_to_phyloseq=TRUE + gallery=TRUE + simple_caption=TRUE
 test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=TRUE returns phyloseq", {
-  skip_if_offline()
   skip_on_cran()
   physeq2 <- make_mini_physeq()
   for (src in c("gbif", "wikitaxa")) {
@@ -126,7 +121,6 @@ test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=TRUE returns phy
 # physeq + add_to_phyloseq=FALSE + gallery=TRUE
 # (was broken: same unnamed taxa_match issue)
 test_that("tax_photos_pq physeq + add_to_phyloseq=FALSE + gallery=TRUE returns shiny.tag", {
-  skip_if_offline()
   skip_on_cran()
   physeq2 <- make_mini_physeq()
   for (src in c("gbif", "wikitaxa")) {
@@ -143,7 +137,6 @@ test_that("tax_photos_pq physeq + add_to_phyloseq=FALSE + gallery=TRUE returns s
 
 # caption_valign options
 test_that("tax_photos_pq caption_valign=top works", {
-  skip_if_offline()
   skip_on_cran()
   result <- tax_photos_pq(
     taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
