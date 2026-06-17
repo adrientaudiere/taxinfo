@@ -218,44 +218,13 @@ tax_gbif_alt <- function(
 
   if (method == "gbif") {
     # Method 1: Use GBIF Download API to get elevation data directly
-    download_key <- tryCatch(
-      {
-        rgbif::occ_download(
-          rgbif::pred_in("taxonKey", gbif_taxon_keys),
-          rgbif::pred("hasCoordinate", TRUE),
-          rgbif::pred("hasGeospatialIssue", FALSE),
-          rgbif::pred_notnull("elevation"),
-          format = "SIMPLE_CSV"
-        )
-      },
-      error = function(e) {
-        cli::cli_abort(c(
-          "Failed to submit GBIF download request.",
-          "i" = "GBIF credentials are required. Please ensure you have set:",
-          " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
-          "i" = "Register at: {.url https://www.gbif.org/user/register}",
-          "i" = "See: {.url https://docs.ropensci.org/rgbif/articles/gbif_credentials.html}",
-          "x" = "Error: {e$message}"
-        ))
-      }
+    occ_data <- gbif_download(
+      rgbif::pred_in("taxonKey", gbif_taxon_keys),
+      rgbif::pred("hasCoordinate", TRUE),
+      rgbif::pred("hasGeospatialIssue", FALSE),
+      rgbif::pred_notnull("elevation"),
+      verbose = verbose
     )
-
-    if (verbose) {
-      cli::cli_alert_info("Download key: {.val {download_key}}")
-      cli::cli_alert_info(
-        "Waiting for download to complete (this may take a few minutes)..."
-      )
-    }
-
-    rgbif::occ_download_wait(download_key, quiet = !verbose)
-
-    if (verbose) {
-      cli::cli_alert_success("Download complete. Importing data...")
-    }
-
-    download_path <- rgbif::occ_download_get(download_key, overwrite = TRUE)
-    occ_data <- rgbif::occ_download_import(download_path)
-    file.remove(download_path)
 
     # Process elevation data for each taxon
     for (i in seq_len(nrow(gbif_taxa))) {
@@ -338,45 +307,13 @@ tax_gbif_alt <- function(
       returnclass = "sf"
     )
 
-    # Submit download request
-    download_key <- tryCatch(
-      {
-        rgbif::occ_download(
-          rgbif::pred_in("taxonKey", gbif_taxon_keys),
-          rgbif::pred("hasCoordinate", TRUE),
-          rgbif::pred("hasGeospatialIssue", FALSE),
-          format = "SIMPLE_CSV"
-        )
-      },
-      error = function(e) {
-        cli::cli_abort(c(
-          "Failed to submit GBIF download request.",
-          "i" = "GBIF credentials are required. Please ensure you have set:",
-          " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
-          "i" = "Register at: {.url https://www.gbif.org/user/register}",
-          "i" = "See: {.url https://docs.ropensci.org/rgbif/reference/occ_download.html}",
-          "x" = "Error: {e$message}"
-        ))
-      }
+    # Submit download request to get coordinates
+    occ_data <- gbif_download(
+      rgbif::pred_in("taxonKey", gbif_taxon_keys),
+      rgbif::pred("hasCoordinate", TRUE),
+      rgbif::pred("hasGeospatialIssue", FALSE),
+      verbose = verbose
     )
-
-    if (verbose) {
-      cli::cli_alert_info("Download key: {.val {download_key}}")
-      cli::cli_alert_info(
-        "Waiting for download to complete (this may take a few minutes)..."
-      )
-    }
-
-    # Wait for download to complete
-    rgbif::occ_download_wait(download_key, quiet = !verbose)
-
-    if (verbose) {
-      cli::cli_alert_success("Download complete. Importing data...")
-    }
-
-    download_path <- rgbif::occ_download_get(download_key, overwrite = TRUE)
-    occ_data <- rgbif::occ_download_import(download_path)
-    file.remove(download_path)
 
     # Process elevation data for each taxon
     for (i in seq_len(nrow(gbif_taxa))) {

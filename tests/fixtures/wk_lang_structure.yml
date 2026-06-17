@@ -1,0 +1,47 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10723171&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '190'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 13:59:38 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-zr6m6
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=oGR0V-macCI3jYPnOLLECQOCAAAAAFvdNsgH8cKEO4Kd-cJ6uQmKHru02jmGNv-U;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6015 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 9c919f2a-72a8-4e8f-95b9-2466d18a185e
+    body:
+      string: '{"entities":{"Q10723171":{"type":"item","id":"Q10723171","sitelinks":{"cebwiki":{"site":"cebwiki","title":"Xylobolus
+        subpileatus","badges":[]},"commonswiki":{"site":"commonswiki","title":"Category:Xylobolus
+        subpileatus","badges":[]},"enwiki":{"site":"enwiki","title":"Xylobolus subpileatus","badges":[]},"svwiki":{"site":"svwiki","title":"Xylobolus
+        subpileatus","badges":[]},"szlwiki":{"site":"szlwiki","title":"Xylobolus subpileatus","badges":[]},"warwiki":{"site":"warwiki","title":"Xylobolus
+        subpileatus","badges":[]}}}},"success":1}'
+  recorded_at: 2026-06-17 13:59:38
+recorded_with: VCR-vcr/2.1.0

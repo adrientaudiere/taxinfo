@@ -1,0 +1,100 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Amanita+muscaria
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:24:53 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23700280977 23758340528
+      age: '1262'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '877'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"8168319","name":"Amanita muscaria (L.) Lam.","canonicalName":"Amanita
+        muscaria","authorship":"(L.) Lam.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Amanita","specificEpithet":"muscaria","type":"SCIENTIFIC","formattedName":"<i>Amanita</i>
+        <i>muscaria</i> (L.) Lam."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4171","name":"Amanitaceae","rank":"FAMILY"},{"key":"6005964","name":"Amanita","rank":"GENUS"},{"key":"8168319","name":"Amanita
+        muscaria","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":10,"timings":{"nameNRank":0,"sciNameMatch":11,"nameParse":1,"luceneMatch":10}},"synonym":false,"left":33721,"right":33733}'
+  recorded_at: 2026-06-17 13:45:57
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Boletus+edulis
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:28:31 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23801430258 23681635279
+      age: '1044'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1021'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"5954958","name":"Boletus edulis Bull.","canonicalName":"Boletus
+        edulis","authorship":"Bull.","rank":"SPECIES","status":"ACCEPTED","genericName":"Boletus","specificEpithet":"edulis","type":"SCIENTIFIC","formattedName":"<i>Boletus</i>
+        <i>edulis</i> Bull."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1063","name":"Boletales","rank":"ORDER"},{"key":"8789","name":"Boletaceae","rank":"FAMILY"},{"key":"8287374","name":"Boletus","rank":"GENUS"},{"key":"5954958","name":"Boletus
+        edulis","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"additionalStatus":[{"clbDatasetKey":"53131","datasetAlias":"IUCN","datasetKey":"19491596-35ae-4a91-9a98-85cf505f1bd3","status":"LEAST_CONCERN","statusCode":"LC","sourceId":"122090234"}],"synonym":false,"left":83630,"right":83631}'
+  recorded_at: 2026-06-17 13:45:57
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/species/8168319/iucnRedListCategory?offset=0&limit=100
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:45:57 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23740715631'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '115'
+      connection: keep-alive
+    body:
+      string: '{"category":"NOT_EVALUATED","scientificName":"Amanita muscaria (L.)
+        Lam.","taxonomicStatus":"ACCEPTED","code":"NE"}'
+  recorded_at: 2026-06-17 13:45:57
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/species/5954958/iucnRedListCategory?offset=0&limit=100
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:45:57 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23572453073'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '156'
+      connection: keep-alive
+    body:
+      string: '{"category":"LEAST_CONCERN","usageKey":176751705,"scientificName":"Boletus
+        edulis Bull.","taxonomicStatus":"ACCEPTED","iucnTaxonID":"122090234","code":"LC"}'
+  recorded_at: 2026-06-17 13:45:57
+recorded_with: VCR-vcr/2.1.0

@@ -11,7 +11,9 @@ test_that("tax_iucn_code_pq returns phyloseq with iucn_code column", {
   skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |>
   #   tax_iucn_code_pq()
-  result <- tax_iucn_code_pq(load_clean_pq())
+  vcr::use_cassette("iucn_phyloseq", {
+    result <- tax_iucn_code_pq(load_clean_pq())
+  })
 
   expect_s4_class(result, "phyloseq")
   expect_true("iucn_code" %in% colnames(result@tax_table))
@@ -20,7 +22,11 @@ test_that("tax_iucn_code_pq returns phyloseq with iucn_code column", {
 test_that("tax_iucn_code_pq with taxnames returns tibble", {
   skip_on_cran()
   # Example: tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
-  result <- tax_iucn_code_pq(taxnames = c("Amanita muscaria", "Boletus edulis"))
+  vcr::use_cassette("iucn_taxnames", {
+    result <- tax_iucn_code_pq(
+      taxnames = c("Amanita muscaria", "Boletus edulis")
+    )
+  })
 
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 2)

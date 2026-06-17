@@ -1,0 +1,39 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10723171&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:59:38 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-mgbpq
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '0'
+      x-cache: cp6015 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=oGR0V-macCI3jYPnOLLECQOCAAEBAFvdGoFSCag7cINDlQS6brsUkTTVCJjuAKNb;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '190'
+      x-request-id: a7223d51-8b49-466c-97a5-a6549987599c
+    body:
+      string: '{"entities":{"Q10723171":{"type":"item","id":"Q10723171","sitelinks":{"cebwiki":{"site":"cebwiki","title":"Xylobolus
+        subpileatus","badges":[]},"commonswiki":{"site":"commonswiki","title":"Category:Xylobolus
+        subpileatus","badges":[]},"enwiki":{"site":"enwiki","title":"Xylobolus subpileatus","badges":[]},"svwiki":{"site":"svwiki","title":"Xylobolus
+        subpileatus","badges":[]},"szlwiki":{"site":"szlwiki","title":"Xylobolus subpileatus","badges":[]},"warwiki":{"site":"warwiki","title":"Xylobolus
+        subpileatus","badges":[]}}}},"success":1}'
+  recorded_at: 2026-06-17 13:59:38
+recorded_with: VCR-vcr/2.1.0

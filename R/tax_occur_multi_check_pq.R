@@ -22,7 +22,26 @@
 #' object. If provided, it overrides lat_column.
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
 #'   See ?[tax_occur_check_pq()].
-#' @param ... Additional parameters passed to [tax_occur_check()].
+#' @param n_occur Numeric (default: 1000). Maximum number of occurrences to
+#'  retrieve from GBIF for each taxon.
+#' @param method (character, default `"download"`). How occurrences are fetched.
+#'  `"download"` issues a **single** [rgbif::occ_download()] covering all taxa
+#'  over the bounding box of every GPS point (**requires GBIF credentials**);
+#'  `"search"` uses a per-taxon [rgbif::occ_search()] loop. See
+#'  [tax_occur_check()].
+#' @param circle_form (Logical, default: TRUE). Whether to use a circular search
+#'  area. If FALSE, a square bounding box is used.
+#' @param clean_coord (Logical, default: TRUE). Whether to clean coordinates
+#'  using `CoordinateCleaner`.
+#' @param clean_coord_verbose (Logical, default: FALSE). Whether to print
+#'  messages from `CoordinateCleaner`.
+#' @param discard_genus_alone (logical, default `TRUE` when
+#'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param discard_NA (logical, default `TRUE`). Passed to
+#'  [taxonomic_rank_to_taxnames()].
+#' @param ... Additional parameters (currently unused; reserved for forward
+#'  compatibility).
 #'
 #' @returns A list containing:
 #'  - A tibble resulting from the concatenation of result of function
@@ -57,8 +76,16 @@ tax_occur_multi_check_pq <- function(
   lat_column = NULL,
   latitudes = NULL,
   radius_km = 50,
+  n_occur = 1000,
+  method = c("download", "search"),
+  circle_form = TRUE,
+  clean_coord = TRUE,
+  clean_coord_verbose = FALSE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE,
   ...
 ) {
+  method <- match.arg(method)
   if (is.null(longitudes) & !is.null(lon_column)) {
     longitudes <- as.numeric(sample_data(physeq)[, lon_column])
   } else if (is.null(longitudes) & is.null(lon_column)) {
@@ -102,6 +129,38 @@ tax_occur_multi_check_pq <- function(
   tax_range <- vector("list", length = length(longlat))
   names(tax_range) <- longlat
 
+  # Resolve every taxon in the phyloseq object once, then issue a SINGLE GBIF
+  # download covering all taxa over the bounding box of all GPS points. Per-point
+  # occurrence statistics are computed locally afterwards.
+  all_taxnames <- taxonomic_rank_to_taxnames(
+    physeq = physeq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  gbif_taxa <- rgbif::name_backbone_checklist(all_taxnames) |>
+    filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
+    distinct()
+
+  world_counts <- vapply(
+    gbif_taxa$usageKey,
+    function(k) {
+      rgbif::occ_count(taxonKey = k, hasCoordinate = TRUE)
+    },
+    numeric(1)
+  )
+
+  bbox <- bbox_for_points(longitudes, latitudes, radius_km)
+  occ_all <- fetch_occur_for_taxa(
+    gbif_taxa = gbif_taxa,
+    method = method,
+    n_occur = n_occur,
+    bbox = bbox,
+    clean_coord = clean_coord,
+    clean_coord_verbose = clean_coord_verbose,
+    verbose = verbose
+  )
+
   if (verbose) {
     pb <- cli::cli_progress_bar(total = length(longlat))
   }
@@ -126,15 +185,26 @@ tax_occur_multi_check_pq <- function(
     names(cond_sample) <- sample_names(physeq)
     new_physeq_i <- subset_samples_pq(physeq, cond_sample) |>
       clean_pq()
-    tax_range[[gps]] <- tax_occur_check_pq(
+
+    # Restrict to the taxa present in this point's samples.
+    taxnames_i <- taxonomic_rank_to_taxnames(
       physeq = new_physeq_i,
       taxonomic_rank = taxonomic_rank,
-      add_to_phyloseq = FALSE,
-      verbose = verbose,
+      discard_genus_alone = discard_genus_alone,
+      discard_NA = discard_NA
+    )
+    keep_i <- gbif_taxa$verbatim_name %in% taxnames_i
+    gbif_taxa_i <- gbif_taxa[keep_i, , drop = FALSE]
+    world_counts_i <- world_counts[keep_i]
+
+    tax_range[[gps]] <- occur_check_compute_df(
+      occ_all = occ_all,
+      gbif_taxa = gbif_taxa_i,
+      world_counts = world_counts_i,
       longitude = long,
       latitude = lat,
       radius_km = radius_km,
-      ...
+      circle_form = circle_form
     ) |>
       mutate(
         gps_point = gps,

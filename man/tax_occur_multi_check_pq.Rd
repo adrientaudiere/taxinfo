@@ -14,6 +14,13 @@ tax_occur_multi_check_pq(
   lat_column = NULL,
   latitudes = NULL,
   radius_km = 50,
+  n_occur = 1000,
+  method = c("download", "search"),
+  circle_form = TRUE,
+  clean_coord = TRUE,
+  clean_coord_verbose = FALSE,
+  discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
+  discard_NA = TRUE,
   ...
 )
 }
@@ -42,7 +49,33 @@ object. If provided, it overrides lat_column.}
 \item{radius_km}{Numeric. Search radius in kilometers (default: 50).
 See ?[tax_occur_check_pq()].}
 
-\item{...}{Additional parameters passed to [tax_occur_check()].}
+\item{n_occur}{Numeric (default: 1000). Maximum number of occurrences to
+retrieve from GBIF for each taxon.}
+
+\item{method}{(character, default `"download"`). How occurrences are fetched.
+`"download"` issues a **single** [rgbif::occ_download()] covering all taxa
+over the bounding box of every GPS point (**requires GBIF credentials**);
+`"search"` uses a per-taxon [rgbif::occ_search()] loop. See
+[tax_occur_check()].}
+
+\item{circle_form}{(Logical, default: TRUE). Whether to use a circular search
+area. If FALSE, a square bounding box is used.}
+
+\item{clean_coord}{(Logical, default: TRUE). Whether to clean coordinates
+using `CoordinateCleaner`.}
+
+\item{clean_coord_verbose}{(Logical, default: FALSE). Whether to print
+messages from `CoordinateCleaner`.}
+
+\item{discard_genus_alone}{(logical, default `TRUE` when
+`taxonomic_rank == "currentCanonicalSimple"`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{discard_NA}{(logical, default `TRUE`). Passed to
+[taxonomic_rank_to_taxnames()].}
+
+\item{...}{Additional parameters (currently unused; reserved for forward
+compatibility).}
 }
 \value{
 A list containing:

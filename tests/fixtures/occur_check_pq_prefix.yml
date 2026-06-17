@@ -1,0 +1,1183 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Basidiodendron+eyrei
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23761356392 23541092309
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '886'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553838","name":"Basidiodendron eyrei (Wakef.) Luck-Allen","canonicalName":"Basidiodendron
+        eyrei","authorship":"(Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Basidiodendron","specificEpithet":"eyrei","type":"SCIENTIFIC","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":13,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":1,"luceneMatch":13}},"synonym":false,"left":81861,"right":81864}'
+  recorded_at: 2026-06-17 13:38:34
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Fomes+fomentarius
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23721940954 23585067949
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '878'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"8068867","name":"Fomes fomentarius (L.) Fr.","canonicalName":"Fomes
+        fomentarius","authorship":"(L.) Fr.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Fomes","specificEpithet":"fomentarius","type":"SCIENTIFIC","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":98,"timeTaken":8,"timings":{"nameNRank":0,"sciNameMatch":8,"nameParse":0,"luceneMatch":8}},"synonym":false,"left":109161,"right":109161}'
+  recorded_at: 2026-06-17 13:38:34
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Mycena+renati
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23705914944 23496432482
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '832'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"4911813","name":"Mycena renati Quél.","canonicalName":"Mycena
+        renati","authorship":"Quél.","rank":"SPECIES","status":"ACCEPTED","genericName":"Mycena","specificEpithet":"renati","type":"SCIENTIFIC","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":17,"timings":{"nameNRank":0,"sciNameMatch":18,"nameParse":1,"luceneMatch":17}},"synonym":false,"left":64888,"right":64889}'
+  recorded_at: 2026-06-17 13:38:34
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Xylodon+flaviporus
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23650703589 23668101421
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1014'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"9366699","name":"Xylodon flaviporus (Berk. & M.A.Curtis
+        ex Cooke) Riebesehl & Langer","canonicalName":"Xylodon flaviporus","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Xylodon","specificEpithet":"flaviporus","type":"SCIENTIFIC","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":13,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":2,"luceneMatch":12}},"synonym":false,"left":102669,"right":102674}'
+  recorded_at: 2026-06-17 13:38:34
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Stypella+subgelatinosa
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23743792764 23505837658
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '893'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553772","name":"Stypella subgelatinosa (P.Karst.)
+        P.Roberts","canonicalName":"Stypella subgelatinosa","authorship":"(P.Karst.)
+        P.Roberts","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Stypella","specificEpithet":"subgelatinosa","type":"SCIENTIFIC","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":14,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":1,"luceneMatch":13}},"synonym":false,"left":82237,"right":82239}'
+  recorded_at: 2026-06-17 13:38:34
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Sistotrema+raduloides
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23757850225 23167093710
+      age: '1630'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '926'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"5249676","name":"Sistotrema raduloides (P.Karst.)
+        Donk","canonicalName":"Sistotrema raduloides","authorship":"(P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Sistotrema","specificEpithet":"raduloides","type":"SCIENTIFIC","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"synonym":false,"left":93960,"right":93961}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=2553838
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23283585874 23781114845
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '80'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":858,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=8068867
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23724955778 23779378384
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '83'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":169410,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=4911813
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '15'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23348918961 23776592963
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":5649,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=9366699
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '14'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23731672432 23656666497
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":3859,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=2553772
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '13'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23794156081 23782458644
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '80'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":298,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=5249676
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '12'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23750640484 23754704335
+      age: '118'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1574,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=2553838
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:33 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23560296325 23789371899
+      age: '2'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '19231'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":true,"count":3,"results":[{"key":4051452990,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:54.269+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.363,"decimalLongitude":2.71,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":10,"day":31,"eventDate":"2006-10-31","startDayOfYear":304,"endDayOfYear":304,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:54.269+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"74462ecb-1fec-4ebd-9e1f-1b01413bf20f"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"Maurice
+        GERARD (ONF)","identifiedBy":"Maurice GERARD (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"74462ecb-1fec-4ebd-9e1f-1b01413bf20f","identifier":"74462ecb-1fec-4ebd-9e1f-1b01413bf20f","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POINT(2.710000004725898 48.36300000043114)","locality":"77186
+        - Nom du site : FGL=Fontainebleau, La Gorge aux Loups,","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051452990","occurrenceID":"74462ecb-1fec-4ebd-9e1f-1b01413bf20f","taxonID":"41611","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen, 1963","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":3471530694,"datasetKey":"43027054-3812-4599-b7bc-a01f1df5b071","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-04T09:56:54.247+00:00","lastParsed":"2026-06-12T04:38:33.400+00:00","crawlId":420,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.4065,"decimalLongitude":2.68092,"coordinateUncertaintyInMeters":8915.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":11,"day":1,"eventDate":"2006-11-01","startDayOfYear":305,"endDayOfYear":305,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T04:38:33.400+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"2005d215-d1b6-4660-b063-8bc6f4b3d340"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"4A9DDA1F-B719-3E13-E053-2614A8C02B7C","recordedBy":"AG
+        ONF Fontainebleau ()","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"2005d215-d1b6-4660-b063-8bc6f4b3d340","identifier":"2005d215-d1b6-4660-b063-8bc6f4b3d340","informationWithheld":"Géographie
+        soumise à floutage à la demande du producteur|Geographic information generalized
+        during aggregation at the request of the producer","http://unknown.org/crawl_attempt":"431","municipality":"Fontainebleau","county":"Seine-et-Marne","http://unknown.org/griddedDataset":"{\"percentNN\":0.8994,\"countNN\":2931,\"distanceNN\":0.09}","identificationVerificationStatus":"Non
+        réalisable","http://unknown.org/orders":"Auriculariales","gbifID":"3471530694","occurrenceID":"2005d215-d1b6-4660-b063-8bc6f4b3d340","taxonID":"41611","originalNameUsage":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen, 1963","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":4051297895,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:50.617+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.36244,"decimalLongitude":2.71187,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":11,"day":1,"eventDate":"2006-11-01","startDayOfYear":305,"endDayOfYear":305,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:50.617+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"5d011185-efe8-4d1c-a04d-6b75f87cdde8"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"AG
+        ONF Fontainebleau (ONF)","identifiedBy":"AG ONF Fontainebleau (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"5d011185-efe8-4d1c-a04d-6b75f87cdde8","identifier":"5d011185-efe8-4d1c-a04d-6b75f87cdde8","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POLYGON((2.709660702514154 48.3656226018967,2.710207947812777
+        48.365544825680345,2.710596234187096 48.36558162110075,2.711000137021514 48.36565744568009,2.711398525688046
+        48.36569637670224,2.712905449573243 48.36554688814835,2.71291523399476 48.36554606141342,2.716366327963904
+        48.36525445597874,2.720783860150903 48.364881037781466,2.720798146052998 48.36483679954099,2.720931978736677
+        48.36437682694152,2.720991946107545 48.36418415523245,2.721019895327208 48.36405654889192,2.721025221888383
+        48.36393661892862,2.721026093871853 48.36391698319368,2.721028382322298 48.36373652909303,2.721009166506725
+        48.36357779845737,2.720978626368174 48.36335173790379,2.720907790456964 48.363046411872084,2.720818005453476
+        48.362618443321786,2.720747405728553 48.362325114510114,2.720587138315877
+        48.3616592162658,2.720367162755944 48.36070717074311,2.720310064795185 48.360465764741235,2.720151087082155
+        48.35979360705198,2.720016884542899 48.3592142057384,2.719808428800774 48.35831634698327,2.718807273493885
+        48.35869491352452,2.717627415422832 48.3592500699753,2.716392128753085 48.360033535329954,2.71428456380697
+        48.360058417185265,2.71363963180604 48.360099387529125,2.712698154293361 48.360092882460556,2.712214478319189
+        48.36027503401501,2.711516093859844 48.36035329975971,2.710633090059114 48.36054621734238,2.710091602849661
+        48.360623977975465,2.709522059270228 48.36076836617041,2.709611754514114 48.360630858848204,2.709760115468788
+        48.36054529694251,2.70996112283104 48.360381565756256,2.710117356698133 48.360234152882356,2.710161371942637
+        48.36011146985958,2.710145335467353 48.360038741976695,2.710129725756176 48.3599679476948,2.710095203860449
+        48.359935051042,2.71000047219225 48.35984477894145,2.709775596219967 48.35972976799269,2.709485289661225
+        48.35960875768494,2.709220490347667 48.35947623935055,2.709134412105453 48.35934177920244,2.709183188015832
+        48.359248484718506,2.709280750569814 48.35915751590883,2.709379518058901 48.359061934502925,2.709453129673725
+        48.35892501081659,2.709440228381553 48.358858776656945,2.709433571663143 48.35879666506089,2.709370860268979
+        48.35871816204569,2.709337805143492 48.35866418706266,2.709296541252338 48.35869920014575,2.70924927877619
+        48.35872464354449,2.709077820484628 48.358786005788026,2.709043874808784 48.35879485090433,2.708836031892048
+        48.35885681729331,2.708588106018782 48.3589279059419,2.708371605433381 48.358995529198424,2.708203132557779
+        48.35905550091936,2.708068853292417 48.35912042394443,2.707987519036439 48.35917814079228,2.707879600300881
+        48.35926527835479,2.70783584836213 48.35931339360489,2.707779120939225 48.359379592369905,2.7075575619281
+        48.359649140667116,2.707556498225507 48.359650340080734,2.707501241177217
+        48.35971264675034,2.707431168341024 48.35978513977352,2.707365185967084 48.35984731822028,2.707308531540339
+        48.359886702241624,2.707236730992005 48.359931192448265,2.707125113532784
+        48.359980866630565,2.706970726203702 48.360020556951454,2.706811352904662
+        48.360026115420474,2.706653681140073 48.360003844532706,2.70640045526863 48.35988701860809,2.706122684580394
+        48.35978797488075,2.706023834296959 48.359764254308814,2.705888909527772 48.359738117157555,2.705687582912792
+        48.359714716569925,2.705508240255476 48.35971401202533,2.705318566654574 48.35972851598747,2.705015764665348
+        48.35976191400426,2.704664503193969 48.35982287993432,2.704454184651434 48.359870329591764,2.70428762858466
+        48.35993408380546,2.704093578242692 48.36004761836587,2.703948439679123 48.3601425526566,2.703812316642963
+        48.360216329480565,2.703652356299001 48.36027373890748,2.703125696664813 48.36040563983717,2.702864470780024
+        48.36050130356457,2.702458034651158 48.360728947281714,2.702252096586464 48.36086111544487,2.702052035669082
+        48.36101982390168,2.701915567402815 48.36114642274872,2.701847433716508 48.36131992006339,2.701699342472012
+        48.36398037873358,2.701698521975256 48.363994465302625,2.705316344072284 48.36428632239971,2.705612779017572
+        48.36434609068658,2.705932162455577 48.36443107564472,2.70843502137219 48.3653306850836,2.709628661735826
+        48.36575968900315,2.709660702514154 48.3656226018967))","locality":"77186","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051297895","occurrenceID":"5d011185-efe8-4d1c-a04d-6b75f87cdde8","taxonID":"41611","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen, 1963","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=8068867
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:33 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23712372778 23462585064
+      age: '2'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '30605'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":294,"results":[{"key":6131318405,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:09:00.748+00:00","crawlId":595,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-01-21T22:57:48","decimalLatitude":47.896487,"decimalLongitude":1.928488,"coordinateUncertaintyInMeters":31.0,"continent":"EUROPE","stateProvince":"Centre","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.4_1","name":"Centre-Val
+        de Loire"},"level2":{"gid":"FRA.4.6_1","name":"Loiret"},"level3":{"gid":"FRA.4.6.2_1","name":"Orléans"}},"year":2026,"month":1,"day":17,"eventDate":"2026-01-17T14:44","startDayOfYear":17,"endDayOfYear":17,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-01-23T12:58:33.000+00:00","lastInterpreted":"2026-06-12T02:09:00.748+00:00","references":"https://www.inaturalist.org/observations/335648825","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"335648825"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"rachel slr","identifiedBy":"rachel
+        slr","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"rachel
+        slr","identifier":"335648825","http://unknown.org/nick":"rachelslr","verbatimEventDate":"2026/01/17
+        14:44","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Loiret,
+        Centre, FR","collectionCode":"Observations","gbifID":"6131318405","occurrenceID":"https://www.inaturalist.org/observations/335648825","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"335648825","institutionCode":"iNaturalist","eventTime":"14:44:00+01:00","identificationID":"753037161"},{"key":6178876254,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:21:38.488+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-02-24T14:40:04-08:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/618717817/original.jpg","http://purl.org/dc/terms/rightsHolder":"Jean-Claude","http://rs.tdwg.org/dwc/terms/catalogNumber":"618717817","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Jean-Claude","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/618717817","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-02-24T16:30:11","decimalLatitude":48.428352,"decimalLongitude":2.667485,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2026,"month":2,"day":24,"eventDate":"2026-02-24T14:40:04","startDayOfYear":55,"endDayOfYear":55,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-03-08T08:47:50.000+00:00","lastInterpreted":"2026-06-12T02:21:38.488+00:00","references":"https://www.inaturalist.org/observations/340042939","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"340042939"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/618717817","created":"2026-02-24T22:40:04.000+00:00","creator":"Jean-Claude","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Jean-Claude","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/618717817/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Jean-Claude","identifiedBy":"Jean-Claude","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Jean-Claude","identifier":"340042939","http://unknown.org/nick":"jeannat","verbatimEventDate":"2026-02-24
+        14:40:04","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"CMH9+V5,
+        77300 Fontainebleau, France","collectionCode":"Observations","gbifID":"6178876254","occurrenceID":"https://www.inaturalist.org/observations/340042939","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"340042939","institutionCode":"iNaturalist","eventTime":"14:40:04+01:00","identificationID":"766435148"},{"key":6188275996,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:15:57.696+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-01T08:54:52-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/631703634/original.jpg","http://purl.org/dc/terms/rightsHolder":"evan","http://rs.tdwg.org/dwc/terms/catalogNumber":"631703634","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"evan","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/631703634","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-04-01T06:56:25","decimalLatitude":47.960843,"decimalLongitude":2.776032,"coordinateUncertaintyInMeters":4.0,"continent":"EUROPE","stateProvince":"Centre","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.4_1","name":"Centre-Val
+        de Loire"},"level2":{"gid":"FRA.4.6_1","name":"Loiret"},"level3":{"gid":"FRA.4.6.1_1","name":"Montargis"}},"year":2026,"month":4,"day":1,"eventDate":"2026-04-01T08:54:43","startDayOfYear":91,"endDayOfYear":91,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-01T09:35:08.000+00:00","lastInterpreted":"2026-06-12T02:15:57.696+00:00","references":"https://www.inaturalist.org/observations/346536615","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"346536615"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/631703634","created":"2026-04-01T15:54:52.000+00:00","creator":"evan","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"evan","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/631703634/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"evan","identifiedBy":"evan","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"evan","identifier":"346536615","http://unknown.org/nick":"evnaturaliste","verbatimEventDate":"2026-04-01
+        08:54:43","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"45200
+        Amilly, France","collectionCode":"Observations","gbifID":"6188275996","occurrenceID":"https://www.inaturalist.org/observations/346536615","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"346536615","institutionCode":"iNaturalist","eventTime":"08:54:43+02:00","identificationID":"782083100"},{"key":6234586530,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:30:04.261+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-17T20:31:48-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761626/original.jpg","http://purl.org/dc/terms/rightsHolder":"gatrixs","http://rs.tdwg.org/dwc/terms/catalogNumber":"639761626","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"gatrixs","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/639761626","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-17T20:31:57-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761609/original.jpg","http://purl.org/dc/terms/rightsHolder":"gatrixs","http://rs.tdwg.org/dwc/terms/catalogNumber":"639761609","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"gatrixs","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/639761609","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-17T20:31:53-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761616/original.jpg","http://purl.org/dc/terms/rightsHolder":"gatrixs","http://rs.tdwg.org/dwc/terms/catalogNumber":"639761616","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"gatrixs","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/639761616","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-04-17T21:03:47","decimalLatitude":48.188295,"decimalLongitude":2.371756,"coordinateUncertaintyInMeters":283.0,"continent":"EUROPE","stateProvince":"Centre","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.4_1","name":"Centre-Val
+        de Loire"},"level2":{"gid":"FRA.4.6_1","name":"Loiret"},"level3":{"gid":"FRA.4.6.3_1","name":"Pithiviers"}},"year":2026,"month":4,"day":17,"eventDate":"2026-04-17T20:31:48","startDayOfYear":107,"endDayOfYear":107,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-18T06:01:57.000+00:00","lastInterpreted":"2026-06-12T02:30:04.261+00:00","references":"https://www.inaturalist.org/observations/350623494","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"350623494"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/639761626","created":"2026-04-18T03:31:48.000+00:00","creator":"gatrixs","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"gatrixs","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761626/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/639761609","created":"2026-04-18T03:31:57.000+00:00","creator":"gatrixs","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"gatrixs","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761609/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/639761616","created":"2026-04-18T03:31:53.000+00:00","creator":"gatrixs","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"gatrixs","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/639761616/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"gatrixs","identifiedBy":"gatrixs","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"gatrixs","identifier":"350623494","http://unknown.org/nick":"gatrixs","verbatimEventDate":"2026-04-17
+        20:31:48","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Grande
+        Rue 32 - de Saint-Fargeau (seine-et-Marne) à Chécy (loiret), La Neuville-sur-Essonne,
+        Centre-Val de Loire, FR","collectionCode":"Observations","gbifID":"6234586530","occurrenceID":"https://www.inaturalist.org/observations/350623494","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"350623494","institutionCode":"iNaturalist","eventTime":"20:31:48+02:00","identificationID":"790852541"},{"key":6320329807,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:30:01.702+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-14T15:16:45-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/659571048/original.jpg","http://purl.org/dc/terms/rightsHolder":"lywenz","http://rs.tdwg.org/dwc/terms/catalogNumber":"659571048","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"lywenz","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/659571048","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-05-14T13:16:52","decimalLatitude":48.356277,"decimalLongitude":2.726157,"coordinateUncertaintyInMeters":4.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2026,"month":5,"day":14,"eventDate":"2026-05-14T15:16:45","startDayOfYear":134,"endDayOfYear":134,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-05-14T16:55:39.000+00:00","lastInterpreted":"2026-06-12T02:30:01.702+00:00","references":"https://www.inaturalist.org/observations/361409191","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"361409191"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/659571048","created":"2026-05-14T22:16:45.000+00:00","creator":"lywenz","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"lywenz","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/659571048/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"lywenz","identifiedBy":"lywenz","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"lywenz","identifier":"361409191","http://unknown.org/nick":"lywenz","verbatimEventDate":"Thu
+        May 14 2026 15:16:45 GMT +0200 (GMT)","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Fontainebleau","collectionCode":"Observations","gbifID":"6320329807","occurrenceID":"https://www.inaturalist.org/observations/361409191","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"361409191","institutionCode":"iNaturalist","eventTime":"15:16:45+02:00","identificationID":"811472889"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=4911813
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:33 GMT
+      x-varnish-rli: '15'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23786914370 23634911818
+      age: '2'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '5156'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":true,"count":1,"results":[{"key":2238493762,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:30.946+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND","SCIENTIFIC_NAME_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND","SCIENTIFIC_NAME_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.42396,"decimalLongitude":2.659223,"coordinateUncertaintyInMeters":75.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":19,"eventDate":"2016-11-19","startDayOfYear":324,"endDayOfYear":324,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2017-06-15T14:17:58.000+00:00","lastInterpreted":"2026-06-16T14:45:30.946+00:00","references":"https://svampe.databasen.org/observations/9195280","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9195280"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Morten Christensen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9195280","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:414604","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Forêt
+        de Fontainebleau","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1694 m N Forêt de Fontainebleau (forest(s))","gbifID":"2238493762","occurrenceID":"https://svampe.databasen.org/observations/9195280","taxonID":"17285","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9195280","vernacularName":"smuk
+        huesvamp","locationID":"3018073","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=9366699
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:33 GMT
+      x-varnish-rli: '14'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23414910371 23768794830
+      age: '2'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '29632'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":51,"results":[{"key":2238491732,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:31.494+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]}},"taxonKey":9366699,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","acceptedScientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Xylodon","specificEpithet":"flaviporus","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.423903,"decimalLongitude":2.658536,"coordinateUncertaintyInMeters":75.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":19,"eventDate":"2016-11-19","startDayOfYear":324,"endDayOfYear":324,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2019-06-07T15:34:17.000+00:00","lastInterpreted":"2026-06-16T14:45:31.494+00:00","references":"https://svampe.databasen.org/observations/9194070","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9194070"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Rasmus Riis-Hansen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9194070","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:820378","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Forêt
+        de Fontainebleau","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1689 m N Forêt de Fontainebleau (forest(s))","gbifID":"2238491732","occurrenceID":"https://svampe.databasen.org/observations/9194070","taxonID":"67672","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9194070","vernacularName":"gulporet
+        tandsvamp","locationID":"3018073","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."},{"key":2238491946,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:31.042+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]}},"taxonKey":9366699,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","acceptedScientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Xylodon","specificEpithet":"flaviporus","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.423903,"decimalLongitude":2.658536,"coordinateUncertaintyInMeters":75.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":19,"eventDate":"2016-11-19","startDayOfYear":324,"endDayOfYear":324,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2019-06-07T15:34:17.000+00:00","lastInterpreted":"2026-06-16T14:45:31.042+00:00","references":"https://svampe.databasen.org/observations/9194080","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9194080"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Rasmus Riis-Hansen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9194080","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:820378","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Forêt
+        de Fontainebleau","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1689 m N Forêt de Fontainebleau (forest(s))","gbifID":"2238491946","occurrenceID":"https://svampe.databasen.org/observations/9194080","taxonID":"67672","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9194080","vernacularName":"gulporet
+        tandsvamp","locationID":"3018073","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."},{"key":2238492247,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:28.040+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND","SCIENTIFIC_NAME_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND","SCIENTIFIC_NAME_ID_NOT_FOUND"]}},"taxonKey":9366699,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","acceptedScientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Xylodon","specificEpithet":"flaviporus","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.423618,"decimalLongitude":2.65924,"coordinateUncertaintyInMeters":100.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":19,"eventDate":"2016-11-19","startDayOfYear":324,"endDayOfYear":324,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2019-06-07T15:34:17.000+00:00","lastInterpreted":"2026-06-16T14:45:28.040+00:00","references":"https://svampe.databasen.org/observations/9194121","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9194121"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Jacob Heilmann-Clausen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[{"type":"ORCID","value":"https://orcid.org/0000-0003-4713-6004"}],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9194121","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:820378","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Forêt
+        de Fontainebleau","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1656 m N Forêt de Fontainebleau (forest(s))","gbifID":"2238492247","occurrenceID":"https://svampe.databasen.org/observations/9194121","taxonID":"67672","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9194121","vernacularName":"gulporet
+        tandsvamp","locationID":"3018073","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."},{"key":2238493090,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:31.076+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]}},"taxonKey":9366699,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","acceptedScientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Xylodon","specificEpithet":"flaviporus","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.423845,"decimalLongitude":2.672114,"coordinateUncertaintyInMeters":100.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":20,"eventDate":"2016-11-20","startDayOfYear":325,"endDayOfYear":325,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2019-06-07T15:34:17.000+00:00","lastInterpreted":"2026-06-16T14:45:31.076+00:00","references":"https://svampe.databasen.org/observations/9195229","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9195229"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Morten Christensen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9195229","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:820378","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Fontainebleau
+        Racecourse","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1335 m SW Fontainebleau Racecourse (racetrack)","gbifID":"2238493090","occurrenceID":"https://svampe.databasen.org/observations/9195229","taxonID":"67672","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9195229","vernacularName":"gulporet
+        tandsvamp","locationID":"8378940","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."},{"key":2238493398,"datasetKey":"84d26682-f762-11e1-a439-00145eb45e9a","publishingOrgKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","installationKey":"fe25aaf4-d236-4dd8-a9a9-3b2e3d24622e","hostingOrganizationKey":"ccc2e3ec-98ba-4e74-878d-7dcf0f57baba","publishingCountry":"DK","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-16T14:39:14.594+00:00","lastParsed":"2026-06-16T14:45:18.591+00:00","crawlId":548,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"]}},"taxonKey":9366699,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","acceptedScientificName":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Xylodon","specificEpithet":"flaviporus","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.423504,"decimalLongitude":2.671943,"coordinateUncertaintyInMeters":100.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2016,"month":11,"day":20,"eventDate":"2016-11-20","startDayOfYear":325,"endDayOfYear":325,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","SCIENTIFIC_NAME_ID_NOT_FOUND","TAXON_ID_NOT_FOUND"],"modified":"2019-06-07T15:34:17.000+00:00","lastInterpreted":"2026-06-16T14:45:18.591+00:00","references":"https://svampe.databasen.org/observations/9195192","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"9195192"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"Rasmus
+        Riis-Hansen","identifiedBy":"Jacob Heilmann-Clausen","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[{"type":"ORCID","value":"https://orcid.org/0000-0003-4713-6004"}],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","identifier":"9195192","habitat":"Unmanaged
+        deciduous woodland","scientificNameID":"urn:lsid:indexfungorum.org:names:820378","http://unknown.org/crawl_attempt":"548","dynamicProperties":"{\"Substrate\":\"dead
+        wood (including bark)\"}","associatedTaxa":"bøg (Fagus sylvatica)","locality":"Fontainebleau
+        Racecourse","http://unknown.org/status":"not_reviewed","county":"Île-de-France","language":"da","verbatimLocality":"France,
+        Île-de-France, 1373 m SW Fontainebleau Racecourse (racetrack)","gbifID":"2238493398","occurrenceID":"https://svampe.databasen.org/observations/9195192","taxonID":"67672","locationAccordingTo":"http://www.geonames.org","catalogNumber":"DMS-9195192","vernacularName":"gulporet
+        tandsvamp","locationID":"8378940","bibliographicCitation":"Danish Mycological
+        Society, Fungal Records Database (https://svampe.databasen.org), contributed
+        by Frøslev, T., Heilmann-Clausen, J., Jeppesen, T.S., Lange, C., Læssøe, T.,
+        Petersen, J.H., Søchting, U., Vesterholt, J."}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=2553772
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:33 GMT
+      x-varnish-rli: '13'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23466943147 23750149527
+      age: '2'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '23634'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":true,"count":3,"results":[{"key":3472146832,"datasetKey":"43027054-3812-4599-b7bc-a01f1df5b071","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-04T09:56:54.247+00:00","lastParsed":"2026-06-12T04:38:43.801+00:00","crawlId":420,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553772,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","scientificNameAuthorship":"(P.Karst.)
+        P.Roberts","acceptedScientificName":"Stypella subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Stypella","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.4065,"decimalLongitude":2.68092,"coordinateUncertaintyInMeters":8915.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2010,"month":12,"day":31,"eventDate":"2010-12-31","startDayOfYear":365,"endDayOfYear":365,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T04:38:43.801+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"0f188206-4ab8-4ad5-a11f-fd9000e4038e"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"4A9DDA1F-B719-3E13-E053-2614A8C02B7C","recordedBy":"AG
+        ONF Fontainebleau ()","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"0f188206-4ab8-4ad5-a11f-fd9000e4038e","identifier":"0f188206-4ab8-4ad5-a11f-fd9000e4038e","informationWithheld":"Géographie
+        soumise à floutage à la demande du producteur|Geographic information generalized
+        during aggregation at the request of the producer","http://unknown.org/crawl_attempt":"431","municipality":"Fontainebleau","county":"Seine-et-Marne","http://unknown.org/griddedDataset":"{\"percentNN\":0.8994,\"countNN\":2931,\"distanceNN\":0.09}","identificationVerificationStatus":"Non
+        réalisable","http://unknown.org/orders":"Auriculariales","gbifID":"3472146832","occurrenceID":"0f188206-4ab8-4ad5-a11f-fd9000e4038e","taxonID":"464100","originalNameUsage":"Stypella
+        subgelatinosa (P.Karst.) P. Roberts","nameAccordingTo":"Gargominy O (2021).
+        TAXREF. Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset
+        https://doi.org/10.15468/vqueam accessed via GBIF.org on 2021-06-28."},{"key":4051500751,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:54.009+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553772,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","scientificNameAuthorship":"(P.Karst.)
+        P.Roberts","acceptedScientificName":"Stypella subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Stypella","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.42529,"decimalLongitude":2.68134,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2010,"month":12,"day":31,"eventDate":"2010-12-31","startDayOfYear":365,"endDayOfYear":365,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:54.009+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"df301742-0c78-4e54-81f1-b20f08dae433"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"AG
+        ONF Fontainebleau (ONF)","identifiedBy":"AG ONF Fontainebleau (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"df301742-0c78-4e54-81f1-b20f08dae433","identifier":"df301742-0c78-4e54-81f1-b20f08dae433","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POLYGON((2.701171194693998 48.43093163391439,2.701289493331971
+        48.430812350644594,2.701407736102063 48.43068513931985,2.701556332542466 48.43046904145516,2.702582555866638
+        48.42914874946475,2.702439102217626 48.4291874531839,2.702290930608309 48.42932972726053,2.70205875847008
+        48.42964953079239,2.701843651753218 48.42991166293259,2.701651050980978 48.430079420662736,2.701386118256683
+        48.43016620753268,2.701343409301995 48.43016504757881,2.699491116938295 48.4301147219249,2.698479754569715
+        48.43019423701428,2.697740361058231 48.430289253711145,2.697674758707747 48.430293613779426,2.697603032611108
+        48.43029838071272,2.697486821099961 48.43030610433547,2.69687081231681 48.43030798167681,2.695510671851825
+        48.43023814893143,2.695491971661254 48.430247016459774,2.695481244312572 48.43025210336822,2.69535281594208
+        48.430313003643995,2.695125184192305 48.430426044093785,2.694926439472328
+        48.43040681965735,2.694786644368847 48.43029489221912,2.694557431287281 48.430176626865226,2.694188967919816
+        48.43002573737209,2.693940392241513 48.42998022643636,2.69329491635213 48.429982174130664,2.693064048677055
+        48.429974317766124,2.693051620563385 48.42997389483981,2.692978876042684 48.42993392159352,2.692969939789925
+        48.42989689385209,2.692958866579136 48.42985100967075,2.692958728415658 48.42983069273068,2.692958080095552
+        48.429735357041736,2.692956507140017 48.42950405193426,2.692608348977848 48.42889365542766,2.692530556227683
+        48.42875726562611,2.692505207426312 48.42871282274762,2.692498203935747 48.42870054393771,2.692496366921396
+        48.42869732314825,2.692491264764159 48.428688377426944,2.692481254581409 48.42867082559861,2.692595022260172
+        48.428476158116865,2.692849925486403 48.42803999179132,2.693491200083431 48.42645600106368,2.693495397777982
+        48.42644563111074,2.69357003096209 48.42626127553885,2.69357980064499 48.42623714087064,2.693865015179838
+        48.42553260124165,2.693906967123413 48.425428969618196,2.693957956935177 48.425303016279145,2.694186209706138
+        48.42472275235616,2.694183480758443 48.424718761999834,2.693852812862381 48.424234836136236,2.693775747880402
+        48.42412204990605,2.693567706253654 48.42383966680517,2.693404109632135 48.42361761179837,2.693091488522378
+        48.42319537290598,2.692995624322065 48.42306589051104,2.692834949570832 48.422931681630516,2.692696058207787
+        48.42286829872793,2.692637930968884 48.422800239964715,2.692599433563905 48.422755162806276,2.692598326053637
+        48.42259211537146,2.692500506469602 48.42244604036596,2.69232962437783 48.42238273843908,2.692105861667146
+        48.4223763192687,2.691893043565706 48.422412413293614,2.691766022962923 48.42253333851108,2.691397485654086
+        48.4223448239793,2.69116866394969 48.422227774614235,2.691065365105799 48.42217568464846,2.69080530439145
+        48.42204454673454,2.689982548026516 48.421650015461815,2.689763317438541 48.42154159423098,2.689713597954771
+        48.42151700305291,2.689420821533255 48.421372206272636,2.689213150986889 48.42126949859866,2.688800118564434
+        48.42110793929298,2.688138086402241 48.42084898065764,2.686453395882443 48.42018996838051,2.685850443203091
+        48.41995409878816,2.684757303062974 48.419526455971315,2.684826349241068 48.41949091654138,2.686311431995679
+        48.41872651783195,2.68636380224707 48.41869956067414,2.686473180129766 48.418643259299934,2.686658179462375
+        48.418548033553144,2.686952743106559 48.41839640964602,2.688228059259791 48.417739931797776,2.689156439033822
+        48.417265744725945,2.689169086212071 48.4172592843419,2.689184574466422 48.41725137357971,2.689320191100663
+        48.417182103639625,2.691258077204677 48.4161922364049,2.691088293357393 48.41610107640114,2.690755799909037
+        48.415922552605856,2.690734794358545 48.41591189611882,2.690244670666218 48.41566324469765,2.690197138298894
+        48.41563913008839,2.69015296743909 48.41562605676433,2.690008024116365 48.41558315708294,2.689911056091456
+        48.41555445685194,2.689653781819009 48.41550770930631,2.688910575764664 48.41537688134459,2.688230772977895
+        48.415273564999126,2.688189110862533 48.415267232954776,2.687438703882644
+        48.41515318089755,2.686715291269841 48.41504624238102,2.686526033101965 48.415018264431914,2.686049152046094
+        48.41494776590888,2.686008228216311 48.414941716059296,2.685881189516087 48.41497386455442,2.684404066621235
+        48.415347644812215,2.680600428370023 48.416341340008024,2.67977458454594 48.4165570682219,2.679773507509508
+        48.416557349693306,2.679261726099284 48.41668912337564,2.679092197849262 48.41673277265652,2.67772359067936
+        48.41708514537702,2.676700031416795 48.41734866581678,2.676262599970963 48.41746128110754,2.676106524426037
+        48.417501461882345,2.674030855179741 48.418035803894895,2.673906956794869
+        48.41806769762751,2.673945941419856 48.418188313362855,2.673858574119042 48.41823329734616,2.673823746871585
+        48.41825122903692,2.673668750080521 48.41831818165625,2.673652582506994 48.41832516512553,2.673493487408114
+        48.418369142693365,2.673386413235856 48.418392691341246,2.673281844712564
+        48.41849423240455,2.672412532836393 48.41937353311011,2.669881909884584 48.421933024548046,2.668791731054502
+        48.42303554774002,2.668775271427332 48.423052191970044,2.666734603028728 48.42511581029589,2.666714792237991
+        48.42513584264268,2.666586030745313 48.425266044553226,2.666011603978124 48.42585878493133,2.66567511545886
+        48.426205993381814,2.665653499326959 48.42622829735727,2.664150317308912 48.42777929417907,2.664146384264038
+        48.42778335249268,2.66414298862918 48.42778685729693,2.66413736926579 48.42779246330444,2.664156208906502
+        48.427784794794135,2.664656067951289 48.42785814863377,2.666438159218112 48.42811964983651,2.66646770035785
+        48.42812398366146,2.666468088375469 48.42812419438928,2.666472067807909 48.42812635187349,2.666258939196846
+        48.428475592917074,2.665020179751696 48.43050539452576,2.665019329193716 48.43050755832674,2.665918948117144
+        48.430653794837724,2.666060535417537 48.43051388987166,2.666548562950262 48.43053850310537,2.666792707629723
+        48.43055081710634,2.667659195732907 48.43109766925126,2.667822182010236 48.43113331892848,2.669141042703175
+        48.43142177609995,2.67008394652386 48.43108552066795,2.670280192069204 48.431015536883486,2.671667291541188
+        48.43052085125221,2.672175141911025 48.43028748766856,2.672594954339813 48.43057580608074,2.672834827936027
+        48.43074054385185,2.673359401494234 48.43102449623408,2.673803384851527 48.431281915000476,2.67444860361599
+        48.43156552081499,2.675053327401848 48.43180463554083,2.675563249683699 48.43189237830796,2.676313922505996
+        48.43189914576274,2.677492999063628 48.43182439286057,2.678066449626675 48.43178705841537,2.678506047740333
+        48.43177865285048,2.67888070391546 48.4316776649797,2.679425056080028 48.43129073866496,2.679543804054882
+        48.431411709077025,2.680158755652016 48.431980813299425,2.680589083925733
+        48.432193647184846,2.681223768164488 48.43249865354936,2.681284225222869 48.432515999991004,2.681814673807649
+        48.43266819791276,2.682755945737283 48.4324574791254,2.683334368020466 48.432342183550674,2.68383812526843
+        48.43223752734735,2.684350547923703 48.4321310672827,2.684503326303315 48.43209932641413,2.684519045569307
+        48.43209606025878,2.684511733822769 48.43208259785852,2.684354754037309 48.431793473998994,2.685814543196588
+        48.431373598575206,2.685934004101583 48.43134594615601,2.686159110881005 48.43129384024753,2.686533125896291
+        48.4312841454826,2.686546461132713 48.4311758221358,2.68656279889644 48.43104311207891,2.686677157962637
+        48.43102557498547,2.687346547814904 48.43089055333254,2.687614023940196 48.431441393235474,2.689328988397218
+        48.431030714187756,2.689740838057718 48.43092756537435,2.689978488389251 48.43102357604615,2.690118247891086
+        48.431080039604055,2.690054960387617 48.431163578869125,2.689911462321642
+        48.43135299439577,2.690222227344024 48.43141497244997,2.690498149521674 48.43149007980759,2.690819903642519
+        48.43160659574306,2.691737608014703 48.432041720103214,2.693537176563059 48.433053697686375,2.693598336177361
+        48.43308808927043,2.696038915833829 48.43445536348831,2.696132223759616 48.43439292828694,2.69700612379976
+        48.433808166647054,2.700522438043488 48.43145505796771,2.700851482708724 48.43121009573483,2.700946287853315
+        48.43113845257522,2.701064642613177 48.43102709720638,2.701171194693998 48.43093163391439))","locality":"77186","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051500751","occurrenceID":"df301742-0c78-4e54-81f1-b20f08dae433","taxonID":"464100","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Stypella
+        subgelatinosa (P.Karst.) P. Roberts","nameAccordingTo":"Gargominy O (2021).
+        TAXREF. Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset
+        https://doi.org/10.15468/vqueam accessed via GBIF.org on 2021-06-28."},{"key":4051801886,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:35.407+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553772,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","scientificNameAuthorship":"(P.Karst.)
+        P.Roberts","acceptedScientificName":"Stypella subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Stypella","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.43,"decimalLongitude":2.676,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":1994,"month":6,"day":1,"eventDate":"1994-06-01","startDayOfYear":152,"endDayOfYear":152,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:35.407+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"ac59d964-5672-496f-b334-469d46b0702a"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"BERNARD
+        DUHEM (ONF)","identifiedBy":"BERNARD DUHEM (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"ac59d964-5672-496f-b334-469d46b0702a","identifier":"ac59d964-5672-496f-b334-469d46b0702a","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POINT(2.676000004742644 48.43000000043589)","locality":"77186
+        - Nom du site : FSP=Fontainebleau, La Solle, pentes (RB GF au nord rte dela
+        Solle)","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051801886","occurrenceID":"ac59d964-5672-496f-b334-469d46b0702a","taxonID":"464100","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Stypella
+        subgelatinosa (P.Karst.) P. Roberts","nameAccordingTo":"Gargominy O (2021).
+        TAXREF. Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset
+        https://doi.org/10.15468/vqueam accessed via GBIF.org on 2021-06-28."}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:35
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.5508444125045%2C48.4491555874955&decimalLongitude=1.6287475072473%2C2.9712524927527&taxonKey=5249676
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:34 GMT
+      x-varnish-rli: '12'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23543552486 23746217534
+      age: '1'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '33740'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":6,"results":[{"key":3471561850,"datasetKey":"43027054-3812-4599-b7bc-a01f1df5b071","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-04T09:56:54.247+00:00","lastParsed":"2026-06-12T04:38:40.846+00:00","crawlId":420,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"acceptedUsage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"VD","name":"Cantharellales","rank":"ORDER"},{"key":"9XBLB","name":"Hydnaceae","rank":"FAMILY"},{"key":"644CJ","name":"Sistotrema","rank":"GENUS"},{"key":"4XRPW","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"acceptedUsage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":5249676,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1300,"familyKey":8460,"genusKey":10494302,"speciesKey":5249676,"acceptedTaxonKey":5249676,"scientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","scientificNameAuthorship":"(P.Karst.) Donk","acceptedScientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","kingdom":"Fungi","phylum":"Basidiomycota","order":"Cantharellales","family":"Hydnaceae","genus":"Sistotrema","species":"Sistotrema
+        raduloides","genericName":"Sistotrema","specificEpithet":"raduloides","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.4065,"decimalLongitude":2.68092,"coordinateUncertaintyInMeters":8915.0,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2010,"month":12,"day":31,"eventDate":"2010-12-31","startDayOfYear":365,"endDayOfYear":365,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T04:38:40.846+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"27a910d6-ab42-4b46-b78a-804a25481b9a"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"4A9DDA1F-B719-3E13-E053-2614A8C02B7C","recordedBy":"AG
+        ONF Fontainebleau ()","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"27a910d6-ab42-4b46-b78a-804a25481b9a","identifier":"27a910d6-ab42-4b46-b78a-804a25481b9a","informationWithheld":"Géographie
+        soumise à floutage à la demande du producteur|Geographic information generalized
+        during aggregation at the request of the producer","http://unknown.org/crawl_attempt":"431","municipality":"Fontainebleau","county":"Seine-et-Marne","http://unknown.org/griddedDataset":"{\"percentNN\":0.8994,\"countNN\":2931,\"distanceNN\":0.09}","identificationVerificationStatus":"Non
+        réalisable","http://unknown.org/orders":"Trechisporales","gbifID":"3471561850","occurrenceID":"27a910d6-ab42-4b46-b78a-804a25481b9a","taxonID":"44492","originalNameUsage":"Sistotrema
+        raduloides (P.Karst.) Donk","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":4051521104,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:37.170+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"acceptedUsage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"VD","name":"Cantharellales","rank":"ORDER"},{"key":"9XBLB","name":"Hydnaceae","rank":"FAMILY"},{"key":"644CJ","name":"Sistotrema","rank":"GENUS"},{"key":"4XRPW","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"acceptedUsage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":5249676,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1300,"familyKey":8460,"genusKey":10494302,"speciesKey":5249676,"acceptedTaxonKey":5249676,"scientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","scientificNameAuthorship":"(P.Karst.) Donk","acceptedScientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","kingdom":"Fungi","phylum":"Basidiomycota","order":"Cantharellales","family":"Hydnaceae","genus":"Sistotrema","species":"Sistotrema
+        raduloides","genericName":"Sistotrema","specificEpithet":"raduloides","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.42529,"decimalLongitude":2.68134,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2010,"month":12,"day":31,"eventDate":"2010-12-31","startDayOfYear":365,"endDayOfYear":365,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:37.170+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"e30f5d12-67e4-480f-8a64-83062d4062ad"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"AG
+        ONF Fontainebleau (ONF)","identifiedBy":"AG ONF Fontainebleau (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"e30f5d12-67e4-480f-8a64-83062d4062ad","identifier":"e30f5d12-67e4-480f-8a64-83062d4062ad","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POLYGON((2.701171194693998 48.43093163391439,2.701289493331971
+        48.430812350644594,2.701407736102063 48.43068513931985,2.701556332542466 48.43046904145516,2.702582555866638
+        48.42914874946475,2.702439102217626 48.4291874531839,2.702290930608309 48.42932972726053,2.70205875847008
+        48.42964953079239,2.701843651753218 48.42991166293259,2.701651050980978 48.430079420662736,2.701386118256683
+        48.43016620753268,2.701343409301995 48.43016504757881,2.699491116938295 48.4301147219249,2.698479754569715
+        48.43019423701428,2.697740361058231 48.430289253711145,2.697674758707747 48.430293613779426,2.697603032611108
+        48.43029838071272,2.697486821099961 48.43030610433547,2.69687081231681 48.43030798167681,2.695510671851825
+        48.43023814893143,2.695491971661254 48.430247016459774,2.695481244312572 48.43025210336822,2.69535281594208
+        48.430313003643995,2.695125184192305 48.430426044093785,2.694926439472328
+        48.43040681965735,2.694786644368847 48.43029489221912,2.694557431287281 48.430176626865226,2.694188967919816
+        48.43002573737209,2.693940392241513 48.42998022643636,2.69329491635213 48.429982174130664,2.693064048677055
+        48.429974317766124,2.693051620563385 48.42997389483981,2.692978876042684 48.42993392159352,2.692969939789925
+        48.42989689385209,2.692958866579136 48.42985100967075,2.692958728415658 48.42983069273068,2.692958080095552
+        48.429735357041736,2.692956507140017 48.42950405193426,2.692608348977848 48.42889365542766,2.692530556227683
+        48.42875726562611,2.692505207426312 48.42871282274762,2.692498203935747 48.42870054393771,2.692496366921396
+        48.42869732314825,2.692491264764159 48.428688377426944,2.692481254581409 48.42867082559861,2.692595022260172
+        48.428476158116865,2.692849925486403 48.42803999179132,2.693491200083431 48.42645600106368,2.693495397777982
+        48.42644563111074,2.69357003096209 48.42626127553885,2.69357980064499 48.42623714087064,2.693865015179838
+        48.42553260124165,2.693906967123413 48.425428969618196,2.693957956935177 48.425303016279145,2.694186209706138
+        48.42472275235616,2.694183480758443 48.424718761999834,2.693852812862381 48.424234836136236,2.693775747880402
+        48.42412204990605,2.693567706253654 48.42383966680517,2.693404109632135 48.42361761179837,2.693091488522378
+        48.42319537290598,2.692995624322065 48.42306589051104,2.692834949570832 48.422931681630516,2.692696058207787
+        48.42286829872793,2.692637930968884 48.422800239964715,2.692599433563905 48.422755162806276,2.692598326053637
+        48.42259211537146,2.692500506469602 48.42244604036596,2.69232962437783 48.42238273843908,2.692105861667146
+        48.4223763192687,2.691893043565706 48.422412413293614,2.691766022962923 48.42253333851108,2.691397485654086
+        48.4223448239793,2.69116866394969 48.422227774614235,2.691065365105799 48.42217568464846,2.69080530439145
+        48.42204454673454,2.689982548026516 48.421650015461815,2.689763317438541 48.42154159423098,2.689713597954771
+        48.42151700305291,2.689420821533255 48.421372206272636,2.689213150986889 48.42126949859866,2.688800118564434
+        48.42110793929298,2.688138086402241 48.42084898065764,2.686453395882443 48.42018996838051,2.685850443203091
+        48.41995409878816,2.684757303062974 48.419526455971315,2.684826349241068 48.41949091654138,2.686311431995679
+        48.41872651783195,2.68636380224707 48.41869956067414,2.686473180129766 48.418643259299934,2.686658179462375
+        48.418548033553144,2.686952743106559 48.41839640964602,2.688228059259791 48.417739931797776,2.689156439033822
+        48.417265744725945,2.689169086212071 48.4172592843419,2.689184574466422 48.41725137357971,2.689320191100663
+        48.417182103639625,2.691258077204677 48.4161922364049,2.691088293357393 48.41610107640114,2.690755799909037
+        48.415922552605856,2.690734794358545 48.41591189611882,2.690244670666218 48.41566324469765,2.690197138298894
+        48.41563913008839,2.69015296743909 48.41562605676433,2.690008024116365 48.41558315708294,2.689911056091456
+        48.41555445685194,2.689653781819009 48.41550770930631,2.688910575764664 48.41537688134459,2.688230772977895
+        48.415273564999126,2.688189110862533 48.415267232954776,2.687438703882644
+        48.41515318089755,2.686715291269841 48.41504624238102,2.686526033101965 48.415018264431914,2.686049152046094
+        48.41494776590888,2.686008228216311 48.414941716059296,2.685881189516087 48.41497386455442,2.684404066621235
+        48.415347644812215,2.680600428370023 48.416341340008024,2.67977458454594 48.4165570682219,2.679773507509508
+        48.416557349693306,2.679261726099284 48.41668912337564,2.679092197849262 48.41673277265652,2.67772359067936
+        48.41708514537702,2.676700031416795 48.41734866581678,2.676262599970963 48.41746128110754,2.676106524426037
+        48.417501461882345,2.674030855179741 48.418035803894895,2.673906956794869
+        48.41806769762751,2.673945941419856 48.418188313362855,2.673858574119042 48.41823329734616,2.673823746871585
+        48.41825122903692,2.673668750080521 48.41831818165625,2.673652582506994 48.41832516512553,2.673493487408114
+        48.418369142693365,2.673386413235856 48.418392691341246,2.673281844712564
+        48.41849423240455,2.672412532836393 48.41937353311011,2.669881909884584 48.421933024548046,2.668791731054502
+        48.42303554774002,2.668775271427332 48.423052191970044,2.666734603028728 48.42511581029589,2.666714792237991
+        48.42513584264268,2.666586030745313 48.425266044553226,2.666011603978124 48.42585878493133,2.66567511545886
+        48.426205993381814,2.665653499326959 48.42622829735727,2.664150317308912 48.42777929417907,2.664146384264038
+        48.42778335249268,2.66414298862918 48.42778685729693,2.66413736926579 48.42779246330444,2.664156208906502
+        48.427784794794135,2.664656067951289 48.42785814863377,2.666438159218112 48.42811964983651,2.66646770035785
+        48.42812398366146,2.666468088375469 48.42812419438928,2.666472067807909 48.42812635187349,2.666258939196846
+        48.428475592917074,2.665020179751696 48.43050539452576,2.665019329193716 48.43050755832674,2.665918948117144
+        48.430653794837724,2.666060535417537 48.43051388987166,2.666548562950262 48.43053850310537,2.666792707629723
+        48.43055081710634,2.667659195732907 48.43109766925126,2.667822182010236 48.43113331892848,2.669141042703175
+        48.43142177609995,2.67008394652386 48.43108552066795,2.670280192069204 48.431015536883486,2.671667291541188
+        48.43052085125221,2.672175141911025 48.43028748766856,2.672594954339813 48.43057580608074,2.672834827936027
+        48.43074054385185,2.673359401494234 48.43102449623408,2.673803384851527 48.431281915000476,2.67444860361599
+        48.43156552081499,2.675053327401848 48.43180463554083,2.675563249683699 48.43189237830796,2.676313922505996
+        48.43189914576274,2.677492999063628 48.43182439286057,2.678066449626675 48.43178705841537,2.678506047740333
+        48.43177865285048,2.67888070391546 48.4316776649797,2.679425056080028 48.43129073866496,2.679543804054882
+        48.431411709077025,2.680158755652016 48.431980813299425,2.680589083925733
+        48.432193647184846,2.681223768164488 48.43249865354936,2.681284225222869 48.432515999991004,2.681814673807649
+        48.43266819791276,2.682755945737283 48.4324574791254,2.683334368020466 48.432342183550674,2.68383812526843
+        48.43223752734735,2.684350547923703 48.4321310672827,2.684503326303315 48.43209932641413,2.684519045569307
+        48.43209606025878,2.684511733822769 48.43208259785852,2.684354754037309 48.431793473998994,2.685814543196588
+        48.431373598575206,2.685934004101583 48.43134594615601,2.686159110881005 48.43129384024753,2.686533125896291
+        48.4312841454826,2.686546461132713 48.4311758221358,2.68656279889644 48.43104311207891,2.686677157962637
+        48.43102557498547,2.687346547814904 48.43089055333254,2.687614023940196 48.431441393235474,2.689328988397218
+        48.431030714187756,2.689740838057718 48.43092756537435,2.689978488389251 48.43102357604615,2.690118247891086
+        48.431080039604055,2.690054960387617 48.431163578869125,2.689911462321642
+        48.43135299439577,2.690222227344024 48.43141497244997,2.690498149521674 48.43149007980759,2.690819903642519
+        48.43160659574306,2.691737608014703 48.432041720103214,2.693537176563059 48.433053697686375,2.693598336177361
+        48.43308808927043,2.696038915833829 48.43445536348831,2.696132223759616 48.43439292828694,2.69700612379976
+        48.433808166647054,2.700522438043488 48.43145505796771,2.700851482708724 48.43121009573483,2.700946287853315
+        48.43113845257522,2.701064642613177 48.43102709720638,2.701171194693998 48.43093163391439))","locality":"77186","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051521104","occurrenceID":"e30f5d12-67e4-480f-8a64-83062d4062ad","taxonID":"44492","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Sistotrema
+        raduloides (P.Karst.) Donk","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":4050726189,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:44.441+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"acceptedUsage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"VD","name":"Cantharellales","rank":"ORDER"},{"key":"9XBLB","name":"Hydnaceae","rank":"FAMILY"},{"key":"644CJ","name":"Sistotrema","rank":"GENUS"},{"key":"4XRPW","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"acceptedUsage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":5249676,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1300,"familyKey":8460,"genusKey":10494302,"speciesKey":5249676,"acceptedTaxonKey":5249676,"scientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","scientificNameAuthorship":"(P.Karst.) Donk","acceptedScientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","kingdom":"Fungi","phylum":"Basidiomycota","order":"Cantharellales","family":"Hydnaceae","genus":"Sistotrema","species":"Sistotrema
+        raduloides","genericName":"Sistotrema","specificEpithet":"raduloides","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.424,"decimalLongitude":2.662,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":8,"day":6,"eventDate":"2006-08-06","startDayOfYear":218,"endDayOfYear":218,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:44.441+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"6c778d56-f504-4e4c-bc9c-6eaf2c41fb6b"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"BERNARD
+        DUHEM (ONF)","identifiedBy":"BERNARD DUHEM (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"6c778d56-f504-4e4c-bc9c-6eaf2c41fb6b","identifier":"6c778d56-f504-4e4c-bc9c-6eaf2c41fb6b","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POINT(2.662000004746896 48.424000000436294)","locality":"77186
+        - Nom du site : FLT=Fontainebleau, La Tillaie","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4050726189","occurrenceID":"6c778d56-f504-4e4c-bc9c-6eaf2c41fb6b","taxonID":"44492","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Sistotrema
+        raduloides (P.Karst.) Donk","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":4050857970,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:41.239+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"acceptedUsage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"VD","name":"Cantharellales","rank":"ORDER"},{"key":"9XBLB","name":"Hydnaceae","rank":"FAMILY"},{"key":"644CJ","name":"Sistotrema","rank":"GENUS"},{"key":"4XRPW","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"acceptedUsage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":5249676,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1300,"familyKey":8460,"genusKey":10494302,"speciesKey":5249676,"acceptedTaxonKey":5249676,"scientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","scientificNameAuthorship":"(P.Karst.) Donk","acceptedScientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","kingdom":"Fungi","phylum":"Basidiomycota","order":"Cantharellales","family":"Hydnaceae","genus":"Sistotrema","species":"Sistotrema
+        raduloides","genericName":"Sistotrema","specificEpithet":"raduloides","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.424,"decimalLongitude":2.662,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":8,"day":6,"eventDate":"2006-08-06","startDayOfYear":218,"endDayOfYear":218,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:41.239+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"e6d8cd83-b44e-407b-9568-d5a671ef3417"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"BERNARD
+        DUHEM (ONF)","identifiedBy":"BERNARD DUHEM (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"e6d8cd83-b44e-407b-9568-d5a671ef3417","identifier":"e6d8cd83-b44e-407b-9568-d5a671ef3417","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POINT(2.662000004746896 48.424000000436294)","locality":"77186
+        - Nom du site : FLT=Fontainebleau, La Tillaie","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4050857970","occurrenceID":"e6d8cd83-b44e-407b-9568-d5a671ef3417","taxonID":"44492","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Sistotrema
+        raduloides (P.Karst.) Donk","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."},{"key":4051671307,"datasetKey":"017f23ba-bf04-4eb7-a076-04ab2e5de250","publishingOrgKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","installationKey":"e44d0fd7-0edf-477f-aa82-50a81836ab46","hostingOrganizationKey":"1928bdf0-f5d2-11dc-8c12-b8a03c50a862","publishingCountry":"FR","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T10:13:11.697+00:00","lastParsed":"2026-06-11T23:09:55.378+00:00","crawlId":150,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"acceptedUsage":{"key":"4XRPW","name":"Sistotrema
+        raduloides (P. Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P. Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"VD","name":"Cantharellales","rank":"ORDER"},{"key":"9XBLB","name":"Hydnaceae","rank":"FAMILY"},{"key":"644CJ","name":"Sistotrema","rank":"GENUS"},{"key":"4XRPW","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"acceptedUsage":{"key":"5249676","name":"Sistotrema
+        raduloides (P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Donk","genericName":"Sistotrema","specificEpithet":"raduloides","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":5249676,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1300,"familyKey":8460,"genusKey":10494302,"speciesKey":5249676,"acceptedTaxonKey":5249676,"scientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","scientificNameAuthorship":"(P.Karst.) Donk","acceptedScientificName":"Sistotrema
+        raduloides (P.Karst.) Donk","kingdom":"Fungi","phylum":"Basidiomycota","order":"Cantharellales","family":"Hydnaceae","genus":"Sistotrema","species":"Sistotrema
+        raduloides","genericName":"Sistotrema","specificEpithet":"raduloides","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":48.424,"decimalLongitude":2.662,"continent":"EUROPE","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.1_1","name":"Fontainebleau"}},"year":2006,"month":11,"day":1,"eventDate":"2006-11-01","startDayOfYear":305,"endDayOfYear":305,"issues":["CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-11T23:09:55.378+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"6542f867-3588-4516-af62-a87eefdd66f0"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"935F0E9D-C448-B67E-43C1-F651FB0F9333","recordedBy":"E
+        MARTINI (ONF)","identifiedBy":"E MARTINI (ONF)","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"EUROPE","eventID":"6542f867-3588-4516-af62-a87eefdd66f0","identifier":"6542f867-3588-4516-af62-a87eefdd66f0","http://unknown.org/crawl_attempt":"163","http://unknown.org/language":"fr
+        | en","footprintWKT":"POINT(2.662000004746896 48.424000000436294)","locality":"77186
+        - Nom du site : FLT=Fontainebleau, La Tillaie","associatedReferences":"NSP","municipality":"Fontainebleau","county":"Seine-et-Marne","identificationVerificationStatus":"Non
+        réalisable","gbifID":"4051671307","occurrenceID":"6542f867-3588-4516-af62-a87eefdd66f0","taxonID":"44492","http://unknown.org/id_threshold_skip":"true","originalNameUsage":"Sistotrema
+        raduloides (P.Karst.) Donk","nameAccordingTo":"Gargominy O (2021). TAXREF.
+        Version 4.7. UMS PatriNat (OFB-CNRS-MNHN), Paris. Checklist dataset https://doi.org/10.15468/vqueam
+        accessed via GBIF.org on 2021-06-28."}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:36
+recorded_with: VCR-vcr/2.1.0

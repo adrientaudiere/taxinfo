@@ -35,7 +35,17 @@ test_that("tax_occur_check returns correct structure", {
   # Example: Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
   long <- 2.3522
   lat <- 48.8566
-  Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
+  vcr::use_cassette("occur_check_structure", {
+    Q_rob_in_Paris <- tax_occur_check(
+      "Quercus robur",
+      long,
+      lat,
+      100,
+      method = "search",
+      n_occur = 5,
+      clean_coord = FALSE
+    )
+  })
 
   # Test return structure is a list
   expect_type(Q_rob_in_Paris, "list")
@@ -56,7 +66,16 @@ test_that("tax_occur_check with Trametopsis brasiliensis", {
   # Example: tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
   long <- 2.3522
   lat <- 48.8566
-  result <- tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+  vcr::use_cassette("occur_check_trametopsis", {
+    result <- tax_occur_check(
+      "Trametopsis brasiliensis",
+      long,
+      lat,
+      100,
+      method = "search",
+      n_occur = 5
+    )
+  })
   expect_type(result, "list")
   expect_true("count_in_radius" %in% names(result))
 })
@@ -66,13 +85,18 @@ test_that("tax_occur_check with return_all_occ = TRUE", {
   # Example: res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200, return_all_occ = TRUE)
   long <- 2.3522
   lat <- 48.8566
-  res_occ <- tax_occur_check(
-    "Fagus sylvatica",
-    long,
-    lat,
-    200,
-    return_all_occ = TRUE
-  )
+  vcr::use_cassette("occur_check_return_all", {
+    res_occ <- tax_occur_check(
+      "Fagus sylvatica",
+      long,
+      lat,
+      200,
+      method = "search",
+      n_occur = 5,
+      clean_coord = FALSE,
+      return_all_occ = TRUE
+    )
+  })
 
   # Should include occ_data element
   expect_type(res_occ, "list")

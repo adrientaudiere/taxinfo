@@ -9,16 +9,16 @@ test_that("tax_retroblast_pq input validation", {
 # Examples from man page: tax_retroblast_pq.Rd (lines 114-144)
 test_that("tax_retroblast_pq returns list with expected structure and columns", {
   skip_on_cran()
-  # Example: res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
-  #   marker = c("ITS", "internal transcribed spacer"),
-  #   retmax = 10, id_cut = 99, add_to_phyloseq = FALSE)
-  res_retro <- tax_retroblast_pq(
-    load_clean_pq(),
-    marker = c("ITS", "internal transcribed spacer"),
-    retmax = 10,
-    id_cut = 99,
-    add_to_phyloseq = FALSE
-  )
+  skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
+  vcr::use_cassette("retroblast_structure", {
+    res_retro <- tax_retroblast_pq(
+      load_clean_pq(),
+      marker = c("ITS", "internal transcribed spacer"),
+      retmax = 10,
+      id_cut = 99,
+      add_to_phyloseq = FALSE
+    )
+  })
 
   # Should return a list
   expect_type(res_retro, "list")
@@ -44,28 +44,30 @@ test_that("tax_retroblast_pq returns list with expected structure and columns", 
 
 test_that("tax_retroblast_pq returns phyloseq with add_to_phyloseq = TRUE", {
   skip_on_cran()
-  # Example: res_retro <- tax_retroblast_pq(data_fungi_mini_cleanNames,
-  #   marker = c("ITS", "internal transcribed spacer"),
-  #   retmax = 10, id_cut = 99)
-  res_retro <- tax_retroblast_pq(
-    load_clean_pq(),
-    marker = c("ITS", "internal transcribed spacer"),
-    retmax = 10,
-    id_cut = 99
-  )
+  skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
+  vcr::use_cassette("retroblast_phyloseq", {
+    res_retro <- tax_retroblast_pq(
+      load_clean_pq(),
+      marker = c("ITS", "internal transcribed spacer"),
+      retmax = 10,
+      id_cut = 99
+    )
+  })
 
   expect_s4_class(res_retro, "phyloseq")
 })
 
 test_that("tax_retroblast_pq verbose parameter works", {
   skip_on_cran()
-  # Should work with verbose = FALSE
-  expect_no_error(tax_retroblast_pq(
-    load_clean_pq(),
-    marker = c("ITS"),
-    retmax = 5,
-    id_cut = 99,
-    add_to_phyloseq = FALSE,
-    verbose = FALSE
-  ))
+  skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
+  vcr::use_cassette("retroblast_verbose", {
+    expect_no_error(tax_retroblast_pq(
+      load_clean_pq(),
+      marker = c("ITS"),
+      retmax = 5,
+      id_cut = 99,
+      add_to_phyloseq = FALSE,
+      verbose = FALSE
+    ))
+  })
 })

@@ -1,0 +1,183 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Quercus+robur&verbose=FALSE
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:28:47 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23662729122 23752540833
+      age: '577'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '977'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2878688","name":"Quercus robur L.","canonicalName":"Quercus
+        robur","authorship":"L.","rank":"SPECIES","status":"ACCEPTED","genericName":"Quercus","specificEpithet":"robur","type":"SCIENTIFIC","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":12,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":0,"luceneMatch":12}},"additionalStatus":[{"clbDatasetKey":"53131","datasetAlias":"IUCN","datasetKey":"19491596-35ae-4a91-9a98-85cf505f1bd3","status":"LEAST_CONCERN","statusCode":"LC","sourceId":"63532"}],"synonym":false}'
+  recorded_at: 2026-06-17 13:38:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=2878688
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:25 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23756408167'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '84'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1687714,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.958288825009%2C49.754911174991&decimalLongitude=0.986873111807337%2C3.71752688819266&taxonKey=2878688
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:25 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23749396270'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":59735,"results":[{"key":6195491237,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:15:40.555+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-10T15:13:21-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/636114794/original.jpg","http://purl.org/dc/terms/rightsHolder":"ada-sqy","http://rs.tdwg.org/dwc/terms/catalogNumber":"636114794","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"ada-sqy","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/636114794","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4R5YN","name":"Quercus
+        robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"4R5YN","name":"Quercus robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"P","name":"Plantae","rank":"KINGDOM"},{"key":"CMQ8S","name":"Pteridobiotina","rank":"SUBKINGDOM"},{"key":"TP","name":"Tracheophyta","rank":"PHYLUM"},{"key":"MG","name":"Magnoliopsida","rank":"CLASS"},{"key":"384","name":"Fagales","rank":"ORDER"},{"key":"NPBN9","name":"Fagaceae","rank":"FAMILY"},{"key":"V58RW","name":"Quercoideae","rank":"SUBFAMILY"},{"key":"8W2YL","name":"Quercus","rank":"GENUS"},{"key":"4R5YN","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2878688","name":"Quercus
+        robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"2878688","name":"Quercus robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2878688,"kingdomKey":6,"phylumKey":7707728,"classKey":220,"orderKey":1354,"familyKey":4689,"genusKey":2877951,"speciesKey":2878688,"acceptedTaxonKey":2878688,"scientificName":"Quercus
+        robur L.","scientificNameAuthorship":"L.","acceptedScientificName":"Quercus
+        robur L.","kingdom":"Plantae","phylum":"Tracheophyta","order":"Fagales","family":"Fagaceae","genus":"Quercus","species":"Quercus
+        robur","genericName":"Quercus","specificEpithet":"robur","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","iucnRedListCategory":"LC","dateIdentified":"2026-04-10T17:43:18","decimalLatitude":48.790581,"decimalLongitude":1.96194,"coordinateUncertaintyInMeters":24.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.8_1","name":"Yvelines"},"level3":{"gid":"FRA.8.8.2_1","name":"Rambouillet"}},"year":2026,"month":4,"day":10,"eventDate":"2026-04-10T15:13:24","startDayOfYear":100,"endDayOfYear":100,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-10T17:55:34.000+00:00","lastInterpreted":"2026-06-12T02:15:40.555+00:00","references":"https://www.inaturalist.org/observations/348761389","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"348761389"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/636114794","created":"2026-04-10T22:13:21.000+00:00","creator":"ada-sqy","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"ada-sqy","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/636114794/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"ada-sqy","identifiedBy":"ada-sqy","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Magnoliopsida","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"ada-sqy","identifier":"348761389","http://unknown.org/nick":"ada-sqy","verbatimEventDate":"2026-04-10
+        15:13:24","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Rue
+        des Frênes, Plaisir, Île-de-France, FR","collectionCode":"Observations","gbifID":"6195491237","occurrenceID":"https://www.inaturalist.org/observations/348761389","taxonID":"56133","http://unknown.org/captive_cultivated":"wild","catalogNumber":"348761389","institutionCode":"iNaturalist","eventTime":"15:13:24+02:00","identificationID":"786856331"},{"key":6195695596,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:09:22.103+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-09T09:37:48-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/635522977/original.jpg","http://purl.org/dc/terms/rightsHolder":"Julien
+        Bottinelli","http://rs.tdwg.org/dwc/terms/catalogNumber":"635522977","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Julien
+        Bottinelli","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/635522977","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4R5YN","name":"Quercus
+        robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"4R5YN","name":"Quercus robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"P","name":"Plantae","rank":"KINGDOM"},{"key":"CMQ8S","name":"Pteridobiotina","rank":"SUBKINGDOM"},{"key":"TP","name":"Tracheophyta","rank":"PHYLUM"},{"key":"MG","name":"Magnoliopsida","rank":"CLASS"},{"key":"384","name":"Fagales","rank":"ORDER"},{"key":"NPBN9","name":"Fagaceae","rank":"FAMILY"},{"key":"V58RW","name":"Quercoideae","rank":"SUBFAMILY"},{"key":"8W2YL","name":"Quercus","rank":"GENUS"},{"key":"4R5YN","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2878688","name":"Quercus
+        robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"2878688","name":"Quercus robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2878688,"kingdomKey":6,"phylumKey":7707728,"classKey":220,"orderKey":1354,"familyKey":4689,"genusKey":2877951,"speciesKey":2878688,"acceptedTaxonKey":2878688,"scientificName":"Quercus
+        robur L.","scientificNameAuthorship":"L.","acceptedScientificName":"Quercus
+        robur L.","kingdom":"Plantae","phylum":"Tracheophyta","order":"Fagales","family":"Fagaceae","genus":"Quercus","species":"Quercus
+        robur","genericName":"Quercus","specificEpithet":"robur","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","iucnRedListCategory":"LC","dateIdentified":"2026-04-09T13:05:22","decimalLatitude":48.797448,"decimalLongitude":2.748289,"coordinateUncertaintyInMeters":183.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.4_1","name":"Seine-et-Marne"},"level3":{"gid":"FRA.8.4.3_1","name":"Melun"}},"year":2026,"month":4,"day":9,"eventDate":"2026-04-09T09:37","startDayOfYear":99,"endDayOfYear":99,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-09T18:48:07.000+00:00","lastInterpreted":"2026-06-12T02:09:22.103+00:00","references":"https://www.inaturalist.org/observations/348465149","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"348465149"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/635522977","created":"2026-04-09T16:37:48.000+00:00","creator":"Julien
+        Bottinelli","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Julien
+        Bottinelli","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/635522977/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Julien Bottinelli","identifiedBy":"Julien
+        Bottinelli","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Magnoliopsida","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Julien
+        Bottinelli","identifier":"348465149","http://unknown.org/nick":"bottin","verbatimEventDate":"2026/04/09
+        09:37","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"77220
+        Favières, France","collectionCode":"Observations","gbifID":"6195695596","occurrenceID":"https://www.inaturalist.org/observations/348465149","taxonID":"56133","http://unknown.org/captive_cultivated":"wild","catalogNumber":"348465149","institutionCode":"iNaturalist","eventTime":"09:37:00+02:00","identificationID":"786232596"},{"key":6236265130,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:11:27.963+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-25T15:48:24-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/645042703/original.jpg","http://purl.org/dc/terms/rightsHolder":"Elphège
+        Budzinski","http://rs.tdwg.org/dwc/terms/catalogNumber":"645042703","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Elphège
+        Budzinski","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/645042703","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-25T15:50:14-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/645042862/original.jpg","http://purl.org/dc/terms/rightsHolder":"Elphège
+        Budzinski","http://rs.tdwg.org/dwc/terms/catalogNumber":"645042862","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Elphège
+        Budzinski","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/645042862","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4R5YN","name":"Quercus
+        robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"4R5YN","name":"Quercus robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"P","name":"Plantae","rank":"KINGDOM"},{"key":"CMQ8S","name":"Pteridobiotina","rank":"SUBKINGDOM"},{"key":"TP","name":"Tracheophyta","rank":"PHYLUM"},{"key":"MG","name":"Magnoliopsida","rank":"CLASS"},{"key":"384","name":"Fagales","rank":"ORDER"},{"key":"NPBN9","name":"Fagaceae","rank":"FAMILY"},{"key":"V58RW","name":"Quercoideae","rank":"SUBFAMILY"},{"key":"8W2YL","name":"Quercus","rank":"GENUS"},{"key":"4R5YN","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2878688","name":"Quercus
+        robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"2878688","name":"Quercus robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2878688,"kingdomKey":6,"phylumKey":7707728,"classKey":220,"orderKey":1354,"familyKey":4689,"genusKey":2877951,"speciesKey":2878688,"acceptedTaxonKey":2878688,"scientificName":"Quercus
+        robur L.","scientificNameAuthorship":"L.","acceptedScientificName":"Quercus
+        robur L.","kingdom":"Plantae","phylum":"Tracheophyta","order":"Fagales","family":"Fagaceae","genus":"Quercus","species":"Quercus
+        robur","genericName":"Quercus","specificEpithet":"robur","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","iucnRedListCategory":"LC","dateIdentified":"2026-04-25T13:51:15","decimalLatitude":48.938669,"decimalLongitude":2.552547,"coordinateUncertaintyInMeters":14.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.5_1","name":"Seine-Saint-Denis"},"level3":{"gid":"FRA.8.5.2_1","name":"Le
+        Raincy"}},"year":2026,"month":4,"day":25,"eventDate":"2026-04-25T15:48:20","startDayOfYear":115,"endDayOfYear":115,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-25T16:49:23.000+00:00","lastInterpreted":"2026-06-12T02:11:27.963+00:00","references":"https://www.inaturalist.org/observations/353533766","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"353533766"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/645042703","created":"2026-04-25T22:48:24.000+00:00","creator":"Elphège
+        Budzinski","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Elphège
+        Budzinski","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/645042703/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/645042862","created":"2026-04-25T22:50:14.000+00:00","creator":"Elphège
+        Budzinski","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Elphège
+        Budzinski","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/645042862/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Elphège Budzinski","identifiedBy":"Elphège
+        Budzinski","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Magnoliopsida","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Elphège
+        Budzinski","identifier":"353533766","http://unknown.org/nick":"etylege","verbatimEventDate":"2026-04-25
+        15:48:20","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"93270
+        Sevran, France","collectionCode":"Observations","gbifID":"6236265130","occurrenceID":"https://www.inaturalist.org/observations/353533766","taxonID":"56133","http://unknown.org/captive_cultivated":"wild","catalogNumber":"353533766","institutionCode":"iNaturalist","eventTime":"15:48:20+02:00","identificationID":"796259070"},{"key":6236406642,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:02:34.770+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-25T11:04:41Z","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644890436/original.jpg","http://purl.org/dc/terms/rightsHolder":"Cédric
+        DEL RIO","http://rs.tdwg.org/dwc/terms/catalogNumber":"644890436","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Cédric
+        DEL RIO","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/644890436","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-04-25T11:04:41Z","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644891592/original.jpg","http://purl.org/dc/terms/rightsHolder":"Cédric
+        DEL RIO","http://rs.tdwg.org/dwc/terms/catalogNumber":"644891592","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Cédric
+        DEL RIO","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/644891592","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4R5YN","name":"Quercus
+        robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"4R5YN","name":"Quercus robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"P","name":"Plantae","rank":"KINGDOM"},{"key":"CMQ8S","name":"Pteridobiotina","rank":"SUBKINGDOM"},{"key":"TP","name":"Tracheophyta","rank":"PHYLUM"},{"key":"MG","name":"Magnoliopsida","rank":"CLASS"},{"key":"384","name":"Fagales","rank":"ORDER"},{"key":"NPBN9","name":"Fagaceae","rank":"FAMILY"},{"key":"V58RW","name":"Quercoideae","rank":"SUBFAMILY"},{"key":"8W2YL","name":"Quercus","rank":"GENUS"},{"key":"4R5YN","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2878688","name":"Quercus
+        robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"2878688","name":"Quercus robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2878688,"kingdomKey":6,"phylumKey":7707728,"classKey":220,"orderKey":1354,"familyKey":4689,"genusKey":2877951,"speciesKey":2878688,"acceptedTaxonKey":2878688,"scientificName":"Quercus
+        robur L.","scientificNameAuthorship":"L.","acceptedScientificName":"Quercus
+        robur L.","kingdom":"Plantae","phylum":"Tracheophyta","order":"Fagales","family":"Fagaceae","genus":"Quercus","species":"Quercus
+        robur","genericName":"Quercus","specificEpithet":"robur","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","iucnRedListCategory":"LC","dateIdentified":"2026-04-25T11:05:33","decimalLatitude":48.90385,"decimalLongitude":2.097946,"coordinateUncertaintyInMeters":18.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.8_1","name":"Yvelines"},"level3":{"gid":"FRA.8.8.3_1","name":"Saint-Germain-en-Laye"}},"year":2026,"month":4,"day":25,"eventDate":"2026-04-25T13:04:41","startDayOfYear":115,"endDayOfYear":115,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-04-27T22:40:33.000+00:00","lastInterpreted":"2026-06-12T02:02:34.770+00:00","references":"https://www.inaturalist.org/observations/353437847","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"353437847"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/644890436","created":"2026-04-25T11:04:41.000+00:00","creator":"Cédric
+        DEL RIO","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Cédric
+        DEL RIO","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644890436/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/644891592","created":"2026-04-25T11:04:41.000+00:00","creator":"Cédric
+        DEL RIO","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Cédric
+        DEL RIO","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644891592/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Cédric DEL RIO","identifiedBy":"Cédric
+        DEL RIO","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Magnoliopsida","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Cédric
+        DEL RIO","identifier":"353437847","http://unknown.org/nick":"cdelrio","verbatimEventDate":"2026-04-25
+        13:04:41+02:00","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Forêt
+        de Saint-Germain-en-Laye, Saint-Germain-en-Laye, Île-de-France, FR","collectionCode":"Observations","gbifID":"6236406642","occurrenceID":"https://www.inaturalist.org/observations/353437847","taxonID":"56133","http://unknown.org/captive_cultivated":"wild","catalogNumber":"353437847","institutionCode":"iNaturalist","eventTime":"13:04:41+02:00","identificationID":"796128364"},{"key":6252534062,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:22:43.478+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc-sa/4.0/","http://purl.org/dc/terms/created":"2026-04-24T18:58:12-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644115177/original.jpg","http://purl.org/dc/terms/rightsHolder":"Thomas
+        R","http://rs.tdwg.org/dwc/terms/catalogNumber":"644115177","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Thomas
+        R","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/644115177","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4R5YN","name":"Quercus
+        robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"4R5YN","name":"Quercus robur L.","rank":"SPECIES","code":"BOTANICAL","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"P","name":"Plantae","rank":"KINGDOM"},{"key":"CMQ8S","name":"Pteridobiotina","rank":"SUBKINGDOM"},{"key":"TP","name":"Tracheophyta","rank":"PHYLUM"},{"key":"MG","name":"Magnoliopsida","rank":"CLASS"},{"key":"384","name":"Fagales","rank":"ORDER"},{"key":"NPBN9","name":"Fagaceae","rank":"FAMILY"},{"key":"V58RW","name":"Quercoideae","rank":"SUBFAMILY"},{"key":"8W2YL","name":"Quercus","rank":"GENUS"},{"key":"4R5YN","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2878688","name":"Quercus
+        robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"acceptedUsage":{"key":"2878688","name":"Quercus robur L.","rank":"SPECIES","authorship":"L.","genericName":"Quercus","specificEpithet":"robur","formattedName":"<i>Quercus</i>
+        <i>robur</i> L."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"6","name":"Plantae","rank":"KINGDOM"},{"key":"7707728","name":"Tracheophyta","rank":"PHYLUM"},{"key":"220","name":"Magnoliopsida","rank":"CLASS"},{"key":"1354","name":"Fagales","rank":"ORDER"},{"key":"4689","name":"Fagaceae","rank":"FAMILY"},{"key":"2877951","name":"Quercus","rank":"GENUS"},{"key":"2878688","name":"Quercus
+        robur","rank":"SPECIES"}],"iucnRedListCategoryCode":"LC","issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2878688,"kingdomKey":6,"phylumKey":7707728,"classKey":220,"orderKey":1354,"familyKey":4689,"genusKey":2877951,"speciesKey":2878688,"acceptedTaxonKey":2878688,"scientificName":"Quercus
+        robur L.","scientificNameAuthorship":"L.","acceptedScientificName":"Quercus
+        robur L.","kingdom":"Plantae","phylum":"Tracheophyta","order":"Fagales","family":"Fagaceae","genus":"Quercus","species":"Quercus
+        robur","genericName":"Quercus","specificEpithet":"robur","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","iucnRedListCategory":"LC","dateIdentified":"2026-04-24T19:27:27","decimalLatitude":48.860222,"decimalLongitude":2.565297,"coordinateUncertaintyInMeters":144.0,"continent":"EUROPE","stateProvince":"Île-de-France","gadm":{"level0":{"gid":"FRA","name":"France"},"level1":{"gid":"FRA.8_1","name":"Île-de-France"},"level2":{"gid":"FRA.8.5_1","name":"Seine-Saint-Denis"},"level3":{"gid":"FRA.8.5.2_1","name":"Le
+        Raincy"}},"year":2026,"month":4,"day":24,"eventDate":"2026-04-24T18:58:12","startDayOfYear":114,"endDayOfYear":114,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-05-05T17:07:34.000+00:00","lastInterpreted":"2026-06-12T02:22:43.478+00:00","references":"https://www.inaturalist.org/observations/352980176","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"352980176"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/644115177","created":"2026-04-25T01:58:12.000+00:00","creator":"Thomas
+        R","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc-sa/4.0/","rightsHolder":"Thomas
+        R","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/644115177/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Thomas R","identifiedBy":"Thomas
+        R","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Magnoliopsida","countryCode":"FR","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"France","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Thomas
+        R","identifier":"352980176","http://unknown.org/nick":"biodestructor","verbatimEventDate":"2026-04-24
+        18:58:12","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"93330
+        Neuilly-sur-Marne, France","collectionCode":"Observations","gbifID":"6252534062","occurrenceID":"https://www.inaturalist.org/observations/352980176","taxonID":"56133","http://unknown.org/captive_cultivated":"wild","catalogNumber":"352980176","institutionCode":"iNaturalist","eventTime":"18:58:12+02:00","identificationID":"795449212"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:25
+recorded_with: VCR-vcr/2.1.0

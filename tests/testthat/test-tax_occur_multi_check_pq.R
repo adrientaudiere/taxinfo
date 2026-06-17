@@ -107,11 +107,16 @@ test_that("tax_occur_multi_check_pq min_occur filtering", {
 test_that("tax_occur_multi_check_pq returns expected structure", {
   skip_on_cran()
   n_samples <- nsamples(clean)
-  res_occur_check <- tax_occur_multi_check_pq(
-    clean,
-    longitudes = rep(8.31, n_samples),
-    latitudes = rep(47.38, n_samples)
-  )
+  vcr::use_cassette("occur_multi_check_structure", {
+    res_occur_check <- tax_occur_multi_check_pq(
+      clean,
+      longitudes = rep(8.31, n_samples),
+      latitudes = rep(47.38, n_samples),
+      method = "search",
+      n_occur = 5,
+      clean_coord = FALSE
+    )
+  })
 
   # Should return a list
   expect_type(res_occur_check, "list")

@@ -12,6 +12,10 @@
 #' [tax_check_ecoregion()] to compare the profile to specific GPS points.
 #'
 #' @inheritParams tax_gbif_occur_coords
+#' @param method (character, default `"search"`). How GBIF occurrences are
+#'  fetched, passed to [tax_gbif_occur_coords()]. Ecoregion profiling defaults to
+#'  the credential-free, per-taxon-capped `"search"` path; set `"download"` (or
+#'  `"download_sql"`) to use the Download API (**requires GBIF credentials**).
 #' @param min_nb_occur (numeric, default `0`). Keep only (taxon, ecoregion)
 #'  pairs with at least this many occurrences.
 #' @param min_proportion (numeric, default `0`). Keep only (taxon, ecoregion)
@@ -37,6 +41,7 @@
 tax_ecoregion_occur <- function(
   taxnames,
   n_occur = 1000,
+  method = "search",
   min_nb_occur = 0,
   min_proportion = 0,
   clean_coord = FALSE,
@@ -57,6 +62,7 @@ tax_ecoregion_occur <- function(
   occ <- tax_gbif_occur_coords(
     taxnames = taxnames,
     n_occur = n_occur,
+    method = method,
     clean_coord = clean_coord,
     verbose = verbose,
     time_to_sleep = time_to_sleep

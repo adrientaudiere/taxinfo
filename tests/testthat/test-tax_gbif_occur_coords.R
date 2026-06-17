@@ -9,12 +9,15 @@ test_that("tax_gbif_occur_coords input validation", {
 
 test_that("tax_gbif_occur_coords returns expected structure", {
   skip_on_cran()
-  res <- tax_gbif_occur_coords(
-    "Fomes fomentarius",
-    n_occur = 30,
-    verbose = FALSE,
-    time_to_sleep = 0
-  )
+  vcr::use_cassette("occur_coords_structure", {
+    res <- tax_gbif_occur_coords(
+      "Fomes fomentarius",
+      n_occur = 5,
+      method = "search",
+      verbose = FALSE,
+      time_to_sleep = 0
+    )
+  })
   expect_s3_class(res, "tbl_df")
   expect_true(all(
     c("taxon_name", "usageKey", "decimalLongitude", "decimalLatitude") %in%
@@ -27,11 +30,14 @@ test_that("tax_gbif_occur_coords returns expected structure", {
 
 test_that("tax_gbif_occur_coords handles unmatched taxa", {
   skip_on_cran()
-  res <- tax_gbif_occur_coords(
-    c("Amanita muscaria", "NotARealTaxon ZzYy"),
-    n_occur = 10,
-    verbose = FALSE,
-    time_to_sleep = 0
-  )
+  vcr::use_cassette("occur_coords_unmatched", {
+    res <- tax_gbif_occur_coords(
+      c("Amanita muscaria", "NotARealTaxon ZzYy"),
+      n_occur = 5,
+      method = "search",
+      verbose = FALSE,
+      time_to_sleep = 0
+    )
+  })
   expect_true("NotARealTaxon ZzYy" %in% attr(res, "missing_taxa"))
 })

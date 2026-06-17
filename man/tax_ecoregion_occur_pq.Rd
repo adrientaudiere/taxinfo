@@ -41,7 +41,9 @@ columns. Defaults to `"ecoregion_"` if `NULL` (yielding
 `ecoregion_top` / `ecoregion_n` / `ecoregion_list`).}
 
 \item{n_occur}{(numeric, default `1000`). Maximum number of occurrences to
-retrieve per taxon. Use a smaller value (e.g. `200`) for quick checks.}
+keep per taxon. With `method = "search"` this is a server-side limit; with
+the download methods it is applied as a local sample after import (a warning
+is issued when a taxon exceeded `n_occur`).}
 
 \item{min_nb_occur}{(numeric, default `0`). Keep only (taxon, ecoregion)
 pairs with at least this many occurrences.}
@@ -57,7 +59,8 @@ pairs whose share of the taxon's total occurrences is `>= min_proportion`
 \item{verbose}{(logical, default `TRUE`). If `TRUE`, print progress messages.}
 
 \item{time_to_sleep}{(numeric, default `0.3`). Seconds to pause between
-[rgbif::occ_search()] calls to avoid GBIF rate-limiting.}
+[rgbif::occ_search()] calls to avoid GBIF rate-limiting. Only used when
+`method = "search"`.}
 
 \item{discard_genus_alone}{(logical, default `TRUE` when
 `taxonomic_rank == "currentCanonicalSimple"`). Passed to

@@ -20,6 +20,16 @@
 #' @param radius_km Numeric. Search radius in kilometers (default: 50).
 #' @param n_occur Numeric. Maximum number of occurrences to retrieve from GBIF
 #'  for each taxon (default: 1000).
+#' @param method (character, default `"download"`). How occurrences are fetched.
+#'  `"download"` issues a single [rgbif::occ_download()] for all taxa around the
+#'  point (**requires GBIF credentials**); `"search"` uses a per-taxon
+#'  [rgbif::occ_search()] loop. See [tax_occur_check()].
+#' @param circle_form (Logical, default: TRUE). Whether to use a circular search
+#'  area. If FALSE, a square bounding box is used.
+#' @param clean_coord (Logical, default: TRUE). Whether to clean coordinates
+#'  using `CoordinateCleaner`.
+#' @param clean_coord_verbose (Logical, default: FALSE). Whether to print
+#'  messages from `CoordinateCleaner`.
 #' @param add_to_phyloseq  (Logical, default TRUE when physeq is provided, FALSE when taxnames is provided).
 #'  Whether to add the results as new columns in the phyloseq object's tax_table. If TRUE, the results will be
 #'  appended to the tax_table with appropriate column names.
@@ -93,6 +103,10 @@ tax_occur_check_pq <- function(
   latitude = NULL,
   radius_km = 50,
   n_occur = 1000,
+  method = c("download", "search"),
+  circle_form = TRUE,
+  clean_coord = TRUE,
+  clean_coord_verbose = FALSE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
@@ -100,6 +114,7 @@ tax_occur_check_pq <- function(
   discard_NA = TRUE,
   ...
 ) {
+  method <- match.arg(method)
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort(
       "You must specify either {.arg physeq} or {.arg taxnames}, not both"
@@ -158,40 +173,42 @@ tax_occur_check_pq <- function(
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
     distinct()
-  taxnames <- gbif_taxa$canonicalName
 
-  tax_range <- lapply(taxnames, function(name) {
-    tax_occur_check(
-      name,
-      verbose = verbose,
-      longitude = longitude,
-      latitude = latitude,
-      n_occur = n_occur,
-      radius_km = radius_km,
-      ...
-    )
-  }) |>
-    setNames(paste(taxnames)) |>
-    list2DF() |>
-    t()
+  # Worldwide georeferenced counts per taxon (no credentials needed).
+  world_counts <- vapply(
+    gbif_taxa$usageKey,
+    function(k) {
+      rgbif::occ_count(taxonKey = k, hasCoordinate = TRUE)
+    },
+    numeric(1)
+  )
 
-  tax_range <- tax_range |>
-    as.data.frame() |>
-    tibble::rownames_to_column(var = "taxa_name") |>
-    tibble() |>
-    tidyr::unnest(cols = everything())
+  # One GBIF download for all taxa around the point (method = "download"), or a
+  # per-taxon occ_search loop (method = "search"); occurrence statistics are
+  # then computed locally for each taxon.
+  bbox <- calculate_bbox(
+    longitude = longitude,
+    latitude = latitude,
+    radius_km = radius_km
+  )
+  occ_all <- fetch_occur_for_taxa(
+    gbif_taxa = gbif_taxa,
+    method = method,
+    n_occur = n_occur,
+    bbox = bbox,
+    clean_coord = clean_coord,
+    clean_coord_verbose = clean_coord_verbose,
+    verbose = verbose
+  )
 
-  colnames(tax_range) <- c(
-    "taxa_name",
-    "count_in_radius",
-    "closest_distance_km",
-    "mean_distance_km",
-    "total_count_in_world",
-    "search_radius",
-    "closest_point_lat",
-    "closest_point_lon",
-    "sample_point_lat",
-    "sample_point_lon"
+  tax_range <- occur_check_compute_df(
+    occ_all = occ_all,
+    gbif_taxa = gbif_taxa,
+    world_counts = world_counts,
+    longitude = longitude,
+    latitude = latitude,
+    radius_km = radius_km,
+    circle_form = circle_form
   )
 
   # Determine new column names (excluding taxa_name which is used for join)

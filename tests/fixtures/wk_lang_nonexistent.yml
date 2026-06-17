@@ -1,0 +1,39 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q999999999999&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:59:39 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-7g5lk
+      x-content-type-options: nosniff
+      mediawiki-api-error: no-such-entity
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '0'
+      accept-ranges: bytes
+      x-cache: cp6013 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,User-Agent
+      content-length: '337'
+      x-request-id: 587b602d-69d6-4b63-9e10-379ca6131956
+    body:
+      string: '{"error":{"code":"no-such-entity","info":"Could not find an entity
+        with the ID \"Q999999999999\".","id":"Q999999999999","messages":[{"name":"wikibase-api-no-such-entity","parameters":["Q999999999999"],"html":{"*":"Could
+        not find an entity with the ID \"Q999999999999\"."}}],"*":"See https://www.wikidata.org/w/api.php
+        for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt;
+        for notice of API deprecations and breaking changes."},"servedby":"mw-api-ext.eqiad.main-86d4bf5895-7g5lk"}'
+  recorded_at: 2026-06-17 13:59:39
+recorded_with: VCR-vcr/2.1.0

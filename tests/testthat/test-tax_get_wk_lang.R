@@ -5,7 +5,9 @@
 test_that("tax_get_wk_lang returns tibble structure", {
   skip_on_cran()
   # Example: tax_get_wk_lang("Q10723171")
-  result <- tax_get_wk_lang("Q10723171")
+  vcr::use_cassette("wk_lang_structure", {
+    result <- tax_get_wk_lang("Q10723171")
+  })
 
   expect_s3_class(result, "tbl_df")
 
@@ -18,7 +20,9 @@ test_that("tax_get_wk_lang returns tibble structure", {
 test_that("tax_get_wk_lang returns data for valid taxon_id", {
   skip_on_cran()
   # Example: tax_get_wk_lang("Q10723171") |> nrow()
-  result <- tax_get_wk_lang("Q10723171")
+  vcr::use_cassette("wk_lang_valid", {
+    result <- tax_get_wk_lang("Q10723171")
+  })
 
   # Should return at least some rows for a known taxon
   expect_true(nrow(result) > 0)
@@ -45,8 +49,10 @@ test_that("tax_get_wk_lang handles empty string taxon_id", {
 test_that("tax_get_wk_lang languages_pages parameter works", {
   skip_on_cran()
   # Test with specific language filter
-  result_all <- tax_get_wk_lang("Q10723171")
-  result_en <- tax_get_wk_lang("Q10723171", languages_pages = c("en"))
+  vcr::use_cassette("wk_lang_filter", {
+    result_all <- tax_get_wk_lang("Q10723171")
+    result_en <- tax_get_wk_lang("Q10723171", languages_pages = c("en"))
+  })
 
   expect_s3_class(result_en, "tbl_df")
 
@@ -62,7 +68,9 @@ test_that("tax_get_wk_lang languages_pages parameter works", {
 test_that("tax_get_wk_lang handles non-existent taxon_id", {
   skip_on_cran()
   # Test with a non-existent taxon ID
-  result <- tax_get_wk_lang("Q999999999999")
+  vcr::use_cassette("wk_lang_nonexistent", {
+    result <- tax_get_wk_lang("Q999999999999")
+  })
 
   expect_true(inherits(result, "tbl_df") || is.na(result))
 })

@@ -65,6 +65,7 @@ Suggests:
     systemfonts,
     terra,
     testthat (>= 3.0.0),
+    vcr (>= 1.0.0),
     wikitaxa
 VignetteBuilder: 
     knitr

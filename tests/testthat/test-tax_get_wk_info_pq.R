@@ -15,7 +15,12 @@ test_that("tax_get_wk_info_pq with taxnames returns tibble", {
     "Boletus edulis",
     "Cantharellus cibarius"
   )
-  wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query, time_to_sleep = 0)
+  vcr::use_cassette("wk_info_taxnames", {
+    wiki_data <- tax_get_wk_info_pq(
+      taxnames = taxa_to_query,
+      time_to_sleep = 0
+    )
+  })
 
   expect_s3_class(wiki_data, "tbl_df")
   expect_true(nrow(wiki_data) > 0)
@@ -24,7 +29,9 @@ test_that("tax_get_wk_info_pq with taxnames returns tibble", {
 test_that("tax_get_wk_info_pq returns phyloseq with add_to_phyloseq = TRUE", {
   skip_on_cran()
   # Example: data_fungi_mini_cleanNames_wk_info <- tax_get_wk_info_pq(data_fungi_mini_cleanNames)
-  wk_info <- tax_get_wk_info_pq(load_clean_pq(), time_to_sleep = 0)
+  vcr::use_cassette("wk_info_phyloseq", {
+    wk_info <- tax_get_wk_info_pq(load_clean_pq(), time_to_sleep = 0)
+  })
 
   expect_s4_class(wk_info, "phyloseq")
 })
@@ -32,11 +39,13 @@ test_that("tax_get_wk_info_pq returns phyloseq with add_to_phyloseq = TRUE", {
 test_that("tax_get_wk_info_pq returns tibble with add_to_phyloseq = FALSE", {
   skip_on_cran()
   # Example: wk_info <- tax_get_wk_info_pq(subset_taxa_pq(...))
-  wk_info <- tax_get_wk_info_pq(
-    load_clean_pq(),
-    add_to_phyloseq = FALSE,
-    time_to_sleep = 0
-  )
+  vcr::use_cassette("wk_info_tibble", {
+    wk_info <- tax_get_wk_info_pq(
+      load_clean_pq(),
+      add_to_phyloseq = FALSE,
+      time_to_sleep = 0
+    )
+  })
 
   expect_s3_class(wk_info, "tbl_df")
 })

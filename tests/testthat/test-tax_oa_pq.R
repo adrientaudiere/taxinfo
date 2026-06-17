@@ -76,7 +76,9 @@ test_that("tax_oa_pq DOI validation", {
 test_that("tax_oa_pq returns phyloseq with publication data", {
   skip_on_cran()
   # Example: data_fungi_mini_cleanNames <- gna_verifier_pq(data_fungi_mini) |> tax_oa_pq()
-  result <- tax_oa_pq(load_clean_pq())
+  vcr::use_cassette("oa_phyloseq", {
+    result <- tax_oa_pq(load_clean_pq(), count_only = TRUE)
+  })
 
   expect_s4_class(result, "phyloseq")
   # Check for n_doi column added
@@ -86,15 +88,31 @@ test_that("tax_oa_pq returns phyloseq with publication data", {
 test_that("tax_oa_pq with specific type_works", {
   skip_on_cran()
   # Example: tax_oa_pq(data_fungi_mini_cleanNames, type_works = "dataset")
-  result <- tax_oa_pq(load_clean_pq(), type_works = "dataset")
+  vcr::use_cassette("oa_type_works", {
+    result <- tax_oa_pq(
+      load_clean_pq(),
+      type_works = "dataset",
+      count_only = TRUE
+    )
+  })
 
   expect_s4_class(result, "phyloseq")
 })
 
 test_that("tax_oa_pq with return_raw_oa = TRUE returns list", {
-  skip_on_cran()
-  # Example: list_pub_raw <- tax_oa_pq(data_fungi_mini_cleanNames, return_raw_oa = TRUE)
-  list_pub_raw <- tax_oa_pq(load_clean_pq(), return_raw_oa = TRUE)
+  # The raw path returns oa_fetch() output verbatim, which OpenAlex makes huge
+  # (full-text search). Mock oa_fetch with a tiny frame to test the wiring
+  # offline instead of recording a multi-MB cassette.
+  testthat::local_mocked_bindings(
+    oa_fetch = function(...) data.frame(id = "W1", doi = "10.1/x"),
+    .package = "openalexR"
+  )
+  list_pub_raw <- tax_oa_pq(
+    taxnames = "Amanita muscaria",
+    return_raw_oa = TRUE,
+    verbose = FALSE
+  )
 
   expect_type(list_pub_raw, "list")
+  expect_equal(list_pub_raw[["Amanita muscaria"]]$doi, "10.1/x")
 })

@@ -65,7 +65,7 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #'
 #' @examples
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
-#' 
+#'
 #' taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
 #' \donttest{
 #' taxa_summary_text(data_fungi_cleanNames,
@@ -317,4 +317,296 @@ load_ecoregions <- function(ecoreg_name = "eco_terra", refresh = FALSE) {
 
   assign(cache_key, ecoregions, envir = cache)
   ecoregions
+}
+
+
+#' Are GBIF credentials available?
+#'
+#' @description
+#' Non-throwing predicate that returns `TRUE` when all three GBIF credential
+#' environment variables (`GBIF_USER`, `GBIF_PWD`, `GBIF_EMAIL`) are set to a
+#' non-empty value. Single source of truth used by [check_gbif_credentials()]
+#' and by the test helper `skip_if_no_gbif_credentials()`.
+#'
+#' @returns A logical scalar.
+#'
+#' @author Adrien Taudiere
+#' @keywords internal
+has_gbif_credentials <- function() {
+  Sys.getenv("GBIF_USER") != "" &&
+    Sys.getenv("GBIF_PWD") != "" &&
+    Sys.getenv("GBIF_EMAIL") != ""
+}
+
+
+#' Abort if GBIF credentials are missing
+#'
+#' @description
+#' Internal helper that stops with an informative message (registration link and
+#' `.Renviron` guidance) when the GBIF credentials required by the Download API
+#' are not set. Used by [gbif_download()] and every function that relies on
+#' `rgbif::occ_download()` / `rgbif::occ_download_sql()`.
+#'
+#' @returns Invisibly `TRUE` when credentials are available; otherwise aborts.
+#'
+#' @author Adrien Taudiere
+#' @keywords internal
+check_gbif_credentials <- function() {
+  if (!has_gbif_credentials()) {
+    cli::cli_abort(c(
+      "GBIF credentials are required for the Download API.",
+      "i" = "Please set the following in your {.file .Renviron} file:",
+      " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL",
+      "i" = "Register at: {.url https://www.gbif.org/user/register}",
+      "i" = "See: {.url https://docs.ropensci.org/rgbif/articles/gbif_credentials.html}"
+    ))
+  }
+  invisible(TRUE)
+}
+
+
+#' Run a GBIF download and import the result
+#'
+#' @description
+#' Internal helper that wraps the full asynchronous GBIF Download API lifecycle
+#' (submit, wait, get, import, clean up) in a single call. It accepts either a
+#' set of predicates (forwarded to [rgbif::occ_download()]) or a SQL query (sent
+#' to [rgbif::occ_download_sql()]). GBIF credentials are required; see
+#' [check_gbif_credentials()].
+#'
+#' @param ... Predicates built with [rgbif::pred()], [rgbif::pred_in()], etc.
+#'  Passed to [rgbif::occ_download()]. Ignored when `sql` is supplied.
+#' @param sql (character, default `NULL`). A SQL query string. When supplied, the
+#'  download is submitted with [rgbif::occ_download_sql()] (server-side filtering
+#'  and `LIMIT`) instead of predicates. The SQL Download API is a gated preview;
+#'  the account must be enabled for it.
+#' @param format (character, default `"SIMPLE_CSV"`). Download format passed to
+#'  [rgbif::occ_download()]. Ignored when `sql` is supplied.
+#' @param verbose (logical, default `TRUE`). If `TRUE`, print progress messages.
+#'
+#' @returns A tibble of imported occurrence records. The download key and DOI are
+#'  attached as `attr(x, "key")` and `attr(x, "doi")` for citation.
+#'
+#' @author Adrien Taudiere
+#' @seealso [rgbif::occ_download()], [rgbif::occ_download_sql()],
+#'  [check_gbif_credentials()]
+#' @keywords internal
+gbif_download <- function(
+  ...,
+  sql = NULL,
+  format = "SIMPLE_CSV",
+  verbose = TRUE
+) {
+  check_gbif_credentials()
+
+  download_key <- tryCatch(
+    {
+      if (is.null(sql)) {
+        rgbif::occ_download(..., format = format)
+      } else {
+        rgbif::occ_download_sql(sql)
+      }
+    },
+    error = function(e) {
+      if (!is.null(sql) && grepl("sql", e$message, ignore.case = TRUE)) {
+        cli::cli_abort(c(
+          "Failed to submit GBIF SQL download request.",
+          "i" = "The SQL Download API is a gated preview; your GBIF account must be enabled for it.",
+          "i" = "Request access: {.url https://techdocs.gbif.org/en/data-use/api-sql-downloads}",
+          "x" = "Error: {e$message}"
+        ))
+      }
+      cli::cli_abort(c(
+        "Failed to submit GBIF download request.",
+        "i" = "GBIF credentials are required. Please ensure you have set:",
+        " " = "GBIF_USER, GBIF_PWD, GBIF_EMAIL in your .Renviron file",
+        "i" = "Register at: {.url https://www.gbif.org/user/register}",
+        "i" = "See: {.url https://docs.ropensci.org/rgbif/articles/gbif_credentials.html}",
+        "x" = "Error: {e$message}"
+      ))
+    }
+  )
+
+  if (verbose) {
+    cli::cli_alert_info("Download key: {.val {download_key}}")
+    cli::cli_alert_info(
+      "Waiting for download to complete (this may take a few minutes)..."
+    )
+  }
+
+  # The download is already submitted (and counted against the GBIF quota) at
+  # this point. If the wait/get/import phase fails - typically a transient
+  # network timeout while polling api.gbif.org - surface the key so the user can
+  # resume without re-submitting.
+  occ_data <- tryCatch(
+    {
+      rgbif::occ_download_wait(download_key, quiet = !verbose)
+      if (verbose) {
+        cli::cli_alert_success("Download complete. Importing data...")
+      }
+      download_path <- rgbif::occ_download_get(download_key, overwrite = TRUE)
+      d <- rgbif::occ_download_import(download_path)
+      file.remove(download_path)
+      d
+    },
+    error = function(e) {
+      cli::cli_abort(c(
+        "GBIF download {.val {download_key}} was submitted but could not be retrieved.",
+        "i" = "This is usually a transient network issue; the download is still prepared on GBIF's servers.",
+        "i" = "Resume it later (no need to re-submit) with:",
+        " " = "{.code rgbif::occ_download_get(\"{download_key}\", overwrite = TRUE) |> rgbif::occ_download_import()}",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
+    }
+  )
+
+  attr(occ_data, "key") <- as.character(download_key)
+  attr(occ_data, "doi") <- attr(download_key, "doi")
+  occ_data
+}
+
+
+#' Attribute downloaded GBIF records to the queried taxa
+#'
+#' @description
+#' Internal helper that tags each record of a GBIF download with the queried
+#' taxon it belongs to. A predicate download with `pred_in("taxonKey", keys)` is
+#' *hierarchical*: it returns a taxon and all its descendants, whose own
+#' `taxonKey` is more specific than the queried key. A naive equality join on
+#' `taxonKey` therefore drops infraspecific records (and every record of a
+#' higher-rank query). Records are attributed by membership instead: a record
+#' belongs to queried key `K` when its `taxonKey` *or* `speciesKey` equals `K`;
+#' as a fallback for higher-rank matches, the queried `canonicalName` is matched
+#' against the record's taxonomic name columns (`species`, `genus`, `family`, …).
+#'
+#' @param occ_data (data frame) Imported GBIF occurrences (SIMPLE_CSV schema).
+#' @param gbif_taxa (tibble) Resolved taxa with `usageKey`, `canonicalName` and
+#'  `verbatim_name`.
+#'
+#' @returns `occ_data` with two added columns, `taxon_name` (the queried
+#'  `verbatim_name`) and `usageKey` (the queried key). Records may be duplicated
+#'  if they match more than one queried taxon.
+#'
+#' @author Adrien Taudiere
+#' @keywords internal
+attribute_gbif_records <- function(occ_data, gbif_taxa) {
+  name_cols <- intersect(
+    c("species", "genus", "family", "order", "class", "phylum", "kingdom"),
+    names(occ_data)
+  )
+
+  out <- vector("list", nrow(gbif_taxa))
+  for (i in seq_len(nrow(gbif_taxa))) {
+    key <- gbif_taxa$usageKey[i]
+    canonical <- gbif_taxa$canonicalName[i]
+
+    sel <- rep(FALSE, nrow(occ_data))
+    if ("speciesKey" %in% names(occ_data)) {
+      sel <- sel | (occ_data$speciesKey == key)
+    }
+    if ("taxonKey" %in% names(occ_data)) {
+      sel <- sel | (occ_data$taxonKey == key)
+    }
+    # Higher-rank fallback: match the queried name against name columns.
+    if (!isTRUE(any(sel, na.rm = TRUE)) && length(name_cols) > 0) {
+      for (nc in name_cols) {
+        sel <- sel | (occ_data[[nc]] == canonical)
+      }
+    }
+
+    rows <- which(sel)
+    if (length(rows) > 0) {
+      d_i <- occ_data[rows, , drop = FALSE]
+      d_i$taxon_name <- gbif_taxa$verbatim_name[i]
+      d_i$usageKey <- key
+      out[[i]] <- d_i
+    }
+  }
+
+  bind_rows(out)
+}
+
+
+#' Compute occurrence statistics around a point
+#'
+#' @description
+#' Pure (network-free) helper used by [tax_occur_check()] and its batched
+#' wrappers. Given a data frame of occurrences with `decimalLongitude` /
+#' `decimalLatitude` columns and a reference point, it computes the distance of
+#' each occurrence to the point and summarises how many fall within `radius_km`.
+#'
+#' @param occ_df (data frame) Occurrences with `decimalLongitude` and
+#'  `decimalLatitude` columns. May be `NULL` or empty.
+#' @param longitude,latitude (numeric) Reference point in decimal degrees.
+#' @param radius_km (numeric) Search radius in kilometres.
+#' @param circle_form (logical, default `TRUE`). If `TRUE`, keep only
+#'  occurrences within `radius_km` of the point (circular area); if `FALSE`, all
+#'  occurrences in `occ_df` are counted.
+#'
+#' @returns A list with `count_in_radius`, `closest_distance_km`,
+#'  `mean_distance_km`, `closest_point_lat`, `closest_point_lon` and the
+#'  (filtered) `occ_data`.
+#'
+#' @author Adrien Taudiere
+#' @keywords internal
+compute_occur_stats <- function(
+  occ_df,
+  longitude,
+  latitude,
+  radius_km,
+  circle_form = TRUE
+) {
+  na_result <- list(
+    count_in_radius = 0,
+    closest_distance_km = NA,
+    mean_distance_km = NA,
+    closest_point_lat = NA,
+    closest_point_lon = NA,
+    occ_data = if (is.null(occ_df)) {
+      NULL
+    } else {
+      occ_df[0, , drop = FALSE]
+    }
+  )
+
+  if (is.null(occ_df) || nrow(occ_df) == 0) {
+    return(na_result)
+  }
+
+  occ_df <- occ_df |>
+    filter(
+      !is.na(.data$decimalLongitude),
+      !is.na(.data$decimalLatitude)
+    )
+  if (nrow(occ_df) == 0) {
+    return(na_result)
+  }
+
+  test_point <- sf::st_sfc(sf::st_point(c(longitude, latitude)), crs = 4326)
+  occ_sf <- sf::st_as_sf(
+    occ_df,
+    coords = c("decimalLongitude", "decimalLatitude"),
+    crs = 4326
+  )
+  distances <- sf::st_distance(test_point, occ_sf)
+  occ_df$distance_km <- as.numeric(distances) / 1000
+  min_distance_km <- as.numeric(min(distances)) / 1000
+  mean_distance_km <- mean(as.numeric(distances)) / 1000
+
+  if (circle_form) {
+    occ_df <- occ_df |>
+      filter(.data$distance_km <= radius_km)
+  }
+  if (nrow(occ_df) == 0) {
+    return(na_result)
+  }
+
+  list(
+    count_in_radius = nrow(occ_df),
+    closest_distance_km = round(min_distance_km, 2),
+    mean_distance_km = round(mean_distance_km, 2),
+    closest_point_lat = occ_df$decimalLatitude[which.min(occ_df$distance_km)],
+    closest_point_lon = occ_df$decimalLongitude[which.min(occ_df$distance_km)],
+    occ_data = occ_df
+  )
 }

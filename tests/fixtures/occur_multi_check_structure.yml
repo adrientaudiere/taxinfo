@@ -1,0 +1,1061 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Basidiodendron+eyrei
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23712634399 23541092309
+      age: '1633'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '886'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553838","name":"Basidiodendron eyrei (Wakef.) Luck-Allen","canonicalName":"Basidiodendron
+        eyrei","authorship":"(Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Basidiodendron","specificEpithet":"eyrei","type":"SCIENTIFIC","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":13,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":1,"luceneMatch":13}},"synonym":false,"left":81861,"right":81864}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Fomes+fomentarius
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23793336750 23585067949
+      age: '1634'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '878'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"8068867","name":"Fomes fomentarius (L.) Fr.","canonicalName":"Fomes
+        fomentarius","authorship":"(L.) Fr.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Fomes","specificEpithet":"fomentarius","type":"SCIENTIFIC","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":98,"timeTaken":8,"timings":{"nameNRank":0,"sciNameMatch":8,"nameParse":0,"luceneMatch":8}},"synonym":false,"left":109161,"right":109161}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Mycena+renati
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23758275543 23496432482
+      age: '1634'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '832'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"4911813","name":"Mycena renati Quél.","canonicalName":"Mycena
+        renati","authorship":"Quél.","rank":"SPECIES","status":"ACCEPTED","genericName":"Mycena","specificEpithet":"renati","type":"SCIENTIFIC","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":17,"timings":{"nameNRank":0,"sciNameMatch":18,"nameParse":1,"luceneMatch":17}},"synonym":false,"left":64888,"right":64889}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Xylodon+flaviporus
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23347574293 23668101421
+      age: '1634'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1014'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"9366699","name":"Xylodon flaviporus (Berk. & M.A.Curtis
+        ex Cooke) Riebesehl & Langer","canonicalName":"Xylodon flaviporus","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Xylodon","specificEpithet":"flaviporus","type":"SCIENTIFIC","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":13,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":2,"luceneMatch":12}},"synonym":false,"left":102669,"right":102674}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Stypella+subgelatinosa
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23485553929 23505837658
+      age: '1634'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '893'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553772","name":"Stypella subgelatinosa (P.Karst.)
+        P.Roberts","canonicalName":"Stypella subgelatinosa","authorship":"(P.Karst.)
+        P.Roberts","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Stypella","specificEpithet":"subgelatinosa","type":"SCIENTIFIC","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":14,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":1,"luceneMatch":13}},"synonym":false,"left":82237,"right":82239}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Sistotrema+raduloides
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:11:23 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23347803027 23167093710
+      age: '1634'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '926'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"5249676","name":"Sistotrema raduloides (P.Karst.)
+        Donk","canonicalName":"Sistotrema raduloides","authorship":"(P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Sistotrema","specificEpithet":"raduloides","type":"SCIENTIFIC","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"synonym":false,"left":93960,"right":93961}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=2553838
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23509114353 23781114845
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '80'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":858,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=8068867
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23786193414 23779378384
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '83'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":169410,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=4911813
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '15'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23743694424 23776592963
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":5649,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=9366699
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '14'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23746446778 23656666497
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":3859,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:38
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=2553772
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '13'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23790256515 23782458644
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '80'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":298,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:39
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=5249676
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:36:36 GMT
+      x-varnish-rli: '12'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: 23441810237 23754704335
+      age: '122'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1574,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:39
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=2553838
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:39 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23710210057'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":57,"results":[{"key":4940776463,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:13.493+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.42159,"decimalLongitude":8.06811,"coordinateUncertaintyInMeters":3535.0,"elevation":640.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.1_1","name":"Aarau"},"level3":{"gid":"CHE.1.1.8_1","name":"Küttigen"}},"higherGeography":"Jura
+        und Randen","year":2022,"month":9,"day":20,"eventDate":"2022-09-20","startDayOfYear":263,"endDayOfYear":263,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:13.493+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-940473"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-940473","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"4940776463","occurrenceID":"SWISSFUNGI-CH-940473","taxonID":"infospecies.ch:swissfungi:459","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/1","catalogNumber":"SWISSFUNGI-CH-940473","identificationQualifier":"aff.
+        eyrei","bibliographicCitation":"Swiss Fungi (2026-02-03) SWISSFUNGI-CH-940473.
+        Swiss National Fungi Databank. Birmensdorf, Swiss Federal Institute for Forest,
+        Snow and Landscape Research WSL"},{"key":4940825885,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:12.870+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.41985,"decimalLongitude":8.33314,"coordinateUncertaintyInMeters":3535.0,"elevation":520.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.2_1","name":"Baden"},"level3":{"gid":"CHE.1.2.18_1","name":"Remetschwil"}},"higherGeography":"Östliches
+        Mittelland","year":2022,"month":9,"day":21,"eventDate":"2022-09-21","startDayOfYear":264,"endDayOfYear":264,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:12.870+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-940108"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-940108","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Quercus spec.","identificationVerificationStatus":"Valid","gbifID":"4940825885","occurrenceID":"SWISSFUNGI-CH-940108","taxonID":"infospecies.ch:swissfungi:459","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-940108","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-940108. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120049737,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:29.811+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.3323,"decimalLongitude":7.93476,"coordinateUncertaintyInMeters":3535.0,"elevation":480.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.9_1","name":"Oftringen"}},"higherGeography":"Plateau
+        occidental","year":2021,"month":6,"day":1,"eventDate":"2021-06-01","startDayOfYear":152,"endDayOfYear":152,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:29.811+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-877708"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-877708","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Fagus sylvatica","identificationVerificationStatus":"Valid","gbifID":"4120049737","occurrenceID":"SWISSFUNGI-CH-877708","taxonID":"infospecies.ch:swissfungi:459","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-877708","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-877708. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120051777,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:10.267+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.51244,"decimalLongitude":7.87006,"coordinateUncertaintyInMeters":3535.0,"elevation":550.0,"continent":"EUROPE","stateProvince":"Bl","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.4_1","name":"Basel-Landschaft"},"level2":{"gid":"CHE.4.4_1","name":"Sissach"},"level3":{"gid":"CHE.4.4.4_1","name":"Buus"}},"higherGeography":"Hochrheingebiet","year":2021,"month":6,"day":9,"eventDate":"2021-06-09","startDayOfYear":160,"endDayOfYear":160,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:10.267+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-877905"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-877905","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Fagus sylvatica","identificationVerificationStatus":"Valid","gbifID":"4120051777","occurrenceID":"SWISSFUNGI-CH-877905","taxonID":"infospecies.ch:swissfungi:459","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/3","catalogNumber":"SWISSFUNGI-CH-877905","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-877905. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120053077,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:30.927+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"68CV8","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"38DM","name":"Basidiodendron","rank":"GENUS"},{"key":"68CV8","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"acceptedUsage":{"key":"2553838","name":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","authorship":"(Wakef.)
+        Luck-Allen","genericName":"Basidiodendron","specificEpithet":"eyrei","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2553838,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":7668534,"speciesKey":2553838,"acceptedTaxonKey":2553838,"scientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","scientificNameAuthorship":"(Wakef.) Luck-Allen","acceptedScientificName":"Basidiodendron
+        eyrei (Wakef.) Luck-Allen","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Basidiodendron","species":"Basidiodendron
+        eyrei","genericName":"Basidiodendron","specificEpithet":"eyrei","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.3323,"decimalLongitude":7.93476,"coordinateUncertaintyInMeters":3535.0,"elevation":520.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.9_1","name":"Oftringen"}},"higherGeography":"Plateau
+        occidental","year":2021,"month":6,"day":1,"eventDate":"2021-06-01","startDayOfYear":152,"endDayOfYear":152,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:30.927+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-880409"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-880409","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Fagus sylvatica","identificationVerificationStatus":"Valid","gbifID":"4120053077","occurrenceID":"SWISSFUNGI-CH-880409","taxonID":"infospecies.ch:swissfungi:459","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-880409","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-880409. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:39
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=8068867
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:39 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23732786259'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":508,"results":[{"key":6131192858,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:40:37.115+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-01-18T11:55:42-08:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682693/original.jpg","http://purl.org/dc/terms/rightsHolder":"Adrian
+        Senn","http://rs.tdwg.org/dwc/terms/catalogNumber":"609682693","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Adrian
+        Senn","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/609682693","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-01-18T11:50:38-08:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682712/original.jpg","http://purl.org/dc/terms/rightsHolder":"Adrian
+        Senn","http://rs.tdwg.org/dwc/terms/catalogNumber":"609682712","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Adrian
+        Senn","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/609682712","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-01-18T11:55:40-08:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682748/original.jpg","http://purl.org/dc/terms/rightsHolder":"Adrian
+        Senn","http://rs.tdwg.org/dwc/terms/catalogNumber":"609682748","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Adrian
+        Senn","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/609682748","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-01-21T13:30:22","decimalLatitude":47.826344,"decimalLongitude":8.019272,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.44_1","name":"Waldshut"},"level3":{"gid":"DEU.1.44.10_1","name":"St.
+        Blasien"}},"year":2026,"month":1,"day":18,"eventDate":"2026-01-18T11:55:42","startDayOfYear":18,"endDayOfYear":18,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-01-21T15:08:44.000+00:00","lastInterpreted":"2026-06-12T02:40:37.115+00:00","references":"https://www.inaturalist.org/observations/335592839","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"335592839"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/609682693","created":"2026-01-18T19:55:42.000+00:00","creator":"Adrian
+        Senn","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Adrian
+        Senn","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682693/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/609682712","created":"2026-01-18T19:50:38.000+00:00","creator":"Adrian
+        Senn","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Adrian
+        Senn","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682712/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/609682748","created":"2026-01-18T19:55:40.000+00:00","creator":"Adrian
+        Senn","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Adrian
+        Senn","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/609682748/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Adrian Senn","identifiedBy":"Adrian
+        Senn","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Adrian
+        Senn","identifier":"335592839","http://unknown.org/nick":"eupholus","verbatimEventDate":"2026-01-18
+        11:55:42","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"Waldshut,
+        DE-BW, DE","collectionCode":"Observations","gbifID":"6131192858","occurrenceID":"https://www.inaturalist.org/observations/335592839","taxonID":"127510","http://unknown.org/captive_cultivated":"wild","catalogNumber":"335592839","institutionCode":"iNaturalist","eventTime":"11:55:42+01:00","identificationID":"752873822"},{"key":6168936314,"datasetKey":"8a863029-f435-446a-821e-275f4f641165","publishingOrgKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","installationKey":"a0e05292-3d09-4eae-9f83-02ae3516283c","hostingOrganizationKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","publishingCountry":"NL","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T05:30:07.147+00:00","lastParsed":"2026-06-11T20:05:46.273+00:00","crawlId":205,"extensions":{"http://rs.tdwg.org/ac/terms/Multimedia":[{"http://purl.org/dc/elements/1.1/rights":"http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode","http://purl.org/dc/terms/identifier":"https://observation.org/photos/144816064","http://rs.tdwg.org/ac/terms/accessURI":"https://observation.org/photos/144816064.jpg","http://ns.adobe.com/xap/1.0/rights/Owner":"Inge
+        Sterk","http://purl.org/dc/elements/1.1/type":"StillImage","http://purl.org/dc/elements/1.1/creator":"Inge
+        Sterk","http://rs.tdwg.org/ac/terms/variantLiteral":"Best Quality","http://purl.org/dc/elements/1.1/format":"image/jpeg"},{"http://purl.org/dc/elements/1.1/rights":"http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode","http://purl.org/dc/terms/identifier":"https://observation.org/photos/144816065","http://rs.tdwg.org/ac/terms/accessURI":"https://observation.org/photos/144816065.jpg","http://ns.adobe.com/xap/1.0/rights/Owner":"Inge
+        Sterk","http://purl.org/dc/elements/1.1/type":"StillImage","http://purl.org/dc/elements/1.1/creator":"Inge
+        Sterk","http://rs.tdwg.org/ac/terms/variantLiteral":"Best Quality","http://purl.org/dc/elements/1.1/format":"image/jpeg"}]},"basisOfRecord":"HUMAN_OBSERVATION","individualCount":1,"occurrenceStatus":"PRESENT","lifeStage":"Unknown","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.744299,"decimalLongitude":8.918785,"coordinateUncertaintyInMeters":16.0,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.22_1","name":"Konstanz"},"level3":{"gid":"DEU.1.22.7_1","name":"Singen
+        (Hohentwiel)"}},"year":2026,"month":3,"day":5,"eventDate":"2026-03-05","startDayOfYear":64,"endDayOfYear":64,"issues":[],"modified":"2026-03-05T21:17:00.000+00:00","lastInterpreted":"2026-06-11T20:05:46.273+00:00","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"387552018"}],"media":[{"type":"StillImage","format":"image/jpeg","creator":"Inge
+        Sterk","license":"http://creativecommons.org/licenses/by-nc-nd/4.0/","rightsHolder":"Inge
+        Sterk","identifier":"https://observation.org/photos/144816064.jpg"},{"type":"StillImage","format":"image/jpeg","creator":"Inge
+        Sterk","license":"http://creativecommons.org/licenses/by-nc-nd/4.0/","rightsHolder":"Inge
+        Sterk","identifier":"https://observation.org/photos/144816065.jpg"}],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"User
+        992791","samplingProtocol":"unknown","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"EUROPE","rightsHolder":"Stichting
+        Observation International","identifier":"387552018","habitat":"unknown","http://unknown.org/crawl_attempt":"206","locality":"KN
+        Überlingen","http://unknown.org/status":"not_reviewed","http://unknown.org/griddedDataset":"{\"percentNN\":0.9424,\"countNN\":3010,\"distanceNN\":0.05}","identificationVerificationStatus":"Approved
+        | Expert | Evidence","gbifID":"6168936314","occurrenceID":"https://observation.org/observation/387552018","vernacularName":"Hoof
+        Fungus","http://unknown.org/omitFromScheduledCrawl":"true","eventTime":"17:11"},{"key":6169907230,"datasetKey":"8a863029-f435-446a-821e-275f4f641165","publishingOrgKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","installationKey":"a0e05292-3d09-4eae-9f83-02ae3516283c","hostingOrganizationKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","publishingCountry":"NL","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T05:30:07.147+00:00","lastParsed":"2026-06-11T19:59:18.166+00:00","crawlId":205,"extensions":{"http://rs.tdwg.org/ac/terms/Multimedia":[{"http://purl.org/dc/elements/1.1/rights":"http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode","http://purl.org/dc/terms/identifier":"https://observation.org/photos/144596240","http://rs.tdwg.org/ac/terms/accessURI":"https://observation.org/photos/144596240.jpg","http://ns.adobe.com/xap/1.0/rights/Owner":"Schnuffi","http://purl.org/dc/elements/1.1/type":"StillImage","http://purl.org/dc/elements/1.1/creator":"Schnuffi","http://rs.tdwg.org/ac/terms/variantLiteral":"Best
+        Quality","http://purl.org/dc/elements/1.1/format":"image/jpeg"}]},"basisOfRecord":"HUMAN_OBSERVATION","individualCount":1,"occurrenceStatus":"PRESENT","lifeStage":"Unknown","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.726534,"decimalLongitude":7.775678,"coordinateUncertaintyInMeters":3.0,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.23_1","name":"Lörrach"},"level3":{"gid":"DEU.1.23.4_1","name":"Kleines
+        Wiesental"}},"year":2026,"month":3,"day":1,"eventDate":"2026-03-01","startDayOfYear":60,"endDayOfYear":60,"issues":[],"modified":"2026-03-01T17:01:00.000+00:00","lastInterpreted":"2026-06-11T19:59:18.166+00:00","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"387131885"}],"media":[{"type":"StillImage","format":"image/jpeg","creator":"Schnuffi","license":"http://creativecommons.org/licenses/by-nc-nd/4.0/","rightsHolder":"Schnuffi","identifier":"https://observation.org/photos/144596240.jpg"}],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"User
+        1100752","samplingProtocol":"unknown","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"EUROPE","rightsHolder":"Stichting
+        Observation International","identifier":"387131885","habitat":"unknown","http://unknown.org/crawl_attempt":"206","locality":"LÖ
+        Sallneck","http://unknown.org/status":"not_reviewed","http://unknown.org/griddedDataset":"{\"percentNN\":0.9424,\"countNN\":3010,\"distanceNN\":0.05}","identificationVerificationStatus":"Approved
+        | Expert | Evidence","gbifID":"6169907230","occurrenceID":"https://observation.org/observation/387131885","vernacularName":"Hoof
+        Fungus","http://unknown.org/omitFromScheduledCrawl":"true","eventTime":"14:22"},{"key":6193130770,"datasetKey":"8a863029-f435-446a-821e-275f4f641165","publishingOrgKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","installationKey":"a0e05292-3d09-4eae-9f83-02ae3516283c","hostingOrganizationKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","publishingCountry":"NL","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T05:30:07.147+00:00","lastParsed":"2026-06-11T20:07:37.410+00:00","crawlId":205,"extensions":{"http://rs.tdwg.org/ac/terms/Multimedia":[{"http://purl.org/dc/elements/1.1/rights":"http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode","http://purl.org/dc/terms/identifier":"https://observation.org/photos/146906932","http://rs.tdwg.org/ac/terms/accessURI":"https://observation.org/photos/146906932.jpg","http://ns.adobe.com/xap/1.0/rights/Owner":"Sarah","http://purl.org/dc/elements/1.1/type":"StillImage","http://purl.org/dc/elements/1.1/creator":"Sarah","http://rs.tdwg.org/ac/terms/variantLiteral":"Best
+        Quality","http://purl.org/dc/elements/1.1/format":"image/jpeg"}]},"basisOfRecord":"HUMAN_OBSERVATION","individualCount":1,"occurrenceStatus":"PRESENT","lifeStage":"Unknown","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.676666,"decimalLongitude":8.39717,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.44_1","name":"Waldshut"},"level3":{"gid":"DEU.1.44.6_1","name":"Klettgau"}},"year":2026,"month":4,"day":7,"eventDate":"2026-04-07","startDayOfYear":97,"endDayOfYear":97,"issues":[],"modified":"2026-04-07T19:10:00.000+00:00","lastInterpreted":"2026-06-11T20:07:37.410+00:00","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"391216744"}],"media":[{"type":"StillImage","format":"image/jpeg","creator":"Sarah","license":"http://creativecommons.org/licenses/by-nc-nd/4.0/","rightsHolder":"Sarah","identifier":"https://observation.org/photos/146906932.jpg"}],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"User
+        1240149","samplingProtocol":"unknown","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"EUROPE","rightsHolder":"Stichting
+        Observation International","identifier":"391216744","habitat":"unknown","http://unknown.org/crawl_attempt":"206","locality":"WT
+        Erzingen","http://unknown.org/status":"not_reviewed","http://unknown.org/griddedDataset":"{\"percentNN\":0.9424,\"countNN\":3010,\"distanceNN\":0.05}","identificationVerificationStatus":"Approved
+        | Expert | Evidence","gbifID":"6193130770","occurrenceID":"https://observation.org/observation/391216744","vernacularName":"Hoof
+        Fungus","http://unknown.org/omitFromScheduledCrawl":"true","eventTime":"18:44"},{"key":6193493531,"datasetKey":"8a863029-f435-446a-821e-275f4f641165","publishingOrgKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","installationKey":"a0e05292-3d09-4eae-9f83-02ae3516283c","hostingOrganizationKey":"c8d737e0-2ff8-42e8-b8fc-6b805d26fc5f","publishingCountry":"NL","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-09T05:30:07.147+00:00","lastParsed":"2026-06-11T20:04:59.325+00:00","crawlId":205,"extensions":{"http://rs.tdwg.org/ac/terms/Multimedia":[{"http://purl.org/dc/elements/1.1/rights":"http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode","http://purl.org/dc/terms/identifier":"https://observation.org/photos/146906901","http://rs.tdwg.org/ac/terms/accessURI":"https://observation.org/photos/146906901.jpg","http://ns.adobe.com/xap/1.0/rights/Owner":"Sarah","http://purl.org/dc/elements/1.1/type":"StillImage","http://purl.org/dc/elements/1.1/creator":"Sarah","http://rs.tdwg.org/ac/terms/variantLiteral":"Best
+        Quality","http://purl.org/dc/elements/1.1/format":"image/jpeg"}]},"basisOfRecord":"HUMAN_OBSERVATION","individualCount":1,"occurrenceStatus":"PRESENT","lifeStage":"Unknown","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"6JCQK","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3VM","name":"Polyporales","rank":"ORDER"},{"key":"627LB","name":"Polyporaceae","rank":"FAMILY"},{"key":"4KNT","name":"Fomes","rank":"GENUS"},{"key":"6JCQK","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"acceptedUsage":{"key":"8068867","name":"Fomes
+        fomentarius (L.) Fr.","rank":"SPECIES","code":"BOTANICAL","authorship":"(L.)
+        Fr.","genericName":"Fomes","specificEpithet":"fomentarius","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"issues":[]}},"taxonKey":8068867,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1145,"familyKey":3286,"genusKey":2518074,"speciesKey":8068867,"acceptedTaxonKey":8068867,"scientificName":"Fomes
+        fomentarius (L.) Fr.","scientificNameAuthorship":"(L.) Fr.","acceptedScientificName":"Fomes
+        fomentarius (L.) Fr.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Polyporales","family":"Polyporaceae","genus":"Fomes","species":"Fomes
+        fomentarius","genericName":"Fomes","specificEpithet":"fomentarius","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.676664,"decimalLongitude":8.397163,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.44_1","name":"Waldshut"},"level3":{"gid":"DEU.1.44.6_1","name":"Klettgau"}},"year":2026,"month":4,"day":7,"eventDate":"2026-04-07","startDayOfYear":97,"endDayOfYear":97,"issues":[],"modified":"2026-04-07T19:10:00.000+00:00","lastInterpreted":"2026-06-11T20:04:59.325+00:00","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"391216680"}],"media":[{"type":"StillImage","format":"image/jpeg","creator":"Sarah","license":"http://creativecommons.org/licenses/by-nc-nd/4.0/","rightsHolder":"Sarah","identifier":"https://observation.org/photos/146906901.jpg"}],"facts":[],"relations":[],"isInCluster":false,"recordedBy":"User
+        1240149","samplingProtocol":"unknown","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"EUROPE","rightsHolder":"Stichting
+        Observation International","identifier":"391216680","habitat":"unknown","http://unknown.org/crawl_attempt":"206","locality":"WT
+        Erzingen","http://unknown.org/status":"not_reviewed","http://unknown.org/griddedDataset":"{\"percentNN\":0.9424,\"countNN\":3010,\"distanceNN\":0.05}","identificationVerificationStatus":"Approved
+        | Expert | Evidence","gbifID":"6193493531","occurrenceID":"https://observation.org/observation/391216680","vernacularName":"Hoof
+        Fungus","http://unknown.org/omitFromScheduledCrawl":"true","eventTime":"18:44"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:39
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=4911813
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:39 GMT
+      x-varnish-rli: '15'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23743792772'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":304,"results":[{"key":6320924889,"datasetKey":"50c9509d-22c7-4a22-a47d-8c48425ef4a7","publishingOrgKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","installationKey":"997448a8-f762-11e1-a439-00145eb45e9a","hostingOrganizationKey":"28eb1a3f-1c15-4a95-931a-4af90ecb574d","publishingCountry":"US","protocol":"DWC_ARCHIVE","lastCrawled":"2026-06-05T18:15:48.952+00:00","lastParsed":"2026-06-12T02:30:59.383+00:00","crawlId":595,"extensions":{"http://rs.gbif.org/terms/1.0/Multimedia":[{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-16T13:50:41-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860510/original.jpg","http://purl.org/dc/terms/rightsHolder":"Zoom","http://rs.tdwg.org/dwc/terms/catalogNumber":"660860510","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Zoom","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/660860510","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-16T13:50:38-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860566/original.jpg","http://purl.org/dc/terms/rightsHolder":"Zoom","http://rs.tdwg.org/dwc/terms/catalogNumber":"660860566","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Zoom","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/660860566","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-16T13:50:55-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860624/original.jpg","http://purl.org/dc/terms/rightsHolder":"Zoom","http://rs.tdwg.org/dwc/terms/catalogNumber":"660860624","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Zoom","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/660860624","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-16T13:51:07-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860686/original.jpg","http://purl.org/dc/terms/rightsHolder":"Zoom","http://rs.tdwg.org/dwc/terms/catalogNumber":"660860686","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Zoom","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/660860686","http://purl.org/dc/terms/publisher":"iNaturalist"},{"http://purl.org/dc/terms/license":"https://creativecommons.org/licenses/by-nc/4.0/","http://purl.org/dc/terms/created":"2026-05-16T13:51:19-07:00","http://purl.org/dc/terms/format":"image/jpeg","http://purl.org/dc/terms/identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860743/original.jpg","http://purl.org/dc/terms/rightsHolder":"Zoom","http://rs.tdwg.org/dwc/terms/catalogNumber":"660860743","http://purl.org/dc/terms/type":"StillImage","http://purl.org/dc/terms/creator":"Zoom","http://purl.org/dc/terms/references":"https://www.inaturalist.org/photos/660860743","http://purl.org/dc/terms/publisher":"iNaturalist"}]},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","dateIdentified":"2026-05-16T18:47:19","decimalLatitude":47.484353,"decimalLongitude":8.727108,"continent":"EUROPE","stateProvince":"Zürich","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.26_1","name":"Zürich"},"level2":{"gid":"CHE.26.12_1","name":"Winterthur"},"level3":{"gid":"CHE.26.12.20_1","name":"Winterthur"}},"year":2026,"month":5,"day":16,"eventDate":"2026-05-16T13:50:41","startDayOfYear":136,"endDayOfYear":136,"issues":["COORDINATE_ROUNDED","CONTINENT_DERIVED_FROM_COORDINATES","TAXON_ID_NOT_FOUND"],"modified":"2026-05-18T00:17:24.000+00:00","lastInterpreted":"2026-06-12T02:30:59.383+00:00","references":"https://www.inaturalist.org/observations/362095784","license":"http://creativecommons.org/licenses/by-nc/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"362095784"}],"media":[{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/660860510","created":"2026-05-16T20:50:41.000+00:00","creator":"Zoom","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Zoom","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860510/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/660860566","created":"2026-05-16T20:50:38.000+00:00","creator":"Zoom","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Zoom","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860566/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/660860624","created":"2026-05-16T20:50:55.000+00:00","creator":"Zoom","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Zoom","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860624/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/660860686","created":"2026-05-16T20:51:07.000+00:00","creator":"Zoom","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Zoom","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860686/original.jpg"},{"type":"StillImage","format":"image/jpeg","references":"https://www.inaturalist.org/photos/660860743","created":"2026-05-16T20:51:19.000+00:00","creator":"Zoom","publisher":"iNaturalist","license":"http://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Zoom","identifier":"https://inaturalist-open-data.s3.amazonaws.com/photos/660860743/original.jpg"}],"facts":[],"relations":[],"isInCluster":false,"datasetName":"iNaturalist
+        research-grade observations","recordedBy":"Zoom","identifiedBy":"Zoom","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"NORTH_AMERICA","rightsHolder":"Zoom","identifier":"362095784","http://unknown.org/nick":"naturezoom","verbatimEventDate":"2026-05-16
+        13:50:41","http://unknown.org/crawl_attempt":"595","http://unknown.org/status":"not_reviewed","verbatimLocality":"8400
+        Winterthur, Schweiz","collectionCode":"Observations","gbifID":"6320924889","occurrenceID":"https://www.inaturalist.org/observations/362095784","taxonID":"464807","http://unknown.org/captive_cultivated":"wild","catalogNumber":"362095784","institutionCode":"iNaturalist","eventTime":"13:50:41+02:00","identificationID":"812869895"},{"key":6118470209,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:13.726+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.28702,"decimalLongitude":8.00043,"coordinateUncertaintyInMeters":3535.0,"elevation":558.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.3_1","name":"Bottenwil"}},"higherGeography":"Plateau
+        occidental","year":2025,"month":4,"day":22,"eventDate":"2025-04-22","startDayOfYear":112,"endDayOfYear":112,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:13.726+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1226727"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1226727","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-1226727","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118470209","occurrenceID":"SWISSFUNGI-CH-1226727","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1226727. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:4842"},{"key":6118428421,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:15.730+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":46.97187,"decimalLongitude":8.06285,"coordinateUncertaintyInMeters":3535.0,"elevation":909.0,"continent":"EUROPE","stateProvince":"Lu","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.12_1","name":"Lucerne"},"level2":{"gid":"CHE.12.1_1","name":"Entlebuch"},"level3":{"gid":"CHE.12.1.5_1","name":"Hasle"}},"distanceFromCentroidInMeters":4852.81304171551,"higherGeography":"Nordalpen","year":2025,"month":5,"day":25,"eventDate":"2025-05-25","startDayOfYear":145,"endDayOfYear":145,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:15.730+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1249795"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1249795","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/7","catalogNumber":"SWISSFUNGI-CH-1249795","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118428421","occurrenceID":"SWISSFUNGI-CH-1249795","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1249795. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:4842"},{"key":6118448157,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:34.732+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.3304,"decimalLongitude":8.26549,"coordinateUncertaintyInMeters":3535.0,"elevation":608.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.3_1","name":"Bremgarten"},"level3":{"gid":"CHE.1.3.4_1","name":"Büttikon"}},"higherGeography":"Östliches
+        Mittelland","year":2025,"month":5,"day":11,"eventDate":"2025-05-11","startDayOfYear":131,"endDayOfYear":131,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:34.732+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1227186"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1227186","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-1227186","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118448157","occurrenceID":"SWISSFUNGI-CH-1227186","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1227186. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:4842"},{"key":6118453262,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:16.368+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"44TRQ","name":"Mycena
+        renati Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"44TRQ","name":"Mycena renati
+        Quél.","rank":"SPECIES","code":"BOTANICAL","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"N8","name":"Agaricales","rank":"ORDER"},{"key":"D22","name":"Mycenaceae","rank":"FAMILY"},{"key":"5W27","name":"Mycena","rank":"GENUS"},{"key":"44TRQ","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"4911813","name":"Mycena
+        renati Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"acceptedUsage":{"key":"4911813","name":"Mycena renati
+        Quél.","rank":"SPECIES","authorship":"Quél.","genericName":"Mycena","specificEpithet":"renati","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"taxonomicStatus":"ACCEPTED","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":4911813,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1499,"familyKey":4180,"genusKey":5955261,"speciesKey":4911813,"acceptedTaxonKey":4911813,"scientificName":"Mycena
+        renati Quél.","scientificNameAuthorship":"Quél.","acceptedScientificName":"Mycena
+        renati Quél.","kingdom":"Fungi","phylum":"Basidiomycota","order":"Agaricales","family":"Mycenaceae","genus":"Mycena","species":"Mycena
+        renati","genericName":"Mycena","specificEpithet":"renati","taxonRank":"SPECIES","taxonomicStatus":"ACCEPTED","decimalLatitude":47.10555,"decimalLongitude":8.26202,"coordinateUncertaintyInMeters":3535.0,"elevation":569.0,"continent":"EUROPE","stateProvince":"Lu","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.12_1","name":"Lucerne"},"level2":{"gid":"CHE.12.2_1","name":"Hochdorf"},"level3":{"gid":"CHE.12.2.19_1","name":"Rothenburg"}},"higherGeography":"Östliches
+        Mittelland","year":2025,"month":5,"day":10,"eventDate":"2025-05-10","startDayOfYear":130,"endDayOfYear":130,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:16.368+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1277424"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","identifiedBy":"Zopp
+        René","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1277424","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Fraxinus excelsior","identificationVerificationStatus":"Valid","gbifID":"6118453262","occurrenceID":"SWISSFUNGI-CH-1277424","taxonID":"infospecies.ch:swissfungi:4842","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-1277424","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1277424. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:39
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=9366699
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:40 GMT
+      x-varnish-rli: '14'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23711452143'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":145,"results":[{"key":6118441319,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:33.007+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4VCD9","name":"Schizopora
+        flavipora (Berk. & M.A. Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A. Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2518664","name":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A.Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2518664,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","acceptedScientificName":"Xylodon flaviporus
+        (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Schizopora","specificEpithet":"flavipora","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.37378,"decimalLongitude":8.46478,"coordinateUncertaintyInMeters":3535.0,"elevation":560.0,"continent":"EUROPE","stateProvince":"Zh","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.26_1","name":"Zürich"},"level2":{"gid":"CHE.26.5_1","name":"Dietikon"},"level3":{"gid":"CHE.26.5.8_1","name":"Uitikon"}},"higherGeography":"Östliches
+        Mittelland","year":2025,"month":11,"day":4,"eventDate":"2025-11-04","startDayOfYear":308,"endDayOfYear":308,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:33.007+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1269579"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1269579","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-1269579","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118441319","occurrenceID":"SWISSFUNGI-CH-1269579","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1269579. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:6467"},{"key":6118455259,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:33.396+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4VCD9","name":"Schizopora
+        flavipora (Berk. & M.A. Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A. Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2518664","name":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A.Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2518664,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","acceptedScientificName":"Xylodon flaviporus
+        (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Schizopora","specificEpithet":"flavipora","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.37378,"decimalLongitude":8.46478,"coordinateUncertaintyInMeters":3535.0,"elevation":554.0,"continent":"EUROPE","stateProvince":"Zh","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.26_1","name":"Zürich"},"level2":{"gid":"CHE.26.5_1","name":"Dietikon"},"level3":{"gid":"CHE.26.5.8_1","name":"Uitikon"}},"higherGeography":"Östliches
+        Mittelland","year":2025,"month":11,"day":1,"eventDate":"2025-11-01","startDayOfYear":305,"endDayOfYear":305,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:33.396+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1271796"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1271796","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-1271796","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118455259","occurrenceID":"SWISSFUNGI-CH-1271796","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1271796. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:6467"},{"key":4940832770,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:14.447+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4VCD9","name":"Schizopora
+        flavipora (Berk. & M.A. Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A. Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2518664","name":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A.Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2518664,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","acceptedScientificName":"Xylodon flaviporus
+        (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Schizopora","specificEpithet":"flavipora","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.24319,"decimalLongitude":7.66977,"coordinateUncertaintyInMeters":3535.0,"elevation":480.0,"continent":"EUROPE","stateProvince":"Be","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.6_1","name":"Bern"},"level2":{"gid":"CHE.6.26_1","name":"Wangen"},"level3":{"gid":"CHE.6.26.25_1","name":"Wiedlisbach"}},"higherGeography":"Plateau
+        occidental","year":2024,"month":2,"day":12,"eventDate":"2024-02-12","startDayOfYear":43,"endDayOfYear":43,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:14.447+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-987144"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-987144","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Quercus spec.","identificationVerificationStatus":"Valid","gbifID":"4940832770","occurrenceID":"SWISSFUNGI-CH-987144","taxonID":"infospecies.ch:swissfungi:6467","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-987144","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-987144. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":6118420491,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:14.520+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4VCD9","name":"Schizopora
+        flavipora (Berk. & M.A. Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A. Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2518664","name":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A.Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2518664,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","acceptedScientificName":"Xylodon flaviporus
+        (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Schizopora","specificEpithet":"flavipora","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.73082,"decimalLongitude":8.73833,"coordinateUncertaintyInMeters":3535.0,"elevation":482.0,"continent":"EUROPE","stateProvince":"Baden-Württemberg","gadm":{"level0":{"gid":"DEU","name":"Germany"},"level1":{"gid":"DEU.1_1","name":"Baden-Württemberg"},"level2":{"gid":"DEU.1.22_1","name":"Konstanz"},"level3":{"gid":"DEU.1.22.2_1","name":"Gottmadingen"}},"higherGeography":"Hochrheingebiet","year":2024,"month":9,"day":30,"eventDate":"2024-09-30","startDayOfYear":274,"endDayOfYear":274,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:14.520+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1019512"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"DE","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Germany","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1019512","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Quercus spec.","identificationVerificationStatus":"Valid","gbifID":"6118420491","occurrenceID":"SWISSFUNGI-CH-1019512","taxonID":"infospecies.ch:swissfungi:6467","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/3","catalogNumber":"SWISSFUNGI-CH-1019512","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1019512. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":6118460070,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:16.091+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"4VCD9","name":"Schizopora
+        flavipora (Berk. & M.A. Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A. Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"5CL86","name":"Xylodon
+        flaviporus (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A. Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A. Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"3D7","name":"Hymenochaetales","rank":"ORDER"},{"key":"G3D","name":"Schizoporaceae","rank":"FAMILY"},{"key":"649C8","name":"Xylodon","rank":"GENUS"},{"key":"5CL86","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"2518664","name":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","genericName":"Schizopora","specificEpithet":"flavipora","formattedName":"<i>Schizopora</i>
+        <i>flavipora</i> (Berk. & M.A.Curtis ex Cooke) Ryvarden"},"acceptedUsage":{"key":"9366699","name":"Xylodon
+        flaviporus (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","genericName":"Xylodon","specificEpithet":"flaviporus","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":2518664,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1304,"familyKey":3298,"genusKey":2519089,"speciesKey":9366699,"acceptedTaxonKey":9366699,"scientificName":"Schizopora
+        flavipora (Berk. & M.A.Curtis ex Cooke) Ryvarden","scientificNameAuthorship":"(Berk.
+        & M.A.Curtis ex Cooke) Ryvarden","acceptedScientificName":"Xylodon flaviporus
+        (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer","kingdom":"Fungi","phylum":"Basidiomycota","order":"Hymenochaetales","family":"Schizoporaceae","genus":"Xylodon","species":"Xylodon
+        flaviporus","genericName":"Schizopora","specificEpithet":"flavipora","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.28589,"decimalLongitude":8.19871,"coordinateUncertaintyInMeters":3535.0,"elevation":710.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.5_1","name":"Kulm"},"level3":{"gid":"CHE.1.5.2_1","name":"Birrwil"}},"higherGeography":"Östliches
+        Mittelland","year":2024,"month":10,"day":11,"eventDate":"2024-10-11","startDayOfYear":285,"endDayOfYear":285,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:16.091+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-1023446"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-1023446","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-1023446","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"6118460070","occurrenceID":"SWISSFUNGI-CH-1023446","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-1023446. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:6467"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:40
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=2553772
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:40 GMT
+      x-varnish-rli: '13'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23389030007'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":false,"count":12,"results":[{"key":4940785331,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:14.186+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"S36VV","name":"Protodontia
+        subgelatinosa (P. Karst.) Pilat","rank":"SPECIES","authorship":"(P. Karst.)
+        Pilat","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P. Karst.) Pilat"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"7804638","name":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Pilát","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P.Karst.) Pilát"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":7804638,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","scientificNameAuthorship":"(P.Karst.) Pilát","acceptedScientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Protodontia","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.41985,"decimalLongitude":8.33314,"coordinateUncertaintyInMeters":3535.0,"elevation":520.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.2_1","name":"Baden"},"level3":{"gid":"CHE.1.2.18_1","name":"Remetschwil"}},"higherGeography":"Östliches
+        Mittelland","year":2022,"month":9,"day":21,"eventDate":"2022-09-21","startDayOfYear":264,"endDayOfYear":264,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:14.186+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-940117"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-940117","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Quercus spec.","identificationVerificationStatus":"Valid","gbifID":"4940785331","occurrenceID":"SWISSFUNGI-CH-940117","taxonID":"infospecies.ch:swissfungi:5799","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/5","catalogNumber":"SWISSFUNGI-CH-940117","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-940117. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120049724,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:08.035+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"S36VV","name":"Protodontia
+        subgelatinosa (P. Karst.) Pilat","rank":"SPECIES","authorship":"(P. Karst.)
+        Pilat","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P. Karst.) Pilat"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"7804638","name":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Pilát","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P.Karst.) Pilát"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":7804638,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","scientificNameAuthorship":"(P.Karst.) Pilát","acceptedScientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Protodontia","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.3323,"decimalLongitude":7.93476,"coordinateUncertaintyInMeters":3535.0,"elevation":640.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.9_1","name":"Oftringen"}},"higherGeography":"Plateau
+        occidental","year":2021,"month":5,"day":31,"eventDate":"2021-05-31","startDayOfYear":151,"endDayOfYear":151,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:08.035+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-877609"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-877609","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Fagus sylvatica","identificationVerificationStatus":"Valid","gbifID":"4120049724","occurrenceID":"SWISSFUNGI-CH-877609","taxonID":"infospecies.ch:swissfungi:5799","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-877609","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-877609. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120050854,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:07.633+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"S36VV","name":"Protodontia
+        subgelatinosa (P. Karst.) Pilat","rank":"SPECIES","authorship":"(P. Karst.)
+        Pilat","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P. Karst.) Pilat"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"7804638","name":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Pilát","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P.Karst.) Pilát"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":7804638,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","scientificNameAuthorship":"(P.Karst.) Pilát","acceptedScientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Protodontia","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.24262,"decimalLongitude":7.86788,"coordinateUncertaintyInMeters":3535.0,"elevation":480.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.8_1","name":"Murgenthal"}},"higherGeography":"Plateau
+        occidental","year":2021,"month":6,"day":4,"eventDate":"2021-06-04","startDayOfYear":155,"endDayOfYear":155,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:07.633+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-878914"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-878914","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-878914","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"4120050854","occurrenceID":"SWISSFUNGI-CH-878914","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-878914. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:5799"},{"key":4120068732,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:12.925+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"S36VV","name":"Protodontia
+        subgelatinosa (P. Karst.) Pilat","rank":"SPECIES","authorship":"(P. Karst.)
+        Pilat","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P. Karst.) Pilat"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"7804638","name":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Pilát","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P.Karst.) Pilát"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":7804638,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","scientificNameAuthorship":"(P.Karst.) Pilát","acceptedScientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Protodontia","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":46.96487,"decimalLongitude":8.8512,"coordinateUncertaintyInMeters":3535.0,"elevation":1440.0,"continent":"EUROPE","stateProvince":"Sz","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.18_1","name":"Schwyz"},"level2":{"gid":"CHE.18.6_1","name":"Schwyz"},"level3":{"gid":"CHE.18.6.7_1","name":"Muotathal"}},"higherGeography":"Nordalpen","year":2021,"month":8,"day":9,"eventDate":"2021-08-09","startDayOfYear":221,"endDayOfYear":221,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:12.925+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-894998"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-894998","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","associatedOrganisms":"Picea abies","identificationVerificationStatus":"Valid","gbifID":"4120068732","occurrenceID":"SWISSFUNGI-CH-894998","taxonID":"infospecies.ch:swissfungi:5799","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/7","catalogNumber":"SWISSFUNGI-CH-894998","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-894998. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL"},{"key":4120052900,"datasetKey":"c0633ec5-19cd-4a58-b84c-ca55c2e7ae64","publishingOrgKey":"64ee55c9-570a-42af-b7da-3f13c6b4e5a9","networkKeys":["0b00b924-016b-4954-96a7-2d9264b5d0ba"],"installationKey":"dc9d8bd0-3c20-4fba-b7ff-26d654817ea7","hostingOrganizationKey":"23e067c0-a255-11da-beae-b8a03c50a862","publishingCountry":"CH","protocol":"EML","lastCrawled":"2026-06-10T01:48:30.452+00:00","lastParsed":"2026-06-12T00:39:10.181+00:00","crawlId":234,"extensions":{},"basisOfRecord":"HUMAN_OBSERVATION","occurrenceStatus":"PRESENT","classifications":{"7ddf754f-d193-4cc9-b351-99906754a03b":{"usage":{"key":"S36VV","name":"Protodontia
+        subgelatinosa (P. Karst.) Pilat","rank":"SPECIES","authorship":"(P. Karst.)
+        Pilat","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P. Karst.) Pilat"},"acceptedUsage":{"key":"7B2F2","name":"Stypella
+        subgelatinosa (P. Karst.) P. Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.
+        Karst.) P. Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P. Karst.) P. Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"CS5HF","name":"Eukaryota","rank":"DOMAIN"},{"key":"F","name":"Fungi","rank":"KINGDOM"},{"key":"BM","name":"Basidiomycota","rank":"PHYLUM"},{"key":"7C","name":"Agaricomycetes","rank":"CLASS"},{"key":"62295","name":"Auriculariales","rank":"ORDER"},{"key":"B7H","name":"Hyaloriaceae","rank":"FAMILY"},{"key":"645QT","name":"Stypella","rank":"GENUS"},{"key":"7B2F2","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]},"d7dddbf4-2cf0-4f39-9b2a-bb099caae36c":{"usage":{"key":"7804638","name":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        Pilát","genericName":"Protodontia","specificEpithet":"subgelatinosa","formattedName":"<i>Protodontia</i>
+        <i>subgelatinosa</i> (P.Karst.) Pilát"},"acceptedUsage":{"key":"2553772","name":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","rank":"SPECIES","code":"BOTANICAL","authorship":"(P.Karst.)
+        P.Roberts","genericName":"Stypella","specificEpithet":"subgelatinosa","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"taxonomicStatus":"SYNONYM","classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"issues":["TAXON_ID_NOT_FOUND"]}},"taxonKey":7804638,"kingdomKey":5,"phylumKey":34,"classKey":186,"orderKey":1062,"genusKey":8616703,"speciesKey":2553772,"acceptedTaxonKey":2553772,"scientificName":"Protodontia
+        subgelatinosa (P.Karst.) Pilát","scientificNameAuthorship":"(P.Karst.) Pilát","acceptedScientificName":"Stypella
+        subgelatinosa (P.Karst.) P.Roberts","kingdom":"Fungi","phylum":"Basidiomycota","order":"Auriculariales","genus":"Stypella","species":"Stypella
+        subgelatinosa","genericName":"Protodontia","specificEpithet":"subgelatinosa","taxonRank":"SPECIES","taxonomicStatus":"SYNONYM","decimalLatitude":47.24262,"decimalLongitude":7.86788,"coordinateUncertaintyInMeters":3535.0,"elevation":480.0,"continent":"EUROPE","stateProvince":"Ag","gadm":{"level0":{"gid":"CHE","name":"Switzerland"},"level1":{"gid":"CHE.1_1","name":"Aargau"},"level2":{"gid":"CHE.1.10_1","name":"Zofingen"},"level3":{"gid":"CHE.1.10.8_1","name":"Murgenthal"}},"higherGeography":"Plateau
+        occidental","year":2021,"month":9,"day":23,"eventDate":"2021-09-23","startDayOfYear":266,"endDayOfYear":266,"issues":["TAXON_ID_NOT_FOUND"],"lastInterpreted":"2026-06-12T00:39:10.181+00:00","license":"http://creativecommons.org/licenses/by/4.0/legalcode","isSequenced":false,"identifiers":[{"identifier":"SWISSFUNGI-CH-878938"}],"media":[],"facts":[],"relations":[],"isInCluster":false,"datasetID":"https://doi.org/10.15468/7jnc5v","dnaSequenceID":[],"nucleotideSequence":[],"geodeticDatum":"WGS84","class":"Agaricomycetes","countryCode":"CH","recordedByIDs":[],"identifiedByIDs":[],"gbifRegion":"EUROPE","country":"Switzerland","publishedByGbifRegion":"EUROPE","rightsHolder":"https://www.swissfungi.ch","identifier":"SWISSFUNGI-CH-878938","higherGeographyID":"https://geo.ld.admin.ch/environment/biogeographicalregion/4","catalogNumber":"SWISSFUNGI-CH-878938","nomenclaturalCode":"ICN","http://unknown.org/crawl_attempt":"251","dataGeneralizations":"In
+        order to respect the currently nationally agreed ethical framework while simultaneously
+        sharing scientifically utilizable data for large scale studies, Swiss biodiversity
+        data is generally published generalized to 5km grid squares. Altitude information
+        corresponds to raw data.","identificationVerificationStatus":"Valid","gbifID":"4120052900","occurrenceID":"SWISSFUNGI-CH-878938","bibliographicCitation":"Swiss
+        Fungi (2026-02-03) SWISSFUNGI-CH-878938. Swiss National Fungi Databank. Birmensdorf,
+        Swiss Federal Institute for Forest, Snow and Landscape Research WSL","taxonID":"infospecies.ch:swissfungi:5799"}],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:40
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=46.9308444125045%2C47.8291555874955&decimalLongitude=7.64668028209211%2C8.9733197179079&taxonKey=5249676
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:40 GMT
+      x-varnish-rli: '12'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23547844792'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '77'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":true,"count":0,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:40
+recorded_with: VCR-vcr/2.1.0

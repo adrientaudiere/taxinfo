@@ -1,0 +1,80 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Trametopsis+brasiliensis&verbose=FALSE
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:29:12 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 23794156065 23785243437
+      age: '552'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1218'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"9696622","name":"Trametopsis brasiliensis (Ryvarden
+        & de Meijer) Gómez-Mont. & Robledo","canonicalName":"Trametopsis brasiliensis","authorship":"(Ryvarden
+        & de Meijer) Gómez-Mont. & Robledo","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Trametopsis","specificEpithet":"brasiliensis","type":"SCIENTIFIC","formattedName":"<i>Trametopsis</i>
+        <i>brasiliensis</i> (Ryvarden & de Meijer) Gómez-Mont. & Robledo"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3292639","name":"Irpicaceae","rank":"FAMILY"},{"key":"2546001","name":"Trametopsis","rank":"GENUS"},{"key":"9696622","name":"Trametopsis
+        brasiliensis","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":12,"timings":{"nameNRank":0,"sciNameMatch":13,"nameParse":1,"luceneMatch":12}},"additionalStatus":[{"clbDatasetKey":"53131","datasetAlias":"IUCN","datasetKey":"19491596-35ae-4a91-9a98-85cf505f1bd3","status":"VULNERABLE","statusCode":"VU","sourceId":"209595252"}],"synonym":false,"left":106376,"right":106376}'
+  recorded_at: 2026-06-17 13:38:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&occurrenceStatus=PRESENT&limit=0&offset=0&facetLimit=&taxonKey=9696622
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:25 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23753885169'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '78'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?hasCoordinate=TRUE&hasGeospatialIssue=FALSE&occurrenceStatus=PRESENT&limit=5&offset=0&decimalLatitude=47.958288825009%2C49.754911174991&decimalLongitude=0.986873111807337%2C3.71752688819266&taxonKey=9696622
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 13:38:26 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23706799799'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":5,"endOfRecords":true,"count":0,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 13:38:26
+recorded_with: VCR-vcr/2.1.0

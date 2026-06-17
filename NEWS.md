@@ -1,5 +1,13 @@
 # taxinfo (development version)
 
+## Breaking changes
+
+* The GBIF occurrence functions (`tax_gbif_occur_coords()`, `tax_occur_check()`, `tax_occur_check_pq()`, `tax_occur_multi_check_pq()`) now default to GBIF's Download API (`method = "download"`), which requires GBIF credentials (`GBIF_USER`, `GBIF_PWD`, `GBIF_EMAIL` in your `.Renviron`). The previous `rgbif::occ_search()` behaviour is still available with `method = "search"` (no credentials, capped at 100,000 records). See <https://docs.ropensci.org/rgbif/articles/gbif_credentials.html>.
+
+* `tax_occur_check()` (and its `*_pq()` wrappers) now report the true worldwide georeferenced count in `total_count_in_world` for taxa with no occurrence in the search radius, where the previous behaviour returned `0`.
+
+## Changes
+
 * The WWF/TNC ecoregion layer downloaded on first use by the ecoregion functions (`points_to_ecoregions()`, `tax_check_ecoregion()`, `tax_ecoregion_occur()`) is now written to a stable per-user cache directory (`tools::R_user_dir("taxinfo", "cache")`) instead of an `inst/extdata/downloads` folder created under the current working directory.
 
 * `gna_verifier_pq()` removes the `stats` and `main_taxon_threshold` parameters. These only affected kingdom-level summary metadata (not per-name results), and `main_taxon_threshold` was never forwarded to the API by `taxize::gna_verifier()` anyway.
@@ -7,6 +15,14 @@
 * `select_taxa_pq()` aborts with an explicit message naming the requested `taxnames` when none of them match the `tax_table`, instead of failing with an obscure `OTU abundance data must have non-zero dimensions` error; `taxa_summary_text()` inherits the same clear behaviour.
 
 * New function `tax_crosscheck_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.
+
+* `tax_ecoregion_occur()` gains a `method` argument (forwarded to `tax_gbif_occur_coords()`) and keeps the credential-free `rgbif::occ_search()` path as its default, so ecoregion profiling and its wrappers (`tax_ecoregion_occur_pq()`, `tax_check_ecoregion()`) do not require GBIF credentials.
+
+* `tax_gbif_occur_coords()` gains a `method` argument (`"download"`, `"download_sql"`, `"search"`) and server-side filter arguments (`country`, `year_gte`, `year_lte`, `geometry`). The default `"download"` collapses the former per-taxon `rgbif::occ_search()` loop into a single, citable `rgbif::occ_download()` request and correctly retains infraspecific and higher-rank records.
+
+* `tax_occur_check()` gains a `method` argument (`"download"`, `"search"`); with `method = "download"` it issues a single `rgbif::occ_download()` constrained to the search bounding box instead of `rgbif::occ_search()`.
+
+* `tax_occur_check_pq()` and `tax_occur_multi_check_pq()` now issue a single GBIF download for all taxa (and, for `tax_occur_multi_check_pq()`, all GPS points) when `method = "download"`, instead of one `rgbif::occ_search()` call per taxon per point, and expose `method`, `circle_form`, `clean_coord` and `n_occur` arguments.
 
 * `theme_idest()` falls back to the graphics-device default font when a requested font family (`Roboto Condensed`, `Linux Libertine G`, `Fira Code`) is not installed, instead of failing with `invalid font type` when the plot is printed (for example during `R CMD check` examples or a pkgdown render).
 

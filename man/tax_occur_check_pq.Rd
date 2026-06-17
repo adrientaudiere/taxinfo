@@ -12,6 +12,10 @@ tax_occur_check_pq(
   latitude = NULL,
   radius_km = 50,
   n_occur = 1000,
+  method = c("download", "search"),
+  circle_form = TRUE,
+  clean_coord = TRUE,
+  clean_coord_verbose = FALSE,
   add_to_phyloseq = NULL,
   col_prefix = NULL,
   verbose = TRUE,
@@ -39,6 +43,20 @@ default parameter.}
 
 \item{n_occur}{Numeric. Maximum number of occurrences to retrieve from GBIF
 for each taxon (default: 1000).}
+
+\item{method}{(character, default `"download"`). How occurrences are fetched.
+`"download"` issues a single [rgbif::occ_download()] for all taxa around the
+point (**requires GBIF credentials**); `"search"` uses a per-taxon
+[rgbif::occ_search()] loop. See [tax_occur_check()].}
+
+\item{circle_form}{(Logical, default: TRUE). Whether to use a circular search
+area. If FALSE, a square bounding box is used.}
+
+\item{clean_coord}{(Logical, default: TRUE). Whether to clean coordinates
+using `CoordinateCleaner`.}
+
+\item{clean_coord_verbose}{(Logical, default: FALSE). Whether to print
+messages from `CoordinateCleaner`.}
 
 \item{add_to_phyloseq}{(Logical, default TRUE when physeq is provided, FALSE when taxnames is provided).
 Whether to add the results as new columns in the phyloseq object's tax_table. If TRUE, the results will be

@@ -1,0 +1,1278 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3ABasidiodendron+eyrei&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:09 GMT
+      content-type: application/json
+      cf-ray: a0d28413af92e278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704149"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704149"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9450'
+      x-ratelimit-remaining-usd: '0.945'
+      x-ratelimit-reset: '36651'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 74, "db_response_time_ms": 15, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Basidiodendron eyrei)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Basidiodendron eyrei", "operator":
+        "has"}], "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Basidiodendron
+        eyrei&per_page=1"}, "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W3095905241",
+        "doi": "https://doi.org/10.1139/cjb-2020-0045", "title": "Studies in <i>Basidiodendron
+        eyrei</i> and similar-looking taxa (Auriculariales, Basidiomycota)", "display_name":
+        "Studies in <i>Basidiodendron eyrei</i> and similar-looking taxa (Auriculariales,
+        Basidiomycota)", "relevance_score": 360.19614, "publication_year": 2020, "publication_date":
+        "2020-11-01", "ids": {"openalex": "https://openalex.org/W3095905241", "doi":
+        "https://doi.org/10.1139/cjb-2020-0045", "mag": "3095905241"}, "language":
+        "en", "primary_location": {"id": "doi:10.1139/cjb-2020-0045", "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1139/cjb-2020-0045", "pdf_url": null,
+        "source": {"id": "https://openalex.org/S118554560", "display_name": "Botany",
+        "issn_l": "1916-2790", "issn": ["1916-2790", "1916-2804"], "is_oa": false,
+        "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310312929",
+        "host_organization_name": "Canadian Science Publishing", "host_organization_lineage":
+        ["https://openalex.org/P4310312929"], "host_organization_lineage_names": ["Canadian
+        Science Publishing"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Botany", "raw_type": "journal-article"}, "type": "article",
+        "indexed_in": ["crossref"], "open_access": {"is_oa": true, "oa_status": "green",
+        "oa_url": "http://hdl.handle.net/10138/323989", "any_repository_has_fulltext":
+        true}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5091412127",
+        "display_name": "Viacheslav Spirin", "orcid": "https://orcid.org/0000-0001-5436-6997"},
+        "institutions": [{"id": "https://openalex.org/I4210139717", "display_name":
+        "Finnish Museum of Natural History", "ror": "https://ror.org/03tcx6c30", "country_code":
+        "FI", "type": "archive", "lineage": ["https://openalex.org/I133731052", "https://openalex.org/I4210139717"]}],
+        "countries": ["FI"], "is_corresponding": false, "raw_author_name": "Viacheslav
+        Spirin", "raw_affiliation_strings": ["Botany Unit (Mycology), Finnish Museum
+        of Natural History, University of Helsinki. P.O. Box 7, FI-00014 Helsinki,
+        Finland"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Botany Unit (Mycology), Finnish Museum of Natural History, University of
+        Helsinki. P.O. Box 7, FI-00014 Helsinki, Finland", "institution_ids": ["https://openalex.org/I4210139717"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5038843045",
+        "display_name": "Vera Malysheva", "orcid": "https://orcid.org/0000-0002-7403-9616"},
+        "institutions": [{"id": "https://openalex.org/I4210165334", "display_name":
+        "Komarov Botanical Institute of the Russian Academy of Sciences", "ror": "https://ror.org/05nb54h69",
+        "country_code": "RU", "type": "facility", "lineage": ["https://openalex.org/I1313323035",
+        "https://openalex.org/I4210129690", "https://openalex.org/I4210165334"]}],
+        "countries": ["RU"], "is_corresponding": false, "raw_author_name": "Vera Malysheva",
+        "raw_affiliation_strings": ["Komarov Botanical Institute, Russian Academy
+        of Sciences, Prof. Popova Str., 197376 St. Petersburg, Russia"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "Komarov Botanical Institute,
+        Russian Academy of Sciences, Prof. Popova Str., 197376 St. Petersburg, Russia",
+        "institution_ids": ["https://openalex.org/I4210165334"]}]}, {"author_position":
+        "middle", "author": {"id": "https://openalex.org/A5043894143", "display_name":
+        "Renato L\u00facio Mendes Alvarenga", "orcid": "https://orcid.org/0000-0003-0400-3762"},
+        "institutions": [{"id": "https://openalex.org/I25112270", "display_name":
+        "Universidade Federal de Pernambuco", "ror": "https://ror.org/047908t24",
+        "country_code": "BR", "type": "education", "lineage": ["https://openalex.org/I25112270"]}],
+        "countries": ["BR"], "is_corresponding": false, "raw_author_name": "Renato
+        Lucio Mendes-Alvarenga", "raw_affiliation_strings": ["Departamento de Micologia,
+        Centro de Bioci\u00eancias, Universidade Federal de Pernambuco, Av. da Engenharia
+        s/n, Recife, Pernambuco, 50740-570, Brazil"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "Departamento de Micologia, Centro de Bioci\u00eancias,
+        Universidade Federal de Pernambuco, Av. da Engenharia s/n, Recife, Pernambuco,
+        50740-570, Brazil", "institution_ids": ["https://openalex.org/I25112270"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5011137012",
+        "display_name": "Heikki Kotiranta", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I2800424308", "display_name": "Finnish Environment Institute",
+        "ror": "https://ror.org/013nat269", "country_code": "FI", "type": "government",
+        "lineage": ["https://openalex.org/I2800424308", "https://openalex.org/I4210136438"]}],
+        "countries": ["FI"], "is_corresponding": false, "raw_author_name": "Heikki
+        Kotiranta", "raw_affiliation_strings": ["Finnish Environment Institute, Latokartanonkaari
+        11, 00790 Helsinki, Finland"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Finnish Environment Institute, Latokartanonkaari 11, 00790 Helsinki, Finland",
+        "institution_ids": ["https://openalex.org/I2800424308"]}]}, {"author_position":
+        "last", "author": {"id": "https://openalex.org/A5053425744", "display_name":
+        "Karl\u2010Henrik Larsson", "orcid": "https://orcid.org/0000-0002-1248-3674"},
+        "institutions": [{"id": "https://openalex.org/I184942183", "display_name":
+        "University of Oslo", "ror": "https://ror.org/01xtthb56", "country_code":
+        "NO", "type": "education", "lineage": ["https://openalex.org/I184942183"]},
+        {"id": "https://openalex.org/I881427289", "display_name": "University of Gothenburg",
+        "ror": "https://ror.org/01tm6cn81", "country_code": "SE", "type": "education",
+        "lineage": ["https://openalex.org/I881427289"]}], "countries": ["NO", "SE"],
+        "is_corresponding": false, "raw_author_name": "Karl-Henrik Larsson", "raw_affiliation_strings":
+        ["Gothenburg Global Biodiversity Centre, Post Box 461, 40530 Gothenburg, Sweden",
+        "Natural History Museum, University of Oslo, P.O. Box 1172, Blindern, 0318
+        Oslo, Norway"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Gothenburg Global Biodiversity Centre, Post Box 461, 40530 Gothenburg, Sweden",
+        "institution_ids": ["https://openalex.org/I881427289"]}, {"raw_affiliation_string":
+        "Natural History Museum, University of Oslo, P.O. Box 1172, Blindern, 0318
+        Oslo, Norway", "institution_ids": ["https://openalex.org/I184942183"]}]}],
+        "institutions": [], "countries_distinct_count": 5, "institutions_distinct_count":
+        5, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
+        null, "apc_paid": null, "fwci": 0.6937, "has_fulltext": false, "cited_by_count":
+        5, "citation_normalized_percentile": {"value": 0.79237747, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
+        89, "max": 98}, "biblio": {"volume": "98", "issue": "11", "first_page": "623",
+        "last_page": "638"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10451", "display_name":
+        "Mycorrhizal Fungi and Plant Interactions", "score": 0.9997000098228455, "subfield":
+        {"id": "https://openalex.org/subfields/1110", "display_name": "Plant Science"},
+        "field": {"id": "https://openalex.org/fields/11", "display_name": "Agricultural
+        and Biological Sciences"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}, "topics": [{"id": "https://openalex.org/T10451",
+        "display_name": "Mycorrhizal Fungi and Plant Interactions", "score": 0.9997000098228455,
+        "subfield": {"id": "https://openalex.org/subfields/1110", "display_name":
+        "Plant Science"}, "field": {"id": "https://openalex.org/fields/11", "display_name":
+        "Agricultural and Biological Sciences"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}, {"id": "https://openalex.org/T11085", "display_name":
+        "Fungal Biology and Applications", "score": 0.9975000023841858, "subfield":
+        {"id": "https://openalex.org/subfields/2736", "display_name": "Pharmacology"},
+        "field": {"id": "https://openalex.org/fields/27", "display_name": "Medicine"},
+        "domain": {"id": "https://openalex.org/domains/4", "display_name": "Health
+        Sciences"}}, {"id": "https://openalex.org/T11528", "display_name": "Lichen
+        and fungal ecology", "score": 0.9860000014305115, "subfield": {"id": "https://openalex.org/subfields/1105",
+        "display_name": "Ecology, Evolution, Behavior and Systematics"}, "field":
+        {"id": "https://openalex.org/fields/11", "display_name": "Agricultural and
+        Biological Sciences"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/basidiomycota",
+        "display_name": "Basidiomycota", "score": 0.8460639715194702}, {"id": "https://openalex.org/keywords/synonym",
+        "display_name": "Synonym (taxonomy)", "score": 0.7351418733596802}, {"id":
+        "https://openalex.org/keywords/biology", "display_name": "Biology", "score":
+        0.7111978530883789}, {"id": "https://openalex.org/keywords/taxon", "display_name":
+        "Taxon", "score": 0.6561325788497925}, {"id": "https://openalex.org/keywords/botany",
+        "display_name": "Botany", "score": 0.5050228238105774}, {"id": "https://openalex.org/keywords/type",
+        "display_name": "Type (biology)", "score": 0.4414738416671753}, {"id": "https://openalex.org/keywords/ecology",
+        "display_name": "Ecology", "score": 0.21821364760398865}, {"id": "https://openalex.org/keywords/genus",
+        "display_name": "Genus", "score": 0.16860321164131165}], "concepts": [{"id":
+        "https://openalex.org/C2776923041", "wikidata": "https://www.wikidata.org/wiki/Q174698",
+        "display_name": "Basidiomycota", "level": 2, "score": 0.8460639715194702},
+        {"id": "https://openalex.org/C173483453", "wikidata": "https://www.wikidata.org/wiki/Q1040689",
+        "display_name": "Synonym (taxonomy)", "level": 3, "score": 0.7351418733596802},
+        {"id": "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.7111978530883789}, {"id":
+        "https://openalex.org/C71640776", "wikidata": "https://www.wikidata.org/wiki/Q16521",
+        "display_name": "Taxon", "level": 2, "score": 0.6561325788497925}, {"id":
+        "https://openalex.org/C59822182", "wikidata": "https://www.wikidata.org/wiki/Q441",
+        "display_name": "Botany", "level": 1, "score": 0.5050228238105774}, {"id":
+        "https://openalex.org/C2777299769", "wikidata": "https://www.wikidata.org/wiki/Q3707858",
+        "display_name": "Type (biology)", "level": 2, "score": 0.4414738416671753},
+        {"id": "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.21821364760398865}, {"id":
+        "https://openalex.org/C157369684", "wikidata": "https://www.wikidata.org/wiki/Q34740",
+        "display_name": "Genus", "level": 2, "score": 0.16860321164131165}], "mesh":
+        [], "locations_count": 3, "locations": [{"id": "doi:10.1139/cjb-2020-0045",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1139/cjb-2020-0045",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S118554560", "display_name":
+        "Botany", "issn_l": "1916-2790", "issn": ["1916-2790", "1916-2804"], "is_oa":
+        false, "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310312929",
+        "host_organization_name": "Canadian Science Publishing", "host_organization_lineage":
+        ["https://openalex.org/P4310312929"], "host_organization_lineage_names": ["Canadian
+        Science Publishing"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Botany", "raw_type": "journal-article"}, {"id": "pmh:oai:utoronto.scholaris.ca:1807/102695",
+        "is_oa": false, "landing_page_url": "http://hdl.handle.net/1807/102695", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S7407055458", "display_name":
+        "TSpace", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": null, "license_id": null, "version": "acceptedVersion",
+        "is_accepted": true, "is_published": false, "raw_source_name": null, "raw_type":
+        "Article Post-Print"}, {"id": "pmh:oai:helda.helsinki.fi:10138/323989", "is_oa":
+        true, "landing_page_url": "http://hdl.handle.net/10138/323989", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4210213322", "display_name":
+        "Ty\u00f6v\u00e4entutkimus Vuosikirja", "issn_l": "0784-1272", "issn": ["0784-1272",
+        "1459-7780"], "is_oa": true, "is_in_doaj": false, "is_core": false, "host_organization":
+        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        "Article"}], "best_oa_location": {"id": "pmh:oai:helda.helsinki.fi:10138/323989",
+        "is_oa": true, "landing_page_url": "http://hdl.handle.net/10138/323989", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4210213322", "display_name":
+        "Ty\u00f6v\u00e4entutkimus Vuosikirja", "issn_l": "0784-1272", "issn": ["0784-1272",
+        "1459-7780"], "is_oa": true, "is_in_doaj": false, "is_core": false, "host_organization":
+        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "journal"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        "Article"}, "sustainable_development_goals": [{"score": 0.5400000214576721,
+        "display_name": "Life in Land", "id": "https://metadata.un.org/sdg/15"}],
+        "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf": false},
+        "content_urls": null, "referenced_works_count": 18, "referenced_works": ["https://openalex.org/W1883639496",
+        "https://openalex.org/W1985607598", "https://openalex.org/W2019966536", "https://openalex.org/W2032458994",
+        "https://openalex.org/W2065547844", "https://openalex.org/W2120644786", "https://openalex.org/W2130889389",
+        "https://openalex.org/W2148698435", "https://openalex.org/W2155995101", "https://openalex.org/W2165889977",
+        "https://openalex.org/W2188018162", "https://openalex.org/W2311203695", "https://openalex.org/W2326920718",
+        "https://openalex.org/W2330691653", "https://openalex.org/W2591172920", "https://openalex.org/W2949867654",
+        "https://openalex.org/W4285719527", "https://openalex.org/W7000886758"], "related_works":
+        ["https://openalex.org/W2288953135", "https://openalex.org/W3212713875", "https://openalex.org/W1988385232",
+        "https://openalex.org/W2069120499", "https://openalex.org/W2907788728", "https://openalex.org/W2964940226",
+        "https://openalex.org/W3117195930", "https://openalex.org/W1974962543", "https://openalex.org/W2077892095",
+        "https://openalex.org/W1970340203"], "abstract_inverted_index": {"To": [0],
+        "date,": [1], "Basidiodendron": [2, 8], "luteogriseum,": [3], "the": [4, 33],
+        "generic": [5], "type": [6], "of": [7, 17, 29, 32], "(Auriculariales,": [9],
+        "Basidiomycota)": [10], "has": [11], "been": [12], "treated": [13], "as":
+        [14, 59, 61], "a": [15], "synonym": [16], "B.": [18, 34, 38, 41], "eyrei.":
+        [19], "Our": [20], "data": [21], "show": [22], "they": [23], "are": [24, 55],
+        "not": [25], "conspecific.": [26], "The": [27], "identity": [28], "other":
+        [30], "members": [31], "eyrei": [35], "complex,": [36], "i.e.,": [37], "deminutum":
+        [39], "and": [40, 48, 51, 64], "grandinioides,": [42], "is": [43], "clarified":
+        [44], "based": [45], "on": [46], "morphological": [47], "DNA": [49], "data,":
+        [50], "10": [52], "new": [53], "species": [54], "described": [56], "from":
+        [57, 62], "Eurasia,": [58], "well": [60], "North": [63], "South": [65], "America.":
+        [66]}, "counts_by_year": [{"year": 2026, "cited_by_count": 1}, {"year": 2025,
+        "cited_by_count": 1}, {"year": 2023, "cited_by_count": 1}, {"year": 2022,
+        "cited_by_count": 1}, {"year": 2021, "cited_by_count": 1}], "updated_date":
+        "2026-06-11T09:08:48.828518", "created_date": "2020-11-09T00:00:00"}], "group_by":
+        []}'
+  recorded_at: 2026-06-17 13:49:09
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3AFomes+fomentarius&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:09 GMT
+      content-type: application/json
+      cf-ray: a0d284160c87e278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704149"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704149"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9440'
+      x-ratelimit-remaining-usd: '0.944'
+      x-ratelimit-reset: '36651'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 986, "db_response_time_ms": 21, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Fomes fomentarius)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Fomes fomentarius", "operator": "has"}],
+        "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Fomes fomentarius&per_page=1"},
+        "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W2025375865",
+        "doi": "https://doi.org/10.1016/j.biortech.2007.05.049", "title": "Optimization
+        for the production of exopolysaccharide from Fomes fomentarius in submerged
+        culture and its antitumor effect in vitro", "display_name": "Optimization
+        for the production of exopolysaccharide from Fomes fomentarius in submerged
+        culture and its antitumor effect in vitro", "relevance_score": 1373.6349,
+        "publication_year": 2007, "publication_date": "2007-07-13", "ids": {"openalex":
+        "https://openalex.org/W2025375865", "doi": "https://doi.org/10.1016/j.biortech.2007.05.049",
+        "mag": "2025375865", "pmid": "https://pubmed.ncbi.nlm.nih.gov/17624770"},
+        "language": "en", "primary_location": {"id": "doi:10.1016/j.biortech.2007.05.049",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1016/j.biortech.2007.05.049",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S21442059", "display_name":
+        "Bioresource Technology", "issn_l": "0960-8524", "issn": ["0960-8524", "1873-2976"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320990", "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": ["https://openalex.org/P4310320990"], "host_organization_lineage_names":
+        ["Elsevier BV"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Bioresource Technology", "raw_type": "journal-article"},
+        "type": "article", "indexed_in": ["crossref", "pubmed"], "open_access": {"is_oa":
+        false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5100344403",
+        "display_name": "Wei Chen", "orcid": "https://orcid.org/0000-0002-2373-2437"},
+        "institutions": [{"id": "https://openalex.org/I76130692", "display_name":
+        "Zhejiang University", "ror": "https://ror.org/00a2xv884", "country_code":
+        "CN", "type": "education", "lineage": ["https://openalex.org/I76130692"]}],
+        "countries": ["CN"], "is_corresponding": false, "raw_author_name": "Wei Chen",
+        "raw_affiliation_strings": ["Zhejiang University, College of Life Science,
+        Hangzhou 310058, PR China"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Zhejiang University, College of Life Science, Hangzhou 310058, PR China",
+        "institution_ids": ["https://openalex.org/I76130692"]}]}, {"author_position":
+        "middle", "author": {"id": "https://openalex.org/A5100358624", "display_name":
+        "Zhao Zhao", "orcid": "https://orcid.org/0000-0001-7901-500X"}, "institutions":
+        [{"id": "https://openalex.org/I76130692", "display_name": "Zhejiang University",
+        "ror": "https://ror.org/00a2xv884", "country_code": "CN", "type": "education",
+        "lineage": ["https://openalex.org/I76130692"]}], "countries": ["CN"], "is_corresponding":
+        false, "raw_author_name": "Zhao Zhao", "raw_affiliation_strings": ["Zhejiang
+        University, College of Life Science, Hangzhou 310058, PR China"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "Zhejiang University, College
+        of Life Science, Hangzhou 310058, PR China", "institution_ids": ["https://openalex.org/I76130692"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5009309138",
+        "display_name": "Shi-Fei Chen", "orcid": null}, "institutions": [{"id": "https://openalex.org/I76130692",
+        "display_name": "Zhejiang University", "ror": "https://ror.org/00a2xv884",
+        "country_code": "CN", "type": "education", "lineage": ["https://openalex.org/I76130692"]}],
+        "countries": ["CN"], "is_corresponding": false, "raw_author_name": "Shi-Fei
+        Chen", "raw_affiliation_strings": ["Zhejiang University, College of Life Science,
+        Hangzhou 310058, PR China"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Zhejiang University, College of Life Science, Hangzhou 310058, PR China",
+        "institution_ids": ["https://openalex.org/I76130692"]}]}, {"author_position":
+        "last", "author": {"id": "https://openalex.org/A5100762067", "display_name":
+        "Yong\u2010Quan Li", "orcid": "https://orcid.org/0000-0001-6013-4068"}, "institutions":
+        [{"id": "https://openalex.org/I76130692", "display_name": "Zhejiang University",
+        "ror": "https://ror.org/00a2xv884", "country_code": "CN", "type": "education",
+        "lineage": ["https://openalex.org/I76130692"]}], "countries": ["CN"], "is_corresponding":
+        true, "raw_author_name": "Yong-Quan Li", "raw_affiliation_strings": ["Zhejiang
+        University, College of Life Science, Hangzhou 310058, PR China"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "Zhejiang University, College
+        of Life Science, Hangzhou 310058, PR China", "institution_ids": ["https://openalex.org/I76130692"]}]}],
+        "institutions": [], "countries_distinct_count": 1, "institutions_distinct_count":
+        4, "corresponding_author_ids": ["https://openalex.org/A5100762067"], "corresponding_institution_ids":
+        ["https://openalex.org/I76130692"], "apc_list": {"value": 4740, "currency":
+        "USD", "value_usd": 4740}, "apc_paid": null, "fwci": 4.9509, "has_fulltext":
+        false, "cited_by_count": 193, "citation_normalized_percentile": {"value":
+        0.94651144, "is_in_top_1_percent": false, "is_in_top_10_percent": true}, "cited_by_percentile_year":
+        {"min": 96, "max": 100}, "biblio": {"volume": "99", "issue": "8", "first_page":
+        "3187", "last_page": "3194"}, "is_retracted": false, "is_paratext": false,
+        "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T11085", "display_name":
+        "Fungal Biology and Applications", "score": 1.0, "subfield": {"id": "https://openalex.org/subfields/2736",
+        "display_name": "Pharmacology"}, "field": {"id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"}, "domain": {"id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"}}, "topics": [{"id": "https://openalex.org/T11085",
+        "display_name": "Fungal Biology and Applications", "score": 1.0, "subfield":
+        {"id": "https://openalex.org/subfields/2736", "display_name": "Pharmacology"},
+        "field": {"id": "https://openalex.org/fields/27", "display_name": "Medicine"},
+        "domain": {"id": "https://openalex.org/domains/4", "display_name": "Health
+        Sciences"}}, {"id": "https://openalex.org/T10869", "display_name": "Polysaccharides
+        and Plant Cell Walls", "score": 0.9897000193595886, "subfield": {"id": "https://openalex.org/subfields/1110",
+        "display_name": "Plant Science"}, "field": {"id": "https://openalex.org/fields/11",
+        "display_name": "Agricultural and Biological Sciences"}, "domain": {"id":
+        "https://openalex.org/domains/1", "display_name": "Life Sciences"}}, {"id":
+        "https://openalex.org/T12832", "display_name": "Biocrusts and Microbial Ecology",
+        "score": 0.9876000285148621, "subfield": {"id": "https://openalex.org/subfields/1105",
+        "display_name": "Ecology, Evolution, Behavior and Systematics"}, "field":
+        {"id": "https://openalex.org/fields/11", "display_name": "Agricultural and
+        Biological Sciences"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/mycelium",
+        "display_name": "Mycelium", "score": 0.7377947568893433}, {"id": "https://openalex.org/keywords/in-vitro",
+        "display_name": "In vitro", "score": 0.6329174041748047}, {"id": "https://openalex.org/keywords/chemistry",
+        "display_name": "Chemistry", "score": 0.4150989055633545}, {"id": "https://openalex.org/keywords/biology",
+        "display_name": "Biology", "score": 0.4126337170600891}, {"id": "https://openalex.org/keywords/biochemistry",
+        "display_name": "Biochemistry", "score": 0.2702403664588928}, {"id": "https://openalex.org/keywords/botany",
+        "display_name": "Botany", "score": 0.2520119547843933}], "concepts": [{"id":
+        "https://openalex.org/C133479454", "wikidata": "https://www.wikidata.org/wiki/Q326228",
+        "display_name": "Mycelium", "level": 2, "score": 0.7377947568893433}, {"id":
+        "https://openalex.org/C202751555", "wikidata": "https://www.wikidata.org/wiki/Q221681",
+        "display_name": "In vitro", "level": 2, "score": 0.6329174041748047}, {"id":
+        "https://openalex.org/C185592680", "wikidata": "https://www.wikidata.org/wiki/Q2329",
+        "display_name": "Chemistry", "level": 0, "score": 0.4150989055633545}, {"id":
+        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.4126337170600891}, {"id":
+        "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry", "level": 1, "score": 0.2702403664588928},
+        {"id": "https://openalex.org/C59822182", "wikidata": "https://www.wikidata.org/wiki/Q441",
+        "display_name": "Botany", "level": 1, "score": 0.2520119547843933}], "mesh":
+        [{"descriptor_ui": "D000970", "descriptor_name": "Antineoplastic Agents",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D000970", "descriptor_name": "Antineoplastic Agents",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D000970", "descriptor_name": "Antineoplastic Agents",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D002455", "descriptor_name": "Cell Division", "qualifier_ui":
+        "Q000187", "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D002455", "descriptor_name": "Cell Division", "qualifier_ui": "Q000187",
+        "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D002455", "descriptor_name": "Cell Division", "qualifier_ui": "Q000187",
+        "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D004271", "descriptor_name": "DNA, Fungal", "qualifier_ui": "Q000235", "qualifier_name":
+        "genetics", "is_major_topic": false}, {"descriptor_ui": "D004271", "descriptor_name":
+        "DNA, Fungal", "qualifier_ui": "Q000235", "qualifier_name": "genetics", "is_major_topic":
+        false}, {"descriptor_ui": "D004271", "descriptor_name": "DNA, Fungal", "qualifier_ui":
+        "Q000235", "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D004275", "descriptor_name": "DNA, Ribosomal", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D004275", "descriptor_name": "DNA, Ribosomal", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D004275", "descriptor_name": "DNA, Ribosomal", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D006801", "descriptor_name": "Humans", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D006801", "descriptor_name":
+        "Humans", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D006801", "descriptor_name": "Humans", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000096",
+        "qualifier_name": "biosynthesis", "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000096",
+        "qualifier_name": "biosynthesis", "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000096",
+        "qualifier_name": "biosynthesis", "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000494",
+        "qualifier_name": "pharmacology", "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000494",
+        "qualifier_name": "pharmacology", "is_major_topic": false}, {"descriptor_ui":
+        "D011134", "descriptor_name": "Polysaccharides", "qualifier_ui": "Q000494",
+        "qualifier_name": "pharmacology", "is_major_topic": false}, {"descriptor_ui":
+        "D012331", "descriptor_name": "RNA, Fungal", "qualifier_ui": "Q000235", "qualifier_name":
+        "genetics", "is_major_topic": false}, {"descriptor_ui": "D012331", "descriptor_name":
+        "RNA, Fungal", "qualifier_ui": "Q000235", "qualifier_name": "genetics", "is_major_topic":
+        false}, {"descriptor_ui": "D012331", "descriptor_name": "RNA, Fungal", "qualifier_ui":
+        "Q000235", "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D012340", "descriptor_name": "RNA, Ribosomal, 5.8S", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D012340", "descriptor_name": "RNA, Ribosomal, 5.8S", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D012340", "descriptor_name": "RNA, Ribosomal, 5.8S", "qualifier_ui": "Q000235",
+        "qualifier_name": "genetics", "is_major_topic": false}, {"descriptor_ui":
+        "D013274", "descriptor_name": "Stomach Neoplasms", "qualifier_ui": "Q000473",
+        "qualifier_name": "pathology", "is_major_topic": false}, {"descriptor_ui":
+        "D013274", "descriptor_name": "Stomach Neoplasms", "qualifier_ui": "Q000473",
+        "qualifier_name": "pathology", "is_major_topic": false}, {"descriptor_ui":
+        "D013274", "descriptor_name": "Stomach Neoplasms", "qualifier_ui": "Q000473",
+        "qualifier_name": "pathology", "is_major_topic": false}, {"descriptor_ui":
+        "D018533", "descriptor_name": "Biomass", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D018533", "descriptor_name":
+        "Biomass", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D018533", "descriptor_name": "Biomass", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D019149", "descriptor_name": "Bioreactors", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": true}, {"descriptor_ui": "D019149", "descriptor_name":
+        "Bioreactors", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        true}, {"descriptor_ui": "D019149", "descriptor_name": "Bioreactors", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D020072",
+        "descriptor_name": "Polyporales", "qualifier_ui": "Q000166", "qualifier_name":
+        "cytology", "is_major_topic": false}, {"descriptor_ui": "D020072", "descriptor_name":
+        "Polyporales", "qualifier_ui": "Q000166", "qualifier_name": "cytology", "is_major_topic":
+        false}, {"descriptor_ui": "D020072", "descriptor_name": "Polyporales", "qualifier_ui":
+        "Q000166", "qualifier_name": "cytology", "is_major_topic": false}, {"descriptor_ui":
+        "D020072", "descriptor_name": "Polyporales", "qualifier_ui": "Q000502", "qualifier_name":
+        "physiology", "is_major_topic": false}, {"descriptor_ui": "D020072", "descriptor_name":
+        "Polyporales", "qualifier_ui": "Q000502", "qualifier_name": "physiology",
+        "is_major_topic": false}, {"descriptor_ui": "D020072", "descriptor_name":
+        "Polyporales", "qualifier_ui": "Q000502", "qualifier_name": "physiology",
+        "is_major_topic": false}], "locations_count": 2, "locations": [{"id": "doi:10.1016/j.biortech.2007.05.049",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1016/j.biortech.2007.05.049",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S21442059", "display_name":
+        "Bioresource Technology", "issn_l": "0960-8524", "issn": ["0960-8524", "1873-2976"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320990", "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": ["https://openalex.org/P4310320990"], "host_organization_lineage_names":
+        ["Elsevier BV"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Bioresource Technology", "raw_type": "journal-article"},
+        {"id": "pmid:17624770", "is_oa": false, "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/17624770",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306525036", "display_name":
+        "PubMed", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health", "host_organization_lineage":
+        ["https://openalex.org/I1299303238"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "Bioresource
+        technology", "raw_type": null}], "best_oa_location": null, "sustainable_development_goals":
+        [{"score": 0.6700000166893005, "display_name": "Zero hunger", "id": "https://metadata.un.org/sdg/2"}],
+        "awards": [], "funders": [], "has_content": {"grobid_xml": false, "pdf": false},
+        "content_urls": null, "referenced_works_count": 38, "referenced_works": ["https://openalex.org/W180380946",
+        "https://openalex.org/W261697280", "https://openalex.org/W1523779154", "https://openalex.org/W1534442238",
+        "https://openalex.org/W1965390387", "https://openalex.org/W1966526437", "https://openalex.org/W1968577455",
+        "https://openalex.org/W1968834637", "https://openalex.org/W1983876811", "https://openalex.org/W2009214853",
+        "https://openalex.org/W2012208970", "https://openalex.org/W2016258062", "https://openalex.org/W2019622061",
+        "https://openalex.org/W2022621171", "https://openalex.org/W2029323353", "https://openalex.org/W2045828825",
+        "https://openalex.org/W2051320866", "https://openalex.org/W2056469199", "https://openalex.org/W2059039029",
+        "https://openalex.org/W2061090127", "https://openalex.org/W2065780062", "https://openalex.org/W2066051936",
+        "https://openalex.org/W2096832598", "https://openalex.org/W2109369851", "https://openalex.org/W2114695737",
+        "https://openalex.org/W2121878520", "https://openalex.org/W2125058501", "https://openalex.org/W2137073949",
+        "https://openalex.org/W2137871454", "https://openalex.org/W2140335201", "https://openalex.org/W2140636354",
+        "https://openalex.org/W2145929319", "https://openalex.org/W2150403833", "https://openalex.org/W2161503513",
+        "https://openalex.org/W2166233649", "https://openalex.org/W2169548933", "https://openalex.org/W2412245952",
+        "https://openalex.org/W2737274875"], "related_works": ["https://openalex.org/W4387497383",
+        "https://openalex.org/W2948807893", "https://openalex.org/W2899084033", "https://openalex.org/W2778153218",
+        "https://openalex.org/W2748952813", "https://openalex.org/W1531601525", "https://openalex.org/W2607424097",
+        "https://openalex.org/W2606230654", "https://openalex.org/W2319480705", "https://openalex.org/W2398689458"],
+        "abstract_inverted_index": null, "counts_by_year": [{"year": 2026, "cited_by_count":
+        1}, {"year": 2025, "cited_by_count": 11}, {"year": 2024, "cited_by_count":
+        10}, {"year": 2023, "cited_by_count": 5}, {"year": 2022, "cited_by_count":
+        5}, {"year": 2021, "cited_by_count": 8}, {"year": 2020, "cited_by_count":
+        11}, {"year": 2019, "cited_by_count": 18}, {"year": 2018, "cited_by_count":
+        8}, {"year": 2017, "cited_by_count": 13}, {"year": 2016, "cited_by_count":
+        7}, {"year": 2015, "cited_by_count": 12}, {"year": 2014, "cited_by_count":
+        15}, {"year": 2013, "cited_by_count": 19}, {"year": 2012, "cited_by_count":
+        18}], "updated_date": "2026-05-12T08:28:47.272897", "created_date": "2025-10-10T00:00:00"}],
+        "group_by": []}'
+  recorded_at: 2026-06-17 13:49:09
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3AMycena+renati&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:09 GMT
+      content-type: application/json
+      cf-ray: a0d2841818f9e278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704149"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=xCFALbDgwST9dzdIJkXCV%2FGqOM0E45c3e%2BoWF1qTh%2BE%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704149"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9430'
+      x-ratelimit-remaining-usd: '0.943'
+      x-ratelimit-reset: '36651'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 19, "db_response_time_ms": 17, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Mycena renati)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Mycena renati", "operator": "has"}],
+        "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Mycena renati&per_page=1"},
+        "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W7153087604",
+        "doi": "https://doi.org/10.3535/0zp-vvf-r9r", "title": "Mycena renati Qu\u00e9l.",
+        "display_name": "Mycena renati Qu\u00e9l.", "relevance_score": 70.28938, "publication_year":
+        2026, "publication_date": "2026-04-01", "ids": {"openalex": "https://openalex.org/W7153087604",
+        "doi": "https://doi.org/10.3535/0zp-vvf-r9r"}, "language": null, "primary_location":
+        {"id": "doi:10.3535/0zp-vvf-r9r", "is_oa": true, "landing_page_url": "https://doi.org/10.3535/0zp-vvf-r9r",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "dataset"}, "type": "dataset", "indexed_in": ["datacite"],
+        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://doi.org/10.3535/0zp-vvf-r9r",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5133339115", "display_name":
+        "University of Gothenburg", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": true, "raw_author_name": "University of Gothenburg",
+        "raw_affiliation_strings": [], "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5133339115"],
+        "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null, "fwci":
+        null, "has_fulltext": false, "cited_by_count": 0, "citation_normalized_percentile":
+        null, "cited_by_percentile_year": null, "biblio": {"volume": null, "issue":
+        null, "first_page": null, "last_page": null}, "is_retracted": false, "is_paratext":
+        false, "is_xpac": false, "primary_topic": null, "topics": [], "keywords":
+        [], "concepts": [], "mesh": [], "locations_count": 1, "locations": [{"id":
+        "doi:10.3535/0zp-vvf-r9r", "is_oa": true, "landing_page_url": "https://doi.org/10.3535/0zp-vvf-r9r",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": null, "raw_source_name":
+        null, "raw_type": "dataset"}], "best_oa_location": {"id": "doi:10.3535/0zp-vvf-r9r",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.3535/0zp-vvf-r9r",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "dataset"}, "sustainable_development_goals": [], "awards":
+        [], "funders": [], "has_content": {"grobid_xml": false, "pdf": false}, "content_urls":
+        null, "referenced_works_count": 0, "referenced_works": [], "related_works":
+        [], "abstract_inverted_index": null, "counts_by_year": [], "updated_date":
+        "2026-04-11T06:19:08.300824", "created_date": "2026-04-11T00:00:00"}], "group_by":
+        []}'
+  recorded_at: 2026-06-17 13:49:09
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3AXylodon+flaviporus&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:10 GMT
+      content-type: application/json
+      cf-ray: a0d28419eddde278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704150"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704150"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9420'
+      x-ratelimit-remaining-usd: '0.942'
+      x-ratelimit-reset: '36650'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 91, "db_response_time_ms": 29, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Xylodon flaviporus)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Xylodon flaviporus", "operator": "has"}],
+        "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Xylodon flaviporus&per_page=1"},
+        "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W2979942438",
+        "doi": "https://doi.org/10.1021/acs.jnatprod.9b00559", "title": "<i>Xylodon
+        flaviporus</i>-Derived Drimane Sesquiterpenoids That Inhibit Osteoclast Differentiation",
+        "display_name": "<i>Xylodon flaviporus</i>-Derived Drimane Sesquiterpenoids
+        That Inhibit Osteoclast Differentiation", "relevance_score": 444.10257, "publication_year":
+        2019, "publication_date": "2019-10-10", "ids": {"openalex": "https://openalex.org/W2979942438",
+        "doi": "https://doi.org/10.1021/acs.jnatprod.9b00559", "mag": "2979942438",
+        "pmid": "https://pubmed.ncbi.nlm.nih.gov/31599157"}, "language": "en", "primary_location":
+        {"id": "doi:10.1021/acs.jnatprod.9b00559", "is_oa": false, "landing_page_url":
+        "https://doi.org/10.1021/acs.jnatprod.9b00559", "pdf_url": null, "source":
+        {"id": "https://openalex.org/S166799026", "display_name": "Journal of Natural
+        Products", "issn_l": "0163-3864", "issn": ["0163-3864", "1520-6025"], "is_oa":
+        false, "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310320006",
+        "host_organization_name": "American Chemical Society", "host_organization_lineage":
+        ["https://openalex.org/P4310320006"], "host_organization_lineage_names": ["American
+        Chemical Society"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Journal of Natural Products", "raw_type": "journal-article"},
+        "type": "article", "indexed_in": ["crossref", "pubmed"], "open_access": {"is_oa":
+        false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5078351612",
+        "display_name": "Jaeyoung Kwon", "orcid": "https://orcid.org/0000-0002-8706-2305"},
+        "institutions": [{"id": "https://openalex.org/I58716616", "display_name":
+        "Korea Institute of Science and Technology", "ror": "https://ror.org/05kzfa883",
+        "country_code": "KR", "type": "facility", "lineage": ["https://openalex.org/I27494661",
+        "https://openalex.org/I2801339556", "https://openalex.org/I2801339556", "https://openalex.org/I4210144908",
+        "https://openalex.org/I4387152098", "https://openalex.org/I4387152098", "https://openalex.org/I58716616"]}],
+        "countries": ["KR"], "is_corresponding": false, "raw_author_name": "Jaeyoung
+        Kwon", "raw_affiliation_strings": ["Natural Product Informatics Research Center,
+        Korea Institute of Science and Technology (KIST) Gangneung Institute, Gangneung
+        25451, Republic of Korea"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Natural Product Informatics Research Center, Korea Institute of Science and
+        Technology (KIST) Gangneung Institute, Gangneung 25451, Republic of Korea",
+        "institution_ids": ["https://openalex.org/I58716616"]}]}, {"author_position":
+        "middle", "author": {"id": "https://openalex.org/A5020672236", "display_name":
+        "Hyaemin Lee", "orcid": null}, "institutions": [{"id": "https://openalex.org/I197347611",
+        "display_name": "Korea University", "ror": "https://ror.org/047dqcg40", "country_code":
+        "KR", "type": "education", "lineage": ["https://openalex.org/I197347611"]}],
+        "countries": ["KR"], "is_corresponding": false, "raw_author_name": "Hyaemin
+        Lee", "raw_affiliation_strings": ["Department of Biosystems and Biotechnology,
+        Korea University, Seoul 02841, Republic of Korea"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "Department of Biosystems and Biotechnology, Korea
+        University, Seoul 02841, Republic of Korea", "institution_ids": ["https://openalex.org/I197347611"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5008644145",
+        "display_name": "Seung Mok Ryu", "orcid": "https://orcid.org/0000-0003-4623-4921"},
+        "institutions": [{"id": "https://openalex.org/I197347611", "display_name":
+        "Korea University", "ror": "https://ror.org/047dqcg40", "country_code": "KR",
+        "type": "education", "lineage": ["https://openalex.org/I197347611"]}, {"id":
+        "https://openalex.org/I4210087584", "display_name": "Korea Institute of Oriental
+        Medicine", "ror": "https://ror.org/005rpmt10", "country_code": "KR", "type":
+        "facility", "lineage": ["https://openalex.org/I2801339556", "https://openalex.org/I4210087584",
+        "https://openalex.org/I4210144908", "https://openalex.org/I4387152098"]}],
+        "countries": ["KR"], "is_corresponding": false, "raw_author_name": "Seung
+        Mok Ryu", "raw_affiliation_strings": ["Herbal Medicine Resources Research
+        Center, Korea Institute of Oriental Medicine, Naju 58245, Republic of Korea",
+        "Department of Biosystems and Biotechnology, Korea University, Seoul 02841,
+        Republic of Korea"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Herbal Medicine Resources Research Center, Korea Institute of Oriental Medicine,
+        Naju 58245, Republic of Korea", "institution_ids": ["https://openalex.org/I4210087584"]},
+        {"raw_affiliation_string": "Department of Biosystems and Biotechnology, Korea
+        University, Seoul 02841, Republic of Korea", "institution_ids": ["https://openalex.org/I197347611"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5031793212",
+        "display_name": "Yeongseon Jang", "orcid": "https://orcid.org/0000-0003-3003-9371"},
+        "institutions": [{"id": "https://openalex.org/I2800865141", "display_name":
+        "Korea Forest Service", "ror": "https://ror.org/05bjbww34", "country_code":
+        "KR", "type": "government", "lineage": ["https://openalex.org/I2800865141"]}],
+        "countries": ["KR"], "is_corresponding": false, "raw_author_name": "Yeongseon
+        Jang", "raw_affiliation_strings": ["Special Forest Products Division, Forest
+        Bioresources Department, National Institute of Forest Science, Seoul 02455,
+        Republic of Korea"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Special Forest Products Division, Forest Bioresources Department, National
+        Institute of Forest Science, Seoul 02455, Republic of Korea", "institution_ids":
+        ["https://openalex.org/I2800865141"]}]}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5051583822", "display_name": "Hak Cheol Kwon",
+        "orcid": "https://orcid.org/0000-0002-4071-2331"}, "institutions": [{"id":
+        "https://openalex.org/I58716616", "display_name": "Korea Institute of Science
+        and Technology", "ror": "https://ror.org/05kzfa883", "country_code": "KR",
+        "type": "facility", "lineage": ["https://openalex.org/I27494661", "https://openalex.org/I2801339556",
+        "https://openalex.org/I2801339556", "https://openalex.org/I4210144908", "https://openalex.org/I4387152098",
+        "https://openalex.org/I4387152098", "https://openalex.org/I58716616"]}], "countries":
+        ["KR"], "is_corresponding": false, "raw_author_name": "Hak Cheol Kwon", "raw_affiliation_strings":
+        ["Natural Product Informatics Research Center, Korea Institute of Science
+        and Technology (KIST) Gangneung Institute, Gangneung 25451, Republic of Korea"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "Natural Product
+        Informatics Research Center, Korea Institute of Science and Technology (KIST)
+        Gangneung Institute, Gangneung 25451, Republic of Korea", "institution_ids":
+        ["https://openalex.org/I58716616"]}]}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5052741793", "display_name": "Yuanqiang Guo",
+        "orcid": "https://orcid.org/0000-0002-5297-0223"}, "institutions": [{"id":
+        "https://openalex.org/I205237279", "display_name": "Nankai University", "ror":
+        "https://ror.org/01y1kjr75", "country_code": "CN", "type": "education", "lineage":
+        ["https://openalex.org/I205237279"]}, {"id": "https://openalex.org/I4391767646",
+        "display_name": "State Key Laboratory of Medicinal Chemical Biology", "ror":
+        "https://ror.org/032p70522", "country_code": null, "type": "facility", "lineage":
+        ["https://openalex.org/I205237279", "https://openalex.org/I4391767646"]}],
+        "countries": ["CN"], "is_corresponding": false, "raw_author_name": "Yuanqiang
+        Guo", "raw_affiliation_strings": ["State Key Laboratory of Medicinal Chemical
+        Biology, College of Pharmacy, and Tianjin Key Laboratory of Molecular Drug
+        Research, Nankai University, Tianjin 300353, People\u2019s Republic of China",
+        "State Key Laboratory of Medicinal Chemical Biology, College of Pharmacy,
+        and Tianjin Key Laboratory of Molecular Drug Research, Nankai University,
+        Tianjin 300353, People''s Republic of China"], "raw_orcid": "https://orcid.org/0000-0002-5297-0223",
+        "affiliations": [{"raw_affiliation_string": "State Key Laboratory of Medicinal
+        Chemical Biology, College of Pharmacy, and Tianjin Key Laboratory of Molecular
+        Drug Research, Nankai University, Tianjin 300353, People\u2019s Republic of
+        China", "institution_ids": ["https://openalex.org/I205237279", "https://openalex.org/I4391767646"]},
+        {"raw_affiliation_string": "State Key Laboratory of Medicinal Chemical Biology,
+        College of Pharmacy, and Tianjin Key Laboratory of Molecular Drug Research,
+        Nankai University, Tianjin 300353, People''s Republic of China", "institution_ids":
+        ["https://openalex.org/I205237279", "https://openalex.org/I4391767646"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5046876658",
+        "display_name": "Jong Soon Kang", "orcid": "https://orcid.org/0000-0001-7698-0162"},
+        "institutions": [{"id": "https://openalex.org/I73616290", "display_name":
+        "Korea Research Institute of Bioscience and Biotechnology", "ror": "https://ror.org/03ep23f07",
+        "country_code": "KR", "type": "facility", "lineage": ["https://openalex.org/I2801339556",
+        "https://openalex.org/I4210144908", "https://openalex.org/I4387152098", "https://openalex.org/I73616290"]}],
+        "countries": ["KR"], "is_corresponding": false, "raw_author_name": "Jong Soon
+        Kang", "raw_affiliation_strings": ["Laboratory Animal Resource Center, Korea
+        Research Institute of Bioscience and Biotechnology, Cheongju 28116, Republic
+        of Korea"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Laboratory Animal Resource Center, Korea Research Institute of Bioscience
+        and Biotechnology, Cheongju 28116, Republic of Korea", "institution_ids":
+        ["https://openalex.org/I73616290"]}]}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5101819705", "display_name": "Jae\u2010Jin Kim",
+        "orcid": "https://orcid.org/0000-0001-8990-2139"}, "institutions": [{"id":
+        "https://openalex.org/I197347611", "display_name": "Korea University", "ror":
+        "https://ror.org/047dqcg40", "country_code": "KR", "type": "education", "lineage":
+        ["https://openalex.org/I197347611"]}], "countries": ["KR"], "is_corresponding":
+        false, "raw_author_name": "Jae-Jin Kim", "raw_affiliation_strings": ["Division
+        of Environmental Science and Ecological Engineering, College of Life Sciences
+        and Biotechnology, Korea University, Seoul 02841, Republic of Korea"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "Division of Environmental
+        Science and Ecological Engineering, College of Life Sciences and Biotechnology,
+        Korea University, Seoul 02841, Republic of Korea", "institution_ids": ["https://openalex.org/I197347611"]}]},
+        {"author_position": "last", "author": {"id": "https://openalex.org/A5100609750",
+        "display_name": "Dongho Lee", "orcid": "https://orcid.org/0000-0003-4379-814X"},
+        "institutions": [{"id": "https://openalex.org/I197347611", "display_name":
+        "Korea University", "ror": "https://ror.org/047dqcg40", "country_code": "KR",
+        "type": "education", "lineage": ["https://openalex.org/I197347611"]}], "countries":
+        ["KR"], "is_corresponding": true, "raw_author_name": "Dongho Lee", "raw_affiliation_strings":
+        ["Department of Biosystems and Biotechnology, Korea University, Seoul 02841,
+        Republic of Korea"], "raw_orcid": "https://orcid.org/0000-0003-4379-814X",
+        "affiliations": [{"raw_affiliation_string": "Department of Biosystems and
+        Biotechnology, Korea University, Seoul 02841, Republic of Korea", "institution_ids":
+        ["https://openalex.org/I197347611"]}]}], "institutions": [], "countries_distinct_count":
+        2, "institutions_distinct_count": 9, "corresponding_author_ids": ["https://openalex.org/A5100609750"],
+        "corresponding_institution_ids": ["https://openalex.org/I197347611"], "apc_list":
+        null, "apc_paid": null, "fwci": 0.8673, "has_fulltext": false, "cited_by_count":
+        9, "citation_normalized_percentile": {"value": 0.73571491, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
+        89, "max": 97}, "biblio": {"volume": "82", "issue": "10", "first_page": "2835",
+        "last_page": "2841"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T11340", "display_name":
+        "Marine Sponges and Natural Products", "score": 0.9947999715805054, "subfield":
+        {"id": "https://openalex.org/subfields/1305", "display_name": "Biotechnology"},
+        "field": {"id": "https://openalex.org/fields/13", "display_name": "Biochemistry,
+        Genetics and Molecular Biology"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}, "topics": [{"id": "https://openalex.org/T11340",
+        "display_name": "Marine Sponges and Natural Products", "score": 0.9947999715805054,
+        "subfield": {"id": "https://openalex.org/subfields/1305", "display_name":
+        "Biotechnology"}, "field": {"id": "https://openalex.org/fields/13", "display_name":
+        "Biochemistry, Genetics and Molecular Biology"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}, {"id": "https://openalex.org/T14297", "display_name":
+        "Plant-Derived Bioactive Compounds", "score": 0.9616000056266785, "subfield":
+        {"id": "https://openalex.org/subfields/1605", "display_name": "Organic Chemistry"},
+        "field": {"id": "https://openalex.org/fields/16", "display_name": "Chemistry"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T12685", "display_name": "Phytochemical
+        compounds biological activities", "score": 0.9465000033378601, "subfield":
+        {"id": "https://openalex.org/subfields/1312", "display_name": "Molecular Biology"},
+        "field": {"id": "https://openalex.org/fields/13", "display_name": "Biochemistry,
+        Genetics and Molecular Biology"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/osteoclast",
+        "display_name": "Osteoclast", "score": 0.8745987415313721}, {"id": "https://openalex.org/keywords/activator",
+        "display_name": "Activator (genetics)", "score": 0.7002780437469482}, {"id":
+        "https://openalex.org/keywords/chemistry", "display_name": "Chemistry", "score":
+        0.5515871644020081}, {"id": "https://openalex.org/keywords/stereochemistry",
+        "display_name": "Stereochemistry", "score": 0.5380823612213135}, {"id": "https://openalex.org/keywords/ic50",
+        "display_name": "IC50", "score": 0.47401246428489685}, {"id": "https://openalex.org/keywords/receptor",
+        "display_name": "Receptor", "score": 0.43849778175354004}, {"id": "https://openalex.org/keywords/biochemistry",
+        "display_name": "Biochemistry", "score": 0.37743133306503296}, {"id": "https://openalex.org/keywords/pharmacology",
+        "display_name": "Pharmacology", "score": 0.3519163727760315}, {"id": "https://openalex.org/keywords/biology",
+        "display_name": "Biology", "score": 0.3050863742828369}, {"id": "https://openalex.org/keywords/in-vitro",
+        "display_name": "In vitro", "score": 0.2924538254737854}], "concepts": [{"id":
+        "https://openalex.org/C2776033226", "wikidata": "https://www.wikidata.org/wiki/Q828410",
+        "display_name": "Osteoclast", "level": 3, "score": 0.8745987415313721}, {"id":
+        "https://openalex.org/C88045685", "wikidata": "https://www.wikidata.org/wiki/Q174576",
+        "display_name": "Activator (genetics)", "level": 3, "score": 0.7002780437469482},
+        {"id": "https://openalex.org/C185592680", "wikidata": "https://www.wikidata.org/wiki/Q2329",
+        "display_name": "Chemistry", "level": 0, "score": 0.5515871644020081}, {"id":
+        "https://openalex.org/C71240020", "wikidata": "https://www.wikidata.org/wiki/Q186011",
+        "display_name": "Stereochemistry", "level": 1, "score": 0.5380823612213135},
+        {"id": "https://openalex.org/C2777752497", "wikidata": "https://www.wikidata.org/wiki/Q286779",
+        "display_name": "IC50", "level": 3, "score": 0.47401246428489685}, {"id":
+        "https://openalex.org/C170493617", "wikidata": "https://www.wikidata.org/wiki/Q208467",
+        "display_name": "Receptor", "level": 2, "score": 0.43849778175354004}, {"id":
+        "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry", "level": 1, "score": 0.37743133306503296},
+        {"id": "https://openalex.org/C98274493", "wikidata": "https://www.wikidata.org/wiki/Q128406",
+        "display_name": "Pharmacology", "level": 1, "score": 0.3519163727760315},
+        {"id": "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.3050863742828369}, {"id":
+        "https://openalex.org/C202751555", "wikidata": "https://www.wikidata.org/wiki/Q221681",
+        "display_name": "In vitro", "level": 2, "score": 0.2924538254737854}], "mesh":
+        [{"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000302", "qualifier_name": "isolation & purification", "is_major_topic":
+        false}, {"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000302", "qualifier_name": "isolation & purification", "is_major_topic":
+        false}, {"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000302", "qualifier_name": "isolation & purification", "is_major_topic":
+        false}, {"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D000081223", "descriptor_name": "Polycyclic Sesquiterpenes",
+        "qualifier_ui": "Q000494", "qualifier_name": "pharmacology", "is_major_topic":
+        false}, {"descriptor_ui": "D000818", "descriptor_name": "Animals", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D000818", "descriptor_name": "Animals", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D000818", "descriptor_name":
+        "Animals", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D001487", "descriptor_name": "Basidiomycota", "qualifier_ui":
+        "Q000378", "qualifier_name": "metabolism", "is_major_topic": false}, {"descriptor_ui":
+        "D001487", "descriptor_name": "Basidiomycota", "qualifier_ui": "Q000378",
+        "qualifier_name": "metabolism", "is_major_topic": false}, {"descriptor_ui":
+        "D001487", "descriptor_name": "Basidiomycota", "qualifier_ui": "Q000378",
+        "qualifier_name": "metabolism", "is_major_topic": false}, {"descriptor_ui":
+        "D002454", "descriptor_name": "Cell Differentiation", "qualifier_ui": "Q000187",
+        "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D002454", "descriptor_name": "Cell Differentiation", "qualifier_ui": "Q000187",
+        "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D002454", "descriptor_name": "Cell Differentiation", "qualifier_ui": "Q000187",
+        "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D002478", "descriptor_name": "Cells, Cultured", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D002478", "descriptor_name":
+        "Cells, Cultured", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D002478", "descriptor_name": "Cells, Cultured",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D005260", "descriptor_name": "Female", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D005260", "descriptor_name":
+        "Female", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D005260", "descriptor_name": "Female", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D008810", "descriptor_name": "Mice, Inbred C57BL", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui": "D008810",
+        "descriptor_name": "Mice, Inbred C57BL", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D008810", "descriptor_name":
+        "Mice, Inbred C57BL", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D009682", "descriptor_name": "Magnetic Resonance
+        Spectroscopy", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D009682", "descriptor_name": "Magnetic Resonance
+        Spectroscopy", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D009682", "descriptor_name": "Magnetic Resonance
+        Spectroscopy", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D010010", "descriptor_name": "Osteoclasts", "qualifier_ui":
+        "Q000166", "qualifier_name": "cytology", "is_major_topic": false}, {"descriptor_ui":
+        "D010010", "descriptor_name": "Osteoclasts", "qualifier_ui": "Q000166", "qualifier_name":
+        "cytology", "is_major_topic": false}, {"descriptor_ui": "D010010", "descriptor_name":
+        "Osteoclasts", "qualifier_ui": "Q000166", "qualifier_name": "cytology", "is_major_topic":
+        false}, {"descriptor_ui": "D010010", "descriptor_name": "Osteoclasts", "qualifier_ui":
+        "Q000187", "qualifier_name": "drug effects", "is_major_topic": false}, {"descriptor_ui":
+        "D010010", "descriptor_name": "Osteoclasts", "qualifier_ui": "Q000187", "qualifier_name":
+        "drug effects", "is_major_topic": false}, {"descriptor_ui": "D010010", "descriptor_name":
+        "Osteoclasts", "qualifier_ui": "Q000187", "qualifier_name": "drug effects",
+        "is_major_topic": false}, {"descriptor_ui": "D051379", "descriptor_name":
+        "Mice", "qualifier_ui": null, "qualifier_name": null, "is_major_topic": false},
+        {"descriptor_ui": "D051379", "descriptor_name": "Mice", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui": "D051379",
+        "descriptor_name": "Mice", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}], "locations_count": 2, "locations": [{"id": "doi:10.1021/acs.jnatprod.9b00559",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1021/acs.jnatprod.9b00559",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S166799026", "display_name":
+        "Journal of Natural Products", "issn_l": "0163-3864", "issn": ["0163-3864",
+        "1520-6025"], "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320006", "host_organization_name": "American Chemical
+        Society", "host_organization_lineage": ["https://openalex.org/P4310320006"],
+        "host_organization_lineage_names": ["American Chemical Society"], "type":
+        "journal"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "Journal of
+        Natural Products", "raw_type": "journal-article"}, {"id": "pmid:31599157",
+        "is_oa": false, "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/31599157",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306525036", "display_name":
+        "PubMed", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health", "host_organization_lineage":
+        ["https://openalex.org/I1299303238"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "Journal of
+        natural products", "raw_type": null}], "best_oa_location": null, "sustainable_development_goals":
+        [], "awards": [{"id": "https://openalex.org/G3131369258", "display_name":
+        null, "funder_award_id": "2E29561", "funder_id": "https://openalex.org/F4320322091",
+        "funder_display_name": "Korea Institute of Science and Technology"}, {"id":
+        "https://openalex.org/G4636602993", "display_name": null, "funder_award_id":
+        "NRF-2019R1A4A1020626", "funder_id": "https://openalex.org/F4320322120", "funder_display_name":
+        "National Research Foundation of Korea"}, {"id": "https://openalex.org/G6961105708",
+        "display_name": null, "funder_award_id": "NRF-2019R1A2C1006226", "funder_id":
+        "https://openalex.org/F4320322120", "funder_display_name": "National Research
+        Foundation of Korea"}, {"id": "https://openalex.org/G696368284", "display_name":
+        null, "funder_award_id": "2Z05620", "funder_id": "https://openalex.org/F4320322091",
+        "funder_display_name": "Korea Institute of Science and Technology"}], "funders":
+        [{"id": "https://openalex.org/F4320321373", "display_name": "Korea University",
+        "ror": "https://ror.org/047dqcg40"}, {"id": "https://openalex.org/F4320322091",
+        "display_name": "Korea Institute of Science and Technology", "ror": "https://ror.org/05kzfa883"},
+        {"id": "https://openalex.org/F4320322110", "display_name": "Korea Research
+        Institute of Bioscience and Biotechnology", "ror": "https://ror.org/03ep23f07"},
+        {"id": "https://openalex.org/F4320322120", "display_name": "National Research
+        Foundation of Korea", "ror": "https://ror.org/013aysd81"}], "has_content":
+        {"grobid_xml": false, "pdf": false}, "content_urls": null, "referenced_works_count":
+        16, "referenced_works": ["https://openalex.org/W1858245927", "https://openalex.org/W1995319257",
+        "https://openalex.org/W1999277122", "https://openalex.org/W2006950202", "https://openalex.org/W2009488821",
+        "https://openalex.org/W2013990474", "https://openalex.org/W2050665141", "https://openalex.org/W2073455232",
+        "https://openalex.org/W2093252878", "https://openalex.org/W2330722106", "https://openalex.org/W2413101328",
+        "https://openalex.org/W2512043734", "https://openalex.org/W2802841437", "https://openalex.org/W2806920759",
+        "https://openalex.org/W2889027494", "https://openalex.org/W2919334058"], "related_works":
+        ["https://openalex.org/W4391375266", "https://openalex.org/W115201223", "https://openalex.org/W4200305651",
+        "https://openalex.org/W4280520697", "https://openalex.org/W2793697340", "https://openalex.org/W2019918946",
+        "https://openalex.org/W1971470705", "https://openalex.org/W2357737162", "https://openalex.org/W2127743278",
+        "https://openalex.org/W2203452075"], "abstract_inverted_index": {"The": [0,
+        12, 42], "presence": [1], "of": [2, 54, 75, 94], "excessive": [3], "osteoclasts":
+        [4], "is": [5], "a": [6], "major": [7], "factor": [8], "in": [9, 59], "skeletal":
+        [10], "diseases.": [11], "present": [13], "study": [14], "aimed": [15], "to":
+        [16], "discover": [17], "osteoclast": [18], "differentiation": [19], "inhibitors":
+        [20], "from": [21], "the": [22], "basidiomycete": [23], "Xylodon": [24], "flaviporus.":
+        [25], "Seven": [26], "new": [27], "drimane": [28], "sesquiterpenoids": [29],
+        "(1\u20137)": [30], "and": [31, 36, 67, 78, 85, 97], "7-ketoisodrimenin-5-ene":
+        [32], "(8)": [33], "were": [34, 45], "obtained": [35], "characterized": [37],
+        "by": [38], "various": [39], "spectroscopic": [40], "methods.": [41], "isolated":
+        [43], "compounds": [44], "evaluated": [46], "for": [47], "their": [48], "inhibitory":
+        [49], "effects": [50], "against": [51], "receptor": [52], "activator": [53],
+        "nuclear": [55], "factor-kappa-B": [56], "ligand-induced": [57], "osteoclastogenesis":
+        [58], "mouse": [60], "bone": [61], "marrow": [62], "macrophages.": [63], "Compounds":
+        [64], "1,": [65], "3,": [66], "6": [68], "showed": [69], "potent": [70], "activities":
+        [71, 90], "with": [72, 91], "IC50": [73, 92], "values": [74, 93], "1.6,":
+        [76], "0.9,": [77], "2.1": [79], "\u03bcM,": [80, 99], "respectively,": [81],
+        "while": [82], "4,": [83], "5,": [84], "7": [86], "exhibited": [87], "relatively":
+        [88], "weak": [89], "10.7,": [95], "10.1,": [96], "8.5": [98], "respectively.":
+        [100]}, "counts_by_year": [{"year": 2024, "cited_by_count": 3}, {"year": 2023,
+        "cited_by_count": 1}, {"year": 2022, "cited_by_count": 2}, {"year": 2021,
+        "cited_by_count": 2}, {"year": 2020, "cited_by_count": 1}], "updated_date":
+        "2026-05-16T08:24:45.110214", "created_date": "2025-10-10T00:00:00"}], "group_by":
+        []}'
+  recorded_at: 2026-06-17 13:49:10
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3AStypella+subgelatinosa&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:10 GMT
+      content-type: application/json
+      cf-ray: a0d2841c7c95e278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704150"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704150"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9410'
+      x-ratelimit-remaining-usd: '0.941'
+      x-ratelimit-reset: '36650'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 9, "db_response_time_ms": 34, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Stypella subgelatinosa)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Stypella subgelatinosa", "operator":
+        "has"}], "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Stypella
+        subgelatinosa&per_page=1"}, "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W7153151225",
+        "doi": "https://doi.org/10.3535/kpy-xld-zsv", "title": "Stypella subgelatinosa
+        (P. Karst.) P. Roberts", "display_name": "Stypella subgelatinosa (P. Karst.)
+        P. Roberts", "relevance_score": 71.47581, "publication_year": 2026, "publication_date":
+        "2026-04-01", "ids": {"openalex": "https://openalex.org/W7153151225", "doi":
+        "https://doi.org/10.3535/kpy-xld-zsv"}, "language": null, "primary_location":
+        {"id": "doi:10.3535/kpy-xld-zsv", "is_oa": true, "landing_page_url": "https://doi.org/10.3535/kpy-xld-zsv",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "dataset"}, "type": "dataset", "indexed_in": ["datacite"],
+        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://doi.org/10.3535/kpy-xld-zsv",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5133339115", "display_name":
+        "University of Gothenburg", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": true, "raw_author_name": "University of Gothenburg",
+        "raw_affiliation_strings": [], "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5133339115"],
+        "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null, "fwci":
+        null, "has_fulltext": false, "cited_by_count": 0, "citation_normalized_percentile":
+        null, "cited_by_percentile_year": null, "biblio": {"volume": null, "issue":
+        null, "first_page": null, "last_page": null}, "is_retracted": false, "is_paratext":
+        false, "is_xpac": false, "primary_topic": null, "topics": [], "keywords":
+        [], "concepts": [], "mesh": [], "locations_count": 1, "locations": [{"id":
+        "doi:10.3535/kpy-xld-zsv", "is_oa": true, "landing_page_url": "https://doi.org/10.3535/kpy-xld-zsv",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": null, "raw_source_name":
+        null, "raw_type": "dataset"}], "best_oa_location": {"id": "doi:10.3535/kpy-xld-zsv",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.3535/kpy-xld-zsv",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407053449", "display_name":
+        "DiSSCo", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": null, "host_organization_name": null,
+        "host_organization_lineage": [], "host_organization_lineage_names": [], "type":
+        "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": null, "is_accepted": false, "is_published": false, "raw_source_name":
+        null, "raw_type": "dataset"}, "sustainable_development_goals": [], "awards":
+        [], "funders": [], "has_content": {"pdf": false, "grobid_xml": false}, "content_urls":
+        null, "referenced_works_count": 0, "referenced_works": [], "related_works":
+        [], "abstract_inverted_index": null, "counts_by_year": [], "updated_date":
+        "2026-04-11T06:19:08.300824", "created_date": "2026-04-11T00:00:00"}], "group_by":
+        []}'
+  recorded_at: 2026-06-17 13:49:10
+- request:
+    method: GET
+    uri: https://api.openalex.org/works?filter=title_and_abstract.search%3ASistotrema+raduloides&per-page=1
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 13:49:11 GMT
+      content-type: application/json
+      cf-ray: a0d2841e99dde278-MRS
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      server: cloudflare
+      via: 1.1 heroku-router
+      access-control-allow-headers: Accept, Accept-Language, Accept-Encoding, Authorization,
+        Content-Type, X-OpenAlex-UI
+      access-control-allow-methods: GET, HEAD, POST, OPTIONS
+      nel: '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      report-to: '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\u0026ts=1781704150"}],"max_age":3600}'
+      reporting-endpoints: heroku-nel="https://nel.heroku.com/reports?s=%2FFgx6dJQftdNQF72Twp7KQkDr3FZ8v6fmBerdyWG%2FvI%3D&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&ts=1781704150"
+      x-ratelimit-cost-usd: '0.001'
+      x-ratelimit-credits-used: '10'
+      x-ratelimit-limit: '10000'
+      x-ratelimit-limit-usd: '1'
+      x-ratelimit-onetime-remaining: '0'
+      x-ratelimit-prepaid-remaining-usd: '0'
+      x-ratelimit-remaining: '9400'
+      x-ratelimit-remaining-usd: '0.94'
+      x-ratelimit-reset: '36649'
+      access-control-expose-headers: Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Onetime-Remaining, X-RateLimit-Credits-Used, X-RateLimit-Credits-Required,
+        X-RateLimit-Reset, X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+      content-encoding: br
+    body:
+      string: '{"meta": {"count": 56, "db_response_time_ms": 19, "page": 1, "per_page":
+        1, "groups_count": null, "x_query": {"oql": "works where title/abstract has
+        (Sistotrema raduloides)", "oqo": {"get_rows": "works", "filter_rows": [{"column_id":
+        "title_and_abstract.search", "value": "Sistotrema raduloides", "operator":
+        "has"}], "per_page": 1}, "url": "/works?filter=title_and_abstract.search:Sistotrema
+        raduloides&per_page=1"}, "cost_usd": 0.001}, "results": [{"id": "https://openalex.org/W1970904117",
+        "doi": "https://doi.org/10.1139/v95-261", "title": "Unusual polyketides from
+        the wood-decay fungus <i>Sistotrema raduloides</i>", "display_name": "Unusual
+        polyketides from the wood-decay fungus <i>Sistotrema raduloides</i>", "relevance_score":
+        511.00555, "publication_year": 1995, "publication_date": "1995-12-01", "ids":
+        {"openalex": "https://openalex.org/W1970904117", "doi": "https://doi.org/10.1139/v95-261",
+        "mag": "1970904117"}, "language": "en", "primary_location": {"id": "doi:10.1139/v95-261",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.1139/v95-261", "pdf_url":
+        "https://cdnsciencepub.com/doi/pdf/10.1139/v95-261", "source": {"id": "https://openalex.org/S9189650",
+        "display_name": "Canadian Journal of Chemistry", "issn_l": "0008-4042", "issn":
+        ["0008-4042", "1480-3291"], "is_oa": false, "is_in_doaj": false, "is_core":
+        true, "host_organization": "https://openalex.org/P4310313060", "host_organization_name":
+        "NRC Research Press", "host_organization_lineage": ["https://openalex.org/P4310313060"],
+        "host_organization_lineage_names": ["NRC Research Press"], "type": "journal"},
+        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "Canadian Journal of Chemistry",
+        "raw_type": "journal-article"}, "type": "article", "indexed_in": ["crossref"],
+        "open_access": {"is_oa": true, "oa_status": "bronze", "oa_url": "https://cdnsciencepub.com/doi/pdf/10.1139/v95-261",
+        "any_repository_has_fulltext": false}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5057692159", "display_name":
+        "Albert Amegadzie", "orcid": null}, "institutions": [{"id": "https://openalex.org/I154425047",
+        "display_name": "University of Alberta", "ror": "https://ror.org/0160cpw27",
+        "country_code": "CA", "type": "education", "lineage": ["https://openalex.org/I154425047"]}],
+        "countries": ["CA"], "is_corresponding": false, "raw_author_name": "Albert
+        K. Amegadzie", "raw_affiliation_strings": ["Department of Chemistry, University
+        of Alberta, Edmonton, AB T6G 2G2, Canada"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "Department of Chemistry, University of Alberta,
+        Edmonton, AB T6G 2G2, Canada", "institution_ids": ["https://openalex.org/I154425047"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5023170936",
+        "display_name": "William A. Ayer", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "William A. Ayer", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "last", "author":
+        {"id": "https://openalex.org/A5090257039", "display_name": "Lynne Sigler",
+        "orcid": "https://orcid.org/0000-0002-7338-9120"}, "institutions": [{"id":
+        "https://openalex.org/I154425047", "display_name": "University of Alberta",
+        "ror": "https://ror.org/0160cpw27", "country_code": "CA", "type": "education",
+        "lineage": ["https://openalex.org/I154425047"]}], "countries": ["CA"], "is_corresponding":
+        false, "raw_author_name": "Lynne. Sigler", "raw_affiliation_strings": ["University
+        of Alberta Microfungus Herbarium, Devonian Botanic Garden, Edmonton, AB T6G
+        2E I, Canada"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "University of Alberta Microfungus Herbarium, Devonian Botanic Garden, Edmonton,
+        AB T6G 2E I, Canada", "institution_ids": ["https://openalex.org/I154425047"]}]}],
+        "institutions": [], "countries_distinct_count": 1, "institutions_distinct_count":
+        3, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
+        null, "apc_paid": null, "fwci": 1.2782, "has_fulltext": true, "cited_by_count":
+        14, "citation_normalized_percentile": {"value": 0.7891928, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
+        90, "max": 96}, "biblio": {"volume": "73", "issue": "12", "first_page": "2119",
+        "last_page": "2125"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10252", "display_name":
+        "Microbial Natural Products and Biosynthesis", "score": 0.9918000102043152,
+        "subfield": {"id": "https://openalex.org/subfields/2736", "display_name":
+        "Pharmacology"}, "field": {"id": "https://openalex.org/fields/27", "display_name":
+        "Medicine"}, "domain": {"id": "https://openalex.org/domains/4", "display_name":
+        "Health Sciences"}}, "topics": [{"id": "https://openalex.org/T10252", "display_name":
+        "Microbial Natural Products and Biosynthesis", "score": 0.9918000102043152,
+        "subfield": {"id": "https://openalex.org/subfields/2736", "display_name":
+        "Pharmacology"}, "field": {"id": "https://openalex.org/fields/27", "display_name":
+        "Medicine"}, "domain": {"id": "https://openalex.org/domains/4", "display_name":
+        "Health Sciences"}}, {"id": "https://openalex.org/T11085", "display_name":
+        "Fungal Biology and Applications", "score": 0.9850000143051147, "subfield":
+        {"id": "https://openalex.org/subfields/2736", "display_name": "Pharmacology"},
+        "field": {"id": "https://openalex.org/fields/27", "display_name": "Medicine"},
+        "domain": {"id": "https://openalex.org/domains/4", "display_name": "Health
+        Sciences"}}, {"id": "https://openalex.org/T13124", "display_name": "Chemical
+        synthesis and alkaloids", "score": 0.9817000031471252, "subfield": {"id":
+        "https://openalex.org/subfields/1605", "display_name": "Organic Chemistry"},
+        "field": {"id": "https://openalex.org/fields/16", "display_name": "Chemistry"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/chemistry",
+        "display_name": "Chemistry", "score": 0.8873187303543091}, {"id": "https://openalex.org/keywords/fungus",
+        "display_name": "Fungus", "score": 0.7393573522567749}, {"id": "https://openalex.org/keywords/circular-dichroism",
+        "display_name": "Circular dichroism", "score": 0.6632422208786011}, {"id":
+        "https://openalex.org/keywords/spectroscopy", "display_name": "Spectroscopy",
+        "score": 0.47504425048828125}, {"id": "https://openalex.org/keywords/carbon-fibers",
+        "display_name": "Carbon fibers", "score": 0.4632158875465393}, {"id": "https://openalex.org/keywords/nuclear-magnetic-resonance-spectroscopy",
+        "display_name": "Nuclear magnetic resonance spectroscopy", "score": 0.46084049344062805},
+        {"id": "https://openalex.org/keywords/stereochemistry", "display_name": "Stereochemistry",
+        "score": 0.45093971490859985}, {"id": "https://openalex.org/keywords/biosynthesis",
+        "display_name": "Biosynthesis", "score": 0.41061872243881226}, {"id": "https://openalex.org/keywords/organic-chemistry",
+        "display_name": "Organic chemistry", "score": 0.40169447660446167}, {"id":
+        "https://openalex.org/keywords/botany", "display_name": "Botany", "score":
+        0.1918366551399231}, {"id": "https://openalex.org/keywords/enzyme", "display_name":
+        "Enzyme", "score": 0.07311540842056274}], "concepts": [{"id": "https://openalex.org/C185592680",
+        "wikidata": "https://www.wikidata.org/wiki/Q2329", "display_name": "Chemistry",
+        "level": 0, "score": 0.8873187303543091}, {"id": "https://openalex.org/C2779678110",
+        "wikidata": "https://www.wikidata.org/wiki/Q764", "display_name": "Fungus",
+        "level": 2, "score": 0.7393573522567749}, {"id": "https://openalex.org/C133571119",
+        "wikidata": "https://www.wikidata.org/wiki/Q899102", "display_name": "Circular
+        dichroism", "level": 2, "score": 0.6632422208786011}, {"id": "https://openalex.org/C32891209",
+        "wikidata": "https://www.wikidata.org/wiki/Q483666", "display_name": "Spectroscopy",
+        "level": 2, "score": 0.47504425048828125}, {"id": "https://openalex.org/C140205800",
+        "wikidata": "https://www.wikidata.org/wiki/Q5860", "display_name": "Carbon
+        fibers", "level": 3, "score": 0.4632158875465393}, {"id": "https://openalex.org/C66974803",
+        "wikidata": "https://www.wikidata.org/wiki/Q10359898", "display_name": "Nuclear
+        magnetic resonance spectroscopy", "level": 2, "score": 0.46084049344062805},
+        {"id": "https://openalex.org/C71240020", "wikidata": "https://www.wikidata.org/wiki/Q186011",
+        "display_name": "Stereochemistry", "level": 1, "score": 0.45093971490859985},
+        {"id": "https://openalex.org/C553450214", "wikidata": "https://www.wikidata.org/wiki/Q851162",
+        "display_name": "Biosynthesis", "level": 3, "score": 0.41061872243881226},
+        {"id": "https://openalex.org/C178790620", "wikidata": "https://www.wikidata.org/wiki/Q11351",
+        "display_name": "Organic chemistry", "level": 1, "score": 0.40169447660446167},
+        {"id": "https://openalex.org/C59822182", "wikidata": "https://www.wikidata.org/wiki/Q441",
+        "display_name": "Botany", "level": 1, "score": 0.1918366551399231}, {"id":
+        "https://openalex.org/C181199279", "wikidata": "https://www.wikidata.org/wiki/Q8047",
+        "display_name": "Enzyme", "level": 2, "score": 0.07311540842056274}, {"id":
+        "https://openalex.org/C192562407", "wikidata": "https://www.wikidata.org/wiki/Q228736",
+        "display_name": "Materials science", "level": 0, "score": 0.0}, {"id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413", "display_name": "Physics",
+        "level": 0, "score": 0.0}, {"id": "https://openalex.org/C62520636", "wikidata":
+        "https://www.wikidata.org/wiki/Q944", "display_name": "Quantum mechanics",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C159985019", "wikidata":
+        "https://www.wikidata.org/wiki/Q181790", "display_name": "Composite material",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C86803240", "wikidata":
+        "https://www.wikidata.org/wiki/Q420", "display_name": "Biology", "level":
+        0, "score": 0.0}, {"id": "https://openalex.org/C104779481", "wikidata": "https://www.wikidata.org/wiki/Q50707",
+        "display_name": "Composite number", "level": 2, "score": 0.0}], "mesh": [],
+        "locations_count": 1, "locations": [{"id": "doi:10.1139/v95-261", "is_oa":
+        true, "landing_page_url": "https://doi.org/10.1139/v95-261", "pdf_url": "https://cdnsciencepub.com/doi/pdf/10.1139/v95-261",
+        "source": {"id": "https://openalex.org/S9189650", "display_name": "Canadian
+        Journal of Chemistry", "issn_l": "0008-4042", "issn": ["0008-4042", "1480-3291"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310313060", "host_organization_name": "NRC Research
+        Press", "host_organization_lineage": ["https://openalex.org/P4310313060"],
+        "host_organization_lineage_names": ["NRC Research Press"], "type": "journal"},
+        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "Canadian Journal of Chemistry",
+        "raw_type": "journal-article"}], "best_oa_location": {"id": "doi:10.1139/v95-261",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.1139/v95-261", "pdf_url":
+        "https://cdnsciencepub.com/doi/pdf/10.1139/v95-261", "source": {"id": "https://openalex.org/S9189650",
+        "display_name": "Canadian Journal of Chemistry", "issn_l": "0008-4042", "issn":
+        ["0008-4042", "1480-3291"], "is_oa": false, "is_in_doaj": false, "is_core":
+        true, "host_organization": "https://openalex.org/P4310313060", "host_organization_name":
+        "NRC Research Press", "host_organization_lineage": ["https://openalex.org/P4310313060"],
+        "host_organization_lineage_names": ["NRC Research Press"], "type": "journal"},
+        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "Canadian Journal of Chemistry",
+        "raw_type": "journal-article"}, "sustainable_development_goals": [], "awards":
+        [], "funders": [{"id": "https://openalex.org/F4320334593", "display_name":
+        "Natural Sciences and Engineering Research Council of Canada", "ror": "https://ror.org/01h531d29"}],
+        "has_content": {"grobid_xml": true, "pdf": true}, "content_urls": {"pdf":
+        "https://content.openalex.org/works/W1970904117.pdf", "grobid_xml": "https://content.openalex.org/works/W1970904117.grobid-xml"},
+        "referenced_works_count": 13, "referenced_works": ["https://openalex.org/W608790195",
+        "https://openalex.org/W652349239", "https://openalex.org/W652646270", "https://openalex.org/W1965501761",
+        "https://openalex.org/W1999751691", "https://openalex.org/W2053333781", "https://openalex.org/W2055290787",
+        "https://openalex.org/W2063263734", "https://openalex.org/W2068518364", "https://openalex.org/W2162221447",
+        "https://openalex.org/W2337242153", "https://openalex.org/W2949736508", "https://openalex.org/W2951839660"],
+        "related_works": ["https://openalex.org/W1998525938", "https://openalex.org/W599538448",
+        "https://openalex.org/W1979742529", "https://openalex.org/W2047148965", "https://openalex.org/W3150982967",
+        "https://openalex.org/W1843794756", "https://openalex.org/W1560786135", "https://openalex.org/W4242971552",
+        "https://openalex.org/W1991323569", "https://openalex.org/W1673444553"], "abstract_inverted_index":
+        {"The": [0, 24, 40, 91], "metabolites": [1], "of": [2, 19, 51, 80, 82, 104],
+        "the": [3, 49, 83, 89, 101], "wood": [4], "rot": [5], "decay": [6], "fungus":
+        [7], "Sistotremaraduloides": [8], "(P.": [9], "Karst)": [10], "Donk": [11],
+        "have": [12], "been": [13, 22, 60], "investigated": [14], "and": [15, 30,
+        45, 75, 100], "a": [16, 77], "new": [17, 34], "type": [18], "norpentaketide":
+        [20], "has": [21, 59], "discovered.": [23], "compounds": [25, 41], "sistodiolynne":
+        [26, 105], "(1),": [27], "sistolynone": [28], "(5),": [29], "sistopyrone":
+        [31], "(6)": [32], "represent": [33], "carbon": [35, 79], "skeletons": [36],
+        "among": [37], "natural": [38], "products.": [39], "are": [42], "very": [43],
+        "unstable": [44], "readily": [46], "polymerize": [47], "in": [48], "presence":
+        [50], "air": [52], "to": [53], "give": [54], "black": [55], "insoluble": [56],
+        "material.": [57], "It": [58], "shown": [61], "by": [62, 95, 108], "13": [63],
+        "C": [64], "NMR": [65], "labelling": [66], "experiments": [67], "that": [68,
+        76], "they": [69], "arise": [70], "from": [71], "five": [72], "acetate": [73,
+        84], "units,": [74], "methyl": [78], "one": [81], "units": [85], "is": [86],
+        "lost": [87], "during": [88], "biosynthesis.": [90], "structures": [92], "were":
+        [93], "determined": [94], "spectroscopy": [96], "methods,": [97], "mainly":
+        [98], "NMR,": [99], "absolute": [102], "configuration": [103], "was": [106],
+        "established": [107], "circular": [109], "dichroism": [110], "methods.": [111],
+        "Keywords:": [112], "fungal": [113], "metabolites,": [114], "Sistotremaraduloides,":
+        [115], "norpentaketides,": [116], "biosynthetic": [117], "studies,": [118],
+        "polyacetylenes.": [119]}, "counts_by_year": [{"year": 2023, "cited_by_count":
+        2}, {"year": 2016, "cited_by_count": 1}], "updated_date": "2026-06-11T09:08:48.828518",
+        "created_date": "2025-10-10T00:00:00"}], "group_by": []}'
+  recorded_at: 2026-06-17 13:49:11
+recorded_with: VCR-vcr/2.1.0

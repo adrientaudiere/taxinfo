@@ -7,6 +7,7 @@
 tax_ecoregion_occur(
   taxnames,
   n_occur = 1000,
+  method = "search",
   min_nb_occur = 0,
   min_proportion = 0,
   clean_coord = FALSE,
@@ -18,7 +19,14 @@ tax_ecoregion_occur(
 \item{taxnames}{(character vector) Scientific names of the taxa to query.}
 
 \item{n_occur}{(numeric, default `1000`). Maximum number of occurrences to
-retrieve per taxon. Use a smaller value (e.g. `200`) for quick checks.}
+keep per taxon. With `method = "search"` this is a server-side limit; with
+the download methods it is applied as a local sample after import (a warning
+is issued when a taxon exceeded `n_occur`).}
+
+\item{method}{(character, default `"search"`). How GBIF occurrences are
+fetched, passed to [tax_gbif_occur_coords()]. Ecoregion profiling defaults to
+the credential-free, per-taxon-capped `"search"` path; set `"download"` (or
+`"download_sql"`) to use the Download API (**requires GBIF credentials**).}
 
 \item{min_nb_occur}{(numeric, default `0`). Keep only (taxon, ecoregion)
 pairs with at least this many occurrences.}
@@ -34,7 +42,8 @@ pairs whose share of the taxon's total occurrences is `>= min_proportion`
 \item{verbose}{(logical, default `TRUE`). If `TRUE`, print progress messages.}
 
 \item{time_to_sleep}{(numeric, default `0.3`). Seconds to pause between
-[rgbif::occ_search()] calls to avoid GBIF rate-limiting.}
+[rgbif::occ_search()] calls to avoid GBIF rate-limiting. Only used when
+`method = "search"`.}
 }
 \value{
 A tibble with columns `taxon_name`, `ECO_NAME`, `biome`, `realm`,

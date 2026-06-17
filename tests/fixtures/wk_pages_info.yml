@@ -1,0 +1,983 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10723171&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '190'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:34 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-tdwsx
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikidata.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikidata.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=Sj6zJxF-sCmFJdE8UUmLwAOCAAAAAFvdykeUfcqtL2lciOSutGAKLDSr7kBZvxDE;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6015 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 9712a0b1-d5ea-471c-aa92-fc729fb685a5
+    body:
+      string: '{"entities":{"Q10723171":{"type":"item","id":"Q10723171","sitelinks":{"cebwiki":{"site":"cebwiki","title":"Xylobolus
+        subpileatus","badges":[]},"commonswiki":{"site":"commonswiki","title":"Category:Xylobolus
+        subpileatus","badges":[]},"enwiki":{"site":"enwiki","title":"Xylobolus subpileatus","badges":[]},"svwiki":{"site":"svwiki","title":"Xylobolus
+        subpileatus","badges":[]},"szlwiki":{"site":"szlwiki","title":"Xylobolus subpileatus","badges":[]},"warwiki":{"site":"warwiki","title":"Xylobolus
+        subpileatus","badges":[]}}}},"success":1}'
+  recorded_at: 2026-06-17 14:06:34
+- request:
+    method: GET
+    uri: https://ceb.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '130'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:34 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.canary-7989f45b96-mdn88
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=pzmEQesNo08KdI3kZCNkPQOCAAAAAFvdFavXBZkZMTMEBG1u9Lm2FWxZtU9unLxr;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 7e182d40-e149-4235-804b-023d5edbd7fb
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1784955":{"pageid":1784955,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":3588}]}}}}'
+  recorded_at: 2026-06-17 14:06:34
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/ceb.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-origin: '*'
+      access-control-expose-headers: etag
+      age: '0'
+      cache-control: s-maxage=14400, max-age=14400
+      content-encoding: gzip
+      content-length: '180'
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:35 GMT
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      referrer-policy: origin-when-cross-origin
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: main-tls
+      server-timing: cache;desc="miss", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikimedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikimedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding
+      x-cache: cp6012 miss, cp6009 miss
+      x-cache-status: miss
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-request-id: 76b00f70-2a05-4bac-bd1c-f436938e3529
+      x-xss-protection: 1; mode=block
+    body:
+      string: '{"items":[{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":1}]}'
+  recorded_at: 2026-06-17 14:06:35
+- request:
+    method: GET
+    uri: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '131'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:35 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-gj9n2
+      server-timing:
+      - cache;desc="pass", host;desc="cp6009"
+      - WMF-Uniq;desc="we-1-8-account-creation-form-v2=treatment;"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=YzdDtUhJZ7KGW-UUZ4F03QOCAAAAAFvdMm8uo_w993SyZu35AiksLBQ0Vvwca42V;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 5ab4fbb2-1860-4a72-940d-85ee17634d7f
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"44125632":{"pageid":44125632,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":7137}]}}}}'
+  recorded_at: 2026-06-17 14:06:35
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '0'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6011 miss, cp6009 miss
+      x-cache-status: miss
+      server-timing: cache;desc="miss", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '281'
+      x-request-id: 536308a3-284e-44e4-9764-5329b2381951
+    body:
+      string: '{"items":[{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010100","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011000","access":"all-access","agent":"all-agents","views":18},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":7},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011600","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012400","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012600","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013100","access":"all-access","agent":"all-agents","views":2}]}'
+  recorded_at: 2026-06-17 14:06:36
+- request:
+    method: GET
+    uri: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '130'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-csg7q
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=mGXLcfmF62B3yd6qPpNDcwOCAAAAAFvdBLJhj9GRPvGm6QcOeBzVFKpF6Uz35dlY;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: a174b5d0-e73b-4ada-b1b2-369bb2331404
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1772104":{"pageid":1772104,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":2831}]}}}}'
+  recorded_at: 2026-06-17 14:06:36
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/sv.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '0'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6009 miss, cp6009 miss
+      x-cache-status: miss
+      server-timing: cache;desc="miss", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '271'
+      x-request-id: 31161dc9-30a8-4b3c-b8df-b87388aaba57
+    body:
+      string: '{"items":[{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010100","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010700","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011000","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":4},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011700","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012100","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012400","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":4},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012800","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":1}]}'
+  recorded_at: 2026-06-17 14:06:37
+- request:
+    method: GET
+    uri: https://szl.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '129'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:37 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-fhpb9
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=v0ncTYjC3CmUkUMOnXzltAOCAAAAAFvdHZ68LrxH3_pfnRz063drw8uC_1hR258M;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: fc27b70a-f84e-44f0-ac6e-980af6826a93
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"60553":{"pageid":60553,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":2746}]}}}}'
+  recorded_at: 2026-06-17 14:06:37
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/szl.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:37 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '0'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6016 miss, cp6009 miss
+      x-cache-status: miss
+      server-timing: cache;desc="miss", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '226'
+      x-request-id: 91564fd6-0b63-4683-839c-75e61636e024
+    body:
+      string: '{"items":[{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012100","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013100","access":"all-access","agent":"all-agents","views":2}]}'
+  recorded_at: 2026-06-17 14:06:37
+- request:
+    method: GET
+    uri: https://war.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      accept-ranges: bytes
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '130'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:37 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-f8vgt
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      set-cookie:
+      - WMF-Last-Access=17-Jun-2026;Path=/;HttpOnly;secure;Expires=Sun, 19 Jul 2026
+        12:00:00 GMT
+      - WMF-Last-Access-Global=17-Jun-2026;Path=/;Domain=.wikipedia.org;HttpOnly;secure;Expires=Sun,
+        19 Jul 2026 12:00:00 GMT
+      - GeoIP=FR:OCC:Ribaute-les-Tavernes:44.03:4.08:v4; Path=/; secure; Domain=.wikipedia.org
+      - NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+      - WMF-Uniq=vxkWfIgGxcxSJHzB0tr8MAOCAAAAAFvd6CF3f0F2yIpKvE27e_kCb4IYAliRxuui;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 5a77d85b-1b77-4aaf-a436-623f4bda8287
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1920188":{"pageid":1920188,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":4078}]}}}}'
+  recorded_at: 2026-06-17 14:06:38
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/war.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 429
+    headers:
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      x-envoy-ratelimited: 'true'
+      content-length: '228'
+      retry-after: '22'
+      content-type: text/plain
+      date: Wed, 17 Jun 2026 14:06:38 GMT
+      server: envoy
+      age: '0'
+      x-cache: cp6014 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-request-id: 6263bcb9-c994-4953-b1bf-bce9f04d7696
+    body:
+      string: |-
+        You are making too many requests to the API.
+        Please follow the best practices at <https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits>.
+        If you are unsure how to get the access you need, contact <bot-traffic@wikimedia.org>.
+  recorded_at: 2026-06-17 14:06:38
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10723171&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:38 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-vlfnm
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '2'
+      x-cache: cp6013 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=Sj6zJxF-sCmFJdE8UUmLwAOCAAEBAFvdP0L-3MpKWTGEKOmeDI9DpSRMvLhyqat5;Domain=.wikidata.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '190'
+      x-request-id: dd8870be-b674-434c-b1ab-37e0812c3910
+    body:
+      string: '{"entities":{"Q10723171":{"type":"item","id":"Q10723171","sitelinks":{"cebwiki":{"site":"cebwiki","title":"Xylobolus
+        subpileatus","badges":[]},"commonswiki":{"site":"commonswiki","title":"Category:Xylobolus
+        subpileatus","badges":[]},"enwiki":{"site":"enwiki","title":"Xylobolus subpileatus","badges":[]},"svwiki":{"site":"svwiki","title":"Xylobolus
+        subpileatus","badges":[]},"szlwiki":{"site":"szlwiki","title":"Xylobolus subpileatus","badges":[]},"warwiki":{"site":"warwiki","title":"Xylobolus
+        subpileatus","badges":[]}}}},"success":1}'
+  recorded_at: 2026-06-17 14:06:39
+- request:
+    method: GET
+    uri: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '131'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:39 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-bdb98
+      server-timing:
+      - cache;desc="pass", host;desc="cp6009"
+      - WMF-Uniq;desc="we-1-8-account-creation-form-v2=treatment;"
+      set-cookie: WMF-Uniq=YzdDtUhJZ7KGW-UUZ4F03QOCAAEBAFvdDoVuJTpcnhebur9emA0M3QAdjrnBgYY9;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6014 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: b583ad91-4ae0-4ff5-a244-eee7a1e39d77
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"44125632":{"pageid":44125632,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":7137}]}}}}'
+  recorded_at: 2026-06-17 14:06:39
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '3'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6011 miss, cp6009 hit/1
+      x-cache-status: hit-front
+      server-timing: cache;desc="hit-front", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '281'
+      x-request-id: c1c3da43-14e5-42e4-be84-fa2f8fe806cf
+    body:
+      string: '{"items":[{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010100","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011000","access":"all-access","agent":"all-agents","views":18},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":7},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011600","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012400","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012600","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013100","access":"all-access","agent":"all-agents","views":2}]}'
+  recorded_at: 2026-06-17 14:06:39
+- request:
+    method: GET
+    uri: https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q10723171&format=json&props=sitelinks
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:40 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-vgvvq
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '1'
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      content-length: '190'
+      x-request-id: af7a9bab-99f3-4881-a524-1ead200d1fe5
+    body:
+      string: '{"entities":{"Q10723171":{"type":"item","id":"Q10723171","sitelinks":{"cebwiki":{"site":"cebwiki","title":"Xylobolus
+        subpileatus","badges":[]},"commonswiki":{"site":"commonswiki","title":"Category:Xylobolus
+        subpileatus","badges":[]},"enwiki":{"site":"enwiki","title":"Xylobolus subpileatus","badges":[]},"svwiki":{"site":"svwiki","title":"Xylobolus
+        subpileatus","badges":[]},"szlwiki":{"site":"szlwiki","title":"Xylobolus subpileatus","badges":[]},"warwiki":{"site":"warwiki","title":"Xylobolus
+        subpileatus","badges":[]}}}},"success":1}'
+  recorded_at: 2026-06-17 14:06:40
+- request:
+    method: GET
+    uri: https://ceb.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:40 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-lsts5
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '0'
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=pzmEQesNo08KdI3kZCNkPQOCAAEBAFvd6iQHbWENCB4qFJG_pXz1_w2s54ZEmpbD;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '130'
+      x-request-id: 47861308-5d93-4b2f-a4c9-c63295d4447d
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1784955":{"pageid":1784955,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":3588}]}}}}'
+  recorded_at: 2026-06-17 14:06:40
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/ceb.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:35 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '5'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6012 miss, cp6009 hit/1
+      x-cache-status: hit-front
+      server-timing: cache;desc="hit-front", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '180'
+      x-request-id: c41fe2aa-b849-4c70-b189-429292c0bb69
+    body:
+      string: '{"items":[{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":1},{"project":"ceb.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":1}]}'
+  recorded_at: 2026-06-17 14:06:40
+- request:
+    method: GET
+    uri: https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      age: '0'
+      cache-control: private, must-revalidate, max-age=0
+      content-disposition: inline; filename=api-result.json
+      content-encoding: gzip
+      content-length: '131'
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      content-type: application/json; charset=utf-8
+      date: Wed, 17 Jun 2026 14:06:40 GMT
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      server: mw-api-ext.eqiad.main-86d4bf5895-9hjjl
+      server-timing:
+      - cache;desc="pass", host;desc="cp6009"
+      - WMF-Uniq;desc="we-1-8-account-creation-form-v2=treatment;"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      x-cache: cp6015 miss, cp6009 pass
+      x-cache-status: pass
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-content-type-options: nosniff
+      x-frame-options: DENY
+      x-request-id: 2bae652f-561c-444f-a496-a0880ce9b48e
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"44125632":{"pageid":44125632,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":7137}]}}}}'
+  recorded_at: 2026-06-17 14:06:40
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '4'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6011 miss, cp6009 hit/2
+      x-cache-status: hit-front
+      server-timing: cache;desc="hit-front", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '281'
+      x-request-id: bb296548-9bd4-4179-94a0-e156d6bc2746
+    body:
+      string: '{"items":[{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010100","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011000","access":"all-access","agent":"all-agents","views":18},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":7},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011600","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011700","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012400","access":"all-access","agent":"all-agents","views":2},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012600","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":4},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012800","access":"all-access","agent":"all-agents","views":5},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":3},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":1},{"project":"en.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013100","access":"all-access","agent":"all-agents","views":2}]}'
+  recorded_at: 2026-06-17 14:06:41
+- request:
+    method: GET
+    uri: https://sv.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:41 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-lxmt7
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '0'
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=mGXLcfmF62B3yd6qPpNDcwOCAAEBAFvd6eu83N0VPG83CV0jTwNicPvqVKPVATOQ;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '130'
+      x-request-id: b97ef1e5-994c-4eb6-92d8-cb705cb5bc5c
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1772104":{"pageid":1772104,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":2831}]}}}}'
+  recorded_at: 2026-06-17 14:06:41
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/sv.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:36 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '4'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6009 miss, cp6009 hit/1
+      x-cache-status: hit-front
+      server-timing: cache;desc="hit-front", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '271'
+      x-request-id: fe1ce281-65b5-4da2-bc6d-7c9550b56523
+    body:
+      string: '{"items":[{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010100","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010300","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010700","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":1},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011000","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":4},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011700","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012100","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012400","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012500","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012600","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":4},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012800","access":"all-access","agent":"all-agents","views":2},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":3},{"project":"sv.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":1}]}'
+  recorded_at: 2026-06-17 14:06:41
+- request:
+    method: GET
+    uri: https://szl.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:41 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-8rltk
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '2'
+      x-cache: cp6012 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=v0ncTYjC3CmUkUMOnXzltAOCAAEBAFvdjuZjtHNOc8GUaWrKj8BwVHOKeA-3dDwV;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '129'
+      x-request-id: 57808ef8-3ae5-4630-a8cd-a2c33e99ef35
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"60553":{"pageid":60553,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":2746}]}}}}'
+  recorded_at: 2026-06-17 14:06:42
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/szl.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 200
+    headers:
+      cache-control: s-maxage=14400, max-age=14400
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      content-type: application/json; charset=utf-8
+      etag: W/"20-da39a3ee5e6b4b0d3255bfef95601890afd80709"
+      date: Wed, 17 Jun 2026 14:06:37 GMT
+      server: main-tls
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-encoding: gzip
+      age: '4'
+      accept-ranges: bytes
+      vary: Accept-Encoding
+      x-cache: cp6016 miss, cp6009 hit/1
+      x-cache-status: hit-front
+      server-timing: cache;desc="hit-front", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      content-length: '226'
+      x-request-id: df74e8c3-2a64-4a53-99d3-321ace0dc590
+    body:
+      string: '{"items":[{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010400","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010500","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010800","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024010900","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011100","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011200","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011300","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011400","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011500","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011800","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024011900","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012000","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012100","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012200","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012300","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012700","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024012900","access":"all-access","agent":"all-agents","views":1},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013000","access":"all-access","agent":"all-agents","views":2},{"project":"szl.wikipedia","article":"Xylobolus_subpileatus","granularity":"daily","timestamp":"2024013100","access":"all-access","agent":"all-agents","views":2}]}'
+  recorded_at: 2026-06-17 14:06:42
+- request:
+    method: GET
+    uri: https://war.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&rvprop=size&titles=Xylobolus+subpileatus
+  response:
+    status: 200
+    headers:
+      date: Wed, 17 Jun 2026 14:06:42 GMT
+      server: mw-api-ext.eqiad.main-86d4bf5895-2b2hj
+      x-content-type-options: nosniff
+      content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+      x-frame-options: DENY
+      content-disposition: inline; filename=api-result.json
+      cache-control: private, must-revalidate, max-age=0
+      content-type: application/json; charset=utf-8
+      content-encoding: gzip
+      age: '0'
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+      set-cookie: WMF-Uniq=vxkWfIgGxcxSJHzB0tr8MAOCAAEBAFvdIhmBsV3H9JKw5liXLGRd-QdQgwk-9WqO;Domain=.wikipedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Thu,
+        17 Jun 2027 00:00:00 GMT
+      content-length: '130'
+      x-request-id: c0328da3-f12a-4576-b118-ee3630aeb2fa
+    body:
+      string: '{"batchcomplete":"","query":{"pages":{"1920188":{"pageid":1920188,"ns":0,"title":"Xylobolus
+        subpileatus","revisions":[{"size":4078}]}}}}'
+  recorded_at: 2026-06-17 14:06:42
+- request:
+    method: GET
+    uri: https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/war.wikipedia/all-access/all-agents/Xylobolus%20subpileatus/daily/20240101/20240131
+  response:
+    status: 429
+    headers:
+      access-control-allow-origin: '*'
+      access-control-allow-methods: GET,HEAD
+      access-control-allow-headers: accept, content-type, content-length, cache-control,
+        accept-language, api-user-agent, if-match, if-modified-since, if-none-match,
+        dnt, accept-encoding
+      access-control-expose-headers: etag
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      referrer-policy: origin-when-cross-origin
+      x-xss-protection: 1; mode=block
+      content-security-policy: default-src 'none'; frame-ancestors 'none'
+      x-envoy-ratelimited: 'true'
+      content-length: '228'
+      retry-after: '18'
+      content-type: text/plain
+      date: Wed, 17 Jun 2026 14:06:42 GMT
+      server: envoy
+      age: '2'
+      x-cache: cp6009 miss, cp6009 pass
+      x-cache-status: pass
+      server-timing: cache;desc="pass", host;desc="cp6009"
+      strict-transport-security: max-age=106384710; includeSubDomains; preload
+      report-to: '{ "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0"
+        }] }'
+      nel: '{ "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05,
+        "success_fraction": 0.0}'
+      x-client-ip: 2a01:cb1d:8205:8e00:da6d:722f:c14f:fbf4
+      x-request-id: b57b3364-ab23-4e45-9c40-dd8ac8dc781f
+    body:
+      string: |-
+        You are making too many requests to the API.
+        Please follow the best practices at <https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits>.
+        If you are unsure how to get the access you need, contact <bot-traffic@wikimedia.org>.
+  recorded_at: 2026-06-17 14:06:43
+recorded_with: VCR-vcr/2.1.0
