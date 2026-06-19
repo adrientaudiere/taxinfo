@@ -1,8 +1,10 @@
 ---
 title: "Adding External Information: Wikipedia, GLOBI, and Custom Databases"
 output: rmarkdown::html_vignette
-editor_options:
-  chunk_output_type: console
+vignette: >
+  %\VignetteIndexEntry{Get started with netaipq}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
@@ -298,15 +300,44 @@ The idea behind the wikipedia integration is a very brut/raw approach of the not
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-3' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span><span class='popup-toggle' data-target='warn-popup-unnamed-chunk-3' title='Warnings' aria-haspopup='true' aria-expanded='false'>⚠</span></div>
 <div id='msg-popup-unnamed-chunk-3' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Getting taxonomic IDs from Wikidata...
 #&gt; ℹ Getting page views from Wikipedia for Stereum ostrea
-#&gt; ■■■■■■■                           20% | ETA: 24s[K[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#&gt; ■■■■■■■                           20% | ETA: 24s■■■■■■■■■■                        30% | ETA: 21s[K[Kℹ Getting page views from Wikipedia for Stereum hirsutum
-#&gt; ■■■■■■■■■■                        30% | ETA: 21s■■■■■■■■■■■■■                     40% | ETA: 37s[K[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■                     40% | ETA: 37s■■■■■■■■■■■■■■■■                  50% | ETA: 27s[K[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 27s■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s[K[Kℹ Getting page views from Wikipedia for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s[K[Kℹ Getting page views from Wikipedia for Mycena renatii
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s[Kℹ Getting page views from Wikipedia for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s[Kℹ Getting page views from Wikipedia for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#&gt; 
+■■■■■■■                           20% | ETA: 24s[K
+
+[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#&gt; ■■■■■■■                           20% | ETA: 24s
+
+■■■■■■■■■■                        30% | ETA: 21s[K
+
+[Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#&gt; ■■■■■■■■■■                        30% | ETA: 21s
+
+■■■■■■■■■■■■■                     40% | ETA: 37s[K
+
+[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■                     40% | ETA: 37s
+
+■■■■■■■■■■■■■■■■                  50% | ETA: 27s[K
+
+[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 27s
+
+■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s[K
+
+[Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s
+
+■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s[K
+
+[Kℹ Getting page views from Wikipedia for Mycena renatii
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s
+
+[Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s
+
+[Kℹ Getting page views from Wikipedia for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 25s
+
+[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
 </pre></div>
 <div id='warn-popup-unnamed-chunk-3' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Warnings</strong></div><pre class='popup-pre'>#&gt; Warning: `theme_idest()` was deprecated in taxinfo 0.2.0.
 #&gt; ℹ Please use `ggplotpq::theme_idest()` instead.
@@ -367,15 +398,38 @@ Analyze Wikipedia coverage across languages:
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-4' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
 <div id='msg-popup-unnamed-chunk-4' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Getting taxonomic IDs from Wikidata...
 #&gt; ℹ Getting page views from Wikipedia for Stereum ostrea
-#&gt; ■■■■■■■                           20% | ETA:  5s[K[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#&gt; ■■■■■■■                           20% | ETA:  5s[Kℹ Getting page views from Wikipedia for Stereum hirsutum
-#&gt; ■■■■■■■                           20% | ETA:  5s■■■■■■■■■■■■■                     40% | ETA:  5s[K[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s[Kℹ Getting page views from Wikipedia for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s[K[Kℹ Getting page views from Wikipedia for Mycena renatii
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s[Kℹ Getting page views from Wikipedia for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s[Kℹ Getting page views from Wikipedia for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#&gt; 
+■■■■■■■                           20% | ETA:  5s[K
+
+[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#&gt; ■■■■■■■                           20% | ETA:  5s
+
+[Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#&gt; ■■■■■■■                           20% | ETA:  5s
+
+■■■■■■■■■■■■■                     40% | ETA:  5s[K
+
+[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s
+
+[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s
+
+[Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■                     40% | ETA:  5s
+
+■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s[K
+
+[Kℹ Getting page views from Wikipedia for Mycena renatii
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s
+
+[Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s
+
+[Kℹ Getting page views from Wikipedia for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  3s
+
+[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
 </pre></div>
 
 
@@ -649,18 +703,53 @@ Get publication data for your taxa and add it to the previous wikipedia-enhanced
 <div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-10' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span><span class='popup-toggle' data-target='warn-popup-unnamed-chunk-10' title='Warnings' aria-haspopup='true' aria-expanded='false'>⚠</span></div>
 <div id='msg-popup-unnamed-chunk-10' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Fetching OpenAlex works for taxon: Stereum ostrea
-#&gt; Fetching OpenAlex ■■■■                              10% |  ETA: 24s[K[Kℹ Fetching OpenAlex works for taxon: Ossicaulis lachnopus
-#&gt; Fetching OpenAlex ■■■■                              10% |  ETA: 24sFetching OpenAlex ■■■■■■■                           20% |  ETA: 15s[K[Kℹ Fetching OpenAlex works for taxon: Stereum hirsutum
-#&gt; Fetching OpenAlex ■■■■■■■                           20% |  ETA: 15sFetching OpenAlex ■■■■■■■■■■                        30% |  ETA: 31s[K[Kℹ Fetching OpenAlex works for taxon: Basidiodendron eyrei
-#&gt; Fetching OpenAlex ■■■■■■■■■■                        30% |  ETA: 31sFetching OpenAlex ■■■■■■■■■■■■■                     40% |  ETA: 22s[K[Kℹ Fetching OpenAlex works for taxon: Sistotrema oblongisporum
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■                     40% |  ETA: 22sFetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA: 16s[K[Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA: 16sFetching OpenAlex ■■■■■■■■■■■■■■■■■■■               60% |  ETA: 21s[K[Kℹ Fetching OpenAlex works for taxon: Mycena renatii
+#&gt; 
+Fetching OpenAlex ■■■■                              10% |  ETA: 24s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Ossicaulis lachnopus
+#&gt; Fetching OpenAlex ■■■■                              10% |  ETA: 24s
+
+Fetching OpenAlex ■■■■■■■                           20% |  ETA: 15s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Stereum hirsutum
+#&gt; Fetching OpenAlex ■■■■■■■                           20% |  ETA: 15s
+
+Fetching OpenAlex ■■■■■■■■■■                        30% |  ETA: 31s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Basidiodendron eyrei
+#&gt; Fetching OpenAlex ■■■■■■■■■■                        30% |  ETA: 31s
+
+Fetching OpenAlex ■■■■■■■■■■■■■                     40% |  ETA: 22s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Sistotrema oblongisporum
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■                     40% |  ETA: 22s
+
+Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA: 16s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA: 16s
+
+Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■               60% |  ETA: 21s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Mycena renatii
 #&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■               60% |  ETA: 21s
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■            70% |  ETA: 13s[K[Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
+#&gt; 
+Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■            70% |  ETA: 13s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
 #&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■            70% |  ETA: 13s
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■         80% |  ETA:  8s[K[Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■         80% |  ETA:  8sFetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% |  ETA:  4s[K[Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% |  ETA:  4s[K
+#&gt; 
+Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■         80% |  ETA:  8s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■         80% |  ETA:  8s
+
+Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% |  ETA:  4s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% |  ETA:  4s
+
+[K
 </pre></div>
 <div id='warn-popup-unnamed-chunk-10' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Warnings</strong></div><pre class='popup-pre'>#&gt; Warning: No records found!
 #&gt; Warning: No records found!
@@ -953,24 +1042,78 @@ Combine multiple data sources for comprehensive profiles:
 #&gt; • Accepted names: 11 (including 6 at genus level)
 #&gt; ℹ Processing GBIF occurrences for Stereum ostrea
 #&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s■■■■■■■■■■■■■■                    44% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  2s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K
+
+[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+[Kℹ Processing GBIF occurrences for Hypochnicium analogum
 #&gt; ℹ Getting taxonomic IDs from Wikidata...
 #&gt; ℹ Getting page views from Wikipedia for Stereum ostrea
-#&gt; ■■■■■■■                           20% | ETA: 23s[K[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#&gt; ■■■■■■■                           20% | ETA: 23s■■■■■■■■■■                        30% | ETA: 21s[K[Kℹ Getting page views from Wikipedia for Stereum hirsutum
-#&gt; ■■■■■■■■■■                        30% | ETA: 21s■■■■■■■■■■■■■                     40% | ETA: 38s[K[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■                     40% | ETA: 38s■■■■■■■■■■■■■■■■                  50% | ETA: 27s[K[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 27s■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s[K[Kℹ Getting page views from Wikipedia for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s[K[Kℹ Getting page views from Wikipedia for Mycena renatii
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s[Kℹ Getting page views from Wikipedia for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s[Kℹ Getting page views from Wikipedia for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#&gt; 
+■■■■■■■                           20% | ETA: 23s[K
+
+[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#&gt; ■■■■■■■                           20% | ETA: 23s
+
+■■■■■■■■■■                        30% | ETA: 21s[K
+
+[Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#&gt; ■■■■■■■■■■                        30% | ETA: 21s
+
+■■■■■■■■■■■■■                     40% | ETA: 38s[K
+
+[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■                     40% | ETA: 38s
+
+■■■■■■■■■■■■■■■■                  50% | ETA: 27s[K
+
+[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 27s
+
+■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s[K
+
+[Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 20s
+
+■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s[K
+
+[Kℹ Getting page views from Wikipedia for Mycena renatii
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s
+
+[Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s
+
+[Kℹ Getting page views from Wikipedia for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 26s
+
+[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
 #&gt; ✔ Added 43 columns from '/home/adrien/R/x86_64-pc-linux-gnu-library/4.6/taxinfo/extdata/TAXREFv18_fungi.csv' with information for 18 taxa in the tax_table slot of the phyloseq object
 </pre></div>
 

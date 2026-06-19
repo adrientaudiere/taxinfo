@@ -12,6 +12,10 @@
 
 * `gna_verifier_pq()` removes the `stats` and `main_taxon_threshold` parameters. These only affected kingdom-level summary metadata (not per-name results), and `main_taxon_threshold` was never forwarded to the API by `taxize::gna_verifier()` anyway.
 
+* `gna_verifier_pq()` gains a `problematic_chars` parameter (default `"[?\\\\#|&]"`) to detect taxonomic names containing characters that corrupt the GNA Verifier GET URL (`?`, `\`, `#`, `|`, `&`), and a `clean_problematic_chars` parameter (default `FALSE`). When problematic names are found, a warning reports their count and examples; set `clean_problematic_chars = TRUE` to replace matching cells with `NA` before verification, or clean the data upstream (e.g. with `MiscMetabar::simplify_taxo()`).
+
+* `gna_verifier_pq()` gains a `force_recompute` parameter (default `FALSE`). When `TRUE`, existing result columns matching `col_prefix` are removed from the `tax_table` before re-adding them, avoiding duplicate-column errors on re-runs.
+
 * `select_taxa_pq()` aborts with an explicit message naming the requested `taxnames` when none of them match the `tax_table`, instead of failing with an obscure `OTU abundance data must have non-zero dimensions` error; `taxa_summary_text()` inherits the same clear behaviour.
 
 * New function `tax_crosscheck_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.

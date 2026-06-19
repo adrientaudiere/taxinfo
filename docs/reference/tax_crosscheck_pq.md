@@ -103,7 +103,7 @@ res <- tax_crosscheck_pq(data_fungi)
 res$summary
 res$comparison |> filter(status == "mismatch")
 
-res$venn_plot 
+res$venn_plot
 
 res_taxref <- tax_crosscheck_pq(data_fungi, data_sources = 12)
 

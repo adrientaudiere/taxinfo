@@ -5,13 +5,13 @@ http_interactions:
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:01:18 GMT
+      date: Thu, 18 Jun 2026 08:49:15 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C97500003FE9988723C4.1.1.m_1
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D32408B0A8EE87500002D5019CDB88C.1.1.m_1
       content-type: text/xml; charset=UTF-8
       cache-control: private
       content-encoding: gzip
@@ -19,8 +19,8 @@ http_interactions:
       x-ratelimit-remaining: '2'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:18 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:15 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -30,21 +30,21 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="UTF-8" ?>
         <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8ae581272e32f0d5bf3</WebEnv><IdList/><TranslationSet><Translation>     <From>Basidiodendron eyrei[Organism]</From>     <To>"Basidiodendron eyrei"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Basidiodendron eyrei[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:18
+        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a33b10b5a5ae44db70f1458</WebEnv><IdList/><TranslationSet><Translation>     <From>Basidiodendron eyrei[Organism]</From>     <To>"Basidiodendron eyrei"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Basidiodendron eyrei[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
+  recorded_at: 2026-06-18 08:49:16
 - request:
     method: GET
     uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Fomes+fomentarius%5BOrganism%5D+AND+ITS%5BTitle%5D+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:01:19 GMT
+      date: Thu, 18 Jun 2026 08:49:16 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000062EA5C958AD3.1.1.m_1
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D32408B0A8EE875000061501B748A8C.1.1.m_1
       content-type: text/xml; charset=UTF-8
       cache-control: private
       content-encoding: gzip
@@ -52,8 +52,8 @@ http_interactions:
       x-ratelimit-remaining: '1'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:19 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:16 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -63,138 +63,6 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="UTF-8" ?>
         <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8af73304960840b180a</WebEnv><IdList/><TranslationSet><Translation>     <From>Fomes fomentarius[Organism]</From>     <To>"Fomes fomentarius"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Fomes fomentarius[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:19
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Mycena+renati%5BOrganism%5D+AND+ITS%5BTitle%5D+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:01:19 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C975000017E99BAA8C82.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '1'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:20 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8b0be5eb3e5630edd95</WebEnv><IdList/><TranslationSet><Translation>     <From>Mycena renati[Organism]</From>     <To>"Mycena renati"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Mycena renati[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:20
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Xylodon+flaviporus%5BOrganism%5D+AND+ITS%5BTitle%5D+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:01:19 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C97500005BE99D322256.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '1'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:20 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8b01af8fa7682045fcc</WebEnv><IdList/><TranslationSet><Translation>     <From>Xylodon flaviporus[Organism]</From>     <To>"Xylodon flaviporus"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Xylodon flaviporus[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:20
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Stypella+subgelatinosa%5BOrganism%5D+AND+ITS%5BTitle%5D+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:01:21 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000051EA6058F872.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '1'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:21 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8b10a8c2c1ee90712bf</WebEnv><IdList/><TranslationSet><Translation>     <From>Stypella subgelatinosa[Organism]</From>     <To>"Stypella subgelatinosa"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Stypella subgelatinosa[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:21
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Sistotrema+raduloides%5BOrganism%5D+AND+ITS%5BTitle%5D+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:01:21 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C975000055E9A033CE46.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '1'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:01:22 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8b2f4ebf19e7b0cd9cd</WebEnv><IdList/><TranslationSet><Translation>     <From>Sistotrema raduloides[Organism]</From>     <To>"Sistotrema raduloides"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Sistotrema raduloides[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
-  recorded_at: 2026-06-17 14:01:22
+        <eSearchResult><Count>0</Count><RetMax>0</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a33b10c0018fe988d05f0b1</WebEnv><IdList/><TranslationSet><Translation>     <From>Fomes fomentarius[Organism]</From>     <To>"Fomes fomentarius"[Organism]</To>    </Translation></TranslationSet><QueryTranslation>Fomes fomentarius[Organism] AND ITS[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList><WarningList><OutputMessage>No items found.</OutputMessage></WarningList></eSearchResult>
+  recorded_at: 2026-06-18 08:49:16
 recorded_with: VCR-vcr/2.1.0

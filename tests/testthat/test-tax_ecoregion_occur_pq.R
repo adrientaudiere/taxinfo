@@ -12,12 +12,14 @@ test_that("tax_ecoregion_occur_pq input validation", {
 
 test_that("tax_ecoregion_occur_pq with taxnames returns tibble + summary attr", {
   skip_on_cran()
-  res <- tax_ecoregion_occur_pq(
-    taxnames = "Xylobolus subpileatus",
-    n_occur = 50,
-    time_to_sleep = 0,
-    verbose = FALSE
-  )
+  vcr::use_cassette("ecoregion_occur_pq_structure", {
+    res <- tax_ecoregion_occur_pq(
+      taxnames = "Xylobolus subpileatus",
+      n_occur = 20,
+      time_to_sleep = 0,
+      verbose = FALSE
+    )
+  })
   expect_s3_class(res, "tbl_df")
   summ <- attr(res, "tax_summary")
   expect_s3_class(summ, "tbl_df")
@@ -29,13 +31,15 @@ test_that("tax_ecoregion_occur_pq with taxnames returns tibble + summary attr", 
 
 test_that("tax_ecoregion_occur_pq respects col_prefix", {
   skip_on_cran()
-  res <- tax_ecoregion_occur_pq(
-    taxnames = "Xylobolus subpileatus",
-    col_prefix = "eco_",
-    n_occur = 50,
-    time_to_sleep = 0,
-    verbose = FALSE
-  )
+  vcr::use_cassette("ecoregion_occur_pq_prefix", {
+    res <- tax_ecoregion_occur_pq(
+      taxnames = "Xylobolus subpileatus",
+      col_prefix = "eco_",
+      n_occur = 20,
+      time_to_sleep = 0,
+      verbose = FALSE
+    )
+  })
   summ <- attr(res, "tax_summary")
   expect_true(all(c("eco_top", "eco_n", "eco_list") %in% names(summ)))
 })

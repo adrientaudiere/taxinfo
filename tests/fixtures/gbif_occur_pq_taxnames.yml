@@ -1,0 +1,102 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Amanita+muscaria
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:24 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23976583661'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"usage":{"key":"8168319","name":"Amanita muscaria (L.) Lam.","canonicalName":"Amanita
+        muscaria","authorship":"(L.) Lam.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Amanita","specificEpithet":"muscaria","type":"SCIENTIFIC","formattedName":"<i>Amanita</i>
+        <i>muscaria</i> (L.) Lam."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4171","name":"Amanitaceae","rank":"FAMILY"},{"key":"6005964","name":"Amanita","rank":"GENUS"},{"key":"8168319","name":"Amanita
+        muscaria","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"synonym":false,"left":33721,"right":33733}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Boletus+edulis
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:24 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24005481374'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1021'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"5954958","name":"Boletus edulis Bull.","canonicalName":"Boletus
+        edulis","authorship":"Bull.","rank":"SPECIES","status":"ACCEPTED","genericName":"Boletus","specificEpithet":"edulis","type":"SCIENTIFIC","formattedName":"<i>Boletus</i>
+        <i>edulis</i> Bull."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1063","name":"Boletales","rank":"ORDER"},{"key":"8789","name":"Boletaceae","rank":"FAMILY"},{"key":"8287374","name":"Boletus","rank":"GENUS"},{"key":"5954958","name":"Boletus
+        edulis","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":13,"timings":{"nameNRank":0,"sciNameMatch":14,"nameParse":1,"luceneMatch":13}},"additionalStatus":[{"clbDatasetKey":"53131","datasetAlias":"IUCN","datasetKey":"19491596-35ae-4a91-9a98-85cf505f1bd3","status":"LEAST_CONCERN","statusCode":"LC","sourceId":"122090234"}],"synonym":false,"left":83630,"right":83631}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=8168319
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23995654841'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":316020,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=5954958
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '24123901580'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '82'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":79350,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:25
+recorded_with: VCR-vcr/2.1.0

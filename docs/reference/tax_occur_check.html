@@ -62,6 +62,7 @@ Performs a species occurrence check within a fixed radius around a GPS point usi
 <span>  <span class="va">longitude</span>,</span>
 <span>  <span class="va">latitude</span>,</span>
 <span>  radius_km <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"download"</span>, <span class="st">"search"</span><span class="op">)</span>,</span>
 <span>  circle_form <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  clean_coord <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  info_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"decimalLongitude"</span>, <span class="st">"decimalLatitude"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>,</span>
@@ -94,6 +95,15 @@ Performs a species occurrence check within a fixed radius around a GPS point usi
 <dd><p>Numeric. Search radius in kilometers (default: 50).</p></dd>
 
 
+<dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
+<dd><p>(character, default `"download"`). How occurrences are fetched:
+- `"download"`: a single [rgbif::occ_download()] request constrained to the
+  search bounding box (mints a citable DOI). **Requires GBIF credentials**
+  (see [check_gbif_credentials()]).
+- `"search"`: the legacy [rgbif::occ_search()] call (fast, capped at
+  `n_occur` records, no credentials).</p></dd>
+
+
 <dt id="arg-circle-form">circle_form<a class="anchor" aria-label="anchor" href="#arg-circle-form"></a></dt>
 <dd><p>(Logical, default: TRUE). Whether to use a circular
 search area. If FALSE, a square bounding box is used.</p></dd>
@@ -108,7 +118,9 @@ using CoordinateCleaner</p></dd>
 <dd><p>Character vector. Columns to select from GBIF data
 (default:c("decimalLongitude", "decimalLatitude", "country", "year",
  "scientificName", "recordedBy", "gbifRegion")). Note that "scientificName",
-"decimalLongitude" and "decimalLatitude" are required.</p></dd>
+"decimalLongitude" and "decimalLatitude" are required. With
+`method = "download"`, `"country"` is mapped to `"countryCode"` and
+download-only absent columns (e.g. `"gbifRegion"`) are silently dropped.</p></dd>
 
 
 <dt id="arg-return-all-occ">return_all_occ<a class="anchor" aria-label="anchor" href="#arg-return-all-occ"></a></dt>
@@ -127,11 +139,13 @@ from CoordinateCleaner.</p></dd>
 
 <dt id="arg-n-occur">n_occur<a class="anchor" aria-label="anchor" href="#arg-n-occur"></a></dt>
 <dd><p>Numeric (default: 1000). Maximum number of occurrences to
-retrieve from GBIF.</p></dd>
+retrieve from GBIF. A server-side limit with `method = "search"`; applied as
+a local sample after import with `method = "download"`.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional parameters passed to [rgbif::occ_search()].</p></dd>
+<dd><p>Additional parameters passed to [rgbif::occ_search()] (only used
+when `method = "search"`).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -151,7 +165,8 @@ retrieve from GBIF.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>[tax_occur_check_pq()], [tax_occur_multi_check_pq()]</p></div>
+    <div class="dont-index"><p>[tax_occur_check_pq()], [tax_occur_multi_check_pq()],
+ [rgbif::occ_download()]</p></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -165,14 +180,14 @@ retrieve from GBIF.</p></dd>
 <span class="r-in"><span><span class="va">long</span> <span class="op">&lt;-</span> <span class="fl">2.3522</span></span></span>
 <span class="r-in"><span><span class="va">lat</span> <span class="op">&lt;-</span> <span class="fl">48.8566</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">Q_rob_in_Paris</span> <span class="op">&lt;-</span> <span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Quercus robur"</span>, <span class="va">long</span>, <span class="va">lat</span>, <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Q_rob_in_Paris</span> <span class="op">&lt;-</span> <span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Quercus robur"</span>, <span class="va">long</span>, <span class="va">lat</span>, radius_km<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Q_rob_in_Paris</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Trametopsis brasiliensis"</span>, <span class="va">long</span>, <span class="va">lat</span>, <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Trametopsis brasiliensis"</span>, <span class="va">long</span>, <span class="va">lat</span>, radius_km<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Visualize occurrences around Paris for Fagus sylvatica</span></span></span>
-<span class="r-in"><span><span class="va">res_occ</span> <span class="op">&lt;-</span> <span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Fagus sylvatica"</span>, <span class="va">long</span>, <span class="va">lat</span>, <span class="fl">200</span>,</span></span>
+<span class="r-in"><span><span class="va">res_occ</span> <span class="op">&lt;-</span> <span class="fu">tax_occur_check</span><span class="op">(</span><span class="st">"Fagus sylvatica"</span>, <span class="va">long</span>, <span class="va">lat</span>, radius_km<span class="op">=</span><span class="fl">20</span>,</span></span>
 <span class="r-in"><span>  return_all_occ <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

@@ -1,6 +1,14 @@
 # Test tax_retroblast_pq function
 # Examples from man page: tax_retroblast_pq.Rd
 
+# Prune to 2 taxa: tax_retroblast_pq runs a local makeblastdb + blastn per
+# taxon, so the cost scales with taxa count. Two taxa exercise the full code
+# path while keeping the (cassette-replayed) tests fast.
+retro_pq <- function() {
+  pq <- load_clean_pq()
+  phyloseq::prune_taxa(phyloseq::taxa_names(pq)[1:2], pq)
+}
+
 test_that("tax_retroblast_pq input validation", {
   # Test with NULL phyloseq object
   expect_error(tax_retroblast_pq(NULL))
@@ -12,9 +20,9 @@ test_that("tax_retroblast_pq returns list with expected structure and columns", 
   skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
   vcr::use_cassette("retroblast_structure", {
     res_retro <- tax_retroblast_pq(
-      load_clean_pq(),
+      retro_pq(),
       marker = c("ITS", "internal transcribed spacer"),
-      retmax = 10,
+      retmax = 5,
       id_cut = 99,
       add_to_phyloseq = FALSE
     )
@@ -47,9 +55,9 @@ test_that("tax_retroblast_pq returns phyloseq with add_to_phyloseq = TRUE", {
   skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
   vcr::use_cassette("retroblast_phyloseq", {
     res_retro <- tax_retroblast_pq(
-      load_clean_pq(),
+      retro_pq(),
       marker = c("ITS", "internal transcribed spacer"),
-      retmax = 10,
+      retmax = 5,
       id_cut = 99
     )
   })
@@ -62,7 +70,7 @@ test_that("tax_retroblast_pq verbose parameter works", {
   skip_if(Sys.which("blastn") == "" || Sys.which("makeblastdb") == "")
   vcr::use_cassette("retroblast_verbose", {
     expect_no_error(tax_retroblast_pq(
-      load_clean_pq(),
+      retro_pq(),
       marker = c("ITS"),
       retmax = 5,
       id_cut = 99,

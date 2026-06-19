@@ -69,11 +69,13 @@ test_that("gna_verifier_pq with taxnames and physeq both provided errors", {
 test_that("gna_verifier_pq with taxnames only works", {
   skip_on_cran()
   # Test with taxnames parameter only
-  result <- gna_verifier_pq(
-    taxnames = c("Amanita muscaria"),
-    add_to_phyloseq = FALSE,
-    verbose = FALSE
-  )
+  vcr::use_cassette("gna_taxnames", {
+    result <- gna_verifier_pq(
+      taxnames = c("Amanita muscaria"),
+      add_to_phyloseq = FALSE,
+      verbose = FALSE
+    )
+  })
 
   expect_s3_class(result, "data.frame")
 })
@@ -88,12 +90,14 @@ test_that("gna_verifier_pq add_to_phyloseq cannot be TRUE with taxnames", {
 test_that("gna_verifier_pq col_prefix parameter works", {
   skip_on_cran()
   # Test with col_prefix parameter
-  result <- gna_verifier_pq(
-    taxnames = c("Boletus edulis"),
-    add_to_phyloseq = FALSE,
-    col_prefix = "test_",
-    verbose = FALSE
-  )
+  vcr::use_cassette("gna_col_prefix", {
+    result <- gna_verifier_pq(
+      taxnames = c("Boletus edulis"),
+      add_to_phyloseq = FALSE,
+      col_prefix = "test_",
+      verbose = FALSE
+    )
+  })
 
   expect_s3_class(result, "data.frame")
 })

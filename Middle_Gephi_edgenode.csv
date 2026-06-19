@@ -1,0 +1,20 @@
+ID,Domain,Phylum,Class,Order,Family,Genus,Species,Trophic.Mode,Guild,Trait,Confidence.Ranking,Genus_species,mean,Label
+ASV94,Fungi,Basidiomycota,Agaricomycetes,Russulales,Stereaceae,Stereum,ostrea,Saprotroph,Undefined Saprotroph,White Rot,Probable,Stereum_ostrea,0.0143268409210161,ASV94
+ASV25,Fungi,Basidiomycota,Agaricomycetes,Agaricales,Lyophyllaceae,Ossicaulis,lachnopus,Saprotroph,Wood Saprotroph,Brown Rot,Probable,Ossicaulis_lachnopus,0.00244114038931286,ASV25
+ASV27,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Steccherinaceae,Antrodiella,brasiliensis,Saprotroph,Wood Saprotroph,White Rot,Highly Probable,Antrodiella_brasiliensis,0.00569105691056911,ASV27
+ASV18,Fungi,Basidiomycota,Agaricomycetes,Russulales,Stereaceae,Stereum,ostrea,Saprotroph,Undefined Saprotroph,White Rot,Probable,Stereum_ostrea,0.0280209965073848,ASV18
+ASV49,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Phanerochaetaceae,Phanerochaete,livescens,Saprotroph,Wood Saprotroph,White Rot,Highly Probable,Phanerochaete_livescens,0.000337619423891962,ASV49
+ASV91,Fungi,Basidiomycota,Agaricomycetes,Auriculariales,Auriculariaceae,Auricularia,mesenterica,Saprotroph,Undefined Saprotroph,NULL,Probable,Auricularia_mesenterica,0.00882352941176471,ASV91
+ASV108,Fungi,Basidiomycota,Agaricomycetes,Auriculariales,Exidiaceae,Exidia,glandulosa,Saprotroph-Symbiotroph,Endophyte-Undefined Saprotroph,NULL,Probable,Exidia_glandulosa,0.0136288867664226,ASV108
+ASV99,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Polyporaceae,Fomes,fomentarius,Saprotroph,Wood Saprotroph,Brown Rot-White Rot,Probable,Fomes_fomentarius,0.00690486025058516,ASV99
+ASV53,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Polyporaceae,Fomes,fomentarius,Saprotroph,Wood Saprotroph,Brown Rot-White Rot,Probable,Fomes_fomentarius,0.0133943733076323,ASV53
+ASV58,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Polyporaceae,Fomes,fomentarius,Saprotroph,Wood Saprotroph,Brown Rot-White Rot,Probable,Fomes_fomentarius,0.00613551172855904,ASV58
+ASV62,Fungi,Basidiomycota,Agaricomycetes,NA,NA,NA,NA,-,-,-,-,NA_NA,0.0178861788617886,ASV62
+ASV8,Fungi,Basidiomycota,Agaricomycetes,Russulales,Stereaceae,Stereum,ostrea,Saprotroph,Undefined Saprotroph,White Rot,Probable,Stereum_ostrea,0.201549105922644,ASV8
+ASV7,Fungi,Basidiomycota,Agaricomycetes,Russulales,Stereaceae,NA,NA,Saprotroph,Wood Saprotroph-Undefined Saprotroph,NULL,Probable,NA_NA,0.0755158211244257,ASV7
+ASV41,Fungi,Basidiomycota,Agaricomycetes,Agaricales,Tricholomataceae,Mycena,renati,Pathotroph-Saprotroph,Leaf Saprotroph-Plant Pathogen-Undefined Saprotroph-Wood Saprotroph,NULL,Probable,Mycena_renati,0.025461245769094,ASV41
+ASV72,Fungi,Basidiomycota,Agaricomycetes,Polyporales,NA,NA,NA,-,-,-,-,NA_NA,0.0225490196078431,ASV72
+ASV82,Fungi,Basidiomycota,Agaricomycetes,Auriculariales,Exidiaceae,Exidia,glandulosa,Saprotroph-Symbiotroph,Endophyte-Undefined Saprotroph,NULL,Probable,Exidia_glandulosa,0.0224093222411399,ASV82
+ASV61,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Hyphodermataceae,Hyphoderma,setigerum,Saprotroph,Undefined Saprotroph,White Rot,Probable,Hyphoderma_setigerum,0.0172321396289378,ASV61
+ASV35,Fungi,Basidiomycota,Agaricomycetes,Polyporales,Polyporaceae,Fomes,fomentarius,Saprotroph,Wood Saprotroph,Brown Rot-White Rot,Probable,Fomes_fomentarius,0.0401989958511261,ASV35
+ASV107,Fungi,Basidiomycota,Agaricomycetes,Hymenochaetales,Schizoporaceae,Xylodon,raduloides,Saprotroph,Undefined Saprotroph,White Rot,Probable,Xylodon_raduloides,0.0150621778205113,ASV107

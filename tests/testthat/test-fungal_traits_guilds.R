@@ -22,13 +22,15 @@ test_that("fungal_traits_guilds runs gna_verifier_pq when names are absent", {
   raw_pq <- prune_taxa(taxa_names(data_fungi_mini)[1:5], data_fungi_mini)
   expect_false("currentCanonicalSimple" %in% colnames(raw_pq@tax_table))
 
-  res <- fungal_traits_guilds(
-    raw_pq,
-    gna_data_sources = 210,
-    add_consensus = FALSE,
-    fg_tax_levels = character(0),
-    verbose = FALSE
-  )
+  vcr::use_cassette("fungal_traits_gna", {
+    res <- fungal_traits_guilds(
+      raw_pq,
+      gna_data_sources = 210,
+      add_consensus = FALSE,
+      fg_tax_levels = character(0),
+      verbose = FALSE
+    )
+  })
 
   expect_s4_class(res, "phyloseq")
   expect_true("currentCanonicalSimple" %in% colnames(res@tax_table))

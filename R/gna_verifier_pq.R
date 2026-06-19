@@ -52,6 +52,32 @@
 #'  "authorship", "bracketauthorship" and "scientificNameAuthorship".
 #' @param discard_NA (logical, default `TRUE`). Passed to
 #'  [taxonomic_rank_to_taxnames()].
+#' @param problematic_chars A regex pattern (character string) to detect
+#'  characters that are problematic for the GNA Verifier API URL. The API
+#'  pastes names pipe-separated into a GET URL path, so characters like
+#'  `?` (query-string delimiter), `\\` (escape), `|` (pipe separator),
+#'  `#` (fragment), or `&` (parameter separator) corrupt the URL and can
+#'  cause a length-mismatch crash in [taxize::gna_verifier()]. Names
+#'  containing these characters are reported and, if
+#'  `clean_problematic_chars` is `TRUE`, handled before verification.
+#'  Set to `NULL` to disable detection. Default: `"[?\\\\#|&]"`.
+#' @param clean_problematic_chars (logical, default `FALSE`) If `TRUE`,
+#'  cells in the `taxonomic_rank` columns that match `problematic_chars`
+#'  are replaced with `NA` (when `physeq` is provided) and matching names
+#'  are filtered out (when `taxnames` is provided) before verification.
+#'  If `FALSE` (the default), a warning is issued listing the problematic
+#'  names but they are sent as-is -- this will likely cause an error in
+#'  [taxize::gna_verifier()]. Set to `TRUE` to handle them automatically,
+#'  or clean the data upstream (e.g. with [MiscMetabar::simplify_taxo()]).
+#' @param force_recompute (logical, default `FALSE`) If `TRUE`, remove
+#'  any existing columns in the `tax_table` that would be re-added by
+#'  this call (i.e. columns matching `col_prefix` when `col_prefix` is
+#'  set, or columns in `new_cols` when `col_prefix` is `NULL`) before
+#'  performing the verification. This is useful when re-running
+#'  `gna_verifier_pq()` on a phyloseq that already contains result
+#'  columns from a previous call. If `FALSE`, existing columns are left
+#'  in place, which can cause duplicate-column errors in
+#'  `tax_table()` on re-runs.
 #' @returns
 #'   Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object
 #'   with new columns (see param add_to_phyloseq) in the tax_table slot.
@@ -119,7 +145,10 @@ gna_verifier_pq <- function(
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
   authorship_col = TRUE,
-  discard_NA = TRUE
+  discard_NA = TRUE,
+  problematic_chars = "[?\\\\#|&]",
+  clean_problematic_chars = FALSE,
+  force_recompute = FALSE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort(
@@ -150,6 +179,48 @@ gna_verifier_pq <- function(
     )
   }
 
+  # Detect and handle problematic characters that break the GNA Verifier URL
+  if (!is.null(problematic_chars)) {
+    problematic <- grepl(problematic_chars, taxnames)
+    if (any(problematic)) {
+      n_problematic <- sum(problematic)
+      examples <- head(taxnames[problematic], 5)
+      if (clean_problematic_chars) {
+        cli::cli_warn(c(
+          "!" = "{n_problematic} taxonomic name(s) contain characters problematic for the GNA Verifier API.",
+          "i" = "Pattern: {.val {problematic_chars}}",
+          "i" = "Examples: {.val {examples}}",
+          "i" = "They will be replaced with NA before verification."
+        ))
+        if (!is.null(physeq)) {
+          for (col in taxonomic_rank) {
+            if (col %in% colnames(physeq@tax_table)) {
+              vals <- as.character(physeq@tax_table[, col])
+              vals[grepl(problematic_chars, vals)] <- NA_character_
+              physeq@tax_table[, col] <- vals
+            }
+          }
+          taxnames <- taxonomic_rank_to_taxnames(
+            physeq = physeq,
+            taxonomic_rank = taxonomic_rank,
+            discard_genus_alone = FALSE,
+            discard_NA = discard_NA
+          )
+        } else {
+          taxnames <- taxnames[!problematic]
+        }
+      } else {
+        cli::cli_warn(c(
+          "!" = "{n_problematic} taxonomic name(s) contain characters problematic for the GNA Verifier API.",
+          "i" = "Pattern: {.val {problematic_chars}}",
+          "i" = "Examples: {.val {examples}}",
+          "i" = "Set {.code clean_problematic_chars = TRUE} to handle them automatically.",
+          "i" = "Proceeding as-is may cause an error in {.fn taxize::gna_verifier}."
+        ))
+      }
+    }
+  }
+
   # Determine column names that will be added
   new_cols <- c("submittedName", "currentName", "currentCanonicalSimple")
   if (genus_species_canonical_col) {
@@ -163,15 +234,25 @@ gna_verifier_pq <- function(
 
   # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
+    prefixed_new_cols <- paste0(col_prefix, new_cols)
     existing_cols <- colnames(physeq@tax_table)
-    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
+    common_cols <- intersect(prefixed_new_cols, existing_cols)
 
-    if (length(common_cols) > 0 && is.null(col_prefix)) {
-      cli::cli_warn(c(
-        "Column names already exist in tax_table: {.val {common_cols}}",
-        "i" = "Adding prefix 'gna_' to avoid conflicts"
-      ))
-      col_prefix <- "gna_"
+    if (length(common_cols) > 0) {
+      if (force_recompute) {
+        cli::cli_alert_info(
+          "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {head(common_cols, 5)}}"
+        )
+        tax_mat <- as(physeq@tax_table, "matrix")
+        tax_mat <- tax_mat[, !(colnames(tax_mat) %in% common_cols), drop = FALSE]
+        physeq@tax_table <- tax_table(tax_mat)
+      } else if (is.null(col_prefix)) {
+        cli::cli_warn(c(
+          "Column names already exist in tax_table: {.val {common_cols}}",
+          "i" = "Adding prefix 'gna_' to avoid conflicts"
+        ))
+        col_prefix <- "gna_"
+      }
     }
   }
 

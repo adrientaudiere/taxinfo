@@ -58,10 +58,10 @@
 #' res$summary
 #' res$comparison |> filter(status == "mismatch")
 #'
-#' res$venn_plot 
-#' 
+#' res$venn_plot
+#'
 #' res_taxref <- tax_crosscheck_pq(data_fungi, data_sources = 12)
-#' 
+#'
 #' # Cross-check a vector of names
 #' res2 <- tax_crosscheck_pq(taxnames = c(
 #'   "Trametopsis brasiliensis",
@@ -191,7 +191,9 @@ tax_crosscheck_pq <- function(
   if (plot) {
     if (requireNamespace("ggVennDiagram", quietly = TRUE)) {
       gna_set <- unique(gna_names[!is.na(gna_names) & gna_names != ""])
-      backbone_set <- unique(backbone_names[!is.na(backbone_names) & backbone_names != ""])
+      backbone_set <- unique(backbone_names[
+        !is.na(backbone_names) & backbone_names != ""
+      ])
 
       res$venn_plot <- ggVennDiagram::ggVennDiagram(
         list(
@@ -199,7 +201,9 @@ tax_crosscheck_pq <- function(
           GBIF_Backbone = backbone_set
         )
       ) +
-        ggplot2::ggtitle("Matched canonical names: GNA Verifier vs GBIF Backbone")
+        ggplot2::ggtitle(
+          "Matched canonical names: GNA Verifier vs GBIF Backbone"
+        )
     } else {
       if (verbose) {
         cli::cli_alert_info(

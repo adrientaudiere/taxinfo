@@ -1,17 +1,17 @@
 http_interactions:
 - request:
     method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Basidiodendron+eyrei%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Basidiodendron+eyrei%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:00:42 GMT
+      date: Thu, 18 Jun 2026 08:49:03 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D3405938203767500007CEA0F13727E.1.1.m_1
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D32408B0A8EE8750000544FF5237D06.1.1.m_1
       content-type: text/xml; charset=UTF-8
       cache-control: private
       content-encoding: gzip
@@ -19,8 +19,8 @@ http_interactions:
       x-ratelimit-remaining: '2'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:41 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:03 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -30,32 +30,27 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="UTF-8" ?>
         <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>15</Count><RetMax>10</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8896bc5931ab20d1105</WebEnv><IdList>
+        <eSearchResult><Count>15</Count><RetMax>5</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a33b0fff8e24870c2052f78</WebEnv><IdList>
         <Id>2987525492</Id>
         <Id>2262700006</Id>
         <Id>2418067197</Id>
         <Id>2328014582</Id>
         <Id>1917856355</Id>
-        <Id>1917856353</Id>
-        <Id>1917856352</Id>
-        <Id>1917856351</Id>
-        <Id>1807907961</Id>
-        <Id>1807907958</Id>
-        </IdList><TranslationSet><Translation>     <From>Basidiodendron eyrei[Organism]</From>     <To>"Basidiodendron eyrei"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Basidiodendron eyrei"[Organism]</Term>    <Field>Organism</Field>    <Count>29</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Basidiodendron eyrei"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:42
+        </IdList><TranslationSet><Translation>     <From>Basidiodendron eyrei[Organism]</From>     <To>"Basidiodendron eyrei"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Basidiodendron eyrei"[Organism]</Term>    <Field>Organism</Field>    <Count>29</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2875598</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248877</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038698</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Basidiodendron eyrei"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
+  recorded_at: 2026-06-18 08:49:04
 - request:
     method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=2987525492%2C2262700006%2C2418067197%2C2328014582%2C1917856355%2C1917856353%2C1917856352%2C1917856351%2C1807907961%2C1807907958&email=david.winter%40gmail.com&tool=rentrez
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=2987525492%2C2262700006%2C2418067197%2C2328014582%2C1917856355&email=david.winter%40gmail.com&tool=rentrez
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:00:42 GMT
+      date: Thu, 18 Jun 2026 08:49:04 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D3405938203767500006DEA11C27CD5.1.1.m_7
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D33537DF51BFB3500006362ED306DE4.1.1.m_7
       content-type: text/plain
       cache-control: private
       content-encoding: gzip
@@ -64,8 +59,8 @@ http_interactions:
       x-ratelimit-remaining: '2'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:43 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:04 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -121,71 +116,20 @@ http_interactions:
         GTCTCGCCTCAGCTCGCATACATGGCCTGCTTCCAATCGCACGGCGTTCCGTGCACTATTCTACTTTTGA
         CCTCGAATCGGGTGGGACTACCCGCTGAACTTAAGCA
 
-        >MW139275.1 Basidiodendron eyrei voucher ENZ_18-103 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTTGCGGAAGGATCATTAATGAATACCTCGCTGT
-        GCGCTTCGCGGCTGCACGCTTGGAATCCACACCTGTGCACTTTCGATTGGCTTCGGCCTTTCGCTCACAC
-        ACATACTACGTCGTCTCGAATGTAAACACTTTATAAAAATACAACTATCAGCAACGGATCTCTTGGCTCT
-        CGCATCGATGAAGAACGCAGCGAAATGCGATACGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATC
-        TTTGAACGCACCTTGCACCTCGTGGCTTACCACGGGGTACGCCCGTTCGAGTGTCACGTTCCCATCGCCT
-        CACGGCGGATCTGGGCGCTGCCTTACGGCTCGCCTTAAATGCATTAGCGAGGACAACCGTGCTTGCGCTG
-        GCGTGATAATTGTCTCGCCTCAGCTCGCATACATGGCCTGCTTCCAATCGCACGGCGTTCCGTGCACTAT
-        TCTACTTTTGACCTCGAATCGGGTGGGACTACCCGCTGAACTTAAGCATATCAAT
-
-        >MW139274.1 Basidiodendron eyrei voucher ENZ_18-101 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAATGAATACCTCGCTGTG
-        CGCTTCGCGGCTGCACGCTTGGAATCCACACCTGTGCACTTTCGATTGGCTTCGGCCTTTCGCTCACACA
-        CATACTACGTCGTCTCGAATGTAAACACTTTATAAAAATACAACTATCAGCAACGGATCTCTTGGCTCTC
-        GCATCGATGAAGAACGCAGCGAAATGCGATACGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCT
-        TTGAACGCACCTTGCACCTCGTGGCTTACCACGGGGTACGCCCGTTCGAGTGTCACGTTCCCATCGCCTC
-        ACGGCGGATCTGGGCGCTGCCTTACGGCTCGCCTTAAATGCATTAGCGAGGACAACCGTGCTTGCGCTGG
-        CGTGATAATTGTCTCGCCTCAGCTCGCATACATGGCCTGCTTCCAATCGCACGGCGTTCCGTGCACTATT
-        CTACTTTTGACCTCGAATCGGGTGGGACTACCCGCTGAACTTAAGCATATCAATAAGCCGGAGGA
-
-        >MW139273.1 Basidiodendron eyrei voucher ENZ_13-100 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAATGAATACCTCGCTGTG
-        CGCTTCGCGGCTGCACGCTTGGAATCCACACCTGTGCACTTTCGATTGGCTTCGGCCTTTCGCTCACACA
-        CTACGTCGTCTCGAATGTAAACACTTTATAAAAATACAACTATCAGCAACGGATCTCTTGGCTCTCGCAT
-        CGATGAAGAACGCAGCGAAATGCGATACGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGA
-        ACGCACCTTGCACCTCGTGGCTTACCACGGGGTACGCCCGTTCGAGTGTCACGTTCCCATCGCCTCACGG
-        CGGATCTGGGCGCTGCCTTACGGCTCGCCTTAAATGCATTAGCGAGGACAACCGTGCTTGCGCTGGCGTG
-        ATAATTGTCTCGCCTCAGCTCGCATACATGGCCTGGCTTCCAATCGCACGGGGTTCCGGGCACTATCCTA
-        CTTTTGACCTCAAATCGGGGGGAACTACCCGCTGAACTTAAGAATATCAATAAGCGGAGGAAGCGGGAAA
-        ACCCGCTGAACT
-
-        >MT040882.1 Basidiodendron eyrei voucher VS 8313 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        TTAGAGGAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAATGAATACCTC
-        GCTGTGCGCTTCGCGGCTGCACGCTTGGAATCCACACCTGTGCACTTTCGATTGGCTTCGGCCTTTCGCT
-        CACACATACTACGTCGTCTCGAATGTAAACACTTTATAAAATACAACTATCAGCAACGGATCTCTTGGCT
-        CTCGCATCGATGAAGAACGCAGCGAAATGCGATACGTAATGTGAATTGCAGAATTCAGTGAATCATCGAA
-        TCTTTGAACGCACCTTGCACCTCGTGGCTTACCACGGGGTACGCCCGTTCGAGTGTCACGTTCCCATCGC
-        CTCACGGCGGATCTGGGCGCTGCCTTACGGCTCGCCTTAAATGCATTAGCGAGGACAACCGTGCTTGCGC
-        TGGCGTGATAATTGTCTCGCCTCAGCTCGCATACATGGCCTGCTTCCAATCGCACGGCGTTCCGTGCACT
-        ATTCTACTTTTGACCTCGAATCGGGTGGGACTACCCGCTGAACTTAAGCATATCAATAAGNCGGAGGAA
-
-        >MT040880.1 Basidiodendron eyrei voucher VS 12003 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAATGAATACCTCGCTGTG
-        CGCTTCGCGGCTGCACGCTTGGAATCCACACCTGTGCACTTTCGATTGGCTTCGGCCTTTCGCTCACACA
-        TACTACGTCGTCTCGAATGTAAACACTTTATAAAATACAACTATCAGCAACGGATCTCTTGGCTCTCGCA
-        TCGATGAAGAACGCAGCGAAATGCGATACGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTG
-        AACGCACCTTGCACCTCGTGGCTTACCACGGGGTACGCCCGTTCGAGTGTCACGTTCCCATCGCCTCACG
-        GCGGATCTGGGCGCTGCCTTACGGCTCGCCTTAAATGCATTAGCGAGGACAACCGTGCTTGCGCTGGCGT
-        GATAATTGTCTCGCCTCAGCTCGCATACATGGCCTGCTTCCAATCGCACGGCGTTCCGTGCACTATTCTA
-        CTTTTGACCTCGAATCGGGTGGGACTACCCGCTGAACTTAAGCATATCAT
-
-  recorded_at: 2026-06-17 14:00:43
+  recorded_at: 2026-06-18 08:49:05
 - request:
     method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Fomes+fomentarius%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Fomes+fomentarius%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=5&email=david.winter%40gmail.com&tool=rentrez
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:00:45 GMT
+      date: Thu, 18 Jun 2026 08:49:06 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D3261AFD49730A5000066D9B2D248E5.1.1.m_1
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D32408B0A8EE87500004D4FFDEA7EF0.1.1.m_1
       content-type: text/xml; charset=UTF-8
       cache-control: private
       content-encoding: gzip
@@ -193,8 +137,8 @@ http_interactions:
       x-ratelimit-remaining: '2'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:44 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:06 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -204,32 +148,27 @@ http_interactions:
       string: |
         <?xml version="1.0" encoding="UTF-8" ?>
         <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>469</Count><RetMax>10</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a88c4454f9647403e507</WebEnv><IdList>
+        <eSearchResult><Count>469</Count><RetMax>5</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a33b102940c8ad2660df8cd</WebEnv><IdList>
         <Id>3117466758</Id>
         <Id>2911531491</Id>
         <Id>2911531329</Id>
         <Id>2911531258</Id>
         <Id>2911531257</Id>
-        <Id>2911531243</Id>
-        <Id>2911531222</Id>
-        <Id>2911530971</Id>
-        <Id>2911530910</Id>
-        <Id>2911530908</Id>
-        </IdList><TranslationSet><Translation>     <From>Fomes fomentarius[Organism]</From>     <To>"Fomes fomentarius"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Fomes fomentarius"[Organism]</Term>    <Field>Organism</Field>    <Count>625</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Fomes fomentarius"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:45
+        </IdList><TranslationSet><Translation>     <From>Fomes fomentarius[Organism]</From>     <To>"Fomes fomentarius"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Fomes fomentarius"[Organism]</Term>    <Field>Organism</Field>    <Count>625</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2875598</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248877</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038698</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Fomes fomentarius"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
+  recorded_at: 2026-06-18 08:49:07
 - request:
     method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=3117466758%2C2911531491%2C2911531329%2C2911531258%2C2911531257%2C2911531243%2C2911531222%2C2911530971%2C2911530910%2C2911530908&email=david.winter%40gmail.com&tool=rentrez
+    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=3117466758%2C2911531491%2C2911531329%2C2911531258%2C2911531257&email=david.winter%40gmail.com&tool=rentrez
   response:
     status: 200
     headers:
-      date: Wed, 17 Jun 2026 14:00:45 GMT
+      date: Thu, 18 Jun 2026 08:49:07 GMT
       server: Finatra
       strict-transport-security: max-age=31536000; includeSubDomains; preload
       content-security-policy: upgrade-insecure-requests
       referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C975000057E956F729EF.1.1.m_7
+      ncbi-sid: B8309022763C342A_0591SID
+      ncbi-phid: 1D33537DF51BFB3500003E62EFCDB8B2.1.1.m_7
       content-type: text/plain
       cache-control: private
       content-encoding: gzip
@@ -238,8 +177,8 @@ http_interactions:
       x-ratelimit-remaining: '2'
       access-control-allow-origin: '*'
       access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:45 GMT
+      set-cookie: ncbi_sid=B8309022763C342A_0591SID; domain=.nih.gov; path=/; expires=Fri,
+        18 Jun 2027 08:49:07 GMT
       x-ua-compatible: IE=Edge
       x-xss-protection: 1; mode=block
       via: 1.1 google
@@ -299,751 +238,5 @@ http_interactions:
         GTCTACGCCGCGACCGTGAAGCGTTTGGAGAGCTTCTAATGGTCTCGTCAGAGACAGCTTTTATGAACTC
         TGACCTCAAATCAGGTAGGACTACCCGCTGAACTTAAGCATATC
 
-        >PV109059.1 Fomes fomentarius strain CIRM-BRFM 2573 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        ACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAGTTTTGACATGGGTTGTAGCTGGCCTTC
-        CGAGGCATGTGCACGCCCTGCTCATCCACTCTACACCTGTGCACTTACTGTGGGATTTCAGGTGCGTCGC
-        TTTGCGGCGGCGTCACTCGGCCCACGTTTTCTTTACAAACTATTGAAGTAACAGAATGTTTATTGATGTA
-        ACGCATCTATAATACAACTTTCAGCAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATG
-        CGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTA
-        TTCCGAGGAGCATGCCTGTTTGAGTGTCATGAAATTCTCAACCTATAAACTTTTGCGGGTTTGTAGGGTT
-        GGCTATTGGAGGCTTTTGCTGGCCCTCGTTTGAGTCAGCTCCTCTCAAATGCATTAGCTTGGTTCCTTGC
-        GGATCGGCTGTCGGTGTGATAATGTCTACGCCGCGACCGTGAAGCGTTTGGAGAGCTTCTAATGGTCTCG
-        TCAGAGACAGCTTTTA
-
-        >PV109039.1 Fomes fomentarius strain CIRM-BRFM 2545 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        CTTCCCGTATAGGGGAACCTGCGGAAGGATCATTAACGAGTTTTGACATGGGTTGTAGCTGGCCTTCCGA
-        GGCATGTGCACGCCCTGCTCATCCACTCTACACCTGTGCACTTACTGTGGGATTTCAGGTGCGTCGCTTT
-        GCGGCGGCGTCACTCGGCCCACGTTTTCTTTACAAACTATTGAAGTAACAGAATGTTTATTGATGTAACG
-        CATCTATAATACAACTTTCAGCAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGA
-        TAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTC
-        CGAGGAGCATGCCTGTTTGAGTGTCATGAAATTCTCAACCTATAAACTTTTGCGGGTTTGTAGGGTTGGC
-        TATTGGAGGCTTTTGCTGGCCCTCGTTTGAGTCAGCTCCTCTCAAATGCATTAGCTTGGTTCCTTGCGGA
-        TCGGCTGTCGGTGTGATAATGTCTACGCCGCGACCGTGAAGCGTTTGGAGAGCTTCTAATGGTCTCGTCA
-        GAGACAGCTTTTATGAACTCTGACCTCAAATCAGGTAGGACTACCCGCTGAACTTAAGCATATCAATAAG
-        GCGGAGGAA
-
-        >PV108798.1 Fomes fomentarius strain CIRM-BRFM 1897 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        TTTCCGTAAAGGGGAACCTGCGGAAGGATCATTAACGAGTTTTGACATGGGTTGTAGCTGGCCTTCCGAG
-        GCATGTGCACGCCCTGCTCATCCACTCTACACCTGTGCACTTACTGTGGTTTCAGGTGCGTCGCCTCGCG
-        GCGGCGTCACTCGGCCCACGTTTTCTTTACAAACTATTGAAGTAACAGAATGTTTATTGATGTAACGCAT
-        CTATAATACAACTTTCAGCAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAA
-        GTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGA
-        GGAGCATGCCTGTTTGAGTGTCATGAAATTCTCAACCTATAAACCTTTGCGGGTTTGTAGCGTTGGATGT
-        TGGAGGCTTTTGCTGGCCCAGTCAGCTCCTCTTAAATGCATTAGCTTGGTTCCTTGTGGATCGGCTGTCG
-        GTGTGATAATGTCTACGCCGCACCCGTGAAGCGATTGGAGAGCTTCTAATGGTCTCGTCAGAGACAGCTT
-        TTATGAACTCTGACCTCAAATCAGGTAGGACTACCCGCTGAACTTAAGCATATCAATAAGGCGGAGGAAG
-        ACG
-
-        >PV108739.1 Fomes fomentarius strain CIRM-BRFM 1823 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GCGGAAGGATCATTAACGAGTTTTGACATGGGTTGTAGCTGGCCTTCCGAGGCATGTGCACGCCCTGCTC
-        ATCCACTCTACACCTGTGCACTTACTGTGGGATTTCAGGTGCGTCGCTTTGCGGCGGCGTCACTCGGCCC
-        ACGTTTTCTTTACAAACTATTGAAGTAACAGAATGTTTATTGATGTAACGCATCTATAATACAACTTTCA
-        GCAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGA
-        ATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGAGGAGCATGCCTGTTTGA
-        GTGTCATGAAATTCTCAACCTATAAACTTTTGCGGGTTTGTAGGGTTGGCTATTGGAGGCTTTTGCTGGC
-        CCTCGTTTGAGTCAGCTCCTCTCAAATGCATTAGCTTGGTTCCTTGCGGATCGGCTGTCGGTGTGATAAT
-        GTCTACGCCGCGACCGTGAAGCGTTTGGAGAGCTTCTAATGGTCTCGTCAGAGACAGCTTTTATGAACTC
-        TGACCTCAAATCAGGTAGGACTACCCGCTGAACTTAAGCATATCAA
-
-        >PV108737.1 Fomes fomentarius strain CIRM-BRFM 1821 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AACCTGCGGAAGGATCATTAACGAGTTTTGACATGGGTTGTAGCTGGCCTTCCGAGGCATGTGCACGCCC
-        TGCTCATCCACTCTACACCTGTGCACATACTGTGGGATTTCAGGTGCGTCGCTTTGCGGCGGCGTCACTC
-        GGCCCACGTTTTCTTTACAAACTATTGAAGTAACAGAATGTTTATTGATGTAACGCATCTATAATACAAC
-        TTTCAGCAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATT
-        GCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGAGGAGCATGCCTG
-        TTTGAGTGTCATGAAATTCTCAACCTATAAACTTTTGCGGGTTTGTAGGGTTGGCTATTGGAGGCTTTTG
-        CTGGCCCTCGTTTGAGTCAGCTCCTCTCAAATGCATTAGCTTGGTTCCTTGCGGATCGGCTGTCGGTGTG
-        ATAATGTCTACGCCGCGACCGTGAAGCGTTTGGAGAGCTTCTAATGGTCTCGTCAGAGACAGCTTTTATG
-        AACTCTGACCTCAAATCAGGTAGGACTACCCGCTGAACTTAAGCATATCAAT
-
-  recorded_at: 2026-06-17 14:00:46
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Mycena+renati%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:47 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000065EA1D9BC460.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:47 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>4</Count><RetMax>4</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a88f793f7b33bd0a2255</WebEnv><IdList>
-        <Id>3284287876</Id>
-        <Id>1473243714</Id>
-        <Id>2889799242</Id>
-        <Id>344333348</Id>
-        </IdList><TranslationSet><Translation>     <From>Mycena renati[Organism]</From>     <To>"Mycena renati"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Mycena renati"[Organism]</Term>    <Field>Organism</Field>    <Count>6</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Mycena renati"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:48
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=3284287876%2C1473243714%2C2889799242%2C344333348&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:49 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D3405938203767500007DEA20A67BFC.1.1.m_7
-      content-type: text/plain
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      content-disposition: attachment; filename="sequence.fasta"
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:48 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |+
-        >PZ340757.1 Mycena renati voucher CORS:FNG/LPRC5903 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GCGGAAGGATCATTATTGAATACGATTGGTACTGATGCTGGCTCTTCCACAGAGCATGTGCTCGTCCATC
-        TATTTATCTATCTCTTGTGCACATCTTGTAGTCTTGAATGAAACCTCTTCGCAGTCAATGCGGTTTGGGA
-        GCTTGTTAACCCTTCTCCTGCTTGTTCAAGGCTATGTTTTCATATACACTATATAAAGTTACAGAATGTC
-        TTTTAAAGGCTTGCGCTTGTCGCAGTCATTAAACCTATACAACTTTCAGCAACGGATCTCTTGGCTCTCC
-        TATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTT
-        TGAACGCACCTTGCGCCCTTTGGTATTCCGAAGGGCATGCCTGTTTGAGTGTCATTAAATTATCAACCTT
-        GCTCGCTTTTACCGGCTTGAGTTAGGCTTGGATGTGAGGGCTTGCCGGCTTCCTTCAGTGGATGGTCAGC
-        TCCCTTGAAATGCATTAGTGGGATCTCTTGCGGACCGTCACTTGGTTGTGATAATTATCTACGCCATCTT
-        GACTTTGAAGCAAACTTATGGGAACCTGCTTATAACCGTCCTTTTTCAAGGACAATCTTTGACATTTTGA
-        CCTCAAATCAGGTAGGACTACCCGCTGAACTTAA
-
-        >MH856658.1 Mycena renati strain CBS 358.50 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTATTGAATACGATTGGTACTGATGCTGGCTCTT
-        CACTGGGCATGTGCTCGTTCCATCTATTTATCTTCTCTTGTGCACATCTTGTGGTCTTGAATTGAAACCT
-        CTCGCATTCGTGCGGTTTGGGAGTCTGAAGTAAACTCTGCTCCTGCTTCGTTCAAGATCATGTTTTCATA
-        TACACTATAAAGTTACAGAATGTCTTTTAACGATTGCGCAAGCAGTCATTAAACCTATACAACTTTCAGC
-        AACGGATCTCTTGGCTCTCCTATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAAT
-        TCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCCCTTTGGTATTCCGAAGGGCATGCCTGTTTGAGT
-        GTCATTAAATTATCAACCTTGCTCGCTTTTACTAGCTTGAGTTTGGCTTGGATGTGAGGGCTTTGCCTGG
-        CTTCCTTCAGTGGATGGTCTGCTCCCTTTAAATGCATTAGTGGGGATCTCTTGTGGACCGTCACTTGGTG
-        TGATAATTATCTATGCCTTGAGACTTTGAAGCAAACTAATGGGAACCTGCTCATAACCGTCTTCGGACAA
-        TCTCTGACATTGACCTCAAAATCAGGTGGGACTACCCGCTGAAACTTAAGGCATATCAA
-
-        >PQ892507.1 Mycena renati voucher LE F-331605 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AATACGATTGGTACTGATGCTGGCTCTTCCACAGAGCATGTGCTCGTCCATCTATTTATCTATCTCTTGT
-        GCACATCTTGTAGTCTTGAATGAAACCTCTTCGCAGTCAATGCGGTTTGGGAGCTTGTTAACCCTTCTCC
-        TGCTTGTTCAAGGCTATGTTTTCATATACACTATATAAAGTTACAGAATGTCTTTTAAAGGCTTGCGCTT
-        GTCGCAGTCATTAAACCTATACAACTTTCAGCAACGGATCTCTTGGCTCTCCTATCGATGAAGAACGCAG
-        CGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCCC
-        TTTGGTATTCCGAAGGGCATGCCTGTTTGAGTGTCATTAAATTATCAACCTTGCTCGCTTTTACCGGCTT
-        GAGTTAGGCTTGGATGTGAGGGCTTGCCGGCTTCCTTCAGTGGATGGTCAGCTCCCTTGAAATGCATTAG
-        TGGGATCTCTTGCGGACCGTCACTTGGTTGTGATAATTATCTACGCCATCTTGACTTTGAAGCAAACTTA
-        TGGGAACCTGCTTATAACCGTCCTTTTTTCAAGGACAATCTTTGACATTTTGACCTCAAATCAGGTAGGA
-        CTACCCGCTGAACTTAAGCATATCAATAAGCGGAGGAAAAGAAACTAACAAGGATTCCCCTAGTAACTGC
-        GAGTGAAGCGGGAAAAGCTCAAATTTAAAATCTGGCGGTCCTTGCGGCCGTCCGAGTTGTAATTTAGAGA
-        AGCGTTATCCGCGCTGGACCGTGTACACGTCTCCTGA
-
-        >JF908391.1 Mycena renati voucher 148e 18S ribosomal RNA gene, internal transcribed spacer 1, 5.8S ribosomal RNA gene, internal transcribed spacer 2, and 28S ribosomal RNA gene, region
-        AGGATCATTATTGAATACGATTGGTACTGATGCTGGCTCTTCACTGAGCATGTGCTCGTCCATCTATTTA
-        TCTTCTCTTGTGCACATCTTGTAGTCTTGAATTGAAACCTCTCGCAGTCAATGCGGTTTGGGAGTTGTTA
-        ACCCTTCTCCTGCTTCTTCAAGGCTATGTTTTCATATACACTATAAAGTTACAGAATGTCTTTTAAAGGC
-        TTGCGCTTGTCGCAGTCATTAAACCTATACAACTTTCAGCAACGGATCTCTTGGCTCTCCTATCGATGAA
-        GAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACC
-        TTGCGCCCTTTGGTATTCCGAAGGGCATGCCTGTTTGAGTGTCATTAAATTATCAACCTTGCTCGCTTTT
-        ACCGGCTTGAGTTAGGCTTGGATGTGAGGGCTTGCTGGCTTCCTTCAGTGGATGGTCTGCTCCCTTTAAA
-        TGCATTAGTGGGATCTCTTGTGGACCGTCACTCGGTTGTGATAATTATCTACGCCGTTTGACTTTGAAGC
-        AAACTTATGGGAACCTGCTTATAACCGTCCTTTCGAGGACAATCTTTGACATTTTGACCTCAAATCAGGT
-        AGGACTACCCGCTGAACTTAAGCATATCAATAAGCGGAGGAAAAGAAACTAACAAGGATTCCCCTAGTAA
-        CTGCGAGTGAAGCGGGAAAAGC
-
-  recorded_at: 2026-06-17 14:00:49
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Xylodon+flaviporus%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:51 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000071EA25AD5850.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:50 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>160</Count><RetMax>10</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a89298bb6c53d807317a</WebEnv><IdList>
-        <Id>3331224580</Id>
-        <Id>3331224575</Id>
-        <Id>3265944175</Id>
-        <Id>3265944174</Id>
-        <Id>3265944173</Id>
-        <Id>3265944172</Id>
-        <Id>3265944171</Id>
-        <Id>3265944170</Id>
-        <Id>3265944169</Id>
-        <Id>3265944168</Id>
-        </IdList><TranslationSet><Translation>     <From>Xylodon flaviporus[Organism]</From>     <To>"Xylodon flaviporus"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Xylodon flaviporus"[Organism]</Term>    <Field>Organism</Field>    <Count>232</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Xylodon flaviporus"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:51
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=3331224580%2C3331224575%2C3265944175%2C3265944174%2C3265944173%2C3265944172%2C3265944171%2C3265944170%2C3265944169%2C3265944168&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:52 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D3405938203767500006EEA29A65661.1.1.m_7
-      content-type: text/plain
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      content-disposition: attachment; filename="sequence.fasta"
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:52 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |+
-        >PZ389689.1 Xylodon flaviporus isolate 2 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTTTTTTTTTTTGAGGGTAAATATTACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTACTGAGTT
-        TTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAAATCCACTCAACAC
-        CTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACTTGCTGGGACTGCG
-        CTTTGCCATTTATCACAAACGATTTTCATTGTTTTGTAGAATGTCTAGCCTCATTGTAGGTGAAACTTAA
-        TACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATG
-        TGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGAGGAGCA
-        TGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTTGGATTTGGAGATT
-        GCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATATATGCGGTGTGATA
-        ATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACCAATTTGAT
-
-        >PZ389684.1 Xylodon flaviporus isolate 1 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTTTTTTTTTTTTAAATAAATTTTACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTACTGAGTTT
-        TGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAAATCCACTCAACACC
-        TGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACTTGCTGGGACTGCGC
-        TTTGCCATTTATCACAAACGATTTTCATTGTTTTGTAGAATGTCTAGCCTCATTGTAGGTGAAACTTAAT
-        ACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGT
-        GAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGAGGAGCAT
-        GCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTTGGATTTGGAGATTG
-        CTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATATATGCGGTGTGATAA
-        TGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCCATGGACCAATTTGAT
-
-        >PZ274325.1 Xylodon flaviporus voucher CLZhao 36134 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AGTGGTTATCCCCTATTTTGGAAGGAAAAAAATGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATC
-        ATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAAAT
-        CCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACTTG
-        CTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTGTAG
-        GTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGC
-        GATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTAT
-        TCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTTGG
-        ATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATATAT
-        GCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAATTTG
-        ATCATTTGACCTCAAATCAGGTAGACTCA
-
-        >PZ274324.1 Xylodon flaviporus voucher CLZhao 8998 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        AACAACTGGGGGCATGTTGTTTGGAAGTAAAAAGTGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGA
-        TCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAA
-        ATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACT
-        TGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTGT
-        AGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAAT
-        GCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGT
-        ATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTT
-        GGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATAT
-        ATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAATT
-        TGATCATTTTGACCTCAAATTCAGGGTAG
-
-        >PZ274323.1 Xylodon flaviporus voucher CLZhao 8997 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        TCGCTCTTTTGGAAGTAAAAAAGTGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTACTGAG
-        TTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAAATCCACTCAAC
-        ACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACTTGCTGGGACTG
-        CGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTGTAGGTGAAACTT
-        AATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAA
-        TGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGTATTCCGAGGAG
-        CATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTTGGATTTGGAGA
-        TTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATATATGCGGTGTGA
-        TAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAATTTGATCATTTGA
-        CCTCAAATCAGGTAG
-
-        >PZ274322.1 Xylodon flaviporus voucher CLZhao 8996 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        AATATAAGGGATTGCTTTTTTGGAAGTAAAAAATCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGA
-        TCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAA
-        ATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACT
-        TGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTGT
-        AGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAAT
-        GCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGT
-        ATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTT
-        GGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATAT
-        ATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAATT
-        TGATCATTTTGACCTCAAATTCAGGTT
-
-        >PZ274321.1 Xylodon flaviporus voucher CLZhao 8995 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        AAAAAACCACATCCCACCCTTTTGGAAGTAAAAATCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGG
-        ATCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCA
-        AATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGAC
-        TTGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTG
-        TAGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAA
-        TGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGG
-        TATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCT
-        TGGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATA
-        TATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAAT
-        TTGATCATTTTGACCTCAAATCAGGGAG
-
-        >PZ274320.1 Xylodon flaviporus voucher CLZhao 8994 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        CAAAAAGAAAGAAAAGCGGGTTTTGGAAGTAAAAAATCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAA
-        GGATCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCT
-        CAAATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTG
-        ACTTGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCAT
-        TGTAGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGA
-        AATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTT
-        GGTATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAG
-        CTTGGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCA
-        TATATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACA
-        ATTTGATCATTTTGACCTCAAATCAGGTAGACGGTC
-
-        >PZ274319.1 Xylodon flaviporus voucher CLZhao 8992 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        CTGCGTTCCAAAACCAATTTTGGAAGGTAAAAAGTGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGA
-        TCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCTCAA
-        ATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTGACT
-        TGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCATTGT
-        AGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAAT
-        GCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTTGGT
-        ATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAGCTT
-        GGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCATAT
-        ATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACAATT
-        TGATCATTTGACCTCAAATTGCAAG
-
-        >PZ274318.1 Xylodon flaviporus voucher CLZhao 8991 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        GTTCTTTACAGCCCATTATTTTTTGGAAGTTAAAAAGTGTAACAAGGTTTCCGTAGGTGAACCTGCGGAA
-        GGATCATTACTGAGTTTTGAAGTGGGCTTGATGCTGGCATCTTTTTGATGCATGTGCTCAGCCCCGCTCT
-        CAAATCCACTCAACACCTGTGCACTTTCAAAGTTGTAGTCCTCCGTAATGGGAGTCGCAAGTCTTTTTTG
-        ACTTGCTGGGACTGCGCTTTGCCATTTATCACAAACGATATTCATTGTTTTGTAGAATGTCTAGCCTCAT
-        TGTAGGTGAAACTTAATACAACTTTCAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGA
-        AATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCTT
-        GGTATTCCGAGGAGCATGCCTGTTTGAGTGTCGTGAAATTATCAACTCCTATTCTTTATTGAATGGTGAG
-        CTTGGATTTGGAGATTGCTGGTGAAAATCGGCTTCTCTTGAATGAATTAGCTGGAATTTGATTCGCAGCA
-        TATATGCGGTGTGATAATGTCGTCACTGTGTAGCTCGGATTGTCTGGCTTCTAATCGTCTTTCATGGACA
-        ATTTGATCATTTTGCCCTCAAATTCAGGAG
-
-  recorded_at: 2026-06-17 14:00:52
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Stypella+subgelatinosa%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:54 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C97500004BE9612289CF.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:54 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>8</Count><RetMax>8</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a896f635fd4d9a0c33db</WebEnv><IdList>
-        <Id>2912452010</Id>
-        <Id>2912452002</Id>
-        <Id>1496684252</Id>
-        <Id>1496684247</Id>
-        <Id>1496684242</Id>
-        <Id>1496684237</Id>
-        <Id>1496684232</Id>
-        <Id>1317840168</Id>
-        </IdList><TranslationSet><Translation>     <From>Stypella subgelatinosa[Organism]</From>     <To>"Stypella subgelatinosa"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Stypella subgelatinosa"[Organism]</Term>    <Field>Organism</Field>    <Count>15</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Stypella subgelatinosa"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:54
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=2912452010%2C2912452002%2C1496684252%2C1496684247%2C1496684242%2C1496684237%2C1496684232%2C1317840168&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:54 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000074EA32442C2F.1.1.m_7
-      content-type: text/plain
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      content-disposition: attachment; filename="sequence.fasta"
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:55 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |+
-        >PV121617.1 Stypella subgelatinosa isolate XC23-293 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        ATCATTACTGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCA
-        CGCTCGAGGGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTTCATT
-        GTCTAGTTAGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGC
-        TCTCGCATCGATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGA
-        ATCTTTGAACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTAT
-        CACCCTTGGACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGC
-        ATTAGCCTTTGGCTCCCGTGTGGGGTTGTTGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCCGGC
-        TAAGGCTCATAGTCGTCCTTTGTGGGACAATCTATTCGAACCTTGACCTCAAATCAGGTGG
-
-        >PV121609.1 Stypella subgelatinosa isolate XC23-278 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        ATCATTACTGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCA
-        CGCTCGAGGGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTTCATT
-        GTCTAGTTAGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACGACTTTCAGCAACGGATCTCTTGGC
-        TCTCGCATCGATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGA
-        ATCTTTGAACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTAT
-        CACCCTTGGACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGC
-        ATTAGCCTTTGGCTCCCGTGTGGGGTTGTTGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCCGGC
-        TAAGGCTCATAGTCGTCCTTTGTGGGACAATCTATTCGAACCTTGACCTCAAATCAGGTGGGACTAC
-
-        >MK098929.1 Stypella subgelatinosa voucher VS 5123 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTGCACGCTCGAGGGGATCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTT
-        TCATTGTCAAGTTAGTTTTGGATGTAATACTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTT
-        GGCTCTCGCATCGATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCAT
-        CGAATCTTTGAACGCACCTTGCGCCCTGTGGCATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATC
-        TCTCACCCTTGGACTGTTCGCGGTTCATGTTGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAA
-        TGCATTAGCCTTTGGCTCCCGTGTGGGGTTGTTGCGGTGTGATAGTTCTTTGCATCGT
-
-        >MK098928.1 Stypella subgelatinosa voucher OM 13489 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TCTTGGTCATTTAGAGGAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAC
-        TGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCACGCTCGAG
-        GGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTCATTGTCTAGTTA
-        GTTTTGGATGTTTATTACTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGCTCTCGCATC
-        GATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAA
-        CGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTCTCACCCTTGG
-        ACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGCATTAGCCTT
-        TGGCTCCCGTGTGGGGTTGTCGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCTGGTTAAGG
-
-        >MK098927.1 Stypella subgelatinosa voucher VS 11079 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTACTGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCACGCT
-        CGAGGGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTTCATTGTCT
-        AGTTAGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGCTCTC
-        GCATCGATGAANAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCT
-        TTGAACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTCTCACC
-        CTTGGACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGCATTA
-        GCCTTTGGCTCCCGTGTGGGGTTGTCGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCTGGCTAAG
-        GCTCATAGTCGTCCTCTGTGGG
-
-        >MK098926.1 Stypella subgelatinosa voucher VS 11038 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        TCTTGGTCATTTAGAGGAAGTAAAAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAC
-        TGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCACGCTCGAG
-        GGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTTCATTGTCTAGTT
-        AGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGCTCTCGCAT
-        CGATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGA
-        ACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTATCACCCTTG
-        GACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGCATTAGCCT
-        TTGGCTCCCGTGTGGGGTTGTTGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCCGGCTAAGGCTC
-        ATAGTCGTCCTTTGTGGGACAATCTATTCGAACCTTGACCTCAAATCAGGTGGGACTACCCGCTGAACTT
-        AAGCATATCAATAAGCGGAGGAA
-
-        >MK098925.1 Stypella subgelatinosa voucher OM 14934.1 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1 and 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTACTGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCACGCT
-        CGAGGGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTCATTGTCTA
-        GTTAGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGCTCTCG
-        CATCGATGAAGAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTT
-        TGAACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTCTCACCC
-        TTGGACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGCATTAG
-        CCTTTGGCTCCCGTGTGGGGTTGTCGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCTGGCTAAGG
-        CTCATAGTCGTCCTCTGTGGGGACAATCTATTCGAACCTTGACCTCAA
-
-        >MG735412.1 Stypella subgelatinosa voucher 11079 (O) internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene, complete sequence; and internal transcribed spacer 2, partial sequence
-        TTACTGAAGGCCCCTAACCGGGCTTTTCCGTATGGTCTTCTCTGGCTGTGCGCCGCGAGGCTTGCACGCT
-        CGAGGGGACCATCCATCGACACCTGTGCACTCTGCGGGTCACGTTTGTGGCCCTGCTTTTTTCATTGTCT
-        AGTTAGTTTTGGATGTTTATTGCTTTCGTAATTGAAAATACAACTTTCAGCAACGGATCTCTTGGCTCTC
-        GCATCGATGAANAACGCAGCGAATTGCGATATGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCT
-        TTGAACGCACCTTGCGCCCTGTGGTATTCCATAGGGCACGCCTGTTTGAGTGTCACGTTAATCTCTCACC
-        CTTGGACTGTTCGCGGTTCATGTCGGTGGATTTGGGTGCTGCCGTAGTTGGCTCGCCTTGAAATGCATTA
-        GCCTTTGGCTCCCGTGTGGGGTTGTCGCGGTGTGATAGTTCTTTGCATCGTTGACCTTGCGCTGGCTAAG
-        GCTCATAGTCGTCCTCTGTGGG
-
-  recorded_at: 2026-06-17 14:00:55
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nucleotide&term=Sistotrema+raduloides%5BOrganism%5D+AND+%28ITS%5BTitle%5D+OR+internal+transcribed+spacer%5BTitle%5D%29+AND+300%3A4000%5BSLEN%5D+NOT+uncultured%5BTitle%5D+NOT+clone%5BTitle%5D&retmode=xml&usehistory=n&retmax=10&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:56 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D330D5717B5C97500004FE96877411F.1.1.m_1
-      content-type: text/xml; charset=UTF-8
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:57 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE eSearchResult PUBLIC "-//NLM//DTD esearch 20060628//EN" "https://eutils.ncbi.nlm.nih.gov/eutils/dtd/20060628/esearch.dtd">
-        <eSearchResult><Count>18</Count><RetMax>10</RetMax><RetStart>0</RetStart><QueryKey>1</QueryKey><WebEnv>MCID_6a32a8996c81ea50cc0b808d</WebEnv><IdList>
-        <Id>2945743575</Id>
-        <Id>2945743546</Id>
-        <Id>2625676837</Id>
-        <Id>2566940884</Id>
-        <Id>2566940881</Id>
-        <Id>2566940878</Id>
-        <Id>2566940854</Id>
-        <Id>2566174943</Id>
-        <Id>2566174867</Id>
-        <Id>2566174866</Id>
-        </IdList><TranslationSet><Translation>     <From>Sistotrema raduloides[Organism]</From>     <To>"Sistotrema raduloides"[Organism]</To>    </Translation></TranslationSet><TranslationStack>   <TermSet>    <Term>"Sistotrema raduloides"[Organism]</Term>    <Field>Organism</Field>    <Count>58</Count>    <Explode>Y</Explode>   </TermSet>   <TermSet>    <Term>internal transcribed spacer[Title]</Term>    <Field>Title</Field>    <Count>2874377</Count>    <Explode>N</Explode>   </TermSet>   <OP>AND</OP>   <TermSet>    <Term>00000000300[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <TermSet>    <Term>00000004000[SLEN]</Term>    <Field>SLEN</Field>    <Count>0</Count>    <Explode>N</Explode>   </TermSet>   <OP>RANGE</OP>   <OP>AND</OP>   <TermSet>    <Term>uncultured[Title]</Term>    <Field>Title</Field>    <Count>14248703</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>   <TermSet>    <Term>clone[Title]</Term>    <Field>Title</Field>    <Count>93038664</Count>    <Explode>N</Explode>   </TermSet>   <OP>NOT</OP>  </TranslationStack><QueryTranslation>"Sistotrema raduloides"[Organism] AND internal transcribed spacer[Title] AND 00000000300[SLEN] : 00000004000[SLEN] NOT uncultured[Title] NOT clone[Title]</QueryTranslation><ErrorList><PhraseNotFound>ITS[Title]</PhraseNotFound></ErrorList></eSearchResult>
-  recorded_at: 2026-06-17 14:00:57
-- request:
-    method: GET
-    uri: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=&id=2945743575%2C2945743546%2C2625676837%2C2566940884%2C2566940881%2C2566940878%2C2566940854%2C2566174943%2C2566174867%2C2566174866&email=david.winter%40gmail.com&tool=rentrez
-  response:
-    status: 200
-    headers:
-      date: Wed, 17 Jun 2026 14:00:58 GMT
-      server: Finatra
-      strict-transport-security: max-age=31536000; includeSubDomains; preload
-      content-security-policy: upgrade-insecure-requests
-      referrer-policy: origin-when-cross-origin
-      ncbi-sid: DED629FBE0FAD6A5_2EA9SID
-      ncbi-phid: 1D34059382037675000068EA39FF7D3A.1.1.m_7
-      content-type: text/plain
-      cache-control: private
-      content-encoding: gzip
-      x-ratelimit-limit: '3'
-      content-disposition: attachment; filename="sequence.fasta"
-      x-ratelimit-remaining: '2'
-      access-control-allow-origin: '*'
-      access-control-expose-headers: X-RateLimit-Limit,X-RateLimit-Remaining
-      set-cookie: ncbi_sid=DED629FBE0FAD6A5_2EA9SID; domain=.nih.gov; path=/; expires=Thu,
-        17 Jun 2027 14:00:58 GMT
-      x-ua-compatible: IE=Edge
-      x-xss-protection: 1; mode=block
-      via: 1.1 google
-      alt-svc: clear
-      transfer-encoding: chunked
-    body:
-      string: |+
-        >PV389259.1 Sistotrema raduloides isolate FB-23-070 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GGAAGGATCATTAACGAATTACTGGAGAGTTGATGCTGGCAATAAACTAATTGCAAGTGCTCACTGTCTT
-        AATTTCATCTGCACCTGTGCACTCTTGTATACATGCTTGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATG
-        TAGACAAATCTCACAAACTCTTTATAATAAATCCTGAATGTTCTTTTGCTGCAAGGCAAAAACTTTATAA
-        CAACTTTTAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTG
-        AATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCCTGGTATTCCGGGGAGCATG
-        CCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGGTTTCTTATGAATTCATCTTGGTTTGGATTTGGAC
-        TTTGCTGTGACTCTTGAAGGCATAGCTGGTCTTAAATAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTA
-        CTTGGCGTGATAATTATCTGGCGTCAAGGACATTCTTTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTC
-        TAACTGTCTTAGGACAAATTTAATTACTGACATCTGACCTCGAATCAGGTAGGACTACCCGCTGAACTTA
-        AGCATATCAATAAGCGGAGGAAAAGAAACTAACAAGGATTCCCCTAGTAACGGCGAGTGAAGCGGGATGA
-        GCTCAAATTTAAAATCTGGTGGTCTTTGGCCATCCGAGTTGTAATCTAGAGAAGCGTTTTCCGCGCTGGA
-        CTGTATACAAGTTTCCTGGATACGGAACATCATAGAGGGTGAGAATCCCGTCCTTGATACAGACTCCCAG
-        TGCTCTGTGATGCGCTCTCGACGAGTCGAGTTGTTTGGGAATGCAGCTCAAAATGGGAGGTAAATTCCTT
-        CTAAAGCTAAATATTGGCGAGAGACCGATAGCGAACAAGTACCGTGAGGGAAAGATGAAAAGCACTTTGG
-        AAAGAGAGTTAAACAGTACGTGAAATTGTTAAAAGGGAAACGCTTGAAGTCAGTCGCGTCTGCTTGGACT
-        CAGCCTTACTTTTGTTTGGTGCATTTCCTTGTAGACGGGCCAGCGTCCATGTTGTCCACTGGAAAAAGTG
-        CAAGGGAATGTGGCTCTTTCGGGAGTGTTATAGCCCTTGTTCAAATACAGAGGCTGATATGGAGTGGAAC
-        AGCACGCTCTGGTTGTGCTTGTGCTGGCATAATGGCTTTAAACGACCCGTCTTGAAACACGGACCAAGGA
-        GTCTAACATGTCTGCGAGTGTTTGGGTGGAAAACCCGAGCGCGTAATGAAAGTGATAGCTGGGAACCCCA
-        TTAGGGAGGCACCGGCGCCCCGAGCTGACCTTCTGTGACGCATCGGAGGTAGAGCATATATGTTGGGACC
-        CGAAAGATGGTGAACTATGCCTGAATAGGGCGAAGCCAGAGGAAACTCTGGTGGAGGCTCGTAGCGATTC
-        TGACGTGCAAATCGATCGTCAAATTTGGGTATAGGGGCGAAAGACTAATCGAACCATCTAGTAGCTGGTT
-        CCTGC
-
-        >PV389246.1 Sistotrema raduloides isolate FB-23-023 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        GGAAGGATCATTAACGAATTACTGGAGAGTTGATGCTGGCAATAAACTAATTGCAAGTGCTCACTGTCTT
-        AATTTCATCTGCACCTGTGCACTCTTGTATACATGCTTGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATG
-        TAGACAAATCTCACAAACTCTTTATAATAAATCCTGAATGTTCTTTTGCTGCAAGGCAAAAACTTTATAA
-        CAACTTTTAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTG
-        AATTGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCCTGGTATTCCGGGGAGCATG
-        CCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGGTTTCTTATGAATTCATCTTGGTTTGGATTTGGAC
-        TTTGCTGTGACTCTTGAAGGCATAGCTGGTCTTAAATAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTA
-        CTTGGCGTGATAATTATCTGGCGTCAAGGACATTCTCTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTC
-        TAACTGTCTTAGGACAAATTTAATTACTGACATCTGACCTCGAATCAGGTAGGACTACCCGCTGAACTTA
-        AGCATATCAATAAGCGGAGGAAAAGAAACTAACAAGGATTCCCCTAGTAACGGCGAGTGAAGCGGGATGA
-        GCTCAAATTTAAAATCTGGTGGTCTTTGGCCATCCGAGTTGTAATCTAGAGAAGCGTTTTCCGCGCTGGA
-        CTGTATACAAGTTTCCTGGATACGGAACATCATAGAGGGTGAGAATCCCGTCCTTGATACAGACTCCCAG
-        TGCTCTGTGATGCGCTCTCGACGAGTCGAGTTGTTTGGGAATGCAGCTCAAAATGGGAGGTAAATTCCTT
-        CTAAAGCTAAATATTGGCGAGAGACCGATAGCGAACAAGTACCGTGAGGGAAAGATGAAAAGCACTTTGG
-        AAAGAGAGTTAAACAGTACGTGAAATTGTTAAAAGGGAAACGCTTGAAGTCAGTCGCGTCTGCTTGGACT
-        CAGCCTTACTTTTGTTTGGTGCATTTCCTTGTAGACGGGCCAGCGTCCATGTTGTCCACTGGAAAAAGTG
-        CAAGGGAATGTGGCTCTTTCGGGAGTGTTATAGCCCTTGTTCAAATACAGAGGCTGATATGGAGTGGAAC
-        AGCACGCTCTGGTTGTGCTTGTGCTGGCATAATGGCTTTAAACGACCCGTCTTGAAACACGGACCAAGGA
-        GTCTAACATGTCTGCGAGTGTTTGGGTGGAAAACCCGAGCGCGTAATGAAAGTGATAGCTGGGAACCCCA
-        TTAGGGAGGCACCGGCGCCCCGAGCTGACCTTCTGTGACGCATCGGAGGTAGAGCATATATGTTGGGACC
-        CGAAAGATGGTGAACTATGCCTGAATAGGGCGAAGCCAGAGGAAACTCTGGTGGAGGCTCGTAGCGATTC
-        TGACGTGCAAATCGATCGTCAAATTTGGGTATAGGGGCGAAAGACTAATCGAACCATCTAGTAGCTGGTT
-        CCTGC
-
-        >OR892544.1 Sistotrema raduloides strain LE-BIN 3583 internal transcribed spacer 1, partial sequence; 5.8S ribosomal RNA gene and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AGGATCATTAACGAATTACTGGAGAGTTGATGCTGGCAATAAACTAATTGCAAGTGCTCACTGTCTTAAT
-        TTCATCTGCACCTGTGCACTCTTGTATACATGCTTGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAG
-        RCAAATCTCACAAACTCTTTATAATAAATCCTGAATGTTCTTTTGCTGCAAGGCAAAAACTTTATAACAA
-        CTTTTAACAACGGATCTCTTGGCTCTCGCATCGATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAAT
-        TGCAGAATTCAGTGAATCATCGAATCTTTGAACGCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCT
-        GTTCGAGTGTCATTACACTCTCAAGCCAGATGGTTTCTTAMGAATTCATCTTGGTTTGGATTTGGACTTT
-        GCTGTGACTCTTGAAGGCATAGCTGGTCTTAAATGGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTT
-        GGCGTGATAATTATCTGGCGTCAAGGACATTCTCTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAA
-        CTGTCTTAGGACAAATTTACTTACTGACATCTGACCTCGAATCAGGTAGGACTACCCGCTGAACTTAAGC
-        ATATCAATAAGCGGAGGAAAAGAAACTAACAAGGATTCCCCTAGTAACGGCGAGTGAAGCGGGATGAGCT
-        CAAATTTAAAATCTGGTGGTCTTTGGCCATCCGAGTTGTAATCTAGAGAAGCGTTTTCCGCGCTGGACCG
-        TGTACAAGTCTCCTGA
-
-        >OR471180.1 Sistotrema raduloides isolate Whitney8 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCATGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCCGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTG
-        ACCTCGAATCAGGTAGGACTACCCGCTGAACTTAA
-
-        >OR471179.1 Sistotrema raduloides isolate HHB14321 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCTGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAAATTTACTTACTGACATCT
-        GACCTCGAATCAGGTAGGACTACCCGCTGAACTTAA
-
-        >OR471178.1 Sistotrema raduloides isolate FP135005 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCCGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTG
-        ACCTCGAATCAGGTAGGACTACCCGCTGAACTTAA
-
-        >OR471170.1 Sistotrema raduloides isolate FD550 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCTGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTG
-        ACCTCGAATCAGGTAGGACTACCCGCTGAACTTAA
-
-        >OR464438.1 Sistotrema raduloides isolate FD550 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAACGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCTGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTG
-        ACCTCGAATCAGGTAGGAC
-
-        >OR464362.1 Sistotrema raduloides isolate HHB4356 SV1 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAAGAATTACTGGAGAGTTGATGCTG
-        GCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCTT
-        GAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGAA
-        TGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCGA
-        TGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAACG
-        CACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGGT
-        TTCTTCCGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAAT
-        AGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCTC
-        TAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTGA
-        CCTCGAATCAGGTAGGAC
-
-        >OR464361.1 Sistotrema raduloides isolate HHB4356 SV2 small subunit ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA gene, partial sequence
-        AAGTCGTAACAAGGTTTCCGTAGGTGAACCTGCGGAAGGATCATTAATGAATTACTGGAGAGTTGATGCT
-        GGCAATAAACTAATTGCAAGTGCTCACTGTCTTAATTTCATCTGCACCTGTGCACTCTTGTATACATGCT
-        TGAAAGGAGCCCAAGTGGCTTGGTTCAGGCATGTAGACAAATCTCACAAACTCTTTATAATAAATCCTGA
-        ATGTTCTTTTGCTGCATAGGCAAAAACTTTATAACAACTTTTAACAACGGATCTCTTGGCTCTCGCATCG
-        ATGAAGAACGCAGCGAAATGCGATAAGTAATGTGAATTGCAGAATTCAGTGAATCATCGAATCTTTGAAC
-        GCACCTTGCGCTCCCTGGTATTCCGGGGAGCATGCCTGTTCGAGTGTCATTACACTCTCAAGCCAGATGG
-        TTTCTTCCGAATTCATCTTGGTTTGGATTTGGACTTTGCTGTGACTCTTGAAGACATAGCTGGTCTTAAA
-        TAGAGTAGCTGGCCCATTTGAAGGCTTGGTTCTACTTGGCGTGATAATTATCTGGCGTCAAGGACATTCT
-        CTAGGGAGTGGCCAATCTTTGTCTGGACTGCTTCTAACTGTCTTAGGACAAATTTACTTACTGACATCTG
-        ACCTCGAATCAGGTAGGAC
-
-  recorded_at: 2026-06-17 14:00:58
+  recorded_at: 2026-06-18 08:49:08
 recorded_with: VCR-vcr/2.1.0

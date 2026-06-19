@@ -46,23 +46,27 @@ test_that("tax_photos_pq input validation", {
 # taxnames + gallery=TRUE (gbif and wikitaxa)
 test_that("tax_photos_pq taxnames + gallery=TRUE + gbif returns shiny.tag", {
   skip_on_cran()
-  result <- tax_photos_pq(
-    taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
-    gallery = TRUE,
-    source = "gbif",
-    verbose = FALSE
-  )
+  vcr::use_cassette("photos_gallery_gbif", {
+    result <- tax_photos_pq(
+      taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+      gallery = TRUE,
+      source = "gbif",
+      verbose = FALSE
+    )
+  })
   expect_s3_class(result, "shiny.tag")
 })
 
 test_that("tax_photos_pq taxnames + gallery=TRUE + wikitaxa returns shiny.tag", {
   skip_on_cran()
-  result <- tax_photos_pq(
-    taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
-    gallery = TRUE,
-    source = "wikitaxa",
-    verbose = FALSE
-  )
+  vcr::use_cassette("photos_gallery_wikitaxa", {
+    result <- tax_photos_pq(
+      taxnames = c("Xylodon flaviporus", "Basidiodendron eyrei"),
+      gallery = TRUE,
+      source = "wikitaxa",
+      verbose = FALSE
+    )
+  })
   expect_s3_class(result, "shiny.tag")
 })
 
@@ -70,17 +74,19 @@ test_that("tax_photos_pq taxnames + gallery=TRUE + wikitaxa returns shiny.tag", 
 test_that("tax_photos_pq physeq + add_to_phyloseq=TRUE + gallery=FALSE returns phyloseq", {
   skip_on_cran()
   physeq2 <- make_mini_physeq()
-  for (src in c("gbif", "wikitaxa")) {
-    result <- tax_photos_pq(
-      physeq2,
-      gallery = FALSE,
-      add_to_phyloseq = TRUE,
-      source = src,
-      verbose = FALSE
-    )
-    expect_s4_class(result, "phyloseq")
-    expect_true("photo_url" %in% colnames(result@tax_table))
-  }
+  vcr::use_cassette("photos_add_phyloseq", {
+    for (src in c("gbif", "wikitaxa")) {
+      result <- tax_photos_pq(
+        physeq2,
+        gallery = FALSE,
+        add_to_phyloseq = TRUE,
+        source = src,
+        verbose = FALSE
+      )
+      expect_s4_class(result, "phyloseq")
+      expect_true("photo_url" %in% colnames(result@tax_table))
+    }
+  })
 })
 
 # physeq + add_to_phyloseq=TRUE + gallery=TRUE + simple_caption=FALSE
@@ -88,34 +94,38 @@ test_that("tax_photos_pq physeq + add_to_phyloseq=TRUE + gallery=FALSE returns p
 test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=FALSE works", {
   skip_on_cran()
   physeq2 <- make_mini_physeq()
-  for (src in c("gbif", "wikitaxa")) {
-    result <- tax_photos_pq(
-      physeq2,
-      gallery = TRUE,
-      add_to_phyloseq = TRUE,
-      simple_caption = FALSE,
-      source = src,
-      verbose = FALSE
-    )
-    expect_s4_class(result, "phyloseq")
-  }
+  vcr::use_cassette("photos_caption_false", {
+    for (src in c("gbif", "wikitaxa")) {
+      result <- tax_photos_pq(
+        physeq2,
+        gallery = TRUE,
+        add_to_phyloseq = TRUE,
+        simple_caption = FALSE,
+        source = src,
+        verbose = FALSE
+      )
+      expect_s4_class(result, "phyloseq")
+    }
+  })
 })
 
 # physeq + add_to_phyloseq=TRUE + gallery=TRUE + simple_caption=TRUE
 test_that("tax_photos_pq physeq + gallery=TRUE + simple_caption=TRUE returns phyloseq", {
   skip_on_cran()
   physeq2 <- make_mini_physeq()
-  for (src in c("gbif", "wikitaxa")) {
-    result <- tax_photos_pq(
-      physeq2,
-      gallery = TRUE,
-      add_to_phyloseq = TRUE,
-      simple_caption = TRUE,
-      source = src,
-      verbose = FALSE
-    )
-    expect_s4_class(result, "phyloseq")
-  }
+  vcr::use_cassette("photos_caption_true", {
+    for (src in c("gbif", "wikitaxa")) {
+      result <- tax_photos_pq(
+        physeq2,
+        gallery = TRUE,
+        add_to_phyloseq = TRUE,
+        simple_caption = TRUE,
+        source = src,
+        verbose = FALSE
+      )
+      expect_s4_class(result, "phyloseq")
+    }
+  })
 })
 
 # physeq + add_to_phyloseq=FALSE + gallery=TRUE

@@ -19,7 +19,10 @@ gna_verifier_pq(
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
   authorship_col = TRUE,
-  discard_NA = TRUE
+  discard_NA = TRUE,
+  problematic_chars = "[?\\\\\\\\#|&]",
+  clean_problematic_chars = FALSE,
+  force_recompute = FALSE
 )
 }
 \arguments{
@@ -83,6 +86,35 @@ a new column "namePublishedInYear" is added with the year of publication.}
 
 \item{discard_NA}{(logical, default `TRUE`). Passed to
 [taxonomic_rank_to_taxnames()].}
+
+\item{problematic_chars}{A regex pattern (character string) to detect
+characters that are problematic for the GNA Verifier API URL. The API
+pastes names pipe-separated into a GET URL path, so characters like
+`?` (query-string delimiter), `\\` (escape), `|` (pipe separator),
+`#` (fragment), or `&` (parameter separator) corrupt the URL and can
+cause a length-mismatch crash in [taxize::gna_verifier()]. Names
+containing these characters are reported and, if
+`clean_problematic_chars` is `TRUE`, handled before verification.
+Set to `NULL` to disable detection. Default: `"[?\\\\#|&]"`.}
+
+\item{clean_problematic_chars}{(logical, default `FALSE`) If `TRUE`,
+cells in the `taxonomic_rank` columns that match `problematic_chars`
+are replaced with `NA` (when `physeq` is provided) and matching names
+are filtered out (when `taxnames` is provided) before verification.
+If `FALSE` (the default), a warning is issued listing the problematic
+names but they are sent as-is -- this will likely cause an error in
+[taxize::gna_verifier()]. Set to `TRUE` to handle them automatically,
+or clean the data upstream (e.g. with [MiscMetabar::simplify_taxo()]).}
+
+\item{force_recompute}{(logical, default `FALSE`) If `TRUE`, remove
+any existing columns in the `tax_table` that would be re-added by
+this call (i.e. columns matching `col_prefix` when `col_prefix` is
+set, or columns in `new_cols` when `col_prefix` is `NULL`) before
+performing the verification. This is useful when re-running
+`gna_verifier_pq()` on a phyloseq that already contains result
+columns from a previous call. If `FALSE`, existing columns are left
+in place, which can cause duplicate-column errors in
+`tax_table()` on re-runs.}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object

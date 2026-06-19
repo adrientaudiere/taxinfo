@@ -39,7 +39,9 @@ test_that("points_to_ecoregions works offline with a stub ecoregion layer", {
 })
 
 test_that("points_to_ecoregions returns a tibble with expected columns", {
-  skip_on_cran() # first call may download the ~50 MB WWF/TNC layer
+  # Loads the ~50 MB WWF/TNC layer; the offline logic is covered by the stub
+  # test above, so gate this real-layer integration check.
+  skip_if_no_slow_tests()
   res <- points_to_ecoregions(
     longitudes = c(2.3522, 4.2),
     latitudes = c(48.8566, 33)
@@ -54,7 +56,7 @@ test_that("points_to_ecoregions returns a tibble with expected columns", {
 })
 
 test_that("points_to_ecoregions returns NA for ocean points", {
-  skip_on_cran() # first call may download the ~50 MB WWF/TNC layer
+  skip_if_no_slow_tests()
   res <- points_to_ecoregions(longitudes = 0, latitudes = 0)
   expect_equal(nrow(res), 1)
   expect_true(is.na(res$ECO_NAME))

@@ -16,6 +16,7 @@ tax_occur_check(
   longitude,
   latitude,
   radius_km = 50,
+  method = c("download", "search"),
   circle_form = TRUE,
   clean_coord = TRUE,
   info_names = c("decimalLongitude", "decimalLatitude", "country", "year",
@@ -46,6 +47,15 @@ tax_occur_check(
 
   Numeric. Search radius in kilometers (default: 50).
 
+- method:
+
+  (character, default \`"download"\`). How occurrences are fetched: -
+  \`"download"\`: a single \[rgbif::occ_download()\] request constrained
+  to the search bounding box (mints a citable DOI). \*\*Requires GBIF
+  credentials\*\* (see \[check_gbif_credentials()\]). - \`"search"\`:
+  the legacy \[rgbif::occ_search()\] call (fast, capped at \`n_occur\`
+  records, no credentials).
+
 - circle_form:
 
   (Logical, default: TRUE). Whether to use a circular search area. If
@@ -62,7 +72,9 @@ tax_occur_check(
   (default:c("decimalLongitude", "decimalLatitude", "country", "year",
   "scientificName", "recordedBy", "gbifRegion")). Note that
   "scientificName", "decimalLongitude" and "decimalLatitude" are
-  required.
+  required. With \`method = "download"\`, \`"country"\` is mapped to
+  \`"countryCode"\` and download-only absent columns (e.g.
+  \`"gbifRegion"\`) are silently dropped.
 
 - return_all_occ:
 
@@ -82,11 +94,13 @@ tax_occur_check(
 - n_occur:
 
   Numeric (default: 1000). Maximum number of occurrences to retrieve
-  from GBIF.
+  from GBIF. A server-side limit with \`method = "search"\`; applied as
+  a local sample after import with \`method = "download"\`.
 
 - ...:
 
-  Additional parameters passed to \[rgbif::occ_search()\].
+  Additional parameters passed to \[rgbif::occ_search()\] (only used
+  when \`method = "search"\`).
 
 ## Value
 
@@ -104,7 +118,8 @@ the radius
 
 ## See also
 
-\[tax_occur_check_pq()\], \[tax_occur_multi_check_pq()\]
+\[tax_occur_check_pq()\], \[tax_occur_multi_check_pq()\],
+\[rgbif::occ_download()\]
 
 ## Author
 
@@ -118,14 +133,14 @@ if (FALSE) { # \dontrun{
 long <- 2.3522
 lat <- 48.8566
 
-Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, 100)
+Q_rob_in_Paris <- tax_occur_check("Quercus robur", long, lat, radius_km=10)
 Q_rob_in_Paris
 
-tax_occur_check("Trametopsis brasiliensis", long, lat, 100)
+tax_occur_check("Trametopsis brasiliensis", long, lat, radius_km=100)
 
 
 # Visualize occurrences around Paris for Fagus sylvatica
-res_occ <- tax_occur_check("Fagus sylvatica", long, lat, 200,
+res_occ <- tax_occur_check("Fagus sylvatica", long, lat, radius_km=20,
   return_all_occ = TRUE
 )
 

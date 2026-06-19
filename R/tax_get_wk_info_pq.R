@@ -36,6 +36,12 @@
 #' @param summarize_function_views A function to summarize the page views
 #' across languages. Default is "sum".
 #' @param n_days (numeric, default 30) Number of days to consider for the page views.
+#' @param start_date The start date for the page views. If NULL (default),
+#'   the start date is set to 'n_days' before the end date. Passed to
+#'   [tax_get_wk_pages_info()].
+#' @param end_date The end date for the page views. If NULL (default),
+#'  the end date is set to yesterday's date. Passed to
+#'  [tax_get_wk_pages_info()].
 #' @param discard_genus_alone (logical, default `TRUE` when
 #'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
 #'  [taxonomic_rank_to_taxnames()].
@@ -98,6 +104,8 @@ tax_get_wk_info_pq <- function(
   summarize_function_length = "mean",
   summarize_function_views = "sum",
   n_days = 30,
+  start_date = NULL,
+  end_date = NULL,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
@@ -159,7 +167,9 @@ tax_get_wk_info_pq <- function(
         time_to_sleep = time_to_sleep,
         summarize_function_length = summarize_function_length,
         summarize_function_views = summarize_function_views,
-        n_days = n_days
+        n_days = n_days,
+        start_date = start_date,
+        end_date = end_date
       )
     },
     wk_lang,
@@ -172,9 +182,13 @@ tax_get_wk_info_pq <- function(
   }
 
   tib_info_wk <- tibble(
-    "lang" = sapply(wk_lang, nrow),
-    "page_length" = sapply(wk_pages_info, function(x) x$page_length),
-    "page_views" = sapply(wk_pages_info, function(x) x$page_views),
+    "lang" = sapply(wk_lang, function(x) if (is.data.frame(x)) nrow(x) else NA),
+    "page_length" = sapply(wk_pages_info, function(x) {
+      if (is.list(x)) x$page_length else NA
+    }),
+    "page_views" = sapply(wk_pages_info, function(x) {
+      if (is.list(x)) x$page_views else NA
+    }),
     "taxon_id" = taxids,
     "taxa_name" = taxnames
   )

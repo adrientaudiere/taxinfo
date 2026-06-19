@@ -68,6 +68,10 @@ This function performs a species range check for taxa contained
 <span>  latitude <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  radius_km <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  n_occur <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"download"</span>, <span class="st">"search"</span><span class="op">)</span>,</span>
+<span>  circle_form <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  clean_coord <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  clean_coord_verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add_to_phyloseq <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_prefix <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -112,6 +116,28 @@ default parameter.</p></dd>
 <dt id="arg-n-occur">n_occur<a class="anchor" aria-label="anchor" href="#arg-n-occur"></a></dt>
 <dd><p>Numeric. Maximum number of occurrences to retrieve from GBIF
 for each taxon (default: 1000).</p></dd>
+
+
+<dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
+<dd><p>(character, default `"download"`). How occurrences are fetched.
+`"download"` issues a single [rgbif::occ_download()] for all taxa around the
+point (**requires GBIF credentials**); `"search"` uses a per-taxon
+[rgbif::occ_search()] loop. See [tax_occur_check()].</p></dd>
+
+
+<dt id="arg-circle-form">circle_form<a class="anchor" aria-label="anchor" href="#arg-circle-form"></a></dt>
+<dd><p>(Logical, default: TRUE). Whether to use a circular search
+area. If FALSE, a square bounding box is used.</p></dd>
+
+
+<dt id="arg-clean-coord">clean_coord<a class="anchor" aria-label="anchor" href="#arg-clean-coord"></a></dt>
+<dd><p>(Logical, default: TRUE). Whether to clean coordinates
+using `CoordinateCleaner`.</p></dd>
+
+
+<dt id="arg-clean-coord-verbose">clean_coord_verbose<a class="anchor" aria-label="anchor" href="#arg-clean-coord-verbose"></a></dt>
+<dd><p>(Logical, default: FALSE). Whether to print
+messages from `CoordinateCleaner`.</p></dd>
 
 
 <dt id="arg-add-to-phyloseq">add_to_phyloseq<a class="anchor" aria-label="anchor" href="#arg-add-to-phyloseq"></a></dt>

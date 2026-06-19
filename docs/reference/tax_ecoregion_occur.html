@@ -72,6 +72,7 @@ proportion of occurrences per (taxon, ecoregion). Use
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tax_ecoregion_occur</span><span class="op">(</span></span>
 <span>  <span class="va">taxnames</span>,</span>
 <span>  n_occur <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"search"</span>,</span>
 <span>  min_nb_occur <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  min_proportion <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  clean_coord <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -90,7 +91,16 @@ proportion of occurrences per (taxon, ecoregion). Use
 
 <dt id="arg-n-occur">n_occur<a class="anchor" aria-label="anchor" href="#arg-n-occur"></a></dt>
 <dd><p>(numeric, default `1000`). Maximum number of occurrences to
-retrieve per taxon. Use a smaller value (e.g. `200`) for quick checks.</p></dd>
+keep per taxon. With `method = "search"` this is a server-side limit; with
+the download methods it is applied as a local sample after import (a warning
+is issued when a taxon exceeded `n_occur`).</p></dd>
+
+
+<dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
+<dd><p>(character, default `"search"`). How GBIF occurrences are
+fetched, passed to [tax_gbif_occur_coords()]. Ecoregion profiling defaults to
+the credential-free, per-taxon-capped `"search"` path; set `"download"` (or
+`"download_sql"`) to use the Download API (**requires GBIF credentials**).</p></dd>
 
 
 <dt id="arg-min-nb-occur">min_nb_occur<a class="anchor" aria-label="anchor" href="#arg-min-nb-occur"></a></dt>
@@ -116,7 +126,8 @@ pairs whose share of the taxon's total occurrences is `&gt;= min_proportion`
 
 <dt id="arg-time-to-sleep">time_to_sleep<a class="anchor" aria-label="anchor" href="#arg-time-to-sleep"></a></dt>
 <dd><p>(numeric, default `0.3`). Seconds to pause between
-[rgbif::occ_search()] calls to avoid GBIF rate-limiting.</p></dd>
+[rgbif::occ_search()] calls to avoid GBIF rate-limiting. Only used when
+`method = "search"`.</p></dd>
 
 </dl></div>
     <div class="section level2">

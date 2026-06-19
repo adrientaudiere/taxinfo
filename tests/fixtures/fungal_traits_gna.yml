@@ -1,0 +1,129 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://verifier.globalnames.org/api/v1/verifications/Stereum%20ostrea|Xylodon%20raduloides|Ossicaulis%20lachnopus?data_sources=210&all_matches=false&capitalize=false&species_group=false&fuzzy_uninomial=false&stats=false
+  response:
+    status: 200
+    headers:
+      content-encoding: gzip
+      content-length: '1113'
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:01:59 GMT
+      server: nginx/1.18.0 (Ubuntu)
+      status: 'HTTP/2 200 '
+      vary:
+      - Accept-Encoding
+      - Origin
+    body:
+      string: |
+        {"metadata":{"namesNumber":3,"vernaculars":[""],"dataSources":[210]},"names":[{"id":"2a414dac-9117-5bad-ab8e-943225a97de6","name":"Stereum ostrea","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":210,"dataSourceTitleShort":"TAXREF","curation":"Curated","recordId":"900725","entryDate":"2025-04-02","sortScore":9.411446740174974,"matchedNameID":"0a43b928-10f0-57d2-8b37-7ce10de25b32","matchedName":"Stereum ostrea (Blume \u0026 T.Nees) Fr., 1838","matchedCardinality":2,"matchedCanonicalSimple":"Stereum ostrea","matchedCanonicalFull":"Stereum ostrea","currentRecordId":"900725","currentNameId":"0a43b928-10f0-57d2-8b37-7ce10de25b32","currentName":"Stereum ostrea (Blume \u0026 T.Nees) Fr., 1838","currentCardinality":2,"currentCanonicalSimple":"Stereum ostrea","currentCanonicalFull":"Stereum ostrea","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Biota|Fungi|Dikarya|Basidiomycota|Polyporales|Stereaceae|Stereum|Stereum ostrea","classificationRanks":"domain|kingdom|subkingdom|phylum|order|family|genus|species","classificationIds":"349525|187496|951105|187499|436965|437080|197988|900725","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.6666667,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[210],"curation":"Curated"},{"id":"73b26362-e7cd-5910-9682-5066d7e7f058","name":"Xylodon raduloides","cardinality":2,"matchType":"PartialExact","bestResult":{"dataSourceId":210,"dataSourceTitleShort":"TAXREF","curation":"Curated","recordId":"901834","entryDate":"2025-04-02","sortScore":8.634969752827912,"matchedNameID":"89b5635f-e7ad-5dc6-b0d4-2c5c783ffef0","matchedName":"Xylodon (Pers.) Gray, 1821","matchedCardinality":1,"matchedCanonicalSimple":"Xylodon","matchedCanonicalFull":"Xylodon","currentRecordId":"901834","currentNameId":"89b5635f-e7ad-5dc6-b0d4-2c5c783ffef0","currentName":"Xylodon (Pers.) Gray, 1821","currentCardinality":1,"currentCanonicalSimple":"Xylodon","currentCanonicalFull":"Xylodon","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Biota|Fungi|Dikarya|Basidiomycota|Hymenochaetales|Schizoporaceae|Xylodon","classificationRanks":"domain|kingdom|subkingdom|phylum|order|family|genus","classificationIds":"349525|187496|951105|187499|442611|443194|901834","editDistance":0,"stemEditDistance":0,"matchType":"PartialExact","scoreDetails":{"cardinalityScore":0,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.6666667,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[210],"curation":"Curated"},{"id":"d381a75b-4fba-532d-9785-649deabc786e","name":"Ossicaulis lachnopus","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":210,"dataSourceTitleShort":"TAXREF","curation":"Curated","recordId":"465057","entryDate":"2025-04-02","sortScore":9.411446740174974,"matchedNameID":"a57aecf7-0894-5467-8ef6-671a1b8f3f3a","matchedName":"Ossicaulis lachnopus (Fr.) Contu, 2000","matchedCardinality":2,"matchedCanonicalSimple":"Ossicaulis lachnopus","matchedCanonicalFull":"Ossicaulis lachnopus","currentRecordId":"465057","currentNameId":"a57aecf7-0894-5467-8ef6-671a1b8f3f3a","currentName":"Ossicaulis lachnopus (Fr.) Contu, 2000","currentCardinality":2,"currentCanonicalSimple":"Ossicaulis lachnopus","currentCanonicalFull":"Ossicaulis lachnopus","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Biota|Fungi|Dikarya|Basidiomycota|Tricholomatales|Lyophyllaceae|Ossicaulis|Ossicaulis lachnopus","classificationRanks":"domain|kingdom|subkingdom|phylum|order|family|genus|species","classificationIds":"349525|187496|951105|187499|460652|460693|195580|465057","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.6666667,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[210],"curation":"Curated"}]}
+  recorded_at: 2026-06-17 18:01:59
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Stereum ostrea (Blume & T.Nees) Fr., 1838","Xylodon (Pers.) Gray,
+        1821","Ossicaulis lachnopus (Fr.) Contu, 2000"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:01:59 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '24106797401'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Stereum ostrea (Blume & T.Nees) Fr., 1838","type":"SCIENTIFIC","genusOrAbove":"Stereum","specificEpithet":"ostrea","authorship":"Fr.","year":"1838","bracketAuthorship":"Blume
+        & T.Nees","parsed":true,"parsedPartially":false,"canonicalName":"Stereum ostrea","canonicalNameWithMarker":"Stereum
+        ostrea","canonicalNameComplete":"Stereum ostrea (Blume & T.Nees) Fr., 1838","rankMarker":"sp."},{"scientificName":"Xylodon
+        (Pers.) Gray, 1821","type":"SCIENTIFIC","genusOrAbove":"Xylodon","authorship":"Gray","year":"1821","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Xylodon","canonicalNameWithMarker":"Xylodon","canonicalNameComplete":"Xylodon
+        (Pers.) Gray, 1821"},{"scientificName":"Ossicaulis lachnopus (Fr.) Contu,
+        2000","type":"SCIENTIFIC","genusOrAbove":"Ossicaulis","specificEpithet":"lachnopus","authorship":"Contu","year":"2000","bracketAuthorship":"Fr.","parsed":true,"parsedPartially":false,"canonicalName":"Ossicaulis
+        lachnopus","canonicalNameWithMarker":"Ossicaulis lachnopus","canonicalNameComplete":"Ossicaulis
+        lachnopus (Fr.) Contu, 2000","rankMarker":"sp."}]'
+  recorded_at: 2026-06-17 18:01:59
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Stereum ostrea (Blume & T.Nees) Fr., 1838","Xylodon (Pers.) Gray,
+        1821","Ossicaulis lachnopus (Fr.) Contu, 2000"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:01:59 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '24044771341'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Stereum ostrea (Blume & T.Nees) Fr., 1838","type":"SCIENTIFIC","genusOrAbove":"Stereum","specificEpithet":"ostrea","authorship":"Fr.","year":"1838","bracketAuthorship":"Blume
+        & T.Nees","parsed":true,"parsedPartially":false,"canonicalName":"Stereum ostrea","canonicalNameWithMarker":"Stereum
+        ostrea","canonicalNameComplete":"Stereum ostrea (Blume & T.Nees) Fr., 1838","rankMarker":"sp."},{"scientificName":"Xylodon
+        (Pers.) Gray, 1821","type":"SCIENTIFIC","genusOrAbove":"Xylodon","authorship":"Gray","year":"1821","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Xylodon","canonicalNameWithMarker":"Xylodon","canonicalNameComplete":"Xylodon
+        (Pers.) Gray, 1821"},{"scientificName":"Ossicaulis lachnopus (Fr.) Contu,
+        2000","type":"SCIENTIFIC","genusOrAbove":"Ossicaulis","specificEpithet":"lachnopus","authorship":"Contu","year":"2000","bracketAuthorship":"Fr.","parsed":true,"parsedPartially":false,"canonicalName":"Ossicaulis
+        lachnopus","canonicalNameWithMarker":"Ossicaulis lachnopus","canonicalNameComplete":"Ossicaulis
+        lachnopus (Fr.) Contu, 2000","rankMarker":"sp."}]'
+  recorded_at: 2026-06-17 18:01:59
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Stereum ostrea (Blume & T.Nees) Fr., 1838","Xylodon (Pers.) Gray,
+        1821","Ossicaulis lachnopus (Fr.) Contu, 2000"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:01:59 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '24138285410'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      content-length: '354'
+      connection: keep-alive
+    body:
+      string: '[{"scientificName":"Stereum ostrea (Blume & T.Nees) Fr., 1838","type":"SCIENTIFIC","genusOrAbove":"Stereum","specificEpithet":"ostrea","authorship":"Fr.","year":"1838","bracketAuthorship":"Blume
+        & T.Nees","parsed":true,"parsedPartially":false,"canonicalName":"Stereum ostrea","canonicalNameWithMarker":"Stereum
+        ostrea","canonicalNameComplete":"Stereum ostrea (Blume & T.Nees) Fr., 1838","rankMarker":"sp."},{"scientificName":"Xylodon
+        (Pers.) Gray, 1821","type":"SCIENTIFIC","genusOrAbove":"Xylodon","authorship":"Gray","year":"1821","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Xylodon","canonicalNameWithMarker":"Xylodon","canonicalNameComplete":"Xylodon
+        (Pers.) Gray, 1821"},{"scientificName":"Ossicaulis lachnopus (Fr.) Contu,
+        2000","type":"SCIENTIFIC","genusOrAbove":"Ossicaulis","specificEpithet":"lachnopus","authorship":"Contu","year":"2000","bracketAuthorship":"Fr.","parsed":true,"parsedPartially":false,"canonicalName":"Ossicaulis
+        lachnopus","canonicalNameWithMarker":"Ossicaulis lachnopus","canonicalNameComplete":"Ossicaulis
+        lachnopus (Fr.) Contu, 2000","rankMarker":"sp."}]'
+  recorded_at: 2026-06-17 18:01:59
+recorded_with: VCR-vcr/2.1.0

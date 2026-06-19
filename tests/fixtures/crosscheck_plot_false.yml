@@ -1,0 +1,74 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://verifier.globalnames.org/api/v1/verifications/Amanita%20muscaria?data_sources=11&all_matches=false&capitalize=false&species_group=false&fuzzy_uninomial=false&stats=false
+  response:
+    status: 200
+    headers:
+      content-encoding: gzip
+      content-length: '702'
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:57:47 GMT
+      server: nginx/1.18.0 (Ubuntu)
+      status: 'HTTP/2 200 '
+      vary:
+      - Accept-Encoding
+      - Origin
+    body:
+      string: |
+        {"metadata":{"namesNumber":1,"vernaculars":[""],"dataSources":[11]},"names":[{"id":"ec098ac5-fbe5-59a5-8e05-b0d993aa6fd9","name":"Amanita muscaria","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":11,"dataSourceTitleShort":"GBIF Backbone Taxonomy","curation":"AutoCurated","recordId":"8168319","outlink":"https://gbif.org/species/8168319","entryDate":"2024-01-11","sortScore":9.410739851747246,"matchedNameID":"8b18ede3-2a01-52f5-83c2-499961408419","matchedName":"Amanita muscaria (L.) Lam.","matchedCardinality":2,"matchedCanonicalSimple":"Amanita muscaria","matchedCanonicalFull":"Amanita muscaria","currentRecordId":"8168319","currentNameId":"8b18ede3-2a01-52f5-83c2-499961408419","currentName":"Amanita muscaria (L.) Lam.","currentCardinality":2,"currentCanonicalSimple":"Amanita muscaria","currentCanonicalFull":"Amanita muscaria","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Fungi|Basidiomycota|Agaricomycetes|Agaricales|Amanitaceae|Amanita|Amanita muscaria","classificationRanks":"kingdom|phylum|class|order|family|genus|species","classificationIds":"5|34|186|1499|4171|6005964|8168319","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.33333334,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[11],"curation":"AutoCurated"}]}
+  recorded_at: 2026-06-17 17:57:47
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Amanita muscaria (L.) Lam."]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:57:47 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '23751647381'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Amanita muscaria (L.) Lam.","type":"SCIENTIFIC","genusOrAbove":"Amanita","specificEpithet":"muscaria","authorship":"Lam.","bracketAuthorship":"L.","parsed":true,"parsedPartially":false,"canonicalName":"Amanita
+        muscaria","canonicalNameWithMarker":"Amanita muscaria","canonicalNameComplete":"Amanita
+        muscaria (L.) Lam.","rankMarker":"sp."}]'
+  recorded_at: 2026-06-17 17:57:47
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Amanita+muscaria
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:24 GMT
+      cache-control: public, max-age=3601
+      x-varnish: 24115742703 23976583662
+      age: '142'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '877'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"8168319","name":"Amanita muscaria (L.) Lam.","canonicalName":"Amanita
+        muscaria","authorship":"(L.) Lam.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Amanita","specificEpithet":"muscaria","type":"SCIENTIFIC","formattedName":"<i>Amanita</i>
+        <i>muscaria</i> (L.) Lam."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4171","name":"Amanitaceae","rank":"FAMILY"},{"key":"6005964","name":"Amanita","rank":"GENUS"},{"key":"8168319","name":"Amanita
+        muscaria","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":97,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"synonym":false,"left":33721,"right":33733}'
+  recorded_at: 2026-06-17 17:57:47
+recorded_with: VCR-vcr/2.1.0

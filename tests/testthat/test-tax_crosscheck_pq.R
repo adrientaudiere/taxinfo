@@ -49,11 +49,13 @@ test_that("tax_crosscheck_pq status classification logic", {
 test_that("tax_crosscheck_pq returns expected structure with taxnames", {
   skip_on_cran()
 
-  result <- tax_crosscheck_pq(
-    taxnames = c("Amanita muscaria", "Boletus edulis"),
-    verbose = FALSE,
-    plot = FALSE
-  )
+  vcr::use_cassette("crosscheck_structure", {
+    result <- tax_crosscheck_pq(
+      taxnames = c("Amanita muscaria", "Boletus edulis"),
+      verbose = FALSE,
+      plot = FALSE
+    )
+  })
 
   expect_type(result, "list")
   expect_named(
@@ -80,11 +82,13 @@ test_that("tax_crosscheck_pq returns expected structure with taxnames", {
 test_that("tax_crosscheck_pq comparison has status column with valid values", {
   skip_on_cran()
 
-  result <- tax_crosscheck_pq(
-    taxnames = c("Amanita muscaria", "Boletus edulis"),
-    verbose = FALSE,
-    plot = FALSE
-  )
+  vcr::use_cassette("crosscheck_status", {
+    result <- tax_crosscheck_pq(
+      taxnames = c("Amanita muscaria", "Boletus edulis"),
+      verbose = FALSE,
+      plot = FALSE
+    )
+  })
 
   expect_true("status" %in% colnames(result$comparison))
   expect_true("submitted_name" %in% colnames(result$comparison))
@@ -100,11 +104,13 @@ test_that("tax_crosscheck_pq comparison has status column with valid values", {
 test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
   skip_on_cran()
 
-  result <- tax_crosscheck_pq(
-    taxnames = c("Amanita muscaria"),
-    verbose = FALSE,
-    plot = FALSE
-  )
+  vcr::use_cassette("crosscheck_plot_false", {
+    result <- tax_crosscheck_pq(
+      taxnames = c("Amanita muscaria"),
+      verbose = FALSE,
+      plot = FALSE
+    )
+  })
 
   expect_type(result, "list")
   expect_false("venn_plot" %in% names(result))
@@ -113,11 +119,13 @@ test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
 test_that("tax_crosscheck_pq summary counts add up to total", {
   skip_on_cran()
 
-  result <- tax_crosscheck_pq(
-    taxnames = c("Amanita muscaria", "Boletus edulis", "Russula"),
-    verbose = FALSE,
-    plot = FALSE
-  )
+  vcr::use_cassette("crosscheck_summary", {
+    result <- tax_crosscheck_pq(
+      taxnames = c("Amanita muscaria", "Boletus edulis", "Russula"),
+      verbose = FALSE,
+      plot = FALSE
+    )
+  })
 
   count_fields <- c("match", "mismatch", "gna_only", "backbone_only", "both_na")
   expect_equal(sum(result$summary[count_fields]), result$summary[["total"]])

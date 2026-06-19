@@ -1,0 +1,304 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Basidiodendron+eyrei
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:24 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23835851153'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"usage":{"key":"2553838","name":"Basidiodendron eyrei (Wakef.) Luck-Allen","canonicalName":"Basidiodendron
+        eyrei","authorship":"(Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Basidiodendron","specificEpithet":"eyrei","type":"SCIENTIFIC","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":12,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":0,"luceneMatch":12}},"synonym":false,"left":81861,"right":81864}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Fomes+fomentarius
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:24 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23666316322'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"usage":{"key":"8068867","name":"Fomes fomentarius (L.) Fr.","canonicalName":"Fomes
+        fomentarius","authorship":"(L.) Fr.","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Fomes","specificEpithet":"fomentarius","type":"SCIENTIFIC","formattedName":"<i>Fomes</i>
+        <i>fomentarius</i> (L.) Fr."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1145","name":"Polyporales","rank":"ORDER"},{"key":"3286","name":"Polyporaceae","rank":"FAMILY"},{"key":"2518074","name":"Fomes","rank":"GENUS"},{"key":"8068867","name":"Fomes
+        fomentarius","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":98,"timeTaken":10,"timings":{"nameNRank":0,"sciNameMatch":11,"nameParse":2,"luceneMatch":9}},"synonym":false,"left":109161,"right":109161}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Mycena+renati
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23907808688'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"usage":{"key":"4911813","name":"Mycena renati Quél.","canonicalName":"Mycena
+        renati","authorship":"Quél.","rank":"SPECIES","status":"ACCEPTED","genericName":"Mycena","specificEpithet":"renati","type":"SCIENTIFIC","formattedName":"<i>Mycena</i>
+        <i>renati</i> Quél."},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1499","name":"Agaricales","rank":"ORDER"},{"key":"4180","name":"Mycenaceae","rank":"FAMILY"},{"key":"5955261","name":"Mycena","rank":"GENUS"},{"key":"4911813","name":"Mycena
+        renati","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":15,"timings":{"nameNRank":0,"sciNameMatch":15,"nameParse":1,"luceneMatch":14}},"synonym":false,"left":64888,"right":64889}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Xylodon+flaviporus
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23679655820'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"usage":{"key":"9366699","name":"Xylodon flaviporus (Berk. & M.A.Curtis
+        ex Cooke) Riebesehl & Langer","canonicalName":"Xylodon flaviporus","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Xylodon","specificEpithet":"flaviporus","type":"SCIENTIFIC","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":10,"timings":{"nameNRank":0,"sciNameMatch":11,"nameParse":1,"luceneMatch":10}},"synonym":false,"left":102669,"right":102674}'
+  recorded_at: 2026-06-17 17:55:25
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Stypella+subgelatinosa
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24068034781'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '893'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553772","name":"Stypella subgelatinosa (P.Karst.)
+        P.Roberts","canonicalName":"Stypella subgelatinosa","authorship":"(P.Karst.)
+        P.Roberts","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Stypella","specificEpithet":"subgelatinosa","type":"SCIENTIFIC","formattedName":"<i>Stypella</i>
+        <i>subgelatinosa</i> (P.Karst.) P.Roberts"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"8616703","name":"Stypella","rank":"GENUS"},{"key":"2553772","name":"Stypella
+        subgelatinosa","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":12,"timings":{"nameNRank":0,"sciNameMatch":13,"nameParse":0,"luceneMatch":12}},"synonym":false,"left":82237,"right":82239}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Sistotrema+raduloides
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:25 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '23977369466'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '926'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"5249676","name":"Sistotrema raduloides (P.Karst.)
+        Donk","canonicalName":"Sistotrema raduloides","authorship":"(P.Karst.) Donk","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Sistotrema","specificEpithet":"raduloides","type":"SCIENTIFIC","formattedName":"<i>Sistotrema</i>
+        <i>raduloides</i> (P.Karst.) Donk"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1300","name":"Cantharellales","rank":"ORDER"},{"key":"8460","name":"Hydnaceae","rank":"FAMILY"},{"key":"10494302","name":"Sistotrema","rank":"GENUS"},{"key":"5249676","name":"Sistotrema
+        raduloides","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":11,"timings":{"nameNRank":0,"sciNameMatch":12,"nameParse":1,"luceneMatch":11}},"synonym":false,"left":93960,"right":93961}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=2553838
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '17'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23973962007'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1165,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=8068867
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '16'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '24132584895'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '83'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":172799,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=4911813
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '15'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23983134474'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '81'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":5785,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=9366699
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '14'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23950600800'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":4951,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=2553772
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '13'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '23876353791'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":374,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:26
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/occurrence/search?occurrenceStatus=PRESENT&limit=0&offset=0&taxonKey=5249676
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 17:55:26 GMT
+      x-varnish-rli: '12'
+      x-varnish-rlg: '250'
+      cache-control: public, max-age=600
+      x-varnish: '24097328607'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '{"offset":0,"limit":0,"endOfRecords":false,"count":1864,"results":[],"facets":[]}'
+  recorded_at: 2026-06-17 17:55:27
+recorded_with: VCR-vcr/2.1.0

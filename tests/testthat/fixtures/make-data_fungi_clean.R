@@ -59,14 +59,20 @@ keep_samples <- head(c(chosen, extra_samp), 8)
 fixture <- phyloseq::prune_samples(keep_samples, fixture)
 
 message(
-  "fixture: ", phyloseq::ntaxa(fixture), " taxa, ",
-  phyloseq::nsamples(fixture), " samples"
+  "fixture: ",
+  phyloseq::ntaxa(fixture),
+  " taxa, ",
+  phyloseq::nsamples(fixture),
+  " samples"
 )
 message(
   "canonical names: ",
-  paste(sort(unique(as.character(
-    fixture@tax_table[, "currentCanonicalSimple"]
-  ))), collapse = ", ")
+  paste(
+    sort(unique(as.character(
+      fixture@tax_table[, "currentCanonicalSimple"]
+    ))),
+    collapse = ", "
+  )
 )
 
 saveRDS(

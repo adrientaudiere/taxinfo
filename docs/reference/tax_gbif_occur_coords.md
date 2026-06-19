@@ -5,11 +5,11 @@ href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle
 \<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
 alt="lifecycle-experimental"\>\</a\>
 
-Retrieves up to \`n_occur\` georeferenced GBIF occurrences for each name
-in \`taxnames\` and returns them as a long tibble. Taxa are resolved to
-GBIF usage keys once via \[rgbif::name_backbone_checklist()\] (filtering
-on \`matchType with \[rgbif::occ_search()\] (\`hasGeospatialIssue =
-FALSE\`). Rows with missing coordinates are dropped.
+Retrieves georeferenced GBIF occurrences for each name in \`taxnames\`
+and returns them as a long tibble. Taxa are resolved to GBIF usage keys
+once via \[rgbif::name_backbone_checklist()\] (filtering on \`matchType
+with one of three methods (see \`method\`). Rows with missing
+coordinates are dropped.
 
 ## Usage
 
@@ -17,6 +17,11 @@ FALSE\`). Rows with missing coordinates are dropped.
 tax_gbif_occur_coords(
   taxnames,
   n_occur = 1000,
+  method = c("download", "download_sql", "search"),
+  country = NULL,
+  year_gte = NULL,
+  year_lte = NULL,
+  geometry = NULL,
   clean_coord = FALSE,
   verbose = TRUE,
   time_to_sleep = 0.3
@@ -31,8 +36,44 @@ tax_gbif_occur_coords(
 
 - n_occur:
 
-  (numeric, default \`1000\`). Maximum number of occurrences to retrieve
-  per taxon. Use a smaller value (e.g. \`200\`) for quick checks.
+  (numeric, default \`1000\`). Maximum number of occurrences to keep per
+  taxon. With \`method = "search"\` this is a server-side limit; with
+  the download methods it is applied as a local sample after import (a
+  warning is issued when a taxon exceeded \`n_occur\`).
+
+- method:
+
+  (character, default \`"download"\`). How occurrences are fetched: -
+  \`"download"\`: a single \[rgbif::occ_download()\] request for all
+  taxa at once (no 100,000-record cap, mints a citable DOI).
+  \*\*Requires GBIF credentials\*\* (see
+  \[check_gbif_credentials()\]). - \`"download_sql"\`:
+  \[rgbif::occ_download_sql()\] with server-side column selection and
+  \`WHERE\` filtering (gated preview, must be enabled for your account).
+  \*\*Requires GBIF credentials.\*\* Because GBIF SQL \`taxonkey\` is
+  not hierarchical, this method matches \`taxonkey\`/\`specieskey\`
+  directly and may under-return records for names matched at a higher
+  rank (\`HIGHERRANK\`); use \`"download"\` if you need full
+  hierarchical coverage. - \`"search"\`: the legacy per-taxon
+  \[rgbif::occ_search()\] loop (fast, capped at 100,000 records, no
+  credentials).
+
+- country:
+
+  (character, default \`NULL\`). Optional ISO2 country code used as a
+  server-side filter for the download methods (e.g. \`"FR"\`).
+
+- year_gte, year_lte:
+
+  (numeric, default \`NULL\`). Optional inclusive year bounds used as
+  server-side filters for the download methods.
+
+- geometry:
+
+  (character, default \`NULL\`). Optional WKT polygon used as a
+  server-side spatial filter for \`method = "download"\` (via
+  \[rgbif::pred_within()\]). Not supported with \`method =
+  "download_sql"\`.
 
 - clean_coord:
 
@@ -47,7 +88,8 @@ tax_gbif_occur_coords(
 - time_to_sleep:
 
   (numeric, default \`0.3\`). Seconds to pause between
-  \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting.
+  \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting. Only used
+  when \`method = "search"\`.
 
 ## Value
 
@@ -58,7 +100,8 @@ A tibble with columns \`taxon_name\`, \`usageKey\`,
 
 ## See also
 
-\[tax_ecoregion_occur()\], \[rgbif::occ_search()\]
+\[tax_ecoregion_occur()\], \[rgbif::occ_download()\],
+\[rgbif::occ_download_sql()\], \[rgbif::occ_search()\]
 
 ## Author
 
@@ -68,8 +111,23 @@ Adrien Taudiere
 
 ``` r
 if (FALSE) { # \dontrun{
+# Default: GBIF Download API (requires GBIF_USER, GBIF_PWD, GBIF_EMAIL)
 tax_gbif_occur_coords(
   c("Xylobolus subpileatus", "Amanita muscaria"),
+  n_occur = 200
+)
+
+# Narrow the download server-side to reduce transfer
+tax_gbif_occur_coords(
+  c("Amanita muscaria"),
+  country = "FR",
+  year_gte = 2000
+)
+
+# Legacy fast path (no credentials, capped at 100,000 records)
+tax_gbif_occur_coords(
+  c("Xylobolus subpileatus"),
+  method = "search",
   n_occur = 200
 )
 } # }

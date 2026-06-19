@@ -1,8 +1,10 @@
 ---
 title: "Adding External Information: Wikipedia, GLOBI, and Custom Databases"
 output: rmarkdown::html_vignette
-editor_options:
-  chunk_output_type: console
+vignette: >
+  %\VignetteIndexEntry{Get started with netaipq}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 

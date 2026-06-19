@@ -16,6 +16,8 @@ tax_get_wk_info_pq(
   summarize_function_length = "mean",
   summarize_function_views = "sum",
   n_days = 30,
+  start_date = NULL,
+  end_date = NULL,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
@@ -59,6 +61,14 @@ across languages. Default is "mean".}
 across languages. Default is "sum".}
 
 \item{n_days}{(numeric, default 30) Number of days to consider for the page views.}
+
+\item{start_date}{The start date for the page views. If NULL (default),
+the start date is set to 'n_days' before the end date. Passed to
+[tax_get_wk_pages_info()].}
+
+\item{end_date}{The end date for the page views. If NULL (default),
+the end date is set to yesterday's date. Passed to
+[tax_get_wk_pages_info()].}
 
 \item{discard_genus_alone}{(logical, default `TRUE` when
 `taxonomic_rank == "currentCanonicalSimple"`). Passed to

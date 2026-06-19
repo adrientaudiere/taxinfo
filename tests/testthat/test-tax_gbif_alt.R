@@ -19,6 +19,7 @@ test_that("tax_gbif_alt parameter defaults", {
 test_that("tax_gbif_alt GBIF integration", {
   # Test GBIF altitude data retrieval
   skip_on_cran()
+  skip_if_no_slow_tests()
   skip_if_no_gbif_credentials()
 
   # Basic test with a common species
@@ -37,6 +38,7 @@ test_that("tax_gbif_alt GBIF integration", {
 test_that("tax_gbif_alt altitude statistics structure", {
   # Test that altitude statistics returns expected columns
   skip_on_cran()
+  skip_if_no_slow_tests()
   skip_if_no_gbif_credentials()
 
   result <- tax_gbif_alt(
@@ -72,6 +74,7 @@ test_that("tax_gbif_alt altitude statistics structure", {
 test_that("tax_gbif_alt handles multiple taxa", {
   # Test with multiple species
   skip_on_cran()
+  skip_if_no_slow_tests()
   skip_if_no_gbif_credentials()
 
   result <- tax_gbif_alt(
@@ -97,6 +100,7 @@ test_that("tax_gbif_alt handles taxa without altitude data", {
 test_that("tax_gbif_alt n_coor_alt parameter", {
   # Test that n_coor_alt controls sample size
   skip_on_cran()
+  skip_if_no_slow_tests()
   skip_if_no_gbif_credentials()
 
   # Request smaller sample

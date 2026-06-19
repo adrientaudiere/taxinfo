@@ -112,7 +112,9 @@ have the same length as `longitudes`.</p></dd>
 
 <dt id="arg-n-occur">n_occur<a class="anchor" aria-label="anchor" href="#arg-n-occur"></a></dt>
 <dd><p>(numeric, default `1000`). Maximum number of occurrences to
-retrieve per taxon. Use a smaller value (e.g. `200`) for quick checks.</p></dd>
+keep per taxon. With `method = "search"` this is a server-side limit; with
+the download methods it is applied as a local sample after import (a warning
+is issued when a taxon exceeded `n_occur`).</p></dd>
 
 
 <dt id="arg-min-nb-occur">min_nb_occur<a class="anchor" aria-label="anchor" href="#arg-min-nb-occur"></a></dt>
@@ -138,7 +140,8 @@ pairs whose share of the taxon's total occurrences is `&gt;= min_proportion`
 
 <dt id="arg-time-to-sleep">time_to_sleep<a class="anchor" aria-label="anchor" href="#arg-time-to-sleep"></a></dt>
 <dd><p>(numeric, default `0.3`). Seconds to pause between
-[rgbif::occ_search()] calls to avoid GBIF rate-limiting.</p></dd>
+[rgbif::occ_search()] calls to avoid GBIF rate-limiting. Only used when
+`method = "search"`.</p></dd>
 
 
 <dt id="arg-discard-genus-alone">discard_genus_alone<a class="anchor" aria-label="anchor" href="#arg-discard-genus-alone"></a></dt>

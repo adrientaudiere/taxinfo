@@ -1,5 +1,3 @@
-skip_on_cran()
-
 # Test plot_tax_gbif_pq function
 # Examples from man page: plot_tax_gbif_pq.Rd
 
@@ -21,6 +19,7 @@ test_that("plot_tax_gbif_pq input validation", {
 
 
 test_that("plot_tax_gbif_pq plotting functionality", {
+  skip_if_no_slow_tests()
   p1 <- plot_tax_gbif_pq(
     data_fungi_cleanNames_3sp,
     hexagons = TRUE,
@@ -46,7 +45,7 @@ test_that("plot_tax_gbif_pq plotting functionality", {
 
 # Examples from man page: plot_tax_gbif_pq.Rd (lines 62-106)
 test_that("plot_tax_gbif_pq with taxnames parameter returns list of ggplots", {
-  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"))
+  skip_if_no_slow_tests()
   p <- plot_tax_gbif_pq(
     taxnames = c("Fomes fomentarius", "Xylodon flaviporus")
   )
@@ -56,8 +55,7 @@ test_that("plot_tax_gbif_pq with taxnames parameter returns list of ggplots", {
 })
 
 test_that("plot_tax_gbif_pq with hexagons = TRUE and taxnames", {
-  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum  subpileatus"),
-  #   hexagons = TRUE, verbose = FALSE)
+  skip_if_no_slow_tests()
   p <- plot_tax_gbif_pq(
     taxnames = c("Fomes fomentarius", "Xylodon flaviporus"),
     hexagons = TRUE,
@@ -68,8 +66,7 @@ test_that("plot_tax_gbif_pq with hexagons = TRUE and taxnames", {
 })
 
 test_that("plot_tax_gbif_pq with countries filter", {
-  # Example: p <- plot_tax_gbif_pq(taxnames = c("Xylobolus subpileatus", "Stereum subpileatus"),
-  #   hexagons = TRUE, verbose = FALSE, countries = c("france", "spain"))
+  skip_if_no_slow_tests()
   p <- plot_tax_gbif_pq(
     taxnames = c("Fomes fomentarius", "Xylodon flaviporus"),
     hexagons = TRUE,
@@ -95,7 +92,7 @@ test_that("plot_tax_gbif_pq neither physeq nor taxnames errors", {
 })
 
 test_that("plot_tax_gbif_pq verbose parameter works", {
-  # Should work with verbose = FALSE
+  skip_if_no_slow_tests()
   expect_no_error(
     plot_tax_gbif_pq(
       taxnames = c("Amanita muscaria"),

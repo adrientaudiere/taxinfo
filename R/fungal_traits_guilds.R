@@ -1,10 +1,10 @@
 #' Add FungalTraits and FUNGuild information to a phyloseq object
 #'
 #' @description
-#' 
+#'
 #' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 #' <img src="https://img.shields.io/badge/lifecycle-maturing-blue" alt="lifecycle-maturing"></a>
-#' 
+#'
 #' A convenience wrapper that adds guild and trait information from both the
 #' FungalTraits database and the FUNGuild database to the `tax_table` slot of
 #' a phyloseq object. Optionally creates consensus columns that summarise

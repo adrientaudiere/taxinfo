@@ -1,0 +1,116 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Xylodon+flaviporus
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:55:13 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24228495366'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1012'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"9366699","name":"Xylodon flaviporus (Berk. & M.A.Curtis
+        ex Cooke) Riebesehl & Langer","canonicalName":"Xylodon flaviporus","authorship":"(Berk.
+        & M.A.Curtis ex Cooke) Riebesehl & Langer","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Xylodon","specificEpithet":"flaviporus","type":"SCIENTIFIC","formattedName":"<i>Xylodon</i>
+        <i>flaviporus</i> (Berk. & M.A.Curtis ex Cooke) Riebesehl & Langer"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1304","name":"Hymenochaetales","rank":"ORDER"},{"key":"3298","name":"Schizoporaceae","rank":"FAMILY"},{"key":"2519089","name":"Xylodon","rank":"GENUS"},{"key":"9366699","name":"Xylodon
+        flaviporus","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":9,"timings":{"nameNRank":0,"sciNameMatch":10,"nameParse":1,"luceneMatch":9}},"synonym":false,"left":102669,"right":102674}'
+  recorded_at: 2026-06-17 18:55:14
+- request:
+    method: GET
+    uri: https://api.gbif.org/v2/species/match?scientificName=Basidiodendron+eyrei
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:55:13 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24217845856'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '886'
+      connection: keep-alive
+    body:
+      string: '{"usage":{"key":"2553838","name":"Basidiodendron eyrei (Wakef.) Luck-Allen","canonicalName":"Basidiodendron
+        eyrei","authorship":"(Wakef.) Luck-Allen","rank":"SPECIES","code":"BOTANICAL","status":"ACCEPTED","genericName":"Basidiodendron","specificEpithet":"eyrei","type":"SCIENTIFIC","formattedName":"<i>Basidiodendron</i>
+        <i>eyrei</i> (Wakef.) Luck-Allen"},"classification":[{"key":"5","name":"Fungi","rank":"KINGDOM"},{"key":"34","name":"Basidiomycota","rank":"PHYLUM"},{"key":"186","name":"Agaricomycetes","rank":"CLASS"},{"key":"1062","name":"Auriculariales","rank":"ORDER"},{"key":"7668534","name":"Basidiodendron","rank":"GENUS"},{"key":"2553838","name":"Basidiodendron
+        eyrei","rank":"SPECIES"}],"diagnostics":{"matchType":"EXACT","confidence":99,"timeTaken":10,"timings":{"nameNRank":0,"sciNameMatch":11,"nameParse":1,"luceneMatch":10}},"synonym":false,"left":81861,"right":81864}'
+  recorded_at: 2026-06-17 18:55:14
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/species/9366699/media?offset=0&limit=100
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:55:14 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24120138248'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1158'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":100,"endOfRecords":true,"results":[{"type":"StillImage","format":"image/jpeg","title":"Xylodon
+        flaviporus, DMS-10217197","source":"Checklist of Danish Fungi","creator":"Ole
+        Martin","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Ole
+        Martin","taxonKey":9366699,"sourceTaxonKey":132619852,"identifier":"https://svampe.databasen.org/uploads/2021-10217197_rJSe10tXY.JPG"},{"type":"StillImage","format":"image/jpeg","title":"Xylodon
+        flaviporus, DMS-9241204","source":"Checklist of Danish Fungi","creator":"Michael
+        Sonniks","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Michael
+        Sonniks","taxonKey":9366699,"sourceTaxonKey":132619852,"identifier":"https://svampe.databasen.org/uploads/2018-9241204_HyxAyEUOSG.JPG"},{"type":"StillImage","format":"image/jpeg","title":"Xylodon
+        flaviporus, DMS-9200923","source":"Checklist of Danish Fungi","creator":"Thomas
+        Læssøe","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"Thomas
+        Læssøe","taxonKey":9366699,"sourceTaxonKey":132619852,"identifier":"https://svampe.databasen.org/uploads/TL2017-9200923_B1hFhP4Db.JPG"}]}'
+  recorded_at: 2026-06-17 18:55:14
+- request:
+    method: GET
+    uri: https://api.gbif.org/v1/species/2553838/media?offset=0&limit=100
+  response:
+    status: 200
+    headers:
+      status: HTTP/1.1 200 OK
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Wed, 17 Jun 2026 18:55:14 GMT
+      cache-control: public, max-age=3601
+      x-varnish: '24226463752'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      accept-ranges: bytes
+      content-length: '1282'
+      connection: keep-alive
+    body:
+      string: '{"offset":0,"limit":100,"endOfRecords":true,"results":[{"type":"StillImage","format":"image/jpeg","title":"Basidiodendron
+        eyrei","source":"Checklist of Danish Fungi","creator":"MycoKey / Jan Vesterholt","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"MycoKey
+        / Jan Vesterholt","taxonKey":2553838,"sourceTaxonKey":132620126,"identifier":"http://www.mycokey.com/MycoKeySolidState/pictures/basi/cort/Basidiodendron/eyre14L.jpg"},{"type":"StillImage","format":"image/jpeg","title":"Basidiodendron
+        eyrei, JHP-03.306","source":"Checklist of Danish Fungi","creator":"MycoKey
+        / Jens H. Petersen","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"MycoKey
+        / Jens H. Petersen","taxonKey":2553838,"sourceTaxonKey":132620126,"identifier":"http://www.mycokey.com/MycoKeySolidState/pictures/basi/cort/Basidiodendron/eyreL.jpg"},{"type":"StillImage","format":"image/jpeg","title":"Basidiodendron
+        eyrei, JHP-03.306","source":"Checklist of Danish Fungi","creator":"MycoKey
+        / Jens H. Petersen","license":"https://creativecommons.org/licenses/by-nc/4.0/","rightsHolder":"MycoKey
+        / Jens H. Petersen","taxonKey":2553838,"sourceTaxonKey":132620126,"identifier":"http://www.mycokey.com/MycoKeySolidState/pictures/basi/cort/Basidiodendron/eyre2L.jpg"}]}'
+  recorded_at: 2026-06-17 18:55:14
+recorded_with: VCR-vcr/2.1.0

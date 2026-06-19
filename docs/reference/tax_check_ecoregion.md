@@ -58,8 +58,10 @@ tax_check_ecoregion(
 
 - n_occur:
 
-  (numeric, default \`1000\`). Maximum number of occurrences to retrieve
-  per taxon. Use a smaller value (e.g. \`200\`) for quick checks.
+  (numeric, default \`1000\`). Maximum number of occurrences to keep per
+  taxon. With \`method = "search"\` this is a server-side limit; with
+  the download methods it is applied as a local sample after import (a
+  warning is issued when a taxon exceeded \`n_occur\`).
 
 - min_nb_occur:
 
@@ -85,7 +87,8 @@ tax_check_ecoregion(
 - time_to_sleep:
 
   (numeric, default \`0.3\`). Seconds to pause between
-  \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting.
+  \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting. Only used
+  when \`method = "search"\`.
 
 - discard_genus_alone:
 
