@@ -1,7 +1,7 @@
 Type: Package
 Package: taxinfo
 Title: Augment 'Phyloseq' Objects with Taxonomy-Based Information
-Version: 0.1.2
+Version: 0.2.0.9000
 Authors@R: 
     person("Adrien", "Taudiere", , "adrien.taudiere@zaclys.net", role = c("aut", "cre", "cph"))
 Description: Augments 'phyloseq' objects with taxonomy-based information
