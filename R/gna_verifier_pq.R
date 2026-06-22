@@ -244,7 +244,10 @@ gna_verifier_pq <- function(
           "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {head(common_cols, 5)}}"
         )
         tax_mat <- as(physeq@tax_table, "matrix")
-        tax_mat <- tax_mat[, !(colnames(tax_mat) %in% common_cols), drop = FALSE]
+        tax_mat <- tax_mat[,
+          !(colnames(tax_mat) %in% common_cols),
+          drop = FALSE
+        ]
         physeq@tax_table <- tax_table(tax_mat)
       } else if (is.null(col_prefix)) {
         cli::cli_warn(c(
