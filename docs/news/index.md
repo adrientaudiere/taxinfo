@@ -42,6 +42,23 @@
   [`taxize::gna_verifier()`](https://docs.ropensci.org/taxize/reference/gna_verifier.html)
   anyway.
 
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  gains a `problematic_chars` parameter (default `"[?\\\\#|&]"`) to
+  detect taxonomic names containing characters that corrupt the GNA
+  Verifier GET URL (`?`, `\`, `#`, `|`, `&`), and a
+  `clean_problematic_chars` parameter (default `FALSE`). When
+  problematic names are found, a warning reports their count and
+  examples; set `clean_problematic_chars = TRUE` to replace matching
+  cells with `NA` before verification, or clean the data upstream
+  (e.g. with
+  [`MiscMetabar::simplify_taxo()`](https://adrientaudiere.github.io/MiscMetabar/reference/simplify_taxo.html)).
+
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  gains a `force_recompute` parameter (default `FALSE`). When `TRUE`,
+  existing result columns matching `col_prefix` are removed from the
+  `tax_table` before re-adding them, avoiding duplicate-column errors on
+  re-runs.
+
 - [`select_taxa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.md)
   aborts with an explicit message naming the requested `taxnames` when
   none of them match the `tax_table`, instead of failing with an obscure

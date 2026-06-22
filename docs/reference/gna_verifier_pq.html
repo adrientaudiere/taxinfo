@@ -69,7 +69,10 @@ A wrapper of [taxize::gna_verifier()] apply to phyloseq object'><meta property="
 <span>  genus_species_canonical_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  year_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  authorship_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  problematic_chars <span class="op">=</span> <span class="st">"[?\\\\#|&amp;]"</span>,</span>
+<span>  clean_problematic_chars <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  force_recompute <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -163,6 +166,41 @@ a new column "namePublishedInYear" is added with the year of publication.</p></d
 <dt id="arg-discard-na">discard_NA<a class="anchor" aria-label="anchor" href="#arg-discard-na"></a></dt>
 <dd><p>(logical, default `TRUE`). Passed to
 [taxonomic_rank_to_taxnames()].</p></dd>
+
+
+<dt id="arg-problematic-chars">problematic_chars<a class="anchor" aria-label="anchor" href="#arg-problematic-chars"></a></dt>
+<dd><p>A regex pattern (character string) to detect
+characters that are problematic for the GNA Verifier API URL. The API
+pastes names pipe-separated into a GET URL path, so characters like
+`?` (query-string delimiter), `\` (escape), `|` (pipe separator),
+`#` (fragment), or `&amp;` (parameter separator) corrupt the URL and can
+cause a length-mismatch crash in [taxize::gna_verifier()]. Names
+containing these characters are reported and, if
+`clean_problematic_chars` is `TRUE`, handled before verification.
+Set to `NULL` to disable detection. Default: `"[?\\#|&amp;]"`.</p></dd>
+
+
+<dt id="arg-clean-problematic-chars">clean_problematic_chars<a class="anchor" aria-label="anchor" href="#arg-clean-problematic-chars"></a></dt>
+<dd><p>(logical, default `FALSE`) If `TRUE`,
+cells in the `taxonomic_rank` columns that match `problematic_chars`
+are replaced with `NA` (when `physeq` is provided) and matching names
+are filtered out (when `taxnames` is provided) before verification.
+If `FALSE` (the default), a warning is issued listing the problematic
+names but they are sent as-is – this will likely cause an error in
+[taxize::gna_verifier()]. Set to `TRUE` to handle them automatically,
+or clean the data upstream (e.g. with [MiscMetabar::simplify_taxo()]).</p></dd>
+
+
+<dt id="arg-force-recompute">force_recompute<a class="anchor" aria-label="anchor" href="#arg-force-recompute"></a></dt>
+<dd><p>(logical, default `FALSE`) If `TRUE`, remove
+any existing columns in the `tax_table` that would be re-added by
+this call (i.e. columns matching `col_prefix` when `col_prefix` is
+set, or columns in `new_cols` when `col_prefix` is `NULL`) before
+performing the verification. This is useful when re-running
+`gna_verifier_pq()` on a phyloseq that already contains result
+columns from a previous call. If `FALSE`, existing columns are left
+in place, which can cause duplicate-column errors in
+`tax_table()` on re-runs.</p></dd>
 
 </dl></div>
     <div class="section level2">
