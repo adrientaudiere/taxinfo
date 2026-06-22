@@ -172,6 +172,12 @@ themes.
   alt="lifecycle-experimental"\>\</a\>
 - [`theme_idest()`](https://adrientaudiere.github.io/taxinfo/reference/theme_idest.md)
   : ggplot theme for IdEst
+- [`label_italic_species()`](https://adrientaudiere.github.io/taxinfo/reference/label_italic_species.md)
+  : Format taxon labels with species names in italic
+- [`scale_x_italic_species()`](https://adrientaudiere.github.io/taxinfo/reference/scale_x_italic_species.md)
+  : Discrete x-axis scale with species names in italic
+- [`scale_y_italic_species()`](https://adrientaudiere.github.io/taxinfo/reference/scale_y_italic_species.md)
+  : Discrete y-axis scale with species names in italic
 
 ## Package Information
 

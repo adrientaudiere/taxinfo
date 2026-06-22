@@ -33,6 +33,7 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/idest_pal.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/index.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/intra_taxnames_dist.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/label_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/load_ecoregions.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/occur_check_compute_df.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.html</loc></url>
@@ -42,6 +43,8 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_d.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_c.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_d.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_x_italic_species.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_y_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.html</loc></url>

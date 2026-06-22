@@ -44,3 +44,14 @@ A ggplot2 scale object.
 ## Author
 
 Adrien Taudiere
+
+## Examples
+
+``` r
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
+  geom_point() +
+  scale_color_idest_d("dark_color_idest")
+#> Warning: `scale_color_idest_d()` was deprecated in taxinfo 0.2.0.
+#> ℹ Please use `ggplotpq::scale_color_idest_d()` instead.
+```

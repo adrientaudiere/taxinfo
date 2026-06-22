@@ -1,4 +1,4 @@
-# taxinfo 0.1.2
+# taxinfo 0.1.2 [CRAN]
 ## Breaking changes
 
 * The GBIF occurrence functions (`tax_gbif_occur_coords()`, `tax_occur_check()`, `tax_occur_check_pq()`, `tax_occur_multi_check_pq()`) now default to GBIF's Download API (`method = "download"`), which requires GBIF credentials (`GBIF_USER`, `GBIF_PWD`, `GBIF_EMAIL` in your `.Renviron`). The previous `rgbif::occ_search()` behaviour is still available with `method = "search"` (no credentials, capped at 100,000 records). See <https://docs.ropensci.org/rgbif/articles/gbif_credentials.html>.
@@ -28,8 +28,6 @@
 * `tax_occur_check_pq()` and `tax_occur_multi_check_pq()` now issue a single GBIF download for all taxa (and, for `tax_occur_multi_check_pq()`, all GPS points) when `method = "download"`, instead of one `rgbif::occ_search()` call per taxon per point, and expose `method`, `circle_form`, `clean_coord` and `n_occur` arguments.
 
 * `theme_idest()` falls back to the graphics-device default font when a requested font family (`Roboto Condensed`, `Linux Libertine G`, `Fira Code`) is not installed, instead of failing with `invalid font type` when the plot is printed (for example during `R CMD check` examples or a pkgdown render).
-
-# taxinfo 0.1.2
 
 - `range_bioreg_pq()` and `tax_check_ecoregion()` now call `gbif.range::read_ecoreg()` and `gbif.range::check_and_get_ecoreg()` instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## taxinfo (development version)
+## taxinfo 0.1.2 \[CRAN\]
 
 ### Breaking changes
 
@@ -121,8 +121,6 @@
   is printed (for example during `R CMD check` examples or a pkgdown
   render).
 
-## taxinfo 0.1.2
-
 - [`range_bioreg_pq()`](https://adrientaudiere.github.io/taxinfo/reference/range_bioreg_pq.md)
   and
   [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
@@ -131,6 +129,17 @@
   and
   [`gbif.range::check_and_get_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/check_and_get_ecoreg.html)
   instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
+
+### Bug Fixes
+
+- [`theme_idest()`](https://adrientaudiere.github.io/taxinfo/reference/theme_idest.md):
+  when `x_is_species_name = TRUE` or `y_is_species_name = TRUE` is set,
+  a message now indicates which axis will receive italic labels. This
+  helps users catch the common mistake of passing
+  `x_is_species_name = TRUE` when species names are on the y-axis
+  (e.g. horizontal bar charts with `aes(x = n, y = sp)`), which
+  previously caused ggplot2 to silently misinterpret the continuous
+  x-axis as discrete and break the chart.
 
 ### Breaking changes
 
@@ -282,7 +291,29 @@
   `currentCanonicalSimple` but is `NA` for genus-only names (i.e. when
   `specificEpithet` is `NA` or empty).
 
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  gains a `species_only` parameter (default `TRUE`): when `TRUE`,
+  `currentCanonicalSimple` is set to `NA` for uninomial matches
+  (`matchedCardinality == 1`, i.e. genus or higher-rank names with no
+  species epithet). `genusEpithet` is always populated regardless of
+  this setting; `specificEpithet` is always `NA` for uninomials
+  independently of this parameter.
+
 ### Bug fix
+
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md):
+  fixed verbose summary always reporting 0 accepted/synonym names when
+  `add_to_phyloseq = FALSE` (was incorrectly reading dropped columns
+  from `res_verifier_clean` instead of `res_verifier`). Fixed
+  `matchedCardinality` threshold used for “uninomial” reporting (was
+  `== 2` instead of `== 1`). Fixed `genusEpithet` and `specificEpithet`
+  being absent from the return value when `add_to_phyloseq = FALSE` and
+  `genus_species_canonical_col = TRUE` (the function was returning the
+  raw GNA result instead of the cleaned tibble). Fixed potential
+  many-to-many join when `add_to_phyloseq = TRUE` by deduplicating on
+  `submittedName` after
+  [`select()`](https://dplyr.tidyverse.org/reference/select.html) rather
+  than before.
 
 - Fixed issue in functions
   [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md)

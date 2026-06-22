@@ -70,8 +70,10 @@ data_fungi_cleanNames <- gna_verifier_pq(data_fungi_mini, data_sources = 210)
 #> • Taxa submitted for verification: 37
 #> • Genus-level only taxa: 2
 #> • Total matches found: 25
-#> • Synonyms: 4 (including 4 at genus level)
-#> • Accepted names: 21 (including 15 at genus level)
+#> • Synonyms: 4 (including 0 uninomial)
+#> • Accepted names: 21 (including 6 uninomial)
+#> ℹ 6 uninomial accepted name(s) have `currentCanonicalSimple` set to "NA"
+#>   (`species_only` = TRUE)
 
 taxa_summary_text(data_fungi_cleanNames, taxnames = "Xylodon flaviporus")
 #> Warning: At least one of your sample contains less than 500 sequences.
