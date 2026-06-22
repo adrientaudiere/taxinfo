@@ -1,4 +1,4 @@
-# taxinfo (development version)
+# taxinfo 0.1.2 (development version)
 
 ## Breaking changes
 
