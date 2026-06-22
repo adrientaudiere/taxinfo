@@ -148,6 +148,9 @@ reference:
   - scale_fill_idest_c
   - scale_fill_idest_d
   - theme_idest
+  - label_italic_species
+  - scale_x_italic_species
+  - scale_y_italic_species
 - title: "Package Information"
   desc: >
     Package documentation and metadata.
