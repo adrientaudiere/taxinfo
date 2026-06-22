@@ -22,9 +22,14 @@
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param add_to_phyloseq (logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 #'
-#'  - If FALSE, return the result of the [taxize::gna_verifier()]
-#'    function + a column taxa_names_in_phyloseq depicting the name of the
-#'    taxa from the phyloseq object.
+#'  - If FALSE, return a cleaned tibble derived from [taxize::gna_verifier()]
+#'    output, with columns `submittedName`, `currentName`,
+#'    `currentCanonicalSimple` (and `genusEpithet`/`specificEpithet` when
+#'    `genus_species_canonical_col = TRUE`, `namePublishedInYear` when
+#'    `year_col = TRUE`, authorship columns when `authorship_col = TRUE`),
+#'    plus a column `taxa_names_in_phyloseq` with the original taxon name
+#'    from the phyloseq object (or `NULL` when `taxnames` is provided
+#'    directly).
 #'
 #'  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
 #'    At least three new columns are added:
@@ -48,6 +53,12 @@
 #'   when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).
 #' @param year_col (logical, default TRUE) If TRUE
 #'  a new column "namePublishedInYear" is added with the year of publication.
+#' @param species_only (logical, default TRUE) If TRUE, `currentCanonicalSimple`
+#'   is set to `NA` for uninomial names (i.e. when `matchedCardinality == 1`,
+#'   meaning only a genus or higher-rank name was matched, not a proper species
+#'   binomial). The `genusEpithet` column is always populated from the matched
+#'   name regardless of this setting. The `specificEpithet` column is always
+#'   `NA` for uninomials, independently of this parameter.
 #' @param authorship_col (logical, default TRUE) If TRUE three new columns are added:
 #'  "authorship", "bracketauthorship" and "scientificNameAuthorship".
 #' @param discard_NA (logical, default `TRUE`). Passed to
@@ -148,7 +159,8 @@ gna_verifier_pq <- function(
   discard_NA = TRUE,
   problematic_chars = "[?\\\\#|&]",
   clean_problematic_chars = FALSE,
-  force_recompute = FALSE
+  force_recompute = FALSE,
+  species_only = TRUE
 ) {
   if (!is.null(taxnames) && !is.null(physeq)) {
     cli::cli_abort(
@@ -265,7 +277,8 @@ gna_verifier_pq <- function(
   } else {
     list(taxnames)
   }
-  res_verifier <- bind_rows(lapply(slice_taxnames, function(x) {
+
+  .call_gna <- function(x) {
     taxize::gna_verifier(
       x,
       data_sources = data_sources,
@@ -275,18 +288,43 @@ gna_verifier_pq <- function(
       fuzzy_uninomial = fuzzy_uninomial,
       output_type = "table"
     )
+  }
+
+  res_verifier <- bind_rows(lapply(slice_taxnames, function(x) {
+    tryCatch(
+      .call_gna(x),
+      error = function(e) {
+        # taxize::gna_verifier can fail when the API returns fewer records than
+        # expected (mismatched names vector). Fall back to one-by-one queries.
+        cli::cli_warn(c(
+          "!" = "Batch GNA query failed ({conditionMessage(e)}), retrying one name at a time."
+        ))
+        bind_rows(lapply(x, \(name) {
+          tryCatch(.call_gna(name), error = \(e2) NULL)
+        }))
+      }
+    )
   }))
 
   res_verifier_clean <-
     res_verifier |>
-    distinct() |>
-    select(submittedName, currentName, currentCanonicalSimple)
+    select(
+      submittedName,
+      currentName,
+      currentCanonicalSimple,
+      matchedCardinality
+    ) |>
+    distinct(submittedName, .keep_all = TRUE)
 
   if (genus_species_canonical_col) {
     res_verifier_clean <- res_verifier_clean |>
       mutate(
         genusEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 1),
-        specificEpithet = stringr::str_split_i(currentCanonicalSimple, " ", 2),
+        specificEpithet = if_else(
+          !is.na(matchedCardinality) & matchedCardinality == 1,
+          NA_character_,
+          stringr::str_split_i(currentCanonicalSimple, " ", 2)
+        ),
         genusSpeciesEpithet = ifelse(
           is.na(.data$specificEpithet) | .data$specificEpithet == "",
           NA_character_,
@@ -294,6 +332,19 @@ gna_verifier_pq <- function(
         )
       )
   }
+
+  if (species_only) {
+    res_verifier_clean <- res_verifier_clean |>
+      mutate(
+        currentCanonicalSimple = if_else(
+          !is.na(matchedCardinality) & matchedCardinality == 1,
+          NA_character_,
+          currentCanonicalSimple
+        )
+      )
+  }
+
+  res_verifier_clean <- res_verifier_clean |> select(-matchedCardinality)
 
   if (year_col) {
     res_verifier_clean$namePublishedInYear <- rgbif::name_parse(
@@ -362,8 +413,8 @@ gna_verifier_pq <- function(
         res_verifier$taxonomicStatus %in% c("Synonym", "Accepted")
       )
       synonyms <- sum(res_verifier$taxonomicStatus == "Synonym", na.rm = TRUE)
-      genus_synonyms <- sum(
-        res_verifier$matchedCardinality == 2 &
+      uninomial_synonyms <- sum(
+        res_verifier$matchedCardinality == 1 &
           res_verifier$taxonomicStatus == "Synonym",
         na.rm = TRUE
       )
@@ -371,11 +422,17 @@ gna_verifier_pq <- function(
         res_verifier$taxonomicStatus == "Accepted",
         na.rm = TRUE
       )
-      genus_accepted <- sum(
-        res_verifier$matchedCardinality == 2 &
+      uninomial_accepted <- sum(
+        res_verifier$matchedCardinality == 1 &
           res_verifier$taxonomicStatus == "Accepted",
         na.rm = TRUE
       )
+
+      species_only_msg <- if (species_only && uninomial_accepted > 0) {
+        c(
+          "i" = "{.val {uninomial_accepted}} uninomial accepted name(s) have {.code currentCanonicalSimple} set to {.val NA} ({.arg species_only} = TRUE)"
+        )
+      }
 
       cli::cli_bullets(c(
         "v" = "GNA verification summary:",
@@ -383,41 +440,49 @@ gna_verifier_pq <- function(
         "*" = "Taxa submitted for verification: {.val {submitted_taxa}}",
         "*" = "Genus-level only taxa: {.val {genus_only_taxa}}",
         "*" = "Total matches found: {.val {total_matches}}",
-        "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
-        "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
+        "*" = "Synonyms: {.val {synonyms}} (including {.val {uninomial_synonyms}} uninomial)",
+        "*" = "Accepted names: {.val {accepted_names}} (including {.val {uninomial_accepted}} uninomial)",
+        species_only_msg
       ))
     }
     return(new_physeq)
   } else {
     if (verbose) {
       total_matches <- sum(
-        res_verifier_clean$taxonomicStatus %in% c("Synonym", "Accepted")
+        res_verifier$taxonomicStatus %in% c("Synonym", "Accepted")
       )
       synonyms <- sum(
-        res_verifier_clean$taxonomicStatus == "Synonym",
+        res_verifier$taxonomicStatus == "Synonym",
         na.rm = TRUE
       )
-      genus_synonyms <- sum(
-        res_verifier_clean$matchedCardinality == 2 &
+      uninomial_synonyms <- sum(
+        res_verifier$matchedCardinality == 1 &
           res_verifier$taxonomicStatus == "Synonym",
         na.rm = TRUE
       )
       accepted_names <- sum(
-        res_verifier_clean$taxonomicStatus == "Accepted",
+        res_verifier$taxonomicStatus == "Accepted",
         na.rm = TRUE
       )
-      genus_accepted <- sum(
-        res_verifier_clean$matchedCardinality == 2 &
+      uninomial_accepted <- sum(
+        res_verifier$matchedCardinality == 1 &
           res_verifier$taxonomicStatus == "Accepted",
         na.rm = TRUE
       )
+
+      species_only_msg <- if (species_only && uninomial_accepted > 0) {
+        c(
+          "i" = "{.val {uninomial_accepted}} uninomial accepted name(s) have {.code currentCanonicalSimple} set to {.val NA} ({.arg species_only} = TRUE)"
+        )
+      }
 
       cli::cli_bullets(c(
         "v" = "GNA verification summary:",
         "*" = "Taxa submitted for verification: {.val {length(taxnames)}}",
         "*" = "Total matches found: {.val {total_matches}}",
-        "*" = "Synonyms: {.val {synonyms}} (including {.val {genus_synonyms}} at genus level)",
-        "*" = "Accepted names: {.val {accepted_names}} (including {.val {genus_accepted}} at genus level)"
+        "*" = "Synonyms: {.val {synonyms}} (including {.val {uninomial_synonyms}} uninomial)",
+        "*" = "Accepted names: {.val {accepted_names}} (including {.val {uninomial_accepted}} uninomial)",
+        species_only_msg
       ))
     }
     res_verifier_clean$taxa_names_in_phyloseq <- if (

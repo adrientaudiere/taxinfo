@@ -102,23 +102,15 @@ Following the [Darwin core standards](https://dwc.tdwg.org/terms/), here
 are some key terms used in taxinfo (camel case naming convention): -
 **scientificName**: The full scientific name with authorship and date
 information if known (e.g., “Stereum ostrea (Blume & T.Nees) Fr.,
-1838”) - **genusEpithet**: Just the genus part (e.g., “Stereum”). Note
-that the correct Darwin core term is `genus`, but in taxinfo we use
-`genusEpithet` to avoid confusion with the `genus` field from phyloseq
-which is often used for the full scientific name. - **specificEpithet**:
-Just the species epithet part (e.g., “ostrea”) -
+1838”) - **genus**: Just the genus part (e.g., “Stereum”) -
+**specificEpithet**: Just the species epithet part (e.g., “ostrea”) -
 **namePublishedInYear**: The year the name was published (e.g., “1838”)
 
-Other term come from [verifier
+Other terms come from [verifier
 globalnames](https://verifier.globalnames.org/) (camel case naming
 convention): - **currentCanonicalSimple**: The simplified scientific
 name without authorship (e.g., “Stereum ostrea”). It correspond to
-concatenation of the `genusEpithet` and `specificEpithet` fields.
-
-- We add the terms **genusSpeciesEpithet**: Same as
-  `currentCanonicalSimple` but `NA` for genus-only names (i.e. when
-  `specificEpithet` is absent). Useful when you need to filter out
-  unidentified-to-species taxa.
+concatenation of the `genus` and `specificEpithet` fields.
 
 ### Example Workflow
 
@@ -127,6 +119,8 @@ library(taxinfo)
 #> Loading required package: MiscMetabar
 #> Loading required package: phyloseq
 #> Loading required package: ggplot2
+#> Loading required package: dada2
+#> Loading required package: Rcpp
 #> Loading required package: dplyr
 #> 
 #> Attaching package: 'dplyr'
@@ -136,6 +130,7 @@ library(taxinfo)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+#> Loading required package: purrr
 library(MiscMetabar)
 
 # Load example data (fungal phyloseq object from MiscMetabar)
@@ -161,21 +156,22 @@ data_with_gbif <- tax_gbif_occur_pq(data_fungi_clean)
 #> ℹ Processing GBIF occurrences for Stereum hirsutum
 #> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Basidiodendron eyrei
 #> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Fomes fomentarius
-#> ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Cerocorticium molare
-#> ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■■■■                    44% | ETA:  4s
-#> ℹ Processing GBIF occurrences for Aporpium canescens
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hypochnicium analogum
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Trametes versicolor
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4sℹ Processing GBIF occurrences for Peniophora versiformis
-#> ■■■■■■■■■■■■■■                    44% | ETA:  4s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2s
-#> ℹ Processing GBIF occurrences for Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2sℹ Processing GBIF occurrences for Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
+#> ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■                       33% | ETA:  6s
+#> ℹ Processing GBIF occurrences for Fomes fomentarius
+#> ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Cerocorticium molare
+#> ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Aporpium canescens
+#> ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Hypochnicium analogum
+#> ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Hyphoderma roseocremeum
+#> ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Hyphoderma setigerum
+#> ■■■■■■■■■■■                       33% | ETA:  6s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3s
+#> ℹ Processing GBIF occurrences for Trametes versicolor
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Peniophora versiformis
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Exidia glandulosa
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Peniophorella pubera
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Auricularia mesenterica
+#> ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s
+#> ℹ Processing GBIF occurrences for Hericium coralloides
+#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
 #> ℹ Processing GBIF occurrences for Xylodon flaviporus
 
 # Step 3: Add trait information
@@ -187,48 +183,34 @@ data_with_traits <- tax_info_pq(data_with_gbif,
   col_prefix = "ft_",
   sep = ";"
 )
-#> ✔ Added 18 columns from '/tmp/RtmpMUpdxT/temp_libpath172e23e864c60/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
+#> ✔ Added 18 columns from '/tmp/RtmpVMKfDC/temp_libpath1bc0c32ecb02dd/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object
 
 # Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)
 data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ℹ Getting taxonomic IDs from Wikidata...
 #> ℹ Getting page views from Wikipedia for Stereum ostrea
-#> ■■■■                              11% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#> ■■■■                              11% | ETA:  2m■■■■■■                            16% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Stereum hirsutum
-#> ■■■■■■                            16% | ETA:  1m■■■■■■■                           21% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#> ■■■■■■■■■                         26% | ETA:  2m■■■■■■■■■■                        32% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Fomes fomentarius
-#> ■■■■■■■■■■                        32% | ETA:  1m■■■■■■■■■■■■                      37% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Mycena renatii
-#> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Cerocorticium molare
-#> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Aporpium canescens
-#> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hypochnicium analogum
-#> ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hyphoderma roseocremeum
-#> ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 43s
+#> ℹ Getting page views from Wikipedia for Cerocorticium molare
+#> ℹ Getting page views from Wikipedia for Aporpium canescens
+#> ℹ Getting page views from Wikipedia for Hypochnicium analogum
+#> ℹ Getting page views from Wikipedia for Hyphoderma roseocremeum
 #> ℹ Getting page views from Wikipedia for Hyphoderma setigerum
-#> ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 43s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 36s
 #> ℹ Getting page views from Wikipedia for Trametes versicolor
-#> ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 36s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 38s
 #> ℹ Getting page views from Wikipedia for Peniophora versiformis
-#> ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 38s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 29s
 #> ℹ Getting page views from Wikipedia for Exidia glandulosa
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 29s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 23s
 #> ℹ Getting page views from Wikipedia for Peniophorella pubera
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 23s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 15s
 #> ℹ Getting page views from Wikipedia for Auricularia mesenterica
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 15s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s
 #> ℹ Getting page views from Wikipedia for Hericium coralloides
-#> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s
 #> ℹ Getting page views from Wikipedia for Xylodon flaviporus
 
 # View the enriched taxonomic table
 head(data_final@tax_table)
-#> Taxonomy Table:     [6 taxa by 47 taxonomic ranks]:
+#> Taxonomy Table:     [6 taxa by 46 taxonomic ranks]:
 #>       ft_GENUS     ft_Source ft_COMMENT.on.genus ft_primary_lifestyle
 #> ASV7  "NA"         NA        NA                  NA                  
 #> ASV8  "Stereum"    NA        NA                  NA                  
@@ -320,38 +302,31 @@ head(data_final@tax_table)
 #> ASV18 "Stereum_ostrea"       "Stereum ostrea (Blume & T.Nees) Fr., 1838"
 #> ASV25 "Ossicaulis_lachnopus" "Ossicaulis lachnopus (Fr.) Contu, 2000"   
 #> ASV26 "Stereum_hirsutum"     "Stereum hirsutum (Willd.) Pers., 1800"    
-#>       currentCanonicalSimple genusEpithet specificEpithet
-#> ASV7  NA                     NA           NA             
-#> ASV8  "Stereum ostrea"       "Stereum"    "ostrea"       
-#> ASV12 "Xylodon"              "Xylodon"    NA             
-#> ASV18 "Stereum ostrea"       "Stereum"    "ostrea"       
-#> ASV25 "Ossicaulis lachnopus" "Ossicaulis" "lachnopus"    
-#> ASV26 "Stereum hirsutum"     "Stereum"    "hirsutum"     
-#>       genusSpeciesEpithet    namePublishedInYear authorship bracketauthorship
-#> ASV7  NA                     NA                  NA         NA               
-#> ASV8  "Stereum ostrea"       "1838"              "Fr."      "Blume & T.Nees" 
-#> ASV12 NA                     "1821"              "Gray"     "Pers."          
-#> ASV18 "Stereum ostrea"       "1838"              "Fr."      "Blume & T.Nees" 
-#> ASV25 "Ossicaulis lachnopus" "2000"              "Contu"    "Fr."            
-#> ASV26 "Stereum hirsutum"     "1800"              "Pers."    "Willd."         
-#>       scientificNameAuthorship Global_occurences taxa_name              lang
-#> ASV7  NA                       NA                "NA"                   NA  
-#> ASV8  "(Blume & T.Nees) Fr."   " 11510"          "Stereum ostrea"       " 9"
-#> ASV12 "(Pers.) Gray"           NA                "Xylodon"              NA  
-#> ASV18 "(Blume & T.Nees) Fr."   " 11510"          "Stereum ostrea"       " 9"
-#> ASV25 "(Fr.) Contu"            "   227"          "Ossicaulis lachnopus" " 4"
-#> ASV26 "(Willd.) Pers."         "122988"          "Stereum hirsutum"     "25"
-#>       page_length page_views taxon_id   
-#> ASV7  NA          NA         NA         
-#> ASV8  "5507.400"  " 933"     "Q2710042" 
-#> ASV12 NA          NA         NA         
-#> ASV18 "5507.400"  " 933"     "Q2710042" 
-#> ASV25 "2340.000"  "   0"     "Q10613125"
-#> ASV26 "4704.111"  "   0"     "Q557377"
+#>       currentCanonicalSimple genusEpithet specificEpithet namePublishedInYear
+#> ASV7  NA                     NA           NA              NA                 
+#> ASV8  "Stereum ostrea"       "Stereum"    "ostrea"        "1838"             
+#> ASV12 "Xylodon"              "Xylodon"    NA              "1821"             
+#> ASV18 "Stereum ostrea"       "Stereum"    "ostrea"        "1838"             
+#> ASV25 "Ossicaulis lachnopus" "Ossicaulis" "lachnopus"     "2000"             
+#> ASV26 "Stereum hirsutum"     "Stereum"    "hirsutum"      "1800"             
+#>       authorship bracketauthorship scientificNameAuthorship Global_occurences
+#> ASV7  NA         NA                NA                       NA               
+#> ASV8  "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10908"         
+#> ASV12 "Gray"     "Pers."           "(Pers.) Gray"           NA               
+#> ASV18 "Fr."      "Blume & T.Nees"  "(Blume & T.Nees) Fr."   " 10908"         
+#> ASV25 "Contu"    "Fr."             "(Fr.) Contu"            "   223"         
+#> ASV26 "Pers."    "Willd."          "(Willd.) Pers."         "121604"         
+#>       taxa_name              lang page_length page_views taxon_id   
+#> ASV7  "NA"                   NA   NA          NA         NA         
+#> ASV8  "Stereum ostrea"       " 1" " 0"        " 0"       "Q2710042" 
+#> ASV12 "Xylodon"              NA   NA          NA         NA         
+#> ASV18 "Stereum ostrea"       " 1" " 0"        " 0"       "Q2710042" 
+#> ASV25 "Ossicaulis lachnopus" " 1" " 0"        " 0"       "Q10613125"
+#> ASV26 "Stereum hirsutum"     " 1" " 0"        " 0"       "Q557377"
 
 # Alternative: Query specific taxa without a phyloseq object
 taxa_info <- tax_gbif_occur_pq(
-  taxnames = c("Amanita muscaria", "Boletus edulis"),
+  ("Amanita muscaria", "Boletus edulis"),
   by_country = TRUE
 )
 #> ℹ Processing GBIF occurrences for Amanita muscaria
@@ -363,8 +338,8 @@ head(taxa_info)
 #> # Groups:   canonicalName [2]
 #>   canonicalName        NL    US    GB    DE    CA    SE    DK    RU    AT    AU
 #>   <chr>             <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
-#> 1 Amanita muscaria 129964 31554 26199 24501 10129  9162  9005  8805  7739  7249
-#> 2 Boletus edulis     5825  5834 10710  4798    NA 12976  5966  4153  3867    NA
+#> 1 Amanita muscaria 129896 30189 26184 24417  9810  9132  8985  8746  7099  6430
+#> 2 Boletus edulis     5810  5164 10629  4770    NA 12964  5964  4133  3805    NA
 #> # ℹ 2 more variables: NO <int>, CH <int>
 ```
 

@@ -2,13 +2,15 @@
 title: "Adding External Information: Wikipedia, GLOBI, and Custom Databases"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Get started with netaipq}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{Adding External Information: Wikipedia, GLOBI, and Custom Databases}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 
-```{r child="../includes/_styles.Rmd"}
+```{r child="includes/_styles.Rmd"}
 ```
 
 
@@ -188,6 +190,13 @@ detailed_interactions <- tax_globi_pq(data_clean,
   add_to_phyloseq = FALSE
 )
 
+# Ensure all requested interaction types have a column (API may not return all)
+for (.icol in c("hasHost", "parasiteOf")) {
+  if (!.icol %in% names(detailed_interactions)) {
+    detailed_interactions[[.icol]] <- NA_character_
+  }
+}
+
 # Analyze interaction patterns
 interaction_summary <- detailed_interactions |>
   separate_rows(target_taxon_name, nb, sep = ";\\s*", convert = TRUE) |>
@@ -247,7 +256,7 @@ ggplot(
   labs(title = "Fungal-Plant Interaction Network")
 ```
 
-```{r, fig.alt="Network graph using Fruchterman-Reingold layout showing fungal-plant interaction network. Fungal nodes are shown in orange and plant nodes in light green. Edges are colored by interaction type and sized by number of interactions. Only fungal taxa names are labeled."}
+```{r, eval=requireNamespace("ggraph", quietly=TRUE) && requireNamespace("igraph", quietly=TRUE), fig.alt="Network graph using Fruchterman-Reingold layout showing fungal-plant interaction network. Fungal nodes are shown in orange and plant nodes in light green. Edges are colored by interaction type and sized by number of interactions. Only fungal taxa names are labeled."}
 library(ggraph)
 
 edges <- interaction_summary |>
@@ -301,7 +310,7 @@ head(data_clean_oa@tax_table[, c(
 
 Analyze research patterns:
 
-```{r, fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line is shown. Taxonomic names are labeled."}
+```{r, eval=requireNamespace("ggpmisc", quietly=TRUE), fig.alt="Scatter plot comparing scientific interest (number of publications, log scale) to public interest (Wikipedia page views, log scale). Points are sized by mean citations per publication and colored by number of Wikipedia languages. A linear regression line with equation and R-squared value is shown. Taxonomic names are labeled."}
 data_clean_oa@tax_table |>
   as.data.frame() |>
   select(
@@ -327,29 +336,24 @@ data_clean_oa@tax_table |>
     size = "Mean nb of citation"
   ) +
   ggrepel::geom_text_repel(aes(label = currentCanonicalSimple), size = 3, color = "black", fontface = "italic") +
-  theme_idest()
-# ggpmisc::stat_poly_eq() layer disabled: 'ggpmisc' is not a dependency.
-# ggpmisc::stat_poly_eq(
-#   aes(label = paste(after_stat(eq.label), after_stat(rr.label), sep = "~~~")),
-#   formula = y ~ x,
-#   parse = TRUE
-# )
+  theme_idest() +
+  ggpmisc::stat_poly_eq(
+    aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")),
+    formula = y ~ x,
+    parse = TRUE
+  )
 ```
 
 ## Custom Database Integration
 
 ### Fungal Traits Database
 
-Integrate trait databases using `tax_info_pq()`. The bundled trait database
-covers thousands of genera, so even a small subset of taxa yields informative
-matches. When using a true (larger) database, you find more information, even
-with fewer taxa.
+Integrate trait databases using `tax_info_pq()`. Here we will use a bigger 
+phyloseq object to found more informations in the mini-trait database. When 
+using true database, you should find more information, even with less taxa.
 
 ```{r}
-# Keep only the first 30 taxa for speed (network name verification scales with
-# the number of taxa; the trait database still matches a small subset well).
-data_clean_full <- prune_taxa(taxa_names(data_fungi)[1:30], data_fungi) |>
-  gna_verifier_pq(data_sources = 210)
+data_clean_full <- gna_verifier_pq(data_fungi, data_sources = 210)
 
 # Load fungal traits database
 fungal_traits <- system.file("extdata", "fun_trait_mini.csv",
@@ -381,10 +385,10 @@ Here's an example of fungal livestyle distribution
 psmelt(data_clean_ft) |>
   group_by(currentCanonicalSimple) |>
   summarise(
-    lifestyle = dplyr::first(ft_primary_lifestyle),
+    lifestyle = unique(ft_primary_lifestyle),
     occurence = sum(Abundance > 0, na.rm = TRUE),
     Abundance = sum(Abundance, na.rm = T),
-    Family = dplyr::first(Family)
+    Family = unique(Family)
   ) |>
   filter(!is.na(lifestyle)) |>
   ggplot(aes(
@@ -431,12 +435,12 @@ psm <- psmelt(data_clean_taxref) |>
   mutate(across(everything(), ~ replace(., . == "" | . == "NA", NA))) |>
   filter(!is.na(currentCanonicalSimple)) |>
   summarise(
-    taxref_FR = dplyr::first(taxref_FR),
-    taxref_HABITAT = dplyr::first(taxref_HABITAT),
+    taxref_FR = unique(taxref_FR),
+    taxref_HABITAT = unique(taxref_HABITAT),
     occurence = sum(Abundance > 0, na.rm = TRUE),
     Abundance = sum(Abundance, na.rm = T),
-    Order = dplyr::first(taxref_ORDRE),
-    taxref_NOM_VERN = dplyr::first(taxref_NOM_VERN)
+    Order = unique(taxref_ORDRE),
+    taxref_NOM_VERN = unique(taxref_NOM_VERN)
   ) |>
   filter(!is.na(Order))
 
@@ -479,8 +483,7 @@ Combine multiple data sources for comprehensive profiles:
 
 ```{r}
 # Complete multi-source enrichment
-# Keep only the first 20 taxa for speed: this chunk chains five network APIs.
-data_fungi_full <- prune_taxa(taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
+data_fungi_full <- data_fungi_mini |>
   gna_verifier_pq(data_sources = 210) |>
   tax_gbif_occur_pq() |>
   tax_get_wk_info_pq() |>

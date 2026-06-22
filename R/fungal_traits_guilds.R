@@ -72,6 +72,7 @@
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 #' tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
 #'
+#' \donttest{
 #' res_guild_2 |> psmelt() |>
 #'  filter(Abundance > 0) |>
 #'  ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +
@@ -80,7 +81,7 @@
 #'  labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
 #'  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 #'
-#'  tax_bar_pq(res_guild_2, "Height", "cons_trophicMode", add_ribbon=TRUE)
+#' tax_bar_pq(res_guild_2, "Height", "cons_trophicMode", add_ribbon=TRUE)
 #' }
 
 fungal_traits_guilds <- function(

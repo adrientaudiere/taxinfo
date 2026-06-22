@@ -143,7 +143,32 @@ tax_get_wk_info_pq <- function(
   if (verbose) {
     cli::cli_alert_info("Getting taxonomic IDs from Wikidata...")
   }
-  taxids <- sapply(taxnames, wikitaxa::wt_data_id)
+  taxids <- sapply(taxnames, function(name) {
+    for (attempt in seq_len(3)) {
+      result <- tryCatch(
+        wikitaxa::wt_data_id(name),
+        error = function(e) {
+          if (grepl("too-busy", e$message, ignore.case = TRUE)) {
+            wait <- 2^attempt
+            cli::cli_alert_warning(
+              "Wikidata API busy for {.val {name}}, retrying in {wait}s (attempt {attempt}/3)..."
+            )
+            Sys.sleep(wait)
+            return(NULL)
+          }
+          cli::cli_alert_warning(
+            "Failed to get Wikidata ID for {.val {name}}: {.emph {e$message}}"
+          )
+          return(NA_character_)
+        }
+      )
+      if (!is.null(result)) {
+        return(result)
+      }
+    }
+    cli::cli_alert_warning("Giving up on {.val {name}} after 3 attempts.")
+    return(NA_character_)
+  })
 
   wk_lang <- lapply(taxids, tax_get_wk_lang, languages_pages = languages_pages)
 
