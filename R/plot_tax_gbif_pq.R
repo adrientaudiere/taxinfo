@@ -106,21 +106,13 @@ plot_tax_gbif_pq <- function(
   discard_NA = TRUE,
   ...
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    stop("You must specify either physeq or taxnames, not both")
-  }
-  if (is.null(taxnames)) {
-    if (is.null(physeq)) {
-      stop("You must specify either physeq or taxnames")
-    }
-
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
-  }
+  taxnames <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )$taxnames
 
   p <- vector("list", length(taxnames))
   check_package("maps")

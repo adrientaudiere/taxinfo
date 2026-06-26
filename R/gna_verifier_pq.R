@@ -11,10 +11,24 @@
 #' @param taxonomic_rank (Character)
 #'   The column(s) present in the @tax_table slot of the phyloseq object. Can
 #'   be a vector of two columns (e.g. the default c("Genus", "Species")).
-#' @param data_sources A character or integer vector.
-#'   See [taxize::gna_verifier()] documentation. For example,
-#'   1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
-#'   210=TaxRef.
+#' @param data_sources A character or integer vector of Global Names
+#'   Architecture (GNA) data source id(s). See [taxize::gna_verifier()]. For
+#'   example, 1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone
+#'   and 210=TaxRef.
+#'
+#'   The choice of `data_sources` matters and should be adapted to the database
+#'   queried by the downstream function: aligning names to the same backbone as
+#'   the target greatly improves match rates. In particular, use
+#'   `data_sources = 11` (GBIF backbone) before the GBIF-based functions
+#'   ([tax_gbif_occur_pq()], [tax_iucn_code_pq()], [tax_photos_pq()],
+#'   [tax_occur_check_pq()], [tax_ecoregion_occur_pq()]). The data sources are
+#'   **not** all refreshed on the same schedule
+#'   (<https://verifier.globalnames.org/data_sources>), so no single source is
+#'   universally best; a stale source can silently miss recently described taxa
+#'   (see `max_age_days`).
+#' @param max_age_days (numeric, default `365`) Age threshold, in days, above
+#'   which a selected `data_sources` entry triggers an informative message about
+#'   its last update date. The check is best-effort and silent when offline.
 #' @param all_matches (Logical) See [taxize::gna_verifier()] documentation.
 #' @param capitalize (Logical) See [taxize::gna_verifier()] documentation.
 #' @param species_group (Logical) See [taxize::gna_verifier()] documentation.
@@ -160,35 +174,22 @@ gna_verifier_pq <- function(
   problematic_chars = "[?\\\\#|&]",
   clean_problematic_chars = FALSE,
   force_recompute = FALSE,
-  species_only = TRUE
+  species_only = TRUE,
+  max_age_days = 365
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = FALSE,
+    discard_NA = discard_NA
+  )
+  taxnames <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
-  # Set default for add_to_phyloseq based on input type
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-
-  if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
-
-  if (is.null(taxnames)) {
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = FALSE,
-      discard_NA = discard_NA
-    )
+  if (verbose) {
+    check_data_sources_freshness(data_sources, max_age_days = max_age_days)
   }
 
   # Detect and handle problematic characters that break the GNA Verifier URL
@@ -244,30 +245,21 @@ gna_verifier_pq <- function(
     )
   }
 
-  # Check for column name collisions and handle col_prefix
-  if (add_to_phyloseq) {
+  # Optionally remove existing result columns so verification can be re-run.
+  # Any remaining collision is handled by augment_tax_table() below.
+  if (add_to_phyloseq && force_recompute) {
     prefixed_new_cols <- paste0(col_prefix, new_cols)
-    existing_cols <- colnames(physeq@tax_table)
-    common_cols <- intersect(prefixed_new_cols, existing_cols)
-
+    common_cols <- intersect(prefixed_new_cols, colnames(physeq@tax_table))
     if (length(common_cols) > 0) {
-      if (force_recompute) {
-        cli::cli_alert_info(
-          "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {head(common_cols, 5)}}"
-        )
-        tax_mat <- as(physeq@tax_table, "matrix")
-        tax_mat <- tax_mat[,
-          !(colnames(tax_mat) %in% common_cols),
-          drop = FALSE
-        ]
-        physeq@tax_table <- tax_table(tax_mat)
-      } else if (is.null(col_prefix)) {
-        cli::cli_warn(c(
-          "Column names already exist in tax_table: {.val {common_cols}}",
-          "i" = "Adding prefix 'gna_' to avoid conflicts"
-        ))
-        col_prefix <- "gna_"
-      }
+      cli::cli_alert_info(
+        "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {head(common_cols, 5)}}"
+      )
+      tax_mat <- as(physeq@tax_table, "matrix")
+      tax_mat <- tax_mat[,
+        !(colnames(tax_mat) %in% common_cols),
+        drop = FALSE
+      ]
+      physeq@tax_table <- tax_table(tax_mat)
     }
   }
 
@@ -369,39 +361,18 @@ gna_verifier_pq <- function(
   }
 
   if (add_to_phyloseq) {
-    new_physeq <- physeq
-
-    tax_tab <- cbind(as.data.frame(new_physeq@tax_table))
-    tax_tab$taxa_name <-
-      apply(
-        unclass(new_physeq@tax_table[, taxonomic_rank]),
-        1,
-        paste0,
-        collapse = " "
-      ) |>
-      gsub(pattern = "NA NA", replacement = "") |>
-      gsub(pattern = " NA", replacement = "")
-
-    # Apply col_prefix to new columns
-    res_verifier_to_join <- res_verifier_clean
-    if (!is.null(col_prefix)) {
-      res_verifier_to_join <- res_verifier_clean |>
-        rename_with(~ paste0(col_prefix, .), .cols = -submittedName)
-    }
-
-    new_physeq@tax_table <-
-      left_join(
-        tax_tab,
-        res_verifier_to_join,
-        by = join_by(taxa_name == submittedName)
-      ) |>
-      as.matrix() |>
-      tax_table()
+    new_physeq <- augment_tax_table(
+      physeq,
+      res_verifier_clean,
+      taxonomic_rank = taxonomic_rank,
+      info_key = "submittedName",
+      col_prefix = col_prefix,
+      default_prefix = "gna_"
+    )
 
     taxtab_new <- new_physeq@tax_table |>
       as.data.frame() |>
       tibble()
-    rownames(new_physeq@tax_table) <- taxa_names(physeq)
 
     if (verbose) {
       total_taxa <- ntaxa(physeq)

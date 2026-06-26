@@ -22,7 +22,9 @@ gna_verifier_pq(
   discard_NA = TRUE,
   problematic_chars = "[?\\\\\\\\#|&]",
   clean_problematic_chars = FALSE,
-  force_recompute = FALSE
+  force_recompute = FALSE,
+  species_only = TRUE,
+  max_age_days = 365
 )
 }
 \arguments{
@@ -34,10 +36,21 @@ gna_verifier_pq(
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the default c("Genus", "Species")).}
 
-\item{data_sources}{A character or integer vector.
-See [taxize::gna_verifier()] documentation. For example,
-1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone and
-210=TaxRef.}
+\item{data_sources}{A character or integer vector of Global Names
+  Architecture (GNA) data source id(s). See [taxize::gna_verifier()]. For
+  example, 1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone
+  and 210=TaxRef.
+
+  The choice of `data_sources` matters and should be adapted to the database
+  queried by the downstream function: aligning names to the same backbone as
+  the target greatly improves match rates. In particular, use
+  `data_sources = 11` (GBIF backbone) before the GBIF-based functions
+  ([tax_gbif_occur_pq()], [tax_iucn_code_pq()], [tax_photos_pq()],
+  [tax_occur_check_pq()], [tax_ecoregion_occur_pq()]). The data sources are
+  **not** all refreshed on the same schedule
+  (<https://verifier.globalnames.org/data_sources>), so no single source is
+  universally best; a stale source can silently miss recently described taxa
+  (see `max_age_days`).}
 
 \item{all_matches}{(Logical) See [taxize::gna_verifier()] documentation.}
 
@@ -51,9 +64,14 @@ See [taxize::gna_verifier()] documentation. For example,
 
 \item{add_to_phyloseq}{(logical, default TRUE when physeq is provided, FALSE when taxnames is provided)
 
- - If FALSE, return the result of the [taxize::gna_verifier()]
-   function + a column taxa_names_in_phyloseq depicting the name of the
-   taxa from the phyloseq object.
+ - If FALSE, return a cleaned tibble derived from [taxize::gna_verifier()]
+   output, with columns `submittedName`, `currentName`,
+   `currentCanonicalSimple` (and `genusEpithet`/`specificEpithet` when
+   `genus_species_canonical_col = TRUE`, `namePublishedInYear` when
+   `year_col = TRUE`, authorship columns when `authorship_col = TRUE`),
+   plus a column `taxa_names_in_phyloseq` with the original taxon name
+   from the phyloseq object (or `NULL` when `taxnames` is provided
+   directly).
 
  - If TRUE return a phyloseq object with amended slot `@taxtable`. Cannot be TRUE if `taxnames` is provided.
    At least three new columns are added:
@@ -115,6 +133,17 @@ performing the verification. This is useful when re-running
 columns from a previous call. If `FALSE`, existing columns are left
 in place, which can cause duplicate-column errors in
 `tax_table()` on re-runs.}
+
+\item{species_only}{(logical, default TRUE) If TRUE, `currentCanonicalSimple`
+is set to `NA` for uninomial names (i.e. when `matchedCardinality == 1`,
+meaning only a genus or higher-rank name was matched, not a proper species
+binomial). The `genusEpithet` column is always populated from the matched
+name regardless of this setting. The `specificEpithet` column is always
+`NA` for uninomials, independently of this parameter.}
+
+\item{max_age_days}{(numeric, default `365`) Age threshold, in days, above
+which a selected `data_sources` entry triggers an informative message about
+its last update date. The check is best-effort and silent when offline.}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object

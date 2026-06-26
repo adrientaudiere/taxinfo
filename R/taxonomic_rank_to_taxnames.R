@@ -54,22 +54,16 @@ taxonomic_rank_to_taxnames <- function(
     )
   }
 
-  taxnames <- apply(
-    physeq@tax_table[, taxonomic_rank],
-    1,
-    paste,
-    collapse = " "
+  taxnames <- taxnames_from_rank(
+    physeq@tax_table,
+    taxonomic_rank,
+    clean = discard_NA
   )
   if (discard_genus_alone) {
     taxnames <- taxnames[grepl(pattern = " ", taxnames)]
   }
   if (discard_NA) {
-    if (discard_genus_alone) {
-      taxnames <- taxnames[!grepl(pattern = "NA", taxnames)]
-    } else {
-      taxnames <- taxnames[!grepl(pattern = "NA NA", taxnames)]
-      taxnames <- gsub(" NA", "", taxnames)
-    }
+    taxnames <- taxnames[taxnames != ""]
   }
   if (distinct_names) {
     taxnames <- unique(taxnames)

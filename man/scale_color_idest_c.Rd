@@ -23,6 +23,12 @@ A ggplot2 scale object.
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
+\examples{
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg, color = disp)) +
+  geom_point() +
+  scale_color_idest_c()
+}
 \author{
 Adrien Taudiere
 }

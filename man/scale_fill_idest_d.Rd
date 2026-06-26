@@ -34,6 +34,12 @@ IdEst discrete fill scales for ggplot2
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
+\examples{
+library(ggplot2)
+ggplot(mpg, aes(class, fill = drv)) +
+  geom_bar() +
+  scale_fill_idest_d()
+}
 \author{
 Adrien Taudiere
 }

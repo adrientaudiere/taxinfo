@@ -33,6 +33,10 @@ A vector of colors.
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
+\examples{
+idest_colors("Picasso", n = 3)
+barplot(rep(1, 6), col = idest_colors("Hokusai2"), border = NA)
+}
 \author{
 Adrien Taudiere
 }

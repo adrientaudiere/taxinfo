@@ -111,34 +111,16 @@ tax_get_wk_info_pq <- function(
 ) {
   check_package("wikitaxa")
 
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
-
-  # Set default for add_to_phyloseq based on input type
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-
-  if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
-
-  if (is.null(taxnames)) {
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  taxnames <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
   if (verbose) {
     cli::cli_alert_info("Getting taxonomic IDs from Wikidata...")
@@ -218,48 +200,14 @@ tax_get_wk_info_pq <- function(
     "taxa_name" = taxnames
   )
 
-  # Determine new column names (excluding taxa_name which is used for join)
-  new_cols <- c("lang", "page_length", "page_views", "taxon_id")
-
-  # Check for column name collisions and handle col_prefix
   if (add_to_phyloseq) {
-    existing_cols <- colnames(physeq@tax_table)
-    common_cols <- intersect(paste0(col_prefix, new_cols), existing_cols)
-
-    if (length(common_cols) > 0 && is.null(col_prefix)) {
-      cli::cli_warn(c(
-        "Column names already exist in tax_table: {.val {common_cols}}",
-        "i" = "Adding prefix 'wk_' to avoid conflicts"
-      ))
-      col_prefix <- "wk_"
-    }
-  }
-
-  # Apply col_prefix to new columns
-  if (!is.null(col_prefix)) {
-    tib_info_wk <- tib_info_wk |>
-      rename_with(~ paste0(col_prefix, .), .cols = -taxa_name)
-  }
-
-  if (add_to_phyloseq) {
-    new_physeq <- physeq
-
-    tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(
-      unclass(new_physeq@tax_table[, taxonomic_rank]),
-      1,
-      paste0,
-      collapse = " "
-    )
-
-    new_physeq@tax_table <-
-      full_join(tax_tab, tib_info_wk, by = join_by(taxa_name)) |>
-      as.matrix() |>
-      tax_table()
-
-    rownames(new_physeq@tax_table) <- taxa_names(physeq)
-
-    return(new_physeq)
+    return(augment_tax_table(
+      physeq,
+      tib_info_wk,
+      taxonomic_rank = taxonomic_rank,
+      col_prefix = col_prefix,
+      default_prefix = "wk_"
+    ))
   } else {
     return(tib_info_wk)
   }

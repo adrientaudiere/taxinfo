@@ -103,25 +103,16 @@ tax_photos_pq <- function(
   discard_NA = TRUE,
   ...
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
-
-  # Set default for add_to_phyloseq based on input type
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-
-  if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  taxnames_raw <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
   # Check for column name collisions and handle col_prefix
   if (!is.null(physeq) && add_to_phyloseq) {
@@ -136,17 +127,6 @@ tax_photos_pq <- function(
       ))
       col_prefix <- "photo_"
     }
-  }
-
-  if (is.null(taxnames)) {
-    taxnames_raw <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
-  } else {
-    taxnames_raw <- taxnames
   }
 
   if (source == "gbif") {
@@ -268,25 +248,11 @@ tax_photos_pq <- function(
   final_col_name <- paste0(col_prefix, col_name_url)
 
   if (!is.null(physeq)) {
-    new_physeq <- physeq
-
-    tax_tab <- as.data.frame(new_physeq@tax_table)
-    tax_tab$taxa_name <- apply(
-      unclass(new_physeq@tax_table[, taxonomic_rank]),
-      1,
-      paste0,
-      collapse = " "
+    new_physeq <- augment_tax_table(
+      physeq,
+      photo_url_tib,
+      taxonomic_rank = taxonomic_rank
     )
-    new_physeq@tax_table <-
-      dplyr::left_join(
-        tax_tab,
-        photo_url_tib,
-        by = dplyr::join_by(taxa_name)
-      ) |>
-      as.matrix() |>
-      tax_table()
-
-    rownames(new_physeq@tax_table) <- taxa_names(physeq)
   }
 
   if (verbose) {

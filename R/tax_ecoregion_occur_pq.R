@@ -66,34 +66,19 @@ tax_ecoregion_occur_pq <- function(
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  taxnames <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-  if (!is.null(taxnames) && isTRUE(add_to_phyloseq)) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
   if (is.null(col_prefix)) {
     col_prefix <- "ecoregion_"
-  }
-
-  if (is.null(taxnames)) {
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
   }
 
   long_tbl <- tax_ecoregion_occur(
@@ -134,39 +119,11 @@ tax_ecoregion_occur_pq <- function(
     return(long_tbl)
   }
 
-  new_physeq <- physeq
-  tax_tab <- as.data.frame(new_physeq@tax_table)
-  tax_tab$taxa_name <- apply(
-    unclass(new_physeq@tax_table[, taxonomic_rank]),
-    1,
-    paste0,
-    collapse = " "
-  )
-
-  existing_cols <- intersect(
-    colnames(tax_tab),
-    names(summary_tbl)[-1]
-  )
-  if (length(existing_cols) > 0) {
-    cli::cli_warn(c(
-      "Overwriting existing tax_table column{?s}: {.val {existing_cols}}",
-      "i" = "Pass {.arg col_prefix} to avoid the conflict"
-    ))
-    tax_tab <- tax_tab[,
-      setdiff(colnames(tax_tab), existing_cols),
-      drop = FALSE
-    ]
-  }
-
-  new_tax_tab <- dplyr::left_join(
-    tax_tab,
+  augment_tax_table(
+    physeq,
     summary_tbl,
-    by = dplyr::join_by("taxa_name" == "taxon_name")
+    taxonomic_rank = taxonomic_rank,
+    info_key = "taxon_name",
+    keep_key = FALSE
   )
-  new_tax_tab$taxa_name <- NULL
-
-  new_physeq@tax_table <- phyloseq::tax_table(as.matrix(new_tax_tab))
-  rownames(new_physeq@tax_table) <- phyloseq::taxa_names(physeq)
-
-  new_physeq
 }

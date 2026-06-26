@@ -26,6 +26,12 @@ IdEst continuous fill scales for ggplot2
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 }
+\examples{
+library(ggplot2)
+ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
+  geom_tile() +
+  scale_fill_idest_c("Picasso")
+}
 \author{
 Adrien Taudiere
 }

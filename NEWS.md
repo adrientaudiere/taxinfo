@@ -1,4 +1,15 @@
 # taxinfo 0.2.0 (Development version)
+## Bug fixes
+
+* The phyloseq-augmenting functions `gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()` and `tax_photos_pq()` now build the `tax_table` join key with the same `"NA"`-token cleanup used to query the external database, fixing silently dropped information for genus-only taxa when `taxonomic_rank` spans several columns (e.g. `c("Genus", "Species")`).
+
+* `tax_gbif_occur_pq()` and `tax_iucn_code_pq()` now join GBIF results to the `tax_table` on the submitted query name rather than GBIF's resolved `canonicalName`, so occurrence counts and IUCN codes are no longer silently dropped when GBIF maps a name to a different canonical (e.g. a synonym).
+
+## Changes
+
+* `gna_verifier_pq()` gains a `max_age_days` parameter (default `365`) and reports an informative message when a selected `data_sources` entry was last updated more than that many days ago; its `data_sources` documentation now explains how to adapt the source to the downstream database (e.g. `data_sources = 11`, the GBIF Backbone, before the GBIF-based functions).
+
+* `tax_ecoregion_occur_pq()` now disambiguates colliding `tax_table` column names by prefixing them, consistent with the other `tax_*_pq()` functions, instead of overwriting the existing columns.
 
 # taxinfo 0.1.2
 ## Breaking changes

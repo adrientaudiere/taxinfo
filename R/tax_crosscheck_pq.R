@@ -79,24 +79,13 @@ tax_crosscheck_pq <- function(
   verbose = TRUE,
   ...
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
-
-  # Resolve taxnames from phyloseq if needed
-  if (is.null(taxnames)) {
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = FALSE,
-      discard_NA = TRUE
-    )
-  }
+  taxnames <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = FALSE,
+    discard_NA = TRUE
+  )$taxnames
 
   if (verbose) {
     cli::cli_alert_info(

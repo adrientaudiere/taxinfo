@@ -43,7 +43,9 @@ theme_idest(
   grid = TRUE,
   axis_col = "#cccccc",
   axis = FALSE,
-  ticks = FALSE
+  ticks = FALSE,
+  x_is_species_name = FALSE,
+  y_is_species_name = FALSE
 )
 }
 \arguments{
@@ -116,9 +118,22 @@ theme_idest(
 \item{axis}{Logical or character, whether to show axis lines (default is FALSE).}
 
 \item{ticks}{Logical, whether to show axis ticks (default is FALSE).}
+
+\item{x_is_species_name}{Logical (default FALSE). If TRUE, automatically
+apply [scale_x_italic_species()] so that binomial species names on the
+x-axis are rendered in italic.  When set, the function returns a list
+(theme + scale) rather than a bare theme; ggplot2 unpacks the list
+automatically when added with `+`.}
+
+\item{y_is_species_name}{Logical (default FALSE). Same as
+`x_is_species_name` but for the y-axis.}
 }
 \value{
-A ggplot2 theme object.
+When both `x_is_species_name` and `y_is_species_name` are `FALSE`
+  (the default), a ggplot2 theme object.  When either flag is `TRUE`, a
+  list containing the theme object and one or two
+  `scale_*_discrete(labels = label_italic_species)` objects, which ggplot2
+  automatically unpacks when added with `+`.
 }
 \description{
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
@@ -127,6 +142,21 @@ A ggplot2 theme object.
 This theme is used by Adrien Taudiere [IdEst](https://adrientaudiere.com/).
  Based on [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes/tree/master)
 `hrbrthemes::theme_ipsum()` by boB Rudis.
+}
+\examples{
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  theme_idest()
+
+# Italic species names on y-axis (e.g. after coord_flip())
+df <- data.frame(
+  sp = c("Russula nigricans", "Amanita", "Boletus edulis"),
+  n  = c(10, 5, 8)
+)
+ggplot(df, aes(x = n, y = reorder(sp, n))) +
+  geom_col() +
+  theme_idest(y_is_species_name = TRUE)
 }
 \author{
 Adrien Taudiere

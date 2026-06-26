@@ -156,15 +156,6 @@ tax_gbif_alt <- function(
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
-
   # Validate and set method
   method <- match.arg(method)
 
@@ -175,25 +166,16 @@ tax_gbif_alt <- function(
     check_package("rnaturalearth")
   }
 
-  # Set default for add_to_phyloseq based on input type
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-
-  if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
-
-  if (is.null(taxnames)) {
-    taxnames <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  taxnames <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
   gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>

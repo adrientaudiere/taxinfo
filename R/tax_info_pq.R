@@ -163,25 +163,16 @@ tax_info_pq <- function(
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
-  if (!is.null(taxnames) && !is.null(physeq)) {
-    cli::cli_abort(
-      "You must specify either {.arg physeq} or {.arg taxnames}, not both"
-    )
-  }
-  if (is.null(taxnames) && is.null(physeq)) {
-    cli::cli_abort("You must specify either {.arg physeq} or {.arg taxnames}")
-  }
-
-  # Set default for add_to_phyloseq based on input type
-  if (is.null(add_to_phyloseq)) {
-    add_to_phyloseq <- !is.null(physeq)
-  }
-
-  if (!is.null(taxnames) && add_to_phyloseq) {
-    cli::cli_abort(
-      "{.arg add_to_phyloseq} cannot be TRUE when {.arg taxnames} is provided"
-    )
-  }
+  resolved <- resolve_taxa_input(
+    physeq = physeq,
+    taxnames = taxnames,
+    add_to_phyloseq = add_to_phyloseq,
+    taxonomic_rank = taxonomic_rank,
+    discard_genus_alone = discard_genus_alone,
+    discard_NA = discard_NA
+  )
+  taxnames_vec <- resolved$taxnames
+  add_to_phyloseq <- resolved$add_to_phyloseq
 
   if (is.null(file_name)) {
     cli::cli_abort(
@@ -199,26 +190,14 @@ tax_info_pq <- function(
     )
   }
 
-  if (is.null(taxnames)) {
-    taxnames_vec <- taxonomic_rank_to_taxnames(
-      physeq = physeq,
-      taxonomic_rank = taxonomic_rank,
-      discard_genus_alone = discard_genus_alone,
-      discard_NA = discard_NA
-    )
-  } else {
-    taxnames_vec <- taxnames
-  }
-
   if (!is.null(physeq)) {
     new_physeq <- physeq
     taxtab <- tibble(as.data.frame(new_physeq@tax_table))
-    taxtab$taxa_name <- trimws(apply(
-      unclass(new_physeq@tax_table[, taxonomic_rank]),
-      1,
-      paste0,
-      collapse = " "
-    ))
+    taxtab$taxa_name <- taxnames_from_rank(
+      new_physeq@tax_table,
+      taxonomic_rank,
+      clean = TRUE
+    )
     taxtab$taxa_id_for_join <- 1:ntaxa(physeq)
   } else {
     taxtab <- tibble(
