@@ -130,11 +130,19 @@ theme_idest <- function(
   } else {
     NULL
   }
+  # The classic "pdf"/"postscript" devices used by R CMD check know only their
+  # built-in fonts and abort on an installed-but-unregistered family such as
+  # "Fira Code"; on those devices fall back to the device default regardless of
+  # what systemfonts reports.
+  device_is_classic_ps <- {
+    dev <- names(grDevices::dev.cur())
+    !is.null(dev) && grepl("^(pdf|postscript)$", dev, ignore.case = TRUE)
+  }
   resolve_font <- function(family) {
     if (!nzchar(family) || is.null(available_families)) {
       return(family)
     }
-    if (!family %in% available_families) {
+    if (device_is_classic_ps || !family %in% available_families) {
       return("")
     }
     family
