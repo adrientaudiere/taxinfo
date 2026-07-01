@@ -11,3 +11,12 @@ README.Rmd
 ^vignettes/articles$
 ^vignettes/.*\.Rmd\.orig$
 ^vignettes/precompile\.R$
+^CONTEXT\.md$
+^CLAUDE\.md$
+^\.claude$
+^README\.html$
+^Rplots\.pdf$
+^README\.Rmd$
+^audits$
+^dev$
+^cran-comments\.md$
