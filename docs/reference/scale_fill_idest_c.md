@@ -35,3 +35,14 @@ A ggplot2 scale object.
 ## Author
 
 Adrien Taudiere
+
+## Examples
+
+``` r
+library(ggplot2)
+ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
+  geom_tile() +
+  scale_fill_idest_c("Picasso")
+#> Warning: `scale_fill_idest_c()` was deprecated in taxinfo 0.2.0.
+#> ℹ Please use `ggplotpq::scale_fill_idest_c()` instead.
+```

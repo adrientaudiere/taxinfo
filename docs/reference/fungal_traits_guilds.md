@@ -131,37 +131,3 @@ tibble of the augmented tax_table.
 ## Author
 
 Adrien Taudiere
-
-## Examples
-
-``` r
-if (FALSE) { # \dontrun{
-# physeq object with already-verified names
-res_guild <- data_fungi |>
- gna_verifier_pq(data_sources = 210) |>
-   fungal_traits_guilds()
-
-table(res_guild@tax_table[, "cons_trophicMode"], useNA = "always")
-table(res_guild@tax_table[, "cons_trophicMode_agreement"], useNA = "always")
-
-# physeq object WITHOUT verified names: gna_verifier_pq is called internally
-res_guild_2 <- fungal_traits_guilds(data_fungi, gna_data_sources = 210)
-table(res_guild_2@tax_table[, "ft_primary_lifestyle"])
-table(res_guild_2@tax_table[, "fg_trophicMode"])
-table(res_guild_2@tax_table[, "cons_trophicMode"])
-
-# Return a tibble instead of a phyloseq
-data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
-tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-
-res_guild_2 |> psmelt() |>
- filter(Abundance > 0) |>
- ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +
- geom_col() +
- theme_bw() +
- labs(x = "Height", y = "Molecular abundance", fill = "Consensus trophic mode") +
- theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
- tax_bar_pq(res_guild_2, "Height", "cons_trophicMode", add_ribbon=TRUE)
-} # }
-```

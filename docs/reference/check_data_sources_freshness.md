@@ -1,0 +1,48 @@
+# Warn when a selected GNA data source is stale
+
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
+Internal, best-effort helper used by \[gna_verifier_pq()\]. It looks up
+the last update date of the requested Global Names Architecture (GNA)
+\`data_sources\` (via \[taxize::gna_data_sources()\], cached once per
+session) and emits an informative message for any source older than
+\`max_age_days\`. The data sources are not all refreshed on the same
+schedule (see \<https://verifier.globalnames.org/data_sources\>), so a
+stale source can silently miss recently described or recombined taxa.
+
+The metadata lookup is itself a network call; it is wrapped in
+\`tryCatch()\` and stays completely silent on any failure (offline, API
+change, ...), so it never blocks name verification.
+
+## Usage
+
+``` r
+check_data_sources_freshness(data_sources, max_age_days = 365)
+```
+
+## Arguments
+
+- data_sources:
+
+  (integer/character) The GNA data source id(s) passed to
+  \[gna_verifier_pq()\].
+
+- max_age_days:
+
+  (numeric, default \`365\`) Age threshold, in days, above which a data
+  source is reported as stale.
+
+## Value
+
+Invisibly \`NULL\`, called for its message side-effect.
+
+## See also
+
+\[gna_verifier_pq()\], \[taxize::gna_data_sources()\]
+
+## Author
+
+Adrien Taudiere

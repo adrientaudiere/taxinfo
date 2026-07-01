@@ -44,3 +44,14 @@ A ggplot2 scale object.
 ## Author
 
 Adrien Taudiere
+
+## Examples
+
+``` r
+library(ggplot2)
+ggplot(mpg, aes(class, fill = drv)) +
+  geom_bar() +
+  scale_fill_idest_d()
+#> Warning: `scale_fill_idest_d()` was deprecated in taxinfo 0.2.0.
+#> ℹ Please use `ggplotpq::scale_fill_idest_d()` instead.
+```

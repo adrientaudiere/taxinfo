@@ -22,7 +22,6 @@
 ```
 
 ``` r
-
 library(taxinfo)
 ```
 
@@ -56,21 +55,20 @@ enrich your taxonomic data:
 
 ## Main Data Sources
 
-| Source | Description | Key Functions |
-|----|----|----|
-| **GBIF** | Global biodiversity occurrence data | [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md), [`plot_tax_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.md) |
-| **Wikipedia** | Encyclopedia data and page statistics | [`tax_get_wk_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_info_pq.md) |
-| **GLOBI** | Species interaction networks | [`tax_globi_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_globi_pq.md) |
-| **OpenAlex** | Scientific literature database | [`tax_oa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_oa_pq.md) |
-| **GNA** | Global Names Architecture for name verification | [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md) |
-| **Custom CSV** | Any database in CSV format with a column documenting Taxonomic information | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md) |
+| Source         | Description                                                                | Key Functions                                                                                                                                                                                    |
+|----------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **GBIF**       | Global biodiversity occurrence data                                        | [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md), [`plot_tax_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.md) |
+| **Wikipedia**  | Encyclopedia data and page statistics                                      | [`tax_get_wk_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_info_pq.md)                                                                                               |
+| **GLOBI**      | Species interaction networks                                               | [`tax_globi_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_globi_pq.md)                                                                                                           |
+| **OpenAlex**   | Scientific literature database                                             | [`tax_oa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_oa_pq.md)                                                                                                                 |
+| **GNA**        | Global Names Architecture for name verification                            | [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)                                                                                                     |
+| **Custom CSV** | Any database in CSV format with a column documenting Taxonomic information | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md)                                                                                                             |
 
 ## Basic Workflow
 
 ### Step 1: Load Example Data
 
 ``` r
-
 # Load example fungal data from MiscMetabar
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -106,14 +104,12 @@ using the Global Names Architecture:
 ```
 
 ``` r
-
 # Keep only first 20 taxa for speed
 data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mini) |>
   gna_verifier_pq(data_sources = 210)
 ```
 
 ``` r
-
 
 # View the enhanced taxonomic table
 head(data_clean@tax_table)
@@ -207,7 +203,6 @@ matching algorithm results as a tibble by setting
 ```
 
 ``` r
-
 df <- gna_verifier_pq(data_fungi_mini,
   data_sources = 210,
   add_to_phyloseq = FALSE
@@ -215,7 +210,6 @@ df <- gna_verifier_pq(data_fungi_mini,
 ```
 
 ``` r
-
 glimpse(df)
 ```
 
@@ -345,7 +339,6 @@ HTTP status 429 Too Many Requests
 ```
 
 ``` r
-
 data_enriched <- data_clean |>
   # Add GBIF occurrence data (add_to_phyloseq defaults to TRUE for phyloseq objects)
   tax_gbif_occur_pq() |>
@@ -364,7 +357,6 @@ data_enriched <- data_clean |>
 
 ``` r
 
-
 print(paste("The enriched taxonomic table now has the following new columns: ", paste(colnames(data_enriched@tax_table)[!colnames(data_enriched@tax_table) %in% colnames(data_clean@tax_table)], collapse = ", ")))
 ```
 
@@ -372,7 +364,6 @@ print(paste("The enriched taxonomic table now has the following new columns: ", 
     #> ! object 'data_enriched' not found
 
 ``` r
-
 # todo add a title and add openalex information on the plot
 psm <- psmelt(data_enriched) |>
   mutate(nb_num = map_dbl(nb, ~ sum(as.numeric(unlist(strsplit(.x, "; "))), na.rm = TRUE))) |>
@@ -399,7 +390,6 @@ psm <- psmelt(data_enriched) |>
     #> ! object 'data_enriched' not found
 
 ``` r
-
 psm
 ```
 
@@ -407,7 +397,6 @@ psm
     #> ! object 'psm' not found
 
 ``` r
-
 
 ggplot(psm, aes(
   y = forcats::fct_reorder(taxa_name, Abundance),
@@ -465,7 +454,6 @@ information for specific taxa without having a phyloseq object:
 ```
 
 ``` r
-
 # Using taxnames parameter - returns a tibble
 taxa_to_query <- c("Amanita muscaria", "Boletus edulis", "Cantharellus cibarius")
 
@@ -474,7 +462,6 @@ gbif_data <- tax_gbif_occur_pq(taxnames = taxa_to_query)
 ```
 
 ``` r
-
 head(gbif_data)
 ```
 
@@ -487,13 +474,11 @@ head(gbif_data)
 
 ``` r
 
-
 # Get Wikipedia information
 wiki_data <- tax_get_wk_info_pq(taxnames = taxa_to_query)
 ```
 
 ``` r
-
 head(wiki_data)
 ```
 
@@ -505,7 +490,6 @@ head(wiki_data)
     #> 3    66       6946.       7876 Q188749  Cantharellus cibarius
 
 ``` r
-
 
 # When using taxnames, add_to_phyloseq is automatically set to FALSE
 # and the function returns a tibble instead of a phyloseq object
@@ -524,7 +508,6 @@ You can also integrate custom databases or trait information. Here we
 will add fungal traits from a CSV file.
 
 ``` r
-
 fungal_traits <- system.file("extdata",
   "fun_trait_mini.csv",
   package = "taxinfo"
@@ -543,7 +526,6 @@ data_final <- tax_info_pq(data_enriched,
     #> ! object 'data_enriched' not found
 
 ``` r
-
 
 dim(data_final)
 ```
@@ -617,7 +599,6 @@ subsequent vignette will dive deeper into specific functionality areas.
 ## Session information
 
 ``` r
-
 sessionInfo()
 ```
 

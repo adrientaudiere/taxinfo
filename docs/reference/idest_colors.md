@@ -49,3 +49,17 @@ A vector of colors.
 ## Author
 
 Adrien Taudiere
+
+## Examples
+
+``` r
+idest_colors("Picasso", n = 3)
+#> Warning: `idest_colors()` was deprecated in taxinfo 0.2.0.
+#> ℹ Please use `ggplotpq::idest_colors()` instead.
+#> [1] "#c2676d" "#995041" "#45939c"
+#> attr(,"class")
+#> [1] "palette"
+#> attr(,"name")
+#> [1] "Picasso"
+barplot(rep(1, 6), col = idest_colors("Hokusai2"), border = NA)
+```

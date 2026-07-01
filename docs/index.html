@@ -32,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,8 +121,8 @@
 <h2 id="key-features">Key Features<a class="anchor" aria-label="anchor" href="#key-features"></a>
 </h2>
 <div class="section level3">
-<h3 id="mag-data-verification--quality-control">🔍 <strong>Data Verification &amp; Quality Control</strong>
-<a class="anchor" aria-label="anchor" href="#mag-data-verification--quality-control"></a>
+<h3 id="id_-data-verification--quality-control">🔍 <strong>Data Verification &amp; Quality Control</strong>
+<a class="anchor" aria-label="anchor" href="#id_-data-verification--quality-control"></a>
 </h3>
 <ul>
 <li>
@@ -130,8 +130,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="earth_africa-biodiversity-data-integration">🌍 <strong>Biodiversity Data Integration</strong>
-<a class="anchor" aria-label="anchor" href="#earth_africa-biodiversity-data-integration"></a>
+<h3 id="id_-biodiversity-data-integration">🌍 <strong>Biodiversity Data Integration</strong>
+<a class="anchor" aria-label="anchor" href="#id_-biodiversity-data-integration"></a>
 </h3>
 <ul>
 <li>
@@ -143,8 +143,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="books-knowledge-base-integration">📚 <strong>Knowledge Base Integration</strong>
-<a class="anchor" aria-label="anchor" href="#books-knowledge-base-integration"></a>
+<h3 id="id_-knowledge-base-integration">📚 <strong>Knowledge Base Integration</strong>
+<a class="anchor" aria-label="anchor" href="#id_-knowledge-base-integration"></a>
 </h3>
 <ul>
 <li>
@@ -154,8 +154,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="world_map-geographic-analysis">🗺️ <strong>Geographic Analysis</strong>
-<a class="anchor" aria-label="anchor" href="#world_map-geographic-analysis"></a>
+<h3 id="id_️-geographic-analysis">🗺️ <strong>Geographic Analysis</strong>
+<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F-geographic-analysis"></a>
 </h3>
 <ul>
 <li>
@@ -167,8 +167,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="microscope-advanced-analysis-tools">🔬 <strong>Advanced Analysis Tools</strong>
-<a class="anchor" aria-label="anchor" href="#microscope-advanced-analysis-tools"></a>
+<h3 id="id_-advanced-analysis-tools">🔬 <strong>Advanced Analysis Tools</strong>
+<a class="anchor" aria-label="anchor" href="#id_-advanced-analysis-tools"></a>
 </h3>
 <ul>
 <li>
@@ -180,8 +180,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="dart-flexible-input-options">🎯 <strong>Flexible Input Options</strong>
-<a class="anchor" aria-label="anchor" href="#dart-flexible-input-options"></a>
+<h3 id="id_-flexible-input-options">🎯 <strong>Flexible Input Options</strong>
+<a class="anchor" aria-label="anchor" href="#id_-flexible-input-options"></a>
 </h3>
 <p>Most functions can work with either: - <strong>Phyloseq objects</strong>: Automatically enriches the tax_table (default behavior) - <strong>Taxonomic name vectors</strong>: Returns tibbles for standalone queries</p>
 </div>
@@ -192,29 +192,29 @@
 <div class="section level3">
 <h3 id="glossary">Glossary<a class="anchor" aria-label="anchor" href="#glossary"></a>
 </h3>
-<p>Following the <a href="https://dwc.tdwg.org/terms/" class="external-link">Darwin core standards</a>, here are some key terms used in taxinfo (camel case naming convention): - <strong>scientificName</strong>: The full scientific name with authorship and date information if known (e.g., “Stereum ostrea (Blume &amp; T.Nees) Fr., 1838”) - <strong>genus</strong>: Just the genus part (e.g., “Stereum”) - <strong>specificEpithet</strong>: Just the species epithet part (e.g., “ostrea”) - <strong>namePublishedInYear</strong>: The year the name was published (e.g., “1838”)</p>
-<p>Other terms come from <a href="https://verifier.globalnames.org/" class="external-link">verifier globalnames</a> (camel case naming convention): - <strong>currentCanonicalSimple</strong>: The simplified scientific name without authorship (e.g., “Stereum ostrea”). It correspond to concatenation of the <code>genus</code> and <code>specificEpithet</code> fields.</p>
+<p>Following the <a href="https://dwc.tdwg.org/terms/" class="external-link">Darwin core standards</a>, here are some key terms used in taxinfo (camel case naming convention): - <strong>scientificName</strong>: The full scientific name with authorship and date information if known (e.g., “Stereum ostrea (Blume &amp; T.Nees) Fr., 1838”) - <strong>genusEpithet</strong>: Just the genus part (e.g., “Stereum”). Note that the correct Darwin core term is <code>genus</code>, but in taxinfo we use <code>genusEpithet</code> to avoid confusion with the <code>genus</code> field from phyloseq which is often used for the full scientific name. - <strong>specificEpithet</strong>: Just the species epithet part (e.g., “ostrea”) - <strong>namePublishedInYear</strong>: The year the name was published (e.g., “1838”)</p>
+<p>Other term come from <a href="https://verifier.globalnames.org/" class="external-link">verifier globalnames</a> (camel case naming convention): - <strong>currentCanonicalSimple</strong>: The simplified scientific name without authorship (e.g., “Stereum ostrea”). It correspond to concatenation of the <code>genusEpithet</code> and <code>specificEpithet</code> fields.</p>
+<ul>
+<li>We add the terms <strong>genusSpeciesEpithet</strong>: Same as <code>currentCanonicalSimple</code> but <code>NA</code> for genus-only names (i.e. when <code>specificEpithet</code> is absent). Useful when you need to filter out unidentified-to-species taxa.</li>
+</ul>
 </div>
 <div class="section level3">
 <h3 id="example-workflow">Example Workflow<a class="anchor" aria-label="anchor" href="#example-workflow"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adrientaudiere.github.io/taxinfo">taxinfo</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: MiscMetabar</span></span>
-<span><span class="co">#&gt; Loading required package: phyloseq</span></span>
-<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; Loading required package: dada2</span></span>
-<span><span class="co">#&gt; Loading required package: Rcpp</span></span>
-<span><span class="co">#&gt; Loading required package: dplyr</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adrientaudiere.github.io/taxinfo/">taxinfo</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : MiscMetabar</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : phyloseq</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : ggplot2</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : dplyr</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; Attachement du package : 'dplyr'</span></span>
+<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:stats':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="co">#&gt; Loading required package: purrr</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adrientaudiere/MiscMetabar" class="external-link">MiscMetabar</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load example data (fungal phyloseq object from MiscMetabar)</span></span>
@@ -224,13 +224,19 @@
 <span><span class="va">data_fungi_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span>,</span>
 <span>  data_sources <span class="op">=</span> <span class="fl">210</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Some GNA `data_sources` are older than 365 days; name resolution may miss</span></span>
+<span><span class="co">#&gt;   recent taxa:</span></span>
+<span><span class="co">#&gt;   TAXREF (id 210): last updated 2025-04-02</span></span>
+<span><span class="co">#&gt; ℹ Compare update dates at &lt;https://verifier.globalnames.org/data_sources&gt;.</span></span>
 <span><span class="co">#&gt; ✔ GNA verification summary:</span></span>
 <span><span class="co">#&gt; • Total taxa in phyloseq: 45</span></span>
 <span><span class="co">#&gt; • Taxa submitted for verification: 37</span></span>
 <span><span class="co">#&gt; • Genus-level only taxa: 2</span></span>
 <span><span class="co">#&gt; • Total matches found: 25</span></span>
-<span><span class="co">#&gt; • Synonyms: 4 (including 4 at genus level)</span></span>
-<span><span class="co">#&gt; • Accepted names: 21 (including 15 at genus level)</span></span>
+<span><span class="co">#&gt; • Synonyms: 4 (including 0 uninomial)</span></span>
+<span><span class="co">#&gt; • Accepted names: 21 (including 6 uninomial)</span></span>
+<span><span class="co">#&gt; ℹ 6 uninomial accepted name(s) have `currentCanonicalSimple` set to "NA"</span></span>
+<span><span class="co">#&gt;   (`species_only` = TRUE)</span></span>
 <span></span>
 <span><span class="co"># Step 2: Add GBIF occurrence data (add_to_phyloseq defaults to TRUE)</span></span>
 <span><span class="va">data_with_gbif</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span><span class="va">data_fungi_clean</span><span class="op">)</span></span>
@@ -253,9 +259,8 @@
 <span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Exidia glandulosa</span></span>
 <span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Peniophorella pubera</span></span>
 <span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Auricularia mesenterica</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s</span></span>
-<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Hericium coralloides</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3sℹ Processing GBIF occurrences for Hericium coralloides</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  3s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; ℹ Processing GBIF occurrences for Xylodon flaviporus</span></span>
 <span></span>
 <span><span class="co"># Step 3: Add trait information</span></span>
@@ -267,34 +272,48 @@
 <span>  col_prefix <span class="op">=</span> <span class="st">"ft_"</span>,</span>
 <span>  sep <span class="op">=</span> <span class="st">";"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✔ Added 18 columns from '/tmp/RtmpVMKfDC/temp_libpath1bc0c32ecb02dd/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object</span></span>
+<span><span class="co">#&gt; ✔ Added 18 columns from '/tmp/Rtmpvo7n0C/temp_libpath304585f59b4f5/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object</span></span>
 <span></span>
 <span><span class="co"># Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)</span></span>
 <span><span class="va">data_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tax_get_wk_info_pq.html">tax_get_wk_info_pq</a></span><span class="op">(</span><span class="va">data_with_traits</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Getting taxonomic IDs from Wikidata...</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Stereum ostrea</span></span>
+<span><span class="co">#&gt; ■■■■                              11% | ETA:  1m</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Ossicaulis lachnopus</span></span>
+<span><span class="co">#&gt; ■■■■                              11% | ETA:  1m■■■■■■                            16% | ETA: 49s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Stereum hirsutum</span></span>
+<span><span class="co">#&gt; ■■■■■■                            16% | ETA: 49s■■■■■■■                           21% | ETA:  2m</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Basidiodendron eyrei</span></span>
+<span><span class="co">#&gt; ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  1m</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Sistotrema oblongisporum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■                         26% | ETA:  1m■■■■■■■■■■                        32% | ETA:  1m</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Fomes fomentarius</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■                        32% | ETA:  1m■■■■■■■■■■■■                      37% | ETA:  2m</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Mycena renatii</span></span>
-<span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Cerocorticium molare</span></span>
-<span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Aporpium canescens</span></span>
-<span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hypochnicium analogum</span></span>
-<span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hyphoderma roseocremeum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Cerocorticium molare</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Aporpium canescens</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hypochnicium analogum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hyphoderma roseocremeum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 39s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hyphoderma setigerum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 39s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 32s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Trametes versicolor</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 32s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 35s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Peniophora versiformis</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 35s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 27s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Exidia glandulosa</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 27s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 22s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Peniophorella pubera</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 22s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 14s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Auricularia mesenterica</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 14s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  7s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hericium coralloides</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  7s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Xylodon flaviporus</span></span>
 <span></span>
 <span><span class="co"># View the enriched taxonomic table</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_final</span><span class="op">@</span><span class="va">tax_table</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Taxonomy Table:     [6 taxa by 46 taxonomic ranks]:</span></span>
+<span><span class="co">#&gt; Taxonomy Table:     [6 taxa by 47 taxonomic ranks]:</span></span>
 <span><span class="co">#&gt;       ft_GENUS     ft_Source ft_COMMENT.on.genus ft_primary_lifestyle</span></span>
 <span><span class="co">#&gt; ASV7  "NA"         NA        NA                  NA                  </span></span>
 <span><span class="co">#&gt; ASV8  "Stereum"    NA        NA                  NA                  </span></span>
@@ -386,27 +405,34 @@
 <span><span class="co">#&gt; ASV18 "Stereum_ostrea"       "Stereum ostrea (Blume &amp; T.Nees) Fr., 1838"</span></span>
 <span><span class="co">#&gt; ASV25 "Ossicaulis_lachnopus" "Ossicaulis lachnopus (Fr.) Contu, 2000"   </span></span>
 <span><span class="co">#&gt; ASV26 "Stereum_hirsutum"     "Stereum hirsutum (Willd.) Pers., 1800"    </span></span>
-<span><span class="co">#&gt;       currentCanonicalSimple genusEpithet specificEpithet namePublishedInYear</span></span>
-<span><span class="co">#&gt; ASV7  NA                     NA           NA              NA                 </span></span>
-<span><span class="co">#&gt; ASV8  "Stereum ostrea"       "Stereum"    "ostrea"        "1838"             </span></span>
-<span><span class="co">#&gt; ASV12 "Xylodon"              "Xylodon"    NA              "1821"             </span></span>
-<span><span class="co">#&gt; ASV18 "Stereum ostrea"       "Stereum"    "ostrea"        "1838"             </span></span>
-<span><span class="co">#&gt; ASV25 "Ossicaulis lachnopus" "Ossicaulis" "lachnopus"     "2000"             </span></span>
-<span><span class="co">#&gt; ASV26 "Stereum hirsutum"     "Stereum"    "hirsutum"      "1800"             </span></span>
-<span><span class="co">#&gt;       authorship bracketauthorship scientificNameAuthorship Global_occurences</span></span>
-<span><span class="co">#&gt; ASV7  NA         NA                NA                       NA               </span></span>
-<span><span class="co">#&gt; ASV8  "Fr."      "Blume &amp; T.Nees"  "(Blume &amp; T.Nees) Fr."   " 10908"         </span></span>
-<span><span class="co">#&gt; ASV12 "Gray"     "Pers."           "(Pers.) Gray"           NA               </span></span>
-<span><span class="co">#&gt; ASV18 "Fr."      "Blume &amp; T.Nees"  "(Blume &amp; T.Nees) Fr."   " 10908"         </span></span>
-<span><span class="co">#&gt; ASV25 "Contu"    "Fr."             "(Fr.) Contu"            "   223"         </span></span>
-<span><span class="co">#&gt; ASV26 "Pers."    "Willd."          "(Willd.) Pers."         "121604"         </span></span>
-<span><span class="co">#&gt;       taxa_name              lang page_length page_views taxon_id   </span></span>
-<span><span class="co">#&gt; ASV7  "NA"                   NA   NA          NA         NA         </span></span>
-<span><span class="co">#&gt; ASV8  "Stereum ostrea"       " 1" " 0"        " 0"       "Q2710042" </span></span>
-<span><span class="co">#&gt; ASV12 "Xylodon"              NA   NA          NA         NA         </span></span>
-<span><span class="co">#&gt; ASV18 "Stereum ostrea"       " 1" " 0"        " 0"       "Q2710042" </span></span>
-<span><span class="co">#&gt; ASV25 "Ossicaulis lachnopus" " 1" " 0"        " 0"       "Q10613125"</span></span>
-<span><span class="co">#&gt; ASV26 "Stereum hirsutum"     " 1" " 0"        " 0"       "Q557377"</span></span>
+<span><span class="co">#&gt;       currentCanonicalSimple genusEpithet specificEpithet</span></span>
+<span><span class="co">#&gt; ASV7  NA                     NA           NA             </span></span>
+<span><span class="co">#&gt; ASV8  "Stereum ostrea"       "Stereum"    "ostrea"       </span></span>
+<span><span class="co">#&gt; ASV12 NA                     "Xylodon"    NA             </span></span>
+<span><span class="co">#&gt; ASV18 "Stereum ostrea"       "Stereum"    "ostrea"       </span></span>
+<span><span class="co">#&gt; ASV25 "Ossicaulis lachnopus" "Ossicaulis" "lachnopus"    </span></span>
+<span><span class="co">#&gt; ASV26 "Stereum hirsutum"     "Stereum"    "hirsutum"     </span></span>
+<span><span class="co">#&gt;       genusSpeciesEpithet    namePublishedInYear authorship bracketauthorship</span></span>
+<span><span class="co">#&gt; ASV7  NA                     NA                  NA         NA               </span></span>
+<span><span class="co">#&gt; ASV8  "Stereum ostrea"       "1838"              "Fr."      "Blume &amp; T.Nees" </span></span>
+<span><span class="co">#&gt; ASV12 NA                     "1821"              "Gray"     "Pers."          </span></span>
+<span><span class="co">#&gt; ASV18 "Stereum ostrea"       "1838"              "Fr."      "Blume &amp; T.Nees" </span></span>
+<span><span class="co">#&gt; ASV25 "Ossicaulis lachnopus" "2000"              "Contu"    "Fr."            </span></span>
+<span><span class="co">#&gt; ASV26 "Stereum hirsutum"     "1800"              "Pers."    "Willd."         </span></span>
+<span><span class="co">#&gt;       scientificNameAuthorship Global_occurences lang page_length page_views</span></span>
+<span><span class="co">#&gt; ASV7  NA                       NA                NA   NA          NA        </span></span>
+<span><span class="co">#&gt; ASV8  "(Blume &amp; T.Nees) Fr."   " 11546"          " 9" "5507.400"  " 986"    </span></span>
+<span><span class="co">#&gt; ASV12 "(Pers.) Gray"           NA                NA   NA          NA        </span></span>
+<span><span class="co">#&gt; ASV18 "(Blume &amp; T.Nees) Fr."   " 11546"          " 9" "5507.400"  " 986"    </span></span>
+<span><span class="co">#&gt; ASV25 "(Fr.) Contu"            "   227"          " 4" "2340.000"  "  37"    </span></span>
+<span><span class="co">#&gt; ASV26 "(Willd.) Pers."         "123088"          "25" "5621.846"  " 908"    </span></span>
+<span><span class="co">#&gt;       taxon_id    taxa_name             </span></span>
+<span><span class="co">#&gt; ASV7  NA          "NA"                  </span></span>
+<span><span class="co">#&gt; ASV8  "Q2710042"  "Stereum ostrea"      </span></span>
+<span><span class="co">#&gt; ASV12 NA          "NA"                  </span></span>
+<span><span class="co">#&gt; ASV18 "Q2710042"  "Stereum ostrea"      </span></span>
+<span><span class="co">#&gt; ASV25 "Q10613125" "Ossicaulis lachnopus"</span></span>
+<span><span class="co">#&gt; ASV26 "Q557377"   "Stereum hirsutum"</span></span>
 <span></span>
 <span><span class="co"># Alternative: Query specific taxa without a phyloseq object</span></span>
 <span><span class="va">taxa_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span></span>
@@ -419,12 +445,12 @@
 <span><span class="co"># Returns a tibble instead of phyloseq object</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">taxa_info</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 13</span></span>
-<span><span class="co">#&gt; # Groups:   canonicalName [2]</span></span>
-<span><span class="co">#&gt;   canonicalName        NL    US    GB    DE    CA    SE    DK    RU    AT    AU</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Amanita muscaria 129896 30189 26184 24417  9810  9132  8985  8746  7099  6430</span></span>
-<span><span class="co">#&gt; 2 Boletus edulis     5810  5164 10629  4770    NA 12964  5964  4133  3805    NA</span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: NO &lt;int&gt;, CH &lt;int&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # Groups:   query_name [2]</span></span>
+<span><span class="co">#&gt;   query_name      NL    US    GB    DE    CA    SE    DK    RU    AT    AU    NO</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Amanita mu… 129965 31607 26226 24514 10143  9164  9007  8813  7743  7713    NA</span></span>
+<span><span class="co">#&gt; 2 Boletus ed…   5826  5837 10723  4800    NA 12979  5966  4155  3868    NA  4576</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: CH &lt;int&gt;</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -433,51 +459,51 @@
 <p><strong>taxinfo</strong> integrates with multiple authoritative data sources:</p>
 <table class="table">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="13%">
+<col width="42%">
+<col width="43%">
 </colgroup>
-<thead><tr>
+<thead><tr class="header">
 <th>Source</th>
 <th>Description</th>
 <th>Functions</th>
 </tr></thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>GBIF</strong></td>
 <td>Global biodiversity occurrence data</td>
 <td>
 <code><a href="reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq()</a></code>, <code><a href="reference/plot_tax_gbif_pq.html">plot_tax_gbif_pq()</a></code>
 </td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Wikipedia</strong></td>
 <td>Encyclopedia data and page statistics</td>
 <td>
 <code><a href="reference/tax_get_wk_info_pq.html">tax_get_wk_info_pq()</a></code>, <code><a href="reference/tax_get_wk_pages_info.html">tax_get_wk_pages_info()</a></code>
 </td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>GLOBI</strong></td>
 <td>Species interaction networks</td>
 <td><code><a href="reference/tax_globi_pq.html">tax_globi_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>OpenAlex</strong></td>
 <td>Scientific literature database</td>
 <td><code><a href="reference/tax_oa_pq.html">tax_oa_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>TAXREF</strong></td>
 <td>French national taxonomic reference</td>
 <td><code><a href="reference/tax_info_pq.html">tax_info_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>GNA</strong></td>
 <td>Global Names Architecture for name verification</td>
 <td><code><a href="reference/gna_verifier_pq.html">gna_verifier_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Custom CSV</strong></td>
 <td>Any taxonomic database in CSV format</td>
 <td><code><a href="reference/tax_info_pq.html">tax_info_pq()</a></code></td>
@@ -539,7 +565,7 @@
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://www.r-project.org/Licenses/AGPL-3" class="external-link">AGPL-3</a></small></li>
 </ul>
 </div>
 

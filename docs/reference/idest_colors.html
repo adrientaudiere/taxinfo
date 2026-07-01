@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,6 +96,20 @@ The available palette are c("all_color_idest", "ligth_color_idest",
     <p>Adrien Taudiere</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">idest_colors</span><span class="op">(</span><span class="st">"Picasso"</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`idest_colors()` was deprecated in taxinfo 0.2.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `ggplotpq::idest_colors()` instead.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#c2676d" "#995041" "#45939c"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "palette"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"name")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Picasso"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu">idest_colors</span><span class="op">(</span><span class="st">"Hokusai2"</span><span class="op">)</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="idest_colors-1.png" alt="" width="700" height="433"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

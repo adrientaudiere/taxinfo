@@ -1,5 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://adrientaudiere.github.io/taxinfo/404.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/CLAUDE.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/CONTEXT.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/LICENSE-text.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/LICENSE.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/articles/checking-taxa-presence.html</loc></url>
@@ -13,9 +15,11 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/index.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/news/index.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/attribute_gbif_records.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/augment_tax_table.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/bbox_for_points.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/build_gbif_coords_sql.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/calculate_bbox.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/check_data_sources_freshness.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/check_gbif_credentials.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/check_package.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/cluster_sbc.html</loc></url>
@@ -33,15 +37,19 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/idest_pal.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/index.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/intra_taxnames_dist.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/label_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/load_ecoregions.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/occur_check_compute_df.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/points_to_ecoregions.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/range_bioreg_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/resolve_taxa_input.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_c.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_color_idest_d.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_c.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_fill_idest_d.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_x_italic_species.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_y_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.html</loc></url>
@@ -65,6 +73,7 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_spores_size_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxa_summary_text.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxinfo-package.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxnames_from_rank.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxonomic_rank_to_taxnames.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/theme_idest.html</loc></url>
 </urlset>

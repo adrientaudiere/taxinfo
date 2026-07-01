@@ -11,7 +11,7 @@ Create a text to summarize the number of samples, taxa, sequences and occurrence
 
     <a class="navbar-brand me-2" href="../index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,13 +109,19 @@ will not count in the venn diagram</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_fungi_cleanNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="gna_verifier_pq.html">gna_verifier_pq</a></span><span class="op">(</span><span class="va">data_fungi_mini</span>, data_sources <span class="op">=</span> <span class="fl">210</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Some GNA `data_sources` are older than <span style="color: #0000BB;">365</span> days; name resolution may miss</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   recent taxa:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   TAXREF (id 210): last updated 2025-04-02</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Compare update dates at <span style="color: #0000BB; font-style: italic;">&lt;https://verifier.globalnames.org/data_sources&gt;</span>.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> GNA verification summary:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total taxa in phyloseq: <span style="color: #0000BB;">45</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Taxa submitted for verification: <span style="color: #0000BB;">37</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Genus-level only taxa: <span style="color: #0000BB;">2</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Total matches found: <span style="color: #0000BB;">25</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">4</span> (including <span style="color: #0000BB;">4</span> at genus level)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">21</span> (including <span style="color: #0000BB;">15</span> at genus level)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Synonyms: <span style="color: #0000BB;">4</span> (including <span style="color: #0000BB;">0</span> uninomial)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Accepted names: <span style="color: #0000BB;">21</span> (including <span style="color: #0000BB;">6</span> uninomial)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #0000BB;">6</span> uninomial accepted name(s) have `currentCanonicalSimple` set to <span style="color: #0000BB;">"NA"</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   (`species_only` = TRUE)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">taxa_summary_text</span><span class="op">(</span><span class="va">data_fungi_cleanNames</span>, taxnames <span class="op">=</span> <span class="st">"Xylodon flaviporus"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>At least one of your sample contains less than 500 sequences.</span>

@@ -35,3 +35,14 @@ A ggplot2 scale object.
 ## Author
 
 Adrien Taudiere
+
+## Examples
+
+``` r
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg, color = disp)) +
+  geom_point() +
+  scale_color_idest_c()
+#> Warning: `scale_color_idest_c()` was deprecated in taxinfo 0.2.0.
+#> ℹ Please use `ggplotpq::scale_color_idest_c()` instead.
+```
