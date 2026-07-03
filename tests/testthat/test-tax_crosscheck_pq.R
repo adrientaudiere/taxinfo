@@ -1,20 +1,20 @@
-# Test tax_crosscheck_pq function
+# Test tax_crosscheck_gbif_pq function
 
-test_that("tax_crosscheck_pq input validation: both NULL", {
+test_that("tax_crosscheck_gbif_pq input validation: both NULL", {
   expect_error(
-    tax_crosscheck_pq(),
+    tax_crosscheck_gbif_pq(),
     "You must specify either"
   )
 })
 
-test_that("tax_crosscheck_pq input validation: both provided", {
+test_that("tax_crosscheck_gbif_pq input validation: both provided", {
   expect_error(
-    tax_crosscheck_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
+    tax_crosscheck_gbif_pq(physeq = "dummy", taxnames = c("Amanita muscaria")),
     "You must specify either"
   )
 })
 
-test_that("tax_crosscheck_pq status classification logic", {
+test_that("tax_crosscheck_gbif_pq status classification logic", {
   # Test the internal comparison/classification logic used in the function
   # without requiring any API calls
   classify_status <- function(g, b) {
@@ -46,11 +46,11 @@ test_that("tax_crosscheck_pq status classification logic", {
   expect_equal(classify_status("", ""), "both_na")
 })
 
-test_that("tax_crosscheck_pq returns expected structure with taxnames", {
+test_that("tax_crosscheck_gbif_pq returns expected structure with taxnames", {
   skip_on_cran()
 
   vcr::use_cassette("crosscheck_structure", {
-    result <- tax_crosscheck_pq(
+    result <- tax_crosscheck_gbif_pq(
       taxnames = c("Amanita muscaria", "Boletus edulis"),
       verbose = FALSE,
       plot = FALSE
@@ -79,11 +79,11 @@ test_that("tax_crosscheck_pq returns expected structure with taxnames", {
   expect_equal(result$summary[["total"]], 2)
 })
 
-test_that("tax_crosscheck_pq comparison has status column with valid values", {
+test_that("tax_crosscheck_gbif_pq comparison has status column with valid values", {
   skip_on_cran()
 
   vcr::use_cassette("crosscheck_status", {
-    result <- tax_crosscheck_pq(
+    result <- tax_crosscheck_gbif_pq(
       taxnames = c("Amanita muscaria", "Boletus edulis"),
       verbose = FALSE,
       plot = FALSE
@@ -101,11 +101,11 @@ test_that("tax_crosscheck_pq comparison has status column with valid values", {
   ))
 })
 
-test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
+test_that("tax_crosscheck_gbif_pq with plot = FALSE skips Venn diagram", {
   skip_on_cran()
 
   vcr::use_cassette("crosscheck_plot_false", {
-    result <- tax_crosscheck_pq(
+    result <- tax_crosscheck_gbif_pq(
       taxnames = c("Amanita muscaria"),
       verbose = FALSE,
       plot = FALSE
@@ -116,11 +116,11 @@ test_that("tax_crosscheck_pq with plot = FALSE skips Venn diagram", {
   expect_false("venn_plot" %in% names(result))
 })
 
-test_that("tax_crosscheck_pq summary counts add up to total", {
+test_that("tax_crosscheck_gbif_pq summary counts add up to total", {
   skip_on_cran()
 
   vcr::use_cassette("crosscheck_summary", {
-    result <- tax_crosscheck_pq(
+    result <- tax_crosscheck_gbif_pq(
       taxnames = c("Amanita muscaria", "Boletus edulis", "Russula"),
       verbose = FALSE,
       plot = FALSE

@@ -443,7 +443,7 @@ using authoritative databases and verification services.
 - [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
   : Verify (and fix) scientific names (Genus species) of a phyloseq
   object.
-- [`tax_crosscheck_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.md)
+- [`tax_crosscheck_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_gbif_pq.md)
   : Cross-check taxonomic names using GBIF backbone and GNA Verifier
 
 ## Add data from external sources

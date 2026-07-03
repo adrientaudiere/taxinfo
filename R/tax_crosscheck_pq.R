@@ -54,23 +54,23 @@
 #' @examples
 #' \dontrun{
 #' # Cross-check a phyloseq object
-#' res <- tax_crosscheck_pq(data_fungi)
+#' res <- tax_crosscheck_gbif_pq(data_fungi)
 #' res$summary
 #' res$comparison |> filter(status == "mismatch")
 #'
 #' res$venn_plot
 #'
-#' res_taxref <- tax_crosscheck_pq(data_fungi, data_sources = 12)
+#' res_taxref <- tax_crosscheck_gbif_pq(data_fungi, data_sources = 12)
 #'
 #' # Cross-check a vector of names
-#' res2 <- tax_crosscheck_pq(taxnames = c(
+#' res2 <- tax_crosscheck_gbif_pq(taxnames = c(
 #'   "Trametopsis brasiliensis",
 #'   "Fake species Waller 2022",
 #'   "Russula"
 #' ))
 #' res2$summary
 #' }
-tax_crosscheck_pq <- function(
+tax_crosscheck_gbif_pq <- function(
   physeq = NULL,
   taxnames = NULL,
   taxonomic_rank = c("Genus", "Species"),

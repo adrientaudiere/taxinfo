@@ -109,7 +109,7 @@
   inherits the same clear behaviour.
 
 - New function
-  [`tax_crosscheck_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.md)
+  [`tax_crosscheck_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_gbif_pq.md)
   compares name-verification results from GNA Verifier
   ([`taxize::gna_verifier()`](https://docs.ropensci.org/taxize/reference/gna_verifier.html)
   with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and

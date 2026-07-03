@@ -30,7 +30,7 @@
 
 * `select_taxa_pq()` aborts with an explicit message naming the requested `taxnames` when none of them match the `tax_table`, instead of failing with an obscure `OTU abundance data must have non-zero dimensions` error; `taxa_summary_text()` inherits the same clear behaviour.
 
-* New function `tax_crosscheck_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.
+* New function `tax_crosscheck_gbif_pq()` compares name-verification results from GNA Verifier (`taxize::gna_verifier()` with `data_sources = 11`, i.e. GBIF Backbone Taxonomy) and `rgbif::name_backbone_checklist()`. Returns a per-taxon comparison with status labels (`match`, `mismatch`, `gna_only`, `backbone_only`, `both_na`), a summary count vector, and an optional Venn diagram via `ggVennDiagram`. Discrepancies between the two services highlight taxa that may need manual review.
 
 * `tax_ecoregion_occur()` gains a `method` argument (forwarded to `tax_gbif_occur_coords()`) and keeps the credential-free `rgbif::occ_search()` path as its default, so ecoregion profiling and its wrappers (`tax_ecoregion_occur_pq()`, `tax_check_ecoregion()`) do not require GBIF credentials.
 
