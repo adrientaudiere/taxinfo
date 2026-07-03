@@ -11,7 +11,7 @@
 
 * `tax_ecoregion_occur_pq()` now disambiguates colliding `tax_table` column names by prefixing them, consistent with the other `tax_*_pq()` functions, instead of overwriting the existing columns.
 
-# taxinfo 0.1.2
+# taxinfo 0.1.2 [CRAN]
 ## Breaking changes
 
 * The GBIF occurrence functions (`tax_gbif_occur_coords()`, `tax_occur_check()`, `tax_occur_check_pq()`, `tax_occur_multi_check_pq()`) now default to GBIF's Download API (`method = "download"`), which requires GBIF credentials (`GBIF_USER`, `GBIF_PWD`, `GBIF_EMAIL` in your `.Renviron`). The previous `rgbif::occ_search()` behaviour is still available with `method = "search"` (no credentials, capped at 100,000 records). See <https://docs.ropensci.org/rgbif/articles/gbif_credentials.html>.
