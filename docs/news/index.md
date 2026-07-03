@@ -1,8 +1,6 @@
 # Changelog
 
-## taxinfo 0.2.0 (Development version)
-
-### Bug fixes
+## taxinfo 0.2.0## Bug fixes
 
 - The phyloseq-augmenting functions
   [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md),
@@ -42,7 +40,7 @@
   them, consistent with the other `tax_*_pq()` functions, instead of
   overwriting the existing columns.
 
-## taxinfo 0.1.2
+## taxinfo 0.1.2 \[CRAN\]
 
 ### Breaking changes
 

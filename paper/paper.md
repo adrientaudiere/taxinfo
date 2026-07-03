@@ -41,9 +41,11 @@ Metabarcoding is now a widely used method for studying biodiversity, conservatio
 
 ## Clean and harmonize taxonomic names
 
-The first step to enable the communication between database and phyloseq objects is to clean and harmonize taxonomic names. This is achieved by the `gna_verifier_pq()` function. It verifies and standardizes taxonomic names using the Global Names Architecture (GNA) API (REF) and adds the results to the phyloseq object.
+The first step to enable the communication between database and phyloseq objects is to clean and harmonize taxonomic names. This is achieved by the `gna_verifier_pq()` function. It verifies and standardizes taxonomic names using the Global Names Architecture (GNA) API (REF) and adds the results to the phyloseq object. Several databases are available (e.g. XXX) and the function can also take a vector of taxonomic names to help with for processing other type of object than phyloseq.
 
 ## Augment phyloseq objects with taxonomic-based information from external data sources
+
+
 
 
 ## Consolidate metabarcoding data and point out surprising taxons
