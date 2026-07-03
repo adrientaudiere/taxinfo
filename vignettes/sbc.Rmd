@@ -36,7 +36,7 @@ d_f_ab <- subset_taxa_pq(data_fungi, taxa_sums(data_fungi) > 50)
 ```
 
 
-## Compute intra-taxonomic names distance
+## Compute intra-taxonomic-names distance
 
 ```{r}
 intra_taxn_dist <- intra_taxnames_dist(d_f_ab, verbose = FALSE)

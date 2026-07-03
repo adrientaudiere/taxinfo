@@ -650,9 +650,13 @@ knowledge_gaps |>
 ## Best Practices
 
 When integrating external data, consider the following best practices:
+
 1. **Taxonomic matching**: Ensure consistent naming across sources
+
 2. **Data validation**: Check for outliers or errors
+
 3. **Missing data**: Handle NAs appropriately in analyses
+
 4. **Documentation**: Keep track of data sources and versions
 
 This comprehensive approach to external data integration transforms basic taxonomic lists into rich, multi-dimensional datasets suitable for advanced ecological analyses.

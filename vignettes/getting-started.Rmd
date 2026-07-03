@@ -435,35 +435,102 @@ Once names are verified, you can enrich your data with various sources:
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-5' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
 <div id='msg-popup-unnamed-chunk-5' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
 #&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#&gt; ■■■■■■■■■■■                       33% | ETA:  3s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
-#&gt; ■■■■■■■■■■■                       33% | ETA:  3s■■■■■■■■■■■■■■                    44% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  3s[K
+
+[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  3s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K
+
+[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+[Kℹ Processing GBIF occurrences for Hypochnicium analogum
 #&gt; ℹ Getting taxonomic IDs from Wikidata...
 #&gt; ℹ Getting page views from Wikipedia for Stereum ostrea
-#&gt; ■■■■■■■                           20% | ETA: 23s[K[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
-#&gt; ■■■■■■■                           20% | ETA: 23s■■■■■■■■■■                        30% | ETA: 20s[K[Kℹ Getting page views from Wikipedia for Stereum hirsutum
-#&gt; ■■■■■■■■■■                        30% | ETA: 20s■■■■■■■■■■■■■                     40% | ETA: 34s[K[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■                     40% | ETA: 34s■■■■■■■■■■■■■■■■                  50% | ETA: 25s[K[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 25s■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s[K[Kℹ Getting page views from Wikipedia for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[K[Kℹ Getting page views from Wikipedia for Mycena renatii
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
+#&gt; 
+■■■■■■■                           20% | ETA: 23s[K
+
+[Kℹ Getting page views from Wikipedia for Ossicaulis lachnopus
+#&gt; ■■■■■■■                           20% | ETA: 23s
+
+■■■■■■■■■■                        30% | ETA: 20s[K
+
+[Kℹ Getting page views from Wikipedia for Stereum hirsutum
+#&gt; ■■■■■■■■■■                        30% | ETA: 20s
+
+■■■■■■■■■■■■■                     40% | ETA: 34s[K
+
+[Kℹ Getting page views from Wikipedia for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■                     40% | ETA: 34s
+
+■■■■■■■■■■■■■■■■                  50% | ETA: 25s[K
+
+[Kℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■                  50% | ETA: 25s
+
+■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s[K
+
+[Kℹ Getting page views from Wikipedia for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA: 18s
+
+■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s[K
+
+[Kℹ Getting page views from Wikipedia for Mycena renatii
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+[Kℹ Getting page views from Wikipedia for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+[Kℹ Getting page views from Wikipedia for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 24s
+
+[Kℹ Getting page views from Wikipedia for Hypochnicium analogum
 #&gt; ℹ Fetching OpenAlex works for taxon: Stereum ostrea
 #&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Ossicaulis lachnopus
 #&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Stereum hirsutum
 #&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Basidiodendron eyrei
 #&gt; HTTP status 429 Too Many Requestsℹ Fetching OpenAlex works for taxon: Sistotrema oblongisporum
-#&gt; HTTP status 429 Too Many RequestsFetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s[K[Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Mycena renatii
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
-#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1sHTTP status 429 Too Many Requests[K
+#&gt; HTTP status 429 Too Many Requests
+Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s[K
+
+[Kℹ Fetching OpenAlex works for taxon: Fomes fomentarius
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+[Kℹ Fetching OpenAlex works for taxon: Mycena renatii
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+[Kℹ Fetching OpenAlex works for taxon: Cerocorticium molare
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+[Kℹ Fetching OpenAlex works for taxon: Aporpium canescens
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+[Kℹ Fetching OpenAlex works for taxon: Hypochnicium analogum
+#&gt; Fetching OpenAlex ■■■■■■■■■■■■■■■■                  50% |  ETA:  1s
+HTTP status 429 Too Many Requests
+[K
 </pre></div>
 
 
@@ -600,8 +667,13 @@ Most functions in **taxinfo** can work with either a phyloseq object or a vector
 #&gt; ℹ Processing GBIF occurrences for Cantharellus cibarius
 #&gt; ℹ Getting taxonomic IDs from Wikidata...
 #&gt; ℹ Getting page views from Wikipedia for Amanita muscaria
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s[K[Kℹ Getting page views from Wikipedia for Boletus edulis
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s[Kℹ Getting page views from Wikipedia for Cantharellus cibarius
+#&gt; 
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s[K
+
+[Kℹ Getting page views from Wikipedia for Boletus edulis
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 27s
+
+[Kℹ Getting page views from Wikipedia for Cantharellus cibarius
 </pre></div>
 
 
@@ -741,7 +813,9 @@ dim(data_final)
 
 1. **Use conservative way to identify taxa at the species level**, most taxinfo
 function rely directly on species-level identification
+
 2. **Always start with name verification** using `gna_verifier_pq()`
+  
 3. **Use appropriate data sources** for your taxonomic group of interest
 
 ## Next Steps

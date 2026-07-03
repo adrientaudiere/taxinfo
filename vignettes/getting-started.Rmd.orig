@@ -238,7 +238,9 @@ dim(data_final)
 
 1. **Use conservative way to identify taxa at the species level**, most taxinfo
 function rely directly on species-level identification
+
 2. **Always start with name verification** using `gna_verifier_pq()`
+
 3. **Use appropriate data sources** for your taxonomic group of interest
 
 ## Next Steps

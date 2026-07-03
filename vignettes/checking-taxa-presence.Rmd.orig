@@ -213,7 +213,8 @@ occurrence_multi_radius |>
 
 Use occurrence data to filter taxa that are unlikely to be present:
 
-```{r}
+```{r, results='asis'}
+
 # Set threshold for likely presence (e.g., at least 5 occurrences within 100km)
 min_occurrences <- 5
 
@@ -332,16 +333,23 @@ head(data_with_occurrence@tax_table)
 Use occurrence checking for:
 
 1. **Contamination detection**: Taxa with zero local occurrences may be contaminants
+
 2. **Sample validation**: Ensure detected communities match biogeographic expectations
+
 3. **Filtering decisions**: Remove unlikely taxa from downstream analyses
+
 4. **Hypothesis generation**: Identify interesting biogeographic patterns
 
 ### Best Practices
 
 1. **Use appropriate radii** for your study system and organism dispersal capability
+
 2. **Consider temporal factors** - GBIF data spans many years
+
 3. **Account for sampling bias** in GBIF data (some regions/taxa better sampled)
+
 4. **Validate results** with ecological knowledge of your study system
+
 5. **Document thresholds** used for filtering decisions
 
 ## Integration with Other Functions
