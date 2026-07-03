@@ -1,4 +1,6 @@
-# taxinfo 0.2.0## Bug fixes
+# taxinfo 0.2.0
+
+## Bug fixes
 
 * The phyloseq-augmenting functions `gna_verifier_pq()`, `tax_gbif_occur_pq()`, `tax_get_wk_info_pq()`, `tax_globi_pq()`, `tax_iucn_code_pq()`, `tax_oa_pq()`, `tax_occur_check_pq()` and `tax_photos_pq()` now build the `tax_table` join key with the same `"NA"`-token cleanup used to query the external database, fixing silently dropped information for genus-only taxa when `taxonomic_rank` spans several columns (e.g. `c("Genus", "Species")`).
 
