@@ -1,0 +1,6 @@
+interface:
+  display_name: "Taxinfo"
+  short_description: "Repo-specific patterns and workflows for taxinfo"
+  default_prompt: "Use the taxinfo repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
