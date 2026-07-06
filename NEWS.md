@@ -1,5 +1,9 @@
 # taxinfo 0.3.0 (Development version)
 
+## New features
+
+* `tax_harmonize_backbone_pq()` re-derives the higher taxonomic ranks (those above a chosen anchor rank, or above each taxon's deepest assigned rank with `anchor = "last_assigned"`) from a single trusted backbone (GBIF online via `rgbif::name_backbone_checklist()` or a local `backbone` data frame), making taxonomies from different reference databases comparable; it harmonises several databases at once through suffix-based tracks (e.g. `suffixes = c("", "_Euk")`), gates online matches on `matchType`/`confidence`, disambiguates homonyms with `kingdom`, optionally recovers ambiguous names that GBIF backs off to a higher rank via the verbose `rgbif::name_backbone()` alternatives (`resolve_ambiguous = TRUE`, e.g. placing a bare `Boletus` in Boletaceae), and optionally keeps the overwritten values in `_orig` companion columns.
+
 # taxinfo 0.2.0
 
 ## Bug fixes
