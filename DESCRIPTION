@@ -27,15 +27,19 @@ Imports:
     httr,
     jsonlite,
     lifecycle,
+    methods,
     phyloseq,
     purrr,
     rgbif,
     rglobi,
     sf,
+    stats,
     stringr,
     taxize,
     tibble,
-    tidyr
+    tidyr,
+    tools,
+    utils
 Suggests:
     CoordinateCleaner,
     DECIPHER,

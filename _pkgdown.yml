@@ -6,6 +6,9 @@ template:
     fg: "#003f5f"
     primary: "#b96821"
     secondary: "#A5555C"
+    base_font: "Fira Mono, monospace"
+    heading_font: "Fira Sans, sans-serif"
+    code_font: "Fira Code, monospace"
   includes:
     in_header: |
       <link rel="stylesheet" href="pkgdown/extra.css">
