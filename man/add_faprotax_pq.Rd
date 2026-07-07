@@ -30,9 +30,11 @@ skipped.}
 \item{col_prefix}{(Character, default `"faprotax_"`) Prefix applied to all
 columns added to the `tax_table`.}
 
-\item{binary}{(Logical, default `FALSE`) If `TRUE`, add one integer 0/1
-column per functional group (prefixed with `col_prefix`) in addition to
-the summary columns.}
+\item{binary}{(Logical, default `FALSE`) If `TRUE`, add one logical
+`TRUE`/`FALSE`/`NA` column per functional group (prefixed with
+`col_prefix`) in addition to the summary columns. `NA` marks taxa that
+were not found in the FAPROTAX database (`faprotax_groups` is `NA`);
+`FALSE` marks taxa that were found but do not belong to that group.}
 
 \item{valid_word_symbols}{(Character, default `"-"`) Non-alphanumeric
 characters that count as part of a word when matching pattern tokens
@@ -69,8 +71,11 @@ build composite groups are evaluated in file order.
 
 By default a single summary column (`faprotax_groups`, a `;`-separated list
 of assigned groups) and a count column (`faprotax_n_groups`) are added to
-the `tax_table`. Set `binary = TRUE` to additionally get one 0/1 column per
-functional group that was assigned to at least one taxon.
+the `tax_table`. Set `binary = TRUE` to additionally get one logical
+`TRUE`/`FALSE`/`NA` column per functional group that was assigned to at
+least one taxon. Taxa that matched no group (`faprotax_groups` is `NA`)
+receive `NA` (not found in the database) rather than `FALSE` (a real
+"definitely not in this group").
 }
 \details{
 FAPROTAX is a manually curated database built from cultured representatives,
@@ -92,7 +97,7 @@ head(sort(table(res@tax_table[, "faprotax_groups"], useNA = "ifany"), decreasing
 \donttest{
 # One 0/1 column per functional group, then count the nitrifying bacteria
 res_bin <- add_faprotax_pq(GlobalPatterns, binary = TRUE, verbose = FALSE)
-sum(as.integer(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
+sum(as.logical(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
 
 # Restrict matching to the genus / species level only (fewer hits)
 res_gs <- add_faprotax_pq(

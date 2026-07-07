@@ -114,9 +114,9 @@ tib <- add_metatraits_pq(GlobalPatterns, level = "genus", add_to_phyloseq = FALS
 }
 }
 \references{
-Robbani, S. M. et al. (2026). metaTraits: a large-scale integration of
+Podlesny et al. (2026). metaTraits: a large-scale integration of
 microbial phenotypic trait information. *Nucleic Acids Research*, 54(D1),
-D835. \doi{10.1093/nar/gkaf1080}
+D835-D841. \doi{10.1093/nar/gkaf1241}
 }
 \seealso{
 [add_faprotax_pq()], [fungal_traits_guilds()], [tax_info_pq()]
