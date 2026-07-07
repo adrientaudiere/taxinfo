@@ -1,5 +1,4 @@
-# taxinfo 0.3.0 (Development version)
-
+# taxinfo 0.3.0
 ## New features
 
 * `tax_bioshifts_pq()` attaches, for each taxon of a phyloseq object, a summary of documented range-shift rates from the current BioShifts release (the original BioShifts merged with the CoRE database, Comte et al. 2024) via `BioShiftR::get_shifts()`, adding mean latitudinal (`bioshift_LAT_rate`) and elevational (`bioshift_ELE_rate`) shift rates plus a `bioshift_n_records` count. Taxa are matched on the `taxonomic_rank` column(s) of the `tax_table`; by default the BioShifts names are harmonised with `gna_verifier_pq()` and the join is made on `currentCanonicalSimple` (disable with `skip_name_verification = TRUE`). A pre-fetched table can be supplied via `shifts_data` to skip the network query.
