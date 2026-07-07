@@ -51,7 +51,7 @@ sequence similarity threshold can vary between these clusters”.
 d_f_ab <- subset_taxa_pq(data_fungi, taxa_sums(data_fungi) > 50)
 ```
 
-## Compute intra-taxonomic names distance
+## Compute intra-taxonomic-names distance
 
 ``` r
 intra_taxn_dist <- intra_taxnames_dist(d_f_ab, verbose = FALSE)
@@ -233,7 +233,7 @@ marks the threshold at 0.03.](figures/unnamed-chunk-7-1.png)
 sessionInfo()
 ```
 
-    #> R version 4.6.0 (2026-04-24)
+    #> R version 4.6.1 (2026-06-24)
     #> Platform: x86_64-pc-linux-gnu
     #> Running under: Pop!_OS 24.04 LTS
     #> 
@@ -256,28 +256,28 @@ sessionInfo()
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] taxinfo_0.1.2      MiscMetabar_0.16.8 dplyr_1.2.1        ggplot2_4.0.3     
-    #> [5] phyloseq_1.56.0   
+    #> [1] taxinfo_0.2.0.9000      MiscMetabar_0.17.0.9000 dplyr_1.2.1            
+    #> [4] ggplot2_4.0.3           phyloseq_1.56.0        
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] ade4_1.7-24           tidyselect_1.2.1      farver_2.1.2         
     #>  [4] Biostrings_2.80.1     S7_0.2.2              bitops_1.0-9         
     #>  [7] divent_0.5-4          fastmap_1.2.0         RCurl_1.98-1.19      
     #> [10] digest_0.6.39         lifecycle_1.0.5       cluster_2.1.8.2      
-    #> [13] survival_3.8-6        magrittr_2.0.5        compiler_4.6.0       
-    #> [16] rlang_1.2.0           sass_0.4.10           tools_4.6.0          
-    #> [19] igraph_2.3.2          yaml_2.3.12           data.table_1.18.4    
+    #> [13] survival_3.8-6        magrittr_2.0.5        compiler_4.6.1       
+    #> [16] rlang_1.2.0           sass_0.4.10           tools_4.6.1          
+    #> [19] igraph_2.3.3          yaml_2.3.12           data.table_1.18.4    
     #> [22] knitr_1.51            labeling_0.4.3        htmlwidgets_1.6.4    
-    #> [25] plyr_1.8.9            RColorBrewer_1.1-3    withr_3.0.2          
+    #> [25] plyr_1.8.9            RColorBrewer_1.1-3    withr_3.0.3          
     #> [28] purrr_1.2.2           BiocGenerics_0.58.1   desc_1.4.3           
-    #> [31] grid_4.6.0            stats4_4.6.0          multtest_2.68.0      
+    #> [31] grid_4.6.1            stats4_4.6.1          multtest_2.68.0      
     #> [34] biomformat_1.40.0     scales_1.4.0          iterators_1.0.14     
     #> [37] MASS_7.3-65           cli_3.6.6             rmarkdown_2.31       
     #> [40] vegan_2.7-5           crayon_1.5.3          ragg_1.5.2           
     #> [43] generics_0.1.4        otel_0.2.0            RcppParallel_5.1.11-2
     #> [46] reshape2_1.4.5        pbapply_1.7-4         DBI_1.3.0            
     #> [49] ape_5.8-1             cachem_1.1.0          stringr_1.6.0        
-    #> [52] splines_4.6.0         parallel_4.6.0        XVector_0.52.0       
+    #> [52] splines_4.6.1         parallel_4.6.1        XVector_0.52.0       
     #> [55] vctrs_0.7.3           Matrix_1.7-5          jsonlite_2.0.0       
     #> [58] IRanges_2.46.0        S4Vectors_0.50.1      ggrepel_0.9.8        
     #> [61] systemfonts_1.3.2     foreach_1.5.2         rglobi_0.3.4         

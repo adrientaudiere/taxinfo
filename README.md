@@ -205,8 +205,9 @@ data_final <- tax_get_wk_info_pq(data_with_traits)
 #> ℹ Getting page views from Wikipedia for Stereum hirsutum
 #> ■■■■■■                            16% | ETA:  1m■■■■■■■                           21% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Basidiodendron eyrei
-#> ■■■■■■■                           21% | ETA:  2mℹ Getting page views from Wikipedia for Sistotrema oblongisporum
-#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■■                        32% | ETA:  1m
+#> ■■■■■■■                           21% | ETA:  2m■■■■■■■■■                         26% | ETA:  1m
+#> ℹ Getting page views from Wikipedia for Sistotrema oblongisporum
+#> ■■■■■■■■■                         26% | ETA:  1m■■■■■■■■■■                        32% | ETA:  1m
 #> ℹ Getting page views from Wikipedia for Fomes fomentarius
 #> ■■■■■■■■■■                        32% | ETA:  1m■■■■■■■■■■■■                      37% | ETA:  2m
 #> ℹ Getting page views from Wikipedia for Mycena renatii
