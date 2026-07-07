@@ -81,7 +81,7 @@ information (BacDive, BV-BRC, JGI IMG, GOLD) with genome-based predictions
 over GTDB r220, covering more than 140 traits (cell morphology, motility,
 sporulation, oxygen/temperature/pH/salinity preferences, metabolism, ...).
 
-Traits are matched on GTDB taxon names. 
+Traits are matched on GTDB taxon names.
 Matching is done species-first: when a taxon's `Species` name is present in
 the species-level summary its traits are used, and any trait missing at the
 species level falls back to the genus-level summary. The (large) summary
@@ -109,7 +109,7 @@ tib <- tax_metatraits_pq(GlobalPatterns, level = "genus", add_to_phyloseq = FALS
 }
 \references{
 Podlesny et al. (2026). metaTraits: a large-scale integration of
-microbial phenotypic trait information. *Nucleic Acids Research*, 
+microbial phenotypic trait information. *Nucleic Acids Research*,
 \doi{10.1093/nar/gkaf1241}
 }
 \seealso{

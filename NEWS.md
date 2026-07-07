@@ -10,6 +10,8 @@
 
 * `tax_metatraits_pq()` augments the `tax_table` with harmonised microbial phenotypic traits from the metaTraits resource (Robbani et al. 2026, <https://metatraits.embl.de>). It matches GTDB names given by the `taxonomic_rank` column(s) (species-first, with genus fallback), downloads and caches the large summary tables once in `tools::R_user_dir("taxinfo", "cache")`, and supports filtering by `traits`, `groups` (metaTraits `group_1` category) and `min_consensus_percentage`.
 
+* `tax_spores_volume_pq()` annotates the taxa of a phyloseq object with fungal spore volume and morphology (length, width, projected area and length/width ratio) from the spore-trait database of Aguilar-Trigueros et al. (2023), redistributed by the `q2-fungal-traits` plugin and bundled in `inst/extdata/Spore_data_12Nov21.tsv`. For each spore type (`Mitospores`, `Meiospores`, `Multinucleate sexual spores`, `Multinucleate asexual spores`) it matches taxa hierarchically (species binomial, then genus, then family, with genus/family values the geometric mean of the database entries) and records the matched rank in a `*_matching_level` column, restricting matches to fungal taxa. Species-, genus- and family-level matches were cross-checked against a recomputation of the geometric-mean matching logic on the bundled database.
+
 ## Changes
 
 * `tax_faprotax_pq()` now stores the per-group `binary = TRUE` columns as logical `TRUE`/`FALSE`/`NA` instead of integer `0`/`1`. Taxa that matched no FAPROTAX group (`faprotax_groups` is `NA`) receive `NA` (not found in the database) rather than `0`/`FALSE` (a real "definitely not in this group"); `faprotax_n_groups` is likewise `NA` for those taxa.

@@ -89,6 +89,7 @@ reference:
   - tax_iucn_code_pq
   - tax_spores_size_pq
   - extract_spores_mycodb
+  - tax_spores_volume_pq
 
 - title: "Data checking using external informations"
   desc: >
