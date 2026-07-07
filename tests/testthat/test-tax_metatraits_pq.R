@@ -31,11 +31,11 @@ test_that("mt_clean_species handles missing genus and blanks", {
   )
 })
 
-test_that("add_metatraits_pq errors on non-phyloseq input", {
-  expect_error(add_metatraits_pq(NULL), "phyloseq")
+test_that("tax_metatraits_pq errors on non-phyloseq input", {
+  expect_error(tax_metatraits_pq(NULL), "phyloseq")
 })
 
-test_that("add_metatraits_pq downloads and annotates (network, slow)", {
+test_that("tax_metatraits_pq downloads and annotates (network, slow)", {
   skip_on_cran()
   skip_if_offline()
 
@@ -54,7 +54,7 @@ test_that("add_metatraits_pq downloads and annotates (network, slow)", {
     phyloseq::tax_table(tax)
   )
 
-  res <- add_metatraits_pq(pq, level = "genus", verbose = FALSE)
+  res <- tax_metatraits_pq(pq, level = "genus", verbose = FALSE)
   expect_s4_class(res, "phyloseq")
   expect_true("mt_trait_level" %in% colnames(res@tax_table))
   # Methanoregula is a named GTDB genus present in metaTraits.

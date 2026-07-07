@@ -12,11 +12,7 @@
 #' over GTDB r220, covering more than 140 traits (cell morphology, motility,
 #' sporulation, oxygen/temperature/pH/salinity preferences, metabolism, ...).
 #'
-#' Traits are matched on GTDB taxon names. Because the resource is native to
-#' GTDB, environmental lineages known only from GTDB placeholder names (e.g.
-#' `JAJZYD01`) are matched just as well as classically named taxa, which makes
-#' metaTraits particularly suited to MAG-based archaeal/bacterial datasets.
-#'
+#' Traits are matched on GTDB taxon names.
 #' Matching is done species-first: when a taxon's `Species` name is present in
 #' the species-level summary its traits are used, and any trait missing at the
 #' species level falls back to the genus-level summary. The (large) summary
@@ -24,10 +20,10 @@
 #' (`tools::R_user_dir("taxinfo", "cache")`).
 #'
 #' @param physeq (required) A phyloseq object.
-#' @param genus_rank (Character, default `"Genus"`) Column of `tax_table`
-#'   holding the GTDB genus name.
-#' @param species_rank (Character, default `"Species"`) Column of `tax_table`
-#'   holding the GTDB species name.
+#' @param taxonomic_rank (Character, default `c("Genus", "Species")`) Column(s)
+#'   of `tax_table` holding the GTDB names. The first element is the genus
+#'   column; the (optional) second element is the species column. Supply a
+#'   single genus column (e.g. `"Genus"`) to match at the genus level only.
 #' @param level (Character vector, default `c("species", "genus")`) Taxonomic
 #'   levels to query, in order of preference. Use `"genus"` alone to skip the
 #'   large (~140 MB) species download.
@@ -60,14 +56,15 @@
 #'   (`NA` when unmatched).
 #'
 #' @references
-#' Robbani, S. M. et al. (2026). metaTraits: a large-scale integration of
-#' microbial phenotypic trait information. *Nucleic Acids Research*, 54(D1),
-#' D835. \doi{10.1093/nar/gkaf1080}
+#' Podlesny et al. (2026). metaTraits: a large-scale integration of
+#' microbial phenotypic trait information. *Nucleic Acids Research*,
+#' \doi{10.1093/nar/gkaf1241}
+#'
 #'
 #' @author Adrien Taudiere
 #' @export
 #'
-#' @seealso [add_faprotax_pq()], [fungal_traits_guilds()], [tax_info_pq()]
+#' @seealso [tax_faprotax_pq()], [fungal_traits_guilds()], [tax_info_pq()]
 #'
 #' @examples
 #' \dontrun{
@@ -77,20 +74,19 @@
 #' data(GlobalPatterns, package = "phyloseq")
 #'
 #' # Genus + species matching (downloads ~40 MB + ~140 MB once, then cached)
-#' res <- add_metatraits_pq(GlobalPatterns)
+#' res <- tax_metatraits_pq(GlobalPatterns)
 #' table(res@tax_table[, "mt_trait_level"], useNA = "always")
 #'
 #' # Genus only, restricted to metabolism traits (no species download)
-#' res_g <- add_metatraits_pq(GlobalPatterns, level = "genus", groups = "Metabolism")
+#' res_g <- tax_metatraits_pq(GlobalPatterns, level = "genus", groups = "Metabolism")
 #' table(res_g@tax_table[, "mt_oxygen preference"], useNA = "always")
 #'
 #' # Return a tibble instead of a phyloseq object
-#' tib <- add_metatraits_pq(GlobalPatterns, level = "genus", add_to_phyloseq = FALSE)
+#' tib <- tax_metatraits_pq(GlobalPatterns, level = "genus", add_to_phyloseq = FALSE)
 #' }
-add_metatraits_pq <- function(
+tax_metatraits_pq <- function(
   physeq,
-  genus_rank = "Genus",
-  species_rank = "Species",
+  taxonomic_rank = c("Genus", "Species"),
   level = c("species", "genus"),
   traits = NULL,
   groups = NULL,
@@ -109,16 +105,32 @@ add_metatraits_pq <- function(
   taxonomy <- match.arg(taxonomy, c("gtdb"))
   level <- match.arg(level, c("species", "genus"), several.ok = TRUE)
 
+  # `taxonomic_rank` bundles the genus (and optional species) column(s): the
+  # first element is the genus column, the second (if any) the species column.
+  genus_rank <- taxonomic_rank[1]
+  species_rank <- if (length(taxonomic_rank) >= 2) {
+    taxonomic_rank[2]
+  } else {
+    NA_character_
+  }
+
   if (!genus_rank %in% colnames(physeq@tax_table)) {
     cli::cli_abort(
       "Genus column {.val {genus_rank}} not found in the {.field tax_table}."
     )
   }
-  has_species <- species_rank %in% colnames(physeq@tax_table)
+  has_species <- !is.na(species_rank) &&
+    species_rank %in% colnames(physeq@tax_table)
   if ("species" %in% level && !has_species) {
-    cli::cli_warn(
-      "Species column {.val {species_rank}} not found; using genus level only."
-    )
+    if (is.na(species_rank)) {
+      cli::cli_warn(
+        "No species column supplied in {.arg taxonomic_rank}; using genus level only."
+      )
+    } else {
+      cli::cli_warn(
+        "Species column {.val {species_rank}} not found; using genus level only."
+      )
+    }
     level <- setdiff(level, "species")
   }
   if (length(level) == 0) {
@@ -240,7 +252,7 @@ add_metatraits_pq <- function(
 
 #' Make new tax_table column names unique with respect to existing ones
 #'
-#' Shared by [add_faprotax_pq()] and [add_metatraits_pq()]. Any `new_names` that
+#' Shared by [tax_faprotax_pq()] and [tax_metatraits_pq()]. Any `new_names` that
 #' already appears in `existing` is suffixed (`_1`, `_2`, ...) so that
 #' re-running an annotation never yields duplicate `tax_table` column names.
 #' @noRd
@@ -399,7 +411,11 @@ mt_load_wide <- function(
   kept <- unlist(kept, recursive = FALSE)
 
   get_field <- function(p, i) {
-    vapply(p, function(x) if (length(x) >= i) x[i] else NA_character_, character(1))
+    vapply(
+      p,
+      function(x) if (length(x) >= i) x[i] else NA_character_,
+      character(1)
+    )
   }
   long <- data.frame(
     taxon_name = get_field(kept, i_taxon),
@@ -428,7 +444,11 @@ mt_load_wide <- function(
   }
 
   # Pivot to wide: one row per taxon, one column per trait -------------------
-  long <- long[!duplicated(long[, c("taxon_name", "trait_name")]), , drop = FALSE]
+  long <- long[
+    !duplicated(long[, c("taxon_name", "trait_name")]),
+    ,
+    drop = FALSE
+  ]
   wide <- tidyr::pivot_wider(
     long[, c("taxon_name", "trait_name", "consensus_value")],
     names_from = "trait_name",

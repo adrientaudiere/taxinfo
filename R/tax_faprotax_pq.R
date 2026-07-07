@@ -20,8 +20,11 @@
 #'
 #' By default a single summary column (`faprotax_groups`, a `;`-separated list
 #' of assigned groups) and a count column (`faprotax_n_groups`) are added to
-#' the `tax_table`. Set `binary = TRUE` to additionally get one 0/1 column per
-#' functional group that was assigned to at least one taxon.
+#' the `tax_table`. Set `binary = TRUE` to additionally get one logical
+#' `TRUE`/`FALSE`/`NA` column per functional group that was assigned to at
+#' least one taxon. Taxa that matched no group (`faprotax_groups` is `NA`)
+#' receive `NA` (not found in the database) rather than `FALSE` (a real
+#' "definitely not in this group").
 #'
 #' @param physeq (required) A phyloseq object.
 #' @param faprotax_file (Character) Path to the FAPROTAX database text file.
@@ -33,9 +36,11 @@
 #'   skipped.
 #' @param col_prefix (Character, default `"faprotax_"`) Prefix applied to all
 #'   columns added to the `tax_table`.
-#' @param binary (Logical, default `FALSE`) If `TRUE`, add one integer 0/1
-#'   column per functional group (prefixed with `col_prefix`) in addition to
-#'   the summary columns.
+#' @param binary (Logical, default `FALSE`) If `TRUE`, add one logical
+#'   `TRUE`/`FALSE`/`NA` column per functional group (prefixed with
+#'   `col_prefix`) in addition to the summary columns. `NA` marks taxa that
+#'   were not found in the FAPROTAX database (`faprotax_groups` is `NA`);
+#'   `FALSE` marks taxa that were found but do not belong to that group.
 #' @param valid_word_symbols (Character, default `"-"`) Non-alphanumeric
 #'   characters that count as part of a word when matching pattern tokens
 #'   against the lineage, matching the official FAPROTAX
@@ -67,31 +72,31 @@
 #' @author Adrien Taudiere
 #' @export
 #'
-#' @seealso [add_metatraits_pq()], [fungal_traits_guilds()], [tax_info_pq()]
+#' @seealso [tax_metatraits_pq()], [fungal_traits_guilds()], [tax_info_pq()]
 #'
 #' @examples
 #' data(GlobalPatterns, package = "phyloseq")
 #'
-#' res <- add_faprotax_pq(GlobalPatterns, verbose = FALSE)
-#' 
+#' res <- tax_faprotax_pq(GlobalPatterns, verbose = FALSE)
+#'
 #' head(sort(table(res@tax_table[, "faprotax_groups"], useNA = "ifany"), decreasing = TRUE))
 #'
 #' \donttest{
 #' # One 0/1 column per functional group, then count the nitrifying bacteria
-#' res_bin <- add_faprotax_pq(GlobalPatterns, binary = TRUE, verbose = FALSE)
-#' sum(as.integer(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
+#' res_bin <- tax_faprotax_pq(GlobalPatterns, binary = TRUE, verbose = FALSE)
+#' sum(as.logical(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
 #'
 #' # Restrict matching to the genus / species level only (fewer hits)
-#' res_gs <- add_faprotax_pq(
+#' res_gs <- tax_faprotax_pq(
 #'   GlobalPatterns,
 #'   tax_levels = c("Genus", "Species"),
 #'   verbose = FALSE
 #' )
 #'
 #' # Return a tibble instead of a phyloseq object
-#' tib <- add_faprotax_pq(GlobalPatterns, add_to_phyloseq = FALSE, verbose = FALSE)
+#' tib <- tax_faprotax_pq(GlobalPatterns, add_to_phyloseq = FALSE, verbose = FALSE)
 #' }
-add_faprotax_pq <- function(
+tax_faprotax_pq <- function(
   physeq,
   faprotax_file = system.file(
     "extdata",
@@ -174,6 +179,10 @@ add_faprotax_pq <- function(
     character(1)
   )
   n_col <- lengths(assigned)
+  no_match <- n_col == 0L
+  # Taxa that matched no group were not found in the FAPROTAX database:
+  # n_groups is NA (unknown), not 0.
+  n_col[no_match] <- NA_integer_
 
   new_cols <- data.frame(
     groups = groups_col,
@@ -185,13 +194,18 @@ add_faprotax_pq <- function(
   if (binary) {
     keep <- colSums(membership) > 0
     if (any(keep)) {
+      bin_mat <- membership[, keep, drop = FALSE]
+      # Taxa that matched no FAPROTAX group (faprotax_groups is NA) were not
+      # found in the database: their per-group columns are NA (unknown), not
+      # FALSE (a real "definitely not in this group").
+      if (any(no_match)) {
+        bin_mat[no_match, ] <- NA
+      }
       bin_df <- as.data.frame(
-        matrix(
-          as.integer(membership[, keep, drop = FALSE]),
-          nrow = nrow(membership),
-          dimnames = list(NULL, paste0(col_prefix, group_names[keep]))
-        )
+        bin_mat,
+        stringsAsFactors = FALSE
       )
+      colnames(bin_df) <- paste0(col_prefix, group_names[keep])
       new_cols <- cbind(new_cols, bin_df)
     }
   }
@@ -206,7 +220,7 @@ add_faprotax_pq <- function(
   rownames(new_cols) <- taxa_names(physeq)
 
   if (verbose) {
-    n_assigned <- sum(n_col > 0)
+    n_assigned <- sum(!no_match)
     cli::cli_alert_success(
       "Assigned {.val {sum(colSums(membership) > 0)}} FAPROTAX group{?s} to {.val {n_assigned}}/{.val {ntaxa(physeq)}} taxa."
     )
@@ -338,7 +352,13 @@ faprotax_membership <- function(groups, lineage, valid_word_symbols = "-") {
       # word) along the lineage, with strictly increasing positions (order).
       pos <- lapply(tokens, function(tk) {
         re <- paste0(
-          "(?<![", word_class, "])\\Q", tk, "\\E(?![", word_class, "])"
+          "(?<![",
+          word_class,
+          "])\\Q",
+          tk,
+          "\\E(?![",
+          word_class,
+          "])"
         )
         m <- regexpr(re, uniq, perl = TRUE, ignore.case = TRUE)
         as.integer(m)

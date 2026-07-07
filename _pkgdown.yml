@@ -83,7 +83,9 @@ reference:
   - fungal_traits_guilds
 - subtitle: "Other sources"
   contents:
-  - add_bioshifts_pq
+  - tax_bioshifts_pq
+  - tax_faprotax_pq
+  - tax_metatraits_pq
   - tax_iucn_code_pq
   - tax_spores_size_pq
   - extract_spores_mycodb

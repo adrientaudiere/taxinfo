@@ -3,22 +3,41 @@
 make_archaea_pq <- function() {
   tax <- rbind(
     Taxa_1 = c(
-      "Archaea", "Halobacteriota", "Methanomicrobia",
-      "Methanomicrobiales", "Methanoregulaceae", "Methanoregula",
+      "Archaea",
+      "Halobacteriota",
+      "Methanomicrobia",
+      "Methanomicrobiales",
+      "Methanoregulaceae",
+      "Methanoregula",
       "Methanoregula sp1"
     ),
     Taxa_2 = c(
-      "Archaea", "Thermoproteota", "Nitrososphaeria",
-      "Nitrososphaerales", "Nitrososphaeraceae", "Nitrososphaera",
+      "Archaea",
+      "Thermoproteota",
+      "Nitrososphaeria",
+      "Nitrososphaerales",
+      "Nitrososphaeraceae",
+      "Nitrososphaera",
       "Nitrososphaera sp1"
     ),
     Taxa_3 = c(
-      "Archaea", "Thermoproteota", "Bathyarchaeia",
-      "JUNK", "JUNK", "JUNKXYZ", NA
+      "Archaea",
+      "Thermoproteota",
+      "Bathyarchaeia",
+      "JUNK",
+      "JUNK",
+      "JUNKXYZ",
+      NA
     )
   )
   colnames(tax) <- c(
-    "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"
+    "Kingdom",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species"
   )
   otu <- matrix(
     c(5, 1, 0, 2, 3, 4),
@@ -31,13 +50,13 @@ make_archaea_pq <- function() {
   )
 }
 
-test_that("add_faprotax_pq errors on non-phyloseq input", {
-  expect_error(add_faprotax_pq(NULL), "phyloseq")
-  expect_error(add_faprotax_pq(data.frame(a = 1)), "phyloseq")
+test_that("tax_faprotax_pq errors on non-phyloseq input", {
+  expect_error(tax_faprotax_pq(NULL), "phyloseq")
+  expect_error(tax_faprotax_pq(data.frame(a = 1)), "phyloseq")
 })
 
-test_that("add_faprotax_pq assigns the expected functional groups", {
-  res <- add_faprotax_pq(make_archaea_pq(), verbose = FALSE)
+test_that("tax_faprotax_pq assigns the expected functional groups", {
+  res <- tax_faprotax_pq(make_archaea_pq(), verbose = FALSE)
 
   expect_s4_class(res, "phyloseq")
   expect_true("faprotax_groups" %in% colnames(res@tax_table))
@@ -51,18 +70,30 @@ test_that("add_faprotax_pq assigns the expected functional groups", {
   expect_true(is.na(groups["Taxa_3"]))
 })
 
-test_that("add_faprotax_pq binary = TRUE adds per-group 0/1 columns", {
-  res <- add_faprotax_pq(make_archaea_pq(), binary = TRUE, verbose = FALSE)
+test_that("tax_faprotax_pq binary = TRUE adds per-group TRUE/FALSE columns", {
+  res <- tax_faprotax_pq(make_archaea_pq(), binary = TRUE, verbose = FALSE)
 
   expect_true("faprotax_methanogenesis" %in% colnames(res@tax_table))
-  meth <- as.integer(res@tax_table[, "faprotax_methanogenesis"])
+  meth <- as.logical(res@tax_table[, "faprotax_methanogenesis"])
   names(meth) <- taxa_names(res)
-  expect_equal(meth[["Taxa_1"]], 1L)
-  expect_equal(meth[["Taxa_3"]], 0L)
+  expect_equal(meth[["Taxa_1"]], TRUE)
+  # Taxa_2 matched another group (aerobic_ammonia_oxidation) but not
+  # methanogenesis: a real FALSE, not NA.
+  expect_equal(meth[["Taxa_2"]], FALSE)
+  # Taxa_3 matched no group at all (faprotax_groups is NA): unknown, not FALSE.
+  expect_true(is.na(meth[["Taxa_3"]]))
 })
 
-test_that("add_faprotax_pq returns a tibble when add_to_phyloseq = FALSE", {
-  res <- add_faprotax_pq(
+test_that("tax_faprotax_pq sets faprotax_n_groups to NA for unmatched taxa", {
+  res <- tax_faprotax_pq(make_archaea_pq(), verbose = FALSE)
+  n_groups <- as.integer(res@tax_table[, "faprotax_n_groups"])
+  names(n_groups) <- taxa_names(res)
+  expect_true(n_groups[["Taxa_1"]] >= 1L)
+  expect_true(is.na(n_groups[["Taxa_3"]]))
+})
+
+test_that("tax_faprotax_pq returns a tibble when add_to_phyloseq = FALSE", {
+  res <- tax_faprotax_pq(
     make_archaea_pq(),
     add_to_phyloseq = FALSE,
     verbose = FALSE
@@ -75,8 +106,8 @@ test_that("tax_levels controls the matching scope", {
   # FAPROTAX assigns these archaea through higher-rank patterns
   # (e.g. *Methanomicrobiales*Methanoregula*), so restricting the lineage to
   # Genus + Species drops matches that the full lineage recovers.
-  full <- add_faprotax_pq(make_archaea_pq(), verbose = FALSE)
-  restricted <- add_faprotax_pq(
+  full <- tax_faprotax_pq(make_archaea_pq(), verbose = FALSE)
+  restricted <- tax_faprotax_pq(
     make_archaea_pq(),
     tax_levels = c("Genus", "Species"),
     verbose = FALSE
@@ -89,8 +120,8 @@ test_that("tax_levels controls the matching scope", {
 })
 
 test_that("re-running suffixes columns instead of duplicating them", {
-  res1 <- add_faprotax_pq(make_archaea_pq(), verbose = FALSE)
-  res2 <- add_faprotax_pq(res1, verbose = FALSE)
+  res1 <- tax_faprotax_pq(make_archaea_pq(), verbose = FALSE)
+  res2 <- tax_faprotax_pq(res1, verbose = FALSE)
 
   cols <- colnames(res2@tax_table)
   expect_false(any(duplicated(cols)))
@@ -103,19 +134,30 @@ test_that("'_' is a word boundary, matching the official FAPROTAX tool", {
   # (FAPROTAX treats "_" as a boundary; PCRE's \\b would not).
   tax <- rbind(
     Taxa_1 = c(
-      "Archaea", "Methanobacteriota", "Methanobacteria",
-      "Methanobacteriales", "Methanobacteriaceae", "Methanobacterium_B", NA
+      "Archaea",
+      "Methanobacteriota",
+      "Methanobacteria",
+      "Methanobacteriales",
+      "Methanobacteriaceae",
+      "Methanobacterium_B",
+      NA
     )
   )
   colnames(tax) <- c(
-    "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"
+    "Kingdom",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species"
   )
   otu <- matrix(c(3, 4), nrow = 1, dimnames = list("Taxa_1", c("S1", "S2")))
   pq <- phyloseq::phyloseq(
     phyloseq::otu_table(otu, taxa_are_rows = TRUE),
     phyloseq::tax_table(tax)
   )
-  res <- add_faprotax_pq(pq, verbose = FALSE)
+  res <- tax_faprotax_pq(pq, verbose = FALSE)
   expect_match(
     as.character(res@tax_table[, "faprotax_groups"]),
     "methanogenesis"
@@ -128,7 +170,13 @@ test_that("subtract_group excludes chloroplasts from cyanobacteria", {
     chloro = c("Bacteria", "Cyanobacteria", "Chloroplast", NA, NA, NA, NA)
   )
   colnames(tax) <- c(
-    "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"
+    "Kingdom",
+    "Phylum",
+    "Class",
+    "Order",
+    "Family",
+    "Genus",
+    "Species"
   )
   otu <- matrix(
     c(1, 2, 3, 4),
@@ -139,7 +187,7 @@ test_that("subtract_group excludes chloroplasts from cyanobacteria", {
     phyloseq::otu_table(otu, taxa_are_rows = TRUE),
     phyloseq::tax_table(tax)
   )
-  res <- add_faprotax_pq(pq, verbose = FALSE)
+  res <- tax_faprotax_pq(pq, verbose = FALSE)
   g <- as.character(res@tax_table[, "faprotax_groups"])
   names(g) <- taxa_names(res)
   expect_match(g[["cyano"]], "cyanobacteria")

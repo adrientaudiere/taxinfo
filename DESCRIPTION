@@ -41,6 +41,7 @@ Imports:
     tools,
     utils
 Suggests:
+    BioShiftR,
     CoordinateCleaner,
     DECIPHER,
     digest,
