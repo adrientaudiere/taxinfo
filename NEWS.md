@@ -1,3 +1,5 @@
+# taxinfo 0.4.0 (Development version)
+
 # taxinfo 0.3.0
 ## New features
 
