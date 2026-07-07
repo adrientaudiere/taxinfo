@@ -121,8 +121,8 @@
 <h2 id="key-features">Key Features<a class="anchor" aria-label="anchor" href="#key-features"></a>
 </h2>
 <div class="section level3">
-<h3 id="mag-data-verification--quality-control">🔍 <strong>Data Verification &amp; Quality Control</strong>
-<a class="anchor" aria-label="anchor" href="#mag-data-verification--quality-control"></a>
+<h3 id="id_-data-verification--quality-control">🔍 <strong>Data Verification &amp; Quality Control</strong>
+<a class="anchor" aria-label="anchor" href="#id_-data-verification--quality-control"></a>
 </h3>
 <ul>
 <li>
@@ -130,8 +130,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="earth_africa-biodiversity-data-integration">🌍 <strong>Biodiversity Data Integration</strong>
-<a class="anchor" aria-label="anchor" href="#earth_africa-biodiversity-data-integration"></a>
+<h3 id="id_-biodiversity-data-integration">🌍 <strong>Biodiversity Data Integration</strong>
+<a class="anchor" aria-label="anchor" href="#id_-biodiversity-data-integration"></a>
 </h3>
 <ul>
 <li>
@@ -143,8 +143,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="books-knowledge-base-integration">📚 <strong>Knowledge Base Integration</strong>
-<a class="anchor" aria-label="anchor" href="#books-knowledge-base-integration"></a>
+<h3 id="id_-knowledge-base-integration">📚 <strong>Knowledge Base Integration</strong>
+<a class="anchor" aria-label="anchor" href="#id_-knowledge-base-integration"></a>
 </h3>
 <ul>
 <li>
@@ -154,8 +154,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="world_map-geographic-analysis">🗺️ <strong>Geographic Analysis</strong>
-<a class="anchor" aria-label="anchor" href="#world_map-geographic-analysis"></a>
+<h3 id="id_️-geographic-analysis">🗺️ <strong>Geographic Analysis</strong>
+<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F-geographic-analysis"></a>
 </h3>
 <ul>
 <li>
@@ -167,8 +167,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="microscope-advanced-analysis-tools">🔬 <strong>Advanced Analysis Tools</strong>
-<a class="anchor" aria-label="anchor" href="#microscope-advanced-analysis-tools"></a>
+<h3 id="id_-advanced-analysis-tools">🔬 <strong>Advanced Analysis Tools</strong>
+<a class="anchor" aria-label="anchor" href="#id_-advanced-analysis-tools"></a>
 </h3>
 <ul>
 <li>
@@ -180,8 +180,8 @@
 </ul>
 </div>
 <div class="section level3">
-<h3 id="dart-flexible-input-options">🎯 <strong>Flexible Input Options</strong>
-<a class="anchor" aria-label="anchor" href="#dart-flexible-input-options"></a>
+<h3 id="id_-flexible-input-options">🎯 <strong>Flexible Input Options</strong>
+<a class="anchor" aria-label="anchor" href="#id_-flexible-input-options"></a>
 </h3>
 <p>Most functions can work with either: - <strong>Phyloseq objects</strong>: Automatically enriches the tax_table (default behavior) - <strong>Taxonomic name vectors</strong>: Returns tibbles for standalone queries</p>
 </div>
@@ -203,16 +203,16 @@
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://adrientaudiere.github.io/taxinfo/">taxinfo</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: MiscMetabar</span></span>
-<span><span class="co">#&gt; Loading required package: phyloseq</span></span>
-<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; Loading required package: dplyr</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : MiscMetabar</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : phyloseq</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : ggplot2</span></span>
+<span><span class="co">#&gt; Le chargement a nécessité le package : dplyr</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; Attachement du package : 'dplyr'</span></span>
+<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:stats':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adrientaudiere/MiscMetabar" class="external-link">MiscMetabar</a></span><span class="op">)</span></span>
@@ -242,25 +242,26 @@
 <span><span class="va">data_with_gbif</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq</a></span><span class="op">(</span><span class="va">data_fungi_clean</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Processing GBIF occurrences for Stereum ostrea</span></span>
 <span><span class="co">#&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus</span></span>
-<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  7s</span></span>
+<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  6s</span></span>
 <span><span class="co">#&gt; ℹ Processing GBIF occurrences for Stereum hirsutum</span></span>
-<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  7sℹ Processing GBIF occurrences for Basidiodendron eyrei</span></span>
-<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  7sℹ Processing GBIF occurrences for Sistotrema oblongisporum</span></span>
-<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  7sℹ Processing GBIF occurrences for Fomes fomentarius</span></span>
-<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  7s■■■■■■■■■■■■■                     39% | ETA:  5s</span></span>
-<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Cerocorticium molare</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Aporpium canescens</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hypochnicium analogum</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma roseocremeum</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Hyphoderma setigerum</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5sℹ Processing GBIF occurrences for Trametes versicolor</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■                     39% | ETA:  5s■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2s</span></span>
-<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Peniophora versiformis</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Exidia glandulosa</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Peniophorella pubera</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Auricularia mesenterica</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2sℹ Processing GBIF occurrences for Hericium coralloides</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           72% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
+<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Basidiodendron eyrei</span></span>
+<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  6sℹ Processing GBIF occurrences for Sistotrema oblongisporum</span></span>
+<span><span class="co">#&gt; ■■■■■■                            17% | ETA:  6s■■■■■■■■■■■                       33% | ETA:  6s</span></span>
+<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Fomes fomentarius</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Cerocorticium molare</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Aporpium canescens</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Hypochnicium analogum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■                       33% | ETA:  6sℹ Processing GBIF occurrences for Hyphoderma roseocremeum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■                       33% | ETA:  6s■■■■■■■■■■■■■■■■■■■               61% | ETA:  4s</span></span>
+<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Hyphoderma setigerum</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4sℹ Processing GBIF occurrences for Trametes versicolor</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4sℹ Processing GBIF occurrences for Peniophora versiformis</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4sℹ Processing GBIF occurrences for Exidia glandulosa</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4sℹ Processing GBIF occurrences for Peniophorella pubera</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4sℹ Processing GBIF occurrences for Auricularia mesenterica</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  4s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s</span></span>
+<span><span class="co">#&gt; ℹ Processing GBIF occurrences for Hericium coralloides</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     94% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; ℹ Processing GBIF occurrences for Xylodon flaviporus</span></span>
 <span></span>
 <span><span class="co"># Step 3: Add trait information</span></span>
@@ -272,7 +273,7 @@
 <span>  col_prefix <span class="op">=</span> <span class="st">"ft_"</span>,</span>
 <span>  sep <span class="op">=</span> <span class="st">";"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✔ Added 18 columns from '/tmp/RtmpoZycwp/temp_libpath27e203bc39695/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object</span></span>
+<span><span class="co">#&gt; ✔ Added 18 columns from '/tmp/RtmptJgQnw/temp_libpath22f79458dc01b9/taxinfo/extdata/fun_trait_mini.csv' with information for 0 taxa in the tax_table slot of the phyloseq object</span></span>
 <span></span>
 <span><span class="co"># Step 4: Add Wikipedia information (add_to_phyloseq defaults to TRUE)</span></span>
 <span><span class="va">data_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tax_get_wk_info_pq.html">tax_get_wk_info_pq</a></span><span class="op">(</span><span class="va">data_with_traits</span><span class="op">)</span></span>
@@ -293,21 +294,21 @@
 <span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Aporpium canescens</span></span>
 <span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hypochnicium analogum</span></span>
 <span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2mℹ Getting page views from Wikipedia for Hyphoderma roseocremeum</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 41s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■                      37% | ETA:  2m■■■■■■■■■■■■■■■■■■■■              63% | ETA: 39s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hyphoderma setigerum</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 41s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 34s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 39s■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 32s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Trametes versicolor</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 34s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 37s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■            68% | ETA: 32s■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 35s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Peniophora versiformis</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 37s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 28s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■           74% | ETA: 35s■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 27s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Exidia glandulosa</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 28s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 22s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■         79% | ETA: 27s■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 22s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Peniophorella pubera</span></span>
 <span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■        84% | ETA: 22s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 14s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Auricularia mesenterica</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 14s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA: 14s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  7s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Hericium coralloides</span></span>
-<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  8s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
+<span><span class="co">#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     95% | ETA:  7s■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100% | ETA:  0s</span></span>
 <span><span class="co">#&gt; ℹ Getting page views from Wikipedia for Xylodon flaviporus</span></span>
 <span></span>
 <span><span class="co"># View the enriched taxonomic table</span></span>
@@ -420,11 +421,11 @@
 <span><span class="co">#&gt; ASV26 "Stereum hirsutum"     "1800"              "Pers."    "Willd."         </span></span>
 <span><span class="co">#&gt;       scientificNameAuthorship Global_occurences lang page_length page_views</span></span>
 <span><span class="co">#&gt; ASV7  NA                       NA                NA   NA          NA        </span></span>
-<span><span class="co">#&gt; ASV8  "(Blume &amp; T.Nees) Fr."   " 11562"          " 9" "5525.600"  " 844"    </span></span>
+<span><span class="co">#&gt; ASV8  "(Blume &amp; T.Nees) Fr."   " 11562"          " 9" "5519.600"  " 904"    </span></span>
 <span><span class="co">#&gt; ASV12 "(Pers.) Gray"           NA                NA   NA          NA        </span></span>
-<span><span class="co">#&gt; ASV18 "(Blume &amp; T.Nees) Fr."   " 11562"          " 9" "5525.600"  " 844"    </span></span>
+<span><span class="co">#&gt; ASV18 "(Blume &amp; T.Nees) Fr."   " 11562"          " 9" "5519.600"  " 904"    </span></span>
 <span><span class="co">#&gt; ASV25 "(Fr.) Contu"            "   227"          " 4" "2340.000"  "   0"    </span></span>
-<span><span class="co">#&gt; ASV26 "(Willd.) Pers."         "123137"          "25" "4703.333"  "   0"    </span></span>
+<span><span class="co">#&gt; ASV26 "(Willd.) Pers."         "123141"          "25" "4703.333"  "   0"    </span></span>
 <span><span class="co">#&gt;       taxon_id    taxa_name             </span></span>
 <span><span class="co">#&gt; ASV7  NA          "NA"                  </span></span>
 <span><span class="co">#&gt; ASV8  "Q2710042"  "Stereum ostrea"      </span></span>
@@ -447,8 +448,8 @@
 <span><span class="co">#&gt; # Groups:   query_name [2]</span></span>
 <span><span class="co">#&gt;   query_name      NL    US    GB    DE    CA    SE    DK    RU    AU    AT    NO</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Amanita mu… 129952 31670 26232 24548 10173  9166  9008  8815  7876  7756    NA</span></span>
-<span><span class="co">#&gt; 2 Boletus ed…   5824  5867 10727  4835    NA 12979  5966  4156    NA  3868  4576</span></span>
+<span><span class="co">#&gt; 1 Amanita mu… 129952 31671 26232 24548 10173  9166  9008  8815  7876  7756    NA</span></span>
+<span><span class="co">#&gt; 2 Boletus ed…   5824  5867 10727  4835    NA 12980  5966  4156    NA  3868  4584</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: CH &lt;int&gt;</span></span></code></pre></div>
 </div>
 </div>
@@ -458,51 +459,51 @@
 <p><strong>taxinfo</strong> integrates with multiple authoritative data sources:</p>
 <table class="table">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="13%">
+<col width="42%">
+<col width="43%">
 </colgroup>
-<thead><tr>
+<thead><tr class="header">
 <th>Source</th>
 <th>Description</th>
 <th>Functions</th>
 </tr></thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>GBIF</strong></td>
 <td>Global biodiversity occurrence data</td>
 <td>
 <code><a href="reference/tax_gbif_occur_pq.html">tax_gbif_occur_pq()</a></code>, <code><a href="reference/plot_tax_gbif_pq.html">plot_tax_gbif_pq()</a></code>
 </td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Wikipedia</strong></td>
 <td>Encyclopedia data and page statistics</td>
 <td>
 <code><a href="reference/tax_get_wk_info_pq.html">tax_get_wk_info_pq()</a></code>, <code><a href="reference/tax_get_wk_pages_info.html">tax_get_wk_pages_info()</a></code>
 </td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>GLOBI</strong></td>
 <td>Species interaction networks</td>
 <td><code><a href="reference/tax_globi_pq.html">tax_globi_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>OpenAlex</strong></td>
 <td>Scientific literature database</td>
 <td><code><a href="reference/tax_oa_pq.html">tax_oa_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>TAXREF</strong></td>
 <td>French national taxonomic reference</td>
 <td><code><a href="reference/tax_info_pq.html">tax_info_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>GNA</strong></td>
 <td>Global Names Architecture for name verification</td>
 <td><code><a href="reference/gna_verifier_pq.html">gna_verifier_pq()</a></code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Custom CSV</strong></td>
 <td>Any taxonomic database in CSV format</td>
 <td><code><a href="reference/tax_info_pq.html">tax_info_pq()</a></code></td>

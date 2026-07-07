@@ -1,6 +1,92 @@
 # Changelog
 
-## taxinfo 0.2.0 (Development version)
+## taxinfo 0.3.0 (Development version)
+
+### New features
+
+- [`tax_bioshifts_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_bioshifts_pq.md)
+  attaches, for each taxon of a phyloseq object, a summary of documented
+  range-shift rates from the current BioShifts release (the original
+  BioShifts merged with the CoRE database, Comte et al. 2024) via
+  [`BioShiftR::get_shifts()`](https://bioshifts.github.io/BioShiftR/reference/get_shifts.html),
+  adding mean latitudinal (`bioshift_LAT_rate`) and elevational
+  (`bioshift_ELE_rate`) shift rates plus a `bioshift_n_records` count.
+  Taxa are matched on the `taxonomic_rank` column(s) of the `tax_table`;
+  by default the BioShifts names are harmonised with
+  [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  and the join is made on `currentCanonicalSimple` (disable with
+  `skip_name_verification = TRUE`). A pre-fetched table can be supplied
+  via `shifts_data` to skip the network query.
+
+- [`tax_faprotax_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_faprotax_pq.md)
+  annotates the taxa of a phyloseq object with the ecological/metabolic
+  functional groups of the FAPROTAX database (Louca et al. 2016),
+  matching every group’s `*level*level*` patterns (including the
+  `add_group` / `subtract_group` composites) against the taxonomic
+  lineage; it adds a `faprotax_groups` summary column (and, with
+  `binary = TRUE`, one 0/1 column per group). The FAPROTAX database is
+  bundled in `inst/extdata/FAPROTAX.txt`. Its output was validated to be
+  identical, per OTU and per functional group, to the official FAPROTAX
+  Python tool (`collapse_table.py`) on
+  [`phyloseq::GlobalPatterns`](https://rdrr.io/pkg/phyloseq/man/data-GlobalPatterns.html)
+  (19216 taxa) and on a GTDB archaeal dataset (541 taxa). A
+  `valid_word_symbols` argument (default `"-"`) reproduces FAPROTAX’s
+  word-boundary rules, so `_` acts as a boundary
+  (e.g. `*Methanobacterium*` matches the GTDB name
+  `Methanobacterium_B`).
+
+- [`tax_harmonize_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_harmonize_backbone_pq.md)
+  re-derives the higher taxonomic ranks (those above a chosen anchor
+  rank, or above each taxon’s deepest assigned rank with
+  `anchor = "last_assigned"`) from a single trusted backbone (GBIF
+  online via
+  [`rgbif::name_backbone_checklist()`](https://docs.ropensci.org/rgbif/reference/name_backbone_checklist.html)
+  or a local `backbone` data frame), making taxonomies from different
+  reference databases comparable; it harmonises several databases at
+  once through suffix-based tracks (e.g. `suffixes = c("", "_Euk")`),
+  gates online matches on `matchType`/`confidence`, disambiguates
+  homonyms with `kingdom`, optionally recovers ambiguous names that GBIF
+  backs off to a higher rank via the verbose
+  [`rgbif::name_backbone()`](https://docs.ropensci.org/rgbif/reference/name_backbone.html)
+  alternatives (`resolve_ambiguous = TRUE`, e.g. placing a bare
+  `Boletus` in Boletaceae), and optionally keeps the overwritten values
+  in `_orig` companion columns.
+
+- [`tax_metatraits_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_metatraits_pq.md)
+  augments the `tax_table` with harmonised microbial phenotypic traits
+  from the metaTraits resource (Robbani et al. 2026,
+  <https://metatraits.embl.de>). It matches GTDB names given by the
+  `taxonomic_rank` column(s) (species-first, with genus fallback),
+  downloads and caches the large summary tables once in
+  `tools::R_user_dir("taxinfo", "cache")`, and supports filtering by
+  `traits`, `groups` (metaTraits `group_1` category) and
+  `min_consensus_percentage`.
+
+- [`tax_spores_volume_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_spores_volume_pq.md)
+  annotates the taxa of a phyloseq object with fungal spore volume and
+  morphology (length, width, projected area and length/width ratio) from
+  the spore-trait database of Aguilar-Trigueros et al. (2023),
+  redistributed by the `q2-fungal-traits` plugin and bundled in
+  `inst/extdata/Spore_data_12Nov21.tsv`. For each spore type
+  (`Mitospores`, `Meiospores`, `Multinucleate sexual spores`,
+  `Multinucleate asexual spores`) it matches taxa hierarchically
+  (species binomial, then genus, then family, with genus/family values
+  the geometric mean of the database entries) and records the matched
+  rank in a `*_matching_level` column, restricting matches to fungal
+  taxa. Species-, genus- and family-level matches were cross-checked
+  against a recomputation of the geometric-mean matching logic on the
+  bundled database.
+
+### Changes
+
+- [`tax_faprotax_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_faprotax_pq.md)
+  now stores the per-group `binary = TRUE` columns as logical
+  `TRUE`/`FALSE`/`NA` instead of integer `0`/`1`. Taxa that matched no
+  FAPROTAX group (`faprotax_groups` is `NA`) receive `NA` (not found in
+  the database) rather than `0`/`FALSE` (a real “definitely not in this
+  group”); `faprotax_n_groups` is likewise `NA` for those taxa.
+
+## taxinfo 0.2.0
 
 ### Bug fixes
 
@@ -42,7 +128,7 @@
   them, consistent with the other `tax_*_pq()` functions, instead of
   overwriting the existing columns.
 
-## taxinfo 0.1.2
+## taxinfo 0.1.2 \[CRAN\]
 
 ### Breaking changes
 

@@ -49,5 +49,5 @@ extract_spores_mycodb("Xylobolus subpileatus")
 extract_spores_mycodb("Nonexistent species")
 #> [1] "Not in mycoDB"
 extract_spores_mycodb("Amanita")
-#> [1] "Not in mycoDB"
+#> [1] "No spore size info in mycoDB"
 ```

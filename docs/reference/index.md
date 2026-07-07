@@ -10,6 +10,8 @@ using authoritative databases and verification services.
   object.
 - [`tax_crosscheck_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_gbif_pq.md)
   : Cross-check taxonomic names using GBIF backbone and GNA Verifier
+- [`tax_harmonize_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_harmonize_backbone_pq.md)
+  : Harmonise higher taxonomic ranks from a trusted backbone
 
 ## Add data from external sources
 
@@ -59,12 +61,21 @@ taxonomic information, page statistics, and content analysis.
 
 ### Other sources
 
+- [`tax_bioshifts_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_bioshifts_pq.md)
+  : Add range-shift information from the BioShifts database to a
+  phyloseq object
+- [`tax_faprotax_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_faprotax_pq.md)
+  : Add FAPROTAX functional-group annotations to a phyloseq object
+- [`tax_metatraits_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_metatraits_pq.md)
+  : Add metaTraits phenotypic traits to a phyloseq object
 - [`tax_iucn_code_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_iucn_code_pq.md)
   : Get iucn conservation status through gbif
 - [`tax_spores_size_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_spores_size_pq.md)
   : Extract spore size from mycoDB
 - [`extract_spores_mycodb()`](https://adrientaudiere.github.io/taxinfo/reference/extract_spores_mycodb.md)
   : Extract spore size from mycoDB for a single species
+- [`tax_spores_volume_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_spores_volume_pq.md)
+  : Add fungal spore volume and morphology to a phyloseq object
 
 ## Data checking using external informations
 

@@ -1,7 +1,6 @@
 # Checking Taxa Presence in Samples
 
 ``` r
-
 library(taxinfo)
 library(MiscMetabar)
 library(ggplot2)
@@ -68,12 +67,10 @@ Paris, France?
 ```
 
 ``` r
-
 Q_rob_in_Paris <- tax_occur_check("Quercus robur", 2.3522, 48.8566, 100)
 ```
 
 ``` r
-
 Q_rob_in_Paris$count_in_radius
 ```
 
@@ -106,7 +103,6 @@ Q_rob_in_Paris$count_in_radius
 ```
 
 ``` r
-
 # Visualize occurrences around Paris for Fagus sylvatica
 res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
   return_all_occ = TRUE
@@ -114,7 +110,6 @@ res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
 ```
 
 ``` r
-
 
 occ_data_sf <- sf::st_as_sf(res_occ$occ_data,
   coords = c("decimalLongitude", "decimalLatitude"),
@@ -165,7 +160,6 @@ leaflet() |>
 ```
 
 ``` r
-
 # Load example data
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -176,7 +170,6 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 
 ``` r
 
-
 summary_plot_pq(data_clean)
 ```
 
@@ -185,7 +178,6 @@ summary_plot_pq(data_clean)
 plot of chunk unnamed-chunk-4
 
 ``` r
-
 head(data_clean@tax_table[, c("Genus", "Species", "currentCanonicalSimple")])
 ```
 
@@ -302,7 +294,6 @@ specific radius of your sampling location:
 ```
 
 ``` r
-
 # Define sampling coordinates (example: Paris, France)
 longitude <- 2.3488
 latitude <- 48.8534
@@ -319,7 +310,6 @@ occurrence_check <- tax_occur_check_pq(
 ```
 
 ``` r
-
 
 # View results
 head(occurrence_check)
@@ -366,7 +356,6 @@ plot of chunk unnamed-chunk-7
 We can also explore the minimum and mean distance to sampling location.
 
 ``` r
-
 occurrence_check |>
   mutate(Genus = stringr::word(taxa_name, 1)) |>
   filter(!is.na(mean_distance_km)) |>
@@ -746,7 +735,6 @@ Compare occurrence patterns at different spatial scales:
 ```
 
 ``` r
-
 # Check multiple radii
 radii <- c(50, 100, 200, 500)
 
@@ -764,14 +752,12 @@ occurrence_multi_radius <- purrr::map_dfr(radii, function(r) {
 
 ``` r
 
-
 occurrence_multi_radius$radius_category <- factor(occurrence_multi_radius$radius_category,
   levels = paste(radii, "km")
 )
 ```
 
 ``` r
-
 # Visualize scaling patterns
 occurrence_multi_radius |>
   ggplot(aes(x = radius_category, y = count_in_radius, group = taxa_name)) +
@@ -829,7 +815,6 @@ Use occurrence data to filter taxa that are unlikely to be present:
 ```
 
 ``` r
-
 # Set threshold for likely presence (e.g., at least 5 occurrences within 100km)
 min_occurrences <- 5
 
@@ -844,7 +829,6 @@ data_filtered <- select_taxa_pq(data_clean, taxnames = likely_present)
 
 ``` r
 
-
 compar <- MiscMetabar::track_wkflow(
   list(
     "initial" = data_clean,
@@ -855,7 +839,6 @@ compar <- MiscMetabar::track_wkflow(
 ```
 
 ``` r
-
 knitr::kable(compar)
 ```
 
@@ -893,14 +876,14 @@ knitr::kable(compar)
     #&gt; ✔ Found 116 occurrences for species Stereum hirsutum:
     #&gt; • Closest occurrence: 8.29 km
     #&gt; 
-    ■                                  1% | ETA:  6m[K
+    ■                                  1% | ETA:  6m [K
 
-    [Kℹ Processing GPS point: "2.2993352883976_48.2367350320308"
+     [Kℹ Processing GPS point: "2.2993352883976_48.2367350320308"
     #&gt; ■                                  1% | ETA:  6m
     Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -908,26 +891,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■                                  1% | ETA:  6m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■                                  1% | ETA:  6m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 21.83 km
     #&gt; 
     #&gt; ■                                  1% | ETA:  6m
     #&gt; 
-    ■■                                 2% | ETA:  5m[K
+    ■■                                 2% | ETA:  5m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.75391880935241_47.8166291060034"
     #&gt; 
     #&gt; ■■                                 2% | ETA:  5m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -935,26 +918,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■                                 2% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■                                 2% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 78.8 km
     #&gt; 
     #&gt; ■■                                 2% | ETA:  5m
     #&gt; 
-    ■■                                 3% | ETA:  4m[K
+    ■■                                 3% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.75792730852202_48.5406438706496"
     #&gt; 
     #&gt; ■■                                 3% | ETA:  4m
     #&gt; Cleaning suppress 14 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -962,26 +945,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■                                 3% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■                                 3% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 40.23 km
     #&gt; 
     #&gt; ■■                                 3% | ETA:  4m
     #&gt; 
-    ■■                                 4% | ETA:  4m[K
+    ■■                                 4% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.11533779950779_47.9584116800543"
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -989,26 +972,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 54.1 km
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    ■■                                 4% | ETA:  4m[K
+    ■■                                 4% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.98968665610563_47.7518540364153"
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1016,31 +999,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 78.69 km
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■                                 4% | ETA:  4m
     #&gt; 
-    ■■■                                5% | ETA:  4m[K
+    ■■■                                5% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.99594050913231_47.9730602147973"
     #&gt; 
     #&gt; ■■■                                5% | ETA:  4m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1048,26 +1031,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■                                5% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■                                5% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 55.23 km
     #&gt; 
     #&gt; ■■■                                5% | ETA:  4m
     #&gt; 
-    ■■■                                6% | ETA:  3m[K
+    ■■■                                6% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.68379530350899_47.9636910609151"
     #&gt; 
     #&gt; ■■■                                6% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1075,26 +1058,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■                                6% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■                                6% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 68.29 km
     #&gt; 
     #&gt; ■■■                                6% | ETA:  3m
     #&gt; 
-    ■■■                                7% | ETA:  3m[K
+    ■■■                                7% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.55556511489069_47.9021549864714"
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1102,26 +1085,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 79.73 km
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    ■■■                                7% | ETA:  3m[K
+    ■■■                                7% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.76283250266615_47.9245699828038"
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1129,39 +1112,39 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 68.23 km
     #&gt; 
     #&gt; ■■■                                7% | ETA:  3m
     #&gt; 
-    ■■■                                8% | ETA:  3m[K
+    ■■■                                8% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.24408058438146_47.8155687267114"
     #&gt; 
     #&gt; ■■■                                8% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■                                8% | ETA:  3m
     #&gt; 
-    ■■■■                               9% | ETA:  3m[K
+    ■■■■                               9% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.18060256056189_47.7163803338367"
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1169,23 +1152,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 79.98 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 211 occurrences remain(s)
     #&gt; - Total original: 211
@@ -1193,18 +1176,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 195 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 15.59 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 3 occurrences remain(s)
     #&gt; - Total original: 3
@@ -1212,18 +1195,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 3 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 81.97 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1231,18 +1214,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Sistotrema oblongisporum:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 86.43 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 495 occurrences remain(s)
     #&gt; - Total original: 495
@@ -1250,18 +1233,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 465 occurrences for species Fomes fomentarius:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 12.78 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 17 occurrences remain(s)
     #&gt; - Total original: 17
@@ -1269,18 +1252,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 17 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 23 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 5 occurrences remain(s)
     #&gt; - Total original: 5
@@ -1288,18 +1271,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 5 occurrences for species Aporpium canescens:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 84.44 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 22 occurrences remain(s)
     #&gt; - Total original: 22
@@ -1307,38 +1290,38 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 22 occurrences for species Hypochnicium analogum:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 81.97 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  3m
     #&gt; 
-    ■■■■                               9% | ETA:  5m[K
+    ■■■■                               9% | ETA:  5m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.194041359546_48.3226996810885"
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.55570790684956_48.2329909701314"
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1346,18 +1329,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 57.88 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 4 occurrences remain(s)
     #&gt; - Total original: 4
@@ -1365,26 +1348,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 4 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 75.04 km
     #&gt; 
     #&gt; ■■■■                               9% | ETA:  5m
     #&gt; 
-    ■■■■                              11% | ETA:  4m[K
+    ■■■■                              11% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.94402037644304_47.8232108413603"
     #&gt; 
     #&gt; ■■■■                              11% | ETA:  4m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1392,26 +1375,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■                              11% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■                              11% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 72.18 km
     #&gt; 
     #&gt; ■■■■                              11% | ETA:  4m
     #&gt; 
-    ■■■■■                             12% | ETA:  4m[K
+    ■■■■■                             12% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.15212296392716_48.1076730627936"
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1419,26 +1402,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 37.33 km
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    ■■■■■                             12% | ETA:  4m[K
+    ■■■■■                             12% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.17866024451568_47.9784287809566"
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; Cleaning suppress 14 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1446,23 +1429,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 51.05 km
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 3 occurrences remain(s)
     #&gt; - Total original: 3
@@ -1470,18 +1453,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 3 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 58.15 km
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 5 occurrences remain(s)
     #&gt; - Total original: 5
@@ -1489,38 +1472,38 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 5 occurrences for species Aporpium canescens:
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 58.98 km
     #&gt; 
     #&gt; ■■■■■                             12% | ETA:  4m
     #&gt; 
-    ■■■■■                             13% | ETA:  4m[K
+    ■■■■■                             13% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.60122818798864_47.8599313706998"
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.98980478971632_48.0790437367661"
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1528,18 +1511,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 44.76 km
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 29 occurrences remain(s)
     #&gt; - Total original: 32
@@ -1547,26 +1530,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 29 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 52.75 km
     #&gt; 
     #&gt; ■■■■■                             13% | ETA:  4m
     #&gt; 
-    ■■■■■                             15% | ETA:  4m[K
+    ■■■■■                             15% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.04364455202932_48.3227813435762"
     #&gt; 
     #&gt; ■■■■■                             15% | ETA:  4m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1574,40 +1557,40 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■                             15% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■                             15% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 21.24 km
     #&gt; 
     #&gt; ■■■■■                             15% | ETA:  4m
     #&gt; 
-    ■■■■■■                            15% | ETA:  4m[K
+    ■■■■■■                            15% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.9251944020232_47.7722906194223"
     #&gt; 
     #&gt; ■■■■■■                            15% | ETA:  4m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■                            15% | ETA:  4m
     #&gt; 
-    ■■■■■■                            16% | ETA:  4m[K
+    ■■■■■■                            16% | ETA:  4m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.87206048896544_47.7724218267879"
     #&gt; 
     #&gt; ■■■■■■                            16% | ETA:  4m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1615,31 +1598,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■                            16% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■                            16% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 79.38 km
     #&gt; 
     #&gt; ■■■■■■                            16% | ETA:  4m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■                            16% | ETA:  4m
     #&gt; 
-    ■■■■■■                            17% | ETA:  3m[K
+    ■■■■■■                            17% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.74062920158094_47.9138174489072"
     #&gt; 
     #&gt; ■■■■■■                            17% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1647,26 +1630,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■                            17% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■                            17% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 70.15 km
     #&gt; 
     #&gt; ■■■■■■                            17% | ETA:  3m
     #&gt; 
-    ■■■■■■                            18% | ETA:  3m[K
+    ■■■■■■                            18% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.97431155666963_47.8919119497415"
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1674,26 +1657,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 64.23 km
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    ■■■■■■                            18% | ETA:  3m[K
+    ■■■■■■                            18% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.48263441603355_48.0261924844287"
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1701,18 +1684,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 74.3 km
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 4 occurrences remain(s)
     #&gt; - Total original: 4
@@ -1720,26 +1703,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 4 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 78.3 km
     #&gt; 
     #&gt; ■■■■■■                            18% | ETA:  3m
     #&gt; 
-    ■■■■■■■                           19% | ETA:  3m[K
+    ■■■■■■■                           19% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.57243356349822_48.0868322859995"
     #&gt; 
     #&gt; ■■■■■■■                           19% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1747,38 +1730,38 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■                           19% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■                           19% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 64.91 km
     #&gt; 
     #&gt; ■■■■■■■                           19% | ETA:  3m
     #&gt; 
-    ■■■■■■■                           20% | ETA:  3m[K
+    ■■■■■■■                           20% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.0292250789377_48.0726171498082"
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.29209124736533_47.8283733758595"
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1786,26 +1769,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 67.2 km
     #&gt; 
     #&gt; ■■■■■■■                           20% | ETA:  3m
     #&gt; 
-    ■■■■■■■                           21% | ETA:  3m[K
+    ■■■■■■■                           21% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.61470233209667_48.0988313611085"
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1813,23 +1796,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 61.6 km
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 389 occurrences remain(s)
     #&gt; - Total original: 402
@@ -1837,32 +1820,32 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 350 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 26.46 km
     #&gt; 
     #&gt; ■■■■■■■                           21% | ETA:  3m
     #&gt; 
-    ■■■■■■■■                          22% | ETA:  3m[K
+    ■■■■■■■■                          22% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.21498966421748_48.295972436813"
     #&gt; 
     #&gt; ■■■■■■■■                          22% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■                          22% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1870,26 +1853,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          22% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Sistotrema oblongisporum:
     #&gt; 
     #&gt; ■■■■■■■■                          22% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 35.96 km
     #&gt; 
     #&gt; ■■■■■■■■                          22% | ETA:  3m
     #&gt; 
-    ■■■■■■■■                          23% | ETA:  3m[K
+    ■■■■■■■■                          23% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.89493312259817_48.01884545766"
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1897,26 +1880,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 54.09 km
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    ■■■■■■■■                          23% | ETA:  3m[K
+    ■■■■■■■■                          23% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.25486553201844_47.7644966605838"
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1924,18 +1907,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 74.31 km
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 22 occurrences remain(s)
     #&gt; - Total original: 22
@@ -1943,26 +1926,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 22 occurrences for species Hypochnicium analogum:
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 74.65 km
     #&gt; 
     #&gt; ■■■■■■■■                          23% | ETA:  3m
     #&gt; 
-    ■■■■■■■■                          24% | ETA:  3m[K
+    ■■■■■■■■                          24% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.03049928179273_47.8518325317124"
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1970,18 +1953,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 67.16 km
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -1989,26 +1972,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Sistotrema oblongisporum:
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 79.02 km
     #&gt; 
     #&gt; ■■■■■■■■                          24% | ETA:  3m
     #&gt; 
-    ■■■■■■■■                          25% | ETA:  3m[K
+    ■■■■■■■■                          25% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.01390756079847_48.1646937552455"
     #&gt; 
     #&gt; ■■■■■■■■                          25% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2016,26 +1999,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■                          25% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■                          25% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 35.66 km
     #&gt; 
     #&gt; ■■■■■■■■                          25% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■                         26% | ETA:  3m[K
+    ■■■■■■■■■                         26% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.38329502714333_47.9179197636477"
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2043,26 +2026,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 57.75 km
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■                         26% | ETA:  3m[K
+    ■■■■■■■■■                         26% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.79653093345683_48.0116087875764"
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2070,18 +2053,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 58.89 km
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 22 occurrences remain(s)
     #&gt; - Total original: 22
@@ -2089,26 +2072,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 22 occurrences for species Hypochnicium analogum:
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 76.4 km
     #&gt; 
     #&gt; ■■■■■■■■■                         26% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■                         27% | ETA:  3m[K
+    ■■■■■■■■■                         27% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.80452770460834_48.0072137534363"
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2116,18 +2099,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 58.93 km
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 350 occurrences remain(s)
     #&gt; - Total original: 375
@@ -2135,26 +2118,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 305 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 15.54 km
     #&gt; 
     #&gt; ■■■■■■■■■                         27% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■                         28% | ETA:  3m[K
+    ■■■■■■■■■                         28% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.00024748559981_47.7333852356941"
     #&gt; 
     #&gt; ■■■■■■■■■                         28% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2162,26 +2145,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■                         28% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■                         28% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 80.46 km
     #&gt; 
     #&gt; ■■■■■■■■■                         28% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■                        28% | ETA:  3m[K
+    ■■■■■■■■■■                        28% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.87981820501418_48.1128645586334"
     #&gt; 
     #&gt; ■■■■■■■■■■                        28% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2189,26 +2172,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        28% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■                        28% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 46.22 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        28% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■                        29% | ETA:  3m[K
+    ■■■■■■■■■■                        29% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.44862432057724_47.8143614451431"
     #&gt; 
     #&gt; ■■■■■■■■■■                        29% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2216,26 +2199,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        29% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■                        29% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 69.89 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        29% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■                        30% | ETA:  3m[K
+    ■■■■■■■■■■                        30% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.8952190532575_47.7112928397872"
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2243,18 +2226,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 85.12 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 17 occurrences remain(s)
     #&gt; - Total original: 17
@@ -2262,26 +2245,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 17 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 21.89 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        30% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■                        31% | ETA:  3m[K
+    ■■■■■■■■■■                        31% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.89928147562711_47.888655500778"
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2289,43 +2272,43 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 66.72 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■                        31% | ETA:  3m[K
+    ■■■■■■■■■■                        31% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.96107944701493_47.6767521091196"
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.00396596832688_47.9267196096506"
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2333,18 +2316,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 59.83 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2352,40 +2335,40 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Sistotrema oblongisporum:
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 73.74 km
     #&gt; 
     #&gt; ■■■■■■■■■■                        31% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■                       33% | ETA:  3m[K
+    ■■■■■■■■■■■                       33% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.98038288416931_48.0538816328756"
     #&gt; 
     #&gt; ■■■■■■■■■■■                       33% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■                       33% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■                       34% | ETA:  3m[K
+    ■■■■■■■■■■■                       34% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.03951410085234_47.8141564719444"
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  3m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2393,31 +2376,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 71.03 km
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■                       34% | ETA:  2m[K
+    ■■■■■■■■■■■                       34% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.91916129044248_47.9690486959801"
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 336 occurrences remain(s)
     #&gt; - Total original: 361
@@ -2425,38 +2408,38 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 304 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 6.07 km
     #&gt; 
     #&gt; ■■■■■■■■■■■                       34% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■                      35% | ETA:  3m[K
+    ■■■■■■■■■■■■                      35% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.75249793897135_47.9626277044037"
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.01614424799679_48.1580134942152"
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2464,18 +2447,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 36.2 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 364 occurrences remain(s)
     #&gt; - Total original: 388
@@ -2483,18 +2466,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 330 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 14.6 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 29 occurrences remain(s)
     #&gt; - Total original: 32
@@ -2502,26 +2485,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 29 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 43.86 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      35% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■                      36% | ETA:  3m[K
+    ■■■■■■■■■■■■                      36% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.05760676880779_48.4208011005223"
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      36% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2529,31 +2512,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      36% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      36% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 16.38 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      36% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      36% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■                      37% | ETA:  3m[K
+    ■■■■■■■■■■■■                      37% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.96750508635991_48.2583979892214"
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      37% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 3 occurrences remain(s)
     #&gt; - Total original: 3
@@ -2561,26 +2544,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      37% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 3 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      37% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 55.25 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      37% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■                      38% | ETA:  3m[K
+    ■■■■■■■■■■■■                      38% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.6648152807142_47.6512805131074"
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      38% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2588,31 +2571,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      38% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      38% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 98.14 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      38% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■                      38% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■                     39% | ETA:  2m[K
+    ■■■■■■■■■■■■■                     39% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.0208957460923_47.8011478160344"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2620,31 +2603,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 72.78 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■                     39% | ETA:  2m[K
+    ■■■■■■■■■■■■■                     39% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.14252394307795_48.2639421994398"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 405 occurrences remain(s)
     #&gt; - Total original: 418
@@ -2652,18 +2635,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 357 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 9.53 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 3 occurrences remain(s)
     #&gt; - Total original: 3
@@ -2671,26 +2654,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 3 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 42.84 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     39% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■                     40% | ETA:  2m[K
+    ■■■■■■■■■■■■■                     40% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.72377103410667_47.9989421202064"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; Cleaning suppress 14 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2698,18 +2681,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 63.38 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 350 occurrences remain(s)
     #&gt; - Total original: 377
@@ -2717,18 +2700,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 313 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 19.36 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 4 occurrences remain(s)
     #&gt; - Total original: 4
@@ -2736,18 +2719,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 4 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 83.58 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 481 occurrences remain(s)
     #&gt; - Total original: 500
@@ -2755,26 +2738,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 388 occurrences for species Fomes fomentarius:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 9.43 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     40% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■                     41% | ETA:  3m[K
+    ■■■■■■■■■■■■■                     41% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.210883969947_47.8377142602746"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     41% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2782,37 +2765,37 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     41% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     41% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 66.34 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     41% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■                     42% | ETA:  3m[K
+    ■■■■■■■■■■■■■                     42% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.29943018778344_47.9222739558244"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.00686588187344_47.9354214811856"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2820,23 +2803,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 58.85 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 329 occurrences remain(s)
     #&gt; - Total original: 340
@@ -2844,18 +2827,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 303 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 0.9 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 3 occurrences remain(s)
     #&gt; - Total original: 3
@@ -2863,18 +2846,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 3 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 70.58 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2882,18 +2865,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Sistotrema oblongisporum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 72.88 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 494 occurrences remain(s)
     #&gt; - Total original: 500
@@ -2901,18 +2884,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 455 occurrences for species Fomes fomentarius:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 1.43 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 29 occurrences remain(s)
     #&gt; - Total original: 32
@@ -2920,18 +2903,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 28 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 54.94 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 5 occurrences remain(s)
     #&gt; - Total original: 5
@@ -2939,18 +2922,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 5 occurrences for species Aporpium canescens:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 70.66 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 22 occurrences remain(s)
     #&gt; - Total original: 22
@@ -2958,38 +2941,38 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 22 occurrences for species Hypochnicium analogum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 70.54 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■                     42% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■                    43% | ETA:  3m[K
+    ■■■■■■■■■■■■■■                    43% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.91217774869042_47.5174079690895"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.80985723692523_47.9575478589018"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; Cleaning suppress 14 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -2997,18 +2980,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 63.24 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 345 occurrences remain(s)
     #&gt; - Total original: 363
@@ -3016,26 +2999,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 297 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 11.55 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    43% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■                    45% | ETA:  3m[K
+    ■■■■■■■■■■■■■■                    45% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.83395870853466_48.1219315017671"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    45% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3043,26 +3026,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    45% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    45% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.72 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■                    45% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■                   45% | ETA:  3m[K
+    ■■■■■■■■■■■■■■■                   45% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.93395637851301_48.0678563568902"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   45% | ETA:  3m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3070,26 +3053,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   45% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   45% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.93 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   45% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■                   46% | ETA:  3m[K
+    ■■■■■■■■■■■■■■■                   46% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.24290765102149_48.2813810125112"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   46% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3097,45 +3080,45 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   46% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   46% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 17.02 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   46% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   46% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■                   47% | ETA:  3m[K
+    ■■■■■■■■■■■■■■■                   47% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.05872540028937_48.302394701658"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■                   47% | ETA:  3m[K
+    ■■■■■■■■■■■■■■■                   47% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.07311192398735_47.9918603563432"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3143,26 +3126,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 51.33 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   47% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■                   48% | ETA:  3m[K
+    ■■■■■■■■■■■■■■■                   48% | ETA:  3m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.79423545440676_47.7104884597658"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   48% | ETA:  3m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3170,31 +3153,31 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   48% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   48% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 88 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   48% | ETA:  3m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■                   48% | ETA:  3m
     #&gt; 
-    ■■■■■■■■■■■■■■■■                  49% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■                  49% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.27351268065882_48.0048125639325"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  49% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3202,26 +3185,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  49% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  49% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.57 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  49% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■                  50% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■                  50% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.24363797030147_47.9447549477189"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3229,26 +3212,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 54.31 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■                  50% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■                  50% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.12716836153844_48.0187295951851"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3256,43 +3239,43 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.37 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  50% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■                  51% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■                  51% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.26372728935724_48.0897399170468"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.19121953447668_48.0927592222255"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3300,68 +3283,68 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 38.34 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■                  51% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.01782252475527_48.0515538003913"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.94832418800796_48.08649070254"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 53% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■                 54% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■                 54% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.15250303422653_48.1201888916157"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 54% | ETA:  2m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 54% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.16927616560517_48.2311025328875"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m
     #&gt; Cleaning suppress 15 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3369,26 +3352,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 23.83 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■                 55% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.01210694162616_48.3020599305486"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3396,49 +3379,49 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 24.48 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                55% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■                56% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■                56% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.9350825812771_47.8597752773594"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.20507678326343_47.5035734427658"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Stereum ostrea
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Ossicaulis lachnopus
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 112 occurrences remain(s)
     #&gt; - Total original: 112
@@ -3446,18 +3429,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 70 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 13.69 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 2 occurrences remain(s)
     #&gt; - Total original: 2
@@ -3465,23 +3448,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 0 occurrences for species Basidiodendron eyrei:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 102.69 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Sistotrema oblongisporum
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 277 occurrences remain(s)
     #&gt; - Total original: 277
@@ -3489,18 +3472,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 214 occurrences for species Fomes fomentarius:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 3.41 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 9 occurrences remain(s)
     #&gt; - Total original: 9
@@ -3508,23 +3491,23 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 4 occurrences for species Cerocorticium molare:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 13.69 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ! No occurrences found for Aporpium canescens
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 4 occurrences remain(s)
     #&gt; - Total original: 4
@@ -3532,26 +3515,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 0 occurrences for species Hypochnicium analogum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 102.7 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.90686590016618_48.0168820455305"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; Cleaning suppress 16 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3559,18 +3542,18 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 53.82 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 481 occurrences remain(s)
     #&gt; - Total original: 500
@@ -3578,26 +3561,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 421 occurrences for species Fomes fomentarius:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 3.02 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■                58% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.07324487271148_48.0290363016356"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3605,26 +3588,26 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.39 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               58% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.80635420214086_48.1394888162458"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 1 occurrences remain(s)
     #&gt; - Total original: 1
@@ -3632,52 +3615,52 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 1 occurrences for species Stereum ostrea:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 47.8 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               59% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■■               60% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■■               60% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "1.98340127563098_47.9824995895498"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA:  2m
     #&gt; Cleaning suppress 18 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               60% | ETA:  2m
     #&gt; 
-    ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m[K
+    ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m [K
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.13000863474002_48.0893193893191"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; Cleaning suppress 19 taxa and 0 samples.
     #&gt; 
     #&gt; 
-    [K
+     [K
     #&gt; ! No taxonomic names found at the specified taxonomic rank.Please check the `taxonomic_rank` parameter and your phyloseq object.
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ℹ Processing GPS point: "2.19752469900431_48.0808515338862"
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; Cleaning suppress 17 taxa and 0 samples.
     #&gt; Reading 'ne_50m_land.zip' from naturalearth...
     #&gt; 
-    [K
+     [K
     #&gt; ℹ After cleaning with CoordinateCleaner::clean_coordinates:
     #&gt; - 358 occurrences remain(s)
     #&gt; - Total original: 385
@@ -3685,17 +3668,17 @@ knitr::kable(compar)
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; ✔ Found 331 occurrences for species Stereum hirsutum:
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; 
-    [K
+     [K
     #&gt; • Closest occurrence: 4.92 km
     #&gt; 
     #&gt; ■■■■■■■■■■■■■■■■■■■               61% | ETA:  2m
     #&gt; 
-    [K
+     [K
     </pre></div>
     <div id='warn-popup-unnamed-chunk-12' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Warnings</strong></div><pre class='popup-pre'>#&gt; Warning: [vect] guessed crs
     #&gt; Warning: [vect] guessed crs
@@ -3825,7 +3808,6 @@ knitr::kable(compar)
 
 ``` r
 
-
 # Summarize by site
 site_summary <- multi_location_check[[1]] |>
   group_by(sample_name) |>
@@ -3842,7 +3824,6 @@ site_summary <- multi_location_check[[1]] |>
 
 ``` r
 
-
 site_summary
 ```
 
@@ -3854,7 +3835,6 @@ site_summary
 Validate your sampling sites against known distributions:
 
 ``` r
-
 # Define your sampling coordinates
 sample_coords <- data.frame(
   longitude = c(2.3, 5.4, -1.6), # Example coordinates
@@ -3879,7 +3859,6 @@ site_validation <- purrr::map_dfr(1:nrow(sample_coords), function(i) {
 
 ``` r
 
-
 # Summarize validation results
 validation_summary <- site_validation |>
   group_by(sample_point_lon, sample_point_lat) |>
@@ -3895,7 +3874,6 @@ validation_summary <- site_validation |>
 
 ``` r
 
-
 validation_summary
 ```
 
@@ -3907,7 +3885,6 @@ validation_summary
 Add occurrence information directly to your phyloseq object:
 
 ``` r
-
 # Add occurrence data to phyloseq tax_table
 data_with_occurrence <- tax_occur_check_pq(data_clean,
   longitude = longitude,
@@ -3920,7 +3897,6 @@ data_with_occurrence <- tax_occur_check_pq(data_clean,
     #> ! error in evaluating the argument 'x' in selecting a method for function 't': Service Unavailable
 
 ``` r
-
 
 # View enhanced tax_table with occurrence columns
 head(data_with_occurrence@tax_table)
@@ -3989,7 +3965,6 @@ Occurrence checking works well with other taxinfo functions:
 ```
 
 ``` r
-
 data_complete <- data_fungi_mini |>
   # 1. Clean names
   gna_verifier_pq(data_sources = 210) |>
@@ -4011,7 +3986,6 @@ data_complete <- data_fungi_mini |>
     #> ! error in evaluating the argument 'object' in selecting a method for function 'tax_table': error in evaluating the argument 'x' in selecting a method for function 't': Service Unavailable
 
 ``` r
-
 data_complete@tax_table[1:5, ]
 ```
 
@@ -4025,7 +3999,6 @@ analyses.
 ## Session information
 
 ``` r
-
 sessionInfo()
 ```
 

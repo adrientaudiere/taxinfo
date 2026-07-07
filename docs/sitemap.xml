@@ -51,11 +51,13 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_x_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/scale_y_italic_species.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/select_taxa_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_bioshifts_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_gbif_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_faprotax_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_coords.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.html</loc></url>
@@ -63,8 +65,10 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_lang.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_pages_info.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_globi_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_harmonize_backbone_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_iucn_code_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_metatraits_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_oa_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_occur_check.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_occur_check_pq.html</loc></url>
@@ -72,6 +76,7 @@
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_retroblast_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_spores_size_pq.html</loc></url>
+<url><loc>https://adrientaudiere.github.io/taxinfo/reference/tax_spores_volume_pq.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxa_summary_text.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxinfo-package.html</loc></url>
 <url><loc>https://adrientaudiere.github.io/taxinfo/reference/taxnames_from_rank.html</loc></url>

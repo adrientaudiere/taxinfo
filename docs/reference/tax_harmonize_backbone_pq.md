@@ -1,0 +1,252 @@
+# Harmonise higher taxonomic ranks from a trusted backbone
+
+\<a
+href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle"\>
+\<img src="https://img.shields.io/badge/lifecycle-experimental-orange"
+alt="lifecycle-experimental"\>\</a\>
+
+Rebuild the \*\*parent (higher) taxonomic ranks\*\* of a phyloseq object
+from a single trusted taxonomic backbone, starting from a chosen
+\*anchor\* rank (or, per taxon, the deepest assigned rank). The anchor
+value (e.g. a \`Genus\` name) is looked up in the backbone and every
+rank \*\*above\*\* the anchor (\`Family\`, \`Order\`, \`Class\`, ...) is
+overwritten with the backbone lineage.
+
+This makes taxonomies obtained from \*\*different reference
+databases\*\* comparable: two databases often agree on a species or
+genus name but then diverge on the higher ranks (different \`Class\`,
+\`Family\`, ...). Re-deriving those higher ranks from one common
+backbone removes that spurious divergence.
+
+Several databases can be harmonised at once through \*\*suffix-based
+tracks\*\*. For example, if UNITE assignments live in the plain columns
+(\`Kingdom\`, \`Genus\`, ...) and Eukaryome assignments live in suffixed
+columns (\`Kingdom_Euk\`, \`Genus_Euk\`, ...), pass \`suffixes = c("",
+"\_Euk")\` and both tracks are harmonised independently against the same
+backbone.
+
+## Usage
+
+``` r
+tax_harmonize_backbone_pq(
+  physeq,
+  anchor = "last_assigned",
+  suffixes = "",
+  ranks = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+  kingdom = NULL,
+  backbone = NULL,
+  min_confidence = 80,
+  match_types = c("EXACT"),
+  resolve_ambiguous = FALSE,
+  keep_original = FALSE,
+  original_suffix = "_orig",
+  verbose = TRUE
+)
+```
+
+## Arguments
+
+- physeq:
+
+  (phyloseq, required) A phyloseq object with a \`tax_table\`.
+
+- anchor:
+
+  (character of length 1, default \`"last_assigned"\`) Either
+  \`"last_assigned"\` (use each taxon's deepest assigned rank) or the
+  name of a single rank present in \`ranks\` (e.g. \`"Genus"\`).
+
+- suffixes:
+
+  (character, default \`""\`) One entry per taxonomy track. Each suffix
+  is appended verbatim to the \`ranks\` names to locate that track's
+  columns (e.g. \`"\_Euk"\` targets \`Genus_Euk\`, \`Family_Euk\`, ...).
+  The default \`""\` harmonises the plain rank columns only.
+
+- ranks:
+
+  (character, default the seven Linnaean ranks) The canonical rank
+  order, from the highest (left) to the lowest (right). Determines which
+  columns count as "above" the anchor.
+
+- kingdom:
+
+  (character of length 1, default \`NULL\`) Optional kingdom used to
+  disambiguate every backbone query (e.g. \`"Fungi"\`). Ignored when a
+  local \`backbone\` is supplied.
+
+- backbone:
+
+  (data.frame, default \`NULL\`) Optional \*\*local\*\* backbone to use
+  instead of querying GBIF online. Must contain a \`name\` column
+  (matched against the anchor values) and one column per rank named as
+  in \`ranks\` (case-insensitive). When supplied, every matching row is
+  treated as a trusted \`EXACT\` match (the online match gating is
+  bypassed).
+
+- min_confidence:
+
+  (numeric of length 1, default \`80\`) Minimum GBIF \`confidence\`
+  required to apply an online backbone match. Ignored for a local
+  \`backbone\`.
+
+- match_types:
+
+  (character, default \`"EXACT"\`) GBIF \`matchType\` values accepted
+  for an online match. Ignored for a local \`backbone\`.
+
+- resolve_ambiguous:
+
+  (logical, default \`FALSE\`) If \`TRUE\`, anchor names that the fast
+  \[rgbif::name_backbone_checklist()\] fails to place (e.g. a bare
+  ambiguous genus that backs off to \`HIGHERRANK\`) are retried per name
+  with \[rgbif::name_backbone()\] and \`verbose = TRUE\`; among the
+  returned alternatives, the accepted candidate at the requested rank
+  (and \`kingdom\` when given) with the highest \`confidence\` is used.
+  This recovers names such as \`"Boletus"\` (chosen as the accepted
+  genus in Boletaceae) but issues one extra API call per unresolved
+  name, so it is slower. Ignored for a local \`backbone\`.
+
+- keep_original:
+
+  (logical, default \`FALSE\`) If \`TRUE\`, the pre-existing value of
+  every overwritten column is preserved in a companion column named
+  \`\<column\>\<original_suffix\>\`.
+
+- original_suffix:
+
+  (character of length 1, default \`"\_orig"\`) Suffix of the companion
+  columns created when \`keep_original = TRUE\`.
+
+- verbose:
+
+  (logical, default \`TRUE\`) If \`TRUE\`, print a summary of the
+  changes with cli.
+
+## Value
+
+The phyloseq object with harmonised higher-rank columns in its
+\`tax_table\` (original taxa order and names preserved).
+
+## Details
+
+\*\*Anchor.\*\* With \`anchor = "last_assigned"\` (default), each taxon
+is anchored at its deepest assigned rank (the right-most non-missing
+rank of the track, e.g. \`Genus\` when \`Species\` is \`NA\`). With an
+explicit rank (\`anchor = "Genus"\`), that rank is used for every taxon
+of every track (the track suffix is appended, so the \`\_Euk\` track is
+anchored on \`Genus_Euk\`).
+
+\*\*Match gating.\*\* A backbone match is applied only when it is
+trustworthy: \`matchType\` must be in \`match_types\` and \`confidence\`
+at least \`min_confidence\`. Taxa that fail the gate keep their original
+ranks and are reported as unresolved, so a poor match never corrupts
+existing data. Ambiguous or homonymous names (e.g. \`"Boletus"\`) that
+GBIF resolves only to a higher rank (\`matchType = "HIGHERRANK"\`) are
+therefore left unchanged by default. \`"Boletus"\` is a real example:
+although GBIF does hold an accepted fungal genus \`Boletus\`, the bare
+string is too ambiguous to place (a large tangle of fungal synonyms
+across several families, plus minor cross-kingdom string collisions), so
+the matcher backs off to \`HIGHERRANK\` (kingdom) rather than commit –
+and a \`rank\` hint biases the scorer but does not override that
+back-off. Anchoring deeper resolves such cases – the binomial \`"Boletus
+edulis"\` matches \`EXACT\` – which is why \`anchor = "last_assigned"\`
+(which queries the \`Genus species\` binomial at the species level) is
+the default. To recover such names at the anchor rank itself, set
+\`resolve_ambiguous = TRUE\`: the failed names are re-queried with the
+verbose \[rgbif::name_backbone()\] alternatives and the accepted
+candidate at the requested rank is kept (so \`"Boletus"\` resolves to
+the accepted genus in Boletaceae). You can also relax \`match_types\`
+(e.g. \`c("EXACT", "HIGHERRANK")\`, still safe because ranks the
+backbone returns as \`NA\` are never written), lower \`min_confidence\`,
+or harmonise the names first with \[gna_verifier_pq()\] and anchor on
+the resulting canonical column.
+
+\*\*Homonym disambiguation.\*\* A bare name can resolve in several
+kingdoms (a genus name shared by fungi and animals). Pass \`kingdom\`
+(e.g. \`"Fungi"\`) to constrain the backbone query and avoid pulling the
+wrong lineage.
+
+\*\*Only higher ranks change.\*\* The anchor rank and every rank
+\*below\* it are left untouched; only ranks strictly above the anchor
+are re-derived. Ranks in \`ranks\` that the backbone does not provide
+are skipped.
+
+## See also
+
+\[tax_crosscheck_pq()\], \[gna_verifier_pq()\],
+\[rgbif::name_backbone_checklist()\]
+
+## Author
+
+Adrien Taudière
+
+## Examples
+
+``` r
+library(phyloseq)
+
+# A tiny object with a WRONG Family/Order/Class for Amanita (divergent DB),
+# and a second (Eukaryome) track carrying the same problem.
+tax <- matrix(
+  c(
+    # Kingdom  Class          Order          Family         Genus
+    "Fungi", "WrongClass", "WrongOrder", "WrongFamily", "Amanita",
+    "Fungi", NA, NA, NA, "Boletus"
+  ),
+  nrow = 2,
+  byrow = TRUE,
+  dimnames = list(
+    c("ASV1", "ASV2"),
+    c("Kingdom", "Class", "Order", "Family", "Genus")
+  )
+)
+otu <- matrix(
+  c(5, 1, 0, 3),
+  nrow = 2,
+  dimnames = list(c("ASV1", "ASV2"), c("s1", "s2"))
+)
+pq <- phyloseq(
+  otu_table(otu, taxa_are_rows = TRUE),
+  tax_table(tax)
+)
+
+# A local backbone (no network needed) keyed by genus name.
+backbone <- data.frame(
+  name = c("Amanita", "Boletus"),
+  Kingdom = "Fungi",
+  Class = "Agaricomycetes",
+  Order = c("Agaricales", "Boletales"),
+  Family = c("Amanitaceae", "Boletaceae"),
+  Genus = c("Amanita", "Boletus")
+)
+
+# Anchor on Genus: Kingdom/Class/Order/Family are re-derived from the backbone.
+harmonised <- tax_harmonize_backbone_pq(
+  pq,
+  anchor = "Genus",
+  backbone = backbone
+)
+#> ✔ Harmonised 6 rank cells across 1 track.
+as.data.frame(tax_table(harmonised))
+#>      Kingdom          Class      Order      Family   Genus
+#> ASV1   Fungi Agaricomycetes Agaricales Amanitaceae Amanita
+#> ASV2   Fungi Agaricomycetes  Boletales  Boletaceae Boletus
+
+if (FALSE) { # \dontrun{
+ data_fungi_mini2 <- assign_dada2(data_fungi_mini,
+  ref_fasta = system.file("extdata", "mini_UNITE_fungi.fasta.gz",
+     package = "MiscMetabar"
+   ), suffix = "_dada2",
+   from_sintax = TRUE
+ )
+ add_new_taxonomy_pq(data_fungi_mini, ref_fasta, method = "dada2")
+# Online GBIF backbone, restricted to fungi, on two database tracks at once:
+data_fungi_mini <-
+tax_harmonize_backbone_pq(
+  data_fungi_mini,
+  anchor = "last_assigned",
+  kingdom = "Fungi"
+)
+} # }
+```
