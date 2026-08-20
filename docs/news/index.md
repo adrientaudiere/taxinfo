@@ -1,6 +1,13 @@
 # Changelog
 
-## taxinfo 0.3.0 (Development version)
+## taxinfo 0.4.0 (Development version)
+
+- Fix missing `Remotes` field in `DESCRIPTION` so that
+  [`pak::pkg_install()`](https://pak.r-lib.org/reference/pkg_install.html)
+  can resolve the GitHub-only dependency `MiscMetabar` when installing
+  taxinfo standalone.
+
+## taxinfo 0.3.0
 
 ### New features
 

@@ -1,6 +1,7 @@
 # GBIF-based Functions for Occurrence Data
 
 ``` r
+
 library(taxinfo)
 library(MiscMetabar)
 library(ggplot2)
@@ -58,6 +59,7 @@ returned.
 ```
 
 ``` r
+
 # Load and prepare example data
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -110,6 +112,7 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 ```
 
 ``` r
+
 data_clean_gbif <- tax_gbif_occur_pq(data_clean)
 ```
 
@@ -190,10 +193,12 @@ Analyze geographic distribution patterns:
 ```
 
 ``` r
+
 data_clean_gbif_country <- tax_gbif_occur_pq(data_clean, by_country = TRUE)
 ```
 
 ``` r
+
 
 data_clean_gbif_country@tax_table |>
   as.data.frame() |>
@@ -295,6 +300,7 @@ since the data frame output is sufficient.
 ```
 
 ``` r
+
 gbif_years <- tax_gbif_occur_pq(data_clean,
   by_years = TRUE,
   add_to_phyloseq = FALSE
@@ -304,6 +310,7 @@ gbif_years <- tax_gbif_occur_pq(data_clean,
 ```
 
 ``` r
+
 
 # Visualize temporal trends for the occurences of taxa
 gbif_years |>
@@ -348,6 +355,7 @@ plot of chunk unnamed-chunk-6
 ```
 
 ``` r
+
 gbif_years_cumsum <- gbif_years |>
   mutate(year = as.numeric(year)) |>
   arrange(year) |>
@@ -400,6 +408,7 @@ plot of chunk unnamed-chunk-7
 Create occurrence distribution visualizations:
 
 ``` r
+
 # Plot global vs regional occurrences
 psmelt(data_clean_gbif) |>
   as.data.frame() |>
@@ -471,6 +480,7 @@ Create interactive maps showing species distributions:
 ```
 
 ``` r
+
 plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
   interactive_plot = TRUE
 )
@@ -518,6 +528,7 @@ plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
 ```
 
 ``` r
+
 distribution_maps <- plot_tax_gbif_pq(
   taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei"),
   n_occur = 1000
@@ -577,6 +588,7 @@ distribution_maps <- plot_tax_gbif_pq(
     #> Final records (no XY)   : 0
 
 ``` r
+
 distribution_maps[[1]]
 ```
 
@@ -589,6 +601,7 @@ material sample).](figures/unnamed-chunk-10-1.png)
 plot of chunk unnamed-chunk-10
 
 ``` r
+
 distribution_maps[[2]]
 ```
 
@@ -640,6 +653,7 @@ plot of chunk unnamed-chunk-10
 ```
 
 ``` r
+
 data_clean_range <- range_bioreg_pq(
   select_taxa_pq(data_clean,
     taxnames = c("Ossicaulis lachnopus", "Basidiodendron eyrei")
@@ -701,6 +715,7 @@ data_clean_range <- range_bioreg_pq(
     #> Final records (no XY)   : 0
 
 ``` r
+
 data_clean_range[[2]]
 ```
 
@@ -740,6 +755,7 @@ Check if occurrences match expected ecoregions:
 ```
 
 ``` r
+
 tax_check_ecoregion(
   taxnames = "Xylobolus subpileatus",
   longitudes = c(2.3522, 4.2),
@@ -962,6 +978,7 @@ tax_check_ecoregion(
 ## Session information
 
 ``` r
+
 sessionInfo()
 ```
 
