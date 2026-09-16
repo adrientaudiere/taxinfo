@@ -7,15 +7,24 @@
 #' This function computes intra-taxanames distances for each taxonomic names
 #'  (e.g. Genus species) in a phyloseq object containing ASV/OTU sequences and taxonomy.
 #'
-#' The distances are computed using the DECIPHER package, which aligns the sequences
-#' (`DECIPHER::AlignSeqs()`) and calculates a distance matrix (`DECIPHER::DistanceMatrix()`).
+#' The sequences are aligned with [MiscMetabar::align_pq()] — either the pure-R
+#' `DECIPHER::AlignSeqs()` or the much faster MAFFT command-line aligner,
+#' depending on `align_method` — and the distance matrix is then computed with
+#' `DECIPHER::DistanceMatrix()`.
 #'
 #' @param physeq A phyloseq object containing ASV/OTU sequences and refseq
 #' @param taxonomic_rank Character. Name of the taxonomy column(s) containing
 #'  taxonomic assignments to compute intra-taxa distances. Can be a vector of
 #'  two columns (e.g. c("Genus", "Species"), the default).
 #' @param verbose Logical. Print progress messages (default: TRUE)
-#' @param verbose_DECIPHER Logical. If TRUE, print messages from DECIPHER functions (default: FALSE)
+#' @param verbose_DECIPHER Logical. If TRUE, print messages from the aligner and
+#'  from `DECIPHER::DistanceMatrix()` (default: FALSE)
+#' @param align_method Aligner passed to [MiscMetabar::align_pq()], either
+#'  `"decipher"` (default, pure R) or `"mafft"` (external program, much faster
+#'  on large `refseq` slots).
+#' @param mafft_exec Path to the MAFFT executable. Only used when
+#'  `align_method = "mafft"`. Default to NULL, i.e. the usual lookup of
+#'  [MiscMetabar::is_mafft_installed()].
 #' @param discard_NA (logical, default `TRUE`). Passed to
 #'  [taxonomic_rank_to_taxnames()].
 #' @param ... Additional arguments to pass to `DECIPHER::AlignSeqs()`
@@ -29,7 +38,7 @@
 #'
 #' @export
 #' @author Adrien Taudiere
-#' @seealso [DECIPHER::AlignSeqs()], [DECIPHER::DistanceMatrix()]
+#' @seealso [MiscMetabar::align_pq()], [DECIPHER::DistanceMatrix()]
 #' @examples
 #' intra_taxn_dist <- intra_taxnames_dist(data_fungi_mini)
 #' plot(intra_taxn_dist$mean_dist, intra_taxn_dist$n_taxa)
@@ -41,8 +50,11 @@ intra_taxnames_dist <- function(
   verbose = TRUE,
   verbose_DECIPHER = FALSE,
   discard_NA = TRUE,
+  align_method = c("decipher", "mafft"),
+  mafft_exec = NULL,
   ...
 ) {
+  align_method <- match.arg(align_method)
   taxnames <- taxonomic_rank_to_taxnames(
     physeq,
     taxonomic_rank,
@@ -88,8 +100,14 @@ intra_taxnames_dist <- function(
       }
     }
 
-    dist_matrix <- DECIPHER::AlignSeqs(
+    # `force = TRUE` because two sequences of the same species are very often
+    # of the same length without being aligned, and `align_pq()` would
+    # otherwise return them untouched and skew the distance.
+    dist_matrix <- MiscMetabar::align_pq(
       physeq@refseq[selected_taxa],
+      method = align_method,
+      exec = mafft_exec,
+      force = TRUE,
       verbose = verbose_DECIPHER,
       ...
     ) |>
