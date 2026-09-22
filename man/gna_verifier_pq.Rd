@@ -18,6 +18,8 @@ gna_verifier_pq(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
+  classification_col = FALSE,
+  classification_ranks = c("kingdom", "phylum", "class", "order", "family", "genus"),
   authorship_col = TRUE,
   discard_NA = TRUE,
   problematic_chars = "[?\\\\\\\\#|&]",
@@ -98,6 +100,22 @@ when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).}
 
 \item{year_col}{(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.}
+
+\item{classification_col}{(logical, default FALSE) If TRUE, the
+classification of the best match is added: "classificationPath" and
+"classificationRanks" (the `|`-separated lineage and rank names returned
+by the GNA Verifier) and one column per rank of `classification_ranks`
+(e.g. "classificationKingdom", "classificationGenus"), `NA` when the data
+source does not provide that rank. The lineage is the one of the
+**current** (accepted) name, so it can differ from the submitted name
+when the latter is a synonym. This needs a second request to the GNA
+Verifier API per batch of names, because [taxize::gna_verifier()] drops
+the classification from its table output.}
+
+\item{classification_ranks}{(character vector, default
+`c("kingdom", "phylum", "class", "order", "family", "genus")`) Ranks
+extracted into their own column when `classification_col = TRUE`, spelled
+as in the GNA Verifier `classificationRanks` field (lower case).}
 
 \item{authorship_col}{(logical, default TRUE) If TRUE three new columns are added:
 "authorship", "bracketauthorship" and "scientificNameAuthorship".}

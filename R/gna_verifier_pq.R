@@ -67,6 +67,20 @@
 #'   when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).
 #' @param year_col (logical, default TRUE) If TRUE
 #'  a new column "namePublishedInYear" is added with the year of publication.
+#' @param classification_col (logical, default FALSE) If TRUE, the
+#'   classification of the best match is added: "classificationPath" and
+#'   "classificationRanks" (the `|`-separated lineage and rank names returned
+#'   by the GNA Verifier) and one column per rank of `classification_ranks`
+#'   (e.g. "classificationKingdom", "classificationGenus"), `NA` when the data
+#'   source does not provide that rank. The lineage is the one of the
+#'   **current** (accepted) name, so it can differ from the submitted name
+#'   when the latter is a synonym. This needs a second request to the GNA
+#'   Verifier API per batch of names, because [taxize::gna_verifier()] drops
+#'   the classification from its table output.
+#' @param classification_ranks (character vector, default
+#'   `c("kingdom", "phylum", "class", "order", "family", "genus")`) Ranks
+#'   extracted into their own column when `classification_col = TRUE`, spelled
+#'   as in the GNA Verifier `classificationRanks` field (lower case).
 #' @param species_only (logical, default TRUE) If TRUE, `currentCanonicalSimple`
 #'   is set to `NA` for uninomial names (i.e. when `matchedCardinality == 1`,
 #'   meaning only a genus or higher-rank name was matched, not a proper species
@@ -169,6 +183,15 @@ gna_verifier_pq <- function(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
+  classification_col = FALSE,
+  classification_ranks = c(
+    "kingdom",
+    "phylum",
+    "class",
+    "order",
+    "family",
+    "genus"
+  ),
   authorship_col = TRUE,
   discard_NA = TRUE,
   problematic_chars = "[?\\\\#|&]",
@@ -242,6 +265,14 @@ gna_verifier_pq <- function(
       "genusEpithet",
       "specificEpithet",
       "genusSpeciesEpithet"
+    )
+  }
+  if (classification_col) {
+    new_cols <- c(
+      new_cols,
+      "classificationPath",
+      "classificationRanks",
+      gna_classification_colnames(classification_ranks)
     )
   }
 
@@ -337,6 +368,36 @@ gna_verifier_pq <- function(
   }
 
   res_verifier_clean <- res_verifier_clean |> select(-matchedCardinality)
+
+  if (classification_col) {
+    # unname(): split() names the batches "1", "2", ..., and unlist() would
+    # prefix every submitted name with its batch number.
+    gna_lists <- lapply(unname(slice_taxnames), function(x) {
+      tryCatch(
+        taxize::gna_verifier(
+          x,
+          data_sources = data_sources,
+          all_matches = all_matches,
+          capitalize = capitalize,
+          species_group = species_group,
+          fuzzy_uninomial = fuzzy_uninomial,
+          output_type = "list"
+        ),
+        error = function(e) {
+          cli::cli_warn(c(
+            "!" = "GNA classification query failed ({conditionMessage(e)}); classification left NA for this batch."
+          ))
+          NULL
+        }
+      )
+    })
+    classif <- gna_classification_table(
+      unlist(gna_lists, recursive = FALSE),
+      ranks = classification_ranks
+    )
+    res_verifier_clean <- res_verifier_clean |>
+      left_join(classif, by = "submittedName")
+  }
 
   if (year_col) {
     res_verifier_clean$namePublishedInYear <- rgbif::name_parse(
@@ -472,4 +533,71 @@ gna_verifier_pq <- function(
 
     return(res_verifier_clean)
   }
+}
+
+#' Column names of the per-rank classification columns
+#'
+#' @param ranks Character vector of GNA Verifier rank names (lower case).
+#' @returns `"classification"` followed by each rank with a capital first
+#'   letter (e.g. `"classificationKingdom"`).
+#' @noRd
+gna_classification_colnames <- function(ranks) {
+  paste0(
+    "classification",
+    toupper(substring(ranks, 1, 1)),
+    substring(ranks, 2)
+  )
+}
+
+#' Classification of the best GNA Verifier match, one row per name
+#'
+#' @param gna_list The named list returned by
+#'   `taxize::gna_verifier(output_type = "list")`: one element per submitted
+#'   name, holding `bestResult` (or `results` when `all_matches = TRUE`, in
+#'   which case the first result is used).
+#' @param ranks Character vector of ranks to extract into their own column.
+#' @returns A tibble with `submittedName`, `classificationPath`,
+#'   `classificationRanks` and one column per rank (see
+#'   `gna_classification_colnames()`), `NA` when absent.
+#' @noRd
+gna_classification_table <- function(gna_list, ranks) {
+  rank_cols <- gna_classification_colnames(ranks)
+  rows <- lapply(names(gna_list), function(name) {
+    entry <- gna_list[[name]]
+    best <- entry$bestResult %||% entry$results[[1]]
+    path <- best$classificationPath %||% NA_character_
+    path_ranks <- best$classificationRanks %||% NA_character_
+    values <- rep(NA_character_, length(ranks))
+    if (!is.na(path) && !is.na(path_ranks)) {
+      lineage <- strsplit(path, "|", fixed = TRUE)[[1]]
+      lineage_ranks <- strsplit(path_ranks, "|", fixed = TRUE)[[1]]
+      if (length(lineage) == length(lineage_ranks)) {
+        values <- unname(lineage[match(ranks, lineage_ranks)])
+      }
+    }
+    row <- c(
+      list(
+        submittedName = name,
+        classificationPath = path,
+        classificationRanks = path_ranks
+      ),
+      as.list(stats::setNames(values, rank_cols))
+    )
+    tibble::as_tibble(row)
+  })
+  if (length(rows) == 0) {
+    empty <- c(
+      "submittedName",
+      "classificationPath",
+      "classificationRanks",
+      rank_cols
+    )
+    return(tibble::as_tibble(
+      stats::setNames(
+        rep(list(character(0)), length(empty)),
+        empty
+      )
+    ))
+  }
+  dplyr::bind_rows(rows)
 }

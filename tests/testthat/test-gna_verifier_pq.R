@@ -101,3 +101,96 @@ test_that("gna_verifier_pq col_prefix parameter works", {
 
   expect_s3_class(result, "data.frame")
 })
+
+test_that("gna_classification_table extracts the lineage of the best match", {
+  gna_list <- list(
+    "Sidera americana" = list(
+      bestResult = list(
+        classificationPath = "Fungi|Basidiomycota|Agaricomycetes|Hymenochaetales|Rickenellaceae|Sidera|Sidera americana",
+        classificationRanks = "kingdom|phylum|class|order|family|genus|species"
+      )
+    ),
+    "Unknown name" = list(matchType = "NoMatch"),
+    "Amanita muscaria" = list(
+      results = list(list(
+        classificationPath = "Eukaryota|Fungi|Amanita",
+        classificationRanks = "domain|kingdom|genus"
+      ))
+    )
+  )
+  res <- gna_classification_table(
+    gna_list,
+    ranks = c("kingdom", "family", "genus")
+  )
+  expect_equal(
+    names(res),
+    c(
+      "submittedName",
+      "classificationPath",
+      "classificationRanks",
+      "classificationKingdom",
+      "classificationFamily",
+      "classificationGenus"
+    )
+  )
+  expect_equal(res$classificationFamily, c("Rickenellaceae", NA, NA))
+  expect_equal(res$classificationGenus, c("Sidera", NA, "Amanita"))
+  expect_true(is.na(res$classificationPath[2]))
+  expect_equal(nrow(gna_classification_table(list(), ranks = "genus")), 0)
+})
+
+test_that("gna_verifier_pq classification_col adds the lineage", {
+  skip_on_cran()
+  vcr::use_cassette("gna_classification", {
+    result <- gna_verifier_pq(
+      taxnames = c("Sidera americana", "Lactarius luridus"),
+      data_sources = 11,
+      add_to_phyloseq = FALSE,
+      classification_col = TRUE,
+      verbose = FALSE
+    )
+  })
+  expect_true(all(
+    c("classificationPath", "classificationKingdom", "classificationGenus") %in%
+      names(result)
+  ))
+  expect_equal(unique(result$classificationKingdom), "Fungi")
+  expect_setequal(result$classificationGenus, c("Sidera", "Lactarius"))
+})
+
+test_that("gna_verifier_pq classification_col keeps names across batches", {
+  fake_gna <- function(names, ..., output_type = "table") {
+    if (output_type == "list") {
+      return(stats::setNames(
+        lapply(names, \(n) {
+          list(
+            bestResult = list(
+              classificationPath = paste0("Fungi|Genus", n),
+              classificationRanks = "kingdom|genus"
+            )
+          )
+        }),
+        names
+      ))
+    }
+    data.frame(
+      submittedName = names,
+      currentName = names,
+      currentCanonicalSimple = names,
+      matchedCardinality = 2,
+      taxonomicStatus = "Accepted"
+    )
+  }
+  testthat::local_mocked_bindings(gna_verifier = fake_gna, .package = "taxize")
+  taxnames <- paste("Name", seq_len(60))
+  res <- gna_verifier_pq(
+    taxnames = taxnames,
+    add_to_phyloseq = FALSE,
+    classification_col = TRUE,
+    year_col = FALSE,
+    authorship_col = FALSE,
+    verbose = FALSE
+  )
+  expect_equal(nrow(res), 60)
+  expect_equal(res$classificationGenus, paste0("Genus", taxnames))
+})

@@ -1,0 +1,145 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://verifier.globalnames.org/api/v1/verifications/Sidera%20americana|Lactarius%20luridus?data_sources=11&all_matches=false&capitalize=false&species_group=false&fuzzy_uninomial=false&stats=false
+  response:
+    status: 200
+    headers:
+      content-encoding: gzip
+      content-length: '919'
+      content-type: application/json
+      date: Thu, 17 Sep 2026 13:29:16 GMT
+      server: nginx/1.18.0 (Ubuntu)
+      status: 'HTTP/2 200 '
+      vary:
+      - Accept-Encoding
+      - Origin
+    body:
+      string: |
+        {"metadata":{"namesNumber":2,"vernaculars":[""],"dataSources":[11]},"names":[{"id":"a597105e-0afb-5d12-b934-cfe2304cf5de","name":"Sidera americana","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":11,"dataSourceTitleShort":"GBIF Backbone Taxonomy","curation":"AutoCurated","recordId":"12181561","outlink":"https://gbif.org/species/12181561","entryDate":"2024-01-11","sortScore":9.410739851747246,"matchedNameID":"58e0812c-cc60-5b3a-a3f8-ad810f2dc6e5","matchedName":"Sidera americana Z.B.Liu \u0026 Yuan Yuan, 2023","matchedCardinality":2,"matchedCanonicalSimple":"Sidera americana","matchedCanonicalFull":"Sidera americana","currentRecordId":"12181561","currentNameId":"58e0812c-cc60-5b3a-a3f8-ad810f2dc6e5","currentName":"Sidera americana Z.B.Liu \u0026 Yuan Yuan, 2023","currentCardinality":2,"currentCanonicalSimple":"Sidera americana","currentCanonicalFull":"Sidera americana","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Fungi|Basidiomycota|Agaricomycetes|Hymenochaetales|Rickenellaceae|Sidera|Sidera americana","classificationRanks":"kingdom|phylum|class|order|family|genus|species","classificationIds":"5|34|186|1304|7964361|11013858|12181561","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.33333334,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[11],"curation":"AutoCurated"},{"id":"59e7f75a-7053-54f4-9cbd-2785170594a3","name":"Lactarius luridus","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":11,"dataSourceTitleShort":"GBIF Backbone Taxonomy","curation":"AutoCurated","recordId":"5248691","outlink":"https://gbif.org/species/5248691","entryDate":"2024-01-11","sortScore":9.410739851747246,"matchedNameID":"c6fadc26-b37b-59c7-ad17-458dfad0e41c","matchedName":"Lactarius luridus (Pers.) Gray","matchedCardinality":2,"matchedCanonicalSimple":"Lactarius luridus","matchedCanonicalFull":"Lactarius luridus","currentRecordId":"5248691","currentNameId":"c6fadc26-b37b-59c7-ad17-458dfad0e41c","currentName":"Lactarius luridus (Pers.) Gray","currentCardinality":2,"currentCanonicalSimple":"Lactarius luridus","currentCanonicalFull":"Lactarius luridus","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Fungi|Basidiomycota|Agaricomycetes|Russulales|Russulaceae|Lactarius|Lactarius luridus","classificationRanks":"kingdom|phylum|class|order|family|genus|species","classificationIds":"5|34|186|1144|7609|2532156|5248691","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.33333334,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[11],"curation":"AutoCurated"}]}
+  recorded_at: 2026-09-17 13:29:16
+- request:
+    method: GET
+    uri: https://verifier.globalnames.org/api/v1/verifications/Sidera%20americana|Lactarius%20luridus?data_sources=11&all_matches=false&capitalize=false&species_group=false&fuzzy_uninomial=false&stats=false
+  response:
+    status: 200
+    headers:
+      content-encoding: gzip
+      content-length: '919'
+      content-type: application/json
+      date: Thu, 17 Sep 2026 13:29:16 GMT
+      server: nginx/1.18.0 (Ubuntu)
+      status: 'HTTP/2 200 '
+      vary:
+      - Accept-Encoding
+      - Origin
+    body:
+      string: |
+        {"metadata":{"namesNumber":2,"vernaculars":[""],"dataSources":[11]},"names":[{"id":"a597105e-0afb-5d12-b934-cfe2304cf5de","name":"Sidera americana","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":11,"dataSourceTitleShort":"GBIF Backbone Taxonomy","curation":"AutoCurated","recordId":"12181561","outlink":"https://gbif.org/species/12181561","entryDate":"2024-01-11","sortScore":9.410739851747246,"matchedNameID":"58e0812c-cc60-5b3a-a3f8-ad810f2dc6e5","matchedName":"Sidera americana Z.B.Liu \u0026 Yuan Yuan, 2023","matchedCardinality":2,"matchedCanonicalSimple":"Sidera americana","matchedCanonicalFull":"Sidera americana","currentRecordId":"12181561","currentNameId":"58e0812c-cc60-5b3a-a3f8-ad810f2dc6e5","currentName":"Sidera americana Z.B.Liu \u0026 Yuan Yuan, 2023","currentCardinality":2,"currentCanonicalSimple":"Sidera americana","currentCanonicalFull":"Sidera americana","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Fungi|Basidiomycota|Agaricomycetes|Hymenochaetales|Rickenellaceae|Sidera|Sidera americana","classificationRanks":"kingdom|phylum|class|order|family|genus|species","classificationIds":"5|34|186|1304|7964361|11013858|12181561","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.33333334,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[11],"curation":"AutoCurated"},{"id":"59e7f75a-7053-54f4-9cbd-2785170594a3","name":"Lactarius luridus","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":11,"dataSourceTitleShort":"GBIF Backbone Taxonomy","curation":"AutoCurated","recordId":"5248691","outlink":"https://gbif.org/species/5248691","entryDate":"2024-01-11","sortScore":9.410739851747246,"matchedNameID":"c6fadc26-b37b-59c7-ad17-458dfad0e41c","matchedName":"Lactarius luridus (Pers.) Gray","matchedCardinality":2,"matchedCanonicalSimple":"Lactarius luridus","matchedCanonicalFull":"Lactarius luridus","currentRecordId":"5248691","currentNameId":"c6fadc26-b37b-59c7-ad17-458dfad0e41c","currentName":"Lactarius luridus (Pers.) Gray","currentCardinality":2,"currentCanonicalSimple":"Lactarius luridus","currentCanonicalFull":"Lactarius luridus","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Fungi|Basidiomycota|Agaricomycetes|Russulales|Russulaceae|Lactarius|Lactarius luridus","classificationRanks":"kingdom|phylum|class|order|family|genus|species","classificationIds":"5|34|186|1144|7609|2532156|5248691","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.33333334,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1}},"dataSourcesNum":1,"dataSourcesIds":[11],"curation":"AutoCurated"}]}
+  recorded_at: 2026-09-17 13:29:16
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Sidera americana Z.B.Liu & Yuan Yuan, 2023","Lactarius luridus (Pers.)
+        Gray"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 17 Sep 2026 13:29:16 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '147590783197'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Sidera americana Z.B.Liu & Yuan Yuan, 2023","type":"SCIENTIFIC","genusOrAbove":"Sidera","specificEpithet":"americana","authorship":"Z.B.Liu
+        & Yuan Yuan","year":"2023","parsed":true,"parsedPartially":false,"canonicalName":"Sidera
+        americana","canonicalNameWithMarker":"Sidera americana","canonicalNameComplete":"Sidera
+        americana Z.B.Liu & Yuan Yuan, 2023","rankMarker":"sp."},{"scientificName":"Lactarius
+        luridus (Pers.) Gray","type":"SCIENTIFIC","genusOrAbove":"Lactarius","specificEpithet":"luridus","authorship":"Gray","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Lactarius
+        luridus","canonicalNameWithMarker":"Lactarius luridus","canonicalNameComplete":"Lactarius
+        luridus (Pers.) Gray","rankMarker":"sp."}]'
+  recorded_at: 2026-09-17 13:29:16
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Sidera americana Z.B.Liu & Yuan Yuan, 2023","Lactarius luridus (Pers.)
+        Gray"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 17 Sep 2026 13:29:16 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '147658080860'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Sidera americana Z.B.Liu & Yuan Yuan, 2023","type":"SCIENTIFIC","genusOrAbove":"Sidera","specificEpithet":"americana","authorship":"Z.B.Liu
+        & Yuan Yuan","year":"2023","parsed":true,"parsedPartially":false,"canonicalName":"Sidera
+        americana","canonicalNameWithMarker":"Sidera americana","canonicalNameComplete":"Sidera
+        americana Z.B.Liu & Yuan Yuan, 2023","rankMarker":"sp."},{"scientificName":"Lactarius
+        luridus (Pers.) Gray","type":"SCIENTIFIC","genusOrAbove":"Lactarius","specificEpithet":"luridus","authorship":"Gray","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Lactarius
+        luridus","canonicalNameWithMarker":"Lactarius luridus","canonicalNameComplete":"Lactarius
+        luridus (Pers.) Gray","rankMarker":"sp."}]'
+  recorded_at: 2026-09-17 13:29:16
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Sidera americana Z.B.Liu & Yuan Yuan, 2023","Lactarius luridus (Pers.)
+        Gray"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 17 Sep 2026 13:29:16 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '147659325816'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Sidera americana Z.B.Liu & Yuan Yuan, 2023","type":"SCIENTIFIC","genusOrAbove":"Sidera","specificEpithet":"americana","authorship":"Z.B.Liu
+        & Yuan Yuan","year":"2023","parsed":true,"parsedPartially":false,"canonicalName":"Sidera
+        americana","canonicalNameWithMarker":"Sidera americana","canonicalNameComplete":"Sidera
+        americana Z.B.Liu & Yuan Yuan, 2023","rankMarker":"sp."},{"scientificName":"Lactarius
+        luridus (Pers.) Gray","type":"SCIENTIFIC","genusOrAbove":"Lactarius","specificEpithet":"luridus","authorship":"Gray","bracketAuthorship":"Pers.","parsed":true,"parsedPartially":false,"canonicalName":"Lactarius
+        luridus","canonicalNameWithMarker":"Lactarius luridus","canonicalNameComplete":"Lactarius
+        luridus (Pers.) Gray","rankMarker":"sp."}]'
+  recorded_at: 2026-09-17 13:29:16
+recorded_with: VCR-vcr/2.1.0

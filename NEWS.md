@@ -1,6 +1,7 @@
 # taxinfo 0.4.0 (Development version)
 
 * Fix missing `Remotes` field in `DESCRIPTION` so that `pak::pkg_install()` can resolve the GitHub-only dependency `MiscMetabar` when installing taxinfo standalone.
+* `gna_verifier_pq()` gains a `classification_col` argument (default `FALSE`) that adds the lineage of the best GNA Verifier match: `classificationPath`, `classificationRanks` and one column per rank of the new `classification_ranks` argument (`classificationKingdom` … `classificationGenus` by default).
 * `intra_taxnames_dist()` gains an `align_method` argument and now aligns through `MiscMetabar::align_pq()`, so the intra-taxa sequences can be aligned with MAFFT instead of DECIPHER, which is much faster on large `refseq` slots; a `mafft_exec` argument points at the executable.
 
 # taxinfo 0.3.0
