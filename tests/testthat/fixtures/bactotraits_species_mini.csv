@@ -1,0 +1,4 @@
+Total_BacDive_ids;Phylum;Class;Order;Family;Genus;Species;gram_stain_positive;gram_stain_negative;motility_no;motility_yes;cell_shape_coccus-shaped;cell_shape_rod-shaped;cell_shape_other
+1;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillus;Bacillus subtilis;1;0;0;1;1;0;0
+1;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillus;Bacillus cereus;0,25;0,75;0,5;0,5;0;1;0
+2;Pseudomonadota;Gammaproteobacteria;Pseudomonadales;Pseudomonadaceae;Pseudomonas;Pseudomonas fluorescens;0;1;0;1;0,5;0,5;0
