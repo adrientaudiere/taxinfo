@@ -51,6 +51,7 @@ reference:
   - gna_verifier_pq
   - tax_crosscheck_gbif_pq
   - tax_harmonize_backbone_pq
+  - gbif_key_to_col
 
 - title: "Add data from external sources"
   desc: >
@@ -83,8 +84,10 @@ reference:
   - fungal_traits_guilds
 - subtitle: "Other sources"
   contents:
+  - tax_bactotraits_pq
   - tax_bioshifts_pq
   - tax_faprotax_pq
+  - tax_funendo_pq
   - tax_metatraits_pq
   - tax_iucn_code_pq
   - tax_spores_size_pq
