@@ -150,7 +150,7 @@ tax_occur_check <- function(
     cli::cli_abort("{.arg radius_km} must be a single positive number")
   }
 
-  species_key <- rgbif::name_backbone(taxa_name)$usageKey
+  species_key <- gbif_backbone(taxa_name)$usageKey
   if (is.null(species_key)) {
     stop("Species ", taxa_name, " not found")
   }
@@ -161,8 +161,8 @@ tax_occur_check <- function(
     radius_km = radius_km
   )
 
-  occurrences_world_with_coordinate <- rgbif::occ_count(
-    taxonKey = species_key,
+  occurrences_world_with_coordinate <- gbif_occ_count(
+    species_key,
     hasCoordinate = TRUE
   )
 
@@ -292,27 +292,37 @@ fetch_occur_bbox <- function(
   ...
 ) {
   if (method == "search") {
-    occ <- rgbif::occ_search(
-      taxonKey = taxon_key,
-      hasCoordinate = TRUE,
-      hasGeospatialIssue = FALSE,
-      decimalLongitude = paste(bbox$xmin, bbox$xmax, sep = ","),
-      decimalLatitude = paste(bbox$ymin, bbox$ymax, sep = ","),
-      limit = n_occur,
-      ...
+    args <- utils::modifyList(
+      gbif_occ_checklist_args(taxon_key),
+      list(
+        taxonKey = taxon_key,
+        hasCoordinate = TRUE,
+        hasGeospatialIssue = FALSE,
+        decimalLongitude = paste(bbox$xmin, bbox$xmax, sep = ","),
+        decimalLatitude = paste(bbox$ymin, bbox$ymax, sep = ","),
+        limit = n_occur,
+        ...
+      )
     )
+    occ <- do.call(rgbif::occ_search, args)
     return(list(data = occ$data, count = occ$meta$count))
   }
 
-  occ_data <- gbif_download(
-    rgbif::pred("taxonKey", taxon_key),
-    rgbif::pred("hasCoordinate", TRUE),
-    rgbif::pred("hasGeospatialIssue", FALSE),
-    rgbif::pred_gte("decimalLatitude", bbox$ymin),
-    rgbif::pred_lte("decimalLatitude", bbox$ymax),
-    rgbif::pred_gte("decimalLongitude", bbox$xmin),
-    rgbif::pred_lte("decimalLongitude", bbox$xmax),
-    verbose = verbose
+  occ_data <- do.call(
+    gbif_download,
+    c(
+      list(
+        rgbif::pred("taxonKey", taxon_key),
+        rgbif::pred("hasCoordinate", TRUE),
+        rgbif::pred("hasGeospatialIssue", FALSE),
+        rgbif::pred_gte("decimalLatitude", bbox$ymin),
+        rgbif::pred_lte("decimalLatitude", bbox$ymax),
+        rgbif::pred_gte("decimalLongitude", bbox$xmin),
+        rgbif::pred_lte("decimalLongitude", bbox$xmax)
+      ),
+      gbif_occ_checklist_args(taxon_key, rgbif::occ_download),
+      list(verbose = verbose)
+    )
   )
 
   if (!is.null(occ_data) && nrow(occ_data) > n_occur) {
@@ -380,6 +390,10 @@ fetch_occur_for_taxa <- function(
   verbose = TRUE
 ) {
   keys <- gbif_taxa$usageKey
+  if (length(keys) == 0) {
+    # No matched taxon: never send an occurrence request without a taxon key.
+    return(NULL)
+  }
 
   if (method == "search") {
     occ_list <- vector("list", nrow(gbif_taxa))
@@ -390,6 +404,7 @@ fetch_occur_for_taxa <- function(
         hasGeospatialIssue = FALSE,
         limit = n_occur
       )
+      args <- c(args, gbif_occ_checklist_args(keys[i]))
       if (!is.null(bbox)) {
         args$decimalLongitude <- paste(bbox$xmin, bbox$xmax, sep = ",")
         args$decimalLatitude <- paste(bbox$ymin, bbox$ymax, sep = ",")
@@ -419,7 +434,14 @@ fetch_occur_for_taxa <- function(
         )
       )
     }
-    occ_data <- do.call(gbif_download, c(preds, list(verbose = verbose)))
+    occ_data <- do.call(
+      gbif_download,
+      c(
+        preds,
+        gbif_occ_checklist_args(keys, rgbif::occ_download),
+        list(verbose = verbose)
+      )
+    )
     if (!is.null(occ_data) && nrow(occ_data) > 0) {
       occ_data <- attribute_gbif_records(occ_data, gbif_taxa)
     }
@@ -493,5 +515,19 @@ occur_check_compute_df <- function(
       sample_point_lon = longitude
     )
   })
+  if (length(rows) == 0) {
+    return(tibble::tibble(
+      taxa_name = character(),
+      count_in_radius = numeric(),
+      closest_distance_km = numeric(),
+      mean_distance_km = numeric(),
+      total_count_in_world = numeric(),
+      search_radius = numeric(),
+      closest_point_lat = numeric(),
+      closest_point_lon = numeric(),
+      sample_point_lat = numeric(),
+      sample_point_lon = numeric()
+    ))
+  }
   bind_rows(rows)
 }

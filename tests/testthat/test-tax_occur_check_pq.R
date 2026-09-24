@@ -102,3 +102,15 @@ test_that("tax_occur_check_pq requires longitude and latitude", {
     )
   )
 })
+
+test_that("tax_occur_check_pq sends no download request when no name matches", {
+  local_gbif_no_match()
+  res <- suppressMessages(tax_occur_check_pq(
+    no_match_physeq(),
+    taxonomic_rank = "Genus_species",
+    longitude = 2,
+    latitude = 48,
+    verbose = FALSE
+  ))
+  expect_s4_class(res, "phyloseq")
+})

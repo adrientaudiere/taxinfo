@@ -105,12 +105,12 @@ tax_crosscheck_gbif_pq <- function(
 
   if (verbose) {
     cli::cli_alert_info(
-      "Running rgbif::name_backbone_checklist() on {.val {length(taxnames)}} taxa..."
+      "Running gbif_backbone_checklist() on {.val {length(taxnames)}} taxa..."
     )
   }
 
   # Run GBIF backbone checklist
-  backbone_res <- rgbif::name_backbone_checklist(taxnames)
+  backbone_res <- gbif_backbone_checklist(taxnames)
 
   # Extract canonical names for comparison
   gna_names <- gna_res$currentCanonicalSimple

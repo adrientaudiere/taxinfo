@@ -51,7 +51,7 @@ taxa_summary_text(data_fungi_cleanNames,
 )
 taxa_summary_text(data_fungi_cleanNames,
   taxonomic_rank = "Trait",
-  taxnames = c("Soft Rot"), verbose = FALSE
+  taxnames = c("White Rot"), verbose = FALSE
 )
 }
 }

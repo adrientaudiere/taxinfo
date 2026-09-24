@@ -138,14 +138,12 @@ tax_occur_multi_check_pq <- function(
     discard_genus_alone = discard_genus_alone,
     discard_NA = discard_NA
   )
-  gbif_taxa <- rgbif::name_backbone_checklist(all_taxnames) |>
-    filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    distinct()
+  gbif_taxa <- gbif_match_taxa(all_taxnames)
 
   world_counts <- vapply(
     gbif_taxa$usageKey,
     function(k) {
-      rgbif::occ_count(taxonKey = k, hasCoordinate = TRUE)
+      gbif_occ_count(k, hasCoordinate = TRUE)
     },
     numeric(1)
   )
@@ -243,7 +241,7 @@ tax_occur_multi_check_pq <- function(
     ncol = nsamples(physeq)
   )
 
-  for (i in 1:nrow(tax_range_mini)) {
+  for (i in seq_len(nrow(tax_range_mini))) {
     otu_matrix_occurence[
       which(taxa_names(physeq) == tax_range_mini$taxname[i]),
       which(sample_names(physeq) == tax_range_mini$sample_name[i])

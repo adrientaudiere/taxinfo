@@ -4,7 +4,7 @@
 #' <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
 #' <img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="lifecycle-experimental"></a>
 #'
-#' A wrapper of [rgbif::occ_search()] function to get the number of occurences.
+#' A wrapper of [rgbif::occ_search()] function to get the number of occurrences.
 #' Optionally, the number of occurrences can be obtained by years or by country.
 #'
 #' @param physeq (optional) A phyloseq object. Either `physeq` or `taxnames` must be provided, but not both.
@@ -18,9 +18,9 @@
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
-#' @param by_country (logical, default FALSE) If TRUE, the number of occurences
+#' @param by_country (logical, default FALSE) If TRUE, the number of occurrences
 #'   is computed by country
-#' @param by_years (logical, default FALSE) If TRUE, the number of occurences
+#' @param by_years (logical, default FALSE) If TRUE, the number of occurrences
 #'   is computed by years
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param time_to_sleep (numeric, default 0.3) Time to sleep between two calls to
@@ -60,7 +60,7 @@
 #'   geom_col() +
 #'   geom_col(aes(y = -log10(as.numeric(FR))), fill = "blue") +
 #'   coord_flip() +
-#'   xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
+#'   xlab("Number of occurrences (log10 scale) at global (grey) scale and in France (blue)")
 #' }
 tax_gbif_occur_pq <- function(
   physeq = NULL,
@@ -86,9 +86,7 @@ tax_gbif_occur_pq <- function(
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
 
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
-    filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    distinct()
+  gbif_taxa <- gbif_match_taxa(taxnames)
 
   if (by_country && by_years) {
     cli::cli_abort(
@@ -110,7 +108,10 @@ tax_gbif_occur_pq <- function(
           "Processing GBIF occurrences for {.emph {species_name}}"
         )
       }
-      tib <- rgbif::occ_search(x, limit = 0, facet = "country")$facet$country
+      tib <- do.call(
+        rgbif::occ_search,
+        c(list(x, limit = 0, facet = "country"), gbif_occ_checklist_args(x))
+      )$facet$country
       species_query <- gbif_taxa$verbatim_name[which(
         gbif_taxa$usageKey == x
       )]
@@ -145,7 +146,10 @@ tax_gbif_occur_pq <- function(
           "Processing GBIF occurrences for {.emph {species_name}}"
         )
       }
-      tib <- rgbif::occ_search(x, limit = 0, facet = "year")$facet$year
+      tib <- do.call(
+        rgbif::occ_search,
+        c(list(x, limit = 0, facet = "year"), gbif_occ_checklist_args(x))
+      )$facet$year
       species_query <- gbif_taxa$verbatim_name[which(
         gbif_taxa$usageKey == x
       )]
@@ -181,7 +185,10 @@ tax_gbif_occur_pq <- function(
         )
       }
       tib <- tibble(
-        "Global_occurences" = rgbif::occ_search(x, limit = 0)$meta$count,
+        "Global_occurences" = do.call(
+          rgbif::occ_search,
+          c(list(x, limit = 0), gbif_occ_checklist_args(x))
+        )$meta$count,
         "query_name" = gbif_taxa$verbatim_name[which(
           gbif_taxa$usageKey == x
         )]
@@ -194,7 +201,14 @@ tax_gbif_occur_pq <- function(
     tib_occur <- bind_rows(tib_occur_list)
   }
 
-  if (by_country | by_years) {
+  if (nrow(tib_occur) == 0) {
+    # No matched taxon (or no facet at all): usual key column, no values.
+    tib_occur <- if (by_country | by_years) {
+      tibble(query_name = character())
+    } else {
+      tibble(Global_occurences = integer(), query_name = character())
+    }
+  } else if (by_country | by_years) {
     tib_occur <- tib_occur |>
       group_by(query_name) |>
       tidyr::pivot_wider(

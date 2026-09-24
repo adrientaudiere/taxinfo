@@ -136,3 +136,22 @@ test_that("tax_gbif_alt add_to_phyloseq cannot be TRUE with taxnames", {
     "cannot be TRUE when.*taxnames"
   )
 })
+
+test_that("tax_gbif_alt returns empty altitudes without any GBIF call when no name matches", {
+  local_gbif_no_match()
+  res <- suppressMessages(tax_gbif_alt(
+    taxnames = c("Xxx yyy", "Zzz www"),
+    verbose = FALSE
+  ))
+  expect_equal(nrow(res), 0)
+  expect_true(all(c("altitude_min", "altitude_n_records") %in% names(res)))
+
+  physeq <- no_match_physeq()
+  res_pq <- suppressMessages(tax_gbif_alt(
+    physeq,
+    taxonomic_rank = "Genus_species",
+    verbose = FALSE
+  ))
+  expect_s4_class(res_pq, "phyloseq")
+  expect_true(all(is.na(res_pq@tax_table[, "altitude_min"])))
+})

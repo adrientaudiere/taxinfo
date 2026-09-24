@@ -28,6 +28,12 @@
 #'  specified in the parameter folder_name will be deleted if it already exists.
 #' @param col_name_url (default "photo_url") Name of the new column in the
 #'  tax_table
+#' @param checklist (Character, default `"backbone"`) The GBIF checklist used
+#'  to resolve names: `"backbone"` (legacy GBIF Backbone Taxonomy),
+#'  `"colxr"` (Catalogue of Life Extended Release) or a raw GBIF dataset
+#'  UUID. Defaults to `"backbone"` here because [rgbif::name_usage()] is a
+#'  GBIF-Backbone API that cannot resolve COL XR keys. See [gbif_key_to_col()]
+#'  for the rgbif 3.9.0 checklist migration.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
 #' @param caption_valign (character, default "bottom")
 #'   Vertical alignment of the caption in the gallery. Either `"bottom"` or
@@ -90,6 +96,7 @@ tax_photos_pq <- function(
   folder_name = "photos_physeq",
   add_to_phyloseq = NULL,
   col_prefix = NULL,
+  checklist = "backbone",
   gallery = FALSE,
   overwrite_folder = FALSE,
   col_name_url = "photo_url",
@@ -130,11 +137,8 @@ tax_photos_pq <- function(
   }
 
   if (source == "gbif") {
-    gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw)
-    gbif_taxa$query_name <- taxnames_raw
-    gbif_taxa <- gbif_taxa |>
-      dplyr::filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-      dplyr::distinct()
+    gbif_taxa <- gbif_match_taxa(taxnames_raw, checklist = checklist)
+    gbif_taxa$query_name <- gbif_taxa$verbatim_name
     taxnames <- gbif_taxa$canonicalName
   } else if (source == "wikitaxa") {
     check_package("wikitaxa")
@@ -159,7 +163,7 @@ tax_photos_pq <- function(
 
     if (source == "gbif") {
       # select only the first photo for each species
-      xs_gbif <- suppressWarnings(rgbif::name_usage(
+      xs_gbif <- suppressWarnings(gbif_name_usage(
         gbif_taxa$usageKey[gbif_taxa$canonicalName == taxnames[i]],
         data = "media"
       )$data$identifier[[1]])
@@ -358,11 +362,13 @@ tax_photos_pq <- function(
   }
 
   dir.create(folder_name)
-  download.file(
-    photo_url[!is.na(photo_url)],
-    paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"),
-    quiet = TRUE
-  )
+  if (any(!is.na(photo_url))) {
+    download.file(
+      photo_url[!is.na(photo_url)],
+      paste0(folder_name, "/", taxnames[!is.na(photo_url)], ".jpg"),
+      quiet = TRUE
+    )
+  }
   invisible(photo_url_tib)
 }
 

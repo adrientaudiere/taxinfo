@@ -47,7 +47,7 @@ Only used when `method = "elevatr"`. Higher values give finer resolution
 but are slower. Range: 1-14. See [elevatr::get_elev_point()] for details.}
 
 \item{n_coor_alt}{(int, default NULL) Number of occurrences to samples. If
-left to NULL, all occurrences are used to computed the altitute. It allow
+left to NULL, all occurrences are used to computed the altitude. It allow
 quicker computation when using method "elevatr" on taxa with a large
 number of occurrences.}
 

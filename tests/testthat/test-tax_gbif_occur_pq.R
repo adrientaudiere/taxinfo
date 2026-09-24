@@ -70,3 +70,23 @@ test_that("tax_gbif_occur_pq returns phyloseq with add_to_phyloseq = TRUE", {
   expect_s4_class(result, "phyloseq")
   expect_true("US" %in% colnames(result@tax_table))
 })
+
+test_that("tax_gbif_occur_pq returns its usual columns when no name matches", {
+  local_gbif_no_match()
+  tn <- c("Xxx yyy", "Zzz www")
+  res <- suppressMessages(tax_gbif_occur_pq(taxnames = tn, verbose = FALSE))
+  expect_equal(nrow(res), 0)
+  expect_named(res, c("Global_occurences", "query_name"))
+
+  res_country <- suppressMessages(
+    tax_gbif_occur_pq(taxnames = tn, by_country = TRUE, verbose = FALSE)
+  )
+  expect_named(res_country, "query_name")
+
+  res_pq <- suppressMessages(tax_gbif_occur_pq(
+    no_match_physeq(),
+    taxonomic_rank = "Genus_species",
+    verbose = FALSE
+  ))
+  expect_s4_class(res_pq, "phyloseq")
+})

@@ -10,6 +10,7 @@ tax_iucn_code_pq(
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
   col_prefix = NULL,
+  checklist = "backbone",
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
@@ -30,6 +31,13 @@ Cannot be TRUE if `taxnames` is provided.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
+
+\item{checklist}{(Character, default `"backbone"`) The GBIF checklist used
+to resolve names: `"backbone"` (legacy GBIF Backbone Taxonomy),
+`"colxr"` (Catalogue of Life Extended Release) or a raw GBIF dataset
+UUID. Defaults to `"backbone"` here because [rgbif::name_usage()] is a
+GBIF-Backbone API that cannot resolve COL XR keys. See [gbif_key_to_col()]
+for the rgbif 3.9.0 checklist migration.}
 
 \item{discard_genus_alone}{(logical, default `TRUE` when
 `taxonomic_rank == "currentCanonicalSimple"`). Passed to

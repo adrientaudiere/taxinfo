@@ -150,15 +150,13 @@ tax_occur_check_pq <- function(
       ))
     }
   }
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames_raw) |>
-    filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    distinct()
+  gbif_taxa <- gbif_match_taxa(taxnames_raw)
 
   # Worldwide georeferenced counts per taxon (no credentials needed).
   world_counts <- vapply(
     gbif_taxa$usageKey,
     function(k) {
-      rgbif::occ_count(taxonKey = k, hasCoordinate = TRUE)
+      gbif_occ_count(k, hasCoordinate = TRUE)
     },
     numeric(1)
   )

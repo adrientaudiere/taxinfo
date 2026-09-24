@@ -74,7 +74,7 @@ calculate_bbox <- function(longitude = NULL, latitude = NULL, radius_km = 1) {
 #' )
 #' taxa_summary_text(data_fungi_cleanNames,
 #'   taxonomic_rank = "Trait",
-#'   taxnames = c("Soft Rot"), verbose = FALSE
+#'   taxnames = c("White Rot"), verbose = FALSE
 #' )
 #' }
 taxa_summary_text <- function(
@@ -502,10 +502,10 @@ attribute_gbif_records <- function(occ_data, gbif_taxa) {
 
     sel <- rep(FALSE, nrow(occ_data))
     if ("speciesKey" %in% names(occ_data)) {
-      sel <- sel | (occ_data$speciesKey == key)
+      sel <- sel | (gbif_key_chr(occ_data$speciesKey) == gbif_key_chr(key))
     }
     if ("taxonKey" %in% names(occ_data)) {
-      sel <- sel | (occ_data$taxonKey == key)
+      sel <- sel | (gbif_key_chr(occ_data$taxonKey) == gbif_key_chr(key))
     }
     # Higher-rank fallback: match the queried name against name columns.
     if (!isTRUE(any(sel, na.rm = TRUE)) && length(name_cols) > 0) {

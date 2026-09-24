@@ -14,6 +14,12 @@
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
 #' columns names added to the tax_table slot of the phyloseq object (default: NULL).
+#' @param checklist (Character, default `"backbone"`) The GBIF checklist used
+#'  to resolve names: `"backbone"` (legacy GBIF Backbone Taxonomy),
+#'  `"colxr"` (Catalogue of Life Extended Release) or a raw GBIF dataset
+#'  UUID. Defaults to `"backbone"` here because [rgbif::name_usage()] is a
+#'  GBIF-Backbone API that cannot resolve COL XR keys. See [gbif_key_to_col()]
+#'  for the rgbif 3.9.0 checklist migration.
 #' @param discard_genus_alone (logical, default `TRUE` when
 #'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to
 #'  [taxonomic_rank_to_taxnames()].
@@ -47,6 +53,7 @@ tax_iucn_code_pq <- function(
   taxonomic_rank = "currentCanonicalSimple",
   add_to_phyloseq = NULL,
   col_prefix = NULL,
+  checklist = "backbone",
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
@@ -61,13 +68,13 @@ tax_iucn_code_pq <- function(
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
 
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
+  gbif_taxa <- gbif_backbone_checklist(taxnames, checklist = checklist) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
     distinct()
 
   # Get IUCN Red List category for each taxon in the backbone
   iucn_codes <- sapply(gbif_taxa$usageKey, function(x) {
-    rgbif::name_usage(x, data = "iucnRedListCategory")$data$code
+    gbif_name_usage(x, data = "iucnRedListCategory")$data$code
   })
   iucn_codes_df <- data.frame(
     "iucn_code" = iucn_codes,

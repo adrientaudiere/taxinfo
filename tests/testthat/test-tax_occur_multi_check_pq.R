@@ -153,3 +153,18 @@ test_that("tax_occur_multi_check_pq requires matching coordinate lengths", {
     "length"
   )
 })
+
+test_that("tax_occur_multi_check_pq returns zero occurrences when no name matches", {
+  local_gbif_no_match()
+  physeq <- no_match_physeq()
+  res <- suppressMessages(tax_occur_multi_check_pq(
+    physeq,
+    taxonomic_rank = "Genus_species",
+    longitudes = rep(2, phyloseq::nsamples(physeq)),
+    latitudes = rep(48, phyloseq::nsamples(physeq)),
+    verbose = FALSE
+  ))
+  expect_named(res, c("tax_range_list", "otu_matrix_occurence", "new_physeq"))
+  expect_equal(sum(res$otu_matrix_occurence), 0)
+  expect_s4_class(res$new_physeq, "phyloseq")
+})

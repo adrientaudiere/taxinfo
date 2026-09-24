@@ -156,3 +156,37 @@ test_that("tax_photos_pq caption_valign=top works", {
   )
   expect_s3_class(result, "shiny.tag")
 })
+
+test_that("tax_photos_pq handles no GBIF match and no photo found", {
+  local_gbif_no_match()
+  folder <- file.path(tempdir(), "photos_no_match")
+  unlink(folder, recursive = TRUE)
+  res <- suppressMessages(tax_photos_pq(
+    taxnames = c("Xxx yyy", "Zzz www"),
+    folder_name = folder,
+    verbose = FALSE
+  ))
+  expect_equal(nrow(res), 0)
+  expect_true(dir.exists(folder))
+
+  local_mocked_bindings(
+    gbif_backbone_checklist = function(name_data, checklist = NULL, ...) {
+      tibble::tibble(
+        usageKey = "1",
+        canonicalName = "Foo bar",
+        matchType = "EXACT",
+        verbatim_name = "Foo bar"
+      )
+    },
+    gbif_name_usage = function(...) list(data = list())
+  )
+  folder2 <- file.path(tempdir(), "photos_no_photo")
+  unlink(folder2, recursive = TRUE)
+  res2 <- suppressMessages(tax_photos_pq(
+    taxnames = "Foo bar",
+    folder_name = folder2,
+    verbose = FALSE
+  ))
+  expect_true(is.na(res2$photo_url))
+  expect_length(list.files(folder2), 0)
+})

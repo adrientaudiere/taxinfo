@@ -37,7 +37,7 @@
 #'   Only used when `method = "elevatr"`. Higher values give finer resolution
 #'   but are slower. Range: 1-14. See [elevatr::get_elev_point()] for details.
 #' @param n_coor_alt (int, default NULL) Number of occurrences to samples. If
-#'   left to NULL, all occurrences are used to computed the altitute. It allow
+#'   left to NULL, all occurrences are used to computed the altitude. It allow
 #'   quicker computation when using method "elevatr" on taxa with a large
 #'   number of occurrences.
 #' @param verbose (logical, default TRUE) If TRUE, prompt some messages.
@@ -177,9 +177,7 @@ tax_gbif_alt <- function(
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
 
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
-    filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
-    distinct()
+  gbif_taxa <- gbif_match_taxa(taxnames)
 
   if (verbose) {
     cli::cli_alert_info("Using method: {.val {method}}")
@@ -200,13 +198,27 @@ tax_gbif_alt <- function(
 
   if (method == "gbif") {
     # Method 1: Use GBIF Download API to get elevation data directly
-    occ_data <- gbif_download(
-      rgbif::pred_in("taxonKey", gbif_taxon_keys),
-      rgbif::pred("hasCoordinate", TRUE),
-      rgbif::pred("hasGeospatialIssue", FALSE),
-      rgbif::pred_notnull("elevation"),
-      verbose = verbose
-    )
+    occ_data <- NULL
+    if (nrow(gbif_taxa) > 0) {
+      occ_data <- do.call(
+        gbif_download,
+        c(
+          list(
+            rgbif::pred_in("taxonKey", gbif_taxon_keys),
+            rgbif::pred("hasCoordinate", TRUE),
+            rgbif::pred("hasGeospatialIssue", FALSE),
+            rgbif::pred_notnull("elevation")
+          ),
+          gbif_occ_checklist_args(gbif_taxon_keys, rgbif::occ_download),
+          list(verbose = verbose)
+        )
+      )
+    }
+    # Records carry GBIF Backbone keys whatever the queried checklist, and a
+    # taxonKey download is hierarchical: attribute by key or by name.
+    if (!is.null(occ_data) && nrow(occ_data) > 0) {
+      occ_data <- attribute_gbif_records(occ_data, gbif_taxa)
+    }
 
     # Process elevation data for each taxon
     for (i in seq_len(nrow(gbif_taxa))) {
@@ -219,8 +231,11 @@ tax_gbif_alt <- function(
         )
       }
 
-      taxon_data <- occ_data |>
-        filter(taxonKey == taxon_key)
+      taxon_data <- occ_data[
+        occ_data[["usageKey"]] %in% taxon_key,
+        ,
+        drop = FALSE
+      ]
 
       if (!is.null(n_coor_alt)) {
         taxon_data <-
@@ -290,12 +305,26 @@ tax_gbif_alt <- function(
     )
 
     # Submit download request to get coordinates
-    occ_data <- gbif_download(
-      rgbif::pred_in("taxonKey", gbif_taxon_keys),
-      rgbif::pred("hasCoordinate", TRUE),
-      rgbif::pred("hasGeospatialIssue", FALSE),
-      verbose = verbose
-    )
+    occ_data <- NULL
+    if (nrow(gbif_taxa) > 0) {
+      occ_data <- do.call(
+        gbif_download,
+        c(
+          list(
+            rgbif::pred_in("taxonKey", gbif_taxon_keys),
+            rgbif::pred("hasCoordinate", TRUE),
+            rgbif::pred("hasGeospatialIssue", FALSE)
+          ),
+          gbif_occ_checklist_args(gbif_taxon_keys, rgbif::occ_download),
+          list(verbose = verbose)
+        )
+      )
+    }
+    # Records carry GBIF Backbone keys whatever the queried checklist, and a
+    # taxonKey download is hierarchical: attribute by key or by name.
+    if (!is.null(occ_data) && nrow(occ_data) > 0) {
+      occ_data <- attribute_gbif_records(occ_data, gbif_taxa)
+    }
 
     # Process elevation data for each taxon
     for (i in seq_len(nrow(gbif_taxa))) {
@@ -309,8 +338,11 @@ tax_gbif_alt <- function(
       }
 
       # Filter data for this taxon
-      taxon_data <- occ_data |>
-        filter(taxonKey == taxon_key)
+      taxon_data <- occ_data[
+        occ_data[["usageKey"]] %in% taxon_key,
+        ,
+        drop = FALSE
+      ]
 
       elevation_data <- NULL
       n_ocean <- 0
@@ -427,6 +459,28 @@ tax_gbif_alt <- function(
   }
 
   tib_occur <- bind_rows(tib_occur_list)
+  if (nrow(tib_occur) == 0) {
+    # No matched taxon: keep the usual columns so the join below adds NA
+    # columns to the tax_table.
+    tib_occur <- tibble(
+      "altitude_min" = numeric(),
+      "altitude_max" = numeric(),
+      "altitude_q05" = numeric(),
+      "altitude_q50" = numeric(),
+      "altitude_q95" = numeric(),
+      "altitude_mean" = numeric(),
+      "altitude_sd" = numeric(),
+      "altitude_n_records" = numeric(),
+      "canonicalName" = character()
+    )
+    if (method == "elevatr") {
+      tib_occur <- tibble::add_column(
+        tib_occur,
+        "altitude_n_ocean" = numeric(),
+        .before = "canonicalName"
+      )
+    }
+  }
 
   # Get new column names (excluding canonicalName which is used for join)
   new_cols <- setdiff(colnames(tib_occur), "canonicalName")

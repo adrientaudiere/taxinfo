@@ -88,7 +88,7 @@ range_bioreg_pq <- function(
     discard_NA = discard_NA
   )$taxnames
 
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
+  gbif_taxa <- gbif_backbone_checklist(taxnames) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>
     distinct()
 

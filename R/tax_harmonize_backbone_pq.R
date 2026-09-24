@@ -481,7 +481,7 @@ harmonize_resolve <- function(
   if (!is.null(kingdom)) {
     query_df$kingdom <- kingdom
   }
-  res <- rgbif::name_backbone_checklist(query_df)
+  res <- gbif_backbone_checklist(query_df)
 
   out <- list()
   for (i in seq_len(nrow(res))) {
@@ -539,7 +539,7 @@ harmonize_recover_one <- function(
   match_types
 ) {
   alts <- tryCatch(
-    as.data.frame(rgbif::name_backbone(
+    as.data.frame(gbif_backbone(
       name = name,
       rank = rank,
       kingdom = kingdom,

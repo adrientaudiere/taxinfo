@@ -102,9 +102,7 @@ tax_gbif_occur_coords <- function(
 
   taxnames <- unique(taxnames)
 
-  gbif_taxa <- rgbif::name_backbone_checklist(taxnames) |>
-    filter(.data$matchType %in% c("EXACT", "HIGHERRANK")) |>
-    distinct(.data$usageKey, .data$canonicalName, .data$verbatim_name)
+  gbif_taxa <- gbif_match_taxa(taxnames)
 
   empty_result <- function() {
     res <- tibble::tibble(
@@ -121,7 +119,6 @@ tax_gbif_occur_coords <- function(
   }
 
   if (nrow(gbif_taxa) == 0) {
-    cli::cli_alert_warning("No taxa matched in the GBIF backbone")
     return(empty_result())
   }
 
@@ -234,12 +231,16 @@ gbif_occur_coords_search <- function(
         "Fetching GBIF occurrences for {.emph {gbif_taxa$verbatim_name[i]}}"
       )
     }
-    res_i <- rgbif::occ_search(
-      taxonKey = gbif_taxa$usageKey[i],
-      limit = n_occur,
-      hasCoordinate = TRUE,
-      hasGeospatialIssue = FALSE
-    )$data
+    args <- c(
+      list(
+        taxonKey = gbif_taxa$usageKey[i],
+        limit = n_occur,
+        hasCoordinate = TRUE,
+        hasGeospatialIssue = FALSE
+      ),
+      gbif_occ_checklist_args(gbif_taxa$usageKey[i])
+    )
+    res_i <- do.call(rgbif::occ_search, args)$data
 
     if (!is.null(res_i) && nrow(res_i) > 0) {
       res_i <- res_i |>
@@ -292,6 +293,7 @@ gbif_occur_coords_download <- function(
   }
 
   keys <- gbif_taxa$usageKey
+  attrib_taxa <- gbif_taxa
 
   if (method == "download_sql") {
     if (!is.null(geometry)) {
@@ -299,8 +301,13 @@ gbif_occur_coords_download <- function(
         "{.arg geometry} is not supported with {.code method = \"download_sql\"}; use {.code method = \"download\"}."
       )
     }
+    # SQL columns hold GBIF Backbone keys only: re-match COL XR taxa there.
+    attrib_taxa <- gbif_taxa_to_backbone(gbif_taxa, verbose = verbose)
+    if (nrow(attrib_taxa) == 0) {
+      return(NULL)
+    }
     sql <- build_gbif_coords_sql(
-      keys = keys,
+      keys = attrib_taxa$usageKey,
       country = country,
       year_gte = year_gte,
       year_lte = year_lte
@@ -324,7 +331,14 @@ gbif_occur_coords_download <- function(
     if (!is.null(geometry)) {
       preds <- c(preds, list(rgbif::pred_within(geometry)))
     }
-    occ_data <- do.call(gbif_download, c(preds, list(verbose = verbose)))
+    occ_data <- do.call(
+      gbif_download,
+      c(
+        preds,
+        gbif_occ_checklist_args(keys, rgbif::occ_download),
+        list(verbose = verbose)
+      )
+    )
   }
 
   if (is.null(occ_data) || nrow(occ_data) == 0) {
@@ -349,10 +363,14 @@ gbif_occur_coords_download <- function(
 
   # Attribute each record to the queried taxon (hierarchical download returns
   # descendants whose own taxonKey differs from the queried key).
-  occ_data <- attribute_gbif_records(occ_data, gbif_taxa)
+  occ_data <- attribute_gbif_records(occ_data, attrib_taxa)
   if (is.null(occ_data) || nrow(occ_data) == 0) {
     return(NULL)
   }
+  # Report the keys of the requested checklist, not the SQL backbone keys.
+  occ_data$usageKey <- gbif_taxa$usageKey[
+    match(occ_data$taxon_name, gbif_taxa$verbatim_name)
+  ]
 
   # Apply the per-taxon cap locally (GBIF downloads have no server-side limit).
   occ_list <- vector("list", nrow(gbif_taxa))
