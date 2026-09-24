@@ -36,7 +36,9 @@
 #'  `add_to_phyloseq = TRUE`) or the long tibble produced by
 #'  [tax_ecoregion_occur()] (otherwise). In the latter case,
 #'  `attr(result, "tax_summary")` holds the one-row-per-taxon summary used to
-#'  build the phyloseq columns.
+#'  build the phyloseq columns, and `attr(result, "saturation")` the
+#'  per-taxon fetch summary when `saturation = TRUE` (see
+#'  [tax_ecoregion_occur()]; not available on the phyloseq output).
 #'
 #' @author Adrien Taudiere
 #' @seealso [tax_ecoregion_occur()], [tax_check_ecoregion()],
@@ -63,6 +65,10 @@ tax_ecoregion_occur_pq <- function(
   clean_coord = FALSE,
   verbose = TRUE,
   time_to_sleep = 0.3,
+  saturation = FALSE,
+  batch_size = 250,
+  min_points = 100,
+  patience = 2,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
@@ -88,7 +94,11 @@ tax_ecoregion_occur_pq <- function(
     min_proportion = min_proportion,
     clean_coord = clean_coord,
     verbose = verbose,
-    time_to_sleep = time_to_sleep
+    time_to_sleep = time_to_sleep,
+    saturation = saturation,
+    batch_size = batch_size,
+    min_points = min_points,
+    patience = patience
   )
 
   summary_tbl <- long_tbl |>

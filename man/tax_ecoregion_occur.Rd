@@ -12,7 +12,11 @@ tax_ecoregion_occur(
   min_proportion = 0,
   clean_coord = FALSE,
   verbose = TRUE,
-  time_to_sleep = 0.3
+  time_to_sleep = 0.3,
+  saturation = FALSE,
+  batch_size = 250,
+  min_points = 100,
+  patience = 2
 )
 }
 \arguments{
@@ -44,12 +48,40 @@ pairs whose share of the taxon's total occurrences is `>= min_proportion`
 \item{time_to_sleep}{(numeric, default `0.3`). Seconds to pause between
 [rgbif::occ_search()] calls to avoid GBIF rate-limiting. Only used when
 `method = "search"`.}
+
+\item{saturation}{(logical, default `FALSE`). If `TRUE` (and
+`method = "search"`), occurrences are fetched in batches of `batch_size`
+and fetching stops as soon as the taxon's ecoregion set has stopped
+growing for `patience` consecutive batches (and at least `min_points`
+points were fetched). This directly minimises the number of GBIF points
+needed per taxon: once the ecoregion set is stable, the remaining GBIF
+records cannot change the profile and are not downloaded. Use
+`saturation = FALSE` to always fetch the full `n_occur` budget. Ignored
+with the download methods (a GBIF download is a single one-shot request).
+The per-taxon fetch summary is the `"saturation"` attribute of the long
+tibble built by [tax_ecoregion_occur()]: `attr(result, "saturation")`
+for [tax_ecoregion_occur()] and for [tax_ecoregion_occur_pq()] with
+`add_to_phyloseq = FALSE`, and `attr(result$taxon_ecoregions,
+"saturation")` for [tax_check_ecoregion()]. It is not returned when
+[tax_ecoregion_occur_pq()] outputs a phyloseq object
+(`add_to_phyloseq = TRUE`).}
+
+\item{batch_size}{(numeric, default `250`). Page size of each GBIF fetch
+when `saturation = TRUE`.}
+
+\item{min_points}{(numeric, default `100`). Minimum number of points
+fetched per taxon before the saturation rule is allowed to fire.}
+
+\item{patience}{(numeric, default `2`). Number of consecutive batches
+without a new ecoregion tolerated before fetching stops.}
 }
 \value{
 A tibble with columns `taxon_name`, `ECO_NAME`, `biome`, `realm`,
  `n_occur`, `prop_occur`. Taxa with zero retrievable occurrences appear
  once with `NA` in the ecoregion columns and `n_occur = 0L`, so downstream
- joins do not silently drop them.
+ joins do not silently drop them. When the saturation early-stop ran,
+ `attr(result, "saturation")` holds one row per fetched taxon
+ (`taxon_name`, `n_points`, `n_ecoregions`, `n_batches`, `status`).
 }
 \description{
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">

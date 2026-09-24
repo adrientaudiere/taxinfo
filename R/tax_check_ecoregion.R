@@ -17,6 +17,8 @@
 #'
 #' @returns A list with four elements:
 #' - `taxon_ecoregions`: the long tibble produced by [tax_ecoregion_occur()].
+#'   When `saturation = TRUE`, `attr(result$taxon_ecoregions, "saturation")`
+#'   holds the per-taxon fetch summary.
 #' - `points_ecoregion`: the tibble produced by [points_to_ecoregions()].
 #' - `is_in_ecoregion`: a logical matrix with rownames = taxon names and
 #'   colnames = `"point_<i>"`, shape `n_taxa x n_points`. `TRUE` means the
@@ -58,6 +60,10 @@ tax_check_ecoregion <- function(
   clean_coord = FALSE,
   verbose = TRUE,
   time_to_sleep = 0.3,
+  saturation = FALSE,
+  batch_size = 250,
+  min_points = 100,
+  patience = 2,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 ) {
@@ -75,8 +81,6 @@ tax_check_ecoregion <- function(
     discard_NA = discard_NA
   )$taxnames
 
-  ecoregions <- load_ecoregions()
-
   taxon_tbl <- tax_ecoregion_occur(
     taxnames = taxnames,
     n_occur = n_occur,
@@ -84,13 +88,17 @@ tax_check_ecoregion <- function(
     min_proportion = min_proportion,
     clean_coord = clean_coord,
     verbose = verbose,
-    time_to_sleep = time_to_sleep
+    time_to_sleep = time_to_sleep,
+    saturation = saturation,
+    batch_size = batch_size,
+    min_points = min_points,
+    patience = patience
   )
 
   points_tbl <- points_to_ecoregions(
     longitudes = longitudes,
     latitudes = latitudes,
-    ecoregions = ecoregions
+    ecoregions = load_ecoregions()
   )
 
   is_in <- matrix(
