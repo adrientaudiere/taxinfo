@@ -69,6 +69,7 @@ if (getRversion() >= "2.15.1") {
       "map_data",
       "margin",
       "matchType",
+      "matchedCardinality",
       "max_left",
       "max_right",
       "median",

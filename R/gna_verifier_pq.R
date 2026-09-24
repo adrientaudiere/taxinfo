@@ -50,9 +50,9 @@
 #'    - **taxa_name**: The character string sent to gna_verifier (e.g.
 #'    `Antrodiella brasiliensis`)
 #'    - **currentName**: The current accepted name (resolve the synonym) with
-#'      autorities at the end of the binominal name (e.g.
+#'      authorities at the end of the binomial name (e.g.
 #'      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)`.
-#'    - **currentCanonicalSimple**: The current accepted name without autorities
+#'    - **currentCanonicalSimple**: The current accepted name without authorities
 #'      (e.g. `Trametopsis brasiliensis`, `Russula`).
 #'
 #'      Other columns can be added depending on the parameters:
@@ -220,7 +220,7 @@ gna_verifier_pq <- function(
     problematic <- grepl(problematic_chars, taxnames)
     if (any(problematic)) {
       n_problematic <- sum(problematic)
-      examples <- head(taxnames[problematic], 5)
+      examples <- utils::head(taxnames[problematic], 5)
       if (clean_problematic_chars) {
         cli::cli_warn(c(
           "!" = "{n_problematic} taxonomic name(s) contain characters problematic for the GNA Verifier API.",
@@ -283,7 +283,7 @@ gna_verifier_pq <- function(
     common_cols <- intersect(prefixed_new_cols, colnames(physeq@tax_table))
     if (length(common_cols) > 0) {
       cli::cli_alert_info(
-        "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {head(common_cols, 5)}}"
+        "Removing {.val {length(common_cols)}} existing column(s) before re-adding: {.val {utils::head(common_cols, 5)}}"
       )
       tax_mat <- as(physeq@tax_table, "matrix")
       tax_mat <- tax_mat[,

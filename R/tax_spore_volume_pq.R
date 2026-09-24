@@ -87,10 +87,17 @@
 #'   verbose = FALSE
 #' )
 #'
-#' tidypq::pq_to_tidy(res) |>
-#'   filter(abundance > 10) |>
-#'   ggplot2::ggplot(ggplot2::aes(x=Height, color=Height, size = as.numeric(spore_meiospores_volume), y = log10(abundance))) +
-#'   ggplot2::geom_jitter()
+#' if (requireNamespace("tidypq", quietly = TRUE)) {
+#'   tidypq::pq_to_tidy(res) |>
+#'     filter(abundance > 10) |>
+#'     ggplot2::ggplot(ggplot2::aes(
+#'       x = Height,
+#'       color = Height,
+#'       size = as.numeric(spore_meiospores_volume),
+#'       y = log10(abundance)
+#'     )) +
+#'     ggplot2::geom_jitter()
+#' }
 #'
 #'
 tax_spores_volume_pq <- function(

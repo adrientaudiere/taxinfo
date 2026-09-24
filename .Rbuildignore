@@ -20,3 +20,7 @@ README.Rmd
 ^audits$
 ^dev$
 ^cran-comments\.md$
+^paper$
+^(High|Middle|Low)_.*\.csv$
+^network(High|Middle|Low)(_cover)?\.pdf$
+^Power_law_distribution_.*\.pdf$

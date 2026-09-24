@@ -71,8 +71,9 @@
 #' # Return a tibble instead of a phyloseq
 #' data_fungi_cleanNames <- gna_verifier_pq(data_fungi, data_sources = 210)
 #' tib <- fungal_traits_guilds(data_fungi_cleanNames, add_to_phyloseq = FALSE)
-#'
+#' }
 #' \donttest{
+#' res_guild_2 <- fungal_traits_guilds(data_fungi_mini, gna_data_sources = 210)
 #' res_guild_2 |> psmelt() |>
 #'  filter(Abundance > 0) |>
 #'  ggplot(aes(x = Height, y = Abundance, fill = cons_trophicMode)) +

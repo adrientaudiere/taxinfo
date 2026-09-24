@@ -15,7 +15,7 @@ Description: Augments 'phyloseq' objects with taxonomy-based information
     and plain taxonomic name vectors as input.
 License: AGPL-3
 URL: https://adrientaudiere.github.io/taxinfo/,
-    https://adrientaudiere.github.io/taxinfo
+    https://github.com/adrientaudiere/taxinfo
 BugReports: https://github.com/adrientaudiere/taxinfo/issues
 Depends:
     MiscMetabar,
@@ -73,13 +73,16 @@ Suggests:
     systemfonts,
     terra,
     testthat (>= 3.0.0),
+    tidypq,
     vcr (>= 1.0.0),
-    wikitaxa
+    wikitaxa,
+    withr
 Remotes:
-    adrientaudiere/MiscMetabar
+    adrientaudiere/MiscMetabar,
+    adrientaudiere/tidypq
 VignetteBuilder:
     knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

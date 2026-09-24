@@ -80,9 +80,9 @@ be a vector of two columns (e.g. the default c("Genus", "Species")).}
    - **taxa_name**: The character string sent to gna_verifier (e.g.
    `Antrodiella brasiliensis`)
    - **currentName**: The current accepted name (resolve the synonym) with
-     autorities at the end of the binominal name (e.g.
+     authorities at the end of the binomial name (e.g.
      `Trametopsis brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)`.
-   - **currentCanonicalSimple**: The current accepted name without autorities
+   - **currentCanonicalSimple**: The current accepted name without authorities
      (e.g. `Trametopsis brasiliensis`, `Russula`).
 
      Other columns can be added depending on the parameters:

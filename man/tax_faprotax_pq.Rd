@@ -89,25 +89,30 @@ copyright notice and BSD-style license (Copyright (c) 2019, Stilianos Louca).
 }
 \examples{
 data(GlobalPatterns, package = "phyloseq")
+# The first 2000 taxa keep the example fast
+gp <- phyloseq::prune_taxa(
+  phyloseq::taxa_names(GlobalPatterns)[1:2000],
+  GlobalPatterns
+)
 
-res <- tax_faprotax_pq(GlobalPatterns, verbose = FALSE)
+res <- tax_faprotax_pq(gp, verbose = FALSE)
 
 head(sort(table(res@tax_table[, "faprotax_groups"], useNA = "ifany"), decreasing = TRUE))
 
 \donttest{
 # One 0/1 column per functional group, then count the nitrifying bacteria
-res_bin <- tax_faprotax_pq(GlobalPatterns, binary = TRUE, verbose = FALSE)
+res_bin <- tax_faprotax_pq(gp, binary = TRUE, verbose = FALSE)
 sum(as.logical(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
 
 # Restrict matching to the genus / species level only (fewer hits)
 res_gs <- tax_faprotax_pq(
-  GlobalPatterns,
+  gp,
   tax_levels = c("Genus", "Species"),
   verbose = FALSE
 )
 
 # Return a tibble instead of a phyloseq object
-tib <- tax_faprotax_pq(GlobalPatterns, add_to_phyloseq = FALSE, verbose = FALSE)
+tib <- tax_faprotax_pq(gp, add_to_phyloseq = FALSE, verbose = FALSE)
 }
 }
 \references{

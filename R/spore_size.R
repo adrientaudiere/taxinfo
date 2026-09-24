@@ -260,7 +260,11 @@ extract_spores_mycodb <- function(species_name, verbose = TRUE) {
     "&espece=",
     stringr::word(species_name, 2)
   )
-  page_html <- rvest::read_html(paste0(base_url, search_params))
+  # mycoDB pages are served as ISO-8859-1, not UTF-8.
+  page_html <- rvest::read_html(
+    paste0(base_url, search_params),
+    encoding = "ISO-8859-1"
+  )
   if (
     grepl(
       pattern = "https://www.mycodb.fr/quicksearch.php",
