@@ -1,0 +1,32 @@
+Field Name,Description,Example
+Reference,Full citation of the original publication from which the record was extracted.,"Sieber, T. N. (1989). Endophytic fungi in twigs of healthy and diseased Norway spruce and white fir. Mycological Research,92(3), 322-326."
+DOI,Digital Object Identifier of the reference.,https://doi.org/10.1016/S0953-7562(89)80073-5
+Ref_Type,"Type of reference (e.g., Literature, GenBank, FungalTrait).",Research Article
+Accession,Sequence accession number associated with the fungal isolate (if available).,MN123456
+Fungi,Original fungal name as reported in the source publication.,Fusarium sp. isolate A
+Scientific_Name,"Standardized, taxonomically validated fungal species name used in the database.",Fusarium oxysporum
+Kingdom,Kingdom-level classification of the fungal organism.,Fungi
+Phylum,Phylum-level classification.,Ascomycota
+Class,Class-level classification.,Sordariomycetes
+Order,Order-level classification.,Hypocreales
+Family,Family-level classification.,Nectriaceae
+Genus,Genus-level classification.,Fusarium
+Species,Species-level classification (binomial name).,oxysporum
+Study_Type,Nature of the study from which the record was derived.,Culture-based isolation
+Organ,Host plant organ or tissue from which the fungal endophyte was isolated.,Root
+Sampling_Location,Specific locality description provided in the study.,"Harvard Forest, Massachusetts"
+Lat,Latitude coordinate of the sampling site (decimal degrees).,42.5378
+Lon,Longitude coordinate of the sampling site (decimal degrees).,-72.1726
+Country,Country where the sampling was conducted.,USA
+Collection_Date,Date (or year) when the sample was collected (if reported).,43266
+Host_Genus,Genus of the host plant.,Quercus
+Host_Species,Species of the host plant.,robur
+Host_Kingdom,Kingdom-level classification of the host organism.,Plantae
+Host_Phylum,Phylum-level classification of the host organism.,Angiosperms
+Host_Class,Class-level classification of the host organism.,Eudicots
+Host_Order,Order-level classification of the host organism.,Fagales
+Host_Family,Family-level classification of the host organism.,Fagaceae
+MAT (°C),Mean annual temperature averaged across all months of the year. (stored as temperature ×10 in the dataset).,0.724516677856445
+MAP (mm),Total precipitation accumulated over one year.,4205
+Elevation (m),Height of the sampling location above mean sea level.,2869
+spr_rgn,Super Ecoregion,Mexico NW deserts and montane forests
