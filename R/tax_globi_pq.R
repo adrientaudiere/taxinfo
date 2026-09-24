@@ -35,7 +35,7 @@
 #' @param verbose (logical, default FALSE) If TRUE, prompt some messages.
 #' @param strict_interaction_types (logical, default TRUE) If TRUE, keep only
 #'  interactions exactly matching the interaction_types provided. If FALSE, keep
-#'  all interactions returned by rglobi for the queried taxon. For exemple,
+#'  all interactions returned by rglobi for the queried taxon. For example,
 #'  rglobi for interaction_types = "hasHost" will also return interactions
 #'   with interaction_type = "pathogenOf" and "parasiteOf" if
 #'   strict_interaction_types is set to FALSE.
@@ -44,7 +44,7 @@
 #' @param batch_size_gna_verifier (numeric, default 100) The number of names to
 #'  verify at once with' [taxize::gna_verifier()] function. Its a hack because
 #'  gna_verifier seems to fail when too many names are sent at once including
-#'  strange ones such as what is obtain whith rglobi. Only used if
+#'  strange ones such as what is obtain with rglobi. Only used if
 #'   `valid_taxo_target_taxon` is set to TRUE.
 #' @param discard_genus_alone (logical, default `TRUE` when
 #'  `taxonomic_rank == "currentCanonicalSimple"`). Passed to

@@ -264,13 +264,36 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-3' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
 <div id='msg-popup-unnamed-chunk-3' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
 #&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s■■■■■■■■■■■■■■                    44% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  2s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K
+
+[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+[Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre></div>
 
 
@@ -307,14 +330,43 @@ Analyze geographic distribution patterns:
 <div class='chunk-with-popups' style='position: relative; margin: 0; padding: 0;'>
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-5' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span></div>
 <div id='msg-popup-unnamed-chunk-5' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
-#&gt; ■■■■■■■■                          22% | ETA: 39s[K[Kℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#&gt; ■■■■■■■■                          22% | ETA: 39s■■■■■■■■■■■                       33% | ETA: 32s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
-#&gt; ■■■■■■■■■■■                       33% | ETA: 32s■■■■■■■■■■■■■■                    44% | ETA: 23s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA: 23s■■■■■■■■■■■■■■■■■■                56% | ETA: 15s[K[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA: 15s■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; 
+■■■■■■■■                          22% | ETA: 39s[K
+
+[Kℹ Processing GBIF occurrences for Ossicaulis lachnopus
+#&gt; ■■■■■■■■                          22% | ETA: 39s
+
+■■■■■■■■■■■                       33% | ETA: 32s[K
+
+[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA: 32s
+
+■■■■■■■■■■■■■■                    44% | ETA: 23s[K
+
+[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA: 23s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA: 15s[K
+
+[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA: 15s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s[K
+
+[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 10s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s[K
+
+[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  6s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s[K
+
+[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  3s
+
+[Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre></div>
 
 
@@ -371,13 +423,38 @@ sufficient.
 <div class='popup-icons' style='position: absolute; bottom: 5px; right: 5px; z-index: 10; background: rgba(255,255,255,0.9); padding: 2px 6px; border-radius: 4px;'><span class='popup-toggle' data-target='msg-popup-unnamed-chunk-6' title='Messages' aria-haspopup='true' aria-expanded='false'>🛈</span><span class='popup-toggle' data-target='warn-popup-unnamed-chunk-6' title='Warnings' aria-haspopup='true' aria-expanded='false'>⚠</span></div>
 <div id='msg-popup-unnamed-chunk-6' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Messages</strong></div><pre class='popup-pre'>#&gt; ℹ Processing GBIF occurrences for Stereum ostrea
 #&gt; ℹ Processing GBIF occurrences for Ossicaulis lachnopus
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Stereum hirsutum
-#&gt; ■■■■■■■■■■■                       33% | ETA:  2s■■■■■■■■■■■■■■                    44% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
-#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
-#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Fomes fomentarius
-#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K[Kℹ Processing GBIF occurrences for Cerocorticium molare
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K[Kℹ Processing GBIF occurrences for Aporpium canescens
-#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[Kℹ Processing GBIF occurrences for Hypochnicium analogum
+#&gt; 
+■■■■■■■■■■■                       33% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Stereum hirsutum
+#&gt; ■■■■■■■■■■■                       33% | ETA:  2s
+
+■■■■■■■■■■■■■■                    44% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Basidiodendron eyrei
+#&gt; ■■■■■■■■■■■■■■                    44% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■                56% | ETA:  2s[K
+
+[Kℹ Processing GBIF occurrences for Sistotrema oblongisporum
+#&gt; ■■■■■■■■■■■■■■■■■■                56% | ETA:  2s
+
+■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Fomes fomentarius
+#&gt; ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s[K
+
+[Kℹ Processing GBIF occurrences for Cerocorticium molare
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■          78% | ETA:  1s
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s[K
+
+[Kℹ Processing GBIF occurrences for Aporpium canescens
+#&gt; ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      89% | ETA:  0s
+
+[Kℹ Processing GBIF occurrences for Hypochnicium analogum
 </pre></div>
 <div id='warn-popup-unnamed-chunk-6' class='popup' role='dialog' aria-hidden='true' onclick='event.stopPropagation();'><button class='popup-close' aria-label='Close'>&times;</button><div class='popup-header'><strong>Warnings</strong></div><pre class='popup-pre'>#&gt; Warning: Removed 218 rows containing missing values or values outside the scale
 #&gt; range (`geom_line()`).
@@ -401,7 +478,7 @@ gbif_years <- tax_gbif_occur_pq(data_clean,
 
 ``` r
 
-# Visualize temporal trends for the occurences of taxa
+# Visualize temporal trends for the occurrences of taxa
 gbif_years |>
   ggplot(aes(x = year, y = log10(count + 1), color = canonicalName)) +
   geom_line() +
@@ -562,7 +639,8 @@ plot_tax_gbif_pq(select_taxa_pq(data_clean, taxnames = "Ossicaulis lachnopus"),
 #> |--------------------------------------------|
 #> | Kept records according to parameters:
 #> | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download starting...
-#> ------------- #1 (100%...)[K
+#> 
+------------- #1 (100%...)[K
 #> ...Records (XY) filtering summary:
 #> ----------------------------------------------
 #>                     step removed remaining
@@ -612,7 +690,8 @@ distribution_maps <- plot_tax_gbif_pq(
 #> |--------------------------------------------|
 #> | Kept records according to parameters:
 #> | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download starting...
-#> ------------- #1 (100%...)[K
+#> 
+------------- #1 (100%...)[K
 #> ...Records (XY) filtering summary:
 #> ----------------------------------------------
 #>                     step removed remaining
@@ -638,7 +717,8 @@ distribution_maps <- plot_tax_gbif_pq(
 #> |--------------------------------------------|
 #> | Kept records according to parameters:
 #> | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Basidiodendron eyrei: download starting...
-#> ------------- #1 (100%...)[K
+#> 
+------------- #1 (100%...)[K
 #> ...Records (XY) filtering summary:
 #> ----------------------------------------------
 #>                     step removed remaining
@@ -725,7 +805,8 @@ data_clean_range <- range_bioreg_pq(
 #> |--------------------------------------------|
 #> | Kept records according to parameters:
 #> | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Ossicaulis lachnopus: download of sample starting...
-#> ------------- #1 (100%...)[K
+#> 
+------------- #1 (100%...)[K
 #> ...Records (XY) filtering summary:
 #> ----------------------------------------------
 #>                     step removed remaining
@@ -751,7 +832,8 @@ data_clean_range <- range_bioreg_pq(
 #> |--------------------------------------------|
 #> | Kept records according to parameters:
 #> | spatial_issue = FALSE, has_xy = TRUE...GBIF records of Basidiodendron eyrei: download of sample starting...
-#> ------------- #1 (100%...)[K
+#> 
+------------- #1 (100%...)[K
 #> ...Records (XY) filtering summary:
 #> ----------------------------------------------
 #>                     step removed remaining

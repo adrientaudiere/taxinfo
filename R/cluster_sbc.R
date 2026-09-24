@@ -20,7 +20,7 @@
 #' Run swarm with d=1 to d=max_d, then for each taxnames (e.g. Species binomial name),
 #'  find the lowest d that clusters all taxa assigned to this taxnames into one
 #'  cluster. If a taxnames is represented by only one taxa, it is not clustered.
-#'  Taxnames containig "NA" are considered as unassigned. By default, unassigned
+#'  Taxnames containing "NA" are considered as unassigned. By default, unassigned
 #'  ASVs are clustered into other cluster without counting for their own taxnames.
 #'  Set include_unassigned = FALSE to force cluster to included all taxa with a
 #'  given taxnames but none of the unassigned ones.
