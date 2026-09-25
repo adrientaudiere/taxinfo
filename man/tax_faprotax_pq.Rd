@@ -89,9 +89,9 @@ copyright notice and BSD-style license (Copyright (c) 2019, Stilianos Louca).
 }
 \examples{
 data(GlobalPatterns, package = "phyloseq")
-# The first 2000 taxa keep the example fast
+# The first 1000 taxa keep the example fast
 gp <- phyloseq::prune_taxa(
-  phyloseq::taxa_names(GlobalPatterns)[1:2000],
+  phyloseq::taxa_names(GlobalPatterns)[1:1000],
   GlobalPatterns
 )
 

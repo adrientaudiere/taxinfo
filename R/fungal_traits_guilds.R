@@ -276,35 +276,19 @@ fungal_traits_guilds <- function(
     has_fg_guild <- fg_guild_col %in% colnames(tax_df_cons)
 
     if (has_ft_lifestyle && has_fg_trophic) {
-      ft_norm <- ft_to_trophic_mode(tax_df_cons[[ft_lifestyle_col]]) # nolint: object_usage_linter.
-      fg_norm <- tax_df_cons[[fg_trophic_col]]
-      fg_norm[fg_norm == ""] <- NA_character_
-
+      cons <- trophic_consensus(
+        ft_to_trophic_mode(tax_df_cons[[ft_lifestyle_col]]), # nolint: object_usage_linter.
+        tax_df_cons[[fg_trophic_col]]
+      )
       cons_trophic_col <- paste0(consensus_col_prefix, "trophicMode")
-      tax_df_cons[[cons_trophic_col]] <- dplyr::case_when(
-        is.na(ft_norm) & is.na(fg_norm) ~ NA_character_,
-        is.na(ft_norm) ~ fg_norm,
-        is.na(fg_norm) ~ ft_norm,
-        grepl(ft_norm, fg_norm, fixed = TRUE) ~ ft_norm,
-        ft_norm == fg_norm ~ ft_norm,
-        .default = "Conflicting"
-      )
+      tax_df_cons[[cons_trophic_col]] <- cons$consensus
       cons_cols_added <- c(cons_cols_added, cons_trophic_col)
-    }
 
-    if (has_ft_lifestyle && has_fg_guild && has_fg_trophic) {
-      ft_norm2 <- ft_to_trophic_mode(tax_df_cons[[ft_lifestyle_col]]) # nolint: object_usage_linter.
-      fg_norm2 <- tax_df_cons[[fg_trophic_col]]
-      fg_norm2[fg_norm2 == ""] <- NA_character_
-
-      agree_col <- paste0(consensus_col_prefix, "trophicMode_agreement")
-      tax_df_cons[[agree_col]] <- dplyr::case_when(
-        is.na(ft_norm2) | is.na(fg_norm2) ~ "Only one source",
-        grepl(ft_norm2, fg_norm2, fixed = TRUE) |
-          ft_norm2 == fg_norm2 ~ "Agree",
-        .default = "Disagree"
-      )
-      cons_cols_added <- c(cons_cols_added, agree_col)
+      if (has_fg_guild) {
+        agree_col <- paste0(consensus_col_prefix, "trophicMode_agreement")
+        tax_df_cons[[agree_col]] <- cons$agreement
+        cons_cols_added <- c(cons_cols_added, agree_col)
+      }
     }
 
     new_physeq@tax_table <- tax_table(as.matrix(tax_df_cons))
@@ -326,6 +310,40 @@ fungal_traits_guilds <- function(
 }
 
 # Internal helpers -------------------------------------------------------------
+
+#' Row-wise consensus between FungalTraits and FUNGuild trophic modes
+#'
+#' A taxon agrees when its FUNGuild trophic mode contains its own FungalTraits
+#' mode (e.g. `"Saprotroph"` in `"Pathotroph-Saprotroph"`); the comparison is
+#' made taxon by taxon, and FUNGuild values are trimmed (some carry a leading
+#' space).
+#' @param ft_norm FungalTraits trophic modes (output of [ft_to_trophic_mode()]).
+#' @param fg_trophic FUNGuild `trophicMode` values (`""` means unknown).
+#' @returns A list with `consensus` (the shared mode, the only available one,
+#'  `"Conflicting"` or `NA`) and `agreement` (`"Agree"`, `"Disagree"` or
+#'  `"Only one source"`).
+#' @noRd
+trophic_consensus <- function(ft_norm, fg_trophic) {
+  fg_norm <- trimws(fg_trophic)
+  fg_norm[fg_norm == ""] <- NA_character_
+  nested <- stringr::str_detect(fg_norm, stringr::fixed(ft_norm)) |
+    ft_norm == fg_norm
+
+  list(
+    consensus = dplyr::case_when(
+      is.na(ft_norm) & is.na(fg_norm) ~ NA_character_,
+      is.na(ft_norm) ~ fg_norm,
+      is.na(fg_norm) ~ ft_norm,
+      nested ~ ft_norm,
+      .default = "Conflicting"
+    ),
+    agreement = dplyr::case_when(
+      is.na(ft_norm) | is.na(fg_norm) ~ "Only one source",
+      nested ~ "Agree",
+      .default = "Disagree"
+    )
+  )
+}
 
 #' Normalise FungalTraits primary_lifestyle to trophic mode categories matching
 #' FUNGuild's trophicMode vocabulary (Saprotroph / Pathotroph / Symbiotroph).

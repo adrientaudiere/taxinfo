@@ -59,3 +59,34 @@ test_that("ft_to_trophic_mode maps correctly", {
   expect_true(is.na(ft_to_trophic_mode(NA_character_)))
   expect_equal(ft_to_trophic_mode("unknown_category"), "Other")
 })
+
+test_that("trophic_consensus compares each taxon with its own modes", {
+  # The first taxon has no FungalTraits mode: comparing every row with the
+  # first pattern (the former grepl() bug) would break rows 2 and 3.
+  res <- trophic_consensus(
+    ft_norm = c(NA, "Saprotroph", "Pathotroph", "Saprotroph", NA, "Saprotroph"),
+    fg_trophic = c(
+      "Saprotroph",
+      "Pathotroph-Saprotroph",
+      " Pathotroph",
+      "Symbiotroph",
+      "",
+      "Saprotroph"
+    )
+  )
+  expect_equal(
+    res$consensus,
+    c("Saprotroph", "Saprotroph", "Pathotroph", "Conflicting", NA, "Saprotroph")
+  )
+  expect_equal(
+    res$agreement,
+    c(
+      "Only one source",
+      "Agree",
+      "Agree",
+      "Disagree",
+      "Only one source",
+      "Agree"
+    )
+  )
+})
