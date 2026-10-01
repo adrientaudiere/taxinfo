@@ -78,6 +78,11 @@
 #' normalisation): run [gna_verifier_pq()] first to obtain
 #' `currentCanonicalSimple` names.
 #'
+#' The bundled `funendo_v0.1.csv.gz` (converted from `FunEndo_V.0.1.xlsx`) and
+#' its `funendo_mini.csv` subset are redistributed with the permission of the
+#' FunEndo authors (M. S. H. Moghaddam and L. Tedersoo, September 2026). Please
+#' cite Moghaddam (2026) when using FunEndo data.
+#'
 #' @author Adrien Taudiere
 #' @references
 #' Moghaddam, M. S. H. (2026). FunEndo: A Comprehensive Global-Scale Fungal
