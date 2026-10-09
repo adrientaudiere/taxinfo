@@ -158,8 +158,8 @@ tax_alt_ses_pq <- function(
 #'   of the highest altitude of each taxon (GBIF occurrences and samples).
 #' @param sample_color (character, default `"#C0392B"`) Color of the lines
 #'   depicting the altitude of the samples.
-#' @param point_jitter (logical, default `TRUE`) If TRUE each altitude point is plot
-#'   on the graph. 
+#' @param points_jitter (logical, default `TRUE`) If TRUE, the altitude of
+#'   each GBIF occurrence is plotted as a jittered point behind the violin.
 #'
 #' @returns A ggplot2 object.
 #' @export
@@ -175,8 +175,8 @@ tax_alt_ses_pq <- function(
 #'
 #' # data_fungi_mini has no altitude: add a fictive one value
 #' sample_data(data_fungi_mini_cleanNames)$altitude <- 150
-#' 
-#' 
+#'
+#'
 #' plot_tax_alt_pq(data_fungi_mini_cleanNames, "altitude", occ_alt)
 #' }
 plot_tax_alt_pq <- function(
@@ -243,13 +243,17 @@ plot_tax_alt_pq <- function(
     filter(!is.na(.data$sample_alt))
 
   p <- ggplot(occ_df, aes(x = .data$taxa_name, y = .data$elevation))
-  
-  if(points_jitter) {
-    p <- p+ geom_jitter(color="grey50", size =0.4, alpha= 0.5)
+
+  if (points_jitter) {
+    p <- p + geom_jitter(color = "grey50", size = 0.4, alpha = 0.5)
   }
 
   p <- p +
-    geom_violin(fill = scales::alpha("blue", 0.2), color = "grey40", scale = "width") +
+    geom_violin(
+      fill = alpha("blue", 0.2),
+      color = "grey40",
+      scale = "width"
+    ) +
     geom_errorbar(
       data = samples_df,
       aes(

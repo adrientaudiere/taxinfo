@@ -220,6 +220,7 @@ tax_info_pq <- function(
 
   if (use_duck_db) {
     check_package("duckdb")
+    check_package("dbplyr")
     con <- duckdb::dbConnect(duckdb::duckdb())
     on.exit(duckdb::dbDisconnect(con), add = TRUE)
     # Filter the csv in DuckDB to avoid reading the entire file into memory

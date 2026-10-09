@@ -43,6 +43,7 @@ Imports:
 Suggests:
     BioShiftR,
     CoordinateCleaner,
+    dbplyr,
     DECIPHER,
     digest,
     duckdb,

@@ -140,6 +140,7 @@ test_that("tax_info_pq with taxnames returns tibble", {
 
 test_that("tax_info_pq use_duck_db parameter works", {
   skip_if_not_installed("duckdb")
+  skip_if_not_installed("dbplyr")
   result <- tax_info_pq(
     clean,
     file_name = taxref_csv,
@@ -185,6 +186,7 @@ test_that("tax_info_pq keeps taxa_name and the tax_table column order", {
 
 test_that("tax_info_pq duckdb path matches the R path", {
   skip_if_not_installed("duckdb")
+  skip_if_not_installed("dbplyr")
   csv <- info_csv(data.frame(
     sp = c("Fomes fomentarius", "Mycena renati"),
     trait = c("A", "B")

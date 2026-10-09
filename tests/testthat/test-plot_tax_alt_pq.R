@@ -67,8 +67,11 @@ test_that("plot_tax_alt_pq returns a ggplot with violins and sample lines", {
     c("Mycena renati", "Fomes fomentarius")
   )
   layers <- unname(vapply(p$layers, \(l) class(l$geom)[1], character(1)))
-  expect_equal(layers, c("GeomViolin", "GeomErrorbar", "GeomText"))
-  expect_equal(nrow(p$layers[[2]]$data), 4)
+  expect_equal(
+    layers,
+    c("GeomPoint", "GeomViolin", "GeomErrorbar", "GeomText")
+  )
+  expect_equal(nrow(p$layers[[3]]$data), 4)
   expect_no_error(ggplot2::ggplot_build(p))
 
   p2 <- plot_tax_alt_pq(
@@ -76,7 +79,8 @@ test_that("plot_tax_alt_pq returns a ggplot with violins and sample lines", {
     "altitude",
     occ_alt_fixture,
     show_ses = FALSE,
-    order_by_ses = FALSE
+    order_by_ses = FALSE,
+    points_jitter = FALSE
   )
   expect_length(p2$layers, 2)
 })

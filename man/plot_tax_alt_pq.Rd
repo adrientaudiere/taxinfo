@@ -14,7 +14,8 @@ plot_tax_alt_pq(
   min_records = 10,
   order_by_ses = TRUE,
   show_ses = TRUE,
-  sample_color = "#C0392B"
+  sample_color = "#C0392B",
+  points_jitter = TRUE
 )
 }
 \arguments{
@@ -50,6 +51,9 @@ of the highest altitude of each taxon (GBIF occurrences and samples).}
 
 \item{sample_color}{(character, default `"#C0392B"`) Color of the lines
 depicting the altitude of the samples.}
+
+\item{points_jitter}{(logical, default `TRUE`) If TRUE, the altitude of
+each GBIF occurrence is plotted as a jittered point behind the violin.}
 }
 \value{
 A ggplot2 object.
@@ -75,6 +79,7 @@ occ_alt <- tax_gbif_alt(data_fungi_mini_cleanNames, return_raw = TRUE)
 
 # data_fungi_mini has no altitude: add a fictive one value
 sample_data(data_fungi_mini_cleanNames)$altitude <- 150
+
 
 plot_tax_alt_pq(data_fungi_mini_cleanNames, "altitude", occ_alt)
 }
