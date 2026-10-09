@@ -11,7 +11,7 @@ A wrapper of [taxize::gna_verifier()] apply to phyloseq object'><meta property="
 
     <a class="navbar-brand me-2" href="../index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +68,10 @@ A wrapper of [taxize::gna_verifier()] apply to phyloseq object'><meta property="
 <span>  col_prefix <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  genus_species_canonical_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  year_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  id_col <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  data_source_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  classification_col <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  classification_ranks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"kingdom"</span>, <span class="st">"phylum"</span>, <span class="st">"class"</span>, <span class="st">"order"</span>, <span class="st">"family"</span>, <span class="st">"genus"</span><span class="op">)</span>,</span>
 <span>  authorship_col <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  problematic_chars <span class="op">=</span> <span class="st">"[?\\\\#|&amp;]"</span>,</span>
@@ -103,10 +107,16 @@ be a vector of two columns (e.g. the default c("Genus", "Species")).</p></dd>
   and 210=TaxRef.</p>
 <p>The choice of `data_sources` matters and should be adapted to the database
   queried by the downstream function: aligning names to the same backbone as
-  the target greatly improves match rates. In particular, use
-  `data_sources = 11` (GBIF backbone) before the GBIF-based functions
-  ([tax_gbif_occur_pq()], [tax_iucn_code_pq()], [tax_photos_pq()],
-  [tax_occur_check_pq()], [tax_ecoregion_occur_pq()]). The data sources are
+  the target greatly improves match rates. In particular, before the
+  GBIF-based functions ([tax_gbif_occur_pq()], [tax_gbif_alt()],
+  [tax_iucn_code_pq()], [tax_photos_pq()], [tax_occur_check_pq()],
+  [tax_ecoregion_occur_pq()]), use the source matching the GBIF checklist
+  they query: `data_sources = 11` (GBIF backbone; the default checklist
+  with rgbif &lt; 3.9.0, with `options(taxinfo.gbif_checklist = "backbone")`,
+  and for [tax_iucn_code_pq()] and [tax_photos_pq()]) or
+  `data_sources = 1` (Catalogue of Life, the closest source to the COL XR
+  checklist used by default from rgbif 3.9.0). These functions inform when
+  the sources differ (see [check_backbone_pq()]). The data sources are
   **not** all refreshed on the same schedule
   (&lt;https://verifier.globalnames.org/data_sources&gt;), so no single source is
   universally best; a stale source can silently miss recently described taxa
@@ -148,13 +158,14 @@ be a vector of two columns (e.g. the default c("Genus", "Species")).</p></dd>
    - **taxa_name**: The character string sent to gna_verifier (e.g.
    `Antrodiella brasiliensis`)
    - **currentName**: The current accepted name (resolve the synonym) with
-     autorities at the end of the binominal name (e.g.
+     authorities at the end of the binomial name (e.g.
      `Trametopsis brasiliensis (Ryvarden &amp; de Meijer) Gomez-Mont. &amp; Robledo)`.
-   - **currentCanonicalSimple**: The current accepted name without autorities
+   - **currentCanonicalSimple**: The current accepted name without authorities
      (e.g. `Trametopsis brasiliensis`, `Russula`).</p>
 <p>Other columns can be added depending on the parameters:
       `genus_species_canonical_col` (adds "genusEpithet", "specificEpithet",
-      and "genusSpeciesEpithet"), `year_col`, `authorship`.</p></dd>
+      and "genusSpeciesEpithet"), `year_col`, `id_col`, `data_source_col`,
+      `authorship`.</p></dd>
 
 
 <dt id="arg-col-prefix">col_prefix<a class="anchor" aria-label="anchor" href="#arg-col-prefix"></a></dt>
@@ -173,6 +184,49 @@ when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).</p><
 <dt id="arg-year-col">year_col<a class="anchor" aria-label="anchor" href="#arg-year-col"></a></dt>
 <dd><p>(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.</p></dd>
+
+
+<dt id="arg-id-col">id_col<a class="anchor" aria-label="anchor" href="#arg-id-col"></a></dt>
+<dd><p>(logical, default FALSE) If TRUE, two new columns are added
+with the identifiers of the best match in its data source: "recordId"
+(the id of the matched name, which can be a synonym) and
+"currentRecordId" (the id of the current accepted name). With
+`data_sources = 210` (TaxRef), "recordId" is the TAXREF `CD_NOM` and
+"currentRecordId" is the TAXREF `CD_REF`. With `data_sources = 11`
+(GBIF backbone), they are GBIF taxon keys.
+When only a genus (or a higher rank) was matched, they are the ids of
+that higher-rank name, whatever `species_only`.</p></dd>
+
+
+<dt id="arg-data-source-col">data_source_col<a class="anchor" aria-label="anchor" href="#arg-data-source-col"></a></dt>
+<dd><p>(logical, default TRUE) If TRUE, two new columns
+record the data source of the best match of each taxon: "dataSourceId"
+(the GNA data source id, e.g. `11` for the GBIF backbone) and
+"dataSourceTitleShort" (e.g. `"GBIF Backbone Taxonomy"`). The
+information is stored per taxon in the `tax_table` (so it survives
+subsetting) and is used by [check_backbone_pq()] to detect a mismatch
+between the backbone used to verify the names and the database queried
+by a downstream function.</p></dd>
+
+
+<dt id="arg-classification-col">classification_col<a class="anchor" aria-label="anchor" href="#arg-classification-col"></a></dt>
+<dd><p>(logical, default FALSE) If TRUE, the
+classification of the best match is added: "classificationPath" and
+"classificationRanks" (the `|`-separated lineage and rank names returned
+by the GNA Verifier) and one column per rank of `classification_ranks`
+(e.g. "classificationKingdom", "classificationGenus"), `NA` when the data
+source does not provide that rank. The lineage is the one of the
+**current** (accepted) name, so it can differ from the submitted name
+when the latter is a synonym. This needs a second request to the GNA
+Verifier API per batch of names, because [taxize::gna_verifier()] drops
+the classification from its table output.</p></dd>
+
+
+<dt id="arg-classification-ranks">classification_ranks<a class="anchor" aria-label="anchor" href="#arg-classification-ranks"></a></dt>
+<dd><p>(character vector, default
+`c("kingdom", "phylum", "class", "order", "family", "genus")`) Ranks
+extracted into their own column when `classification_col = TRUE`, spelled
+as in the GNA Verifier `classificationRanks` field (lower case).</p></dd>
 
 
 <dt id="arg-authorship-col">authorship_col<a class="anchor" aria-label="anchor" href="#arg-authorship-col"></a></dt>
@@ -270,6 +324,14 @@ its last update date. The check is best-effort and silent when offline.</p></dd>
 <span class="r-in"><span><span class="co"># corrected values (correction using synonym disambiguation)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Add the TAXREF CD_NOM (recordId) and CD_REF (currentRecordId) of each</span></span></span>
+<span class="r-in"><span><span class="co"># taxon, e.g. to share a list of taxa with French institutions</span></span></span>
+<span class="r-in"><span><span class="va">data_fungi_mini_taxref</span> <span class="op">&lt;-</span> <span class="fu">gna_verifier_pq</span><span class="op">(</span><span class="va">data_fungi_mini</span>,</span></span>
+<span class="r-in"><span>  data_sources <span class="op">=</span> <span class="fl">210</span>,</span></span>
+<span class="r-in"><span>  id_col <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_fungi_mini_taxref</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"taxa_name"</span>, <span class="st">"recordId"</span>, <span class="st">"currentRecordId"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://adrientaudiere.github.io/MiscMetabar/reference/rotl_pq.html" class="external-link">rotl_pq</a></span><span class="op">(</span><span class="va">data_fungi_cleanNames</span>,</span></span>
 <span class="r-in"><span>  taxonomic_rank <span class="op">=</span> <span class="st">"currentCanonicalSimple"</span>,</span></span>
 <span class="r-in"><span>  context_name <span class="op">=</span> <span class="st">"Basidiomycetes"</span></span></span>
@@ -304,7 +366,7 @@ its last update date. The check is best-effort and silent when offline.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
 <div class="pkgdown-footer-right">

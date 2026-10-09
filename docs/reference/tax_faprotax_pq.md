@@ -131,38 +131,45 @@ Adrien Taudiere
 
 ``` r
 data(GlobalPatterns, package = "phyloseq")
+# The first 1000 taxa keep the example fast
+gp <- phyloseq::prune_taxa(
+  phyloseq::taxa_names(GlobalPatterns)[1:1000],
+  GlobalPatterns
+)
+#> Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'
+#> Also defined by ‘tidytree’
 
-res <- tax_faprotax_pq(GlobalPatterns, verbose = FALSE)
+res <- tax_faprotax_pq(gp, verbose = FALSE)
 
 head(sort(table(res@tax_table[, "faprotax_groups"], useNA = "ifany"), decreasing = TRUE))
 #> 
-#>                                                               <NA> 
-#>                                                              13202 
-#>                        aerobic_chemoheterotrophy;chemoheterotrophy 
-#>                                                               2029 
-#>                                     fermentation;chemoheterotrophy 
-#>                                                               1059 
-#>                sulfate_respiration;respiration_of_sulfur_compounds 
-#>                                                                320 
-#>                                            intracellular_parasites 
-#>                                                                224 
-#> cyanobacteria;oxygenic_photoautotrophy;photoautotrophy;phototrophy 
-#>                                                                214 
+#>                                                                                                           <NA> 
+#>                                                                                                            692 
+#>                                                                    aerobic_chemoheterotrophy;chemoheterotrophy 
+#>                                                                                                            199 
+#>                                      aerobic_chemoheterotrophy;aromatic_compound_degradation;chemoheterotrophy 
+#>                                                                                                             22 
+#>                                                                        aerobic_ammonia_oxidation;nitrification 
+#>                                                                                                             20 
+#> methanogenesis_by_CO2_reduction_with_H2;hydrogenotrophic_methanogenesis;methanogenesis;dark_hydrogen_oxidation 
+#>                                                                                                             17 
+#>                         methanogenesis_by_CO2_reduction_with_H2;hydrogenotrophic_methanogenesis;methanogenesis 
+#>                                                                                                             12 
 
 # \donttest{
 # One 0/1 column per functional group, then count the nitrifying bacteria
-res_bin <- tax_faprotax_pq(GlobalPatterns, binary = TRUE, verbose = FALSE)
+res_bin <- tax_faprotax_pq(gp, binary = TRUE, verbose = FALSE)
 sum(as.logical(res_bin@tax_table[, "faprotax_nitrification"]), na.rm = TRUE)
-#> [1] 101
+#> [1] 20
 
 # Restrict matching to the genus / species level only (fewer hits)
 res_gs <- tax_faprotax_pq(
-  GlobalPatterns,
+  gp,
   tax_levels = c("Genus", "Species"),
   verbose = FALSE
 )
 
 # Return a tibble instead of a phyloseq object
-tib <- tax_faprotax_pq(GlobalPatterns, add_to_phyloseq = FALSE, verbose = FALSE)
+tib <- tax_faprotax_pq(gp, add_to_phyloseq = FALSE, verbose = FALSE)
 # }
 ```

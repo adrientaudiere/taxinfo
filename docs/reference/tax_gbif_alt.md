@@ -31,7 +31,8 @@ tax_gbif_alt(
   n_coor_alt = NULL,
   verbose = TRUE,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
-  discard_NA = TRUE
+  discard_NA = TRUE,
+  return_raw = FALSE
 )
 ```
 
@@ -84,7 +85,7 @@ tax_gbif_alt(
 - n_coor_alt:
 
   (int, default NULL) Number of occurrences to samples. If left to NULL,
-  all occurrences are used to computed the altitute. It allow quicker
+  all occurrences are used to computed the altitude. It allow quicker
   computation when using method "elevatr" on taxa with a large number of
   occurrences.
 
@@ -103,6 +104,14 @@ tax_gbif_alt(
   (logical, default \`TRUE\`). Passed to
   \[taxonomic_rank_to_taxnames()\].
 
+- return_raw:
+
+  (logical, default FALSE) If TRUE, return the elevation of each GBIF
+  occurrence used, as a long tibble with columns \`canonicalName\` and
+  \`elevation\` (one row per occurrence), instead of the per-taxon
+  statistics. \`add_to_phyloseq\` is then ignored. This is the input
+  expected by \[plot_tax_alt_pq()\].
+
 ## Value
 
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq object,
@@ -110,7 +119,8 @@ if add_to_phyloseq = TRUE, with new column(s) in the tax_table. The
 returned data includes: altitude_min, altitude_max, altitude_q05,
 altitude_q50, altitude_q95, altitude_mean, altitude_sd,
 altitude_n_records, and canonicalName. When \`method = "elevatr"\`, also
-includes altitude_n_ocean (number of points detected in ocean).
+includes altitude_n_ocean (number of points detected in ocean). If
+\`return_raw = TRUE\`, a long tibble of occurrence elevations.
 
 ## Details
 
@@ -152,7 +162,7 @@ Please cite \`rgbif\` package. When using method "elevatr", also cite
 ## See also
 
 \[rgbif::occ_download()\], \[elevatr::get_elev_point()\],
-\[tax_gbif_occur_pq()\], \[plot_tax_gbif_pq()\]
+\[tax_gbif_occur_pq()\], \[plot_tax_gbif_pq()\], \[plot_tax_alt_pq()\]
 
 ## Author
 

@@ -42,11 +42,13 @@ Automatically set to TRUE when a phyloseq object is provided and FALSE when taxn
 Cannot be TRUE if `taxnames` is provided.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
-columns names added to the tax_table slot of the phyloseq object.}
+columns names added to the tax_table slot of the phyloseq object. Required
+when a column of the csv file already exists in the tax_table (e.g.
+`Phylum`): the function aborts otherwise.}
 
-\item{use_duck_db}{(logical, default FALSE) If TRUE, use duckdb to handle
-the join between the csv file and the tax_table of the phyloseq object.
-Useful for large csv files.}
+\item{use_duck_db}{(logical, default FALSE) If TRUE, use duckdb to read
+only the rows of the csv file matching the taxonomic names, instead of
+reading the whole file in memory. Useful for large csv files.}
 
 \item{csv_cols_select}{A character vector of the column names to select in the csv file.}
 
@@ -66,6 +68,13 @@ Useful for large csv files.}
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
+The new columns (the `csv_taxonomic_rank` column, `NA` for taxa without a
+match, and the `csv_cols_select` columns, all prefixed by `col_prefix`)
+are appended after the existing columns of the tax_table, which are left
+untouched (including a `taxa_name` column). When `taxnames` is provided,
+the tibble has one row per name, starting with a `taxa_name` column. When
+a value of `csv_taxonomic_rank` is duplicated in the csv file, only its
+first row is used.
 }
 \description{
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">

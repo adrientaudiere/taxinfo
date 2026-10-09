@@ -32,14 +32,12 @@ functions to:
 You can install the stable version of taxinfo from CRAN:
 
 ``` r
-
 install.packages("taxinfo")
 ```
 
 Or the development version from GitHub:
 
 ``` r
-
 # Install from GitHub
 devtools::install_github("adrientaudiere/taxinfo")
 
@@ -123,7 +121,6 @@ concatenation of the `genusEpithet` and `specificEpithet` fields.
 ### Example Workflow
 
 ``` r
-
 library(taxinfo)
 #> Loading required package: MiscMetabar
 #> Loading required package: phyloseq
@@ -378,15 +375,15 @@ head(taxa_info)
 
 **taxinfo** integrates with multiple authoritative data sources:
 
-| Source | Description | Functions |
-|----|----|----|
-| **GBIF** | Global biodiversity occurrence data | [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md), [`plot_tax_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.md) |
-| **Wikipedia** | Encyclopedia data and page statistics | [`tax_get_wk_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_info_pq.md), [`tax_get_wk_pages_info()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_pages_info.md) |
-| **GLOBI** | Species interaction networks | [`tax_globi_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_globi_pq.md) |
-| **OpenAlex** | Scientific literature database | [`tax_oa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_oa_pq.md) |
-| **TAXREF** | French national taxonomic reference | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md) |
-| **GNA** | Global Names Architecture for name verification | [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md) |
-| **Custom CSV** | Any taxonomic database in CSV format | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md) |
+| Source         | Description                                     | Functions                                                                                                                                                                                                    |
+|----------------|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **GBIF**       | Global biodiversity occurrence data             | [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md), [`plot_tax_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.md)             |
+| **Wikipedia**  | Encyclopedia data and page statistics           | [`tax_get_wk_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_info_pq.md), [`tax_get_wk_pages_info()`](https://adrientaudiere.github.io/taxinfo/reference/tax_get_wk_pages_info.md) |
+| **GLOBI**      | Species interaction networks                    | [`tax_globi_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_globi_pq.md)                                                                                                                       |
+| **OpenAlex**   | Scientific literature database                  | [`tax_oa_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_oa_pq.md)                                                                                                                             |
+| **TAXREF**     | French national taxonomic reference             | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md)                                                                                                                         |
+| **GNA**        | Global Names Architecture for name verification | [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)                                                                                                                 |
+| **Custom CSV** | Any taxonomic database in CSV format            | [`tax_info_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_info_pq.md)                                                                                                                         |
 
 ## Contributing
 
@@ -398,7 +395,6 @@ We welcome contributions! Please open an issue or pull request on
 If you use taxinfo in your research, please cite:
 
 ``` r
-
 citation("taxinfo")
 ```
 

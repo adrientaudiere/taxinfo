@@ -9,9 +9,10 @@ This function computes intra-taxanames distances for each taxonomic
 names (e.g. Genus species) in a phyloseq object containing ASV/OTU
 sequences and taxonomy.
 
-The distances are computed using the DECIPHER package, which aligns the
-sequences (\`DECIPHER::AlignSeqs()\`) and calculates a distance matrix
-(\`DECIPHER::DistanceMatrix()\`).
+The sequences are aligned with \[MiscMetabar::align_pq()\] — either the
+pure-R \`DECIPHER::AlignSeqs()\` or the much faster MAFFT command-line
+aligner, depending on \`align_method\` — and the distance matrix is then
+computed with \`DECIPHER::DistanceMatrix()\`.
 
 ## Usage
 
@@ -22,6 +23,8 @@ intra_taxnames_dist(
   verbose = TRUE,
   verbose_DECIPHER = FALSE,
   discard_NA = TRUE,
+  align_method = c("decipher", "mafft"),
+  mafft_exec = NULL,
   ...
 )
 ```
@@ -44,13 +47,25 @@ intra_taxnames_dist(
 
 - verbose_DECIPHER:
 
-  Logical. If TRUE, print messages from DECIPHER functions (default:
-  FALSE)
+  Logical. If TRUE, print messages from the aligner and from
+  \`DECIPHER::DistanceMatrix()\` (default: FALSE)
 
 - discard_NA:
 
   (logical, default \`TRUE\`). Passed to
   \[taxonomic_rank_to_taxnames()\].
+
+- align_method:
+
+  Aligner passed to \[MiscMetabar::align_pq()\], either \`"decipher"\`
+  (default, pure R) or \`"mafft"\` (external program, much faster on
+  large \`refseq\` slots).
+
+- mafft_exec:
+
+  Path to the MAFFT executable. Only used when \`align_method =
+  "mafft"\`. Default to NULL, i.e. the usual lookup of
+  \[MiscMetabar::is_mafft_installed()\].
 
 - ...:
 
@@ -65,7 +80,7 @@ maximum intra-taxanames distance
 
 ## See also
 
-\[DECIPHER::AlignSeqs()\], \[DECIPHER::DistanceMatrix()\]
+\[MiscMetabar::align_pq()\], \[DECIPHER::DistanceMatrix()\]
 
 ## Author
 

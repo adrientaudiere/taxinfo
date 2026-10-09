@@ -6,6 +6,161 @@
   [`pak::pkg_install()`](https://pak.r-lib.org/reference/pkg_install.html)
   can resolve the GitHub-only dependency `MiscMetabar` when installing
   taxinfo standalone.
+- [`check_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/check_backbone_pq.md)
+  compares the GNA data source of each taxon (recorded by
+  [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md))
+  with the backbone queried downstream (by default the GBIF checklist of
+  the `taxinfo.gbif_checklist` option: GNA data source `11` for the GBIF
+  Backbone, `1` for the Catalogue of Life) and informs when they differ,
+  so that two sources of taxonomic truth are not mixed silently.
+- [`fungal_traits_guilds()`](https://adrientaudiere.github.io/taxinfo/reference/fungal_traits_guilds.md)
+  now compares the FungalTraits and FUNGuild trophic modes taxon by
+  taxon in `cons_trophicMode` and `cons_trophicMode_agreement`: a taxon
+  whose FUNGuild mode contains its own FungalTraits mode
+  (e.g. `Saprotroph` in `Pathotroph-Saprotroph`) gets that mode and
+  `"Agree"` instead of `"Conflicting"` / `"Disagree"`, and FUNGuild
+  values are trimmed. Consensus columns computed with earlier versions
+  should be recomputed.
+- [`gbif_key_to_col()`](https://adrientaudiere.github.io/taxinfo/reference/gbif_key_to_col.md)
+  converts legacy GBIF Backbone numeric taxon keys to Catalogue of Life
+  Extended Release (COL XR) alpha-numeric keys (a character vector
+  aligned with the input, `NA` when unmatched, or a new `col_key` column
+  when given a data frame with a `usageKey` column; requires rgbif \>=
+  3.9.0), preparing taxinfo for the rgbif 3.9.0 breaking change. All
+  GBIF name matching now runs through a checklist-pinned layer
+  ([`gbif_backbone_checklist()`](https://adrientaudiere.github.io/taxinfo/reference/gbif_backbone_checklist.md),
+  [`gbif_backbone()`](https://adrientaudiere.github.io/taxinfo/reference/gbif_backbone.md),
+  [`gbif_name_usage()`](https://adrientaudiere.github.io/taxinfo/reference/gbif_name_usage.md))
+  whose checklist is controlled by the new `taxinfo.gbif_checklist`
+  option (`"colxr"` or `"backbone"`; when unset, taxinfo follows the
+  installed rgbif’s default checklist and sends no `checklistKey`), so
+  resolved keys no longer silently change across rgbif versions;
+  [`tax_iucn_code_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_iucn_code_pq.md)
+  and
+  [`tax_photos_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.md)
+  gain a `checklist` argument (default `"backbone"`, required by the
+  GBIF-Backbone-only
+  [`rgbif::name_usage()`](https://docs.ropensci.org/rgbif/reference/name_usage.html)
+  API), and GBIF record attribution compares keys in a type-agnostic
+  way. GBIF occurrence queries
+  ([`rgbif::occ_search()`](https://docs.ropensci.org/rgbif/reference/occ_search.html),
+  occurrence counts and predicate downloads) now send the `checklistKey`
+  of the resolved keys when it differs from the installed rgbif’s
+  default, so `taxinfo.gbif_checklist = "colxr"` no longer silently
+  returns zero occurrences with rgbif \< 3.9.0 (predicate downloads of
+  COL XR keys require rgbif \>= 3.9.0 and abort otherwise);
+  `method = "download_sql"` re-matches COL XR taxa in the GBIF Backbone,
+  the only checklist of the SQL `taxonkey` / `specieskey` columns.
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  gains a `classification_col` argument (default `FALSE`) that adds the
+  lineage of the best GNA Verifier match: `classificationPath`,
+  `classificationRanks` and one column per rank of the new
+  `classification_ranks` argument (`classificationKingdom` …
+  `classificationGenus` by default).
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  gains an `id_col` argument (default `FALSE`) that adds the `recordId`
+  and `currentRecordId` of the best match: with `data_sources = 210`
+  (TaxRef) they are the TAXREF `CD_NOM` and `CD_REF`, e.g. to share a
+  list of taxa with French institutions such as the ONF.
+- [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  now records the GNA data source of the best match of each taxon in two
+  new `tax_table` columns, `dataSourceId` and `dataSourceTitleShort`
+  (new `data_source_col` argument, default `TRUE`).
+- [`intra_taxnames_dist()`](https://adrientaudiere.github.io/taxinfo/reference/intra_taxnames_dist.md)
+  gains an `align_method` argument and now aligns through
+  [`MiscMetabar::align_pq()`](https://adrientaudiere.github.io/MiscMetabar/reference/align_pq.html),
+  so the intra-taxa sequences can be aligned with MAFFT instead of
+  DECIPHER, which is much faster on large `refseq` slots; a `mafft_exec`
+  argument points at the executable.
+- [`plot_tax_alt_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_alt_pq.md)
+  draws, for each taxon, a violin of the altitudes of its GBIF
+  occurrences with one horizontal line per sample in which the taxon is
+  present, and
+  [`tax_alt_ses_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_alt_ses_pq.md)
+  computes the matching standardized effect size,
+  `(mean sample altitude - mean GBIF altitude) / sd of GBIF altitudes`,
+  from either occurrence altitudes or the summary of
+  [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md).
+- [`tax_bactotraits_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_bactotraits_pq.md)
+  augments the `tax_table` of a bacterial phyloseq object with the
+  BactoTraits functional-trait database (Laderriere et al. 2026),
+  joining its species- and genus-level CSV files (downloaded once from
+  <https://doi.org/10.24396/ORDAR-182> and cached, or passed via
+  `file_name_species` / `file_name_genus`) with a species-to-phylum rank
+  fallback whose coarser-level profiles are strain-weighted means; the
+  `Species` rank may hold binomials, bare epithets or the genus glued to
+  the epithet (e.g. `"Sulfolobusacidocaldarius"` in `GlobalPatterns`).
+  Binary traits (e.g. `motility_yes` / `motility_no`) collapse to one
+  `TRUE` / `FALSE` / probability column per trait (`merge_modalities`),
+  while `raw_cols = TRUE` keeps the raw affinity columns and
+  multi-modality traits always keep theirs.
+- [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md),
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  and
+  [`tax_ecoregion_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.md)
+  gain an opt-in `saturation` early-stop (`saturation = TRUE`, default
+  `FALSE`; only used with `method = "search"`): GBIF occurrences are
+  fetched in batches of `batch_size` and fetching stops as soon as the
+  taxon’s ecoregion set stops growing for `patience` consecutive batches
+  (with a `min_points` floor and the `n_occur` cap), so an ecoregion
+  profile needs only as many GBIF points as it takes to stabilise; the
+  per-taxon fetch statistics are the `"saturation"` attribute of the
+  long ecoregion tibble (`attr(result, "saturation")` for
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  and `tax_ecoregion_occur_pq(add_to_phyloseq = FALSE)`,
+  `attr(result$taxon_ecoregions, "saturation")` for
+  [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)).
+- [`tax_ecoregion_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur_pq.md),
+  [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md),
+  [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md),
+  [`tax_iucn_code_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_iucn_code_pq.md),
+  [`tax_occur_check_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_occur_check_pq.md)
+  and
+  [`tax_photos_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.md)
+  inform when a phyloseq object’s names were verified by
+  [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
+  against another backbone than the GBIF checklist they query (see
+  [`check_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/check_backbone_pq.md)).
+- [`tax_funendo_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_funendo_pq.md)
+  summarises the FunEndo global fungal endophyte repository (Moghaddam
+  2026, <https://doi.org/10.65390/fdiv.2026.136016>) per taxon: record,
+  reference and accession counts (exact duplicate records removed;
+  references identified by their normalised DOI, or by their reference
+  text when the DOI field holds none, e.g. `"Unpublished"`) plus the
+  collapsed organs, study types, reference types, countries and host
+  genera, matching binomials first with a genus fallback (`match_level`,
+  `max_levels`, `collapse`). The repository is bundled, with the
+  permission of its authors, as `inst/extdata/funendo_v0.1.csv.gz`, with
+  `funendo_mini.csv` and `funendo_field_description.csv` for quick
+  examples.
+- [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md)
+  attributes downloaded records to the queried taxa by `taxonKey` or
+  `speciesKey`, falling back to the taxon name, so infraspecific records
+  are kept and COL XR queries, whose records carry GBIF Backbone keys,
+  are no longer emptied.
+- [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md),
+  [`tax_gbif_occur_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_pq.md),
+  [`tax_occur_check_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_occur_check_pq.md),
+  [`tax_occur_multi_check_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_occur_multi_check_pq.md)
+  and
+  [`tax_photos_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.md)
+  no longer error when none of the queried names match GBIF: they warn,
+  send no GBIF request (in particular no occurrence download without a
+  taxon filter), and return their usual output with no rows or `NA`
+  values.
+  [`tax_photos_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_photos_pq.md)
+  also no longer errors when none of the matched taxa has a photo.
+- [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md)
+  gains a `return_raw` argument (default `FALSE`) that returns the
+  altitude of each GBIF occurrence as a long tibble (`canonicalName`,
+  `elevation`), the input of
+  [`plot_tax_alt_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_alt_pq.md).
+- [`tax_gbif_occur_coords()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_occur_coords.md)
+  no longer errors when none of the queried names match GBIF: it returns
+  an empty result whose `missing_taxa` attribute lists them, so
+  [`tax_ecoregion_occur()`](https://adrientaudiere.github.io/taxinfo/reference/tax_ecoregion_occur.md)
+  and its wrappers keep these taxa as rows with `n_occur = 0`, as
+  documented.
 
 ## taxinfo 0.3.0
 
@@ -15,11 +170,11 @@
   attaches, for each taxon of a phyloseq object, a summary of documented
   range-shift rates from the current BioShifts release (the original
   BioShifts merged with the CoRE database, Comte et al. 2024) via
-  [`BioShiftR::get_shifts()`](https://bioshifts.github.io/BioShiftR/reference/get_shifts.html),
-  adding mean latitudinal (`bioshift_LAT_rate`) and elevational
-  (`bioshift_ELE_rate`) shift rates plus a `bioshift_n_records` count.
-  Taxa are matched on the `taxonomic_rank` column(s) of the `tax_table`;
-  by default the BioShifts names are harmonised with
+  `BioShiftR::get_shifts()`, adding mean latitudinal
+  (`bioshift_LAT_rate`) and elevational (`bioshift_ELE_rate`) shift
+  rates plus a `bioshift_n_records` count. Taxa are matched on the
+  `taxonomic_rank` column(s) of the `tax_table`; by default the
+  BioShifts names are harmonised with
   [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
   and the join is made on `currentCanonicalSimple` (disable with
   `skip_name_verification = TRUE`). A pre-fetched table can be supplied
@@ -260,9 +415,9 @@
   and
   [`tax_check_ecoregion()`](https://adrientaudiere.github.io/taxinfo/reference/tax_check_ecoregion.md)
   now call
-  [`gbif.range::read_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/read_ecoreg.html)
+  [`gbif.range::read_ecoreg()`](https://8ginette8.github.io/gbif.range/reference/read_ecoreg.html)
   and
-  [`gbif.range::check_and_get_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/check_and_get_ecoreg.html)
+  [`gbif.range::check_and_get_ecoreg()`](https://8ginette8.github.io/gbif.range/reference/check_and_get_ecoreg.html)
   instead of the removed `read_bioreg()` / `check_and_get_bioreg()`.
 
 ### Bug Fixes
@@ -317,7 +472,7 @@
   `n_taxa × n_points` logical matrix in `is_in_ecoregion`, and caches
   the WWF/TNC shapefile across calls instead of re-downloading it
   through
-  [`gbif.range::check_and_get_ecoreg()`](https://rdrr.io/pkg/gbif.range/man/check_and_get_ecoreg.html)
+  [`gbif.range::check_and_get_ecoreg()`](https://8ginette8.github.io/gbif.range/reference/check_and_get_ecoreg.html)
   each time. The shapefile is read via
   [`sf::st_join()`](https://r-spatial.github.io/sf/reference/st_join.html)
   (boundary-safe) instead of

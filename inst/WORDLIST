@@ -17,6 +17,7 @@ Basidiodendron
 Bassler
 Benoît
 Bergey
+Bergey's
 BioShiftR
 BioShifts
 Biogeographic
@@ -38,6 +39,7 @@ Codecov
 CoordinateCleaner
 Cornwell
 DEFIS
+DSMZ
 DXXM
 DistanceMatrix
 Doebeli
@@ -56,6 +58,7 @@ Fomes
 FunEndo
 FungalTraits
 Fungarum
+Fungorum
 GBIF
 GBIF's
 GENUSLVL
@@ -64,6 +67,7 @@ GNA
 GTDB
 Gbif
 GenBank
+GloBI
 GlobalPatterns
 HIGHERRANK
 Harmonise
@@ -76,6 +80,7 @@ JAJZYD
 JGI
 Krah
 Kℹ
+LPSN
 Laderriere
 Lamarque
 Licence
@@ -98,7 +103,10 @@ Multinucleate
 Mycena
 MycoDB
 Mélanie
+NOM
 Nees
+Nomer
+ONF
 ORDAR
 OTU
 OTUs
@@ -126,6 +134,7 @@ Russula
 Ryvarden
 SBC
 SCA
+SES
 SPECIESLVL
 Scientifique
 Sidhu
@@ -144,6 +153,7 @@ Taudière
 TaxRef
 Taxnames
 Taxref
+Tedersoo
 Trametopsis
 Trigueros
 UUID
@@ -152,6 +162,7 @@ Verifier
 WKT
 WWF
 Wikidata
+Wikimedia
 Wikipedias
 Wikitaxa
 XR
@@ -207,6 +218,9 @@ countryCode
 csv
 currentCanonicalSimple
 currentName
+currentRecordId
+dataSourceId
+dataSourceTitleShort
 datasetKey
 dddbf
 ddf
@@ -348,6 +362,7 @@ predation
 preprint
 px
 recomputation
+recordId
 recordedBy
 redistributions
 refseq
@@ -364,10 +379,12 @@ robur
 ropensci
 ru
 rup
+sam
 sbc
 scientificName
 scientificNameAuthorship
 sd
+ses
 shp
 smg
 sociocultural
@@ -395,6 +412,7 @@ taxonKey
 taxonkey
 taxonomicStatus
 taxonomyTable
+taxref
 taxtable
 tbl
 terra
@@ -414,6 +432,7 @@ usageKey
 uuid
 vec
 venn
+verifications
 verifier
 vro
 wikipedia

@@ -82,6 +82,9 @@ tax_ecoregion_occur_pq <- function(
   )
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose) {
+    check_gbif_backbone(physeq, taxonomic_rank = taxonomic_rank)
+  }
 
   if (is.null(col_prefix)) {
     col_prefix <- "ecoregion_"

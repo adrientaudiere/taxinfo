@@ -152,3 +152,119 @@ test_that("tax_info_pq use_duck_db parameter works", {
 
   expect_s3_class(result, "tbl_df")
 })
+
+info_csv <- function(df) {
+  path <- withr::local_tempfile(fileext = ".csv", .local_envir = parent.frame())
+  write.csv(df, path, row.names = FALSE)
+  path
+}
+
+test_that("tax_info_pq keeps taxa_name and the tax_table column order", {
+  csv <- info_csv(data.frame(
+    sp = c("Fomes fomentarius", "Mycena renati"),
+    trait = c("A", "B")
+  ))
+  res <- tax_info_pq(
+    clean,
+    file_name = csv,
+    csv_taxonomic_rank = "sp",
+    verbose = FALSE
+  )
+  old_cols <- colnames(clean@tax_table)
+  expect_equal(colnames(res@tax_table), c(old_cols, "sp", "trait"))
+  expect_equal(res@tax_table[, "taxa_name"], clean@tax_table[, "taxa_name"])
+  expect_equal(
+    as.vector(res@tax_table[, "trait"]),
+    c(NA, "A", "B", "A", NA, NA, NA)
+  )
+  expect_equal(
+    as.vector(res@tax_table[, "sp"])[1:3],
+    c(NA, "Fomes fomentarius", "Mycena renati")
+  )
+})
+
+test_that("tax_info_pq duckdb path matches the R path", {
+  skip_if_not_installed("duckdb")
+  csv <- info_csv(data.frame(
+    sp = c("Fomes fomentarius", "Mycena renati"),
+    trait = c("A", "B")
+  ))
+  res_r <- tax_info_pq(
+    clean,
+    file_name = csv,
+    csv_taxonomic_rank = "sp",
+    verbose = FALSE
+  )
+  res_duck <- tax_info_pq(
+    clean,
+    file_name = csv,
+    csv_taxonomic_rank = "sp",
+    use_duck_db = TRUE,
+    verbose = FALSE
+  )
+  expect_equal(colnames(res_duck@tax_table), colnames(res_r@tax_table))
+  expect_equal(res_duck@tax_table[, "trait"], res_r@tax_table[, "trait"])
+})
+
+test_that("tax_info_pq handles column collisions with the tax_table", {
+  csv <- info_csv(data.frame(sp = "Fomes fomentarius", Guild = "csv_guild"))
+  expect_error(
+    tax_info_pq(
+      clean,
+      file_name = csv,
+      csv_taxonomic_rank = "sp",
+      verbose = FALSE
+    ),
+    "already exist"
+  )
+  res <- tax_info_pq(
+    clean,
+    file_name = csv,
+    csv_taxonomic_rank = "sp",
+    col_prefix = "x_",
+    verbose = FALSE
+  )
+  expect_equal(res@tax_table[, "Guild"], clean@tax_table[, "Guild"])
+  expect_equal(as.vector(res@tax_table[2, "x_Guild"]), "csv_guild")
+})
+
+test_that("tax_info_pq works with a two-column taxonomic_rank", {
+  csv <- info_csv(data.frame(sp = "Fomes fomentarius", trait = "A"))
+  expect_message(
+    res <- tax_info_pq(
+      clean,
+      taxonomic_rank = c("Genus", "Species"),
+      file_name = csv,
+      csv_taxonomic_rank = "sp"
+    ),
+    "found for"
+  )
+  expect_equal(sum(!is.na(res@tax_table[, "trait"])), 2)
+})
+
+test_that("tax_info_pq with taxnames returns one row per name", {
+  csv <- info_csv(data.frame(
+    sp = c("Fomes fomentarius", "Fomes fomentarius"),
+    trait = c("A", "Z")
+  ))
+  expect_message(
+    res <- tax_info_pq(
+      taxnames = c("Mycena renati", "Fomes fomentarius"),
+      file_name = csv,
+      csv_taxonomic_rank = "sp",
+      col_prefix = "x_"
+    ),
+    "duplicated"
+  )
+  expect_equal(colnames(res), c("taxa_name", "x_sp", "x_trait"))
+  expect_equal(res$x_trait, c(NA, "A"))
+  expect_error(
+    tax_info_pq(
+      taxnames = "Fomes fomentarius",
+      file_name = csv,
+      csv_taxonomic_rank = "sp",
+      csv_cols_select = "nope"
+    ),
+    "not in your CSV"
+  )
+})

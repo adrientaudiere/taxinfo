@@ -29,7 +29,7 @@ Two methods are available:
 
     <a class="navbar-brand me-2" href="../index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,8 @@ mean and standard deviation) for taxa from GBIF occurrence data.</p>
 <span>  n_coor_alt <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  discard_genus_alone <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">taxonomic_rank</span>, <span class="st">"currentCanonicalSimple"</span><span class="op">)</span>,</span>
-<span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  discard_NA <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  return_raw <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -143,7 +144,7 @@ but are slower. Range: 1-14. See [elevatr::get_elev_point()] for details.</p></d
 
 <dt id="arg-n-coor-alt">n_coor_alt<a class="anchor" aria-label="anchor" href="#arg-n-coor-alt"></a></dt>
 <dd><p>(int, default NULL) Number of occurrences to samples. If
-left to NULL, all occurrences are used to computed the altitute. It allow
+left to NULL, all occurrences are used to computed the altitude. It allow
 quicker computation when using method "elevatr" on taxa with a large
 number of occurrences.</p></dd>
 
@@ -162,6 +163,14 @@ number of occurrences.</p></dd>
 <dd><p>(logical, default `TRUE`). Passed to
 [taxonomic_rank_to_taxnames()].</p></dd>
 
+
+<dt id="arg-return-raw">return_raw<a class="anchor" aria-label="anchor" href="#arg-return-raw"></a></dt>
+<dd><p>(logical, default FALSE) If TRUE, return the elevation of
+each GBIF occurrence used, as a long tibble with columns `canonicalName`
+and `elevation` (one row per occurrence), instead of the per-taxon
+statistics. `add_to_phyloseq` is then ignored. This is the input expected
+by [plot_tax_alt_pq()].</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -170,7 +179,8 @@ number of occurrences.</p></dd>
  The returned data includes: altitude_min, altitude_max, altitude_q05,
  altitude_q50, altitude_q95, altitude_mean, altitude_sd, altitude_n_records,
  and canonicalName. When `method = "elevatr"`, also includes altitude_n_ocean
- (number of points detected in ocean).</p>
+ (number of points detected in ocean).
+ If `return_raw = TRUE`, a long tibble of occurrence elevations.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -203,7 +213,7 @@ and `rnaturalearth` packages.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p>[rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]</p></div>
+    <div class="dont-index"><p>[rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()], [plot_tax_alt_pq()]</p></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -269,7 +279,7 @@ and `rnaturalearth` packages.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
 <div class="pkgdown-footer-right">

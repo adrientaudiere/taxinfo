@@ -16,6 +16,7 @@ tax_photos_pq(
   folder_name = "photos_physeq",
   add_to_phyloseq = NULL,
   col_prefix = NULL,
+  checklist = "backbone",
   gallery = FALSE,
   overwrite_folder = FALSE,
   col_name_url = "photo_url",
@@ -70,6 +71,15 @@ tax_photos_pq(
 
   A character string to be added as a prefix to the new columns names
   added to the tax_table slot of the phyloseq object (default: NULL).
+
+- checklist:
+
+  (Character, default \`"backbone"\`) The GBIF checklist used to resolve
+  names: \`"backbone"\` (legacy GBIF Backbone Taxonomy), \`"colxr"\`
+  (Catalogue of Life Extended Release) or a raw GBIF dataset UUID.
+  Defaults to \`"backbone"\` here because \[rgbif::name_usage()\] is a
+  GBIF-Backbone API that cannot resolve COL XR keys. See
+  \[gbif_key_to_col()\] for the rgbif 3.9.0 checklist migration.
 
 - gallery:
 

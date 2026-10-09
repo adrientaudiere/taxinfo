@@ -8,10 +8,16 @@ using authoritative databases and verification services.
 - [`gna_verifier_pq()`](https://adrientaudiere.github.io/taxinfo/reference/gna_verifier_pq.md)
   : Verify (and fix) scientific names (Genus species) of a phyloseq
   object.
+- [`check_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/check_backbone_pq.md)
+  : Check that taxa were verified against the backbone queried
+  downstream
 - [`tax_crosscheck_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_crosscheck_gbif_pq.md)
   : Cross-check taxonomic names using GBIF backbone and GNA Verifier
 - [`tax_harmonize_backbone_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_harmonize_backbone_pq.md)
   : Harmonise higher taxonomic ranks from a trusted backbone
+- [`gbif_key_to_col()`](https://adrientaudiere.github.io/taxinfo/reference/gbif_key_to_col.md)
+  : GBIF checklist compatibility layer for rgbif 3.9.0 (COL Extended
+  Release)
 
 ## Add data from external sources
 
@@ -30,6 +36,8 @@ various external databases and APIs.
   : Get number of occurrences for each taxa of a phyloseq object
 - [`tax_gbif_alt()`](https://adrientaudiere.github.io/taxinfo/reference/tax_gbif_alt.md)
   : Get altitude range statistics for each taxa from GBIF
+- [`tax_alt_ses_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_alt_ses_pq.md)
+  : Standardized effect size of sample altitude against GBIF altitudes
 
 ### Globi interactions data
 
@@ -61,11 +69,15 @@ taxonomic information, page statistics, and content analysis.
 
 ### Other sources
 
+- [`tax_bactotraits_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_bactotraits_pq.md)
+  : Add BactoTraits functional traits to a phyloseq object
 - [`tax_bioshifts_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_bioshifts_pq.md)
   : Add range-shift information from the BioShifts database to a
   phyloseq object
 - [`tax_faprotax_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_faprotax_pq.md)
   : Add FAPROTAX functional-group annotations to a phyloseq object
+- [`tax_funendo_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_funendo_pq.md)
+  : Add FunEndo endophytic-fungi information to a phyloseq object
 - [`tax_metatraits_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_metatraits_pq.md)
   : Add metaTraits phenotypic traits to a phyloseq object
 - [`tax_iucn_code_pq()`](https://adrientaudiere.github.io/taxinfo/reference/tax_iucn_code_pq.md)
@@ -122,6 +134,8 @@ creating distribution maps from occurrence data.
   package
 - [`plot_tax_gbif_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_gbif_pq.md)
   : Plot the taxa occurrence using gbif.range package
+- [`plot_tax_alt_pq()`](https://adrientaudiere.github.io/taxinfo/reference/plot_tax_alt_pq.md)
+  : Violin plot of GBIF altitudes with the altitude of the samples
 - [`calculate_bbox()`](https://adrientaudiere.github.io/taxinfo/reference/calculate_bbox.md)
   : Calculate Bounding Box Around a Point
 

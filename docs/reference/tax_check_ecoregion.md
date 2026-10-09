@@ -26,6 +26,10 @@ tax_check_ecoregion(
   clean_coord = FALSE,
   verbose = TRUE,
   time_to_sleep = 0.3,
+  saturation = FALSE,
+  batch_size = 250,
+  min_points = 100,
+  patience = 2,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
   discard_NA = TRUE
 )
@@ -90,6 +94,41 @@ tax_check_ecoregion(
   \[rgbif::occ_search()\] calls to avoid GBIF rate-limiting. Only used
   when \`method = "search"\`.
 
+- saturation:
+
+  (logical, default \`FALSE\`). If \`TRUE\` (and \`method = "search"\`),
+  occurrences are fetched in batches of \`batch_size\` and fetching
+  stops as soon as the taxon's ecoregion set has stopped growing for
+  \`patience\` consecutive batches (and at least \`min_points\` points
+  were fetched). This directly minimises the number of GBIF points
+  needed per taxon: once the ecoregion set is stable, the remaining GBIF
+  records cannot change the profile and are not downloaded. Use
+  \`saturation = FALSE\` to always fetch the full \`n_occur\` budget.
+  Ignored with the download methods (a GBIF download is a single
+  one-shot request). The per-taxon fetch summary is the \`"saturation"\`
+  attribute of the long tibble built by \[tax_ecoregion_occur()\]:
+  \`attr(result, "saturation")\` for \[tax_ecoregion_occur()\] and for
+  \[tax_ecoregion_occur_pq()\] with \`add_to_phyloseq = FALSE\`, and
+  \`attr(result\$taxon_ecoregions, "saturation")\` for
+  \[tax_check_ecoregion()\]. It is not returned when
+  \[tax_ecoregion_occur_pq()\] outputs a phyloseq object
+  (\`add_to_phyloseq = TRUE\`).
+
+- batch_size:
+
+  (numeric, default \`250\`). Page size of each GBIF fetch when
+  \`saturation = TRUE\`.
+
+- min_points:
+
+  (numeric, default \`100\`). Minimum number of points fetched per taxon
+  before the saturation rule is allowed to fire.
+
+- patience:
+
+  (numeric, default \`2\`). Number of consecutive batches without a new
+  ecoregion tolerated before fetching stops.
+
 - discard_genus_alone:
 
   (logical, default \`TRUE\` when \`taxonomic_rank ==
@@ -104,14 +143,16 @@ tax_check_ecoregion(
 ## Value
 
 A list with four elements: - \`taxon_ecoregions\`: the long tibble
-produced by \[tax_ecoregion_occur()\]. - \`points_ecoregion\`: the
-tibble produced by \[points_to_ecoregions()\]. - \`is_in_ecoregion\`: a
-logical matrix with rownames = taxon names and colnames =
-\`"point\_\<i\>"\`, shape \`n_taxa x n_points\`. \`TRUE\` means the
-ecoregion of the point is among the taxon's ecoregions that pass
-\`min_nb_occur\` / \`min_proportion\`. - \`ecoregion\`: a named list
-(one named integer vector per taxon) kept for backward compatibility
-with earlier versions; prefer \`taxon_ecoregions\`.
+produced by \[tax_ecoregion_occur()\]. When \`saturation = TRUE\`,
+\`attr(result\$taxon_ecoregions, "saturation")\` holds the per-taxon
+fetch summary. - \`points_ecoregion\`: the tibble produced by
+\[points_to_ecoregions()\]. - \`is_in_ecoregion\`: a logical matrix with
+rownames = taxon names and colnames = \`"point\_\<i\>"\`, shape \`n_taxa
+x n_points\`. \`TRUE\` means the ecoregion of the point is among the
+taxon's ecoregions that pass \`min_nb_occur\` / \`min_proportion\`. -
+\`ecoregion\`: a named list (one named integer vector per taxon) kept
+for backward compatibility with earlier versions; prefer
+\`taxon_ecoregions\`.
 
 ## Details
 

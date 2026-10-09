@@ -37,6 +37,8 @@ navbar:
         href: articles/checking-taxa-presence.html
       - text: Adding information using external sources
         href: articles/external-information.html
+      - text: Which data source for which function
+        href: articles/data-sources.html
       - text: Bayesian surprise
         href: articles/surprise.html
       - text: Species Bound Cluster (SBC)
@@ -49,6 +51,7 @@ reference:
     using authoritative databases and verification services.
   contents:
   - gna_verifier_pq
+  - check_backbone_pq
   - tax_crosscheck_gbif_pq
   - tax_harmonize_backbone_pq
   - gbif_key_to_col
@@ -65,6 +68,7 @@ reference:
   contents:
   - tax_gbif_occur_pq
   - tax_gbif_alt
+  - tax_alt_ses_pq
 - subtitle: "Globi interactions data"
   contents:
   - tax_globi_pq
@@ -120,6 +124,7 @@ reference:
   contents:
   - range_bioreg_pq
   - plot_tax_gbif_pq
+  - plot_tax_alt_pq
   - calculate_bbox
 
 - title: "Media & Photography"

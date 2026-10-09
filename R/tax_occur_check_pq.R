@@ -125,6 +125,9 @@ tax_occur_check_pq <- function(
   )
   taxnames_raw <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose) {
+    check_gbif_backbone(physeq, taxonomic_rank = taxonomic_rank)
+  }
 
   if (length(taxnames_raw) == 0) {
     if (verbose) {

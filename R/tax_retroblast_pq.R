@@ -142,6 +142,14 @@ tax_retroblast_pq <- function(
   ...
 ) {
   check_package("rentrez")
+  if (verbose) {
+    # NCBI nucleotide is searched by NCBI Taxonomy organism names
+    check_source_backbone(
+      physeq,
+      expected_source = 4L,
+      taxonomic_rank = taxonomic_rank
+    )
+  }
 
   taxnames <- taxonomic_rank_to_taxnames(
     physeq = physeq,

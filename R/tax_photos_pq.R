@@ -120,6 +120,19 @@ tax_photos_pq <- function(
   )
   taxnames_raw <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose && source == "gbif") {
+    check_gbif_backbone(
+      physeq,
+      checklist = checklist,
+      taxonomic_rank = taxonomic_rank
+    )
+  } else if (verbose && source == "wikitaxa") {
+    check_source_backbone(
+      physeq,
+      expected_source = 207L,
+      taxonomic_rank = taxonomic_rank
+    )
+  }
 
   # Check for column name collisions and handle col_prefix
   if (!is.null(physeq) && add_to_phyloseq) {

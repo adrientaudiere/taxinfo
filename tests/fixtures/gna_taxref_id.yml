@@ -1,0 +1,120 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://verifier.globalnames.org/api/v1/verifications/Agaricus%20muscarius|Boletus%20edulis?data_sources=210&all_matches=false&capitalize=false&species_group=false&fuzzy_uninomial=false&stats=false
+  response:
+    status: 200
+    headers:
+      content-encoding: gzip
+      content-length: '1028'
+      content-type: application/json
+      date: Thu, 08 Oct 2026 18:52:15 GMT
+      server: nginx/1.18.0 (Ubuntu)
+      status: 'HTTP/2 200 '
+      vary:
+      - Accept-Encoding
+      - Origin
+    body:
+      string: |
+        {"metadata":{"namesNumber":2,"vernaculars":[""],"dataSources":[210]},"names":[{"id":"921793f5-1b09-5bc9-bbb9-6ec54588da96","name":"Agaricus muscarius","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":210,"dataSourceTitleShort":"TAXREF","curation":"Curated","recordId":"508317","entryDate":"2025-04-02","sortScore":9.411093439783798,"matchedNameID":"2a202e56-6725-591c-b3c0-edcff79bd245","matchedName":"Agaricus muscarius L., 1753","matchedCardinality":2,"matchedCanonicalSimple":"Agaricus muscarius","matchedCanonicalFull":"Agaricus muscarius","currentRecordId":"39079","currentNameId":"3db40510-4895-5dd2-b55e-5d7ff1b2d87e","currentName":"Amanita muscaria (L.) Lam., 1783","currentCardinality":2,"currentCanonicalSimple":"Amanita muscaria","currentCanonicalFull":"Amanita muscaria","taxonomicStatus":"Synonym","isSynonym":true,"classificationPath":"Biota|Fungi|Dikarya|Basidiomycota|Amanitales|Amanitaceae|Amanita|Amanita muscaria","classificationRanks":"domain|kingdom|subkingdom|phylum|order|family|genus|species","classificationIds":"349525|187496|951105|187499|460624|460657|189021|39079","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.6666667,"authorMatchScore":0.14285715,"acceptedNameScore":0,"parsingQualityScore":1},"vernaculars":[{"name":"Amanite tue-mouches, Fausse oronge","country":"ETATFRA"},{"name":"Fly Agaric"}]},"dataSourcesNum":1,"dataSourcesIds":[210],"curation":"Curated"},{"id":"6ceb8f7b-9ea8-59fa-8508-e8c22836ec12","name":"Boletus edulis","cardinality":2,"matchType":"Exact","bestResult":{"dataSourceId":210,"dataSourceTitleShort":"TAXREF","curation":"Curated","recordId":"29388","entryDate":"2025-04-02","sortScore":9.411446740174974,"matchedNameID":"be3a777b-877d-5fbd-8e9b-906ab3833f49","matchedName":"Boletus edulis Bull., 1782","matchedCardinality":2,"matchedCanonicalSimple":"Boletus edulis","matchedCanonicalFull":"Boletus edulis","currentRecordId":"29388","currentNameId":"be3a777b-877d-5fbd-8e9b-906ab3833f49","currentName":"Boletus edulis Bull., 1782","currentCardinality":2,"currentCanonicalSimple":"Boletus edulis","currentCanonicalFull":"Boletus edulis","taxonomicStatus":"Accepted","isSynonym":false,"classificationPath":"Biota|Fungi|Dikarya|Basidiomycota|Boletales|Boletaceae|Boletus|Boletus edulis","classificationRanks":"domain|kingdom|subkingdom|phylum|order|family|genus|species","classificationIds":"349525|187496|951105|187499|436949|437046|189935|29388","editDistance":0,"stemEditDistance":0,"matchType":"Exact","scoreDetails":{"cardinalityScore":1,"infraSpecificRankScore":0,"fuzzyLessScore":1,"curatedDataScore":0.6666667,"authorMatchScore":0.14285715,"acceptedNameScore":1,"parsingQualityScore":1},"vernaculars":[{"name":"Cèpe de Bordeaux, Cèpe du Périgord","country":"France"},{"name":"Cep, Penny Bun"}]},"dataSourcesNum":1,"dataSourcesIds":[210],"curation":"Curated"}]}
+  recorded_at: 2026-10-08 18:52:15
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Amanita muscaria (L.) Lam., 1783","Boletus edulis Bull., 1782"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 08 Oct 2026 18:52:15 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '165781340659'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Amanita muscaria (L.) Lam., 1783","type":"SCIENTIFIC","genusOrAbove":"Amanita","specificEpithet":"muscaria","authorship":"Lam.","year":"1783","bracketAuthorship":"L.","parsed":true,"parsedPartially":false,"canonicalName":"Amanita
+        muscaria","canonicalNameWithMarker":"Amanita muscaria","canonicalNameComplete":"Amanita
+        muscaria (L.) Lam., 1783","rankMarker":"sp."},{"scientificName":"Boletus edulis
+        Bull., 1782","type":"SCIENTIFIC","genusOrAbove":"Boletus","specificEpithet":"edulis","authorship":"Bull.","year":"1782","parsed":true,"parsedPartially":false,"canonicalName":"Boletus
+        edulis","canonicalNameWithMarker":"Boletus edulis","canonicalNameComplete":"Boletus
+        edulis Bull., 1782","rankMarker":"sp."}]'
+  recorded_at: 2026-10-08 18:52:15
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Amanita muscaria (L.) Lam., 1783","Boletus edulis Bull., 1782"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 08 Oct 2026 18:52:15 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '165764074201'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Amanita muscaria (L.) Lam., 1783","type":"SCIENTIFIC","genusOrAbove":"Amanita","specificEpithet":"muscaria","authorship":"Lam.","year":"1783","bracketAuthorship":"L.","parsed":true,"parsedPartially":false,"canonicalName":"Amanita
+        muscaria","canonicalNameWithMarker":"Amanita muscaria","canonicalNameComplete":"Amanita
+        muscaria (L.) Lam., 1783","rankMarker":"sp."},{"scientificName":"Boletus edulis
+        Bull., 1782","type":"SCIENTIFIC","genusOrAbove":"Boletus","specificEpithet":"edulis","authorship":"Bull.","year":"1782","parsed":true,"parsedPartially":false,"canonicalName":"Boletus
+        edulis","canonicalNameWithMarker":"Boletus edulis","canonicalNameComplete":"Boletus
+        edulis Bull., 1782","rankMarker":"sp."}]'
+  recorded_at: 2026-10-08 18:52:15
+- request:
+    method: POST
+    uri: https://api.gbif.org/v1/parser/name
+    body:
+      string: '["Amanita muscaria (L.) Lam., 1783","Boletus edulis Bull., 1782"]'
+  response:
+    status: 201
+    headers:
+      status: HTTP/1.1 201 Created
+      x-content-type-options: nosniff
+      x-xss-protection: '0'
+      pragma: no-cache
+      expires: '0'
+      x-frame-options: DENY
+      content-type: application/json
+      date: Thu, 08 Oct 2026 18:52:15 GMT
+      cache-control: public, max-age=3601
+      content-encoding: gzip
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers,
+        Accept-Encoding
+      x-varnish: '165784552088'
+      age: '0'
+      via: 1.1 prodapicache2-vh.gbif.org (Varnish/9.0)
+      connection: keep-alive
+      transfer-encoding: chunked
+    body:
+      string: '[{"scientificName":"Amanita muscaria (L.) Lam., 1783","type":"SCIENTIFIC","genusOrAbove":"Amanita","specificEpithet":"muscaria","authorship":"Lam.","year":"1783","bracketAuthorship":"L.","parsed":true,"parsedPartially":false,"canonicalName":"Amanita
+        muscaria","canonicalNameWithMarker":"Amanita muscaria","canonicalNameComplete":"Amanita
+        muscaria (L.) Lam., 1783","rankMarker":"sp."},{"scientificName":"Boletus edulis
+        Bull., 1782","type":"SCIENTIFIC","genusOrAbove":"Boletus","specificEpithet":"edulis","authorship":"Bull.","year":"1782","parsed":true,"parsedPartially":false,"canonicalName":"Boletus
+        edulis","canonicalNameWithMarker":"Boletus edulis","canonicalNameComplete":"Boletus
+        edulis Bull., 1782","rankMarker":"sp."}]'
+  recorded_at: 2026-10-08 18:52:15
+recorded_with: VCR-vcr/2.1.0

@@ -9,7 +9,7 @@ A function to add information from a custom csv file (e.g. FungalTraits,
 Taxref, ...) to the tax_table slot of a phyloseq object by joining
 taxonomic names from phyloseq object (column \`taxonomic_rank\`) with a
 column of the csv file (\`csv_taxonomic_rank\`) containing the
-correspondant taxonomic names. Be carefull that the taxonomic names in
+correspondant taxonomic names. Be careful that the taxonomic names in
 the csv file must match exactly the taxonomic names in the phyloseq
 object. For example, if the taxonomic names in the phyloseq object are
 in the form "Genus species" the taxonomic names in the csv file must be

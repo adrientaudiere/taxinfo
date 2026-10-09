@@ -43,7 +43,7 @@
 #'  a hard error.
 #' @param keep_key (logical, default `TRUE`) If `TRUE`, retain the join key in
 #'  the result as a `taxa_name` column (overwriting any existing one); if
-#'  `FALSE`, drop it.
+#'  `FALSE`, drop it and leave any existing `taxa_name` column untouched.
 #'
 #' @returns A phyloseq object whose `tax_table` carries the new columns, with
 #'  the original taxa order and `taxa_names()` preserved.
@@ -102,7 +102,9 @@ augment_tax_table <- function(
 
   # Build the phyloseq-side join key with the same cleanup as the query side.
   tax_tab <- as.data.frame(unclass(physeq@tax_table), stringsAsFactors = FALSE)
-  tax_tab[["taxa_name"]] <- NULL
+  if (keep_key) {
+    tax_tab[["taxa_name"]] <- NULL
+  }
   tax_tab$.taxa_key <- taxnames_from_rank(
     physeq@tax_table,
     taxonomic_rank,

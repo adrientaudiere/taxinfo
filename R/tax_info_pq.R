@@ -34,10 +34,12 @@
 #'  Automatically set to TRUE when a phyloseq object is provided and FALSE when taxnames is provided.
 #'  Cannot be TRUE if `taxnames` is provided.
 #' @param col_prefix A character string to be added as a prefix to the new
-#' columns names added to the tax_table slot of the phyloseq object.
-#' @param use_duck_db (logical, default FALSE) If TRUE, use duckdb to handle
-#'  the join between the csv file and the tax_table of the phyloseq object.
-#'  Useful for large csv files.
+#' columns names added to the tax_table slot of the phyloseq object. Required
+#' when a column of the csv file already exists in the tax_table (e.g.
+#' `Phylum`): the function aborts otherwise.
+#' @param use_duck_db (logical, default FALSE) If TRUE, use duckdb to read
+#'  only the rows of the csv file matching the taxonomic names, instead of
+#'  reading the whole file in memory. Useful for large csv files.
 #' @param csv_cols_select A character vector of the column names to select in the csv file.
 #' @param sep the field separator character. See [utils::read.csv()].
 #' @param dec the field separator character. See [utils::read.csv()].
@@ -50,6 +52,13 @@
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #' object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
+#' The new columns (the `csv_taxonomic_rank` column, `NA` for taxa without a
+#' match, and the `csv_cols_select` columns, all prefixed by `col_prefix`)
+#' are appended after the existing columns of the tax_table, which are left
+#' untouched (including a `taxa_name` column). When `taxnames` is provided,
+#' the tibble has one row per name, starting with a `taxa_name` column. When
+#' a value of `csv_taxonomic_rank` is duplicated in the csv file, only its
+#' first row is used.
 #' @author Adrien Taudiere
 #' @export
 #'
@@ -190,109 +199,85 @@ tax_info_pq <- function(
     )
   }
 
-  if (!is.null(physeq)) {
-    new_physeq <- physeq
-    taxtab <- tibble(as.data.frame(new_physeq@tax_table))
-    taxtab$taxa_name <- taxnames_from_rank(
-      new_physeq@tax_table,
-      taxonomic_rank,
-      clean = TRUE
-    )
-    taxtab$taxa_id_for_join <- 1:ntaxa(physeq)
-  } else {
-    taxtab <- tibble(
-      taxa_name = taxnames_vec,
-      taxa_id_for_join = seq_along(taxnames_vec)
+  csv_header <- read.csv(file_name, nrows = 1, sep = sep, dec = dec) |>
+    colnames()
+  if (!(csv_taxonomic_rank %in% csv_header)) {
+    cli::cli_abort(
+      "The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file"
     )
   }
-
   if (is.null(csv_cols_select)) {
-    # Read the first line of the csv file to get the column names
-    csv_cols_select <- read.csv(file_name, nrows = 1, sep = sep, dec = dec) |>
-      colnames()
-  } else {
-    csv_cols_select <- csv_cols_select
+    csv_cols_select <- csv_header
   }
+  missing_cols <- setdiff(csv_cols_select, csv_header)
+  if (length(missing_cols) > 0) {
+    cli::cli_abort(
+      "Column{?s} {.val {missing_cols}} of {.arg csv_cols_select} {?is/are} not in your CSV file."
+    )
+  }
+  csv_cols <- unique(c(csv_taxonomic_rank, csv_cols_select))
+  query_names <- unique(taxnames_vec)
 
   if (use_duck_db) {
     check_package("duckdb")
     con <- duckdb::dbConnect(duckdb::duckdb())
-    # Summarize the dataset in DuckDB to avoid reading the entire CSV
-    # into R's memory
-    taxtab_new <-
+    on.exit(duckdb::dbDisconnect(con), add = TRUE)
+    # Filter the csv in DuckDB to avoid reading the entire file into memory
+    info_df <-
       tbl(con, file_name) |>
-      select(all_of(unique(c(csv_taxonomic_rank, csv_cols_select)))) |>
+      select(all_of(csv_cols)) |>
       mutate(across(
         all_of(csv_taxonomic_rank),
         ~ sql(paste0(cur_column(), "::TEXT"))
       )) |>
-      distinct(!!sym(csv_taxonomic_rank), .keep_all = TRUE) |>
-      right_join(
-        taxtab,
-        by = join_by(!!sym(csv_taxonomic_rank) == taxa_name),
-        copy = TRUE
-      ) |>
-      arrange(taxa_id_for_join) |>
-      collect() |>
-      select(-taxa_id_for_join) |>
-      rename_with(
-        .cols = all_of(c(csv_taxonomic_rank, csv_cols_select)),
-        ~ paste0(col_prefix, .)
-      )
-
-    duckdb::dbDisconnect(con)
+      filter(!!sym(csv_taxonomic_rank) %in% query_names) |>
+      collect()
   } else {
     info_df <- read.csv(
       file_name,
       sep = sep,
       dec = dec,
       colClasses = "character"
+    ) |>
+      select(all_of(csv_cols))
+  }
+
+  info_df <- as.data.frame(info_df)
+  info_keys <- as.character(info_df[[csv_taxonomic_rank]])
+  n_dup <- sum(duplicated(info_keys[info_keys %in% query_names]))
+  if (verbose && n_dup > 0) {
+    cli::cli_alert_info(
+      "{.val {n_dup}} duplicated value{?s} of {.val {csv_taxonomic_rank}} in the CSV file: only the first row of each is used."
     )
-
-    if (!(csv_taxonomic_rank %in% colnames(info_df))) {
-      cli::cli_abort(
-        "The parameter {.arg csv_taxonomic_rank} = {.val {csv_taxonomic_rank}} doesn't match any column in your CSV file"
-      )
-    }
-
-    taxtab_new <- info_df |>
-      select(all_of(c(csv_taxonomic_rank, csv_cols_select))) |>
-      distinct(!!sym(csv_taxonomic_rank), .keep_all = TRUE) |>
-      right_join(
-        taxtab,
-        by = join_by(!!sym(csv_taxonomic_rank) == taxa_name)
-      ) |>
-      arrange(taxa_id_for_join) |>
-      select(-taxa_id_for_join) |>
-      rename_with(
-        .cols = all_of(c(csv_taxonomic_rank, csv_cols_select)),
-        ~ paste0(col_prefix, .)
-      )
   }
-  if (add_to_phyloseq) {
-    new_physeq@tax_table <-
-      taxtab_new |>
-      as.matrix() |>
-      tax_table()
-    rownames(new_physeq@tax_table) <- taxa_names(physeq)
+  info_tbl <- tibble(.csv_key = info_keys, info_df) |>
+    filter(!duplicated(.data$.csv_key))
 
-    if (verbose) {
-      n_col_added <- ncol(taxtab_new) - ncol(taxtab)
-      if (use_duck_db) {
-        cli::cli_alert_success(
-          "Added {.val {n_col_added}} columns from {.path {file_name}} in the tax_table slot of the phyloseq object"
-        )
-      } else {
-        n_row_added <- sum(
-          pull(taxtab, taxonomic_rank) %in% pull(info_df, csv_taxonomic_rank)
-        )
-        cli::cli_alert_success(
-          "Added {.val {n_col_added}} columns from {.path {file_name}} with information for {.val {n_row_added}} taxa in the tax_table slot of the phyloseq object"
-        )
-      }
-    }
-    return(new_physeq)
-  } else {
-    return(taxtab_new)
+  if (verbose) {
+    n_matched <- sum(query_names %in% info_tbl$.csv_key)
+    cli::cli_alert_success(
+      "Information from {.path {file_name}} ({.val {length(csv_cols)}} column{?s}) found for {.val {n_matched}} of the {.val {length(query_names)}} taxonomic names."
+    )
   }
+
+  if (!is.null(physeq)) {
+    # The merge-back keeps the tax_table columns first (rank order) and an
+    # existing `taxa_name` column untouched.
+    new_physeq <- augment_tax_table(
+      physeq,
+      info_tbl,
+      taxonomic_rank = taxonomic_rank,
+      info_key = ".csv_key",
+      col_prefix = col_prefix,
+      keep_key = FALSE
+    )
+    if (add_to_phyloseq) {
+      return(new_physeq)
+    }
+    return(tibble(as.data.frame(unclass(new_physeq@tax_table))))
+  }
+
+  tibble(taxa_name = taxnames_vec) |>
+    left_join(info_tbl, by = c("taxa_name" = ".csv_key")) |>
+    rename_with(~ paste0(col_prefix, .x), .cols = all_of(csv_cols))
 }

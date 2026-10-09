@@ -1,7 +1,6 @@
 # Checking Taxa Presence in Samples
 
 ``` r
-
 library(taxinfo)
 library(MiscMetabar)
 library(ggplot2)
@@ -68,12 +67,10 @@ Paris, France?
 ```
 
 ``` r
-
 Q_rob_in_Paris <- tax_occur_check("Quercus robur", 2.3522, 48.8566, 100)
 ```
 
 ``` r
-
 Q_rob_in_Paris$count_in_radius
 ```
 
@@ -106,7 +103,6 @@ Q_rob_in_Paris$count_in_radius
 ```
 
 ``` r
-
 # Visualize occurrences around Paris for Fagus sylvatica
 res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
   return_all_occ = TRUE
@@ -114,7 +110,6 @@ res_occ <- tax_occur_check("Fagus sylvatica", 2.3522, 48.8566, 200,
 ```
 
 ``` r
-
 
 occ_data_sf <- sf::st_as_sf(res_occ$occ_data,
   coords = c("decimalLongitude", "decimalLatitude"),
@@ -165,7 +160,6 @@ leaflet() |>
 ```
 
 ``` r
-
 # Load example data
 data("data_fungi_mini", package = "MiscMetabar")
 
@@ -176,7 +170,6 @@ data_clean <- prune_taxa(taxa = taxa_names(data_fungi_mini)[1:20], data_fungi_mi
 
 ``` r
 
-
 summary_plot_pq(data_clean)
 ```
 
@@ -185,7 +178,6 @@ summary_plot_pq(data_clean)
 plot of chunk unnamed-chunk-4
 
 ``` r
-
 head(data_clean@tax_table[, c("Genus", "Species", "currentCanonicalSimple")])
 ```
 
@@ -302,7 +294,6 @@ specific radius of your sampling location:
 ```
 
 ``` r
-
 # Define sampling coordinates (example: Paris, France)
 longitude <- 2.3488
 latitude <- 48.8534
@@ -319,7 +310,6 @@ occurrence_check <- tax_occur_check_pq(
 ```
 
 ``` r
-
 
 # View results
 head(occurrence_check)
@@ -366,7 +356,6 @@ plot of chunk unnamed-chunk-7
 We can also explore the minimum and mean distance to sampling location.
 
 ``` r
-
 occurrence_check |>
   mutate(Genus = stringr::word(taxa_name, 1)) |>
   filter(!is.na(mean_distance_km)) |>
@@ -746,7 +735,6 @@ Compare occurrence patterns at different spatial scales:
 ```
 
 ``` r
-
 # Check multiple radii
 radii <- c(50, 100, 200, 500)
 
@@ -764,14 +752,12 @@ occurrence_multi_radius <- purrr::map_dfr(radii, function(r) {
 
 ``` r
 
-
 occurrence_multi_radius$radius_category <- factor(occurrence_multi_radius$radius_category,
   levels = paste(radii, "km")
 )
 ```
 
 ``` r
-
 # Visualize scaling patterns
 occurrence_multi_radius |>
   ggplot(aes(x = radius_category, y = count_in_radius, group = taxa_name)) +
@@ -829,7 +815,6 @@ Use occurrence data to filter taxa that are unlikely to be present:
 ```
 
 ``` r
-
 # Set threshold for likely presence (e.g., at least 5 occurrences within 100km)
 min_occurrences <- 5
 
@@ -844,7 +829,6 @@ data_filtered <- select_taxa_pq(data_clean, taxnames = likely_present)
 
 ``` r
 
-
 compar <- MiscMetabar::track_wkflow(
   list(
     "initial" = data_clean,
@@ -855,7 +839,6 @@ compar <- MiscMetabar::track_wkflow(
 ```
 
 ``` r
-
 knitr::kable(compar)
 ```
 
@@ -3825,7 +3808,6 @@ knitr::kable(compar)
 
 ``` r
 
-
 # Summarize by site
 site_summary <- multi_location_check[[1]] |>
   group_by(sample_name) |>
@@ -3842,7 +3824,6 @@ site_summary <- multi_location_check[[1]] |>
 
 ``` r
 
-
 site_summary
 ```
 
@@ -3854,7 +3835,6 @@ site_summary
 Validate your sampling sites against known distributions:
 
 ``` r
-
 # Define your sampling coordinates
 sample_coords <- data.frame(
   longitude = c(2.3, 5.4, -1.6), # Example coordinates
@@ -3879,7 +3859,6 @@ site_validation <- purrr::map_dfr(1:nrow(sample_coords), function(i) {
 
 ``` r
 
-
 # Summarize validation results
 validation_summary <- site_validation |>
   group_by(sample_point_lon, sample_point_lat) |>
@@ -3895,7 +3874,6 @@ validation_summary <- site_validation |>
 
 ``` r
 
-
 validation_summary
 ```
 
@@ -3907,7 +3885,6 @@ validation_summary
 Add occurrence information directly to your phyloseq object:
 
 ``` r
-
 # Add occurrence data to phyloseq tax_table
 data_with_occurrence <- tax_occur_check_pq(data_clean,
   longitude = longitude,
@@ -3920,7 +3897,6 @@ data_with_occurrence <- tax_occur_check_pq(data_clean,
     #> ! error in evaluating the argument 'x' in selecting a method for function 't': Service Unavailable
 
 ``` r
-
 
 # View enhanced tax_table with occurrence columns
 head(data_with_occurrence@tax_table)
@@ -3989,7 +3965,6 @@ Occurrence checking works well with other taxinfo functions:
 ```
 
 ``` r
-
 data_complete <- data_fungi_mini |>
   # 1. Clean names
   gna_verifier_pq(data_sources = 210) |>
@@ -4011,7 +3986,6 @@ data_complete <- data_fungi_mini |>
     #> ! error in evaluating the argument 'object' in selecting a method for function 'tax_table': error in evaluating the argument 'x' in selecting a method for function 't': Service Unavailable
 
 ``` r
-
 data_complete@tax_table[1:5, ]
 ```
 
@@ -4025,7 +3999,6 @@ analyses.
 ## Session information
 
 ``` r
-
 sessionInfo()
 ```
 

@@ -67,6 +67,11 @@ tax_iucn_code_pq <- function(
   )
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  check_gbif_backbone(
+    physeq,
+    checklist = checklist,
+    taxonomic_rank = taxonomic_rank
+  )
 
   gbif_taxa <- gbif_backbone_checklist(taxnames, checklist = checklist) |>
     filter(matchType %in% c("EXACT", "HIGHERRANK")) |>

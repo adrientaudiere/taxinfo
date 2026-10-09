@@ -29,9 +29,10 @@
 #' @param add_target_canonical (logical, default TRUE) If TRUE, add a column
 #'   `target_taxon_Canonical` with the current accepted name (resolve the
 #'   synonymie) of the target_taxon_name using [taxize::gna_verifier()] function.
-#' @param data_sources	A character or integer vector with numbers corresponding
-#'  to data sources. See the Global Names Architecture documentation for a list
-#'  of available options.
+#' @param data_sources (integer, default `1`, Catalogue of Life) GNA data
+#'  source used to verify the target taxon names. Use a single data source:
+#'  several ids mix several taxonomic backbones (see [gna_verifier_pq()] and
+#'  `vignette("data-sources")`).
 #' @param verbose (logical, default FALSE) If TRUE, prompt some messages.
 #' @param strict_interaction_types (logical, default TRUE) If TRUE, keep only
 #'  interactions exactly matching the interaction_types provided. If FALSE, keep
@@ -90,7 +91,7 @@ tax_globi_pq <- function(
   interaction_types = NULL,
   valid_taxo_target_taxon = TRUE,
   add_target_canonical = TRUE,
-  data_sources = c(1, 12),
+  data_sources = 1,
   verbose = FALSE,
   strict_interaction_types = TRUE,
   max_interactions = 1000,

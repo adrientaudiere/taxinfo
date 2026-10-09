@@ -40,8 +40,10 @@
 #'   `currentCanonicalSimple`. If `TRUE`, this correction is skipped and the raw
 #'   `sp_name_checked` values are matched directly. Set to `TRUE` for offline
 #'   use or when the names are already known to be consistent.
-#' @param data_sources (numeric, default `c(1, 12)`) Data sources passed to
-#'   [gna_verifier_pq()] when `skip_name_verification = FALSE`.
+#' @param data_sources (numeric, default `1`, Catalogue of Life) GNA data
+#'   source passed to [gna_verifier_pq()] when
+#'   `skip_name_verification = FALSE`. Use a single data source, the same as
+#'   the one used to verify the names of `physeq` (see `vignette("data-sources")`).
 #' @param shifts_data (optional data.frame) A pre-fetched
 #'   `BioShiftR::get_shifts()` result (with columns `sp_name_checked`, `type`
 #'   and `calc_rate`). When supplied, the live query is skipped and `group` /
@@ -123,7 +125,7 @@ tax_bioshifts_pq <- function(
   continent = "All",
   type = c("LAT", "ELE"),
   skip_name_verification = FALSE,
-  data_sources = c(1, 12),
+  data_sources = 1,
   shifts_data = NULL,
   col_prefix = "bioshift_",
   add_to_phyloseq = TRUE,

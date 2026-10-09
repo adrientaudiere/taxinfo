@@ -1,0 +1,193 @@
+---
+title: "Which taxonomic data source for which function?"
+author: "Adrien Taudiere"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    theme: united
+    highlight: tango
+vignette: >
+  %\VignetteIndexEntry{Which taxonomic data source for which function?}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options:
+  chunk_output_type: console
+---
+
+```{r child="includes/_styles.Rmd"}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Why the data source matters
+
+Most taxinfo functions look up the taxonomic names of a phyloseq object in an
+external database (GBIF, NCBI, Wikidata, a trait database...). Each database
+follows its own **taxonomic backbone**: its own accepted names, synonyms and
+spellings. A name accepted in one backbone can be a synonym, or be missing, in
+another one. Names verified against TAXREF and then searched in the GBIF
+backbone, for instance, silently lose part of the matches.
+
+The rule is therefore: **verify the names with `gna_verifier_pq()` against the
+same data source as the database queried downstream**, using the
+`data_sources` argument (a Global Names Architecture, GNA, data source id).
+
+The table below gives, for each function, the database it queries, the
+taxonomy that database follows, and the GNA data source to use. The full list
+of GNA data sources and their last update date is at
+<https://verifier.globalnames.org/data_sources>.
+
+## Use one data source per verification
+
+`gna_verifier_pq()` uses a single data source by default (`data_sources = 1`,
+Catalogue of Life). Avoid giving several ids at once: with
+`data_sources = c(1, 12)`, the GNA Verifier keeps the best match of **each
+name** from whichever of the two databases it comes from. The verified names
+then mix two taxonomic backbones (Catalogue of Life for one taxon,
+Encyclopedia of Life for another), which is exactly what we want to avoid.
+
+To compare or keep several taxonomic verifications, chain several calls, each
+with one data source and its own `col_prefix` (see below).
+
+## The data source is recorded in the tax_table
+
+`gna_verifier_pq()` records the data source of the best match of each taxon in
+two columns named after the `currentCanonicalSimple` column they document:
+`currentCanonicalSimple_dataSourceId` and
+`currentCanonicalSimple_dataSourceTitleShort`. With `col_prefix`, they take
+the same prefix as the other columns. The same phyloseq object can thus keep
+several verifications side by side, each with its own data source:
+
+```{r two-sources}
+library(taxinfo)
+data_fungi_mini_2 <- data_fungi_mini |>
+  gna_verifier_pq(data_sources = 210, col_prefix = "taxref_") |>
+  gna_verifier_pq(data_sources = 11, col_prefix = "gbif_")
+
+# Columns taxref_currentCanonicalSimple and
+# taxref_currentCanonicalSimple_dataSourceId (TAXREF, id 210), and
+# gbif_currentCanonicalSimple and gbif_currentCanonicalSimple_dataSourceId
+# (GBIF Backbone Taxonomy, id 11)
+```
+
+`check_backbone_pq()` reads these columns and tells you when the names used by
+a function were verified against another backbone than the one it queries.
+The functions marked "auto" in the tables (GBIF, NCBI and Wikidata functions)
+run this check by themselves
+when a phyloseq object is provided:
+
+```{r check}
+# Silent: names verified against the GBIF backbone, queried in the GBIF backbone
+check_backbone_pq(
+  data_fungi_mini_2,
+  checklist = "backbone",
+  taxonomic_rank = "gbif_currentCanonicalSimple"
+)
+
+# Informs: names verified against TAXREF, queried in the GBIF backbone
+tax_gbif_occur_pq(
+  data_fungi_mini_2,
+  taxonomic_rank = "taxref_currentCanonicalSimple"
+)
+
+# Any other function: give the expected GNA data source (4 = NCBI)
+check_backbone_pq(
+  data_fungi_mini_2,
+  expected_source = 4,
+  taxonomic_rank = "gbif_currentCanonicalSimple"
+)
+```
+
+## The GBIF checklist: GBIF Backbone or Catalogue of Life XR
+
+Since rgbif 3.9.0, GBIF matches names against the **Catalogue of Life
+Extended Release** (COL XR, GNA data source `13`) instead of the legacy
+**GBIF Backbone Taxonomy** (GNA data source `11`). The GBIF functions of
+taxinfo use the checklist set by the `taxinfo.gbif_checklist` option:
+
+```{r option}
+options(taxinfo.gbif_checklist = "backbone") # GBIF Backbone: data_sources = 11
+options(taxinfo.gbif_checklist = "colxr") # COL XR: data_sources = 13
+```
+
+When the option is unset, taxinfo follows the default of the installed rgbif
+(GBIF Backbone before 3.9.0, COL XR from 3.9.0 on). Two functions always use
+the GBIF Backbone, because the GBIF API they rely on
+(`rgbif::name_usage()`) cannot read COL XR keys: `tax_iucn_code_pq()` and
+`tax_photos_pq()` (with `source = "gbif"`); their `checklist` argument
+defaults to `"backbone"`. See `gbif_key_to_col()` for details on the
+migration.
+
+Note that the GNA copy of the GBIF Backbone (id `11`) was last updated in
+January 2024, while COL XR (id `13`) is updated regularly: recently described
+or recombined taxa are more likely to be found in COL XR.
+
+## Which data source for which function
+
+In the "Check" column, *auto* means that the function runs
+`check_backbone_pq()` itself; *manual* means that you can run
+`check_backbone_pq(physeq, expected_source = <id>)` before calling it.
+
+### GBIF-based functions
+
+| Function | Database queried | Name matching | GNA `data_sources` | Check |
+|---|---|---|---|---|
+| `tax_gbif_occur_pq()` | GBIF occurrences (counts) | `taxinfo.gbif_checklist` option | `11` (backbone) or `13` (COL XR) | auto |
+| `tax_gbif_alt()` | GBIF occurrences (altitude) | `taxinfo.gbif_checklist` option | `11` or `13` | auto |
+| `tax_gbif_occur_coords()` | GBIF occurrences (coordinates) | `taxinfo.gbif_checklist` option | `11` or `13` | manual |
+| `tax_occur_check()`, `tax_occur_check_pq()`, `tax_occur_multi_check_pq()` | GBIF occurrences around samples | `taxinfo.gbif_checklist` option | `11` or `13` | auto (`tax_occur_check_pq()`) |
+| `tax_ecoregion_occur()`, `tax_ecoregion_occur_pq()`, `tax_check_ecoregion()` | GBIF occurrences + ecoregions | `taxinfo.gbif_checklist` option | `11` or `13` | auto (`tax_ecoregion_occur_pq()`) |
+| `tax_harmonize_backbone_pq()` | GBIF name matching (higher ranks) | `taxinfo.gbif_checklist` option, or a local `backbone` | `11` or `13` | manual |
+| `tax_crosscheck_gbif_pq()` | GNA Verifier vs GBIF name matching | GNA `data_sources` argument (default `11`) vs `taxinfo.gbif_checklist` option | compares both | (is itself a check) |
+| `range_bioreg_pq()`, `plot_range_bioreg_pq()` | GBIF occurrences via gbif.range | `taxinfo.gbif_checklist` option for the name matching, installed rgbif default inside `gbif.range::get_gbif()` | `11` or `13` | manual |
+| `plot_tax_gbif_pq()` | GBIF occurrences via gbif.range | `rgbif::name_backbone()` inside `gbif.range::get_gbif()`: installed rgbif default (backbone before 3.9.0, COL XR from 3.9.0) | `11` or `13` | manual |
+| `tax_iucn_code_pq()` | IUCN Red List category stored by GBIF | GBIF Backbone only (`checklist = "backbone"`) | `11` | auto |
+| `tax_photos_pq()` (`source = "gbif"`) | GBIF occurrence images | GBIF Backbone only (`checklist = "backbone"`) | `11` | auto |
+
+### Other online databases
+
+| Function | Database queried | Name matching | GNA `data_sources` | Check |
+|---|---|---|---|---|
+| `tax_retroblast_pq()` | NCBI nucleotide (Entrez search on organism names) | NCBI Taxonomy | `4` (NCBI) | auto |
+| `tax_get_wk_info_pq()`, `tax_get_wk_lang()`, `tax_get_wk_pages_info()` | Wikidata / Wikipedia | Wikidata item search on the name | `207` (Wikidata) | auto (`tax_get_wk_info_pq()`; the two others take Wikidata ids) |
+| `tax_photos_pq()` (`source = "wikitaxa"`) | Wikidata / Wikimedia Commons | Wikidata item search on the name | `207` (Wikidata) | auto |
+| `tax_globi_pq()` | GloBI interactions | Names sent as written; GloBI aligns names across several taxonomies (Nomer). Target taxa are verified internally with the `data_sources` argument (default `1`) | no single backbone; `1` (Catalogue of Life) is a reasonable default | -- |
+| `tax_oa_pq()` | OpenAlex works | Free-text search in titles and abstracts | no backbone: use the names as used in the literature (consider synonyms) | -- |
+| `tax_spores_size_pq()` | MycoDB website (<https://www.mycodb.fr/>) | Name search on the website | not documented | -- |
+
+### Bundled or downloaded trait databases
+
+| Function | Database | Taxonomy of the database | GNA `data_sources` | Check |
+|---|---|---|---|---|
+| `tax_info_pq()` | Any CSV file | The one of your CSV, e.g. TAXREF for the bundled `TAXREFv18_fungi.csv` | e.g. `210` (TaxRef) for TAXREF | manual |
+| `fungal_traits_guilds()` | FungalTraits (genus level) + FUNGuild | FungalTraits genera follow the Outline of Fungi, a consensus of NCBI, Index Fungorum and Tedersoo et al. (2018) | `5` (Index Fungorum) is the closest single source; when `currentCanonicalSimple` is missing, names are verified with `gna_data_sources` (default `1`) | manual |
+| `tax_bioshifts_pq()` | BioShifts (range shifts) | BioShifts names are re-verified internally with `gna_verifier_pq(data_sources = )` (default `1`) before the join | the same `data_sources` as the argument of `tax_bioshifts_pq()` | manual |
+| `tax_funendo_pq()` | FunEndo (fungal endophytes) | not documented; names matched verbatim | not documented | -- |
+| `tax_spores_volume_pq()` | Spore traits of Aguilar-Trigueros et al. (2023) | not documented; names matched verbatim (lower case) | not documented | -- |
+| `tax_bactotraits_pq()` | BactoTraits, built from BacDive (DSMZ) | BacDive strain names; matched on the rank columns (`Species`, `Genus`...), not on `gna_verifier_pq()` columns | `208` (LPSN, the DSMZ nomenclature list) is the closest source | -- |
+| `tax_metatraits_pq()` | metaTraits | GTDB r220 | GTDB is **not** a GNA data source: assign your sequences with a GTDB-based reference instead of renaming them | -- |
+| `tax_faprotax_pq()` | FAPROTAX | NCBI / Bergey's taxonomy; matched on the lineage columns, not on `gna_verifier_pq()` columns | `4` (NCBI) for the lineage, if you harmonise it | -- |
+
+"not documented" means that the taxonomy followed by the database is not
+stated by taxinfo; check the reference of the database before choosing a
+data source.
+
+## Summary of the most useful GNA data sources
+
+| GNA id | Data source | Use it before |
+|---|---|---|
+| `1` | Catalogue of Life | general purpose (default of `gna_verifier_pq()`); GloBI |
+| `4` | NCBI | `tax_retroblast_pq()`; NCBI/SILVA-like lineages |
+| `5` | Index Fungorum | fungal trait databases (`fungal_traits_guilds()`) |
+| `11` | GBIF Backbone Taxonomy | GBIF functions with the `"backbone"` checklist, `tax_iucn_code_pq()`, `tax_photos_pq()` |
+| `13` | Catalogue of Life XR | GBIF functions with the `"colxr"` checklist (rgbif >= 3.9.0) |
+| `207` | Wikidata | Wikipedia / Wikidata functions |
+| `208` | LPSN | bacterial names (BactoTraits) |
+| `210` | TaxRef | French databases (TAXREF, its `CD_NOM` / `CD_REF` with `id_col = TRUE`) |

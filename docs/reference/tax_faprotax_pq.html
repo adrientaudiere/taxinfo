@@ -47,7 +47,7 @@ receive `NA` (not found in the database) rather than `FALSE` (a real
 
     <a class="navbar-brand me-2" href="../index.html">taxinfo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -205,39 +205,46 @@ taxonomy in the global ocean microbiome. *Science*, 353(6305), 1272-1277.
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, package <span class="op">=</span> <span class="st">"phyloseq"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># The first 1000 taxa keep the example fast</span></span></span>
+<span class="r-in"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="fu">phyloseq</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/prune_taxa-methods.html" class="external-link">prune_taxa</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">phyloseq</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/taxa_names-methods.html" class="external-link">taxa_names</a></span><span class="op">(</span><span class="va">GlobalPatterns</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  <span class="va">GlobalPatterns</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Found more than one class "phylo" in cache; using the first, from namespace 'phyloseq'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Also defined by ‘tidytree’</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">GlobalPatterns</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">gp</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">res</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"faprotax_groups"</span><span class="op">]</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               &lt;NA&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                              13202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        aerobic_chemoheterotrophy;chemoheterotrophy </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               2029 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     fermentation;chemoheterotrophy </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               1059 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                sulfate_respiration;respiration_of_sulfur_compounds </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                320 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                            intracellular_parasites </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                224 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cyanobacteria;oxygenic_photoautotrophy;photoautotrophy;phototrophy </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                214 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                           &lt;NA&gt; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                            692 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                    aerobic_chemoheterotrophy;chemoheterotrophy </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                            199 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                      aerobic_chemoheterotrophy;aromatic_compound_degradation;chemoheterotrophy </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                             22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                        aerobic_ammonia_oxidation;nitrification </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                             20 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> methanogenesis_by_CO2_reduction_with_H2;hydrogenotrophic_methanogenesis;methanogenesis;dark_hydrogen_oxidation </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                             17 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         methanogenesis_by_CO2_reduction_with_H2;hydrogenotrophic_methanogenesis;methanogenesis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                             12 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># One 0/1 column per functional group, then count the nitrifying bacteria</span></span></span>
-<span class="r-in"><span><span class="va">res_bin</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">GlobalPatterns</span>, binary <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res_bin</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">gp</span>, binary <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">res_bin</span><span class="op">@</span><span class="va">tax_table</span><span class="op">[</span>, <span class="st">"faprotax_nitrification"</span><span class="op">]</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 101</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restrict matching to the genus / species level only (fewer hits)</span></span></span>
 <span class="r-in"><span><span class="va">res_gs</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">GlobalPatterns</span>,</span></span>
+<span class="r-in"><span>  <span class="va">gp</span>,</span></span>
 <span class="r-in"><span>  tax_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Genus"</span>, <span class="st">"Species"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Return a tibble instead of a phyloseq object</span></span></span>
-<span class="r-in"><span><span class="va">tib</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">GlobalPatterns</span>, add_to_phyloseq <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tib</span> <span class="op">&lt;-</span> <span class="fu">tax_faprotax_pq</span><span class="op">(</span><span class="va">gp</span>, add_to_phyloseq <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
@@ -246,7 +253,7 @@ taxonomy in the global ocean microbiome. *Science*, 353(6305), 1272-1277.
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Developed by <a href="https://adrientaudiere.github.io" class="external-link">Adrien Taudiere</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
 <div class="pkgdown-footer-right">

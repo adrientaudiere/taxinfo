@@ -6,7 +6,7 @@ href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle
 alt="lifecycle-experimental"\>\</a\>
 
 A wrapper of \[rgbif::occ_search()\] function to get the number of
-occurences. Optionally, the number of occurrences can be obtained by
+occurrences. Optionally, the number of occurrences can be obtained by
 years or by country.
 
 ## Usage
@@ -59,13 +59,13 @@ tax_gbif_occur_pq(
 
 - by_country:
 
-  (logical, default FALSE) If TRUE, the number of occurences is computed
-  by country
+  (logical, default FALSE) If TRUE, the number of occurrences is
+  computed by country
 
 - by_years:
 
-  (logical, default FALSE) If TRUE, the number of occurences is computed
-  by years
+  (logical, default FALSE) If TRUE, the number of occurrences is
+  computed by years
 
 - verbose:
 
@@ -129,6 +129,6 @@ ggplot(
   geom_col() +
   geom_col(aes(y = -log10(as.numeric(FR))), fill = "blue") +
   coord_flip() +
-  xlab("Number of occurences (log10 scale) at global (grey) scale and in France (blue)")
+  xlab("Number of occurrences (log10 scale) at global (grey) scale and in France (blue)")
 } # }
 ```

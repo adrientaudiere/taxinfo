@@ -24,6 +24,10 @@ gna_verifier_pq(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
+  id_col = FALSE,
+  data_source_col = TRUE,
+  classification_col = FALSE,
+  classification_ranks = c("kingdom", "phylum", "class", "order", "family", "genus"),
   authorship_col = TRUE,
   discard_NA = TRUE,
   problematic_chars = "[?\\\\#|&]",
@@ -60,11 +64,17 @@ gna_verifier_pq(
   The choice of \`data_sources\` matters and should be adapted to the
   database queried by the downstream function: aligning names to the
   same backbone as the target greatly improves match rates. In
-  particular, use \`data_sources = 11\` (GBIF backbone) before the
-  GBIF-based functions (\[tax_gbif_occur_pq()\], \[tax_iucn_code_pq()\],
-  \[tax_photos_pq()\], \[tax_occur_check_pq()\],
-  \[tax_ecoregion_occur_pq()\]). The data sources are \*\*not\*\* all
-  refreshed on the same schedule
+  particular, before the GBIF-based functions (\[tax_gbif_occur_pq()\],
+  \[tax_gbif_alt()\], \[tax_iucn_code_pq()\], \[tax_photos_pq()\],
+  \[tax_occur_check_pq()\], \[tax_ecoregion_occur_pq()\]), use the
+  source matching the GBIF checklist they query: \`data_sources = 11\`
+  (GBIF backbone; the default checklist with rgbif \< 3.9.0, with
+  \`options(taxinfo.gbif_checklist = "backbone")\`, and for
+  \[tax_iucn_code_pq()\] and \[tax_photos_pq()\]) or \`data_sources =
+  1\` (Catalogue of Life, the closest source to the COL XR checklist
+  used by default from rgbif 3.9.0). These functions inform when the
+  sources differ (see \[check_backbone_pq()\]). The data sources are
+  \*\*not\*\* all refreshed on the same schedule
   (\<https://verifier.globalnames.org/data_sources\>), so no single
   source is universally best; a stale source can silently miss recently
   described taxa (see \`max_age_days\`).
@@ -109,15 +119,15 @@ gna_verifier_pq(
   are added: - \*\*taxa_name\*\*: The character string sent to
   gna_verifier (e.g. \`Antrodiella brasiliensis\`) -
   \*\*currentName\*\*: The current accepted name (resolve the synonym)
-  with autorities at the end of the binominal name (e.g. \`Trametopsis
+  with authorities at the end of the binomial name (e.g. \`Trametopsis
   brasiliensis (Ryvarden & de Meijer) Gomez-Mont. & Robledo)\`. -
   \*\*currentCanonicalSimple\*\*: The current accepted name without
-  autorities (e.g. \`Trametopsis brasiliensis\`, \`Russula\`).
+  authorities (e.g. \`Trametopsis brasiliensis\`, \`Russula\`).
 
   Other columns can be added depending on the parameters:
   \`genus_species_canonical_col\` (adds "genusEpithet",
   "specificEpithet", and "genusSpeciesEpithet"), \`year_col\`,
-  \`authorship\`.
+  \`id_col\`, \`data_source_col\`, \`authorship\`.
 
 - col_prefix:
 
@@ -136,6 +146,50 @@ gna_verifier_pq(
 
   (logical, default TRUE) If TRUE a new column "namePublishedInYear" is
   added with the year of publication.
+
+- id_col:
+
+  (logical, default FALSE) If TRUE, two new columns are added with the
+  identifiers of the best match in its data source: "recordId" (the id
+  of the matched name, which can be a synonym) and "currentRecordId"
+  (the id of the current accepted name). With \`data_sources = 210\`
+  (TaxRef), "recordId" is the TAXREF \`CD_NOM\` and "currentRecordId" is
+  the TAXREF \`CD_REF\`. With \`data_sources = 11\` (GBIF backbone),
+  they are GBIF taxon keys. When only a genus (or a higher rank) was
+  matched, they are the ids of that higher-rank name, whatever
+  \`species_only\`.
+
+- data_source_col:
+
+  (logical, default TRUE) If TRUE, two new columns record the data
+  source of the best match of each taxon: "dataSourceId" (the GNA data
+  source id, e.g. \`11\` for the GBIF backbone) and
+  "dataSourceTitleShort" (e.g. \`"GBIF Backbone Taxonomy"\`). The
+  information is stored per taxon in the \`tax_table\` (so it survives
+  subsetting) and is used by \[check_backbone_pq()\] to detect a
+  mismatch between the backbone used to verify the names and the
+  database queried by a downstream function.
+
+- classification_col:
+
+  (logical, default FALSE) If TRUE, the classification of the best match
+  is added: "classificationPath" and "classificationRanks" (the
+  \`\|\`-separated lineage and rank names returned by the GNA Verifier)
+  and one column per rank of \`classification_ranks\` (e.g.
+  "classificationKingdom", "classificationGenus"), \`NA\` when the data
+  source does not provide that rank. The lineage is the one of the
+  \*\*current\*\* (accepted) name, so it can differ from the submitted
+  name when the latter is a synonym. This needs a second request to the
+  GNA Verifier API per batch of names, because
+  \[taxize::gna_verifier()\] drops the classification from its table
+  output.
+
+- classification_ranks:
+
+  (character vector, default \`c("kingdom", "phylum", "class", "order",
+  "family", "genus")\`) Ranks extracted into their own column when
+  \`classification_col = TRUE\`, spelled as in the GNA Verifier
+  \`classificationRanks\` field (lower case).
 
 - authorship_col:
 
@@ -233,6 +287,14 @@ sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] !=
 # 1010 taxa (71% of total) are identified using a currentName including 434
 # corrected values (correction using synonym disambiguation)
 
+
+# Add the TAXREF CD_NOM (recordId) and CD_REF (currentRecordId) of each
+# taxon, e.g. to share a list of taxa with French institutions
+data_fungi_mini_taxref <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210,
+  id_col = TRUE
+)
+data_fungi_mini_taxref@tax_table[, c("taxa_name", "recordId", "currentRecordId")]
 
 tr <- rotl_pq(data_fungi_cleanNames,
   taxonomic_rank = "currentCanonicalSimple",

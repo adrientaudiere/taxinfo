@@ -15,7 +15,8 @@ tax_gbif_alt(
   n_coor_alt = NULL,
   verbose = TRUE,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
-  discard_NA = TRUE
+  discard_NA = TRUE,
+  return_raw = FALSE
 )
 }
 \arguments{
@@ -59,6 +60,12 @@ number of occurrences.}
 
 \item{discard_NA}{(logical, default `TRUE`). Passed to
 [taxonomic_rank_to_taxnames()].}
+
+\item{return_raw}{(logical, default FALSE) If TRUE, return the elevation of
+each GBIF occurrence used, as a long tibble with columns `canonicalName`
+and `elevation` (one row per occurrence), instead of the per-taxon
+statistics. `add_to_phyloseq` is then ignored. This is the input expected
+by [plot_tax_alt_pq()].}
 }
 \value{
 Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
@@ -67,6 +74,7 @@ Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
  altitude_q50, altitude_q95, altitude_mean, altitude_sd, altitude_n_records,
  and canonicalName. When `method = "elevatr"`, also includes altitude_n_ocean
  (number of points detected in ocean).
+ If `return_raw = TRUE`, a long tibble of occurrence elevations.
 }
 \description{
 <a href="https://adrientaudiere.github.io/MiscMetabar/articles/Rules.html#lifecycle">
@@ -173,7 +181,7 @@ data_fungi_mini_with_alt@tax_table |>
 }
 }
 \seealso{
-[rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
+[rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()], [plot_tax_alt_pq()]
 }
 \author{
 Adrien Taudiere

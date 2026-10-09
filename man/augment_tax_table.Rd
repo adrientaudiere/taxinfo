@@ -37,7 +37,7 @@ a hard error.}
 
 \item{keep_key}{(logical, default `TRUE`) If `TRUE`, retain the join key in
 the result as a `taxa_name` column (overwriting any existing one); if
-`FALSE`, drop it.}
+`FALSE`, drop it and leave any existing `taxa_name` column untouched.}
 }
 \value{
 A phyloseq object whose `tax_table` carries the new columns, with

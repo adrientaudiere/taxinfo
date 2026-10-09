@@ -121,6 +121,13 @@ tax_get_wk_info_pq <- function(
   )
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose) {
+    check_source_backbone(
+      physeq,
+      expected_source = 207L,
+      taxonomic_rank = taxonomic_rank
+    )
+  }
 
   if (verbose) {
     cli::cli_alert_info("Getting taxonomic IDs from Wikidata...")

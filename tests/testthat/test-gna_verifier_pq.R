@@ -194,3 +194,127 @@ test_that("gna_verifier_pq classification_col keeps names across batches", {
   expect_equal(nrow(res), 60)
   expect_equal(res$classificationGenus, paste0("Genus", taxnames))
 })
+
+test_that("gna_verifier_pq id_col returns TAXREF CD_NOM and CD_REF", {
+  skip_on_cran()
+  vcr::use_cassette("gna_taxref_id", {
+    result <- gna_verifier_pq(
+      taxnames = c("Agaricus muscarius", "Boletus edulis"),
+      data_sources = 210,
+      add_to_phyloseq = FALSE,
+      id_col = TRUE,
+      verbose = FALSE
+    )
+  })
+  expect_equal(result$recordId, c("508317", "29388"))
+  expect_equal(result$currentRecordId, c("39079", "29388"))
+  expect_equal(unique(result$currentCanonicalSimple_dataSourceId), "210")
+  expect_equal(
+    unique(result$currentCanonicalSimple_dataSourceTitleShort),
+    "TAXREF"
+  )
+})
+
+test_that("gna_verifier_pq id and data source columns are optional", {
+  fake_gna <- function(names, ...) {
+    data.frame(
+      submittedName = names,
+      currentName = names,
+      currentCanonicalSimple = names,
+      matchedCardinality = 2,
+      taxonomicStatus = "Accepted",
+      dataSourceId = 11L
+    )
+  }
+  testthat::local_mocked_bindings(gna_verifier = fake_gna, .package = "taxize")
+  args <- list(
+    taxnames = c("Name a", "Name b"),
+    add_to_phyloseq = FALSE,
+    year_col = FALSE,
+    authorship_col = FALSE,
+    verbose = FALSE
+  )
+  res <- do.call(gna_verifier_pq, c(args, id_col = TRUE))
+  expect_equal(res$currentCanonicalSimple_dataSourceId, c("11", "11"))
+  expect_true(all(is.na(res$currentCanonicalSimple_dataSourceTitleShort)))
+  expect_true(all(is.na(res$recordId)))
+
+  res <- do.call(gna_verifier_pq, c(args, data_source_col = FALSE))
+  expect_false(any(
+    c(
+      "recordId",
+      "currentCanonicalSimple_dataSourceId",
+      "currentCanonicalSimple_dataSourceTitleShort"
+    ) %in%
+      names(res)
+  ))
+})
+
+test_that("gna_verifier_pq id_col is NA for genus-only matches with species_only", {
+  fake_gna <- function(names, ...) {
+    data.frame(
+      submittedName = names,
+      currentName = c("Amanita muscaria", "Xylodon"),
+      currentCanonicalSimple = c("Amanita muscaria", "Xylodon"),
+      matchedCardinality = c(2, 1),
+      taxonomicStatus = "Accepted",
+      recordId = c("39079", "901834"),
+      currentRecordId = c("39079", "901834")
+    )
+  }
+  testthat::local_mocked_bindings(gna_verifier = fake_gna, .package = "taxize")
+  args <- list(
+    taxnames = c("Amanita muscaria", "Xylodon raduloides"),
+    add_to_phyloseq = FALSE,
+    id_col = TRUE,
+    year_col = FALSE,
+    authorship_col = FALSE,
+    verbose = FALSE
+  )
+  res <- do.call(gna_verifier_pq, args)
+  expect_equal(res$recordId, c("39079", NA))
+  expect_equal(res$currentRecordId, c("39079", NA))
+
+  res <- do.call(gna_verifier_pq, c(args, species_only = FALSE))
+  expect_equal(res$recordId, c("39079", "901834"))
+})
+
+test_that("gna_verifier_pq keeps the data source of each prefixed verification", {
+  fake_gna_source <- function(id, title) {
+    function(names, ...) {
+      data.frame(
+        submittedName = names,
+        currentName = names,
+        currentCanonicalSimple = names,
+        matchedCardinality = 2,
+        taxonomicStatus = "Accepted",
+        dataSourceId = id,
+        dataSourceTitleShort = title
+      )
+    }
+  }
+  args <- list(
+    taxonomic_rank = "currentCanonicalSimple",
+    year_col = FALSE,
+    authorship_col = FALSE,
+    verbose = FALSE
+  )
+  pq <- load_clean_pq()
+  testthat::local_mocked_bindings(
+    gna_verifier = fake_gna_source(210L, "TAXREF"),
+    .package = "taxize"
+  )
+  pq <- do.call(gna_verifier_pq, c(list(pq), args, col_prefix = "taxref_"))
+  testthat::local_mocked_bindings(
+    gna_verifier = fake_gna_source(11L, "GBIF Backbone Taxonomy"),
+    .package = "taxize"
+  )
+  pq <- do.call(gna_verifier_pq, c(list(pq), args, col_prefix = "gbif_"))
+  tax <- as.data.frame(unclass(pq@tax_table))
+  expect_equal(unique(tax$taxref_currentCanonicalSimple_dataSourceId), "210")
+  expect_equal(unique(tax$gbif_currentCanonicalSimple_dataSourceId), "11")
+  expect_equal(
+    unique(tax$gbif_currentCanonicalSimple_dataSourceTitleShort),
+    "GBIF Backbone Taxonomy"
+  )
+})

@@ -8,7 +8,7 @@ gna_verifier_pq(
   physeq = NULL,
   taxnames = NULL,
   taxonomic_rank = c("Genus", "Species"),
-  data_sources = c(1, 12),
+  data_sources = 1,
   all_matches = FALSE,
   capitalize = FALSE,
   species_group = FALSE,
@@ -18,6 +18,8 @@ gna_verifier_pq(
   col_prefix = NULL,
   genus_species_canonical_col = TRUE,
   year_col = TRUE,
+  id_col = FALSE,
+  data_source_col = TRUE,
   classification_col = FALSE,
   classification_ranks = c("kingdom", "phylum", "class", "order", "family", "genus"),
   authorship_col = TRUE,
@@ -38,17 +40,37 @@ gna_verifier_pq(
 The column(s) present in the @tax_table slot of the phyloseq object. Can
 be a vector of two columns (e.g. the default c("Genus", "Species")).}
 
-\item{data_sources}{A character or integer vector of Global Names
-  Architecture (GNA) data source id(s). See [taxize::gna_verifier()]. For
-  example, 1=Catalogue of Life, 3=ITIS, 5=Index Fungarum, 11=GBIF backbone
-  and 210=TaxRef.
+\item{data_sources}{(integer or character, default `1`, Catalogue of Life)
+  Global Names Architecture (GNA) data source id(s). See
+  [taxize::gna_verifier()]. For example, 1=Catalogue of Life, 3=ITIS,
+  4=NCBI, 5=Index Fungorum, 11=GBIF backbone, 13=Catalogue of Life XR and
+  210=TaxRef. The `vignette("data-sources")` article lists the data source
+  matching each function of taxinfo.
+
+  **Use a single data source.** With several ids, such as `c(1, 12)`, the
+  GNA Verifier picks the best match of each name from whichever of these
+  data sources it comes from, so the result mixes several taxonomic
+  backbones: `currentCanonicalSimple` can follow Catalogue of Life for one
+  taxon and Encyclopedia of Life for another (the
+  `currentCanonicalSimple_dataSourceId` column records which one). To keep
+  verifications against several data sources, chain several calls with one
+  data source each and a different `col_prefix`, e.g.
+  `gna_verifier_pq(physeq, data_sources = 210, col_prefix = "taxref_") |>
+  gna_verifier_pq(data_sources = 11, col_prefix = "gbif_")`: each set of
+  columns keeps its own data source.
 
   The choice of `data_sources` matters and should be adapted to the database
   queried by the downstream function: aligning names to the same backbone as
-  the target greatly improves match rates. In particular, use
-  `data_sources = 11` (GBIF backbone) before the GBIF-based functions
-  ([tax_gbif_occur_pq()], [tax_iucn_code_pq()], [tax_photos_pq()],
-  [tax_occur_check_pq()], [tax_ecoregion_occur_pq()]). The data sources are
+  the target greatly improves match rates. In particular, before the
+  GBIF-based functions ([tax_gbif_occur_pq()], [tax_gbif_alt()],
+  [tax_iucn_code_pq()], [tax_photos_pq()], [tax_occur_check_pq()],
+  [tax_ecoregion_occur_pq()]), use the source matching the GBIF checklist
+  they query: `data_sources = 11` (GBIF backbone; the default checklist
+  with rgbif < 3.9.0, with `options(taxinfo.gbif_checklist = "backbone")`,
+  and for [tax_iucn_code_pq()] and [tax_photos_pq()]) or
+  `data_sources = 13` (Catalogue of Life XR, the checklist used by default
+  from rgbif 3.9.0). These functions inform when
+  the sources differ (see [check_backbone_pq()]). The data sources are
   **not** all refreshed on the same schedule
   (<https://verifier.globalnames.org/data_sources>), so no single source is
   universally best; a stale source can silently miss recently described taxa
@@ -87,7 +109,8 @@ be a vector of two columns (e.g. the default c("Genus", "Species")).}
 
      Other columns can be added depending on the parameters:
       `genus_species_canonical_col` (adds "genusEpithet", "specificEpithet",
-      and "genusSpeciesEpithet"), `year_col`, `authorship`.}
+      and "genusSpeciesEpithet"), `year_col`, `id_col`, `data_source_col`,
+      `authorship`.}
 
 \item{col_prefix}{A character string to be added as a prefix to the new
 columns names added to the tax_table slot of the phyloseq object (default: NULL).}
@@ -100,6 +123,31 @@ when "specificEpithet" is NA or empty (i.e. genus-only names are excluded).}
 
 \item{year_col}{(logical, default TRUE) If TRUE
 a new column "namePublishedInYear" is added with the year of publication.}
+
+\item{id_col}{(logical, default FALSE) If TRUE, two new columns are added
+with the identifiers of the best match in its data source: "recordId"
+(the id of the matched name, which can be a synonym) and
+"currentRecordId" (the id of the current accepted name). For example,
+with `data_sources = 210` (TaxRef), "recordId" is the TAXREF `CD_NOM` and
+"currentRecordId" is the TAXREF `CD_REF`. With `data_sources = 11`
+(GBIF backbone), they are GBIF taxon keys.
+When only a genus (or a higher rank) was matched, they are set to `NA` if
+`species_only = TRUE` (the default), so that a genus id is never reported
+for a species name, and are the ids of that higher-rank name otherwise.}
+
+\item{data_source_col}{(logical, default TRUE) If TRUE, two new columns
+record the data source of the best match of each taxon:
+"currentCanonicalSimple_dataSourceId" (the GNA data source id, e.g. `11`
+for the GBIF backbone) and "currentCanonicalSimple_dataSourceTitleShort"
+(e.g. `"GBIF Backbone Taxonomy"`). They are named after the
+"currentCanonicalSimple" column they document and take the same
+`col_prefix`, so a tax_table verified against several data sources (e.g.
+`col_prefix = "taxref_"` then `col_prefix = "gbif_"`) keeps the source of
+each set of columns. The
+information is stored per taxon in the `tax_table` (so it survives
+subsetting) and is used by [check_backbone_pq()] to detect a mismatch
+between the backbone used to verify the names and the database queried
+by a downstream function.}
 
 \item{classification_col}{(logical, default FALSE) If TRUE, the
 classification of the best match is added: "classificationPath" and
@@ -153,6 +201,7 @@ in place, which can cause duplicate-column errors in
 `tax_table()` on re-runs.}
 
 \item{species_only}{(logical, default TRUE) If TRUE, `currentCanonicalSimple`
+(and `recordId` / `currentRecordId` when `id_col = TRUE`)
 is set to `NA` for uninomial names (i.e. when `matchedCardinality == 1`,
 meaning only a genus or higher-rank name was matched, not a proper species
 binomial). The `genusEpithet` column is always populated from the matched
@@ -191,6 +240,14 @@ sum(data_fungi_cleanNames@tax_table[, "currentCanonicalSimple"] !=
 # 1010 taxa (71\% of total) are identified using a currentName including 434
 # corrected values (correction using synonym disambiguation)
 
+
+# Add the TAXREF CD_NOM (recordId) and CD_REF (currentRecordId) of each
+# taxon, e.g. to share a list of taxa with French institutions
+data_fungi_mini_taxref <- gna_verifier_pq(data_fungi_mini,
+  data_sources = 210,
+  id_col = TRUE
+)
+data_fungi_mini_taxref@tax_table[, c("taxa_name", "recordId", "currentRecordId")]
 
 tr <- rotl_pq(data_fungi_cleanNames,
   taxonomic_rank = "currentCanonicalSimple",

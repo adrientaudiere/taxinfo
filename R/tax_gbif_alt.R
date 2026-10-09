@@ -46,6 +46,11 @@
 #'  [taxonomic_rank_to_taxnames()].
 #' @param discard_NA (logical, default `TRUE`). Passed to
 #'  [taxonomic_rank_to_taxnames()].
+#' @param return_raw (logical, default FALSE) If TRUE, return the elevation of
+#'  each GBIF occurrence used, as a long tibble with columns `canonicalName`
+#'  and `elevation` (one row per occurrence), instead of the per-taxon
+#'  statistics. `add_to_phyloseq` is then ignored. This is the input expected
+#'  by [plot_tax_alt_pq()].
 #'
 #' @returns Either a tibble (if add_to_phyloseq = FALSE) or a new phyloseq
 #'  object, if add_to_phyloseq = TRUE, with new column(s) in the tax_table.
@@ -53,9 +58,10 @@
 #'  altitude_q50, altitude_q95, altitude_mean, altitude_sd, altitude_n_records,
 #'  and canonicalName. When `method = "elevatr"`, also includes altitude_n_ocean
 #'  (number of points detected in ocean).
+#'  If `return_raw = TRUE`, a long tibble of occurrence elevations.
 #' @export
 #' @author Adrien Taudiere
-#' @seealso [rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()]
+#' @seealso [rgbif::occ_download()], [elevatr::get_elev_point()], [tax_gbif_occur_pq()], [plot_tax_gbif_pq()], [plot_tax_alt_pq()]
 #' @details
 #' ## Method "gbif" (default)
 #'
@@ -154,7 +160,8 @@ tax_gbif_alt <- function(
   n_coor_alt = NULL,
   verbose = TRUE,
   discard_genus_alone = identical(taxonomic_rank, "currentCanonicalSimple"),
-  discard_NA = TRUE
+  discard_NA = TRUE,
+  return_raw = FALSE
 ) {
   # Validate and set method
   method <- match.arg(method)
@@ -176,6 +183,9 @@ tax_gbif_alt <- function(
   )
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose) {
+    check_gbif_backbone(physeq, taxonomic_rank = taxonomic_rank)
+  }
 
   gbif_taxa <- gbif_match_taxa(taxnames)
 
@@ -184,6 +194,7 @@ tax_gbif_alt <- function(
   }
 
   tib_occur_list <- vector("list", nrow(gbif_taxa))
+  raw_list <- vector("list", nrow(gbif_taxa))
 
   gbif_taxon_keys <- gbif_taxa$usageKey
 
@@ -247,6 +258,13 @@ tax_gbif_alt <- function(
       if (nrow(taxon_data) > 0) {
         elevation_data <- taxon_data$elevation
         elevation_data <- elevation_data[!is.na(elevation_data)]
+      }
+
+      if (length(elevation_data) > 0) {
+        raw_list[[i]] <- tibble(
+          "canonicalName" = species_name,
+          "elevation" = elevation_data
+        )
       }
 
       # Calculate statistics
@@ -410,6 +428,13 @@ tax_gbif_alt <- function(
         }
       }
 
+      if (length(elevation_data) > 0) {
+        raw_list[[i]] <- tibble(
+          "canonicalName" = species_name,
+          "elevation" = elevation_data
+        )
+      }
+
       # Calculate statistics
       if (!is.null(elevation_data) && length(elevation_data) > 0) {
         tib <- tibble(
@@ -456,6 +481,14 @@ tax_gbif_alt <- function(
       }
       tib_occur_list[[i]] <- tib
     }
+  }
+
+  if (return_raw) {
+    raw <- bind_rows(raw_list)
+    if (nrow(raw) == 0) {
+      raw <- tibble("canonicalName" = character(), "elevation" = numeric())
+    }
+    return(raw)
   }
 
   tib_occur <- bind_rows(tib_occur_list)

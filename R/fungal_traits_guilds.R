@@ -37,9 +37,9 @@
 #'   consensus columns.
 #' @param add_to_phyloseq (Logical, default `TRUE`) If `TRUE`, return an
 #'   updated phyloseq object. If `FALSE`, return a tibble of the tax_table.
-#' @param gna_data_sources Integer or character vector passed to
-#'   [gna_verifier_pq()] when taxonomic names need to be verified.
-#'   See [taxize::gna_verifier()].
+#' @param gna_data_sources (integer, default `1`, Catalogue of Life) GNA data
+#'   source passed to [gna_verifier_pq()] when taxonomic names need to be
+#'   verified. Use a single data source (see `vignette("data-sources")`).
 #' @param verbose (Logical, default `TRUE`) If `TRUE`, print progress messages.
 #' @param ft_csv_cols_select A character vector of the column names to select
 #'   from the FungalTraits CSV file.
@@ -131,7 +131,7 @@ fungal_traits_guilds <- function(
   add_consensus = TRUE,
   consensus_col_prefix = "cons_",
   add_to_phyloseq = TRUE,
-  gna_data_sources = c(1, 12),
+  gna_data_sources = 1,
   verbose = TRUE
 ) {
   check_package("httr")

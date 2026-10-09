@@ -97,9 +97,8 @@ taxa_summary_text(data_fungi_cleanNames,
 #> [1] "Xylodon flaviporus: 1 samp., 1 taxa, 5397 seq., 1 occ."
 taxa_summary_text(data_fungi_cleanNames,
   taxonomic_rank = "Trait",
-  taxnames = c("Soft Rot"), verbose = FALSE
+  taxnames = c("White Rot"), verbose = FALSE
 )
-#> Error in select_taxa_pq(physeq = physeq, taxonomic_rank = taxonomic_rank,     taxnames = taxnames, verbose = verbose, clean_pq = FALSE,     ...): No taxa match the requested `taxnames`.
-#> ℹ Searched the "Trait" tax_table column(s) for "Soft Rot".
+#> [1] "White Rot: 117 samp., 19 taxa, 274280 seq., 274 occ."
 # }
 ```

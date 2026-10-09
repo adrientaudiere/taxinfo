@@ -85,6 +85,9 @@ tax_gbif_occur_pq <- function(
   )
   taxnames <- resolved$taxnames
   add_to_phyloseq <- resolved$add_to_phyloseq
+  if (verbose) {
+    check_gbif_backbone(physeq, taxonomic_rank = taxonomic_rank)
+  }
 
   gbif_taxa <- gbif_match_taxa(taxnames)
 
